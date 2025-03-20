@@ -1,0 +1,24 @@
+:root {
+    --white-color:#ffffff;
+    --black-color:#000000;
+    --grey-color:#eeeeee;
+    --text-white:#ffffff;
+    --text-black:#000000;
+    --scroll-back:#A1A9AD;
+    --text-grey:#000000;
+    --text-orange:#f06115;
+    --text-blue:#07407B;
+    
+}
+
+
+.btn-orange-clr{
+    background-color: var(--text-orange);
+    --bs-btn-hover-bg: var(--text-orange);
+  }
+
+  .btn-dark-blue-clr{
+    background-color: var(--text-blue);
+    --bs-btn-hover-bg: var(--text-blue);
+  }
+  
