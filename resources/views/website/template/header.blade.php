@@ -12,7 +12,7 @@
               </div>
               <!-- Navbar -->
               <div class="col-md-7">
-                  <nav class="navbar navbar-expand-md">
+                  <nav class="navbar navbar-expand-md" style="white-space: nowrap;">
                       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                           <ul class="navbar-nav">
                               <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
