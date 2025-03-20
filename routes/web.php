@@ -1,26 +1,37 @@
 <?php
-use App\Http\Controllers\Admin\CalendarController;
-use App\Http\Controllers\Admin\BookingController;
-use App\Http\Controllers\Admin\ClientController;
-use App\Http\Controllers\Admin\FinancialController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\companyController;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\userController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\IP_AddressController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\ActivityLogController;
-use App\Http\Controllers\Admin\EventController;
-
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\website\BlogController;
+use App\Http\Controllers\website\FaqsController;
+use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\companyController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\website\AboutController;
+use App\Http\Controllers\Admin\CalendarController;
+
+use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FinancialController;
+use App\Http\Controllers\website\ContactController;
+use App\Http\Controllers\Admin\IP_AddressController;
+use App\Http\Controllers\website\CategoryController;
+use App\Http\Controllers\website\CheckoutController;
+use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\website\CarBookingController;
+use App\Http\Controllers\website\CarListingController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\website\JoinProgramController;
+use App\Http\Controllers\website\WebsiteHomeController;
+use App\Http\Controllers\website\ConfirmBookingController;
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}', function ($lang) {
@@ -142,3 +153,17 @@ Route::post('/lock-screen', function () {
 //     }
 //     return redirect()->back();
 // })->name('change.language');
+
+
+// add routes of website by Farhan & Salman
+Route::get('/', [WebsiteHomeController::class, 'showView']);
+Route::get('/categories', [CategoryController::class, 'categoryView']);
+Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
+Route::get('/blog', [BlogController::class, 'blogView']);
+Route::get('/faqs', [FaqsController::class, 'faqView']);
+Route::get('/about-us', [AboutController::class, 'aboutView']);
+Route::get('/contact', [ContactController::class, 'contactView']);
+Route::get('/carlisting', [CarListingController::class, 'carListingView']);
+Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
+Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
+Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
