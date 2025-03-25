@@ -353,6 +353,9 @@
               <p>Got Questions? We’ve Got Answers</p>
               @elseif(request()->is('contact'))
               <h2 class="fw-bold">Contact Us</h2>
+              @elseif(request()->is('cardetail/*'))
+              <h2 class="fw-bold">Car Details</h2>
+              <p>Find the Perfect Ride for Your Journey – Explore, Compare, and Book Effortlessly!</p>
               @endif
           </div>
           <!-- Background Curve -->

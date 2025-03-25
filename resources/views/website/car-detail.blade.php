@@ -1,6 +1,8 @@
 @extends('website.layout.master')
 @section('title')
-Home Page | Select and Rent
+
+Car Detail | Select and Rent
+
 @endsection
 
 @section('content')
@@ -9,67 +11,50 @@ Home Page | Select and Rent
     <div class="row">
         <!-- Large Image (Main Car) -->
         <div class="col-lg-9 large-img">
-            <img src="{{asset('/')}}company-assets/assets/main.png" alt="Large Car Image">
+
+            <img src="{{ Storage::url($car->thumbnail) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}">
         </div>
         <!-- Side Images (For Desktop) -->
-        <div class="col-lg-3 d-none d-lg-flex flex-column side-images">
-            <img src="{{asset('/')}}company-assets/assets/side1.png" alt="Side Image 1">
-            <img src="{{asset('/')}}company-assets/assets/side2.png" alt="Side Image 2">
-            <img src="{{asset('/')}}company-assets/assets/side3.png" alt="Side Image 3">
+        <div class="col-lg-3 d-none d-lg-flex flex-column side-images mt-4">
+            @foreach(unserialize($car->images) as $image)
+                <img src="{{ Storage::url($image) }}" alt="Side Image">
+            @endforeach
+
         </div>
     </div>
 
     <!-- Side Images (For Mobile & Tablet) -->
     <div class="row d-lg-none">
         <div class="col-12 side-images">
-            <img src="{{asset('/')}}company-assets/assets/side1.png" alt="Side Image 1">
-            <img src="{{asset('/')}}company-assets/assets/side2.png" alt="Side Image 2">
-            <img src="{{asset('/')}}company-assets/assets/side3.png" alt="Side Image 3">
+
+            @foreach(unserialize($car->images) as $image)
+                <img src="{{ Storage::url($image) }}" alt="Side Image">
+            @endforeach
         </div>
     </div>
 </div>
- <!-- end car section -->
-  <!-- bmw section -->
-  <div class="container py-3">
+
+<!-- Car Details Section -->
+<div class="container py-3">
     <div class="row g-4">
         <!-- Left Column: Car Info -->
         <div class="col-lg-8 col-md-8 col-sm-8">
-            <div class="">
-                <h2 class="fw-bold bmw-text-color">BMW X6 M Competition</h2>
-                <p class="bmw-text">
-                    The BMW is the high-performance version of the 2 Series 2-door coupe. The first generation of the Car is the coupe and is powered by turbocharged. I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure.
-                </p>
+            <div>
+                <h2 class="fw-bold bmw-text-color">{{ $car->car_models->name ?? 'Car Model' }}</h2>
+                <p class="bmw-text">{{ $car->detail }}</p>
                 
                 <h4 class="mt-4">Features</h4>
                 <div class="row">
-                    <div class="col-md-4">
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Bluetooth</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Multimedia Player</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Central Lock</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Leather Seats</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Tachometer</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Heater</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Bluetooth</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Multimedia Player</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Central Lock</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Leather Seats</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Tachometer</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Heater</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Panoramic Moonroof</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Air Conditioner</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Digital Odometer</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Rain Sensing Wipe</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Fog Lights Front</p>
-                        <p><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Rear Spoiler</p>
-                    </div>
+                    @php $features = unserialize($car->features); @endphp
+                    @foreach(array_chunk($features, ceil(count($features)/3)) as $chunk)
+                        <div class="col-md-4">
+                            @foreach($chunk as $feature)
+                                <p><img src="{{ asset('company-assets/icons/Security2.png') }}" alt="Feature"> {{ $feature }}</p>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
-                <p class="bmw-text">
-                    The BMW is the high-performance version of the 2 Series 2-door coupe. The first generation of the Car is the coupe and is powered by turbocharged. I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure.
-                </p>
+
             </div>
         </div>
 
@@ -78,29 +63,32 @@ Home Page | Select and Rent
             <div class="rental-card p-4 shadow rounded">
                 <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
                     <h5 class="mb-0 py-3">Rental Price</h5>
-                    <h3 class="fw-bold py-3 mb-0">$800 <span class="fs-6">/ Day</span></h3>
+
+                    <h3 class="fw-bold py-3 mb-0">${{ $car->rent }} <span class="fs-6">/ Day</span></h3>
                 </div>
                 <ul class="list-unstyled px-3 py-2">
-                    <li class="d-flex justify-content-between"><strong>Body</strong> <span>Sedan</span></li>
-                    <li class="d-flex justify-content-between"><strong>Seats</strong> <span>4 Seats</span></li>
-                    <li class="d-flex justify-content-between"><strong>Doors</strong> <span>2 doors</span></li>
-                    <li class="d-flex justify-content-between"><strong>Luggage</strong> <span>150</span></li>
-                    <li class="d-flex justify-content-between"><strong>Drive</strong> <span>4WD</span></li>
-                    <li class="d-flex justify-content-between"><strong>Fuel Economy</strong> <span>18.5</span></li>
-                    <li class="d-flex justify-content-between"><strong>Fuel Type</strong> <span>Hybrid</span></li>
-                    <li class="d-flex justify-content-between"><strong>Engine</strong> <span>3000</span></li>
-                    <li class="d-flex justify-content-between"><strong>Year</strong> <span>2023</span></li>
-                    <li class="d-flex justify-content-between"><strong>Mileage</strong> <span>200</span></li>
-                    <li class="d-flex justify-content-between"><strong>Transmission</strong> <span>Automatic</span></li>
-                    <li class="d-flex justify-content-between"><strong>Exterior Color</strong> <span>Blue Metallic</span></li>
-                    <li class="d-flex justify-content-between"><strong>Interior Color</strong> <span>Black</span></li>
+                    <li class="d-flex justify-content-between"><strong>Seats</strong> <span>{{ $car->seats }} Seats</span></li>
+                    <li class="d-flex justify-content-between"><strong>Doors</strong> <span>{{ $car->doors }} Doors</span></li>
+                    <li class="d-flex justify-content-between"><strong>Luggage</strong> <span>{{ $car->luggage }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Drive</strong> <span>{{ $car->drive }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Fuel Economy</strong> <span>{{ $car->fuel_economy }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Fuel Type</strong> <span>{{ $car->fuel_type }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Engine</strong> <span>{{ $car->engine_size }} cc</span></li>
+                    <li class="d-flex justify-content-between"><strong>Year</strong> <span>{{ $car->year }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Mileage</strong> <span>{{ $car->mileage }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Transmission</strong> <span>{{ ucfirst($car->transmission) }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Exterior Color</strong> <span>{{ ucfirst($car->exterior_color) }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>Interior Color</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
+
                 </ul>
                 <button class="btn btn-purchase w-100 rounded-pill mt-3">Book Now</button>
             </div>
         </div>
-        
+
     </div>
 </div>
+
+
 <!-- end bmw -->
  <!-- start accordian and map -->
  <div class="container">
@@ -206,109 +194,47 @@ Home Page | Select and Rent
 <div class="container py-4">
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <!-- Card 1 -->
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Duplicate for other cards -->
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
+            @foreach($cars as $car)
+                <div class="swiper-slide">
+                    <div class="custom-card2">
+                        <img src="{{ Storage::url($car->thumbnail) }}" class="custom-card-img" alt="Car Image">
+        
+                        <div class="card-content">
+                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
+                                <h6 class="car-price">${{ $car->rent }}/day</h6>
+                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">Book</button>
+                            </div>
+        
+                            <h5 class="text-muted mt-3">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
+        
+                            <div class="d-flex justify-content-between mt-4">
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly.png" alt="Car" width="20px">
+                                    {{ $car->weight }} kg
+                                </div>
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-v.png" alt="Car" width="20px">
+                                    {{ $car->mileage }} km
+                                </div>
+                            </div>
+        
+                            <div class="d-flex justify-content-between mt-2">
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-u.png" alt="Car" width="20px">
+                                    {{ $car->seats }} Seater
+                                </div>
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-s.png" alt="Car" width="20px">
+                                    {{ ucfirst($car->transmission) }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+        </div>
+
         </div>
 
         <!-- Swiper Navigation -->
@@ -321,7 +247,8 @@ Home Page | Select and Rent
             </a>
         </div>
     </div>
-</div>
+
+
 <!-- end -->
 <div class="container-fluid bg-white">
 <div class="review-container mb-3">

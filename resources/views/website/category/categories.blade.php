@@ -14,32 +14,40 @@
             </div>
         </div>
 
-        <!-- 🔹 Cars List -->
-        <div class="container mt-5">
-            <div class="row g-4" id="car-list">
-                @include('website.category.include.car-item', ['cars' => $cars])
-            </div>
 
-            <!-- 🔹 Load More for "All" Category -->
-            <div class="text-center mt-4">
-                <button id="load-more-category" class="btn btn-primary" style="display: none;">Load More</button>
-            </div>
+       <!-- 🔹 Cars List -->
+<div class="container mt-5">
+    <div class="row g-4" id="car-category-list">
+        @include('website.category.include.car-item', ['cars' => $cars])
+    </div>
 
-            <!-- 🔹 Load More for Selected Category -->
-            <div class="text-center mt-4">
-                <button id="load-tab-more" class="btn btn-success" style="display: none;">Load More</button>
-            </div>
-        </div>
+    <!-- 🔹 Load More for "All" Category -->
+    @if($totalCars > 8)
+    <div class="text-center mt-4">
+        <button id="load-more-btn" class="btn btn-orange-clr text-white" 
+                data-url="{{ route('load.more.category.cars') }}" 
+                data-target="car-category-list" 
+                data-offset="8" 
+                data-model="Car">
+            Load More
+        </button>
+    </div>
+    @endif
+</div>
+
         
 
         <!-- View All Button -->
-        <div class="d-flex justify-content-center mt-4">
+        {{-- <div class="d-flex justify-content-center mt-4">
+
             <button class="btn  rounded-pill text-white btn-orange-clr" data-bs-toggle="modal"
                 data-bs-target="#carRentalModal">
                 View All <img src="{{ asset('/') }}company-assets/icons/Frame-1707482121.png" class="ms-2"
                     width="20" height="20" alt="">
             </button>
-        </div>
+
+        </div> --}}
+
     </div>
 
 
@@ -397,54 +405,70 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-$(document).ready(function() {
+
+$(document).ready(function () {
     let categoryLastCarId = {}; // Store last car ID for each category
     let currentCategory = "All";
-    let isLoading = false; // Prevent multiple clicks
+    let isLoading = false;
 
     function loadCars(categoryId, append = false) {
-        if (isLoading) return; // Prevent multiple clicks
-        isLoading = true; 
+        if (isLoading) return;
+        isLoading = true;
 
-        let lastCarId = categoryLastCarId[categoryId] || 0; // Get last car ID or default to 0
-
-        console.log(`Loading cars for category: ${categoryId}, Last Car ID: ${lastCarId}`); // Debugging
+        let offset = categoryLastCarId[categoryId] || 0;
+        let model = "Car";
 
         $.ajax({
-            url: "{{ route('cars.categorize') }}",
+            url: "{{ route('load.more.category.cars') }}",
             method: "GET",
             data: {
+                model: model,
                 car_category_id: categoryId,
-                last_car_id: lastCarId // Send last car ID instead of offset
+                offset: offset
             },
-            success: function(response) {
+            success: function (response) {
                 if (!append) {
-                    $("#car-list").html(response.cars); // Replace content
+                    $("#car-category-list").html(response.cars);
                 } else {
-                    $("#car-list").append(response.cars); // Append new data
+                    $("#car-category-list").append(response.cars);
                 }
 
-                // Update last car ID if new cars exist
-                let newCars = $(response.cars).find(".car-item"); // Assuming each car has class `.car-item`
-                if (newCars.length > 0) {
-                    let lastLoadedCar = newCars.last().data("car-id"); // Get last car ID
-                    categoryLastCarId[categoryId] = lastLoadedCar; // Update tracking
-                    console.log(`Updated Last Car ID for ${categoryId}: ${lastLoadedCar}`); // Debugging
+                // Check if there are no records
+                if ($.trim(response.cars) === "") {
+                    $("#car-category-list").html('<div class="text-center text-orange fw-bold mt-4">This category has no records</div>');
+                    $("#load-more-btn").hide(); // Hide Load More button
+                } else {
+                    // Update offset for the category
+                    categoryLastCarId[categoryId] = offset + 8;
+
+                    // Show Load More button for "All" category
+                    if (categoryId === "All") {
+                        $("#load-more-btn").show();
+                    }
+
+                    // Show/hide Load More button
+                    if (!response.hasMore) {
+                        $("#load-more-btn").hide();
+                    } else {
+                        $("#load-more-btn").show();
+                    }
                 }
 
-                isLoading = false; // Reset flag
+                isLoading = false;
             },
-            error: function(xhr, status, error) {
-                console.log("AJAX error:", error);
-                isLoading = false; // Reset flag on error
+            error: function () {
+                isLoading = false;
             }
         });
     }
 
+    // Default Load
     categoryLastCarId["All"] = 0;
     loadCars("All", false);
 
-    $(document).on("click", ".filter-btn", function() {
+    // Category Change
+    $(document).on("click", ".filter-btn", function () {
+
         $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
         $(this).removeClass("btn-dark").addClass("btn-primary");
 
@@ -452,17 +476,20 @@ $(document).ready(function() {
 
         if (selectedCategory !== currentCategory) {
             currentCategory = selectedCategory;
-            categoryLastCarId[currentCategory] = 0; // Reset last car ID when category changes
+            categoryLastCarId[currentCategory] = 0; // Reset offset for new category
         }
 
-        $("#load-tab-more").hide();
+        $("#load-more-btn").hide(); // Hide Load More initially
         loadCars(currentCategory, false);
     });
 
-    $(document).on("click", "#load-tab-more", function() {
-        loadCars(currentCategory, true); 
+    // Load More Button Click
+    $(document).on("click", "#load-more-btn", function () {
+        loadCars(currentCategory, true);
     });
 });
+
+
 
     </script>
 @endsection

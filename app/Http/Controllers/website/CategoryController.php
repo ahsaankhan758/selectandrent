@@ -13,8 +13,46 @@ class CategoryController extends Controller
 {
     $categories = CarCategory::all();
     $cars = Car::latest()->take(8)->get();
-    return view('website.category.categories', compact('categories', 'cars'));
+
+    $totalCars = Car::count();
+    return view('website.category.categories', compact('categories', 'cars','totalCars'));
 }
+
+public function loadMoreCategoryCars(Request $request)
+{
+    $model = $request->model;
+    $categoryId = $request->car_category_id;
+    $offset = intval($request->offset ?? 0);
+
+    // Validate if the model exists
+    $modelClass = "App\\Models\\" . ucfirst($model);
+    if (!class_exists($modelClass)) {
+        return response()->json(['error' => 'Invalid Model'], 400);
+    }
+
+    // Build query
+    $query = $modelClass::latest();
+
+    // Apply category filter if provided
+    if ($categoryId && $categoryId !== "All") {
+        $query->where('car_category_id', $categoryId);
+    }
+
+    // Get total count before pagination
+    $totalCars = $query->count();
+
+    // Fetch records with pagination
+    $cars = $query->skip($offset)->take(8)->get();
+
+    // Correct hasMore calculation
+    $hasMore = ($offset + count($cars)) < $totalCars;
+
+    return response()->json([
+        'cars' => view("website.category.include.car-item", compact('cars'))->render(),
+        'hasMore' => $hasMore
+    ]);
+}  
+
 
 public function loadMoreCars(Request $request)
 {
@@ -58,60 +96,5 @@ public function carCategorize(Request $request)
         'hasMore' => $hasMore
     ]);
 }
-
-
-
-
-
-
-    // public function carCategorize(Request $request)
-    // {
-    //     $categoryId = $request->car_category_id;
-    
-    //     if ($categoryId === "All") {
-    //         $cars = Car::with(['car_categories', 'car_models'])->get();
-    //     } else {
-    //         $cars = Car::with(['car_categories', 'car_models'])
-    //             ->where('car_category_id', $categoryId)
-    //             ->get();
-    //     }
-    
-    //     $html = view('website.category.include.carsCategory', compact('cars'))->render();
-    
-    //     return response()->json(['html' => $html]);
-    // }
-
-    // public function carCategorize(Request $request)
-    // {
-    // $categoryId = $request->car_category_id;
-
-    // if ($categoryId === "All") {
-    //     $cars = Car::with(['car_categories', 'car_models'])->get();
-    // } else {
-    //     $cars = Car::with(['car_categories', 'car_models'])->where('car_category_id', $categoryId)->get();
-    // }
-
-    // $cars = $cars->map(function ($car) {
-    //     return [
-    //         'car_category_id' => $car->car_category_id,
-    //         'category' => $car->car_categories ? $car->car_categories->name : 'N/A',
-    //         'thumbnail' => $car->thumbnail,
-    //         'model' => $car->car_models ? $car->car_models->name : 'N/A', 
-    //     ];
-    // })->toArray();
-
-    // return response()->json([
-    //     'cars' => $cars, 
-    // ]);
-    // }
- 
-    
-
-    
-
-    
-    
-    
-
 
 }
