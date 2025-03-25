@@ -2,7 +2,7 @@
 @section('title'){{__('messages.activity logs') }} @endsection
 @section('content')
 
-    <div class="col-10">
+    <div class="col">
         <form action="{{ route('deleteAcvtivityLogs') }}" method="POST">
             @csrf
             @method('DELETE')

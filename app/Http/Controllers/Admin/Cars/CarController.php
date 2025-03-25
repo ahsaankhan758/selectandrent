@@ -60,8 +60,11 @@ class CarController extends Controller
         'lisence_plate' => 'required|unique:cars',
         'rent' => 'required',
         'detail' => 'required',
+        'date_added' => 'required'
        ]);
+       $userId = Auth::id();
        $car = new Car;
+       $car->user_id = $userId;
        $car->car_model_id = $validatedData['model'];
        $car->car_category_id = $validatedData['category'];
        $car->car_location_id = $validatedData['location'];
@@ -93,7 +96,9 @@ class CarController extends Controller
                 }
                 $car->images = serialize($imagePaths) ;   
             }     
-       $car->features = serialize($request['features']);     
+       $car->features = serialize($request['features']); 
+       $car->status = $request['status'];
+       $car->date_added = $validatedData['date_added'];    
        $car->save();
        // save logs
        $userId = Auth::id();

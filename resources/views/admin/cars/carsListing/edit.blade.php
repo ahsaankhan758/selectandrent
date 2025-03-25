@@ -152,14 +152,14 @@
                         </div>  
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <label for="thumbnail">{{ __('messages.thumbnail') }}</label>
                             <input type="file" name="thumbnail" class="form-control" id="thumbnail" onchange="PreviewThumbnail();">
                             <div class="mt-1">
                                 <img src="{{asset('/')}}storage/{{ $car->thumbnail }}" id="uploadThumbnailPreview" class="thumbnail" />
                             </div>
                         </div>
-                        <div class="col-6 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <label for="images">{{ __('messages.images') }}</label>
                             <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages();" multiple>
                             <div class="mt-1" id="currentImagePreview">
@@ -170,6 +170,24 @@
                                 @endif
                             </div>
                             <div class="mt-1" id="uploadImagePreview"></div>
+                        </div>
+                        <div class="col-3 form-group mb-3">
+                            <label for="drive">{{ __('messages.status') }}</label>
+                            <select name="status" class="form-control">
+                                
+                                @if($car->status == 1)
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">Inactive</option>
+                                @else
+                                    <option value="1">Active</option>
+                                    <option value="0" selected>Inactive</option>
+                                @endif
+
+                            </select>
+                        </div>
+                        <div class="col-3 form-group mb-3">
+                            <label for="drive">{{ __('messages.date') }} {{ __('messages.added') }}</label>
+                            <input type="date" name="date_added" class="form-control" id="date_added" value="{{ date('Y-m-d', strtotime($car->date_added)) }}">
                         </div>
                     </div>
                         <h4 class="mt-3">{{ __('messages.features') }}</h4>

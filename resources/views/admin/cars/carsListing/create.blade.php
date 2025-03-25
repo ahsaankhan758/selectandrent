@@ -149,20 +149,30 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <label for="thumbnail">{{ __('messages.thumbnail') }}</label>
                             <input type="file" name="thumbnail" class="form-control"  id="thumbnail" onchange="PreviewThumbnail();">
                             <div class="mt-1">
                                 <img id="uploadThumbnailPreview" style="width: 100px; height: 100px; display: none;" />
                             </div>
                         </div>
-                        <div class="col-6 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <label for="images">{{ __('messages.images') }}</label>
                             <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages()" multiple>
                             <div class="mt-1" id="uploadImagePreview">
                             </div>
                         </div>
-                        
+                        <div class="col-3 form-group mb-3">
+                            <label for="drive">{{ __('messages.status') }}</label>
+                            <select name="status" class="form-control">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col-3 form-group mb-3">
+                            <label for="drive">{{ __('messages.date') }} {{ __('messages.added') }}</label>
+                            <input type="date" name="date_added" class="form-control" id="date_added">
+                        </div>
                     </div>
                     <h4 class="mt-3">{{ __('messages.features') }}</h4>
                     <div class="row mt-4">
@@ -249,6 +259,12 @@
                     cache: true
                 }
             });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let today = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD format
+            document.getElementById("date_added").value = today; // Set input value
         });
     </script>
     

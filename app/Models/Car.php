@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     protected $fillable = [
+        'user_id',
         'car_category_id',
         'car_location_id',
         'car_model_id',
@@ -30,6 +31,9 @@ class Car extends Model
         'thumbnail',
         'images',
         'features',
+        'is_featured',
+        'status',
+        'date_added',
     ];
     protected $casts = [
         'images' => 'array', 
@@ -47,5 +51,9 @@ class Car extends Model
     public function car_models()
         {
             return $this->belongsTo(CarModel::class, 'car_model_id', 'id');
-        }    
+        }   
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    } 
 }
