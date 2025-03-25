@@ -22,3 +22,6 @@
     --bs-btn-hover-bg: var(--text-blue);
   }
   
+  .text-orange{
+    color: var(--text-orange);
+  }
