@@ -103,6 +103,10 @@ return [
     'summary' => 'Summary',
     'transaction' => 'Transaction',
     'history' => 'History',
-
-
+    'added' => 'Added',
+    'owner' => 'Owner',
+    'inactive'=> 'Inactive',
+    'yes' => 'Yes',
+    'no' => 'No',
+    'featured' => 'Featured',
 ];

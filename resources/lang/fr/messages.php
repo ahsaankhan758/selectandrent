@@ -97,4 +97,10 @@ return [
     'locations' => 'Lieux',
     'pending' => 'En attente', 
     'active' => 'Actif',
+    'added' => 'Ajouté',
+    'owner' => 'Propriétaire',
+    'inactive'=> 'Inactif',
+    'yes' => 'Oui',
+    'no' => 'Non',
+    'featured' => 'En vedette'
 ];

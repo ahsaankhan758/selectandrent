@@ -97,4 +97,10 @@ return [
     'locations' => 'المواقع', 
     'pending' => 'قيد الانتظار',
     'active' => 'نشط',
+    'added' => 'مضاف',
+    'owner' => 'المالك',
+    'inactive'=> 'غير نشط',
+    'yes' => 'نعم',
+    'no' => 'لا',
+    'featured' => 'مميز'
 ];

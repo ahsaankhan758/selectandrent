@@ -1,10 +1,13 @@
 @extends('admin.layouts.Master')
 @section('title'){{__('messages.calendar') }} @endsection
 @section('content')
+{{-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.15/index.global.min.js'></script> --}}
 
     <div class="row">
-        <div class="col-12">
+        <div class="col">
             <div class="page-title-box">
+                <div id="success-message" class="alert alert-success d-none" role="alert"></div>
                 <h4 class="page-title">Calendar</h4>
             </div>
         </div>
@@ -30,7 +33,7 @@
                             <h5 class="modal-title" id="modal-title">Event</h5>
                         </div>
                         <div class="modal-body px-4 pb-4 pt-0">
-                            <form action="{{ url('admin/events') }}" name="event-form" id="form-event">
+                            <form name="event-form" id="form-event">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-3">
@@ -71,7 +74,70 @@
             </div>
         </div>
     </div> 
-    <script>
-        
-    </script>
+<script>
+    
+</script>
+{{-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var calendarEl = document.getElementById("calendar");
+    var eventModal = new bootstrap.Modal(document.getElementById("event-modal"));
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: "dayGridMonth",
+        events: "{{ route('getEvents') }}", 
+        dateClick: function (info) {
+            eventModal.show();
+        }
+    });
+
+    calendar.render();
+
+    document.getElementById("form-event").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var title = document.getElementById("event-title").value;
+        var category = document.getElementById("event-category").value;
+        var start = new Date().toISOString().slice(0, 19).replace("T", " "); 
+        var allDay = false;
+
+        fetch("{{ route('storeEvents') }}", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: title,
+                category: category,
+                start: start,
+                end: start,
+                all_day: allDay,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            let messageDiv = document.getElementById("success-message");
+            messageDiv.innerText = "✅ " + data.message;
+            messageDiv.classList.remove("d-none");
+            document.getElementById("form-event").reset();
+            eventModal.hide();
+
+            setTimeout(() => {
+                messageDiv.style.transition = "opacity 1.5s ease"; 
+                messageDiv.style.opacity = "0"; 
+
+                setTimeout(() => {
+                    messageDiv.classList.add("d-none"); 
+                    messageDiv.style.opacity = "1";
+                }, 1500); 
+            }, 6000);
+
+            // 🔄 Refresh calendar to show new event
+            calendar.refetchEvents();
+        })
+        .catch(error => console.error("Error:", error));
+    });
+});
+
+</script> --}}
 @endsection
