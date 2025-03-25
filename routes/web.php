@@ -34,6 +34,7 @@ use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
+use App\Http\Controllers\website\carDetailController;
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}', function ($lang) {
@@ -167,18 +168,27 @@ Route::post('/lock-screen', function () {
 
 // add routes of website by Farhan & Salman
 Route::get('/', [WebsiteHomeController::class, 'showView']);
-Route::get('/categories', [CategoryController::class, 'categoryView']);
-Route::get('/load-more-cars', [CategoryController::class, 'loadMoreCars']);
-Route::get('/cars/categorize', [CategoryController::class, 'carCategorize'])->name('cars.categorize');
+
+
 Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
 Route::get('/faqs', [FaqsController::class, 'faqView']);
 Route::get('/about-us', [AboutController::class, 'aboutView']);
 Route::get('/contact', [ContactController::class, 'contactView']);
-Route::get('/carlisting', [CarListingController::class, 'carListingView']);
 Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
 Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
 Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
-Route::get('/cardetail', [carDetailController::class, 'cardetailView']);
-// added by farhan
-Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
-Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
+
+
+Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
+
+// categories routes
+Route::get('/categories', [CategoryController::class, 'categoryView']);
+Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
+// end categories
+
+// car listing routes
+Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
+Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
+
+// end car listing routes
+

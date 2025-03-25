@@ -122,7 +122,6 @@ Home Page | Select and Rent
 
 <!-- chose section -->
 <div class="container-fluid bg-white chose-bg-img mt-4">
-
     <!-- Mobile Section -->
     <div class="container mobile text-center py-5 d-block d-md-none">
         <h4 class="text-chose fw-bold">Why we choose us</h4>
@@ -290,121 +289,61 @@ Home Page | Select and Rent
         </div>
         <!-- Button (Center on Mobile, End on Larger Screens) -->
         <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
-            <button class="btn  rounded-pill text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#carRentalModal">
-                View All <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+            <button class="btn rounded-pill text-white btn-orange-clr"
+                onclick="window.location.href='{{ url('/carlisting') }}'">
+                View All 
+                <img src="{{ asset('/') }}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
             </button>
         </div>
+        
     </div>
 </section>
-
 
 <!-- cars view -->
 <div class="container py-4">
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <!-- Card 1 -->
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Duplicate for other cards -->
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
+            @foreach($cars as $car)
+                <div class="swiper-slide">
+                    <div class="custom-card2">
+                        <img src="{{ Storage::url($car->thumbnail) }}" class="custom-card-img" alt="Car Image">
+        
+                        <div class="card-content">
+                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
+                                <h6 class="car-price">${{ $car->rent }}/day</h6>
+                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">Book</button>
+                            </div>
+        
+                            <h5 class="text-muted mt-3">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
+        
+                            <div class="d-flex justify-content-between mt-4">
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly.png" alt="Car" width="20px">
+                                    {{ $car->weight }} kg
+                                </div>
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-v.png" alt="Car" width="20px">
+                                    {{ $car->mileage }} km
+                                </div>
+                            </div>
+        
+                            <div class="d-flex justify-content-between mt-2">
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-u.png" alt="Car" width="20px">
+                                    {{ $car->seats }} Seater
+                                </div>
+                                <div class="icon-text">
+                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-s.png" alt="Car" width="20px">
+                                    {{ ucfirst($car->transmission) }}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="custom-card2">
-                    <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" class="custom-card-img" alt="Car Image">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                            <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
-                        </div>
-                        <h5 class="text-muted mt-3">911 Carrera GTS</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car" width="20px"> 520 kg</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car" width="20px"> 1,200 km</div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car" width="20px"> 2 Seater</div>
-                            <div class="icon-text"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car" width="20px"> Manual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+        </div>
         </div>
 
         <!-- Swiper Navigation -->
@@ -578,4 +517,35 @@ Home Page | Select and Rent
         </div>
     </div>
 </section>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            },
+            navigation: {
+                nextEl: ".carousel-control-next-custom",
+                prevEl: ".carousel-control-prev-custom",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 4
+                },
+                480: {
+                    slidesPerView: 1
+                }
+            }
+        });
+    });
+</script>
 @endsection
