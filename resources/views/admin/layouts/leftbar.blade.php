@@ -213,7 +213,31 @@
                         <span> {{ __('messages.users') }} IP  </span>
                     </a>
                 </li>
-                
+                 {{--Added by Farhan  --}}
+                <li>
+                    <a href="#sub_menu_blog" data-bs-toggle="collapse">
+                        <i class="mdi mdi-book-open-page-variant"></i>
+                        <span> Blogs </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sub_menu_blog">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('blogs.createBlog') }}"> 
+                                    <i class="mdi mdi-format-list-bulleted"></i>
+                                    <span class="custom-ml-15">Create</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('blogs.blogDetail') }}"> 
+                                    <i class="mdi mdi-plus-circle"></i>
+                                    <span class="custom-ml-15">Details</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{--end by Farhan  --}}
                 <li>
                     <a href="{{ route('activityLogs') }}">
                         <i class="bi bi-journal-text"></i>
