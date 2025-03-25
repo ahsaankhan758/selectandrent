@@ -4,6 +4,7 @@ Car Listing | Select and Rent
 @endsection
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <!-- car-listing-sidebar -->
@@ -43,184 +44,58 @@ Car Listing | Select and Rent
         <div class="filter-bar static-display-flex justify-content-between align-items-center my-3 mt-5">
             <div class="static-display-flex align-items-center">
                 <span class="menu-icon">☰</span>
-                <span class="results">1-10 of 25 results</span>
+                <span class="results">
+                    <span id="current-count">8</span> of {{ $totalCars }} results
+                </span>            
             </div>
             <div class="filter-options static-display-flex align-items-center">
                 <div class="car-listing-dropdown">
                     <span class="filter-icon">⇅</span>
-                    <select class="car-listing-form-select">
-                        <option>By Category</option>
-                        <option>All Cars</option>
-                        <option>Grande (manual)</option>
-                        <option>Grande (1.6)</option>
-                        <option>GLI (1.2)</option>
+                    <select id="transmission-filter" class="car-listing-form-select">
+                        <option value="">All Cars</option>
+                        <option value="auto">Auto</option>
+                        <option value="manual">Manual</option>
                     </select>
+                    
                 </div>
                 <div class="car-listing-dropdown">
                     <span class="sort-icon">≡</span>
-                    <select class="car-listing-form-select">
-                        <option>Sort By</option>
-                        <option>Price (Low to High)</option>
-                        <option>Price (High to Low)</option>
-                        <option>Featured</option>
+                    <select id="sort-filter" class="car-listing-form-select">
+                        <option value="">Sort By</option>
+                        <option value="low_to_high">Price (Low to High)</option>
+                        <option value="high_to_low">Price (High to Low)</option>
                     </select>
                 </div>
             </div>
         </div>
 
 
-            <!-- Car Listing Grid -->
-            <div class="row">
-                <!-- Car Card -->
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
-                    <div class="car-listing-card">
-                        <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" alt="Nissan 370Z" class="listing-car-image">
-                        
-                        <div class="car-info">
-                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class=" car-price">$599/day</h6>
-                                <button class="book-btn">Book</button>
-                            </div>
-                            
-                            <h5 class="car-name">Nissan 370Z</h5>
-                            
-                            <div class="car-details">
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car Image" width="20px">  520 kg</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car Image" width="20px"> 2 Sitze</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car Image" width="20px"> 1.200 km</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car Image" width="20px"> Manuell</div>
-                            </div>
-                    
-                            <button class="details-btn rounded-pill">Details</button>
-                        </div>
-                    </div>
-                    
-                </div>
-                <!-- Repeat Car Card 5 times -->
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
-                    <div class="car-listing-card">
-                        <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" alt="Nissan 370Z" class="listing-car-image">
-                        
-                        <div class="car-info">
-                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class=" car-price">$599/day</h6>
-                                <button class="book-btn">Book</button>
-                            </div>
-                            
-                            <h5 class="car-name">Nissan 370Z</h5>
-                            
-                            <div class="car-details">
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car Image" width="20px">  520 kg</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car Image" width="20px"> 2 Sitze</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car Image" width="20px"> 1.200 km</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car Image" width="20px"> Manuell</div>
-                            </div>
-                    
-                            <button class="details-btn rounded-pill">Details</button>
-                        </div>
-                    </div>
-                    
-                </div>
-                <!-- Repeat more cards as needed -->
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
-                    <div class="car-listing-card">
-                        <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" alt="Nissan 370Z" class="listing-car-image">
-                        
-                        <div class="car-info">
-                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class=" car-price">$599/day</h6>
-                                <button class="book-btn">Book</button>
-                            </div>
-                            
-                            <h5 class="car-name">Nissan 370Z</h5>
-                            
-                            <div class="car-details">
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car Image" width="20px">  520 kg</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car Image" width="20px"> 2 Sitze</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car Image" width="20px"> 1.200 km</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car Image" width="20px"> Manuell</div>
-                            </div>
-                    
-                            <button class="details-btn rounded-pill">Details</button>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
-                    <div class="car-listing-card">
-                        <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" alt="Nissan 370Z" class="listing-car-image">
-                        
-                        <div class="car-info">
-                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class=" car-price">$599/day</h6>
-                                <button class="book-btn">Book</button>
-                            </div>
-                            
-                            <h5 class="car-name">Nissan 370Z</h5>
-                            
-                            <div class="car-details">
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car Image" width="20px">  520 kg</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car Image" width="20px"> 2 Sitze</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car Image" width="20px"> 1.200 km</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car Image" width="20px"> Manuell</div>
-                            </div>
-                    
-                            <button class="details-btn rounded-pill">Details</button>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
-                    <div class="car-listing-card">
-                        <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" alt="Nissan 370Z" class="listing-car-image">
-                        
-                        <div class="car-info">
-                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class=" car-price">$599/day</h6>
-                                <button class="book-btn">Book</button>
-                            </div>
-                            
-                            <h5 class="car-name">Nissan 370Z</h5>
-                            
-                            <div class="car-details">
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car Image" width="20px">  520 kg</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car Image" width="20px"> 2 Sitze</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car Image" width="20px"> 1.200 km</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car Image" width="20px"> Manuell</div>
-                            </div>
-                    
-                            <button class="details-btn rounded-pill">Details</button>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
-                    <div class="car-listing-card">
-                        <img src="{{asset('/')}}company-assets/assets/image-mehroon.png" alt="Nissan 370Z" class="listing-car-image">
-                        
-                        <div class="car-info">
-                            <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class=" car-price">$599/day</h6>
-                                <button class="book-btn">Book</button>
-                            </div>
-                            
-                            <h5 class="car-name">Nissan 370Z</h5>
-                            
-                            <div class="car-details">
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly.png" alt="Car Image" width="20px">  520 kg</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-v.png" alt="Car Image" width="20px"> 2 Sitze</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-u.png" alt="Car Image" width="20px"> 1.200 km</div>
-                                <div class="detail-item"><img src="{{asset('/')}}company-assets/icons/Iconly-s.png" alt="Car Image" width="20px"> Manuell</div>
-                            </div>
-                    
-                            <button class="details-btn rounded-pill">Details</button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+        <!-- Car Listing Grid -->
+        <div class="row" id="car-list">
+            @include('website.car-listing-filters.car-list', ['cars' => $cars])
+        </div>
+        <div class="text-center mb-5">
+
+        @if($totalCars > 8)
+        <button class="load-more-btn btn btn-orange-clr text-white" 
+        data-target="car-list" 
+        data-url="{{ route('load.more.cars') }}" 
+        data-offset="8" 
+        data-total="{{ $totalCars }}" 
+        data-model="Car">
+        Load More
+        </button>
+    
+        @endif
+        </div>  
+                  
+            
         </div>
     </div>
 </div>
+
+<script>
+    var carListingRoute = "{{ route('car.listing') }}";
+</script>
 
 @endsection

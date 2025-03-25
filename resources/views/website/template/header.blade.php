@@ -348,6 +348,9 @@
               <p>Got Questions? We’ve Got Answers</p>
               @elseif(request()->is('contact'))
               <h2 class="fw-bold">Contact Us</h2>
+              @elseif(request()->is('cardetail/*'))
+              <h2 class="fw-bold">Car Details</h2>
+              <p>Find the Perfect Ride for Your Journey – Explore, Compare, and Book Effortlessly!</p>
               @endif
           </div>
           <!-- Background Curve -->
@@ -448,14 +451,14 @@
                 </button>
             </div>
             <div class="modal-body renteal-body">
-                <img src="icons/rental-modal-popup-img.png" alt="Illustration" class="rental-header-img">
+                <img src="{{asset('/')}}company-assets/icons/rental-modal-popup-img.png" alt="Illustration" class="rental-header-img">
                 <button class="rental-register-btn" onclick="window.location.href='register-car-rental.html'">
-                    <img src="icons/car-rental-register-btn-icon.png" class="rental-btn-icon" alt="Register">
+                    <img src="{{asset('/')}}company-assets/icons/car-rental-register-btn-icon.png" class="rental-btn-icon" alt="Register">
                     Register with car rental
                 </button>
                 
                 <button class="rental-login-btn">
-                    <img src="icons/car-rental-login-btn-icon.png" class="rental-btn-icon" alt="Login">
+                    <img src="{{asset('/')}}company-assets/icons/car-rental-login-btn-icon.png" class="rental-btn-icon" alt="Login">
                     Login with car rental
                 </button>
             </div>
