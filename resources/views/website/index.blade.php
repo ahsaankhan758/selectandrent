@@ -309,7 +309,7 @@ Home Page | Select and Rent
                     <div class="card-content">
                         <div class="d-flex justify-content-between bg-light align-items-center rounded">
                             <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='car-detail.html'">Book</button>
+                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
                         </div>
                         <h5 class="text-muted mt-3">911 Carrera GTS</h5>
                         <div class="d-flex justify-content-between mt-4">
@@ -331,7 +331,7 @@ Home Page | Select and Rent
                     <div class="card-content">
                         <div class="d-flex justify-content-between bg-light align-items-center rounded">
                             <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='car-detail.html'">Book</button>
+                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
                         </div>
                         <h5 class="text-muted mt-3">911 Carrera GTS</h5>
                         <div class="d-flex justify-content-between mt-4">
@@ -351,7 +351,7 @@ Home Page | Select and Rent
                     <div class="card-content">
                         <div class="d-flex justify-content-between bg-light align-items-center rounded">
                             <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='car-detail.html'">Book</button>
+                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
                         </div>
                         <h5 class="text-muted mt-3">911 Carrera GTS</h5>
                         <div class="d-flex justify-content-between mt-4">
@@ -371,7 +371,7 @@ Home Page | Select and Rent
                     <div class="card-content">
                         <div class="d-flex justify-content-between bg-light align-items-center rounded">
                             <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='car-detail.html'">Book</button>
+                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
                         </div>
                         <h5 class="text-muted mt-3">911 Carrera GTS</h5>
                         <div class="d-flex justify-content-between mt-4">
@@ -391,7 +391,7 @@ Home Page | Select and Rent
                     <div class="card-content">
                         <div class="d-flex justify-content-between bg-light align-items-center rounded">
                             <h6 class="car-price">$599/day</h6>
-                            <button class="book-btn" onclick="window.location.href='car-detail.html'">Book</button>
+                            <button class="book-btn" onclick="window.location.href='{{ url('/cardetail') }}'">Book</button>
                         </div>
                         <h5 class="text-muted mt-3">911 Carrera GTS</h5>
                         <div class="d-flex justify-content-between mt-4">

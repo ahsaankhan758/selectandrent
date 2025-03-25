@@ -8,15 +8,15 @@ use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ClientController;
-use App\Http\Controllers\website\BlogController;
 use App\Http\Controllers\website\FaqsController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\companyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
-use App\Http\Controllers\Admin\CalendarController;
 
+use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
@@ -25,11 +25,13 @@ use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\website\carDetailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\JoinProgramController;
+use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
 
@@ -87,6 +89,14 @@ Route::middleware('LanguageMiddleware')->group(function(){
        Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
        // Client Routes
        Route::get('client',[ClientController::class, 'index'])->name('client');
+       // Blogs added by farhan
+        Route::get('blog/create', [AdminBlogController::class, 'createBlog'])->name('blogs.createBlog');
+        Route::post('blog/store', [AdminBlogController::class, 'store'])->name('blogs.store');   
+        Route::get('blog/detail', [AdminBlogController::class, 'getBlogDetail'])->name('blogs.blogDetail');
+        Route::get('blog/edit/{id}', [AdminBlogController::class, 'edit'])->name('blogs.edit');
+        Route::put('blog/update/{id}', [AdminBlogController::class, 'update'])->name('blogs.update');
+        Route::delete('blog/{id}', [AdminBlogController::class, 'delete'])->name('blogs.destroy');
+        // end blog
         // Financial History
         Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
         Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
@@ -158,8 +168,9 @@ Route::post('/lock-screen', function () {
 // add routes of website by Farhan & Salman
 Route::get('/', [WebsiteHomeController::class, 'showView']);
 Route::get('/categories', [CategoryController::class, 'categoryView']);
+Route::get('/load-more-cars', [CategoryController::class, 'loadMoreCars']);
+Route::get('/cars/categorize', [CategoryController::class, 'carCategorize'])->name('cars.categorize');
 Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
-Route::get('/blog', [BlogController::class, 'blogView']);
 Route::get('/faqs', [FaqsController::class, 'faqView']);
 Route::get('/about-us', [AboutController::class, 'aboutView']);
 Route::get('/contact', [ContactController::class, 'contactView']);
@@ -167,3 +178,7 @@ Route::get('/carlisting', [CarListingController::class, 'carListingView']);
 Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
 Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
 Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
+Route::get('/cardetail', [carDetailController::class, 'cardetailView']);
+// added by farhan
+Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
+Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
