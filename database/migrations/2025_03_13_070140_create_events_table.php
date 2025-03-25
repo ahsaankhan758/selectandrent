@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('category'); // To store event category (color)
             $table->dateTime('start');
             $table->dateTime('end')->nullable();
-            $table->boolean('all_day')->default(false);
+            $table->string('className')->nullable();
             $table->timestamps();
         });
     }

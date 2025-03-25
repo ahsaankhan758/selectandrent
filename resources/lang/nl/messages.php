@@ -97,4 +97,10 @@ return [
     'locations' => 'Locaties',
     'pending' => 'In behandeling',
     'active' => 'Actief', 
+    'added' => 'Toegevoegd',
+    'owner' => 'Eigenaar',
+    'inactive'=> 'Inactief',
+    'yes' => 'Ja',
+    'no' => 'Nee',
+    'featured' => 'Uitgelicht'
 ];

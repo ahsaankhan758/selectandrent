@@ -68,8 +68,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
         //Calendar Routes
         Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-        //Route::get('/events', [EventController::class, 'index']); // Fetch events
-        //Route::post('/events', [EventController::class, 'store']); // Add new event
+        Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
+        Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents'); // Add new event
        // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
        // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
        //Car Bookings Routes

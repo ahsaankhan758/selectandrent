@@ -15,6 +15,7 @@
                     <tr>
                         <th scope="col">{{ __('messages.model') }}</th>
                         <th scope="col">{{ __('messages.lisence plate') }}</th>
+                        <th scope="col">{{ __('messages.owner') }}</th>
                         <th scope="col">{{ __('messages.action') }}</th>
                     </tr>
                     </thead>
@@ -25,6 +26,13 @@
                                 <tr>
                                     <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ ucfirst(strtolower($carData->car_models->name )) }}</a></td>
                                     <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->lisence_plate }}</a></td>
+                                    
+                                    @if($carData->users->role == 'admin' || empty($carData->users->companies))
+                                        <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->name }}</a></td>
+                                    @else
+                                        <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
+                                    @endif
+
                                     <td>
                                         <a href="{{ route('editCar', $carData->id) }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -67,6 +75,19 @@
                                                             <div class="detail-item"><strong>{{ __('messages.fuel type') }}:</strong> <span>{{ $carData->fuel_type }}</span></div>
                                                             <div class="detail-item"><strong>{{ __('messages.exterior color') }}:</strong> <span>{{ $carData->exterior_color }}</span></div>
                                                             <div class="detail-item"><strong>{{ __('messages.interior color') }}:</strong> <span>{{ $carData->interior_color }}</span></div>
+                                                            @if($carData->is_featured == '1')
+                                                                <div class="detail-item"><strong>{{ __('messages.featured') }}:</strong> <span>{{ __('messages.yes') }}</span></div>
+                                                            @else
+                                                                <div class="detail-item"><strong>{{ __('messages.featured') }}:</strong> <span>{{ __('messages.no') }}</span></div>
+                                                            @endif
+
+                                                            @if($carData->status == '1')
+                                                                <div class="detail-item"><strong>{{ __('messages.status') }}:</strong> <span>{{ __('messages.active') }}</span></div>
+                                                            @else
+                                                                <div class="detail-item"><strong>{{ __('messages.status') }}:</strong> <span>{{ __('messages.inactive') }}</span></div>
+                                                            @endif
+
+                                                            <div class="detail-item"><strong>{{ __('messages.date') }} {{ __('messages.added') }}:</strong> <span>{{ $carData->date_added }}</span></div>
                                                         </div>
                                                     </div>
                                                     <h4 class="mt-3">{{ __('messages.features') }}</h4>

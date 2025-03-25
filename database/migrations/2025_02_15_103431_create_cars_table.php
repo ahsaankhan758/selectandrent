@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('car_category_id');
             $table->unsignedBigInteger('car_location_id');
             $table->unsignedBigInteger('car_model_id');
@@ -36,10 +37,14 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->json('images')->nullable();
             $table->string('features');
+            $table->tinyInteger('is_featured')->default('0');
+            $table->tinyInteger('status')->default('1')->nullable();
+            $table->dateTime('date_added')->nullable();
             $table->timestamps();
             $table->foreign('car_category_id')->references('id')->on('car_categories')->onDelete('NO ACTION')->onUpdate('cascade');
             $table->foreign('car_model_id')->references('id')->on('car_models')->onDelete('NO ACTION')->onUpdate('cascade');
             $table->foreign('car_location_id')->references('id')->on('car_locations')->onDelete('NO ACTION')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('NO ACTION')->onUpdate('cascade');
         });
     }
 

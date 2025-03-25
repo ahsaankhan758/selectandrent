@@ -92,8 +92,8 @@
                 return confirm("Are you sure ?");
             });
             // hide status
-            $(document).ready (function(){  
-            $("#div1").hide(8000);
+            $(document).ready(function(){  
+                $("#div1").delay(6000).fadeOut(1500); 
             });
         </script>
     </body>
