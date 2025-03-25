@@ -21,7 +21,7 @@ Blog-Detail | Select and Rent
                         @if(is_array($images) && count($images) > 0)
                             @foreach($images as $key => $image)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 rounded shadow" style="max-height: 500px; object-fit: cover;">
+                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 100%;  object-fit: cover;">
                                 </div>
                             @endforeach
                         @endif
