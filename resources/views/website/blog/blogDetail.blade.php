@@ -18,10 +18,16 @@ Blog-Detail | Select and Rent
                     <!-- Slides -->
                     <div class="carousel-inner mb-4">
                         @php $images = json_decode($blog->images, true); @endphp
+
+                        <!-- Thumbnail Image (Initially Active) -->
+                        <div class="carousel-item active">
+                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" class="d-block w-100 rounded shadow" style="max-height: 500px; object-fit: cover;">
+                        </div>
+
                         @if(is_array($images) && count($images) > 0)
                             @foreach($images as $key => $image)
-                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 100%;  object-fit: cover;">
+                                <div class="carousel-item">
+                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 rounded shadow" style="max-height: 500px; object-fit: cover;">
                                 </div>
                             @endforeach
                         @endif
@@ -45,9 +51,15 @@ Blog-Detail | Select and Rent
         <!-- Thumbnails -->
         @if(is_array($images) && count($images) > 0)
             <div class="row justify-content-center mt-3">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <!-- Thumbnail (As First Slide) -->
+                    <button type="button" class="btn p-0 border-0" data-bs-target="#blogCarousel" data-bs-slide-to="0">
+                        <img src="{{ asset('storage/' . $blog->thumbnail) }}" class="img-fluid rounded shadow w-100" style="height: 100px; object-fit: cover;">
+                    </button>
+                </div>
                 @foreach($images as $key => $image)
                     <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <button type="button" class="btn p-0 border-0" data-bs-target="#blogCarousel" data-bs-slide-to="{{ $key }}">
+                        <button type="button" class="btn p-0 border-0" data-bs-target="#blogCarousel" data-bs-slide-to="{{ $key + 1 }}">
                             <img src="{{ asset('storage/' . $image) }}" class="img-fluid rounded shadow w-100" style="height: 100px; object-fit: cover;">
                         </button>
                     </div>
