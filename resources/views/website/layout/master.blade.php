@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="{{asset('/')}}company-assets/assets/css/custom.css">
     <link rel="stylesheet" href="{{asset('/')}}company-assets/assets/css/common.css">
     <script src="{{asset('/')}}company-assets/assets/Js/custom.js"></script>
+    <script src="{{asset('/')}}company-assets/assets/Js/load-more.js"></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+   
+    
+
+   
     <!-- Include Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
