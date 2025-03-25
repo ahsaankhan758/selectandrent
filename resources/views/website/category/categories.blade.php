@@ -14,6 +14,7 @@
             </div>
         </div>
 
+
        <!-- 🔹 Cars List -->
 <div class="container mt-5">
     <div class="row g-4" id="car-category-list">
@@ -38,12 +39,15 @@
 
         <!-- View All Button -->
         {{-- <div class="d-flex justify-content-center mt-4">
+
             <button class="btn  rounded-pill text-white btn-orange-clr" data-bs-toggle="modal"
                 data-bs-target="#carRentalModal">
                 View All <img src="{{ asset('/') }}company-assets/icons/Frame-1707482121.png" class="ms-2"
                     width="20" height="20" alt="">
             </button>
+
         </div> --}}
+
     </div>
 
 
@@ -401,6 +405,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+
 $(document).ready(function () {
     let categoryLastCarId = {}; // Store last car ID for each category
     let currentCategory = "All";
@@ -463,10 +468,12 @@ $(document).ready(function () {
 
     // Category Change
     $(document).on("click", ".filter-btn", function () {
+
         $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
         $(this).removeClass("btn-dark").addClass("btn-primary");
 
         let selectedCategory = $(this).data("category");
+
         if (selectedCategory !== currentCategory) {
             currentCategory = selectedCategory;
             categoryLastCarId[currentCategory] = 0; // Reset offset for new category
@@ -481,6 +488,7 @@ $(document).ready(function () {
         loadCars(currentCategory, true);
     });
 });
+
 
 
     </script>

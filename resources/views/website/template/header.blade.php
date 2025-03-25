@@ -277,7 +277,7 @@
           <!-- Logo (Center) -->
           <div class="flex-grow-1 text-center">
               <a href="home.html">
-                  <img src="logo/select-and-rent--jpg 2.png" alt="Logo" width="100">
+                  <img src="{{asset('/')}}company-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="100">
               </a>
           </div>
 
@@ -341,7 +341,12 @@
               @elseif(request()->is('about-us'))
               <h2 class="fw-bold">About us</h2>
               <p>Your Friendly Car Rental Provider</p>
+              @elseif(request()->is('cardetail'))
+              <h2 class="fw-bold">Car Details</h2>
+              <p>Find the Perfect Ride for Your Journey – Explore, Compare, and Book Effortlessly!</p>
               @elseif(request()->is('blog'))
+              <h2 class="fw-bold">Blog</h2>
+              @elseif(request()->is('blog-detail/*'))
               <h2 class="fw-bold">Blog</h2>
               @elseif(request()->is('faqs'))
               <h2 class="fw-bold">Faq's</h2>

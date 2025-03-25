@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="{{asset('/')}}company-assets/assets/css/common.css">
     <script src="{{asset('/')}}company-assets/assets/Js/custom.js"></script>
 
+
     <script src="{{asset('/')}}assets/js/loadmore.js"></script>
     <script src="{{asset('/')}}assets/js/car-listing-filters.js"></script>
+
 
     <!-- Include Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>

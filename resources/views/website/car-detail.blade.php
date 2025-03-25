@@ -1,6 +1,8 @@
 @extends('website.layout.master')
 @section('title')
+
 Car Detail | Select and Rent
+
 @endsection
 
 @section('content')
@@ -9,6 +11,7 @@ Car Detail | Select and Rent
     <div class="row">
         <!-- Large Image (Main Car) -->
         <div class="col-lg-9 large-img">
+
             <img src="{{ Storage::url($car->thumbnail) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}">
         </div>
         <!-- Side Images (For Desktop) -->
@@ -16,12 +19,14 @@ Car Detail | Select and Rent
             @foreach(unserialize($car->images) as $image)
                 <img src="{{ Storage::url($image) }}" alt="Side Image">
             @endforeach
+
         </div>
     </div>
 
     <!-- Side Images (For Mobile & Tablet) -->
     <div class="row d-lg-none">
         <div class="col-12 side-images">
+
             @foreach(unserialize($car->images) as $image)
                 <img src="{{ Storage::url($image) }}" alt="Side Image">
             @endforeach
@@ -49,6 +54,7 @@ Car Detail | Select and Rent
                         </div>
                     @endforeach
                 </div>
+
             </div>
         </div>
 
@@ -57,6 +63,7 @@ Car Detail | Select and Rent
             <div class="rental-card p-4 shadow rounded">
                 <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
                     <h5 class="mb-0 py-3">Rental Price</h5>
+
                     <h3 class="fw-bold py-3 mb-0">${{ $car->rent }} <span class="fs-6">/ Day</span></h3>
                 </div>
                 <ul class="list-unstyled px-3 py-2">
@@ -72,12 +79,15 @@ Car Detail | Select and Rent
                     <li class="d-flex justify-content-between"><strong>Transmission</strong> <span>{{ ucfirst($car->transmission) }}</span></li>
                     <li class="d-flex justify-content-between"><strong>Exterior Color</strong> <span>{{ ucfirst($car->exterior_color) }}</span></li>
                     <li class="d-flex justify-content-between"><strong>Interior Color</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
+
                 </ul>
                 <button class="btn btn-purchase w-100 rounded-pill mt-3">Book Now</button>
             </div>
         </div>
+
     </div>
 </div>
+
 
 <!-- end bmw -->
  <!-- start accordian and map -->
@@ -184,6 +194,7 @@ Car Detail | Select and Rent
 <div class="container py-4">
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
+
             @foreach($cars as $car)
                 <div class="swiper-slide">
                     <div class="custom-card2">
@@ -223,6 +234,7 @@ Car Detail | Select and Rent
                 </div>
             @endforeach
         </div>
+
         </div>
 
         <!-- Swiper Navigation -->
@@ -235,6 +247,8 @@ Car Detail | Select and Rent
             </a>
         </div>
     </div>
+
+
 <!-- end -->
 <div class="container-fluid bg-white">
 <div class="review-container mb-3">

@@ -32,8 +32,9 @@ class Car extends Model
         'features',
     ];
     protected $casts = [
-        'images' => 'array', // Automatically cast JSON to array and vice versa
+        'images' => 'array', 
     ];
+    
     
     public function car_categories()
         {
