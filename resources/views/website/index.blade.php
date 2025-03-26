@@ -304,16 +304,18 @@ Home Page | Select and Rent
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             @foreach($cars as $car)
-                <div class="swiper-slide">
+                <div class="swiper-slide mb-2">
                     <div class="custom-card2">
+                    <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
                         {{-- old path {{ Storage::url($car->thumbnail) }} --}}
                         <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img" alt="Car Image">
-        
+                    </a>
                         <div class="card-content">
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                 <h6 class="car-price">${{ $car->rent }}/day</h6>
-                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">Book</button>
+                                <button class="book-btn" onclick="window.location.href='#'">Book</button>
                             </div>
+                            <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
         
                             <h5 class="text-muted mt-3">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
         
@@ -338,7 +340,7 @@ Home Page | Select and Rent
                                     {{ ucfirst($car->transmission) }}
                                 </div>
                             </div>
-
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -398,12 +400,12 @@ Home Page | Select and Rent
         </div>
         <div class="col-md-4 text-white text-start position-relative">
             <img src="{{asset('/')}}company-assets/assets\Rectangle 161124402.png" alt="Right Image" class="rounded book">
-            <button class="btn btn-orange-clr rounded-pill laptop-book-button  text-white d-flex align-items-center px-2 py-2 position-absolute bottom-0 end-0 mt-2 me-4">
+            <button  onclick="window.location.href='{{ url('/join-our-program') }}'" class="btn btn-orange-clr rounded-pill laptop-book-button  text-white d-flex align-items-center px-2 py-2 position-absolute bottom-0 end-0 mt-2 me-4">
                 Book Now 
                 <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-3" width="30" height="30" alt="">
             </button>
             <!-- <div class="text-end"> -->
-                <button class="btn btn-orange-clr rounded-pill tab-book-button text-white px-1 py-1">
+                <button  onclick="window.location.href='{{ url('/join-our-program') }}'" class="btn btn-orange-clr rounded-pill tab-book-button text-white px-1 py-1">
                     Book Now 
                     <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="25" height="25" alt="">
                 </button>
@@ -437,7 +439,7 @@ Home Page | Select and Rent
             </div>
         </div>
         <div class="text-end">
-            <button class="btn btn-orange-clr rounded-pill text-white px-2 py-2">
+            <button onclick="window.location.href='{{ url('/join-our-program') }}'" class="btn btn-orange-clr rounded-pill text-white px-2 py-2">
                 Book Now 
                 <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="25" height="25" alt="">
             </button>
