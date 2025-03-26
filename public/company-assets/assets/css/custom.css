@@ -18,6 +18,10 @@
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
 }
+.link {
+text-decoration: none;
+color: var(--black-color);
+}
 /* Dropdown menu styling */
 .nav-item .dropdown-menu {
   background-color: var(--text-white);
