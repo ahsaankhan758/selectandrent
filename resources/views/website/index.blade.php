@@ -303,7 +303,6 @@ Home Page | Select and Rent
 <div class="container py-4">
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-
             @foreach($cars as $car)
                 <div class="swiper-slide">
                     <div class="custom-card2">
