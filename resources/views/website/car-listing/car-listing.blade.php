@@ -72,7 +72,7 @@ Car Listing | Select and Rent
 
         <!-- Car Listing Grid -->
         <div class="row" id="car-list">
-            @include('website.car-listing-filters.car-list', ['cars' => $cars])
+            @include('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])
         </div>
         <div class="text-center mb-5">
 
