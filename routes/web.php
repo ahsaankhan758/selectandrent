@@ -34,7 +34,7 @@ use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
-use App\Http\Controllers\website\carDetailController;
+
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}', function ($lang) {

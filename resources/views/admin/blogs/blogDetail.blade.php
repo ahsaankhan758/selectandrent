@@ -1,23 +1,23 @@
 @extends('admin.layouts.Master')
-@section('title') Detail @endsection
+@section('title') {{ __('messages.details') }} @endsection
 @section('content')
 
 <div class="col-12">
     <div class="card mt-4">
         <div class="card-header">
-            <h4>Blogs</h4>
+            <h4>{{ trans_choice('messages.blog',1) }}</h4>
         </div>
         <div class="card-body">
             <table class="table table-striped" id="myTable">
                 <thead class="align-text-center">
                     <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Thumbnail</th>
-                        <th scope="col">Multiple Images</th>
-                        <th scope="col">Blog Detail</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ trans_choice('messages.title',1) }}</th>
+                        <th scope="col">{{ __('messages.date') }}</th>
+                        <th scope="col">{{ trans_choice('messages.author',1) }}</th>
+                        <th scope="col">{{ __('messages.thumbnail') }}</th>
+                        <th scope="col">{{ __('messages.images') }}</th>
+                        <th scope="col">{{ __('messages.detail') }}</th>
+                        <th scope="col">{{ __('messages.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>

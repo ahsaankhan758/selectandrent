@@ -75,6 +75,7 @@ return [
     'activity' => 'Activité',
     'module' => 'Module',
     'description' => 'Description',
+    'details' => 'Détails',
     'date' => 'Date',
     'delete' => 'Supprimer',
     'navigation' => 'Navigation',
@@ -102,5 +103,11 @@ return [
     'inactive'=> 'Inactif',
     'yes' => 'Oui',
     'no' => 'Non',
-    'featured' => 'En vedette'
+    'featured' => 'En vedette',
+    'blog' => 'Blog | Blogs',
+    'title' => 'Titre | Titres',
+    'published' => 'Publié',
+    'publish' => 'Publier',
+    'author' => 'Auteur | Auteurs',
+    'upload' => 'Télécharger',
 ];
