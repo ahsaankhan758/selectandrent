@@ -1,7 +1,7 @@
 @foreach($cars as $car)
 <div class="col-sm-6 col-md-6 col-lg-4 mb-5 car-item">
     <div class="car-listing-card">
-        <img src="{{ Storage::url($car->thumbnail) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}" class="listing-car-image mb-2">
+        <img src="{{ asset('storage/' . $car->thumbnail) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}" class="listing-car-image mb-2">
         
         <div class="car-info">
             <div class="d-flex justify-content-between bg-light align-items-center rounded">
