@@ -34,7 +34,7 @@ use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
-use App\Http\Controllers\website\carDetailController;
+
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}', function ($lang) {
@@ -191,4 +191,6 @@ Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name
 Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
 
 // end car listing routes
-
+// added by farhan
+Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
+Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
