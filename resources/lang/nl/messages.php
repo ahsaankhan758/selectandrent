@@ -75,6 +75,7 @@ return [
     'activity' => 'Activiteit',
     'module' => 'Module',
     'description' => 'Beschrijving',
+    'details' => 'Details',
     'date' => 'Datum',
     'delete' => 'Verwijderen',
     'navigation' => 'Navigatie',
@@ -102,5 +103,12 @@ return [
     'inactive'=> 'Inactief',
     'yes' => 'Ja',
     'no' => 'Nee',
-    'featured' => 'Uitgelicht'
+    'featured' => 'Uitgelicht',
+    'published' => 'Gepubliceerd',
+    'publish' => 'Publiceren',
+    'upload' => 'Uploaden',
+
+    'author' => 'Auteur | Auteurs',
+    'blog' => 'Blog | Blogs',
+    'title' => 'Titel | Titels',
 ];

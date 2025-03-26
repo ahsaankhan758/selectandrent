@@ -64,6 +64,7 @@ return [
     'rent' => 'Rent',
     'mileage' => 'Milage',
     'detail' => 'Detail',
+    'details' => 'Deatils',
     'thumbnail' => 'Thumbnail',
     'images' => 'Images',
     'close' => 'Close',
@@ -109,4 +110,25 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
     'featured' => 'Featured',
+    'upload' => 'Upload',
+    'published' => 'Published',
+    'publish' => 'Publish',
+
+    'Search client name, car, etc' => 'Search client name, car, etc',
+    'returned' => 'Returned',
+    'ongoing' => 'Ongoing',
+    'cancelled' => 'Cancelled',
+    'type' => 'Type',
+    'add' => 'Add',
+    
+    
+
+    'client' => 'Client | Clients',
+    'booking' =>'Booking | Bookings',
+
+    'author' => 'Author | Authors',
+    'blog' => 'Blog | Blogs',
+    'title' => 'Title | Titles',
+    
+    
 ];
