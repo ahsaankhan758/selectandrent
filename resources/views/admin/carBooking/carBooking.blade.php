@@ -1,18 +1,18 @@
 @extends('admin.layouts.Master')
-@section('title')  {{ __('messages.car') }}  {{ __('messages.bookings') }} @endsection
+@section('title')  {{ __('messages.car') }}  {{ trans_choice('messages.booking',2) }} @endsection
 @section('content')
     <div class="content-body">
         <div class="booking-container  mt-4">
             <div class="booking-header-section">
                 <!-- Title -->
-                <h2 class="mb-0">Car Bookings</h2>
+                <h2 class="mb-0">{{ __('messages.car') }}  {{ trans_choice('messages.booking',2) }}</h2>
     
                 <!-- Search and Filters in the Same Row -->
                 <div class="d-flex align-items-center gap-5">
                     <!-- Search Bar -->
                     <div class="booking-search-box mr-2">
                         <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Search client name, car, etc">
+                        <input type="text" placeholder="{{ __('messages.search') }}">
                     </div>
                     <!-- Filters -->
                     <!-- <button id="carTypeFilter" class="booking-filter-box mr-2">
@@ -25,11 +25,11 @@
                         </svg> -->
                     </span>
                     <select id="statusFilter" class="form-select booking-filter-box">
-                        <option value="" disabled selected>Status</option>
-                        <option value="Returned">Returned</option>
-                        <option value="Ongoing">Ongoing</option>
-                        <option value="Cancelled">Cancelled</option>
-                        <option value="Pending">Pending</option>
+                        <option value="" disabled selected>{{ __('messages.status') }}</option>
+                        <option value="Returned">{{ __('messages.returned') }}</option>
+                        <option value="Ongoing">{{ __('messages.ongoing') }}</option>
+                        <option value="Cancelled">{{ __('messages.cancelled') }}</option>
+                        <option value="Pending">{{ __('messages.pending') }}</option>
                     </select>
                 </div>
                 <div class="booking-filter-custom-dropdown">
@@ -39,7 +39,7 @@
                     </svg> -->
                 </span>
                 <select id="carTypeFilter" class="form-select booking-filter-box">
-                    <option value=""><i class="fa fa-filter"></i> Car Type</option>
+                    <option value=""><i class="fa fa-filter"></i> {{ __('messages.car') }} {{ __('messages.type') }}</option>
                     <option value="Sedan">Sedan</option>
                     <option value="SUV">SUV</option>
                     <option value="Hatchback">Hatchback</option>
@@ -51,20 +51,20 @@
                 </div>
     
                 <!-- Add Booking Button -->
-                <button class="btn booking-btn-add">Add Booking</button>
+                <button class="btn booking-btn-add">{{ __('messages.add') }} {{ trans_choice('messages.booking',1) }}</button>
             </div>
             <table id="myTable" class="table table-striped booking-table">
             <thead class="text-nowrap">
                 <tr>
-                    <th>Booking ID</th>
-                    <th>Booking Date</th>
-                    <th>Client Name</th>
-                    <th>Car Model</th>
-                    <th>Plan</th>
-                    <th>Date</th>
-                    <th>Driver</th>
-                    <th>Payment</th>
-                    <th>Status</th>
+                    <th>{{ trans_choice('messages.booking',1) }} ID</th>
+                    <th>{{ trans_choice('messages.booking',1) }} Date</th>
+                    <th>{{ trans_choice('messages.client',2) }} Name</th>
+                    <th>{{ __('messages.car') }} {{ __('messages.model') }}</th>
+                    <th>{{ trans_choice('messages.plan',1) }}</th>
+                    <th>{{ __('messages.date') }}</th>
+                    <th>{{ trans_choice('messages.driver',1) }}</th>
+                    <th>{{ trans_choice('messages.payment',1) }}</th>
+                    <th>{{ __('messages.status') }}</th>
                 </tr>
             </thead>
             <tbody>

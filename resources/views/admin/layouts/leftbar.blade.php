@@ -50,13 +50,13 @@
 
             <ul id="side-menu">
 
-                <li class="menu-title">Navigation</li>
+                <li class="menu-title">{{ __('messages.navigation') }}</li>
     
                 <li>
                      <a href="#sidebarDashboards" data-bs-toggle="collapse">
                         <i class="mdi mdi-view-dashboard-outline"></i>
                         <span class="badge bg-success rounded-pill float-end">2</span>
-                        <span> Dashboards </span>
+                        <span> {{ __('messages.dashboards') }} </span>
                     </a>
                     <div class="collapse" id="sidebarDashboards">
                         <ul class="nav-second-level">
@@ -66,7 +66,7 @@
                                 </a> 
                              </li>
                             <li>
-                                <a href="{{ route('bookingDashboard') }}">Dashboard 2</a>
+                                <a href="{{ route('bookingDashboard') }}">{{ __('messages.dashboard') }} 2</a>
                             </li>
                             {{-- <li>
                                 <a href="dashboard-3.html">Dashboard 3</a>
@@ -78,7 +78,7 @@
                     </div>  
                 </li>
 
-                <li class="menu-title mt-2">Apps</li>
+                <li class="menu-title mt-2"> {{ trans_choice('messages.app',2) }}</li>
                 <li>
                     <a href="{{ route('users') }}">
                         <i class="mdi mdi-account-circle-outline"></i>
@@ -204,7 +204,7 @@
                 <li>
                     <a href="{{ route('client') }}">
                         <i class="mdi mdi-account-group"></i>
-                        <span>{{ __('messages.clients') }} </span>
+                        <span>{{ trans_choice('messages.client',2) }}   </span>
                     </a>
                 </li>
                 <li>
@@ -217,7 +217,7 @@
                 <li>
                     <a href="#sub_menu_blog" data-bs-toggle="collapse">
                         <i class="mdi mdi-book-open-page-variant"></i>
-                        <span> Blogs </span>
+                        <span> {{ trans_choice('messages.blog',2) }}   </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sub_menu_blog">
@@ -225,13 +225,13 @@
                             <li>
                                 <a href="{{ route('blogs.createBlog') }}"> 
                                     <i class="mdi mdi-format-list-bulleted"></i>
-                                    <span class="custom-ml-15">Create</span>
+                                    <span class="custom-ml-15">{{ __('messages.create') }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('blogs.blogDetail') }}"> 
                                     <i class="mdi mdi-plus-circle"></i>
-                                    <span class="custom-ml-15">Details</span>
+                                    <span class="custom-ml-15">{{ __('messages.details') }}</span>
                                 </a>
                             </li>
                         </ul>
