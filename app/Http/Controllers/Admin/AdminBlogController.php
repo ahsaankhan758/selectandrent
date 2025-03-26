@@ -23,10 +23,8 @@ class AdminBlogController extends Controller
             'detail' => 'required|string',
         ]);
     
-        // Store Thumbnail
         $thumbnailPath = $request->file('thumbnail')->store('blogs/thumbnails', 'public');
     
-        // Store multiple images
         $imagePaths = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -34,10 +32,6 @@ class AdminBlogController extends Controller
             }
         }
 
-        // echo"<pre>";
-        // print_r($request->all());
-        // die;
-    
         Blog::create([
             'name' => $request->name,
             'date' => $request->date,
@@ -54,7 +48,7 @@ class AdminBlogController extends Controller
    // Get Blog Detail
    public function getBlogDetail()
    {
-       $blogs = Blog::all();
+       $blogs =  Blog::paginate(10);
        return view('admin.blogs.blogDetail', compact('blogs'));
    }
    
@@ -80,7 +74,6 @@ public function update(Request $request, $id)
 
     $blog = Blog::findOrFail($id);
 
-    // Update thumbnail if a new one is uploaded
     if ($request->hasFile('thumbnail')) {
         if ($blog->thumbnail) {
             Storage::disk('public')->delete($blog->thumbnail);
@@ -88,7 +81,6 @@ public function update(Request $request, $id)
         $blog->thumbnail = $request->file('thumbnail')->store('blogs/thumbnails', 'public');
     }
 
-    // Handle multiple images upload
     $existingImages = json_decode($blog->images, true) ?? [];
     if ($request->hasFile('images')) {
         foreach ($request->file('images') as $image) {
@@ -97,7 +89,6 @@ public function update(Request $request, $id)
     }
     $blog->images = json_encode($existingImages);
 
-    // Update other fields
     $blog->name = $request->name;
     $blog->date = $request->date;
     $blog->authorName = $request->authorName;
@@ -112,20 +103,16 @@ public function delete($id)
 {
     $blog = Blog::findOrFail($id);
     
-    // Delete thumbnail if exists
     if ($blog->thumbnail) {
         Storage::disk('public')->delete($blog->thumbnail);
     }
 
-    // Delete additional images
     $images = json_decode($blog->images, true) ?? [];
     foreach ($images as $image) {
         Storage::disk('public')->delete($image);
     }
 
-    // Delete blog record
     $blog->delete();
-    
     return redirect()->back()->with('status', 'Blog deleted successfully!');
 }
     
