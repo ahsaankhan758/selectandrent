@@ -40,13 +40,13 @@ class CarListingController extends Controller
     // If AJAX request, return partial view with updated count
     if ($request->ajax()) {
         return response()->json([
-            'html' => view('website.car-listing-filters.car-list', ['cars' => $cars])->render(),
+            'html' => view('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])->render(),
             'filteredCount' => $filteredCarsCount,
             'totalCars' => $totalCars
         ]);
     }
 
-    return view('website.car-listing', compact('cars', 'totalCars'));
+    return view('website.car-listing.car-listing', compact('cars', 'totalCars'));
 }
 
     
@@ -66,7 +66,7 @@ class CarListingController extends Controller
         $hasMore = $modelClass::count() > ($offset + 8);
 
         return response()->json([
-            'cars' => view("website.include.car-listing-load-more-cards", compact('cars'))->render(),
+            'cars' => view("website.car-listing.include.car-listing-load-more-cards", compact('cars'))->render(),
             'hasMore' => $hasMore
         ]);
     }
