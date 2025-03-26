@@ -81,7 +81,10 @@ Car Detail | Select and Rent
                     <li class="d-flex justify-content-between"><strong>Interior Color</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
 
                 </ul>
-                <button class="btn btn-purchase w-100 rounded-pill mt-3">Book Now</button>
+                
+                <button onclick="window.location.href='{{ url('/carbooking') }}'" class="btn btn-purchase w-100 rounded-pill mt-3">
+                    Book Now
+                </button>
             </div>
         </div>
 

@@ -16,39 +16,15 @@
                       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                           <ul class="navbar-nav">
                               <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                              <li class="nav-item"><a class="nav-link" href="{{ url('/carlisting') }}">Car Listing</a></li>
                               <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">Categories</a></li>
-              
-                              <!-- Dropdown for General -->
-                              <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                      General
-                                  </a>
-                                  <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/join-our-program') }}">join our program</a></li>
-                                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/about-us') }}">About Us</a></li>
-                                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/blog') }}">Blogs</a></li>
-                                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/faqs') }}">FAQ</a></li>
-                                  </ul>
-                              </li>
-                              <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Booking Order
-                                  </a>
-                                  <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/carbooking') }}">Car Booking</a></li>
-                                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/confirmation') }}">Order Confirmation</a></li>
-                                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/checkout') }}">Check out</a></li>
-                                  </ul>
-                              </li>
-              
+                              <li class="nav-item"><a class="nav-link" href="{{ url('/join-our-program') }}">Our Program</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ url('/blog') }}">Blogs</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">About Us</a></li>
                               <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
                           </ul>
                       </div>
                   </nav>
               </div>
-              
-  
   
               <!-- Get Started Button -->
               <div class="col-md-3 text-end">
@@ -56,8 +32,6 @@
                       Get Started <i class="fa-solid fa-arrow-right"></i>
                   </a>
               </div>
-              
-              
           </div>
       </div>
   </header>
@@ -87,32 +61,10 @@
           <div class="collapse mt-2" id="mobileNavbar">
               <ul class="navbar-nav text-center">
                   <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ url('/carlisting') }}">Car Listing</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">Categories</a></li>
-  
-                  <!-- Dropdown for General -->
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          General
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                          <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/join-our-program') }}">join our program</a></li>
-                          <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/about-us') }}">About Us</a></li>
-                          <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/blog') }}">Blogs</a></li>
-                          <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/faqs') }}">FAQ</a></li>
-                      </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Booking Order
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                          <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/carbooking') }}">Car Booking</a></li>
-                          <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/confirmation') }}">Order Confirmation</a></li>
-                          <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/checkout') }}">Check out</a></li>
-                      </ul>
-                  </li>
-  
+                  <li class="nav-item"><a class="nav-link" href="{{ url('/join-our-program') }}">join our program</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('/blog') }}">Blogs</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">About Us</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
               </ul>
           </div>
@@ -217,34 +169,12 @@
               <nav class="navbar navbar-expand-md">
                   <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                       <ul class="navbar-nav">
-                          <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                          <li class="nav-item"><a class="nav-link" href="{{ url('/carlisting') }}">Car Listing</a></li>
-                          <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">Categories</a></li>
-          
-                          <!-- Dropdown for General -->
-                          <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  General
-                              </a>
-                              <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                                  <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/join-our-program') }}">join our program</a></li>
-                                  <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/about-us') }}">About Us</a></li>
-                                  <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/blog') }}">Blogs</a></li>
-                                  <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/faqs') }}">FAQ</a></li>
-                              </ul>
-                          </li>
-                          <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  Booking Order
-                              </a>
-                              <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                                  <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/carbooking') }}">Car Booking</a></li>
-                                  <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/confirmation') }}">Order Confirmation</a></li>
-                                  <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/checkout') }}">Check out</a></li>
-                              </ul>
-                          </li>
-          
-                          <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">Categories</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/join-our-program') }}">Our Program</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/blog') }}">Blogs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
                       </ul>
                   </div>
               </nav>
@@ -288,34 +218,12 @@
       <!-- Mobile Collapsible Menu -->
       <div class="collapse mt-2" id="mobileNavbar">
           <ul class="navbar-nav text-center">
-              <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ url('/carlisting') }}">Car Listing</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">Categories</a></li>
-
-              <!-- Dropdown for General -->
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      General
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/join-our-program') }}">join our program</a></li>
-                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/about-us') }}">About Us</a></li>
-                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/blog') }}">Blogs</a></li>
-                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/faqs') }}">FAQ</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="generalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Booking Order
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="generalDropdown">
-                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/carbooking') }}">Car Booking</a></li>
-                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/confirmation') }}">Order Confirmation</a></li>
-                      <li class="nav-item"><a class="nav-dropdown mb-1" href="{{ url('/checkout') }}">Check out</a></li>
-                  </ul>
-              </li>
-
-              <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/join-our-program') }}">Our Program</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/blog') }}">Blogs</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
           </ul>
       </div>
   </div>

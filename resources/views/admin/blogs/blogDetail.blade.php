@@ -116,6 +116,10 @@
                     @endforeach                
                 </tbody>
             </table>
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-end">
+                {{ $blogs->links() }}
+            </div>
         </div>
     </div>
 </div>
