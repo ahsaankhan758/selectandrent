@@ -30,7 +30,9 @@
                 </div>
             </div>
     
-            <button class="details-btn rounded-pill">Details</button>
+            <button onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'" class="details-btn rounded-pill">
+                Details
+            </button>            
         </div>
     </div>
 </div>

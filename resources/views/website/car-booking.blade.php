@@ -152,7 +152,9 @@ Car Booking | Select and Rent
         </div>
         <!-- Order Confirmation Button -->
         <div class="col-md-4 col-12">
-            <button class="btn-order btn-orange-clr">Order Confirmation</button>
+            <button onclick="window.location.href='{{ url('/confirmation') }}'" class="btn-order btn-orange-clr">
+                Order Confirmation
+            </button>
         </div>
     </div>
 </div>
