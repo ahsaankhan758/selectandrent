@@ -13,6 +13,7 @@ return [
     'cars' => 'Cars',
     'car' => 'Car',
     'dashboard' => 'Dashboard',
+    'dashboards' => 'Dashboards',
     'activity logs' => 'Activity Logs',
     'settings' => 'Settings',
     'analytics' => 'Analytics',
@@ -113,22 +114,26 @@ return [
     'upload' => 'Upload',
     'published' => 'Published',
     'publish' => 'Publish',
-
-    'Search client name, car, etc' => 'Search client name, car, etc',
     'returned' => 'Returned',
     'ongoing' => 'Ongoing',
     'cancelled' => 'Cancelled',
     'type' => 'Type',
     'add' => 'Add',
-    
-    
-
-    'client' => 'Client | Clients',
-    'booking' =>'Booking | Bookings',
-
+    'contact' => 'Contact',
+    'number' => 'Number',
+    'rental' => 'Rental',
+    'duration' => 'Duration',
+    'assigned' => 'Assigned',
+    'app' => 'APP | APPS',
     'author' => 'Author | Authors',
     'blog' => 'Blog | Blogs',
     'title' => 'Title | Titles',
+    'client' => 'Client | Clients',
+    'booking' =>'Booking | Bookings',
+    'plan' => 'Plan | Plans',
+    'driver' => 'Driver | Drivers',
+    'payment' => 'Payment | Payments',
+    
     
     
 ];
