@@ -81,12 +81,13 @@
                       <hr class="hr-white">
                   </div>
                   <ul class="list-unstyled footer-links">
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#">About</a></li>
+                      <li><a href="{{ url('/') }}">Home</a></li>
+                      <li><a href="{{ url('/about-us') }}">About</a></li>
                       <li><a href="#">Services</a></li>
-                      <li><a href="#">Vehicles</a></li>
-                      <li><a href="#">Pricing</a></li>
-                      <li><a href="#">Contact</a></li>
+                      <li><a href="{{ url('/carlisting') }}">Vehicles</a></li>
+                      <li><a href="{{ url('/join-our-program') }}">Pricing</a></li>
+                      <li><a href="{{ url('/faqs') }}">Faq's</a></li>
+                      <li><a href="{{ url('/contact') }}">Contact</a></li>
                   </ul>                    
               </div>
               <div class="col-md-3 col-6">

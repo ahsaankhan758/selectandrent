@@ -307,7 +307,8 @@ Home Page | Select and Rent
             @foreach($cars as $car)
                 <div class="swiper-slide">
                     <div class="custom-card2">
-                        <img src="{{ Storage::url($car->thumbnail) }}" class="custom-card-img" alt="Car Image">
+                        {{-- old path {{ Storage::url($car->thumbnail) }} --}}
+                        <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img" alt="Car Image">
         
                         <div class="card-content">
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">

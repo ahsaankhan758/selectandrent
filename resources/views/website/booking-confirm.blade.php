@@ -154,7 +154,9 @@ Car Booking | Select and Rent
                 </div>
                 <div class="container row text-end mt-2">
                     <div class="col-md-10">
-                        <button class="btn-order-book btn-orange-clr btn-sm"><i class="fa-solid fa-cart-shopping"></i> Process to checkout</button>
+                        {{-- <button class="btn-order-book btn-orange-clr btn-sm"><i class="fa-solid fa-cart-shopping"></i> Process to checkout</button> --}}
+                        <a href="{{ url('/checkout') }}" class="btn-order-book btn-orange-clr btn-sm"><i class="fa-solid fa-cart-shopping"></i> Process to checkout</a>
+                      
                     </div>
                 </div>                
             </div>
