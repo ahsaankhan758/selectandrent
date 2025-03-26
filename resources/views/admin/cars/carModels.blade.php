@@ -63,8 +63,10 @@
                             @endforeach
                         @endif
                     </tbody>
-                    {{ $models->links() }}
                 </table>
+                <div class="d-flex justify-content-end">
+                    {{ $models->links() }}
+                </div>                
             </div> 
         </div> 
     </div>
