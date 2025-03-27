@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-About-us | Select and Rent
+Contact us | Select and Rent
 @endsection
 
 @section('content')
