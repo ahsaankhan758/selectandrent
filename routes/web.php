@@ -185,6 +185,8 @@ Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCate
 // car listing routes
 Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
 Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
+Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
+Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
 // end car listing routes
 // added by farhan
 Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
