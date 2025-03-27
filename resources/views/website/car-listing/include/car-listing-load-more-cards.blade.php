@@ -29,8 +29,6 @@
                         {{ ucfirst($car->transmission) }}
                     </div>
                 </div>
-        
-                <button class="details-btn rounded-pill">Details</button>
             </div>
         </div>
     </div>

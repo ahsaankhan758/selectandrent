@@ -31,9 +31,9 @@
                 </div>
             </div>
         </a>
-            <button onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'" class="details-btn rounded-pill">
+            {{-- <button onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'" class="details-btn rounded-pill">
                 Details
-            </button>            
+            </button>             --}}
         </div>
     </div>
 </div>

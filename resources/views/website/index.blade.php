@@ -358,7 +358,7 @@ Home Page | Select and Rent
             </a>
         </div>
     </div>
-</div>
+
  <!-- book now -->
  <section class="container-fluid join py-5">
     <div class="container d-flex align-items-center justify-content-between">
@@ -522,32 +522,35 @@ Home Page | Select and Rent
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var swiper = new Swiper(".mySwiper", {
-            loop: true,
-            slidesPerView: 3,
-            spaceBetween: 10,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false
+   document.addEventListener("DOMContentLoaded", function () {
+    var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        slidesPerView: 3,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false
+        },
+        navigation: {
+            nextEl: ".carousel-control-next-custom",
+            prevEl: ".carousel-control-prev-custom",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1
             },
-            navigation: {
-                nextEl: ".carousel-control-next-custom",
-                prevEl: ".carousel-control-prev-custom",
+            768: { 
+                slidesPerView: 3
             },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 4
-                },
-                480: {
-                    slidesPerView: 1
-                }
+            1024: { 
+                slidesPerView: 4
             }
-        });
+        }
     });
+});
 </script>
 @endsection

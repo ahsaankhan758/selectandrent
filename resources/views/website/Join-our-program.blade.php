@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-Join | Select and Rent
+Join Program | Select and Rent
 @endsection
 
 @section('content')
@@ -227,10 +227,13 @@ Join | Select and Rent
         </div>
     </div>
     <div class=" text-center">
-    <button class="btn btn-orange-clr rounded-pill text-white">
-        Fill the registration form
-        <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
-    </button>
+        <button class="btn btn-orange-clr rounded-pill text-white"
+        data-bs-toggle="modal" 
+        data-bs-target="#carRentalModal">
+    Fill the registration form
+    <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+</button>
+
 </div>
 </div> 
  <!-- work end -->
