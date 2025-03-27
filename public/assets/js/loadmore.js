@@ -19,10 +19,10 @@ $(document).ready(function () {
                 button.text("Loading...");
             },
             success: function (response) {
-                if ($.trim(response.cars) === "") {
+                if ($.trim(response.data) === "") {
                     button.hide();
                 } else {
-                    targetList.append(response.cars);
+                    targetList.append(response.data);
 
                     //  Update offset AFTER appending new cars
                     let newOffset = offset + 8;
@@ -51,6 +51,4 @@ $(document).ready(function () {
             }
         });
     });
-    
-    
 });

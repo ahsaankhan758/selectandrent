@@ -113,8 +113,8 @@
                       <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
                   </div>
                   <div class="buttons">
-                      <a href="#" class="contact-btn-ctn">CONTACT US</a>
-                      <a href="#" class="arrow-btn"><img src="{{asset('/')}}company-assets/icons/arrow.png" class="img-icon rounded-pill p-1" alt=""></a>
+                      <a href="{{ url('/contact') }}" class="contact-btn-ctn">CONTACT US</a>
+                      <a href="{{ url('/contact') }}" class="arrow-btn"><img src="{{asset('/')}}company-assets/icons/arrow.png" class="img-icon rounded-pill p-1" alt=""></a>
                   </div>  
               </div>
           </div>

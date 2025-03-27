@@ -26,10 +26,12 @@ use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\website\carDetailController;
+use App\Http\Controllers\website\CarSearchController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\website\CarRegisterController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
@@ -168,8 +170,6 @@ Route::post('/lock-screen', function () {
 
 // add routes of website by Farhan & Salman
 Route::get('/', [WebsiteHomeController::class, 'showView']);
-
-
 Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
 Route::get('/faqs', [FaqsController::class, 'faqView']);
 Route::get('/about-us', [AboutController::class, 'aboutView']);
@@ -177,20 +177,26 @@ Route::get('/contact', [ContactController::class, 'contactView']);
 Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
 Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
 Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
-
-
 Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
-
 // categories routes
 Route::get('/categories', [CategoryController::class, 'categoryView']);
 Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
 // end categories
-
 // car listing routes
 Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
 Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
-
 // end car listing routes
 // added by farhan
 Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
+Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
 Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
+// car register by farhan
+Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
+// car search page by farhan
+Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
+Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
+
+// email template
+Route::get('/email-template', function () {
+    return view('website.emailtemplate');
+});
