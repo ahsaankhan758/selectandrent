@@ -1,4 +1,4 @@
-@if(request()->is('/'))
+@if (request()->is('/') || request()->is('carsearch'))
 <div class="hero-header">
   <!-- Desktop Header (Visible on Large Screens) -->
   <header class="header-container d-none d-md-block">
@@ -261,6 +261,8 @@
               <p>Got Questions? We’ve Got Answers</p>
               @elseif(request()->is('contact'))
               <h2 class="fw-bold">Contact Us</h2>
+              @elseif(request()->is('register-car-rental'))
+              <h2 class="fw-bold">Car Register</h2>
               @elseif(request()->is('cardetail/*'))
               <h2 class="fw-bold">Car Details</h2>
               <p>Find the Perfect Ride for Your Journey – Explore, Compare, and Book Effortlessly!</p>
@@ -365,12 +367,12 @@
             </div>
             <div class="modal-body renteal-body">
                 <img src="{{asset('/')}}company-assets/icons/rental-modal-popup-img.png" alt="Illustration" class="rental-header-img">
-                <button class="rental-register-btn" onclick="window.location.href='register-car-rental.html'">
+                <button class="rental-register-btn" onclick="window.location.href='{{ url('/register-car-rental') }}'">
                     <img src="{{asset('/')}}company-assets/icons/car-rental-register-btn-icon.png" class="rental-btn-icon" alt="Register">
                     Register with car rental
                 </button>
                 
-                <button class="rental-login-btn">
+                <button class="rental-login-btn" onclick="window.location.href='{{ url('/company/login') }}'">
                     <img src="{{asset('/')}}company-assets/icons/car-rental-login-btn-icon.png" class="rental-btn-icon" alt="Login">
                     Login with car rental
                 </button>
