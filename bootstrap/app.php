@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CompanyAuth;
 use App\Http\Middleware\IP_Check_Middleware;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\LanguageMiddleware;
@@ -21,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'IsAdmin' =>AdminMiddleware::class,
             'IPCheck' =>IP_Check_Middleware::class,
-              'role'  => RoleMiddleware::class,
+            'CompanyAuth' => CompanyAuth::class,  
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
