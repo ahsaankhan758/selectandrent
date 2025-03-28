@@ -51,6 +51,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
+
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
     Route::get('company/login',[companyController::class, 'showLoginForm'])->middleware('IsAdmin:company');
@@ -132,13 +133,14 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('blog/detail', [AdminBlogController::class, 'getBlogDetail'])->name('blogs.blogDetail');
             Route::get('blog/edit/{id}', [AdminBlogController::class, 'edit'])->name('blogs.edit');
             Route::put('blog/update/{id}', [AdminBlogController::class, 'update'])->name('blogs.update');
-            Route::delete('blog/{id}', [AdminBlogController::class, 'delete'])->name('blogs.destroy');
+            Route::get('blog/{id}', [AdminBlogController::class, 'delete'])->name('blogs.destroy');
             // end blog
             // Financial History
             Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
             Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
         });
     }
+
 });
 
 //Auth Routes
