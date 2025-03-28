@@ -13,6 +13,26 @@ Route::middleware('LanguageMiddleware')->group(function(){
         return redirect()->back();
     })->name('change.language');
 
+    // To Get Current Prefix of URL
+    $currentPrefix = request()->segment(1);
+   
+    if($currentPrefix == 'company'){
+        Route::prefix('company')->middleware(['CompanyAuth','IsAdmin:company'])->group(function(){
+            //Car Lisitng Routes
+            Route::get('carListings',[CarController::class, 'Index'])->name('carListings');
+            Route::get('createCar', [CarController::class,'create'])->name('createCar');
+            Route::post('storeCar', [CarController::class,'store'])->name('storeCar');
+            Route::get('editCar/{id}',[CarController::class,'edit'])->name('editCar');
+            Route::put('updateCar/{id}',[CarController::class,'update'])->name('updateCar');
+            Route::get('deleteCar/{id}',[CarController::class,'destroy'])->name('deleteCar');
+            //Car Location Routes
+            Route::get('carLocations',[CarLocationController::class, 'Index'])->name('carLocations');
+            Route::post('addCarLocation',[CarLocationController::class,'store'])->name('addCarLocation');
+            Route::get('deleteCarLocation/{id}',[CarLocationController::class, 'destroy'])->name('deleteCarLocation');
+        
+        });
+    }
+    if($currentPrefix == 'admin'){
     Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
         // Car Lisitng Routes
         Route::get('carListings',[CarController::class, 'Index'])->name('carListings');
@@ -42,4 +62,5 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Route::post('addCarFeature',[CarFeatureController::class,'store'])->name('addCarFeature');
         Route::get('deleteCarFeature/{id}',[CarFeatureController::class, 'destroy'])->name('deleteCarFeature');
     });
+    }
 });

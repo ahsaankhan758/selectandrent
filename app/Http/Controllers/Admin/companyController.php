@@ -13,6 +13,14 @@ use Auth;
 
 class companyController extends Controller
 {
+    public function showLoginForm()
+        {
+            return view('company.login');
+        }
+    public function redirectToCompanyLogin()
+        {
+            return redirect('company/login');
+        }
     /**
      * Display a listing of the resource.
      */
