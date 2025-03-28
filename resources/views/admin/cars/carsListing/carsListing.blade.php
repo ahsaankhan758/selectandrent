@@ -27,7 +27,7 @@
                                     <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ ucfirst(strtolower($carData->car_models->name )) }}</a></td>
                                     <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->lisence_plate }}</a></td>
                                     
-                                    @if($carData->users->role == 'admin' || empty($carData->users->companies))
+                                    @if(isset($carData->users->role) && $carData->users->role == 'admin' || empty($carData->users->companies))
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->name }}</a></td>
                                     @else
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
