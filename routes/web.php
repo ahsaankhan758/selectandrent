@@ -44,66 +44,103 @@ Route::middleware('LanguageMiddleware')->group(function(){
         return redirect()->back();
     })->name('change.language');
     
-    // User Login Routes
+    
+    // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
-    Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
-        //Dashborad
-        Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-        Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
-        //Users Routes
-        Route::get('users', [userController::class, 'index'])->name('users');
-        Route::get('createuser', [userController::class,'create'])->name('createUser');
-        Route::post('storeuser', [userController::class,'store'])->name('storeUser');
-        Route::get('edituser/{id}',[userController::class,'edit'])->name('editUser');
-        Route::put('updateuser/{id}',[userController::class,'update'])->name('updateUser');
-        Route::get('deleteuser/{id}',[userController::class,'destroy'])->name('deleteUser'); 
-        //Companies Routes
-        Route::get('companies', [companyController::class, 'index'])->name('companies');
-        Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
-        Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
-        Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
-        Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
-        Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
-        Route::get('pending',[companyController::class , 'pending'])->name('pending');
-        Route::get('aprovePendingCompany/{id}',[companyController::class , 'aprovePending'])->name('aprovePendingCompany');
-        //IP Routes
-        Route::get('ipAddresses', [IP_AddressController::class , 'index'])->name('ipAddresses');
-        Route::get('createIpAddress', [IP_AddressController::class, 'create'])->name('createIpAddress');
-        Route::post('storeIpAddress', [IP_AddressController::class, 'store'])->name('storeIpAddress');
-        Route::get('editIpAddress/{id}', [IP_AddressController::class , 'edit'])->name('editIpAddresses');
-        Route::put('updateIpAddress/{id}', [IP_AddressController::class , 'update'])->name('updateIpAddresses');
-        Route::get('deleteIpAddress/{id}', [IP_AddressController::class , 'destroy'])->name('deleteIpAddresses');
-        //Settings
-        Route::get('settings', [SettingsController::class , 'index'])->name('settings');
-        //Activity Logs
-        Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
-        Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
-        //Calendar Routes
-        Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-        Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
-        Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents'); // Add new event
-       // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
-       // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
-       //Car Bookings Routes
-       Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
-       // Client Routes
-       Route::get('client',[ClientController::class, 'index'])->name('client');
-       // Blogs added by farhan
-        Route::get('blog/create', [AdminBlogController::class, 'createBlog'])->name('blogs.createBlog');
-        Route::post('blog/store', [AdminBlogController::class, 'store'])->name('blogs.store');   
-        Route::get('blog/detail', [AdminBlogController::class, 'getBlogDetail'])->name('blogs.blogDetail');
-        Route::get('blog/edit/{id}', [AdminBlogController::class, 'edit'])->name('blogs.edit');
-        Route::put('blog/update/{id}', [AdminBlogController::class, 'update'])->name('blogs.update');
-        Route::get('blog/{id}', [AdminBlogController::class, 'delete'])->name('blogs.destroy');
-        // end blog
-        // Financial History
-        Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
-        Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
-    });
+
+    //Company Login
+    Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
+    Route::get('company/login',[companyController::class, 'showLoginForm'])->middleware('IsAdmin:company');
+    Route::post('company/login', [LoginController::class, 'login'])->name('companyLogin')->middleware('IsAdmin:company');
+    
+    // To Get Current Prefix of URL
+    $currentPrefix = request()->segment(1);
+   
+    if($currentPrefix == 'company'){
+        Route::prefix('company')->middleware(['auth','IsAdmin:company'])->group(function(){
+            //Dashboard
+            Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
+             //Calendar Routes
+             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
+             Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
+             Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents'); // Add new event
+             // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
+             // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
+             //Car Bookings Routes
+            Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
+            // Financial History
+            Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
+            Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
+            // Client Routes
+            Route::get('client',[ClientController::class, 'index'])->name('client');
+            //Activity Logs
+            Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
+            Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
+        });
+    }
+
+    if($currentPrefix == 'admin'){
+        Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
+            //Dashborad
+            Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
+            //Users Routes
+            Route::get('users', [userController::class, 'index'])->name('users');
+            Route::get('createuser', [userController::class,'create'])->name('createUser');
+            Route::post('storeuser', [userController::class,'store'])->name('storeUser');
+            Route::get('edituser/{id}',[userController::class,'edit'])->name('editUser');
+            Route::put('updateuser/{id}',[userController::class,'update'])->name('updateUser');
+            Route::get('deleteuser/{id}',[userController::class,'destroy'])->name('deleteUser'); 
+            //Companies Routes
+            Route::get('companies', [companyController::class, 'index'])->name('companies');
+            Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
+            Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
+            Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
+            Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
+            Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
+            Route::get('pending',[companyController::class , 'pending'])->name('pending');
+            Route::get('aprovePendingCompany/{id}',[companyController::class , 'aprovePending'])->name('aprovePendingCompany');
+            //IP Routes
+            Route::get('ipAddresses', [IP_AddressController::class , 'index'])->name('ipAddresses');
+            Route::get('createIpAddress', [IP_AddressController::class, 'create'])->name('createIpAddress');
+            Route::post('storeIpAddress', [IP_AddressController::class, 'store'])->name('storeIpAddress');
+            Route::get('editIpAddress/{id}', [IP_AddressController::class , 'edit'])->name('editIpAddresses');
+            Route::put('updateIpAddress/{id}', [IP_AddressController::class , 'update'])->name('updateIpAddresses');
+            Route::get('deleteIpAddress/{id}', [IP_AddressController::class , 'destroy'])->name('deleteIpAddresses');
+            //Settings
+            Route::get('settings', [SettingsController::class , 'index'])->name('settings');
+            //Activity Logs
+            Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
+            Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
+            //Calendar Routes
+            Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
+            Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
+            Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents'); // Add new event
+            // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
+            // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
+            //Car Bookings Routes
+            Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
+            // Client Routes
+            Route::get('client',[ClientController::class, 'index'])->name('client');
+            // Blogs added by farhan
+            Route::get('blog/create', [AdminBlogController::class, 'createBlog'])->name('blogs.createBlog');
+            Route::post('blog/store', [AdminBlogController::class, 'store'])->name('blogs.store');   
+            Route::get('blog/detail', [AdminBlogController::class, 'getBlogDetail'])->name('blogs.blogDetail');
+            Route::get('blog/edit/{id}', [AdminBlogController::class, 'edit'])->name('blogs.edit');
+            Route::put('blog/update/{id}', [AdminBlogController::class, 'update'])->name('blogs.update');
+            Route::get('blog/{id}', [AdminBlogController::class, 'delete'])->name('blogs.destroy');
+            // end blog
+            // Financial History
+            Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
+            Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
+        });
+    }
+
 });
 
 //Auth Routes

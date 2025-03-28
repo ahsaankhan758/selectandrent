@@ -27,7 +27,7 @@
                                     <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ ucfirst(strtolower($carData->car_models->name )) }}</a></td>
                                     <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->lisence_plate }}</a></td>
                                     
-                                    @if($carData->users->role == 'admin' || empty($carData->users->companies))
+                                    @if(isset($carData->users->role) && $carData->users->role == 'admin' || empty($carData->users->companies))
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->name }}</a></td>
                                     @else
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
@@ -101,9 +101,11 @@
                                                     <h4 class="mt-3">{{ __('messages.images') }}</h4>
                                                     <div class="row mt-3">
                                                         <div class="col">
-                                                            <a href="{{asset('/')}}storage/{{ $carData->thumbnail }}" data-lightbox="car-thumbnail{{ $carData->thumbnail }}">
-                                                                <img src="{{asset('/')}}storage/{{ $carData->thumbnail }}" class="thumbnail">
-                                                            </a>
+                                                            @if (isset($carData->thumbnail))
+                                                                <a href="{{asset('/')}}storage/{{ $carData->thumbnail }}" data-lightbox="car-thumbnail{{ $carData->thumbnail }}">
+                                                                    <img src="{{asset('/')}}storage/{{ $carData->thumbnail }}" class="thumbnail">
+                                                                </a>
+                                                                @endif
                                                             <?php 
                                                                 $counter++;
                                                             ?>
