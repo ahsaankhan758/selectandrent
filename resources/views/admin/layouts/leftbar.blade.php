@@ -3,6 +3,9 @@
         margin-left: 15px;
     }
 </style>
+@if(Auth::check())
+    {{ $role = Auth::user()->role }}
+@endif
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
@@ -79,38 +82,43 @@
                 </li>
 
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app',2) }}</li>
-                <li>
-                    <a href="{{ route('users') }}">
-                        <i class="mdi mdi-account-circle-outline"></i>
-                        <span> {{ __('messages.users') }} </span>
-                    </a>
-                </li>
+               
+                @if($role == 'admin')
 
-                <li>
-                    <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
-                        <i class="mdi mdi-hexagon-multiple"></i>
-                        <span> {{ __('messages.companies') }} </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sub_menu_company_listing">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('createCompany') }}" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.create') }} </span></a>
-                            </li>
-                            <li>
-                                <a href="{{ route('companies') }}" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.active') }} </span></a>
-                            </li>
-                            <li>
-                                <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.pending') }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                    <li>
+                        <a href="{{ route('users') }}">
+                            <i class="mdi mdi-account-circle-outline"></i>
+                            <span> {{ __('messages.users') }} </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
+                            <i class="mdi mdi-hexagon-multiple"></i>
+                            <span> {{ __('messages.companies') }} </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sub_menu_company_listing">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('createCompany') }}" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.create') }} </span></a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('companies') }}" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.active') }} </span></a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.pending') }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+
                 <li>
                     <a href="#sub_menu_car_listing" data-bs-toggle="collapse">
                         <i class="mdi mdi-car-side"></i>
                         <span> {{ __('messages.cars') }} </span>
                         <span class="menu-arrow"></span>
+                       
                     </a>
                     <div class="collapse" id="sub_menu_car_listing">
                         <ul class="nav-second-level">
@@ -120,18 +128,24 @@
                             <li>
                                 <a href="{{ route('carListings') }}" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.listings') }}</span></a>
                             </li>
-                            <li>
-                                <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i><span class="custom-ml-15">{{ __('messages.brands') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('carCategories') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.categories') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('carFeatures') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.features') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('carModels') }}">  <i class="mdi mdi-car-estate"></i><span class="custom-ml-15">{{ __('messages.models') }}</a>
-                            </li>
+
+                            @if($role == 'admin')
+
+                                <li>
+                                    <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i><span class="custom-ml-15">{{ __('messages.brands') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('carCategories') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.categories') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('carFeatures') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.features') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('carModels') }}">  <i class="mdi mdi-car-estate"></i><span class="custom-ml-15">{{ __('messages.models') }}</a>
+                                </li>
+
+                            @endif    
+
                             <li>
                                 <a href="{{ route('carLocations') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">{{ __('messages.locations') }}</a>
                             </li>
@@ -207,36 +221,42 @@
                         <span>{{ trans_choice('messages.client',2) }}   </span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('ipAddresses') }}">
-                        <i class="mdi mdi-network"></i>
-                        <span> {{ __('messages.users') }} IP  </span>
-                    </a>
-                </li>
-                 {{--Added by Farhan  --}}
-                <li>
-                    <a href="#sub_menu_blog" data-bs-toggle="collapse">
-                        <i class="mdi mdi-book-open-page-variant"></i>
-                        <span> {{ trans_choice('messages.blog',2) }}   </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sub_menu_blog">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('blogs.createBlog') }}"> 
-                                    <i class="mdi mdi-format-list-bulleted"></i>
-                                    <span class="custom-ml-15">{{ __('messages.create') }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('blogs.blogDetail') }}"> 
-                                    <i class="mdi mdi-plus-circle"></i>
-                                    <span class="custom-ml-15">{{ __('messages.details') }}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+
+                @if($role == 'admin')
+
+                    <li>
+                        <a href="{{ route('ipAddresses') }}">
+                            <i class="mdi mdi-network"></i>
+                            <span> {{ __('messages.users') }} IP  </span>
+                        </a>
+                    </li>
+                    {{--Added by Farhan  --}}
+                    <li>
+                        <a href="#sub_menu_blog" data-bs-toggle="collapse">
+                            <i class="mdi mdi-book-open-page-variant"></i>
+                            <span> {{ trans_choice('messages.blog',2) }}   </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sub_menu_blog">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('blogs.createBlog') }}"> 
+                                        <i class="mdi mdi-format-list-bulleted"></i>
+                                        <span class="custom-ml-15">{{ __('messages.create') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('blogs.blogDetail') }}"> 
+                                        <i class="mdi mdi-plus-circle"></i>
+                                        <span class="custom-ml-15">{{ __('messages.details') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                @endif
+
                 {{--end by Farhan  --}}
                 <li>
                     <a href="{{ route('activityLogs') }}">
@@ -244,13 +264,32 @@
                         <span>{{ __('messages.activity logs') }} </span>
                     </a>
                 </li>
+
+                @if($role == 'admin')
+
                 <li>
-                    <a href="{{ route('settings') }}">
+                    <a href="#sub_menu_settings" data-bs-toggle="collapse">
                         <i class="mdi mdi-cog"></i>
                         <span>{{ __('messages.settings') }} </span>
+                        <span class="menu-arrow"></span>
                     </a>
+                    <div class="collapse" id="sub_menu_settings">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.user') }} {{ trans_choice('messages.permission',2) }} </span></a>
+                            </li>
+                            <li>
+                                <a href="" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.active') }} </span></a>
+                            </li>
+                            <li>
+                                <a href=""> <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.pending') }}</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+                    
 
+                @endif
                 {{-- <li>
                     <a href="apps-chat.html">
                         <i class="mdi mdi-forum-outline"></i>

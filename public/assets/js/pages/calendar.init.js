@@ -54,58 +54,25 @@
                 };
             }
         });
-       //var events = []; // Declare globally
-        var temp = 1;
-        console.log("1st : "+temp);
-    function eventValues()
-        {
-            $.ajax({
-            url: "/admin/getEvents", // Ensure the correct route
-            method: "GET",
-            dataType: "json",
-            success: function (response) {
-                //temp++;
-                return response;
-                //console.log("2nd : "+temp);
+       
+        var events = function eventValues()
+            {
+                return new Promise((resolve) => {
+                    $.ajax({
+                            url: "/admin/getEvents", 
+                            method: "GET",
+                            dataType: "json",
+                            success: function (response) {
+                                console.log(response);
+                                resolve(response);
+                            },
+                            error: function (xhr, status, error) {
+                                console.error("Error fetching events:", xhr.responseText);
+                            }
+                            });
+                });
                 
-                //var events = response; // Assign response to global variable
-           // console.log(events); // Check if events updated properly
-            // console.log(events[1]?.title); // Safe access
-            },
-            error: function (xhr, status, error) {
-                console.error("Error fetching events:", xhr.responseText);
-            }
-            });
-            
-        }
-var eventV = eventValues();
-console.log("return Value :" + eventV);
-console.log("3rd : "+temp);
-var events = [
-    {
-        title: "Meeting with Mr. Shreyu",
-        start: new Date($.now() + 158000000),
-        end: new Date($.now() + 338000000),
-        className: "bg-warning"
-    },
-    {
-        title: "Interview - Backend Engineer",
-        start: currentDate,
-        end: currentDate,
-        className: "bg-success"
-    },
-    {
-        title: "Phone Screen - Frontend Engineer",
-        start: new Date($.now() + 168000000),
-        className: "bg-info"
-    },
-    {
-        title: "Buy Design Assets",
-        start: new Date($.now() + 338000000),
-        end: new Date($.now() + 4056000000),
-        className: "bg-primary"
-    }
-];
+            };
         // $.ajax({
         //     url: "/admin/storeEvents", // Ensure the correct route
         //     method: "POST",
@@ -152,7 +119,7 @@ var events = [
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
             },
-            initialEvents: events,
+            events: events,
             editable: true,
             droppable: true,
             selectable: true,
@@ -161,11 +128,14 @@ var events = [
             },
             eventClick: function (info) {
                 self.onEventClick(info);
+            }, 
+            onSelect: function(info){
+                console.log(info+"something");
             }
         });
 
         this.$calendarObj.render();
-
+        
         this.$btnNewEvent.on("click", function () {
             self.onSelect({ date: new Date(), allDay: true });
         });

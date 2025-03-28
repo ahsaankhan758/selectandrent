@@ -53,7 +53,7 @@
                 @if(session('statusDanger'))
                 <div class="alert alert-danger" id="div1">{{ session('statusDanger') }}</div>
                 @endif
-                {{-- To Hide Status Massage --}}
+                
                 <div class="content">
                     <!-- Start Content-->
                     <div class="container-fluid">
