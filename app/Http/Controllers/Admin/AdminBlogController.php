@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Auth;
 use Illuminate\Support\Facades\Storage;
 class AdminBlogController extends Controller
 {
@@ -32,7 +33,7 @@ class AdminBlogController extends Controller
             }
         }
 
-        Blog::create([
+        $blog = Blog::create([
             'name' => $request->name,
             'date' => $request->date,
             'authorName' => $request->authorName,
@@ -40,18 +41,25 @@ class AdminBlogController extends Controller
             'images' => json_encode($imagePaths),
             'detail' => $request->detail,
         ]);
+
+       // save logs
+       $userId = Auth::id();
+       $userName = Auth::user()->name;
+       $description = $userName . ' Created [ Blog Name: ' . $blog->name . ' ] [ Author Name: ' . $blog->authorName . ' ] Successfully.';
+       $action = 'Create';
+       $module = 'Blog';
+       activityLog($userId, $description,$action,$module);
     
-        return redirect()->route('blogs.blogDetail')->with('status', 'Blog successfully created!');
+       return redirect()->route('blogs.blogDetail')->with('status', 'Blog successfully created!');
     }
     
 
    // Get Blog Detail
    public function getBlogDetail()
    {
-       $blogs =  Blog::paginate(10);
+       $blogs =  Blog::paginate(8);
        return view('admin.blogs.blogDetail', compact('blogs'));
    }
-   
 
    // Edit Blog
    public function edit($id)
@@ -95,6 +103,14 @@ public function update(Request $request, $id)
     $blog->detail = $request->detail;
     $blog->save();
 
+    // Save logs
+    $userId = Auth::id();
+    $userName = Auth::user()->name;
+    $description = $userName . ' Updated [ Blog Name: ' . $blog->name . ' ] [ Author Name: ' . $blog->authorName . ' ] Successfully.';
+    $action = 'Update';
+    $module = 'Blog';
+    activityLog($userId, $description, $action, $module);
+
     return redirect()->route('blogs.blogDetail')->with('status', 'Blog updated successfully!');
 }
 
@@ -113,6 +129,15 @@ public function delete($id)
     }
 
     $blog->delete();
+
+     // Save logs
+     $userId = Auth::id();
+     $userName = Auth::user()->name;
+     $description = $userName . ' Deleted [ Blog Name: ' . $blog->name . ' ] [ Author Name: ' . $blog->authorName . ' ] Successfully.';
+     $action = 'Delete';
+     $module = 'Blog';
+     activityLog($userId, $description, $action, $module);
+
     return redirect()->back()->with('status', 'Blog deleted successfully!');
 }
     

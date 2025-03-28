@@ -1,3 +1,4 @@
+@if ($blogs->count() > 0)
 @foreach($blogs as $blog)
 <div class="col-lg-4 col-md-6 mb-4">
     <div class="blog-card">
@@ -16,3 +17,8 @@
     </div>
 </div>
 @endforeach 
+@else
+    <div class="col-12 text-center">
+        <p>No blogs available.</p>
+    </div>
+@endif
