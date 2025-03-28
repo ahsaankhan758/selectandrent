@@ -54,13 +54,9 @@
                             <a href="{{ route('blogs.edit', $blog->id) }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
-                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" style="border:none;background:none; cursor: pointer;">
-                                    <i class="fa-solid fa-trash" style="color: red"></i>
-                                </button>
-                            </form>
+                            <a href="{{ route('blogs.destroy', $blog->id) }}" class="btn-delete">
+                                <i class="fa-solid fa-trash" style="color: red"></i>
+                            </a>
                         </td>
                     </tr>
                 
