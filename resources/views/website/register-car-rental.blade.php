@@ -60,18 +60,22 @@ Car-Register | Select and Rent
             <h2 class="fw-bold mb-5">Register With Car Rental</h2>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <form>
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Full Name">
-                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Email Address">
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Phone Number">
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Name">
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Website Name">
-                    <textarea class="form-control mb-3 form-control-border static-width" placeholder="Enter a details Company"></textarea>
+            <div class="col-md-6 mb-2">
+                <form action="{{ route('website.register') }}" method="POST">
+                    @csrf
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Name" name="companyName">
+                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Company Email" name="companyEmail">
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Phone" name="phone">
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Website" name="website">
+                    
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Full Name" name="name">
+                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Email Address" name="email">
+                    <input type="password" class="form-control mb-3 form-control-border static-width" placeholder="Password" name="password">
                     <button class="btn btn-orange-clr rounded-pill text-white">
                         Submit Now
                     </button>
                 </form>
+                
             </div>
             <div class="col-md-6">
                 <div class="contact-info">

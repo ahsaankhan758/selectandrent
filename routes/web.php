@@ -16,6 +16,7 @@ use App\Http\Controllers\website\AboutController;
 
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
@@ -231,6 +232,7 @@ Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])-
 Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
 // car register by farhan
 Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
+Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
 // car search page by farhan
 Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
 Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
@@ -239,3 +241,4 @@ Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('
 Route::get('/email-template', function () {
     return view('website.emailtemplate');
 });
+
