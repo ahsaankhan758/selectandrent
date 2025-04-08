@@ -57,6 +57,12 @@ class CarListingController extends Controller
         }
     }
 
+    // Apply Category Filter
+    if ($request->has('category_id') && !empty($request->category_id)) {
+        $query->where('car_category_id', $request->category_id); // Correct column name
+    }
+        
+
     // Get Total Filtered Count
     $filteredCarsCount = $query->count();
 
@@ -74,7 +80,7 @@ class CarListingController extends Controller
 
     if ($request->ajax()) {
         return response()->json([
-            'html' => view('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])->render(),
+            'data' => view('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])->render(),
             'filteredCount' => $filteredCarsCount,
             'totalCars' => $totalCars
         ]);
@@ -83,29 +89,72 @@ class CarListingController extends Controller
     return view('website.car-listing.car-listing', compact('cars', 'totalCars', 'categories', 'carModel'));
 }
 
-    
 
     
-
+public function loadMoreCars(Request $request)
+{
+    $model = $request->model; 
+    $offset = $request->offset;
     
-    public function loadMoreCars(Request $request)
-    {
-        $model = $request->model; 
-        $offset = $request->offset;
-
-        $modelClass = "App\\Models\\" . ucfirst($model);
-        if (!class_exists($modelClass)) {
-            return response()->json(['error' => 'Invalid Model'], 400);
-        }
-
-        $cars = $modelClass::latest()->skip($offset)->take(8)->get();
-        $hasMore = $modelClass::count() > ($offset + 8);
-
-        return response()->json([
-            'cars' => view("website.car-listing.include.car-listing-load-more-cards", compact('cars'))->render(),
-            'hasMore' => $hasMore
-        ]);
+    $modelClass = "App\\Models\\" . ucfirst($model);
+    if (!class_exists($modelClass)) {
+        return response()->json(['error' => 'Invalid Model'], 400);
     }
+
+    // **Apply Filters if Available**
+    $query = $modelClass::query();
+
+    if ($request->has('transmission') && !empty($request->transmission)) {
+        $query->where('transmission', $request->transmission);
+    }
+
+    if ($request->has('sort')) {
+        if ($request->sort == 'low_to_high') {
+            $query->orderBy('rent', 'asc');
+        } elseif ($request->sort == 'high_to_low') {
+            $query->orderBy('rent', 'desc');
+        }
+    } else {
+        $query->latest();
+    }
+
+    if ($request->has('car_model_id') && !empty($request->car_model_id)) {
+        $query->where('car_model_id', $request->car_model_id);
+    }
+
+    if ($request->has('address') && !empty($request->address)) {
+        $query->whereHas('car_locations', function ($q) use ($request) {
+            $q->where('city', 'LIKE', '%' . $request->address . '%');
+        });
+    }
+
+    if ($request->has('date') && !empty($request->date)) {
+        $dateTime = $request->date;
+        if ($request->has('time') && !empty($request->time)) {
+            $dateTime .= ' ' . $request->time;
+            $query->where('created_at', '>=', $dateTime);
+        } else {
+            $query->whereDate('created_at', '=', $request->date);
+        }
+    }
+
+    if ($request->has('category_id') && !empty($request->category_id)) {
+        $query->where('car_category_id', $request->category_id);
+    }
+
+    // **Ensure Load More Uses the Filtered Data**
+    $filteredCount = $query->count();
+    $cars = $query->skip($offset)->take(8)->get();
+    $hasMore = $filteredCount > ($offset + 8);
+
+    return response()->json([
+        'data' => view("website.car-listing.include.car-listing-load-more-cards", compact('cars'))->render(),
+        'hasMore' => $hasMore,
+        'filteredCount' => $filteredCount
+    ]);
+}
+
+
 
     // get car model name for filter samrt dropdown
     public function getCarModels()
@@ -116,14 +165,14 @@ class CarListingController extends Controller
 
     public function searchLocations(Request $request)
 {
-    $search = $request->input('query'); // Get input from AJAX
+    $search = $request->input('query');
 
     // Fetch matching cities from `car_locations` table
     $locations = CarLocation::where('city', 'LIKE', '%' . $search . '%')
-        ->limit(10) // Limit results
-        ->get(['id', 'city']); // Only fetch necessary columns
+        ->limit(10)
+        ->get(['id', 'city']);
 
-    return response()->json($locations); // Return as JSON
+    return response()->json($locations);
 }
 
 
