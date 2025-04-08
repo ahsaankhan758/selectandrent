@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{asset('/')}}company-assets/assets/css/custom.css">
     <link rel="stylesheet" href="{{asset('/')}}company-assets/assets/css/common.css">
     <script src="{{asset('/')}}company-assets/assets/Js/custom.js"></script>
+    {{-- font cdn --}}
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
     <script src="{{asset('/')}}assets/js/loadmore.js"></script>
