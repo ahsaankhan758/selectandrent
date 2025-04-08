@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -47,7 +50,28 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+    //Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+    Route::post('logout', function (Request $request) {
+        $role = Auth::user()->role;
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+        if(isset($role) && $role == 'admin')
+        {
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/admin/login');
+        }
+    elseif(isset($role) && $role == 'company')
+        {
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/company/login');
+        }
+    
+        return redirect('/login');
+    })->name('logout')->middleware('auth');
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
