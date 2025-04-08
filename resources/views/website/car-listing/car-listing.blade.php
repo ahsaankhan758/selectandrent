@@ -5,6 +5,53 @@ Car Listing | Select and Rent
 
 @section('content')
 
+<style>
+/* Ensure the dropdown appears correctly */
+#addressDropdown {
+    position: absolute;
+    top: 100%; /* Position dropdown right below the input */
+    left: 0;
+    width: 100%; /* Full width of input field */
+    max-height: 200px; /* Prevent too large dropdown */
+    overflow-y: auto; /* Enable scrolling for long lists */
+    background-color: #fff; /* Match form input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above other elements */
+    display: none; /* Initially hidden */
+}
+
+/* Show dropdown when results exist */
+#addressDropdown.show {
+    display: block;
+}
+
+/* Style dropdown items */
+#addressDropdown .dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover effect for dropdown items */
+#addressDropdown .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Style for muted/no results */
+#addressDropdown .text-muted {
+    color: #6c757d;
+    pointer-events: none; /* Disable selection */
+}
+
+/* Ensure input field has proper positioning */
+.position-relative {
+    position: relative;
+}
+
+
+</style>
 <div class="container">
     <div class="row">
         <!-- car-listing-sidebar -->
@@ -13,15 +60,20 @@ Car Listing | Select and Rent
                 <div class="filter-section">
                     <div class="position-relative">
                         <input type="text" id="addressFilter" class="form-control car-input-box" placeholder="Address">
-                        <ul id="addressDropdown" class="dropdown-menu w-100" style="display: none; position: absolute;"></ul>
+                        <ul id="addressDropdown" class="dropdown-menu w-100" style="display: none;"></ul>
                     </div>
+                    
+                    
                                         
-                    <div class="position-relative">
-                        <div id="carModelDropdownBtn" class="form-control car-input-box">Select a Car Model</div>
-                        <div id="carModelDropdownMenu" class="dropdown-menu w-100" style="display: none; max-height: 250px; overflow-y: auto; position: absolute;">
-                            <input type="text" id="carModelSearch" class="form-control" placeholder="Search Car Model..." style="margin: 5px;">
+                    <div class="car-listing-dropdown-container mb-2">
+                        <div id="carModelDropdownBtn" class="dropdown-btn">
+                            <span>Select a Car Model</span>
+                            <i class="dropdown-arrow fas fa-chevron-down"></i>
+                        </div>
+                        <div id="carModelDropdownMenu" class="dropdown-menu-custom">
+                            <input type="text" id="carModelSearch" class="search-box" placeholder="Search Car Model...">
                             <ul id="carModelList" class="list-unstyled mb-0">
-                                <li class="dropdown-item text-muted">Loading...</li>
+                                <li class="dropdown-item-custom text-muted">Loading...</li>
                             </ul>
                         </div>
                     </div>
@@ -35,16 +87,32 @@ Car Listing | Select and Rent
                 
                 <div class="brand-section">
                     <h5 class="brand-title">All Brands ({{ $totalCars }})</h5>
-                <div class="brand-list">
-                    @foreach ($categories as $category)
-                        <button class="brand-btn">{{ $category->name }} ({{ $category->cars_count }})</button>
-                    @endforeach
-                </div>
+                    
+                    <div class="brand-list">
+                        @foreach($categories->take(6) as $category)
+                            <button class="brand-btn category-filter" data-category="{{ $category->id }}">
+                                {{ $category->name }} ({{ $category->cars_count }})
+                            </button>
+                        @endforeach
+                    </div>
+                
+                    @if($categories->count() > 6)
+                
+                        <div id="extraCategories" class="brand-list" style="display: none;">
+                            @foreach($categories->skip(6) as $category)
+                                <button class="brand-btn category-filter" data-category="{{ $category->id }}">
+                                    {{ $category->name }} ({{ $category->cars_count }})
+                                </button>
+                            @endforeach
+                        </div>
+                        <button id="viewMoreCategories" class="brand-btn">View More</button>
 
-
+                    @endif
+                
                     <button class="btn find-car-btn btn-dark-blue-clr">Find Car</button>
-
                 </div>
+                
+                
         
             </div>
         </div>
@@ -110,55 +178,9 @@ Car Listing | Select and Rent
 <script>
     var carListingRoute = "{{ route('car.listing') }}";
     var carListingFilterRoute = "{{ route('get.car.models') }}";
+    var carListingAddressFilter = "{{ route('search.locations') }}";
 </script>
-<script>
-    $(document).ready(function () {
-    $("#addressFilter").on("keyup", function () {
-        let query = $(this).val(); // Get user input
 
-        if (query.length > 0) {
-            $.ajax({
-                url: "{{ route('search.locations') }}",
-                method: "GET",
-                data: { query: query },
-                success: function (response) {
-                    let dropdown = $("#addressDropdown");
-                    dropdown.empty(); // Clear previous results
 
-                    if (response.length > 0) {
-                        response.forEach(location => {
-                            dropdown.append(`<li class="dropdown-item" data-id="${location.id}">${location.city}</li>`);
-                        });
-                        dropdown.show(); // Show dropdown
-                    } else {
-                        dropdown.append('<li class="dropdown-item text-muted">No results found</li>');
-                        dropdown.show();
-                    }
-                }
-            });
-        } else {
-            $("#addressDropdown").hide(); // Hide dropdown if input is empty
-        }
-    });
 
-    // Select city from dropdown
-    $(document).on("click", "#addressDropdown .dropdown-item", function () {
-        let selectedText = $(this).text();
-        let selectedId = $(this).attr("data-id");
-
-        $("#addressFilter").val(selectedText); // Set input value
-        $("#addressFilter").attr("data-selected", selectedId); // Store ID
-        $("#addressDropdown").hide(); // Hide dropdown
-        filterCars(); // Trigger filtering
-    });
-
-    // Hide dropdown when clicking outside
-    $(document).on("click", function (e) {
-        if (!$(e.target).closest(".position-relative").length) {
-            $("#addressDropdown").hide();
-        }
-    });
-});
-
-</script>
 @endsection
