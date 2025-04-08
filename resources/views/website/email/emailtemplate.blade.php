@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +74,6 @@
             height: auto;
             border-radius: 50%;
         }
-      
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -87,10 +87,11 @@
 <body>
     <div class="container">
         <img src="company-assets/icons/select-and-rent-logo-3.png" alt="Select and Rent Logo" class="logo">
-        <h2>Welcome to Select and Rent!</h2>
-        <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p class="content">Thank you for joining us! We are thrilled to have you on board. Click below to explore the best car rental options at amazing prices.</p>
-        <a href="#" class="button">Get Started</a>
+        <h2>Welcome to Select and Rent, {{ $user->name }}!</h2>
+        <p class="content">Thank you for registering your company with us. Please click the link below to verify your email address and complete the registration process:</p>
+        <a href="{{ route('verification.verify', ['id' => $user->id, 'hash' => sha1($user->email)]) }}" class="button">
+            Verify Your Email
+        </a>
         
         <div class="support-box">
             <p><strong>Need Help?</strong></p>

@@ -63,14 +63,16 @@ Car-Register | Select and Rent
             <div class="col-md-6 mb-2">
                 <form action="{{ route('website.register') }}" method="POST">
                     @csrf
+                    {{-- user detail --}}
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Full Name" name="name">
+                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Email Address" name="email">
+                    <input type="password" class="form-control mb-3 form-control-border static-width" placeholder="Password" name="password">
+                    {{-- company detail --}}
                     <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Name" name="companyName">
                     <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Company Email" name="companyEmail">
                     <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Phone" name="phone">
                     <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Website" name="website">
                     
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Full Name" name="name">
-                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Email Address" name="email">
-                    <input type="password" class="form-control mb-3 form-control-border static-width" placeholder="Password" name="password">
                     <button class="btn btn-orange-clr rounded-pill text-white">
                         Submit Now
                     </button>
