@@ -56,7 +56,6 @@ class CarRegisterController extends Controller
             return back()->with('error', 'Mail not sent: ' . $e->getMessage());
         }
         
-    
         return redirect()->route('website.register')->with('status', 'Company And User Added Successfully. Please check your email to verify your account.');
     }
     
