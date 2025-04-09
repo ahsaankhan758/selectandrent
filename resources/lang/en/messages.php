@@ -124,6 +124,7 @@ return [
     'rental' => 'Rental',
     'duration' => 'Duration',
     'assigned' => 'Assigned',
+    
     'app' => 'APP | APPS',
     'author' => 'Author | Authors',
     'blog' => 'Blog | Blogs',
