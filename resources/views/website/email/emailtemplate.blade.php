@@ -86,7 +86,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="company-assets/icons/select-and-rent-logo-3.png" alt="Select and Rent Logo" class="logo">
+        <img src="{{ $logo }}" alt="Select and Rent Logo" class="logo">
         <h2>Welcome to Select and Rent, {{ $user->name }}!</h2>
         <p class="content">Thank you for registering your company with us. Please click the link below to verify your email address and complete the registration process:</p>
         <a href="{{ route('verification.verify', ['id' => $user->id, 'hash' => sha1($user->email)]) }}" class="button">
@@ -100,10 +100,10 @@
 
         <p class="footer">Stay connected with us:</p>
         <div class="social-icons">
-            <a href="#"><img src="company-assets/icons/socials(3).png" alt="Facebook"></a>
-            <a href="#"><img src="company-assets/icons/socials.png" alt="Twitter"></a>
-            <a href="#"><img src="company-assets/icons/socials(2).png" alt="Instagram"></a>
-            <a href="#"><img src="company-assets/icons/socials(1).png" alt="LinkedIn"></a>
+            <a href="#"><img src="{{ $facebook }}" alt="Facebook"></a>
+            <a href="#"><img src="{{ $twitter }}" alt="Twitter"></a>
+            <a href="#"><img src="{{ $instagram }}" alt="Instagram"></a>
+            <a href="#"><img src="{{ $linkedin }}" alt="LinkedIn"></a>
         </div>
         <hr>
         <div class="footer">© 2025 All Rights Reserved</div>

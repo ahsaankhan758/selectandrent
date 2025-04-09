@@ -51,7 +51,8 @@ class CarRegisterController extends Controller
         $company->save();
     
         try {
-            Mail::to($user->email)->send(new CompanyVerificationMail($user));
+            // Mail::to($user->email)->send(new CompanyVerificationMail($user));
+            Mail::to($user->email)->queue(new CompanyVerificationMail($user));
         } catch (\Exception $e) {
             return back()->with('error', 'Mail not sent: ' . $e->getMessage());
         }
