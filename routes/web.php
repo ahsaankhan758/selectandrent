@@ -262,7 +262,9 @@ Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
 Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
 
 // email template
-Route::get('/email-template', function () {
-    return view('website.emailtemplate');
-});
+// Route::get('/email-template', function () {
+//     return view('website.emailtemplate');
+// });
+Route::get('/verify/{id}/{hash}', [CarRegisterController::class, 'carRegStore'])->name('verification.verify');
+
 

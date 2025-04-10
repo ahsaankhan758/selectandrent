@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +74,6 @@
             height: auto;
             border-radius: 50%;
         }
-      
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -86,11 +86,12 @@
 </head>
 <body>
     <div class="container">
-        <img src="company-assets/icons/select-and-rent-logo-3.png" alt="Select and Rent Logo" class="logo">
-        <h2>Welcome to Select and Rent!</h2>
-        <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p class="content">Thank you for joining us! We are thrilled to have you on board. Click below to explore the best car rental options at amazing prices.</p>
-        <a href="#" class="button">Get Started</a>
+        <img src="{{ $logo }}" alt="Select and Rent Logo" class="logo">
+        <h2>Welcome to Select and Rent, {{ $user->name }}!</h2>
+        <p class="content">Thank you for registering your company with us. Please click the link below to verify your email address and complete the registration process:</p>
+        <a href="{{ route('verification.verify', ['id' => $user->id, 'hash' => sha1($user->email)]) }}" class="button">
+            Verify Your Email
+        </a>
         
         <div class="support-box">
             <p><strong>Need Help?</strong></p>
@@ -99,10 +100,10 @@
 
         <p class="footer">Stay connected with us:</p>
         <div class="social-icons">
-            <a href="#"><img src="company-assets/icons/socials(3).png" alt="Facebook"></a>
-            <a href="#"><img src="company-assets/icons/socials.png" alt="Twitter"></a>
-            <a href="#"><img src="company-assets/icons/socials(2).png" alt="Instagram"></a>
-            <a href="#"><img src="company-assets/icons/socials(1).png" alt="LinkedIn"></a>
+            <a href="#"><img src="{{ $facebook }}" alt="Facebook"></a>
+            <a href="#"><img src="{{ $twitter }}" alt="Twitter"></a>
+            <a href="#"><img src="{{ $instagram }}" alt="Instagram"></a>
+            <a href="#"><img src="{{ $linkedin }}" alt="LinkedIn"></a>
         </div>
         <hr>
         <div class="footer">© 2025 All Rights Reserved</div>
