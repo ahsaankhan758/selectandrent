@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\website;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\company;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\CompanyApprovedMail;
-use App\Models\User;
 use Auth;
+use App\Models\User;
+use App\Models\company;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CompanyVerificationMail;
 use Illuminate\Support\Facades\Hash; 
 
 class CarRegisterController extends Controller
@@ -18,6 +18,8 @@ class CarRegisterController extends Controller
         return view('website.register-car-rental'); 
     }
 
+  
+    
     public function carRegStore(Request $request)
     {
         // Validate all required fields at once
@@ -30,21 +32,17 @@ class CarRegisterController extends Controller
             'phone' => 'required',
             'website' => 'required|url',
         ]);
-     
-
-        // echo "<pre>";
-        // print_r($request->all());
-        // echo "</pre>";
-        // exit;
-
+    
+        // Create user
         $user = new User;
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
-        $user->password = Hash::make($validatedData['password']); 
+        $user->password = Hash::make($validatedData['password']);
         $user->role = 'company';
         $user->save();
     
-        $company = new company;
+        // Create company
+        $company = new Company;
         $company->user_id = $user->id;
         $company->name = $validatedData['companyName'];
         $company->email = $validatedData['companyEmail'];
@@ -52,15 +50,14 @@ class CarRegisterController extends Controller
         $company->website = $validatedData['website'];
         $company->save();
     
-        // Save logs
-        // $userId = Auth::id();
-        // $userName = Auth::user()->name;
-    
-        // $description = "$userName Created [User Name: {$validatedData['name']}] [User Email: {$validatedData['email']}] Successfully.";
-        // activityLog($userId, $description, 'Create', 'User');
-        // $description = "$userName Created [Company Name: {$validatedData['companyName']}] [Company Email: {$validatedData['companyEmail']}] Successfully.";
-        // activityLog($userId, $description, 'Create', 'Company');
-    
-        return redirect()->route('website.register')->with('status', 'Company Added Successfully.');
+        try {
+            // Mail::to($user->email)->send(new CompanyVerificationMail($user));
+            Mail::to($user->email)->queue(new CompanyVerificationMail($user));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Mail not sent: ' . $e->getMessage());
+        }
+        
+        return redirect()->route('website.register')->with('status', 'Company And User Added Successfully.');
     }
+    
 }
