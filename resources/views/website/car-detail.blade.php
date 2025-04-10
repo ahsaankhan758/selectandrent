@@ -12,12 +12,12 @@ Car Detail | Select and Rent
         <!-- Large Image (Main Car) -->
         <div class="col-lg-9 large-img">
 
-            <img src="{{  asset('/').Storage::url($car->thumbnail) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}">
+            <img src="{{  asset(Storage::url($car->thumbnail)) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}">
         </div>
         <!-- Side Images (For Desktop) -->
         <div class="col-lg-3 d-none d-lg-flex flex-column side-images mt-4">
             @foreach(unserialize($car->images) as $image)
-                <img src="{{ asset('/').Storage::url($image) }}" alt="Side Image">
+                <img src="{{ asset(Storage::url($image)) }}" alt="Side Image">
             @endforeach
 
         </div>
@@ -28,7 +28,7 @@ Car Detail | Select and Rent
         <div class="col-12 side-images">
 
             @foreach(unserialize($car->images) as $image)
-                <img src="{{  asset('/').Storage::url($image) }}" alt="Side Image">
+                <img src="{{  asset(Storage::url($image)) }}" alt="Side Image">
             @endforeach
         </div>
     </div>
@@ -201,7 +201,7 @@ Car Detail | Select and Rent
             @foreach($cars as $car)
                 <div class="swiper-slide">
                     <div class="custom-card2">
-                        <img src="{{  asset('/').Storage::url($car->thumbnail) }}" class="custom-card-img" alt="Car Image">
+                        <img src="{{  asset(Storage::url($car->thumbnail)) }}" class="custom-card-img" alt="Car Image">
         
                         <div class="card-content">
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">
