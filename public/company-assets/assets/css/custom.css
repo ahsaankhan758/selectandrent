@@ -12,18 +12,18 @@
   --hover-clr:#F4F4F5;
 }
 
-/* body {
+body {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
-h1, h2, h3, h4, h5, h6, p, span, b {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Plus Jakarta Sans', sans-serif;
-} */
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 .link {
 text-decoration: none;
@@ -403,7 +403,7 @@ width: 65px;
 margin-left: 20px;
 }
 .join {
-background: url('/company-assets/icons/qwerty.png') no-repeat center center;
+background: url('../../icons/qwerty.png') no-repeat center center;
 background-size: cover;
 }
 
@@ -414,7 +414,7 @@ background-size: cover;
 .mobile-view {
   display: block !important;
   text-align: center;
-  background: url('/company-assets/icons/qwerty.png') no-repeat center center;
+  background: url('../../icons/qwerty.png') no-repeat center center;
   background-size: cover;
   padding: 15px;
 }
@@ -646,7 +646,7 @@ width: 65px;
 margin-left: 1px;
 }
 .join {
-background: url('/company-assets/icons/qwerty.png') no-repeat center center;
+background: url('../../icons/qwerty.png') no-repeat center center;
 background-size: cover;
 }
 .tab-button{
@@ -879,7 +879,7 @@ margin: 5px 0;
 }
 /* header 2 */
 .hero-header-2 {
-  background: url('/company-assets/icons/header2.png') no-repeat bottom center/cover;
+  background: url('../../icons/header2.png') no-repeat bottom center/cover;
   text-align: center;
 }
 
@@ -909,7 +909,7 @@ margin: 5px 0;
   font-weight: 500;
 }
   .hero-header-2 {
-    background: url('/company-assets/icons/header2.png') no-repeat bottom center/cover;
+    background: url('../../icons/header2.png') no-repeat bottom center/cover;
     text-align: center;
   }
   .join-program{
@@ -922,7 +922,7 @@ margin: 5px 0;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .hero-header-2 {
-    background: url('/company-assets/icons/header2.png') no-repeat bottom center/cover;
+    background: url('../../icons/header2.png') no-repeat bottom center/cover;
     color: white;
     text-align: center;
   }
@@ -951,7 +951,7 @@ margin: 5px 0;
 }
 
 .testimonial-bg {
-  background: url('/company-assets/icons/test.png') no-repeat center / cover;
+  background: url('../../icons/test.png') no-repeat center / cover;
     height: 230px;
     margin-top: 40px;
     width: 280px;
@@ -1464,7 +1464,7 @@ margin: 5px 0;
     display: block !important;
   }
   .testimonial-bg {
-    background: url('/company-assets/icons/test.png') no-repeat center / cover;
+    background: url('../../icons/test.png') no-repeat center / cover;
       height: 230px;
       margin-top: 54px;
       width: 280px;
