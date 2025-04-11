@@ -18,33 +18,33 @@
         </div>
         <div class="text-center">
             <a href="">
-                <img src="{{asset('/')}}company-assets/logo/select-and-rent--jpg 2.png" alt="Logo" class="logo-inner-footer">
+                <img src="{{asset('/')}}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" class="logo-inner-footer">
             </a>
         </div>
         <div class="container py-4">
             <div class="row text-center text-white align-items-center">
                 <div class="col-md-2">
-                    <img src="{{asset('/')}}company-assets/icons/call 1.png" class="mb-2 icons-inner-footer" alt="call">
+                    <img src="{{asset('/')}}frontend-assets/icons/call 1.png" class="mb-2 icons-inner-footer" alt="call">
                     <p class="mb-0 text-inner-footer">0 (550) 680-34-12</p>
                     <small class="text-inner-footer">Round-the-clock</small>
                 </div>
                 <div class="col-md-1 d-none d-md-block border-custom"></div>
                 <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
                 <div class="col-md-2">
-                    <img src="{{asset('/')}}company-assets/icons/maps-and-flags 1.png" class="mb-2 icons-inner-footer" alt="call">
+                    <img src="{{asset('/')}}frontend-assets/icons/maps-and-flags 1.png" class="mb-2 icons-inner-footer" alt="call">
                     <p class="mb-0 text-inner-footer">1353 Locust St, Kansas City,</p>
                     <small class="text-inner-footer">MO 64106</small>
                 </div>
                 <div class="col-md-1 d-none d-md-block border-custom"></div>
                 <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
                 <div class="col-md-2">
-                    <img src="{{asset('/')}}company-assets/icons/mail (1) 1.png" class="mb-2 icons-inner-footer" alt="call">
+                    <img src="{{asset('/')}}frontend-assets/icons/mail (1) 1.png" class="mb-2 icons-inner-footer" alt="call">
                     <p class="mb-0 text-inner-footer">hello@sparkodic.com</p>
                 </div>
                 <div class="col-md-1 d-none d-md-block border-custom"></div>
                 <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
                 <div class="col-md-2">
-                    <img src="{{asset('/')}}company-assets/icons/clock (5) 1.png" class="mb-2 icons-inner-footer" alt="call">
+                    <img src="{{asset('/')}}frontend-assets/icons/clock (5) 1.png" class="mb-2 icons-inner-footer" alt="call">
                     <p class="mb-0 text-inner-footer">Mo-Sa: 07:00 - 22:00</p>
                     <small class="text-inner-footer">Su: 07:00 - 16:00</small>
                 </div>
@@ -105,7 +105,7 @@
                   </ul>                    
               </div>
               <div class="col-md-6 col-12 text-start">
-              <img src="{{asset('/')}}company-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="60px" height="60px">
+              <img src="{{asset('/')}}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="60px" height="60px">
                   <p>Whether you need a compact car for city drives, a luxury vehicle for a special event, or a spacious SUV for a family trip, our rental service offers a wide range of options tailored to your needs.</p>
                   <div class="social-icons-footer mt-2 mb-5">
                       <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
@@ -114,7 +114,7 @@
                   </div>
                   <div class="buttons">
                       <a href="{{ url('/contact') }}" class="contact-btn-ctn">CONTACT US</a>
-                      <a href="{{ url('/contact') }}" class="arrow-btn"><img src="{{asset('/')}}company-assets/icons/arrow.png" class="img-icon rounded-pill p-1" alt=""></a>
+                      <a href="{{ url('/contact') }}" class="arrow-btn"><img src="{{asset('/')}}frontend-assets/icons/arrow.png" class="img-icon rounded-pill p-1" alt=""></a>
                   </div>  
               </div>
           </div>
