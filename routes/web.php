@@ -44,34 +44,37 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Session::put('lang',$lang);
         return redirect()->back();
     })->name('change.language');
-    
+
+    // add routes of website by Farhan & Salman
+    Route::get('/', [WebsiteHomeController::class, 'showView']);
+
+    Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
+    Route::get('/faqs', [FaqsController::class, 'faqView']);
+    Route::get('/about-us', [AboutController::class, 'aboutView']);
+    Route::get('/contact', [ContactController::class, 'contactView']);
+    Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
+    Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
+    Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
+
+
+    Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
+
+    // categories routes
+    Route::get('/categories', [CategoryController::class, 'categoryView']);
+    Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
+    // end categories
+
+    // car listing routes
+    Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
+    Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
+
+    // end car listing routes
     
     // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
-    //Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
-    Route::post('logout', function (Request $request) {
-        $role = Auth::user()->role;
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-        if(isset($role) && $role == 'admin')
-        {
-            return $request->wantsJson()
-                ? new JsonResponse([], 204)
-                : redirect('/admin/login');
-        }
-    elseif(isset($role) && $role == 'company')
-        {
-            return $request->wantsJson()
-                ? new JsonResponse([], 204)
-                : redirect('/company/login');
-        }
-    
-        return redirect('/login');
-    })->name('logout')->middleware('auth');
+    Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
@@ -161,6 +164,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
         });
     }
+
+        
+
+
 });
 
 //Auth Routes
@@ -225,29 +232,29 @@ Route::post('/lock-screen', function () {
 // })->name('change.language');
 
 
-// add routes of website by Farhan & Salman
-Route::get('/', [WebsiteHomeController::class, 'showView']);
+// // add routes of website by Farhan & Salman
+// Route::get('/', [WebsiteHomeController::class, 'showView']);
 
 
-Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
-Route::get('/faqs', [FaqsController::class, 'faqView']);
-Route::get('/about-us', [AboutController::class, 'aboutView']);
-Route::get('/contact', [ContactController::class, 'contactView']);
-Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
-Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
-Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
+// Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
+// Route::get('/faqs', [FaqsController::class, 'faqView']);
+// Route::get('/about-us', [AboutController::class, 'aboutView']);
+// Route::get('/contact', [ContactController::class, 'contactView']);
+// Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
+// Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
+// Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
 
 
-Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
+// Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
 
-// categories routes
-Route::get('/categories', [CategoryController::class, 'categoryView']);
-Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
-// end categories
+// // categories routes
+// Route::get('/categories', [CategoryController::class, 'categoryView']);
+// Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
+// // end categories
 
-// car listing routes
-Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
-Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
+// // car listing routes
+// Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
+// Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
 
-// end car listing routes
+// // end car listing routes
 

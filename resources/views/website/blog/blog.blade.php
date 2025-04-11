@@ -1,14 +1,14 @@
 @extends('website.layout.master')
 @section('title')
-Blog | Select and Rent
+{{ __('messages.Blog') }} | {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
 <section class="blog-section">
     <div class="container">
         <div class="text-center mb-4">
-            <p class="blog-subtitle">From the Blog</p>
-            <h2 class="blog-title">Car And Bike Rental News</h2>
+            <p class="blog-subtitle">{{ __('messages.From the Blog') }}</p>
+            <h2 class="blog-title">{{ __('messages.Car And Bike Rental News') }}</h2>
         </div>
 
         <div class="row">
@@ -23,7 +23,7 @@ Blog | Select and Rent
                         {{ date('d', strtotime($blog->date)) }} <br> {{ date('F', strtotime($blog->date)) }}
                     </div>
                     <div class="p-3 blog-card-text">
-                        <p class="author">by {{ $blog->authorName }}</p>
+                        <p class="author">{{ __('messages.by') }} {{ $blog->authorName }}</p>
                         <h5 class="blog-title">
                             {{ $blog->name }}
                         </h5>

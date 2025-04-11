@@ -128,4 +128,27 @@ class userController extends Controller
         activityLog($userId, $desciption,$action,$module);
         return redirect()->route('users')-> with('status','Comapy Data Deleted Successfully.');
     }
+
+    public function logout(Request $request)
+        {
+            $role = Auth::user()->role;
+
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+            if(isset($role) && $role == 'admin')
+            {
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/admin/login');
+            }
+        elseif(isset($role) && $role == 'company')
+            {
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/company/login');
+            }
+        
+            return redirect('/login');
+        }
 }

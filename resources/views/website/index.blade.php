@@ -1,15 +1,16 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('website.layout.master')
 @section('title')
-Home Page | Select and Rent
+{{ __('messages.Home Page') }} | {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
 <div class="container text-center mt-5">
     <!-- Centered Heading -->
-    <h5 class="display-6 fw-bold mb-3">Browse By Categories</h5>
+    <h5 class="display-6 fw-bold mb-3">{{ __('messages.Browse By Categories') }}</h5>
     <!-- Bottom Paragraph -->
     <p class="lead text-muted">
-        Rapidiously enable stand-alone e-markets whereas multifunctional <br> channels enterprise-wide meta-services.
+        {{ __('messages.Rapidiously enable stand-alone e-markets whereas multifunctional') }} <br>{{ __('messages.channels enterprise-wide meta-services') }} .
     </p>
 </div>
 
@@ -124,61 +125,61 @@ Home Page | Select and Rent
 <div class="container-fluid bg-white chose-bg-img mt-4">
     <!-- Mobile Section -->
     <div class="container mobile text-center py-5 d-block d-md-none">
-        <h4 class="text-chose fw-bold">Why we choose us</h4>
-        <h3 class="fw-bold">We Are Ensuring the Best <br>
-            Customer Experience</h3>
+        <h4 class="text-chose fw-bold"{{ __('messages.Why we choose us') }}></h4>
+        <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br>
+            {{ __('messages.Customer Experience') }}</h3>
 
         <div class="mt-4">
             <div class="mb-4">
                 <img src="{{asset('/')}}company-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
-                <h5 class="fw-bold">Affordable Pricing</h5>
-                <p class="text-muted">Enjoy low daily rates without compromising on quality.</p>
+                <h5 class="fw-bold">{{ __('messages.Affordable Pricing') }}</h5>
+                <p class="text-muted">{{ __('messages.Enjoy low daily rates without compromising on quality') }}.</p>
             </div>
             <div class="mb-4">
                 <img src="{{asset('/')}}company-assets/icons/Vector (1).png" class="img-fluid mb-2" alt="">
-                <h5 class="fw-bold">Perfect for Short Trips</h5>
-                <p class="text-muted">Ideal for city drives, quick errands, or budget travel.</p>
+                <h5 class="fw-bold">{{ __('messages.Perfect for Short Trips') }}</h5>
+                <p class="text-muted">{{ __('messages.Ideal for city drives, quick errands, or budget travel') }}.</p>
             </div>
             <div class="mb-4">
                 <img src="{{asset('/')}}company-assets/icons/Vector (2).png" class="img-fluid mb-2" alt="">
-                <h5 class="fw-bold">Fuel Efficiency</h5>
-                <p class="text-muted">Save on gas with cars designed for maximum mileage.</p>
+                <h5 class="fw-bold">{{ __('messages.Fuel Efficiency') }}</h5>
+                <p class="text-muted">{{ __('messages.Save on gas with cars designed for maximum mileage') }}.</p>
             </div>
             <div class="mb-4">
                 <img src="{{asset('/')}}company-assets/icons/Vector (3).png" class="img-fluid mb-2" alt="">
-                <h5 class="fw-bold">Wide Selection</h5>
-                <p class="text-muted">Choose from compact, mid-sized, and family-friendly models.</p>
+                <h5 class="fw-bold">{{ __('messages.Wide Selection') }}</h5>
+                <p class="text-muted">{{ __('messages.Choose from compact, mid-sized, and family-friendly models') }}.</p>
             </div>
         </div>
     </div>
 
     <!-- Desktop Section -->
     <div class="container Desktop  text-center py-5 d-none d-md-block">
-        <h4 class="text-chose fw-bold">Why we choose us</h4>
-        <h3 class="fw-bold">We Are Ensuring the Best <br>
-            Customer Experience</h3>
+        <h4 class="text-chose fw-bold">{{ __('messages.Why we choose us') }}</h4>
+        <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br>
+            {{ __('messages.Customer Experience') }}</h3>
 
         <div class="row align-items-center mt-4">
             <!-- Left Side (Icons Last) -->
             <div class="col-lg-4 text-end">
                 <div class="mb-4 d-flex align-items-center justify-content-end">
                     <div>
-                        <h5 class="fw-bold mb-1">Most Flexible Payment</h5>
-                        <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1">{{ __('messages.Most Flexible Payment') }}</h5>
+                        <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                     <img src="{{asset('/')}}company-assets/icons/Vector.png" class="ms-3 img-fixed" alt="">
                 </div>
                 <div class="mb-4 d-flex align-items-center justify-content-end">
                     <div>
-                        <h5 class="fw-bold mb-1">Valuable Insights</h5>
-                        <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1">{{ __('messages.Valuable Insights') }}</h5>
+                        <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                     <img src="{{asset('/')}}company-assets/icons/Vector (1).png" class="ms-3 img-fixed" alt="">
                 </div>
                 <div class="mb-4 d-flex align-items-center justify-content-end">
                     <div>
-                        <h5 class="fw-bold mb-1">Non-Stop Innovation</h5>
-                        <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1">{{ __('messages.Non-Stop Innovation') }}</h5>
+                        <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                     <img src="{{asset('/')}}company-assets/icons/Vector (2).png" class="ms-3 img-fixed" alt="">
                 </div>
@@ -194,22 +195,22 @@ Home Page | Select and Rent
                 <div class="mb-4 d-flex align-items-center">
                     <img src="{{asset('/')}}company-assets/icons/Vector (3).png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold mb-1">Online Car Appraisal</h5>
-                        <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1">{{ __('messages.Online Car Appraisal') }}</h5>
+                        <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                 </div>
                 <div class="mb-4 d-flex align-items-center">
                     <img src="{{asset('/')}}company-assets/icons/Vector (4).png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold mb-1">Personalized Search</h5>
-                        <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1">{{ __('messages.Personalized Search') }}</h5>
+                        <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                 </div>
                 <div class="mb-4 d-flex align-items-center">
                     <img src="{{asset('/')}}company-assets/icons/Vector (5).png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold mb-1">Consumer–First Mentality</h5>
-                        <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1">{{ __('messages.Consumer–First Mentality') }}</h5>
+                        <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                 </div>
             </div>
@@ -218,31 +219,31 @@ Home Page | Select and Rent
     <!-- </div> -->
     <!-- tab -->
     <div class="container tab text-center py-5 d-none d-sm-block d-md-none">
-        <h4 class="text-chose fw-bold">Why we choose us</h4>
-        <h3 class="fw-bold">We Are Ensuring the Best <br>
-            Customer Experience</h3>
+        <h4 class="text-chose fw-bold">{{ __('messages.Why we choose us') }}</h4>
+        <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br>
+            {{ __('messages.Customer Experience') }}</h3>
     
         <div class="row align-items-center mt-4">
             <!-- Left Side (First Three Icons) -->
             <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">Online Car Appraisal</h5>
-                        <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Online Car Appraisal') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                     <img src="{{asset('/')}}company-assets/icons/Vector (3).png" class="ml-3 img-fixed" alt="">
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">Personalized Search</h5>
-                        <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Personalized Search') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                     <img src="{{asset('/')}}company-assets/icons/Vector (4).png" class="ml-3 img-fixed" alt="">
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">Consumer-First Mentality</h5>
-                        <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Consumer-First Mentality') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                     <img src="{{asset('/')}}company-assets/icons/Vector (5).png" class="ml-3 img-fixed" alt="">
                 </div>
@@ -258,22 +259,22 @@ Home Page | Select and Rent
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <img src="{{asset('/')}}company-assets/icons/Vector.png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">Most Flexible Payment</h5>
-                        <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Most Flexible Payment') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <img src="{{asset('/')}}company-assets/icons/Vector (1).png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">Valuable Insights</h5>
-                        <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Valuable Insights') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <img src="{{asset('/')}}company-assets/icons/Vector (2).png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">Non-Stop Innovation</h5>
-                        <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Non-Stop Innovation') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                 </div>
             </div>
@@ -285,13 +286,13 @@ Home Page | Select and Rent
     <div class="row align-items-center">
         <!-- Heading (Always on Left) -->
         <div class="col-12 col-md-6 text-center text-md-start">
-            <h2 class="fw-bold">Choose The Car You Need</h2>
+            <h2 class="fw-bold">{{ __('messages.Choose The Car You Need') }}</h2>
         </div>
         <!-- Button (Center on Mobile, End on Larger Screens) -->
         <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
             <button class="btn rounded-pill text-white btn-orange-clr"
                 onclick="window.location.href='{{ url('/carlisting') }}'">
-                View All 
+                {{ __('messages.View All') }}
                 <img src="{{ asset('/') }}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
             </button>
         </div>
@@ -311,8 +312,8 @@ Home Page | Select and Rent
         
                         <div class="card-content">
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class="car-price">${{ $car->rent }}/day</h6>
-                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">Book</button>
+                                <h6 class="car-price">${{ $car->rent }}/{{ __('messages.') }}day</h6>
+                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">{{ __('messages.Book') }}</button>
                             </div>
         
                             <h5 class="text-muted mt-3">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
@@ -320,18 +321,18 @@ Home Page | Select and Rent
                             <div class="d-flex justify-content-between mt-4">
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}company-assets/icons/Iconly.png" alt="Car" width="20px">
-                                    {{ $car->weight }} kg
+                                    {{ $car->weight }} {{ __('messages.kg') }}
                                 </div>
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}company-assets/icons/Iconly-v.png" alt="Car" width="20px">
-                                    {{ $car->mileage }} km
+                                    {{ $car->mileage }} {{ __('messages.km') }}
                                 </div>
                             </div>
         
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}company-assets/icons/Iconly-u.png" alt="Car" width="20px">
-                                    {{ $car->seats }} Seater
+                                    {{ $car->seats }} {{ __('messages.Seater') }}
                                 </div>
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}company-assets/icons/Iconly-s.png" alt="Car" width="20px">
@@ -369,7 +370,7 @@ Home Page | Select and Rent
                                 <img src="{{asset('/')}}company-assets/icons/orange-icon.png" alt="Progress" class="progress-img">
                                 <div class="progress-text position-absolute top-50 start-50 translate-middle percentage">
                                     <h2 class="mb-0 text-warning" id="progress-value">0%</h2>
-                                    <p class="mb-0 text-white">Satisfaction</p>
+                                    <p class="mb-0 text-white">{{ __('messages.Satisfaction') }}</p>
                                 </div>
                             </div>
                         </div> 
@@ -377,10 +378,10 @@ Home Page | Select and Rent
                     <div class="col-md-8">
                         <div class="d-flex align-items-end">
                             <img src="{{asset('/')}}company-assets/icons/Vector 7777.png" alt="Icon" class="icon1 me-2">
-                            <h5 class="text-warning fw-bold text-uppercase mb-0">JOIN US</h5>
+                            <h5 class="text-warning fw-bold text-uppercase mb-0">{{ __('messages.JOIN US') }}</h5>
                         </div>                      
-                        <h2 class="fw-bold text-start mt-2">Join our partner program</h2>
-                        <p class="text-light text-start">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                        <h2 class="fw-bold text-start mt-2">{{ __('messages.Join our partner program') }}</h2>
+                        <p class="text-light text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
                     </div>
                     
                 </div>
@@ -399,12 +400,12 @@ Home Page | Select and Rent
         <div class="col-md-4 text-white text-start position-relative">
             <img src="{{asset('/')}}company-assets/assets\Rectangle 161124402.png" alt="Right Image" class="rounded book">
             <button class="btn btn-orange-clr rounded-pill laptop-book-button  text-white d-flex align-items-center px-2 py-2 position-absolute bottom-0 end-0 mt-2 me-4">
-                Book Now 
+                {{ __('messages.Book Now') }} 
                 <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-3" width="30" height="30" alt="">
             </button>
             <!-- <div class="text-end"> -->
                 <button class="btn btn-orange-clr rounded-pill tab-book-button text-white px-1 py-1">
-                    Book Now 
+                    {{ __('messages.Book Now') }}
                     <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="25" height="25" alt="">
                 </button>
             <!-- </div> -->
@@ -422,7 +423,7 @@ Home Page | Select and Rent
                 <img src="{{asset('/')}}company-assets/icons/orange-icon.png" alt="Progress" class="progress-img">
                 <div class="progress-text">
                     <h2 class="text-warning">98%</h2>
-                    <p class="text-light">Satisfaction</p>
+                    <p class="text-light">{{ __('messages.Satisfaction') }}</p>
                 </div>
             </div>
 
@@ -430,15 +431,15 @@ Home Page | Select and Rent
             <div class="text-start ps-3">
                 <div class="icon-a">
                     <img src="{{asset('/')}}company-assets/icons/Vector 7777.png" alt="Icon" class="icon1">
-                    <h5 class="text-warning text-uppercase join-us">Join Us</h5>
+                    <h5 class="text-warning text-uppercase join-us">{{ __('messages.') }}Join Us</h5>
                 </div>
-                <h2 class="program">Join our partner program</h2>
-                <p class="join-text">Uniquely revolutionize manufactured products for interactive customer service.</p>
+                <h2 class="program">{{ __('messages.Join our partner program') }}</h2>
+                <p class="join-text">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.</p>
             </div>
         </div>
         <div class="text-end">
             <button class="btn btn-orange-clr rounded-pill text-white px-2 py-2">
-                Book Now 
+                {{ __('messages.Book Now') }} 
                 <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="25" height="25" alt="">
             </button>
         </div>
@@ -463,9 +464,9 @@ Home Page | Select and Rent
         <div class="row">
             <!-- Left Side Text -->
             <div class="col-md-6 ml-1 accordion-text">
-                <h2 class="fw-bold">Any questions?</h2>
-                <h2 class="fw-bold">We got you.</h2>
-                <p class="text-muted questions">Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company.</p>
+                <h2 class="fw-bold">{{ __('messages.Any questions') }}?</h2>
+                <h2 class="fw-bold">{{ __('messages.We got you') }}.</h2>
+                <p class="text-muted questions">{{ __('messages.Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company') }}.</p>
             </div>
             <!-- Right Side Accordion -->
             <div class="col-md-6">
@@ -475,12 +476,12 @@ Home Page | Select and Rent
                     <div class="accordion-item border-0 border-bottom">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Frequently asked questions
+                                {{ __('messages.Frequently asked questions') }}
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
-                                Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company. You’ll also receive guidance from our business advising team, who will help you with all aspects of building your business credit.
+                                {{ __('messages.Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company. You’ll also receive guidance from our business advising team, who will help you with all aspects of building your business credit') }}.
                             </div>
                         </div>
                     </div>
@@ -489,12 +490,12 @@ Home Page | Select and Rent
                     <div class="accordion-item border-0 border-bottom">
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button fw-bold collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Frequently asked questions
+                                {{ __('messages.Frequently asked questions') }}
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
-                                Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company. You’ll also receive guidance from our business advising team, who will help you with all aspects of building your business credit.
+                                {{ __('messages.Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company. You’ll also receive guidance from our business advising team, who will help you with all aspects of building your business credit') }}.
                             </div>
                         </div>
                     </div>
@@ -503,12 +504,12 @@ Home Page | Select and Rent
                     <div class="accordion-item border-0 border-bottom">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button fw-bold collapsed shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Frequently asked questions
+                                {{ __('messages.Frequently asked questions') }}
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
-                                Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company. You’ll also receive guidance from our business advising team, who will help you with all aspects of building your business credit.
+                                {{ __('messages.Our cutting-edge Business Finance Suite provides you with a personalized experience to obtain credit and financing for your company. You’ll also receive guidance from our business advising team, who will help you with all aspects of building your business credit') }}.
                             </div>
                         </div>
                     </div>

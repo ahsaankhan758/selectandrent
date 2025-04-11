@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('loginLayout')
 @section('title') Admin Login @endsection
 @section('content')
@@ -11,34 +12,32 @@
 
                             <div class="card-body p-4">
                                 <ul class="list-unstyled topnav-menu float-end mb-0">
+                                    @php
+                                        $languages = [
+                                            'en' => ['name' => 'English', 'flag' => 'gb'],
+                                            'fr' => ['name' => 'Français', 'flag' => 'fr'],
+                                            'ar' => ['name' => 'عربي', 'flag' => 'sa'],
+                                            'nl' => ['name' => 'Dutch', 'flag' => 'nl'],
+                                        ];
+                                        $currentLocale = Session::get('locale');
+                                        if(!isset($currentLocale))
+                                            {
+                                                $currentLocale = app()->getLocale();
+                                            }
+                                    @endphp
                                     <li class="nav-item dropdown">
-                                        @php
-                                            $languages = [
-                                                'en' => ['name' => 'English', 'flag' => 'gb'],
-                                                'fr' => ['name' => 'Français', 'flag' => 'fr'],
-                                                'ar' => ['name' => 'عربي', 'flag' => 'sa'],
-                                                'nl' => ['name' => 'Dutch', 'flag' => 'nl'],
-                                            ];
-                                            $currentLocale = Session::get('locale');
-                                            if(!isset($currentLocale))
-                                                {
-                                                    $currentLocale = app()->getLocale();
-                                                }
-                                        @endphp
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                                <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span>  {{ $languages[$currentLocale]['name'] }}
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                @foreach ($languages as $langCode => $lang)
-                                                    <li>
-                                                        <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
-                                                            <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> <span>{{ $lang['name'] }}</span>
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
+                                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                            <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span>  {{ $languages[$currentLocale]['name'] }}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @foreach ($languages as $langCode => $lang)
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
+                                                        <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> <span>{{ $lang['name'] }}</span>
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </li>
                                 </ul>
                                 <div class="text-center w-75 m-auto">

@@ -1,5 +1,5 @@
 @if(count($cars) == 0)
-    <p class="text-center">No cars found in this category.</p>
+    <p class="text-center">{{ __('messeages.No cars found in this category') }}.</p>
 @else
     @foreach($cars as $car)
         <div class="col-md-4 col-lg-3 car-card-item" data-category="{{ $car->car_category_id }}">

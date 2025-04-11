@@ -1,14 +1,14 @@
 @extends('website.layout.master')
 @section('title')
-Blog-Detail | Select and Rent
+{{ __('messages.Blog-Detail') }} | {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
 <section class="blog-section">
     <div class="container">
         <div class="text-center mb-4">
-            <p class="blog-subtitle">From the Blog</p>
-            <h2 class="blog-title">Car And Bike Rental News</h2>
+            <p class="blog-subtitle">{{ __('messages.From the Blog') }}</p>
+            <h2 class="blog-title">{{ __('messages.Car And Bike Rental News') }}</h2>
         </div>
 
         <div class="row">
@@ -37,11 +37,11 @@ Blog-Detail | Select and Rent
                     <!-- Controls -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <span class="visually-hidden">{{ __('messages.Previous') }}</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#blogCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                        <span class="visually-hidden">{{ __('messages.Next') }}</span>
                     </button>
                     <!-- Controls -->
                 </div>
@@ -72,8 +72,8 @@ Blog-Detail | Select and Rent
         <div class="row mt-4">
             <div class="col-lg-8">
                 <h2 class="fw-bold text-start">{{ $blog->name }}</h2>
-                <p class="text-muted text-start"><strong>Date:</strong> {{ date('d F, Y', strtotime($blog->date)) }}</p>
-                <p class="text-muted text-start"><strong>Author:</strong> {{ $blog->authorName }}</p>
+                <p class="text-muted text-start"><strong>{{ __('messages.date') }}:</strong> {{ date('d F, Y', strtotime($blog->date)) }}</p>
+                <p class="text-muted text-start"><strong>{{ __('messages.author') }}:</strong> {{ $blog->authorName }}</p>
             </div>
         </div>
         <div class="col-lg-12">

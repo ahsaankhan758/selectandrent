@@ -1,21 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('loginLayout')
 @section('title')Company Login @endsection
 @section('content')
     <body class="auth-fluid-pages pb-0">
 
         <div class="auth-fluid">
+            
             <!--Auth fluid left content -->
             <div class="auth-fluid-form-box">
+                <ul class="list-unstyled topnav-menu float-end mb-0">
+                    @php
+                        $languages = [
+                            'en' => ['name' => 'English', 'flag' => 'gb'],
+                            'fr' => ['name' => 'Français', 'flag' => 'fr'],
+                            'ar' => ['name' => 'عربي', 'flag' => 'sa'],
+                            'nl' => ['name' => 'Dutch', 'flag' => 'nl'],
+                        ];
+                        $currentLocale = Session::get('locale');
+                        if(!isset($currentLocale))
+                            {
+                                $currentLocale = app()->getLocale();
+                            }
+                    @endphp
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span>  {{ $languages[$currentLocale]['name'] }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach ($languages as $langCode => $lang)
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
+                                        <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> <span>{{ $lang['name'] }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
                 <div class="align-items-center d-flex h-100">
+                    
                     <div class="p-3">
 
                         <!-- Logo -->
                         <div class="auth-brand text-center text-lg-start">
-                            
+                           
                             <div class="auth-logo">
                                 <span class="logo-lg">
                                     <img src="{{asset('/')}}assets/images/select-and-rent-logo-blue.png" alt="" height="150">
                                 </span>
+                                
                             </div>
                         </div>
 
