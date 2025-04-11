@@ -24,7 +24,8 @@
                         <div class="modal-body">
                             <form action="{{ route('addCarLocation') }}" method="POST" id="addForm">
                                 @csrf
-                                <input type="text" name="city" class="form-control" placeholder="Enter Location">
+                                <input type="text" name="city" class="form-control" placeholder="Enter Location"><br>
+                                <input type="text" name="postal_code" class="form-control" placeholder="Postal Code">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">{{ __('messages.create') }}</button>

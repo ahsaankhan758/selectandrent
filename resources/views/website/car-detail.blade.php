@@ -79,7 +79,7 @@ Car Detail | Select and Rent
         <!-- Left Column: Car Info -->
         <div class="col-lg-8 col-md-8 col-sm-8">
             <div>
-                <h2 class="fw-bold bmw-text-color">{{ $car->car_models->name ?? 'Car Model' }}</h2>
+                <h2 class="fw-bold bmw-text-color text-capitalize">{{ $car->car_models->car_brands->name ?? ' ' }} {{ $car->car_models->name ?? ' ' }} {{ $car->year ?? ' ' }}</h2>
                 <p class="bmw-text">{{ $car->detail }}</p>
                 
                 <h4 class="mt-4">Features</h4>
@@ -98,11 +98,11 @@ Car Detail | Select and Rent
         </div>
 
         <!-- Right Column: Rental Price and Details -->
+        
         <div class="col-lg-4 col-md-4 col-sm-4">
             <div class="rental-card p-4 shadow rounded">
                 <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
                     <h5 class="mb-0 py-3">Rental Price</h5>
-
                     <h3 class="fw-bold py-3 mb-0">${{ $car->rent }} <span class="fs-6">/ Day</span></h3>
                 </div>
                 <ul class="list-unstyled px-3 py-2">
@@ -120,13 +120,16 @@ Car Detail | Select and Rent
                     <li class="d-flex justify-content-between"><strong>Interior Color</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
 
                 </ul>
-                
-                <button onclick="window.location.href='{{ url('/carbooking') }}'" class="btn btn-purchase w-100 rounded-pill mt-3">
-                    Book Now
-                </button>
+                <!-- for add to cart  -->
+                <form method="post" action="{{route('cart.carAdd')}}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $car->id }}">
+                <button type="submit" class="btn btn-purchase w-100 rounded-pill mt-3">Book Now</button>
+                </form>
+                <!-- end add to cart -->
             </div>
         </div>
-
+        
     </div>
 </div>
 

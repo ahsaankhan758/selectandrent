@@ -237,6 +237,10 @@ Route::get('/faqs', [FaqsController::class, 'faqView']);
 Route::get('/about-us', [AboutController::class, 'aboutView']);
 Route::get('/contact', [ContactController::class, 'contactView']);
 Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
+// by ak
+Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');
+Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
+// 
 Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
 Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
 Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
