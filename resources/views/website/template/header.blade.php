@@ -236,7 +236,7 @@
               <h2 class="fw-bold">Search Result Page</h2>
               <p>List of available cars based on user search filters (location, date, type, etc.)</p>
               @elseif(request()->is('carbooking') || request()->is('confirmation'))
-              <h2 class="fw-bold">Porche Turbo 6.0</h2>
+              <h2 class="fw-bold">Car Booking</h2>
               @elseif(request()->is('checkout'))
               <h2 class="fw-bold">Your Trusted Partner for 24/7 Taxi Services</h2>
               <p>Reliable and Round-the-Clock Taxi Services in the Heart of New York</p>
