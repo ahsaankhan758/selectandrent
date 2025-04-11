@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="thumbnail"> {{ __('messages.thumbnail') }}Thumbnail</label>
+                        <label for="thumbnail"> {{ __('messages.thumbnail') }}</label>
                         <input type="file" name="thumbnail" class="form-control" required>
                     </div>
 

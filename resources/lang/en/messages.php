@@ -457,7 +457,8 @@ return [
     ''=>'',
     
     'app' => 'APP | APPS',
-    'title' => 'Title | Titles',
+    'title' => 'Title',
+    'titles' => 'Titles',
     'client' => 'Client | Clients',
     'plan' => 'Plan | Plans',
     'driver' => 'Driver | Drivers',
