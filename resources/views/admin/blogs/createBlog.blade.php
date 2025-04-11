@@ -28,13 +28,20 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="thumbnail"> {{ __('messages.thumbnail') }}Thumbnail</label>
-                        <input type="file" name="thumbnail" class="form-control" required>
+                        <label for="thumbnail">{{ __('messages.thumbnail') }} Thumbnail</label>
+                        <input type="file" name="thumbnail" class="form-control" id="thumbnail" onchange="PreviewThumbnail();" required>
+                        <div class="mt-2">
+                            <img id="uploadThumbnailPreview" class="img-fluid rounded" style="display: none; max-width: 100px;">
+                        </div>
                     </div>
-
+                
                     <div class="col-md-12 mb-3">
                         <label for="images">{{ trans_choice('messages.blog',1) }} {{ __('messages.images') }}</label>
-                        <input type="file" name="images[]" class="form-control" multiple required>
+                        <input type="file" name="images[]" class="form-control" id="images" multiple onchange="PreviewImages();" required>
+                
+                        <div class="mt-2 row" id="uploadImagesPreview">
+                            <!-- Previews of selected images will show here -->
+                        </div>
                     </div>
 
                     <div class="col-md-12 mb-3">
@@ -50,4 +57,34 @@
         </div>
     </div>
 </div>
+<script>
+    function PreviewThumbnail() {
+    var reader = new FileReader();
+    reader.readAsDataURL(document.getElementById("thumbnail").files[0]);
+    reader.onload = function (oFREvent) {
+        var preview = document.getElementById("uploadThumbnailPreview");
+        preview.src = oFREvent.target.result;
+        preview.style.display = "block";  // Show the preview
+    };
+}
+
+function PreviewImages() {
+    var previewContainer = document.getElementById("uploadImagesPreview");
+    previewContainer.innerHTML = "";  // Clear the preview container before adding new previews
+
+    var files = document.getElementById("images").files;
+    
+    for (var i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        reader.readAsDataURL(files[i]);
+        reader.onload = function (oFREvent) {
+            var img = document.createElement("img");
+            img.src = oFREvent.target.result;
+            img.classList.add("img-fluid", "rounded", "col-md-3", "mb-2");
+            previewContainer.appendChild(img);
+        };
+    }
+}
+
+</script>
 @endsection
