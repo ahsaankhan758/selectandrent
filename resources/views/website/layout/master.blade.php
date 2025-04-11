@@ -48,7 +48,10 @@
         1024: { slidesPerView: 4, spaceBetween: 20 }, // Desktop
     },
 });
-
+// hide status
+$(document).ready(function(){  
+    $("#div1").delay(6000).fadeOut(1500); 
+});
 </script>
 </body>
 </html>
