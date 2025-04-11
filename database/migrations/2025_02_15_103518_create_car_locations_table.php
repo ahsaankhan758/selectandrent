@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('car_locations', function (Blueprint $table) {
             $table->id();
             $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
             $table->tinyInteger('status')->default('1')->nullable();
             $table->timestamps();
         });

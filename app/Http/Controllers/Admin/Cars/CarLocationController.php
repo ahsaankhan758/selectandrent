@@ -33,9 +33,11 @@ class CarLocationController extends Controller
     {
         $validatedData = $request->validate([
             'city'=> 'required|unique:car_locations',
+            'postal_code'=> 'required|unique:car_locations',
         ]);
         $location = new CarLocation;
         $location->city = $validatedData['city'];
+        $location->postal_code = $validatedData['postal_code'];
         $location->save();
         // save logs
         $userId = Auth::id();
