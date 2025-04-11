@@ -69,50 +69,71 @@ class AdminBlogController extends Controller
    }
 
  // Update Blog
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'date' => 'required|date',
-        'authorName' => 'required|string|max:255',
-        'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'detail' => 'required|string',
-    ]);
-
-    $blog = Blog::findOrFail($id);
-
-    if ($request->hasFile('thumbnail')) {
-        if ($blog->thumbnail) {
-            Storage::disk('public')->delete($blog->thumbnail);
-        }
-        $blog->thumbnail = $request->file('thumbnail')->store('blogs/thumbnails', 'public');
-    }
-
-    $existingImages = json_decode($blog->images, true) ?? [];
-    if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $image) {
-            $existingImages[] = $image->store('blogs/images', 'public');
-        }
-    }
-    $blog->images = json_encode($existingImages);
-
-    $blog->name = $request->name;
-    $blog->date = $request->date;
-    $blog->authorName = $request->authorName;
-    $blog->detail = $request->detail;
-    $blog->save();
-
-    // Save logs
-    $userId = Auth::id();
-    $userName = Auth::user()->name;
-    $description = $userName . ' Updated [ Blog Name: ' . $blog->name . ' ] [ Author Name: ' . $blog->authorName . ' ] Successfully.';
-    $action = 'Update';
-    $module = 'Blog';
-    activityLog($userId, $description, $action, $module);
-
-    return redirect()->route('blogs.blogDetail')->with('status', 'Blog updated successfully!');
-}
+ public function update(Request $request, $id)
+ {
+     $request->validate([
+         'name' => 'required|string|max:255',
+         'date' => 'required|date',
+         'authorName' => 'required|string|max:255',
+         'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+         'images' => 'nullable|array|max:7', // Limit to 7 images
+         'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate each image
+         'detail' => 'required|string',
+     ]);
+ 
+     $blog = Blog::findOrFail($id);
+ 
+     // Handle Thumbnail Upload
+     if ($request->hasFile('thumbnail')) {
+         // Delete the old thumbnail if it exists
+         if ($blog->thumbnail) {
+             Storage::disk('public')->delete($blog->thumbnail);
+         }
+ 
+         // Store new thumbnail
+         $blog->thumbnail = $request->file('thumbnail')->store('blogs/thumbnails', 'public');
+     }
+ 
+     // Handle Additional Images Upload
+     $existingImages = json_decode($blog->images, true) ?? [];
+ 
+     if ($request->hasFile('images')) {
+         // Remove old images if any, but leave space for new uploads
+         foreach ($existingImages as $image) {
+             Storage::disk('public')->delete($image);  // Delete old images
+         }
+         $existingImages = [];  // Reset the images array
+ 
+         // Add new images to the array, ensuring there are no more than 7
+         foreach ($request->file('images') as $image) {
+             if (count($existingImages) < 7) {
+                 $existingImages[] = $image->store('blogs/images', 'public');
+             }
+         }
+     }
+ 
+     // Update the images field with the new set of images
+     $blog->images = json_encode($existingImages);
+ 
+     // Update other fields
+     $blog->name = $request->name;
+     $blog->date = $request->date;
+     $blog->authorName = $request->authorName;
+     $blog->detail = $request->detail;
+     $blog->save();
+ 
+     // Save logs
+     $userId = Auth::id();
+     $userName = Auth::user()->name;
+     $description = $userName . ' Updated [ Blog Name: ' . $blog->name . ' ] [ Author Name: ' . $blog->authorName . ' ] Successfully.';
+     $action = 'Update';
+     $module = 'Blog';
+     activityLog($userId, $description, $action, $module);
+ 
+     return redirect()->route('blogs.blogDetail')->with('status', 'Blog updated successfully!');
+ }
+ 
+ 
 
 // Delete Blog
 public function delete($id)
