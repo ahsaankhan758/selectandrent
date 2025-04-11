@@ -7,32 +7,71 @@ Car Detail | Select and Rent
 
 @section('content')
 <!-- car image section -->
-<div class="container gallery-container">
-    <div class="row">
-        <!-- Large Image (Main Car) -->
-        <div class="col-lg-9 large-img">
+@php
+    $images = unserialize($car->images);
+@endphp
 
-            <img src="{{  asset(Storage::url($car->thumbnail)) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}">
-        </div>
-        <!-- Side Images (For Desktop) -->
-        <div class="col-lg-3 d-none d-lg-flex flex-column side-images mt-4">
-            @foreach(unserialize($car->images) as $image)
-                <img src="{{ asset(Storage::url($image)) }}" alt="Side Image">
-            @endforeach
+<div class="row container mt-5">
+    <div class="col-12">
+        <!-- Carousel Wrapper -->
+        <div id="carCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <!-- Slides -->
+            <div class="carousel-inner mb-4">
+                <!-- Thumbnail Image (Initially Active) -->
+                <div class="carousel-item active">
+                    <img src="{{ asset(Storage::url($car->thumbnail)) }}"
+                         class="d-block w-100 rounded shadow"
+                         style="max-height: 100%; height: 400px; object-fit: cover;"
+                         alt="{{ $car->car_models->name ?? 'Car Image' }}">
+                </div>
 
-        </div>
-    </div>
-
-    <!-- Side Images (For Mobile & Tablet) -->
-    <div class="row d-lg-none">
-        <div class="col-12 side-images">
-
-            @foreach(unserialize($car->images) as $image)
-                <img src="{{  asset(Storage::url($image)) }}" alt="Side Image">
-            @endforeach
+                @if(is_array($images) && count($images) > 0)
+                    @foreach($images as $key => $image)
+                        <div class="carousel-item">
+                            <img src="{{ asset(Storage::url($image)) }}"
+                                 class="d-block w-100 rounded shadow"
+                                 style="max-height: 100%; height: 400px; object-fit: cover;"
+                                 alt="Car Image">
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
 </div>
+
+<!-- Thumbnails -->
+@if(is_array($images) && count($images) > 0)
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+            <!-- Thumbnail as First Slide -->
+            <button type="button" class="btn p-0 border-0" data-bs-target="#carCarousel" data-bs-slide-to="0">
+                <img src="{{ asset(Storage::url($car->thumbnail)) }}"
+                     class="img-fluid rounded shadow w-100"
+                     style="height: 100px; object-fit: cover;">
+            </button>
+        </div>
+        @foreach($images as $key => $image)
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                <button type="button" class="btn p-0 border-0" data-bs-target="#carCarousel" data-bs-slide-to="{{ $key + 1 }}">
+                    <img src="{{ asset(Storage::url($image)) }}"
+                         class="img-fluid rounded shadow w-100"
+                         style="height: 100px; object-fit: cover;">
+                </button>
+            </div>
+        @endforeach
+    </div>
+@endif
+
 
 <!-- Car Details Section -->
 <div class="container py-3">
