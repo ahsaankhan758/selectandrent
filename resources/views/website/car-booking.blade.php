@@ -108,8 +108,9 @@ Car Booking | Select and Rent
 <div class="container">
 <div class="row d-flex py-2">
             <div class="col-md-3">
+
             <img src="{{  asset(Storage::url($cart->options->thumbnail)) }}" class="car-order-img" alt="{{ $cart->options->car_model ?? 'thumbnail' }}">
-                
+
             </div>
             <div class="col-md-3 align-items-center">
                 <div class="stars text-warning">

@@ -44,7 +44,7 @@ Checkout | Select and Rent
         <div class="col-md-3">
             <div class="start-card">
                 <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
                 <div class="start-title">Order Number</div>
                 <div class="start-text">311</div>
@@ -54,7 +54,7 @@ Checkout | Select and Rent
         <div class="col-md-3">
             <div class="start-card">
                 <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
                 <div class="start-title">Date</div>
                 <div class="start-text">Nov 23, 2024</div>
@@ -64,7 +64,7 @@ Checkout | Select and Rent
         <div class="col-md-3">
             <div class="start-card">
                 <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
                 <div class="start-title">Email</div>
                 <div class="start-text">hello@sparkodic.com</div>
@@ -74,7 +74,7 @@ Checkout | Select and Rent
         <div class="col-md-3">
             <div class="start-card">
                 <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
                 <div class="start-title">Order Number</div>
                 <div class="start-text">311</div>
