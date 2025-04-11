@@ -21,13 +21,13 @@ Blog-Detail | Select and Rent
 
                         <!-- Thumbnail Image (Initially Active) -->
                         <div class="carousel-item active">
-                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 100%; object-fit: cover;">
+                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 400px; object-fit: cover;">
                         </div>
 
                         @if(is_array($images) && count($images) > 0)
                             @foreach($images as $key => $image)
                                 <div class="carousel-item">
-                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 100%; object-fit: cover;">
+                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 400px; object-fit: cover;">
                                 </div>
                             @endforeach
                         @endif
