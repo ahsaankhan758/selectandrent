@@ -32,21 +32,27 @@
                 <!-- Thumbnail Image -->
                 <div class="mb-3">
                     <label for="thumbnail" class="form-label">{{ __('messages.thumbnail') }}</label>
-                    <input type="file" class="form-control" id="thumbnail" name="thumbnail">
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" onchange="PreviewThumbnail();">
                     
                     @if ($blog->thumbnail)
                         <div class="mt-2">
-                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" class="img-fluid rounded" width="100">
+                            <!-- Your existing thumbnail path logic -->
+                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" id="uploadThumbnailPreview" class="img-fluid rounded" width="100">
+                        </div>
+                    @else
+                        <!-- Display the preview only if no thumbnail is present in the blog -->
+                        <div class="mt-2">
+                            <img id="uploadThumbnailPreview" class="img-fluid rounded" style="display: none; width: 100px;">
                         </div>
                     @endif
-                </div>
+                </div>               
 
                 <!-- Multiple Images Upload -->
                 <div class="mb-3">
                     <label for="images" class="form-label">{{ __('messages.images') }}</label>
-                    <input type="file" class="form-control" id="images" name="images[]" multiple>
-
-                    <div class="mt-2 row">
+                    <input type="file" class="form-control" id="images" name="images[]" multiple onchange="PreviewImages();">
+                
+                    <div class="mt-2 row" id="uploadImagesPreview">
                         @php
                             $images = json_decode($blog->images, true);
                         @endphp
@@ -61,6 +67,7 @@
                         @endif
                     </div>
                 </div>
+                
 
                 <div class="mb-3">
                     <label for="detail" class="form-label">{{ __('messages.details') }}</label>
@@ -75,5 +82,34 @@
         </div>
     </div>
 </div>
+<script>
+    function PreviewThumbnail() {
+    var reader = new FileReader();
+    reader.readAsDataURL(document.getElementById("thumbnail").files[0]);
+    reader.onload = function (oFREvent) {
+        var preview = document.getElementById("uploadThumbnailPreview");
+        preview.src = oFREvent.target.result;
+        preview.style.display = "block";  // Show the image preview
+    };
+}
 
+function PreviewImages() {
+    var previewContainer = document.getElementById("uploadImagesPreview");
+    previewContainer.innerHTML = "";  // Clear the preview container before adding new previews
+
+    var files = document.getElementById("images").files;
+    
+    for (var i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        reader.readAsDataURL(files[i]);
+        reader.onload = function (oFREvent) {
+            var img = document.createElement("img");
+            img.src = oFREvent.target.result;
+            img.classList.add("img-fluid", "rounded", "col-md-3", "mb-2");
+            previewContainer.appendChild(img);
+        };
+    }
+}
+
+</script> 
 @endsection
