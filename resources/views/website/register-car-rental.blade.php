@@ -56,7 +56,7 @@ Car-Register | Select and Rent
    
     <div class="container">
         <div class="text-center mb-4 mt-4">
-            <img src="{{asset('/')}}company-assets/icons/select-and-rent-logo-3.png" alt="Logo" width="100">
+            <img src="{{asset('/')}}frontend-assets/icons/select-and-rent-logo-3.png" alt="Logo" width="100">
             <h2 class="fw-bold mb-5">Register With Car Rental</h2>
         </div>
         <div class="row">
@@ -84,7 +84,7 @@ Car-Register | Select and Rent
                     <h3>Contact Info</h3>
             
                     <div class="info-item">
-                        <img src="{{asset('/')}}company-assets/icons/phone.png" alt="Phone Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="Phone Icon">
                         <div class="info-text">
                             <span>Phone</span>
                             <p>+92 324 4469929</p>
@@ -92,7 +92,7 @@ Car-Register | Select and Rent
                     </div>
             
                     <div class="info-item">
-                        <img src="{{asset('/')}}company-assets/icons/mail.png" alt="Email Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/mail.png" alt="Email Icon">
                         <div class="info-text">
                             <span>Email</span>
                             <p>hello@sparkodic.com</p>
@@ -100,7 +100,7 @@ Car-Register | Select and Rent
                     </div>
             
                     <div class="info-item mb-4">
-                        <img src="{{asset('/')}}company-assets/icons/home.png" alt="Home Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/home.png" alt="Home Icon">
                         <div class="info-text">
                             <span>Address</span>
                             <p>Kington, United Kingdom</p>

@@ -7,7 +7,7 @@
               <!-- Logo -->
               <div class="col-6 col-md-2">
                   <a href="">
-                      <img src="{{asset('/')}}company-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="150">
+                      <img src="{{asset('/')}}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="150">
                   </a>
               </div>
               <!-- Navbar -->
@@ -49,7 +49,7 @@
               <!-- Logo (Center) -->
               <div class="flex-grow-1 text-center">
                   <a href="home.html">
-                      <img src="{{asset('/')}}company-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="100">
+                      <img src="{{asset('/')}}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="100">
                   </a>
               </div>
   
@@ -146,7 +146,7 @@
               </div>                                    
           </form>
       </div>
-      <img src="{{asset('/')}}company-assets/assets/apps-bg-1-300x123.png" alt="Car" class="car-image">
+      <img src="{{asset('/')}}frontend-assets/assets/apps-bg-1-300x123.png" alt="Car" class="car-image">
   </div>
   </div>
   {{-- header 2 --}}
@@ -160,7 +160,7 @@
           <!-- Logo -->
           <div class="col-6 col-md-2">
               <a href="">
-                  <img src="{{asset('/')}}company-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="150">
+                  <img src="{{asset('/')}}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="150">
               </a>
           </div>
 
@@ -207,7 +207,7 @@
           <!-- Logo (Center) -->
           <div class="flex-grow-1 text-center">
               <a href="home.html">
-                  <img src="{{asset('/')}}company-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="100">
+                  <img src="{{asset('/')}}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="100">
               </a>
           </div>
 
@@ -366,14 +366,14 @@
                 </button>
             </div>
             <div class="modal-body renteal-body">
-                <img src="{{asset('/')}}company-assets/icons/rental-modal-popup-img.png" alt="Illustration" class="rental-header-img">
+                <img src="{{asset('/')}}frontend-assets/icons/rental-modal-popup-img.png" alt="Illustration" class="rental-header-img">
                 <button class="rental-register-btn" onclick="window.location.href='{{ url('/register-car-rental') }}'">
-                    <img src="{{asset('/')}}company-assets/icons/car-rental-register-btn-icon.png" class="rental-btn-icon" alt="Register">
+                    <img src="{{asset('/')}}frontend-assets/icons/car-rental-register-btn-icon.png" class="rental-btn-icon" alt="Register">
                     Register with car rental
                 </button>
                 
                 <button class="rental-login-btn" onclick="window.location.href='{{ url('/company/login') }}'">
-                    <img src="{{asset('/')}}company-assets/icons/car-rental-login-btn-icon.png" class="rental-btn-icon" alt="Login">
+                    <img src="{{asset('/')}}frontend-assets/icons/car-rental-login-btn-icon.png" class="rental-btn-icon" alt="Login">
                     Login with car rental
                 </button>
             </div>

@@ -7,18 +7,18 @@ About-us | Select and Rent
         <div class="container py-4 mt-4">
             <div class="row g-3">
                 <div class="col-lg-4 col-md-4 position-relative">
-                    <img src="{{asset('/')}}company-assets/icons/about1.png" class="img-fluid rounded" alt="Industry Expert">
+                    <img src="{{asset('/')}}frontend-assets/icons/about1.png" class="img-fluid rounded" alt="Industry Expert">
                     <div class="info-box">86 Industry Experts</div>
                 </div>
                 <div class="col-lg-4 col-md-4 position-relative">
-                    <img src="{{asset('/')}}company-assets/icons/about2.png" class="img-fluid rounded" alt="Business Experience">
+                    <img src="{{asset('/')}}frontend-assets/icons/about2.png" class="img-fluid rounded" alt="Business Experience">
                 </div>
                 <div class="col-lg-4 col-md-4 d-flex flex-column justify-content-between">
                     <div class="text-white d-flex p-4 rounded equal-height">
                         <div class="fw-bold display-3 me-1">25</div>
                         <div class="h3">Years in Business</div>
                     </div>
-                    <img src="{{asset('/')}}company-assets/icons/about3.png" class="img-fluid rounded equal-height mt-3" alt="Luxury Car">
+                    <img src="{{asset('/')}}frontend-assets/icons/about3.png" class="img-fluid rounded equal-height mt-3" alt="Luxury Car">
                 </div>
             </div>
         </div>
@@ -31,15 +31,15 @@ About-us | Select and Rent
                     <p>Our mission is to make car rental easy, accessible, and affordable for everyone. We believe that renting a car should be a hassle-free experience, and we're dedicated to ensuring that every customer finds the perfect vehicle for their journey.</p>
                     <ul class="custom-list">
                         <li>
-                            <img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">
+                            <img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">
                             <span>To create a platform where anyone can easily find and book the perfect car, anytime and anywhere.</span>
                         </li>
                         <li>
-                            <img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">
+                            <img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">
                             <span>Leverage innovation to simplify rentals with digital contracts, real-time availability, and secure payments.</span>
                         </li>
                         <li>
-                            <img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">
+                            <img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">
                             <span>Simplifying rentals with digital contracts, real-time availability, and secure payments.</span>
                         </li>
                     </ul>
@@ -51,10 +51,10 @@ About-us | Select and Rent
                 <div class="col-lg-1"></div>
                 <div class="col-lg-6 mobile-m">
                     <div class="image-grid">
-                        <img src="{{asset('/')}}company-assets/icons/mission1.png" class="img-fluid" alt="Car rental experience">
-                        <img src="{{asset('/')}}company-assets/icons/mission2.png" class="img-fluid" alt="Car maintenance">
-                        <img src="{{asset('/')}}company-assets/icons/mission3.png" class="img-fluid" alt="Customer in car">
-                        <img src="{{asset('/')}}company-assets/icons/mission4.png" class="img-fluid" alt="Business discussion">
+                        <img src="{{asset('/')}}frontend-assets/icons/mission1.png" class="img-fluid" alt="Car rental experience">
+                        <img src="{{asset('/')}}frontend-assets/icons/mission2.png" class="img-fluid" alt="Car maintenance">
+                        <img src="{{asset('/')}}frontend-assets/icons/mission3.png" class="img-fluid" alt="Customer in car">
+                        <img src="{{asset('/')}}frontend-assets/icons/mission4.png" class="img-fluid" alt="Business discussion">
                     </div>
                 </div>                
             </div>
@@ -63,11 +63,11 @@ About-us | Select and Rent
         <div class="container custom_commitment-section py-5">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 text-center custom_image-wrapper position-relative">
-                    <img src="{{asset('/')}}company-assets/icons/about1.png" class="img-fluid rounded custom_main-image" alt="Businessman near car">
+                    <img src="{{asset('/')}}frontend-assets/icons/about1.png" class="img-fluid rounded custom_main-image" alt="Businessman near car">
                     <button class="custom_play-btn position-absolute">
                         <i class="fa-solid fa-play"></i>
                     </button>
-                    <img src="{{asset('/')}}company-assets/icons/car-commitment.png" class="img-fluid rounded custom_overlay-image position-absolute" alt="Happy customer in car">
+                    <img src="{{asset('/')}}frontend-assets/icons/car-commitment.png" class="img-fluid rounded custom_overlay-image position-absolute" alt="Happy customer in car">
                 </div>
                 <div class="col-lg-6 col-md-12 custom_commitment-text">
                     <span class="badge custom_badge">Our Commitment</span>
@@ -78,15 +78,15 @@ About-us | Select and Rent
                     </p>
                     <ul class="custom-list">
                         <li>
-                            <img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">
+                            <img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">
                             <span>Dedicated to Excellence, Driven by Trust"</span>
                         </li>
                         <li>
-                            <img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">
+                            <img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">
                             <span>Your Journey, Our Promise"</span>
                         </li>
                         <li>
-                            <img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">
+                            <img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">
                             <span>Building Trust, One Rental at a Time"</span>
                         </li>
                     </ul>
@@ -110,22 +110,22 @@ About-us | Select and Rent
 
         <div class="mt-4">
             <div class="mb-4">
-                <img src="{{asset('/')}}company-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
+                <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
                 <h5 class="fw-bold">Affordable Pricing</h5>
                 <p class="text-muted">Enjoy low daily rates without compromising on quality.</p>
             </div>
             <div class="mb-4">
-                <img src="{{asset('/')}}company-assets/icons/Vector (1).png" class="img-fluid mb-2" alt="">
+                <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2" alt="">
                 <h5 class="fw-bold">Perfect for Short Trips</h5>
                 <p class="text-muted">Ideal for city drives, quick errands, or budget travel.</p>
             </div>
             <div class="mb-4">
-                <img src="{{asset('/')}}company-assets/icons/Vector (2).png" class="img-fluid mb-2" alt="">
+                <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2" alt="">
                 <h5 class="fw-bold">Fuel Efficiency</h5>
                 <p class="text-muted">Save on gas with cars designed for maximum mileage.</p>
             </div>
             <div class="mb-4">
-                <img src="{{asset('/')}}company-assets/icons/Vector (3).png" class="img-fluid mb-2" alt="">
+                <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2" alt="">
                 <h5 class="fw-bold">Wide Selection</h5>
                 <p class="text-muted">Choose from compact, mid-sized, and family-friendly models.</p>
             </div>
@@ -145,47 +145,47 @@ About-us | Select and Rent
                         <h5 class="fw-bold mb-1">Most Flexible Payment</h5>
                         <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
                     </div>
-                    <img src="{{asset('/')}}company-assets/icons/Vector.png" class="ms-3 img-fixed" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="ms-3 img-fixed" alt="">
                 </div>
                 <div class="mb-4 d-flex align-items-center justify-content-end">
                     <div>
                         <h5 class="fw-bold mb-1">Valuable Insights</h5>
                         <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
                     </div>
-                    <img src="{{asset('/')}}company-assets/icons/Vector (1).png" class="ms-3 img-fixed" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed" alt="">
                 </div>
                 <div class="mb-4 d-flex align-items-center justify-content-end">
                     <div>
                         <h5 class="fw-bold mb-1">Non-Stop Innovation</h5>
                         <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
                     </div>
-                    <img src="{{asset('/')}}company-assets/icons/Vector (2).png" class="ms-3 img-fixed" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed" alt="">
                 </div>
             </div>
 
             <!-- Center Image -->
             <div class="col-lg-4 text-center">
-                <img src="{{asset('/')}}company-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
+                <img src="{{asset('/')}}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
             </div>
 
             <!-- Right Side (Icons First) -->
             <div class="col-lg-4 text-start">
                 <div class="mb-4 d-flex align-items-center">
-                    <img src="{{asset('/')}}company-assets/icons/Vector (3).png" class="me-3 img-fixed" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed" alt="">
                     <div>
                         <h5 class="fw-bold mb-1">Online Car Appraisal</h5>
                         <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
                     </div>
                 </div>
                 <div class="mb-4 d-flex align-items-center">
-                    <img src="{{asset('/')}}company-assets/icons/Vector (4).png" class="me-3 img-fixed" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed" alt="">
                     <div>
                         <h5 class="fw-bold mb-1">Personalized Search</h5>
                         <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
                     </div>
                 </div>
                 <div class="mb-4 d-flex align-items-center">
-                    <img src="{{asset('/')}}company-assets/icons/Vector (5).png" class="me-3 img-fixed" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed" alt="">
                     <div>
                         <h5 class="fw-bold mb-1">Consumer–First Mentality</h5>
                         <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer service.</p>
@@ -204,7 +204,7 @@ About-us | Select and Rent
             <div class="row justify-content-center">
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="team-card">
-                        <img src="{{asset('/')}}company-assets/icons/ameazing.png" alt="Wade Warren">
+                        <img src="{{asset('/')}}frontend-assets/icons/ameazing.png" alt="Wade Warren">
                         <div class="social-icons">
                             <a href="#" class="fab fa-facebook-f"></a>
                             <a href="#" class="fab fa-twitter"></a>
@@ -219,7 +219,7 @@ About-us | Select and Rent
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="team-card">
-                        <img src="{{asset('/')}}company-assets/icons/ameazing.png" alt="Wade Warren">
+                        <img src="{{asset('/')}}frontend-assets/icons/ameazing.png" alt="Wade Warren">
                         <div class="social-icons">
                             <a href="#" class="fab fa-facebook-f"></a>
                             <a href="#" class="fab fa-twitter"></a>
@@ -234,7 +234,7 @@ About-us | Select and Rent
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="team-card">
-                        <img src="{{asset('/')}}company-assets/icons/ameazing.png" alt="Wade Warren">
+                        <img src="{{asset('/')}}frontend-assets/icons/ameazing.png" alt="Wade Warren">
                         <div class="social-icons">
                             <a href="#" class="fab fa-facebook-f"></a>
                             <a href="#" class="fab fa-twitter"></a>
@@ -249,7 +249,7 @@ About-us | Select and Rent
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="team-card">
-                        <img src="{{asset('/')}}company-assets/icons/ameazing.png" alt="Wade Warren">
+                        <img src="{{asset('/')}}frontend-assets/icons/ameazing.png" alt="Wade Warren">
                         <div class="social-icons">
                             <a href="#" class="fab fa-facebook-f"></a>
                             <a href="#" class="fab fa-twitter"></a>
@@ -295,7 +295,7 @@ About-us | Select and Rent
                         </div>
                         <div class="col-md-6 position-relative text-center">
                             <div class="testimonial-bg"></div>
-                            <img src="{{asset('/')}}company-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
+                            <img src="{{asset('/')}}frontend-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
                         </div>
                     </div>
                 </div>
@@ -316,7 +316,7 @@ About-us | Select and Rent
                         </div>
                         <div class="col-md-6 position-relative text-center">
                             <div class="testimonial-bg"></div>
-                            <img src="{{asset('/')}}company-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
+                            <img src="{{asset('/')}}frontend-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
                         </div>                    
                     </div>
                 </div>
@@ -337,7 +337,7 @@ About-us | Select and Rent
                         </div>
                         <div class="col-md-6 position-relative mt-3 text-center">
                             <div class="testimonial-bg"></div>
-                            <img src="{{asset('/')}}company-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
+                            <img src="{{asset('/')}}frontend-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
                         </div>                     
                     </div>
                 </div>

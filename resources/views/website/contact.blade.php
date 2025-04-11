@@ -10,7 +10,7 @@ Contact us | Select and Rent
      font-weight: 700;
      text-transform: uppercase;
 
-     background: url('/company-assets/icons/getintouch.png') no-repeat;
+     background: url('/frontend-assets/icons/getintouch.png') no-repeat;
      background-size: cover;
      background-position: -106px center; 
 
@@ -31,21 +31,21 @@ Contact us | Select and Rent
                 
                 <ul class="list-unstyled custom-contact-list">
                     <li>
-                        <img src="{{asset('/')}}company-assets/icons/phone.png" alt="Phone Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="Phone Icon">
                         <div>
                             <h6>Phone</h6>
                             <div class="fw-bold">+92 3244469929</div>
                         </div>
                     </li>
                     <li>
-                        <img src="{{asset('/')}}company-assets/icons/mail.png" alt="Email Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/mail.png" alt="Email Icon">
                         <div>
                             <h6>Email</h6>
                             <div class="fw-bold">hello@sparkodic.com</div>
                         </div>
                     </li>
                     <li>
-                        <img src="{{asset('/')}}company-assets/icons/home.png" alt="Home Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/home.png" alt="Home Icon">
                         <div>
                             <h6>Address</h6>
                             <div class="fw-bold">United Kingdom</div>
@@ -55,10 +55,10 @@ Contact us | Select and Rent
 
                 <p class="custom-follow-us">Follow Us</p>
                 <div class="custom-social-icons">
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(3).png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials.png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(1).png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(2).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(3).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials.png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(1).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(2).png" alt=""></a>
                 </div>
             </div>
             <!-- Right Side: Contact Form -->

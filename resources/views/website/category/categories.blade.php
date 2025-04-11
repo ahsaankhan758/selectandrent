@@ -42,7 +42,7 @@
 
             <button class="btn  rounded-pill text-white btn-orange-clr" data-bs-toggle="modal"
                 data-bs-target="#carRentalModal">
-                View All <img src="{{ asset('/') }}company-assets/icons/Frame-1707482121.png" class="ms-2"
+                View All <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2"
                     width="20" height="20" alt="">
             </button>
 
@@ -57,7 +57,7 @@
         <p class="text-center work-subtitle">Booking an economical car with SelectandRent is simple</p>
         <div class="steps">
             <div class="step-item reverse">
-                <div class="icon-wrap"><img src="{{ asset('/') }}company-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>Browse</h4>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="step-item ">
-                <div class="icon-wrap"><img src="{{ asset('/') }}company-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>Filter & Select</h4>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="step-item reverse">
-                <div class="icon-wrap"><img src="{{ asset('/') }}company-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>Book</h4>
@@ -83,7 +83,7 @@
             </div>
 
             <div class="step-item">
-                <div class="icon-wrap"><img src="{{ asset('/') }}company-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>Pick Up & Drive</h4>
@@ -103,7 +103,7 @@
             <div class="col-md-4">
                 <div class="tip-card text-center p-3">
                     <div class="icon-container mb-2">
-                        <img src="{{ asset('/') }}company-assets/icons/tip-img-1.png" alt="Plan Ahead" class="img-fluid">
+                        <img src="{{asset('/')}}frontend-assets/icons/tip-img-1.png" alt="Plan Ahead" class="img-fluid">
                     </div>
                     <h5 class="tip-title">Plan Ahead</h5>
                     <p class="tip-description">
@@ -116,7 +116,7 @@
             <div class="col-md-4">
                 <div class="tip-card active text-center p-3">
                     <div class="icon-container mb-2">
-                        <img src="{{ asset('/') }}company-assets/icons/tip-img-2.png" alt="Verify Features"
+                        <img src="{{asset('/')}}frontend-assets/icons/tip-img-2.png" alt="Verify Features"
                             class="img-fluid">
                     </div>
                     <h5 class="tip-title">Verify Features</h5>
@@ -130,7 +130,7 @@
             <div class="col-md-4">
                 <div class="tip-card text-center p-3">
                     <div class="icon-container mb-2">
-                        <img src="{{ asset('/') }}company-assets/icons/tip-img-3.png" alt="Longer Rentals"
+                        <img src="{{asset('/')}}frontend-assets/icons/tip-img-3.png" alt="Longer Rentals"
                             class="img-fluid">
                     </div>
                     <h5 class="tip-title">Longer Rentals</h5>
@@ -153,24 +153,24 @@
 
             <div class="mt-4">
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}company-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
                     <h5 class="fw-bold">Affordable Pricing</h5>
                     <p class="text-muted">Enjoy low daily rates without compromising on quality.</p>
                 </div>
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (1).png" class="img-fluid mb-2"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
                         alt="">
                     <h5 class="fw-bold">Perfect for Short Trips</h5>
                     <p class="text-muted">Ideal for city drives, quick errands, or budget travel.</p>
                 </div>
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (2).png" class="img-fluid mb-2"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
                         alt="">
                     <h5 class="fw-bold">Fuel Efficiency</h5>
                     <p class="text-muted">Save on gas with cars designed for maximum mileage.</p>
                 </div>
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (3).png" class="img-fluid mb-2"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
                         alt="">
                     <h5 class="fw-bold">Wide Selection</h5>
                     <p class="text-muted">Choose from compact, mid-sized, and family-friendly models.</p>
@@ -192,7 +192,7 @@
                             <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer
                                 service.</p>
                         </div>
-                        <img src="{{ asset('/') }}company-assets/icons/Vector.png" class="ms-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
                             alt="">
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
@@ -201,7 +201,7 @@
                             <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer
                                 service.</p>
                         </div>
-                        <img src="{{ asset('/') }}company-assets/icons/Vector (1).png" class="ms-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
                             alt="">
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
@@ -210,20 +210,20 @@
                             <p class="text-muted">Uniquely revolutionize manufactured products for interactive customer
                                 service.</p>
                         </div>
-                        <img src="{{ asset('/') }}company-assets/icons/Vector (2).png" class="ms-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
                             alt="">
                     </div>
                 </div>
 
                 <!-- Center Image -->
                 <div class="col-lg-4 text-center">
-                    <img src="{{ asset('/') }}company-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
+                    <img src="{{asset('/')}}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
                 </div>
 
                 <!-- Right Side (Icons First) -->
                 <div class="col-lg-4 text-start">
                     <div class="mb-4 d-flex align-items-center">
-                        <img src="{{ asset('/') }}company-assets/icons/Vector (3).png" class="me-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed"
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">Online Car Appraisal</h5>
@@ -232,7 +232,7 @@
                         </div>
                     </div>
                     <div class="mb-4 d-flex align-items-center">
-                        <img src="{{ asset('/') }}company-assets/icons/Vector (4).png" class="me-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed"
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">Personalized Search</h5>
@@ -241,7 +241,7 @@
                         </div>
                     </div>
                     <div class="mb-4 d-flex align-items-center">
-                        <img src="{{ asset('/') }}company-assets/icons/Vector (5).png" class="me-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed"
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">Consumer–First Mentality</h5>
@@ -267,7 +267,7 @@
                         <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive
                             customer service.</p>
                     </div>
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (3).png" class="ml-3 img-fixed"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="ml-3 img-fixed"
                         alt="">
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
@@ -276,7 +276,7 @@
                         <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive
                             customer service.</p>
                     </div>
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (4).png" class="ml-3 img-fixed"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="ml-3 img-fixed"
                         alt="">
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
@@ -285,20 +285,20 @@
                         <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive
                             customer service.</p>
                     </div>
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (5).png" class="ml-3 img-fixed"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="ml-3 img-fixed"
                         alt="">
                 </div>
             </div>
 
             <!-- Center Image -->
             <div class="col-md-4 text-center mb-4">
-                <img src="{{ asset('/') }}company-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
+                <img src="{{asset('/')}}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
             </div>
 
             <!-- Right Side (Last Three Icons) -->
             <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
                 <div class="d-flex align-items-center justify-content-center mb-4">
-                    <img src="{{ asset('/') }}company-assets/icons/Vector.png" class="me-3 img-fixed" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="me-3 img-fixed" alt="">
                     <div>
                         <h5 class="fw-bold custom-tab text-start mb-1">Most Flexible Payment</h5>
                         <p class="text-muted text-start">Uniquely revolutionize manufactured products for interactive
@@ -306,7 +306,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (1).png" class="me-3 img-fixed"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="me-3 img-fixed"
                         alt="">
                     <div>
                         <h5 class="fw-bold custom-tab text-start mb-1">Valuable Insights</h5>
@@ -315,7 +315,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
-                    <img src="{{ asset('/') }}company-assets/icons/Vector (2).png" class="me-3 img-fixed"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="me-3 img-fixed"
                         alt="">
                     <div>
                         <h5 class="fw-bold custom-tab text-start mb-1">Non-Stop Innovation</h5>

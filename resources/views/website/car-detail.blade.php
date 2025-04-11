@@ -212,7 +212,7 @@ Car Detail | Select and Rent
                         <div class="help-text">Need Any Help?</div>
                         <p class="help-number">+71 202 102 2124</p>
                     </div>
-                    <img src="{{asset('/')}}company-assets/icons/phone.png" alt="24-hour support">
+                    <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="24-hour support">
                 </div>
             </div>
         </div>
@@ -228,7 +228,7 @@ Car Detail | Select and Rent
         <!-- Button (Center on Mobile, End on Larger Screens) -->
         <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
             <button class="btn  rounded-pill text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#carRentalModal">
-                View All <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+                View All <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
             </button>
         </div>
     </div>
