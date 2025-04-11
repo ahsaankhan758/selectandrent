@@ -13,15 +13,15 @@ Join Program | Select and Rent
             <h4 class="fw-bold">Our Personal Coach</h4>
             <p class="text-muted text-font">Uniquely revolutionize manufactured products for interactive customer service.</p>
             <ul class="list-unstyled">
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Passive Income</li>
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Reduced Costs</li>
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Peace of Mind</li>
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Flexibility</li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Passive Income</li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Reduced Costs</li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Peace of Mind</li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Flexibility</li>
             </ul>
         </div>
 
         <div class="col-lg-4 col-md-4 text-center">
-            <img src="{{asset('/')}}company-assets/assets/jointeam.png" class="img-fluid custom-join-img rounded" alt="Join Our Team">
+            <img src="{{asset('/')}}frontend-assets/assets/jointeam.png" class="img-fluid custom-join-img rounded" alt="Join Our Team">
         </div>
 
         <div class="col-lg-5 col-md-5">
@@ -48,19 +48,19 @@ Join Program | Select and Rent
     </div>
 
         <div class="col-lg-4 col-md-4 text-center">
-            <img src="{{asset('/')}}company-assets/assets/jointeam2.png" class="img-fluid custom-join-img2 rounded" alt="Car Image">
+            <img src="{{asset('/')}}frontend-assets/assets/jointeam2.png" class="img-fluid custom-join-img2 rounded" alt="Car Image">
         </div>
 
         <div class="col-lg-4 col-md-4 ps-lg-4 mb-3">
             <ul class="list-unstyled">
-                <li><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> <strong>Best Choicing</strong></li>
+                <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>Best Choicing</strong></li>
                 <p class="text-muted ">Uniquely revolutionize manufactured products for interactive customer service.</p>
 
-                <li><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> <strong>Good People</strong></li>
+                <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>Good People</strong></li>
                 <p class="text-muted ">Uniquely revolutionize manufactured products for interactive customer service.</p>
             </ul>
             <button class="btn btn-orange-clr rounded-pill text-white">
-                View All <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+                View All <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
             </button> 
         </div>
     </div>
@@ -75,33 +75,33 @@ Join Program | Select and Rent
     </p>
 
     <div class="mobile-image">
-        <img src="{{asset('/')}}company-assets/assets/jointeam.png" alt="Join Our Team">
+        <img src="{{asset('/')}}frontend-assets/assets/jointeam.png" alt="Join Our Team">
     </div>
 
     <div class="mobile-box">
-        <p class="mobile-check"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Best Choicing</p>
+        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Best Choicing</p>
         <p class="mobile-text">Uniquely revolutionize manufactured products for interactive customer service.</p>
     </div>
 
     <div class="mobile-box">
-        <p class="mobile-check"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Good People</p>
+        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Good People</p>
         <p class="mobile-text">Uniquely revolutionize manufactured products for interactive customer service.</p>
     </div>
 
     <button class="btn btn-orange-clr rounded-pill text-white">
-        View All <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+        View All <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
     </button>
 
     <div class="mobile-image mt-2">
-        <img src="{{asset('/')}}company-assets/assets/jointeam2.png" alt="Car Image">
+        <img src="{{asset('/')}}frontend-assets/assets/jointeam2.png" alt="Car Image">
     </div>  
 
     <h3 class="mobile-title">Our Personal Coach</h3>
     <ul class="mobile-list">
-        <li><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Passive Income</li>
-        <li><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Reduced Costs</li>
-        <li><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Peace of Mind</li>
-        <li><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> Flexibility</li>
+        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Passive Income</li>
+        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Reduced Costs</li>
+        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Peace of Mind</li>
+        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> Flexibility</li>
     </ul>
 
     <p class="mobile-progress-title">Speaking Good <span class="progress-success">99%</span></p>
@@ -122,7 +122,7 @@ Join Program | Select and Rent
     <div class="row custom-benefit-container">
         <div class="col-md-3 text-center custom-benefit-step">
             <div>
-                <img src="{{asset('/')}}company-assets/icons/1.png" class="custom-icon-circle" alt="Easy Signup">
+                <img src="{{asset('/')}}frontend-assets/icons/1.png" class="custom-icon-circle" alt="Easy Signup">
             </div>
             <h5 class="mt-3">Easy signup process</h5>
             <p>In a free hour, when our power of choice is untrammeled and...</p>
@@ -131,12 +131,12 @@ Join Program | Select and Rent
             <h5 class="mt-3">Flexible terms</h5>
             <p>In a free hour, when our power of choice is untrammeled and...</p>
             <div>
-                <img src="{{asset('/')}}company-assets/icons/2.png" class="custom-icon-circle" alt="Flexible Terms">
+                <img src="{{asset('/')}}frontend-assets/icons/2.png" class="custom-icon-circle" alt="Flexible Terms">
             </div>
         </div>
         <div class="col-md-3 text-center custom-benefit-step">
             <div>
-                <img src="{{asset('/')}}company-assets/icons/1(1).png" class="custom-icon-circle" alt="High Earning Potential">
+                <img src="{{asset('/')}}frontend-assets/icons/1(1).png" class="custom-icon-circle" alt="High Earning Potential">
             </div>
             <h5 class="mt-3">High earning potential</h5>
             <p>In a free hour, when our power of choice is untrammeled and...</p>
@@ -145,7 +145,7 @@ Join Program | Select and Rent
             <h5 class="mt-3">24/7 support</h5>
             <p>In a free hour, when our power of choice is untrammeled and...</p>
             <div>
-                <img src="{{asset('/')}}company-assets/icons/2(1).png" class="custom-icon-circle" alt="24/7 Support">
+                <img src="{{asset('/')}}frontend-assets/icons/2(1).png" class="custom-icon-circle" alt="24/7 Support">
             </div>
         </div>
     </div>
@@ -155,7 +155,7 @@ Join Program | Select and Rent
     <h2 class="benefits-heading">Key Benefits of Partnering</h2>
 
     <div class="benefit-item">
-        <div class="icon"><img src="{{asset('/')}}company-assets/icons/1.png" alt="Icon"></div>
+        <div class="icon"><img src="{{asset('/')}}frontend-assets/icons/1.png" alt="Icon"></div>
         <!-- <div class="line"></div> -->
         <div class="content">
             <h3>Flexible terms</h3>
@@ -164,7 +164,7 @@ Join Program | Select and Rent
     </div>
 
     <div class="benefit-item">
-        <div class="icon"><img src="{{asset('/')}}company-assets/icons/2.png" alt="Icon"></div>
+        <div class="icon"><img src="{{asset('/')}}frontend-assets/icons/2.png" alt="Icon"></div>
         <!-- <div class="line"></div> -->
         <div class="content">
             <h3>Easy signup process</h3>
@@ -173,7 +173,7 @@ Join Program | Select and Rent
     </div>
 
     <div class="benefit-item">
-        <div class="icon"><img src="{{asset('/')}}company-assets/icons/1(1).png" alt="Icon"></div>
+        <div class="icon"><img src="{{asset('/')}}frontend-assets/icons/1(1).png" alt="Icon"></div>
         <!-- <div class="line"></div> -->
         <div class="content">
             <h3>Easy signup process</h3>
@@ -182,7 +182,7 @@ Join Program | Select and Rent
     </div>
 
     <div class="benefit-item">
-        <div class="icon"><img src="{{asset('/')}}company-assets/icons/2(1).png" alt="Icon"></div>
+        <div class="icon"><img src="{{asset('/')}}frontend-assets/icons/2(1).png" alt="Icon"></div>
         <div class="content">
             <h3>Easy signup process</h3>
             <p>In a free hour, when our power of choice is untrammeled and</p>
@@ -196,7 +196,7 @@ Join Program | Select and Rent
     <p class="text-center">Loripsome is a  Finance Suite provides you with a personalized experience to obtain credit and financing for your company. You’ll also receive guidance from our business advising team, who will help you with all.</p>
     <div class="steps">
         <div class="step-item reverse">
-            <div class="icon-wrap"><img src="{{asset('/')}}company-assets/icons/handshake.png" alt="Step Icon"></div>
+            <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/handshake.png" alt="Step Icon"></div>
             <div class="step-content">
                 <h4>Register Your Business</h4>
                 <p>Sign up on our platform and provide your company details.</p>
@@ -204,14 +204,14 @@ Join Program | Select and Rent
         </div>
 
         <div class="step-item">
-            <div class="icon-wrap"><img src="{{asset('/')}}company-assets/icons/handshake.png" alt="Step Icon"></div>
+            <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/handshake.png" alt="Step Icon"></div>
             <div class="step-content">
                 <h4>List Your Cars</h4>
                 <p>Easily add your vehicles with features like license plate scanning for quick data entry.</p>
             </div>
         </div>
         <div class="step-item reverse">
-            <div class="icon-wrap"><img src="{{asset('/')}}company-assets/icons/handshake.png" alt="Step Icon"></div>
+            <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/handshake.png" alt="Step Icon"></div>
             <div class="step-content">
                 <h4>Set Pricing & Availability</h4>
                 <p>Use our intuitive calendar to update car availability and pricing.</p>
@@ -219,7 +219,7 @@ Join Program | Select and Rent
         </div>
 
         <div class="step-item">
-            <div class="icon-wrap"><img src="{{asset('/')}}company-assets/icons/handshake.png" alt="Step Icon"></div>
+            <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/handshake.png" alt="Step Icon"></div>
             <div class="step-content">
                 <h4>Connect with Renters</h4>
                 <p>Communicate directly with renters to answer queries and confirm bookings.</p>
@@ -231,7 +231,7 @@ Join Program | Select and Rent
         data-bs-toggle="modal" 
         data-bs-target="#carRentalModal">
     Fill the registration form
-    <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+    <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
 </button>
 
 </div>
@@ -247,19 +247,19 @@ Join Program | Select and Rent
                     <h5>STUDENT PACKAGE</h5>
                     <p class="price">$250 <span class="price">/Mo</span></p>
                 </div>
-                <img src="{{asset('/')}}company-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
+                <img src="{{asset('/')}}frontend-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
                 <ul class="feature-list">
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> 02 Passengers</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 02 Passengers</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> 5 km Distance Only</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 5 km Distance Only</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> No Extra Charges</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> No Extra Charges</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> Free Book NO Advance</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> Free Book NO Advance</li>
                 </ul>
                 <button class="btn rounded-pill text-white d-flex align-items-center px-3 py-2 custom-btn">
                     Purchase Now
-                <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+                <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
                 </button> 
             </div>
         </div>        
@@ -269,19 +269,19 @@ Join Program | Select and Rent
                 <h5>MEDICAL PACKAGE</h5>
                 <p class="price">$250 <span class="price">/Mo</span></p>
                 </div>
-                <img src="{{asset('/')}}company-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
+                <img src="{{asset('/')}}frontend-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
                 <ul class="feature-list">
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> 02 Passengers</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 02 Passengers</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> 5 km Distance Only</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 5 km Distance Only</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> No Extra Charges</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> No Extra Charges</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> Free Book NO Advance</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> Free Book NO Advance</li>
                 </ul>
                 <button class="btn rounded-pill text-white d-flex align-items-center px-3 py-2 custom-btn">
                     Purchase Now
-                    <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
                 </button> 
             </div>
         </div>
@@ -291,19 +291,19 @@ Join Program | Select and Rent
                     <h5>BUSINESS PACKAGE</h5>
                     <p class="price">$250 <span class="price">/Mo</span></p>
                 </div>
-                <img src="{{asset('/')}}company-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
+                <img src="{{asset('/')}}frontend-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
                 <ul class="feature-list">
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> 02 Passengers</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 02 Passengers</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> 5 km Distance Only</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 5 km Distance Only</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> No Extra Charges</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> No Extra Charges</li>
                     <hr>
-                    <li><img src="{{asset('/')}}company-assets/icons/security.png" alt="security"> Free Book NO Advance</li>
+                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> Free Book NO Advance</li>
                 </ul>
                 <button class="btn rounded-pill text-white d-flex align-items-center px-3 py-2 custom-btn">
                     Purchase Now
-                    <img src="{{asset('/')}}company-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
                 </button> 
             </div>
         </div>
@@ -333,7 +333,7 @@ Join Program | Select and Rent
                         </div>
                         <div class="col-md-6 position-relative text-center">
                             <div class="testimonial-bg"></div>
-                            <img src="{{asset('/')}}company-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
+                            <img src="{{asset('/')}}frontend-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
                         </div>
                     </div>
                 </div>
@@ -354,7 +354,7 @@ Join Program | Select and Rent
                         </div>
                         <div class="col-md-6 position-relative text-center">
                             <div class="testimonial-bg"></div>
-                            <img src="{{asset('/')}}company-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
+                            <img src="{{asset('/')}}frontend-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
                         </div>                    
                     </div>
                 </div>
@@ -375,7 +375,7 @@ Join Program | Select and Rent
                         </div>
                         <div class="col-md-6 position-relative mt-3 text-center">
                             <div class="testimonial-bg"></div>
-                            <img src="{{asset('/')}}company-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
+                            <img src="{{asset('/')}}frontend-assets/icons/testimonials.png" class="testimonial-img img-fluid" alt="Customer">
                         </div>                     
                     </div>
                 </div>

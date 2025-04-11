@@ -79,7 +79,7 @@ Car Booking | Select and Rent
 <div class="container">
 <div class="row d-flex py-2">
             <div class="col-md-3">
-                <img src="{{asset('/')}}company-assets/assets/main.png" class="car-order-img" alt="Car Image">
+                <img src="{{asset('/')}}frontend-assets/assets/main.png" class="car-order-img" alt="Car Image">
             </div>
             <div class="col-md-3 align-items-center">
                 <div class="stars text-warning">
