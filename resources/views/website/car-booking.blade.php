@@ -36,13 +36,16 @@ Car Booking | Select and Rent
 </div>
 
 @if($cartItems->count() > 0)
+<div class="container">
+<a class="text-right" href="{{ route('clear.cart') }}">Clear Cart ({{$cartItemsCount}})</a>
+</div>
 @foreach($cartItems as $cart)
 
 <div class="container mt-4">
-<a class="text-right" href="{{ route('clear.cart') }}">Clear Cart</a>
+
     <div class="row g-3">
         <!-- Pickup Location -->
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label class="form-label">Pickup Location</label>
             <select class="form-select">
                 <option selected>Select Location</option>
@@ -55,7 +58,7 @@ Car Booking | Select and Rent
         </div>
 
         <!-- Dropoff Location -->
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label class="form-label">Dropoff Location</label>
             <select class="form-select">
                 <option selected>Select Location</option>
@@ -68,7 +71,7 @@ Car Booking | Select and Rent
         </div>
 
         <!-- Pickup Date & Time -->
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label class="form-label">Pickup Date Time</label>
             <div class="input-group">
             <input type="datetime-local" class="form-control time-input">
@@ -76,23 +79,14 @@ Car Booking | Select and Rent
         </div>
 
         <!-- Drop-off Date & Time -->
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label class="form-label">Drop-off Date Time</label>
             <div class="input-group">
                 <input type="datetime-local" class="form-control time-input">
             </div>
         </div>
 
-        <!-- how many days for rent  -->
-        <div class="col-md-4">
-            <label class="form-label">Days</label>
-            <select class="form-select">
-                
-                @for ($i = 1; $i < 31; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                @endfor
-            </select>
-        </div>
+       
         
     </div>
     
@@ -101,8 +95,9 @@ Car Booking | Select and Rent
 <div class="container py-3">
     <div class="vehicle-card d-flex mobile-car">
         <ul class="col-md-6">Vehicle Info</ul>
-        <ul class="col-md-3">Price</ul>
-        <ul class="col-md-3">Days</ul>
+        <ul class="col-md-2">Price</ul>
+        <ul class="col-md-2">Days</ul>
+        <ul class="col-md-2">Action</ul>
     </div>
 </div>
 <div class="container">
@@ -142,8 +137,9 @@ Car Booking | Select and Rent
            <div class="mb-2 text-capitalize"><strong>Engine Size:</strong> {{ $cart->options->engine_size }}</div>
            <div class="mb-2 text-capitalize"><strong>Exterior Color:</strong> {{ $cart->options->exterior_color }}</div>
            <div class="mb-2 text-capitalize"><strong>Interior Color:</strong> {{ $cart->options->interior_color }}</div>
+           <div class="mb-2 text-capitalize"><strong>Radius:</strong> 12M</div>
         </div>
-        <div class="col-md-3 mobile-car">
+        <div class="col-md-2 mobile-car">
             <div class="mb-2 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
@@ -151,42 +147,63 @@ Car Booking | Select and Rent
             <div class="mb-2 text-capitalize"><h6>${{ $cart->price }}</h6></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
+            <div class="mb-2 empty-box"></div>
+            <div class="mb-2 empty-box"> </div>
+            <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
         </div>
-        <div class="col-md-3 mobile-car">
+        <div class="col-md-2 mobile-car">
             <div class="mb-2 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-2"><h6>1 Days</h6></div>
+            <div class="mb-2 empty-box"></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
+            <div class="mb-2 empty-box"></div>
+            <div class="mb-2 empty-box"></div>
+            <div class="mb-2 empty-box"></div>
+            <div class="mb-2 empty-box"></div>
+        </div>
+        <div class="col-md-2 mobile-car">
+            <div class="mb-2 empty-box"> </div>
+            <div class="mb-3 empty-box"> </div>
+            <div class="mb-3 empty-box"> </div>
+            <div class="mb-3 empty-box"> </div>
+            <div class="mb-2"><a href=""><i class="fa fa-trash text-danger"></i></a></div>
+            <div class="mb-2 empty-box"></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
+            <div class="mb-2 empty-box"></div>
+            <div class="mb-2 empty-box"></div>
+            <div class="mb-2 empty-box"></div>
+            <div class="mb-2 empty-box"></div>
         </div>
     </div>
 </div>
+@endforeach
 <div class="container my-3">
     <div class="row justify-content-center align-items-center g-3">
         <!-- Subtotal Box -->
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>Subtotal</strong></div>
-                <div class="price-car">${{ $cart->subtotal }}</div>
+                <div class="price-car">${{ $subtotal }}</div>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>VAT</strong></div>
-                <div class="price-car">${{ $cart->tax }}</div>
+                <div class="price-car">${{ $tax }}</div>
             </div>
         </div>
         <!-- Total Box -->
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>Total</strong></div>
-                <div class="price-car">${{$cart->total}}</div>
+                <div class="price-car">${{$totalPriceIncludingTax}}</div>
             </div>
         </div>
         <!-- Order Confirmation Button -->
@@ -198,7 +215,7 @@ Car Booking | Select and Rent
     </div>
 </div>
 
-@endforeach
+
 @else
 
 <div class="row">
