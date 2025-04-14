@@ -13,10 +13,15 @@ class CarBookingController extends Controller
     public function carBookingView()
     {
         $cartItems = Cart::instance('cart')->content();
+        $subtotal = Cart::subtotal();
+        $tax = Cart::tax();
+        $totalPriceIncludingTax = Cart::total();
+        $cartItemsCount = Cart::count();
+        
         // echo "<pre>";
         // print_r($cartItems);die;
         $vehicleLocation = CarLocation::all();
-        return view('website.car-booking',compact('cartItems','vehicleLocation')); 
+        return view('website.car-booking',compact('cartItems','vehicleLocation', 'subtotal', 'tax','totalPriceIncludingTax','cartItemsCount')); 
     }
 
     public function addToCart(Request $request)
@@ -24,21 +29,14 @@ class CarBookingController extends Controller
         $id = $request->id;
         $vehicle = Car::findOrFail($id);
 
-        // Get existing cart content
+        // Get all cart items
         $cartItems = Cart::instance('cart')->content();
 
-        // Check if cart has any item
-        if ($cartItems->isNotEmpty()) {
-            // Get the first cart item
-            $existingItem = $cartItems->first();
+        // Check if the same car already exists in the cart
+        $alreadyInCart = $cartItems->where('id', $vehicle->id)->first();
 
-            // If the same car is already in the cart, do nothing
-            if ($existingItem->id == $vehicle->id) {
-                return redirect('/carbooking')->with('message', 'This car is already exist in your cart.');; // silently redirect, no message
-            }
-
-            // If different car is in cart, clear the cart
-            Cart::instance('cart')->destroy();
+        if ($alreadyInCart) {
+            return redirect('/carbooking')->with('message', 'This car is already in your cart.');
         }
 
         // Add new car to cart
@@ -82,6 +80,7 @@ class CarBookingController extends Controller
 
         return redirect('/carbooking')->with('success', 'Car added to cart successfully.');
     }
+
 
 
     public function clearCart(Request $request)
