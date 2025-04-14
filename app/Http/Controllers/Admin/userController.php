@@ -126,6 +126,6 @@ class userController extends Controller
         $action = 'Delete';
         $module = 'User';
         activityLog($userId, $desciption,$action,$module);
-        return redirect()->route('users')-> with('status','Comapy Data Deleted Successfully.');
+        return redirect()->route('users')-> with('status','Company Data Deleted Successfully.');
     }
 }

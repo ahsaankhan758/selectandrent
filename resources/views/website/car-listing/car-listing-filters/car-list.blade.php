@@ -14,19 +14,19 @@
             
             <div class="car-details">
                 <div class="detail-item">
-                    <img src="{{ asset('/') }}company-assets/icons/Iconly.png" alt="Car Image" width="20px">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly.png" alt="Car Image" width="20px">
                     {{ $car->weight }} kg
                 </div>
                 <div class="detail-item">
-                    <img src="{{ asset('/') }}company-assets/icons/Iconly-v.png" alt="Car Image" width="20px">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car Image" width="20px">
                     {{ $car->seats }} Sitze
                 </div>
                 <div class="detail-item">
-                    <img src="{{ asset('/') }}company-assets/icons/Iconly-u.png" alt="Car Image" width="20px">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car Image" width="20px">
                     {{ $car->mileage }} km
                 </div>
                 <div class="detail-item">
-                    <img src="{{ asset('/') }}company-assets/icons/Iconly-s.png" alt="Car Image" width="20px">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car Image" width="20px">
                     {{ ucfirst($car->transmission) }}
                 </div>
             </div>
