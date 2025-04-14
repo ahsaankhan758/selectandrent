@@ -183,7 +183,10 @@ class CarController extends Controller
                     if(!empty($car->thumbnail))
                         {
                             $old_thumbnail = storage_path('app/public/' . $car->thumbnail);
-                            unlink($old_thumbnail);
+                            if(file_exists($old_thumbnail)){
+                                unlink($old_thumbnail);
+                            }
+                           
                         }
                     $car->thumbnail = $request->file('thumbnail')->store('carThumbnail','public');
                 }
@@ -195,7 +198,9 @@ class CarController extends Controller
                             foreach( unserialize($car->images) as $image)
                                 {
                                     $old_image = storage_path('app/public/' . $image);
-                                    unlink($old_image);
+                                    if(file_exists($old_image)){
+                                        unlink($old_image);
+                                    }
                                 }
                         }
                     foreach ($request->file('images') as $imageFile) {
@@ -237,7 +242,9 @@ class CarController extends Controller
         if(!empty($car->thumbnail))
         {
             $old_thumbnail = storage_path('app/public/' . $car->thumbnail);
-            unlink($old_thumbnail);
+            if (file_exists($old_thumbnail)) {
+                unlink($old_thumbnail);
+            }
         }
         //Unlink Images
     if(!empty($car->images))
@@ -245,7 +252,9 @@ class CarController extends Controller
         foreach(unserialize($car->images) as $image)
             {
                 $old_image = storage_path('app/public/' . $image);
-                unlink($old_image);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
             }
     }
         $car->delete();

@@ -88,7 +88,7 @@ Car Detail | Select and Rent
                     @foreach(array_chunk($features, ceil(count($features)/3)) as $chunk)
                         <div class="col-md-4">
                             @foreach($chunk as $feature)
-                                <p><img src="{{ asset('company-assets/icons/Security2.png') }}" alt="Feature"> {{ $feature }}</p>
+                                <p><img src="{{ asset('frontend-assets/icons/Security2.png') }}" alt="Feature"> {{ $feature }}</p>
                             @endforeach
                         </div>
                     @endforeach
@@ -255,22 +255,22 @@ Car Detail | Select and Rent
         
                             <div class="d-flex justify-content-between mt-4">
                                 <div class="icon-text">
-                                    <img src="{{ asset('/') }}company-assets/icons/Iconly.png" alt="Car" width="20px">
+                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly.png" alt="Car" width="20px">
                                     {{ $car->weight }} kg
                                 </div>
                                 <div class="icon-text">
-                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-v.png" alt="Car" width="20px">
+                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car" width="20px">
                                     {{ $car->mileage }} km
                                 </div>
                             </div>
         
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="icon-text">
-                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-u.png" alt="Car" width="20px">
+                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car" width="20px">
                                     {{ $car->seats }} Seater
                                 </div>
                                 <div class="icon-text">
-                                    <img src="{{ asset('/') }}company-assets/icons/Iconly-s.png" alt="Car" width="20px">
+                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car" width="20px">
                                     {{ ucfirst($car->transmission) }}
                                 </div>
                             </div>
