@@ -7,7 +7,8 @@
         <div class="car-info">
             <div class="d-flex justify-content-between bg-light align-items-center rounded">
                 <h6 class="car-price">${{ $car->rent }}/day</h6>
-                <button class="book-btn" onclick="window.location.href='#'">Book</button>
+                <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">Book</button>
+                               
             </div>
             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
             <h5 class="car-name">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>

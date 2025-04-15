@@ -56,3 +56,5 @@ function filterCars(category) {
 
 // Show all cars by default on page load
 filterCars('all');
+
+

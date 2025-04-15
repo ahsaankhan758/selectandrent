@@ -4,6 +4,9 @@ Car Booking | Select and Rent
 @endsection
 
 @section('content')
+<!-- load ajax for remove cart -->
+<script src="{{asset('/frontend-assets/assets/Js/cartRmoveItems.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <div class="container py-2">
     <div class="progress-container">
         <div class="progress-line"></div>
@@ -74,7 +77,7 @@ Car Booking | Select and Rent
         <div class="col-md-3">
             <label class="form-label">Pickup Date Time</label>
             <div class="input-group">
-            <input type="datetime-local" class="form-control time-input">
+            <input type="datetime-local" id="getPickupDate" class="form-control time-input">
             </div>
         </div>
 
@@ -82,11 +85,14 @@ Car Booking | Select and Rent
         <div class="col-md-3">
             <label class="form-label">Drop-off Date Time</label>
             <div class="input-group">
-                <input type="datetime-local" class="form-control time-input">
+                <input type="datetime-local" id="getDropoffDate" class="form-control time-input">
             </div>
         </div>
 
-       
+        <!-- Display Difference -->
+        <div class="col-md-6 mt-3">
+            <p id="timeDifference"></p>
+        </div>
         
     </div>
     
@@ -172,7 +178,7 @@ Car Booking | Select and Rent
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
-            <div class="mb-2"><a href=""><i class="fa fa-trash text-danger"></i></a></div>
+            <div class="mb-2"><a href="javascript::void();" class="remove-btn" data-rowid="{{ $cart->rowId }}"><i class="fa fa-trash text-danger"></i></a></div>
             <div class="mb-2 empty-box"></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>

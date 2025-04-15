@@ -52,6 +52,11 @@ Car Listing | Select and Rent
 
 
 </style>
+
+<!-- add to cart js -->
+<script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
+
 <div class="container">
     <div class="row">
         <!-- car-listing-sidebar -->
