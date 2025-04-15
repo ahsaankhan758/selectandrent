@@ -8,10 +8,7 @@ use App\Http\Controllers\Admin\Cars\CarLocationController;
 use App\Http\Controllers\Admin\Cars\CarModelController;
 
 Route::middleware('LanguageMiddleware')->group(function(){
-    Route::get('/change-language/{lang}', function ($lang) {
-        Session::put('lang',$lang);
-        return redirect()->back();
-    })->name('change.language');
+    
 
     // To Get Current Prefix of URL
     $currentPrefix = request()->segment(1);

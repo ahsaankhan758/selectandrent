@@ -1,24 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('loginLayout')
 @section('title')Company Login @endsection
 @section('content')
     <body class="auth-fluid-pages pb-0">
-        
+
         <div class="auth-fluid">
-            <!--Auth fluid left content -->
             
+            <!--Auth fluid left content -->
             <div class="auth-fluid-form-box">
-                
+                <ul class="list-unstyled topnav-menu float-end mb-0">
+                    @php
+                        $languages = [
+                            'en' => ['name' => 'English', 'flag' => 'gb'],
+                            'fr' => ['name' => 'Français', 'flag' => 'fr'],
+                            'ar' => ['name' => 'عربي', 'flag' => 'sa'],
+                            'nl' => ['name' => 'Dutch', 'flag' => 'nl'],
+                        ];
+                        $currentLocale = Session::get('locale');
+                        if(!isset($currentLocale))
+                            {
+                                $currentLocale = app()->getLocale();
+                            }
+                    @endphp
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span>  {{ $languages[$currentLocale]['name'] }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach ($languages as $langCode => $lang)
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
+                                        <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> <span>{{ $lang['name'] }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
                 <div class="align-items-center d-flex h-100">
-                     <!-- Logo -->
-                     <div class="auth-brand text-center text-lg-start pb-4">
-                            
-                        <div class="auth-logo">
-                            <span class="logo-lg">
-                                <img src="{{asset('/')}}assets/images/select-and-rent-logo-blue.png" alt="" height="150">
-                            </span>
-                        </div>
-                    </div>
+                    
                     <div class="p-3">
+
+                        <!-- Logo -->
+                        <div class="auth-brand text-center text-lg-start">
+                           
+                            <div class="auth-logo">
+                                <span class="logo-lg">
+                                    <img src="{{asset('/')}}assets/images/select-and-rent-logo-blue.png" alt="" height="150">
+                                </span>
+                                
+                            </div>
+                        </div>
+
                         <!-- title-->
                         
                         <p class="text-muted mb-4">Enter your email address and password to access account.</p>
@@ -94,7 +127,7 @@
                     <p class="lead"><i class="mdi mdi-format-quote-open"></i> I've been using your theme from the previous developer for our web app, once I knew new version is out, I immediately bought with no hesitation. Great themes, good documentation with lots of customization available and sample app that really fit our need. <i class="mdi mdi-format-quote-close"></i>
                     </p>
                     <h5 class="text-white">
-                        - Select and Rent Company
+                        - Fadlisaad (Ubold Admin User)
                     </h5>
                 </div> <!-- end auth-user-testimonial-->
             </div>
