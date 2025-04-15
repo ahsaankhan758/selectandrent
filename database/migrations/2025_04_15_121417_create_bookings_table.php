@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('car_id');
+            $table->unsignedBigInteger('vehicle_id');
             // Booking details
             $table->string('booking_reference')->unique();
             $table->string('pickup_location');
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->timestamps();
             // Foreign key constraints (optional, add only if users and cars tables exist)
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
+            $table->foreign('vehicle_id')->references('id')->on('cars')->onDelete('cascade');
         });
     }
 
