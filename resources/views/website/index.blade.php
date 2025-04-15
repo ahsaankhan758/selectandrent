@@ -4,6 +4,10 @@ Home Page | Select and Rent
 @endsection
 
 @section('content')
+
+<!-- add to cart js -->
+<script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <div class="container text-center mt-5">
     <!-- Centered Heading -->
     <h5 class="display-6 fw-bold mb-3">Browse By Categories</h5>
@@ -313,7 +317,8 @@ Home Page | Select and Rent
                         <div class="card-content">
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                 <h6 class="car-price">${{ $car->rent }}/day</h6>
-                                <button class="book-btn" onclick="window.location.href='#'">Book</button>
+                                <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">Book</button>
+                               
                             </div>
                             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
         

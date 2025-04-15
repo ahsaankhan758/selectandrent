@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use App\Models\Car;
 use App\Models\CarLocation;
+use Laravel\Ui\Presets\React;
 
 class CarBookingController extends Controller
 {
@@ -36,7 +37,10 @@ class CarBookingController extends Controller
         $alreadyInCart = $cartItems->where('id', $vehicle->id)->first();
 
         if ($alreadyInCart) {
-            return redirect('/carbooking')->with('message', 'This car is already in your cart.');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'This car is already in your cart.'
+            ]);
         }
 
         // Add new car to cart
@@ -78,8 +82,12 @@ class CarBookingController extends Controller
             ]
         )->associate('App\Models\Car');
 
-        return redirect('/carbooking')->with('success', 'Car added to cart successfully.');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Car added to cart successfully.'
+        ]);
     }
+
 
 
 
@@ -88,6 +96,31 @@ class CarBookingController extends Controller
         Cart::instance('cart')->destroy();
         return redirect()->back()->with('success', 'Cart cleared successfully.');
     }
+
+    public function removeItemFromCart(Request $request)
+    {
+        // Get the rowId from the request
+        $rowId = $request->input('rowId');
+
+        // Check if the rowId is valid
+        if (!$rowId) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Row ID is missing',
+            ], 400);
+        }
+
+        // Remove the item from the cart
+        Cart::instance('cart')->remove($rowId);
+
+        // Return a success response
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Item removed from cart',
+        ]);
+    }
+
+
 
         
 }

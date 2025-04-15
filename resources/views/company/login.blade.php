@@ -2,23 +2,23 @@
 @section('title')Company Login @endsection
 @section('content')
     <body class="auth-fluid-pages pb-0">
-
+        
         <div class="auth-fluid">
             <!--Auth fluid left content -->
+            
             <div class="auth-fluid-form-box">
+                
                 <div class="align-items-center d-flex h-100">
-                    <div class="p-3">
-
-                        <!-- Logo -->
-                        <div class="auth-brand text-center text-lg-start">
+                     <!-- Logo -->
+                     <div class="auth-brand text-center text-lg-start pb-4">
                             
-                            <div class="auth-logo">
-                                <span class="logo-lg">
-                                    <img src="{{asset('/')}}assets/images/select-and-rent-logo-blue.png" alt="" height="150">
-                                </span>
-                            </div>
+                        <div class="auth-logo">
+                            <span class="logo-lg">
+                                <img src="{{asset('/')}}assets/images/select-and-rent-logo-blue.png" alt="" height="150">
+                            </span>
                         </div>
-
+                    </div>
+                    <div class="p-3">
                         <!-- title-->
                         
                         <p class="text-muted mb-4">Enter your email address and password to access account.</p>
@@ -94,7 +94,7 @@
                     <p class="lead"><i class="mdi mdi-format-quote-open"></i> I've been using your theme from the previous developer for our web app, once I knew new version is out, I immediately bought with no hesitation. Great themes, good documentation with lots of customization available and sample app that really fit our need. <i class="mdi mdi-format-quote-close"></i>
                     </p>
                     <h5 class="text-white">
-                        - Fadlisaad (Ubold Admin User)
+                        - Select and Rent Company
                     </h5>
                 </div> <!-- end auth-user-testimonial-->
             </div>

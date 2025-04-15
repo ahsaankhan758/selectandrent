@@ -10,7 +10,9 @@ Car Detail | Select and Rent
 @php
     $images = unserialize($car->images);
 @endphp
-
+<!-- add to cart js -->
+<script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <div class="row container mt-5">
     <div class="col-12">
         <!-- Carousel Wrapper -->
@@ -121,11 +123,7 @@ Car Detail | Select and Rent
 
                 </ul>
                 <!-- for add to cart  -->
-                <form method="post" action="{{route('cart.carAdd')}}" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="id" value="{{ $car->id }}">
-                <button type="submit" class="btn btn-purchase w-100 rounded-pill mt-3">Book Now</button>
-                </form>
+                <button data-carid="{{ $car->id }}" id="car-booking-btn" class="btn btn-purchase w-100 rounded-pill mt-3">Book Now</button>
                 <!-- end add to cart -->
             </div>
         </div>
