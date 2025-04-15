@@ -53,29 +53,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
-    //Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
-    Route::post('logout', function (Request $request) {
-        $role = Auth::user()->role;
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-        if(isset($role) && $role == 'admin')
-        {
-            return $request->wantsJson()
-                ? new JsonResponse([], 204)
-                : redirect('/admin/login');
-        }
-    elseif(isset($role) && $role == 'company')
-        {
-            return $request->wantsJson()
-                ? new JsonResponse([], 204)
-                : redirect('/company/login');
-        }
-    
-        return redirect('/login');
-    })->name('logout')->middleware('auth');
-
+    Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
@@ -166,6 +144,47 @@ Route::middleware('LanguageMiddleware')->group(function(){
         });
     }
 
+    // add routes of website by Farhan & Salman
+Route::get('/', [WebsiteHomeController::class, 'showView']);
+Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
+Route::get('/faqs', [FaqsController::class, 'faqView']);
+Route::get('/about-us', [AboutController::class, 'aboutView']);
+Route::get('/contact', [ContactController::class, 'contactView']);
+Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
+// by ak
+Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');
+Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
+Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])->name('cart.remove');
+// 
+Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
+Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
+Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
+// categories routes
+Route::get('/categories', [CategoryController::class, 'categoryView']);
+Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
+// end categories
+// car listing routes
+Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
+Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
+Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
+Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
+// end car listing routes
+// added by farhan
+Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
+Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
+Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
+// car register by farhan
+Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
+Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
+// car search page by farhan
+Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
+Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
+
+// email template
+// Route::get('/email-template', function () {
+//     return view('website.emailtemplate');
+// });
+Route::get('/verify/{id}/{hash}', [CarRegisterController::class, 'carRegStore'])->name('verification.verify');
 });
 
 //Auth Routes
@@ -230,46 +249,6 @@ Route::post('/lock-screen', function () {
 // })->name('change.language');
 
 
-// add routes of website by Farhan & Salman
-Route::get('/', [WebsiteHomeController::class, 'showView']);
-Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
-Route::get('/faqs', [FaqsController::class, 'faqView']);
-Route::get('/about-us', [AboutController::class, 'aboutView']);
-Route::get('/contact', [ContactController::class, 'contactView']);
-Route::get('/carbooking', [CarBookingController::class, 'carBookingView']);
-// by ak
-Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');
-Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
-Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])->name('cart.remove');
-// 
-Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
-Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
-Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
-// categories routes
-Route::get('/categories', [CategoryController::class, 'categoryView']);
-Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
-// end categories
-// car listing routes
-Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
-Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
-Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
-Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
-// end car listing routes
-// added by farhan
-Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
-Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
-Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
-// car register by farhan
-Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
-Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
-// car search page by farhan
-Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
-Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
 
-// email template
-// Route::get('/email-template', function () {
-//     return view('website.emailtemplate');
-// });
-Route::get('/verify/{id}/{hash}', [CarRegisterController::class, 'carRegStore'])->name('verification.verify');
 
 
