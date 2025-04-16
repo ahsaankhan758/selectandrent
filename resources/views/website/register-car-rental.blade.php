@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-Car-Register | Select and Rent
+{{ __('messages.Car-Register') }} | {{ __('messages.Select and Rent') }}
 @endsection
 <style>
     .form-control {
@@ -57,36 +57,36 @@ Car-Register | Select and Rent
     <div class="container">
         <div class="text-center mb-4 mt-4">
             <img src="{{asset('/')}}frontend-assets/icons/select-and-rent-logo-3.png" alt="Logo" width="100">
-            <h2 class="fw-bold mb-5">Register With Car Rental</h2>
+            <h2 class="fw-bold mb-5">{{ __('messages.Register_With_Car_Rental') }}</h2>
         </div>
         <div class="row">
             <div class="col-md-6 mb-2">
                 <form action="{{ route('website.register') }}" method="POST">
                     @csrf
                     {{-- user detail --}}
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Full Name" name="name">
-                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Email Address" name="email">
-                    <input type="password" class="form-control mb-3 form-control-border static-width" placeholder="Password" name="password">
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Full Name') }}" name="name">
+                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Email Address') }}" name="email">
+                    <input type="password" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Password') }}" name="password">
                     {{-- company detail --}}
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Name" name="companyName">
-                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="Company Email" name="companyEmail">
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Phone" name="phone">
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="Company Website" name="website">
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Company_Name') }}" name="companyName">
+                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Company_Email') }}" name="companyEmail">
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Company_Phone') }}" name="phone">
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Company_Website') }}" name="website">
                     
                     <button class="btn btn-orange-clr rounded-pill text-white">
-                        Submit Now
+                        {{ __('messages.Submit') }}
                     </button>
                 </form>
                 
             </div>
             <div class="col-md-6">
                 <div class="contact-info">
-                    <h3>Contact Info</h3>
+                    <h3>{{ __('messages.Contact Info') }}</h3>
             
                     <div class="info-item">
                         <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="Phone Icon">
                         <div class="info-text">
-                            <span>Phone</span>
+                            <span>{{ __('messages.Phone') }}</span>
                             <p>+92 324 4469929</p>
                         </div>
                     </div>
@@ -94,7 +94,7 @@ Car-Register | Select and Rent
                     <div class="info-item">
                         <img src="{{asset('/')}}frontend-assets/icons/mail.png" alt="Email Icon">
                         <div class="info-text">
-                            <span>Email</span>
+                            <span>{{ __('messages.Email') }}</span>
                             <p>hello@sparkodic.com</p>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ Car-Register | Select and Rent
                     <div class="info-item mb-4">
                         <img src="{{asset('/')}}frontend-assets/icons/home.png" alt="Home Icon">
                         <div class="info-text">
-                            <span>Address</span>
+                            <span>{{ __('messages.Address') }}</span>
                             <p>Kington, United Kingdom</p>
                         </div>
                     </div>

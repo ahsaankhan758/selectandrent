@@ -19,6 +19,6 @@
 @endforeach 
 @else
     <div class="col-12 text-center">
-        <p>No blogs available.</p>
+        <p>{{ __('messages.No blogs available') }}.</p>
     </div>
 @endif

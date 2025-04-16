@@ -1,7 +1,7 @@
 @extends('website.layout.master')
 @section('title')
 
-Car Detail | Select and Rent
+{{ __('messages.Car Detail') }} | {{ __('messages.Select and Rent') }}
 
 @endsection
 
@@ -41,11 +41,11 @@ Car Detail | Select and Rent
             <!-- Controls -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">{{ __('messages.Previous') }}</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">{{ __('messages.Next') }}</span>
             </button>
         </div>
     </div>
@@ -84,7 +84,7 @@ Car Detail | Select and Rent
                 <h2 class="fw-bold bmw-text-color text-capitalize">{{ $car->car_models->car_brands->name ?? ' ' }} {{ $car->car_models->name ?? ' ' }} {{ $car->year ?? ' ' }}</h2>
                 <p class="bmw-text">{{ $car->detail }}</p>
                 
-                <h4 class="mt-4">Features</h4>
+                <h4 class="mt-4">{{ __('messages.features') }}</h4>
                 <div class="row">
                     @php $features = unserialize($car->features); @endphp
                     @foreach(array_chunk($features, ceil(count($features)/3)) as $chunk)
@@ -104,26 +104,26 @@ Car Detail | Select and Rent
         <div class="col-lg-4 col-md-4 col-sm-4">
             <div class="rental-card p-4 shadow rounded">
                 <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
-                    <h5 class="mb-0 py-3">Rental Price</h5>
+                    <h5 class="mb-0 py-3">{{ __('messages.Rental Price') }}</h5>
                     <h3 class="fw-bold py-3 mb-0">${{ $car->rent }} <span class="fs-6">/ Day</span></h3>
                 </div>
                 <ul class="list-unstyled px-3 py-2">
-                    <li class="d-flex justify-content-between"><strong>Seats</strong> <span>{{ $car->seats }} Seats</span></li>
-                    <li class="d-flex justify-content-between"><strong>Doors</strong> <span>{{ $car->doors }} Doors</span></li>
-                    <li class="d-flex justify-content-between"><strong>Luggage</strong> <span>{{ $car->luggage }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Drive</strong> <span>{{ $car->drive }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Fuel Economy</strong> <span>{{ $car->fuel_economy }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Fuel Type</strong> <span>{{ $car->fuel_type }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Engine</strong> <span>{{ $car->engine_size }} cc</span></li>
-                    <li class="d-flex justify-content-between"><strong>Year</strong> <span>{{ $car->year }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Mileage</strong> <span>{{ $car->mileage }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Transmission</strong> <span>{{ ucfirst($car->transmission) }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Exterior Color</strong> <span>{{ ucfirst($car->exterior_color) }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>Interior Color</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Seats') }}</strong> <span>{{ $car->seats }} </span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Doors') }}</strong> <span>{{ $car->doors }} </span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Luggage') }}</strong> <span>{{ $car->luggage }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Drive') }}</strong> <span>{{ $car->drive }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Economy') }}</strong> <span>{{ $car->fuel_economy }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Type') }}</strong> <span>{{ $car->fuel_type }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Engine') }}</strong> <span>{{ $car->engine_size }} cc</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Year') }}</strong> <span>{{ $car->year }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Mileage') }}</strong> <span>{{ $car->mileage }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Transmission') }}</strong> <span>{{ ucfirst($car->transmission) }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Exterior Color') }}</strong> <span>{{ ucfirst($car->exterior_color) }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.Interior Color') }}</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
 
                 </ul>
                 <!-- for add to cart  -->
-                <button data-carid="{{ $car->id }}" id="car-booking-btn" class="btn btn-purchase w-100 rounded-pill mt-3">Book Now</button>
+                <button data-carid="{{ $car->id }}" id="car-booking-btn" class="btn btn-purchase w-100 rounded-pill mt-3">{{ __('messages.Book Now') }}</button>
                 <!-- end add to cart -->
             </div>
         </div>
@@ -136,7 +136,7 @@ Car Detail | Select and Rent
  <!-- start accordian and map -->
  <div class="container">
     <div class="col-md-12 col-lg-12 col-12">
-        <h5 class="fw-bold question-heading">General Question</h5>
+        <h5 class="fw-bold question-heading">{{ __('messages.General Question') }}</h5>
     </div>
     <div class="row g-4">
         <!-- FAQ Section -->
@@ -146,7 +146,7 @@ Car Detail | Select and Rent
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                How to Search and Book a Car
+                                {{ __('messages.How to Search and Book a Car') }}
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
@@ -158,7 +158,7 @@ Car Detail | Select and Rent
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Payment Methods and Security
+                                {{ __('messages.Payment Methods and Security') }} 
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
@@ -170,7 +170,7 @@ Car Detail | Select and Rent
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Refund and Cancellation Policy
+                                {{ __('messages.Refund and Cancellation Policy') }}
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
@@ -182,7 +182,7 @@ Car Detail | Select and Rent
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingfour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-                                Refund and Cancellation Policy
+                                {{ __('messages.Refund and Cancellation Policy') }}
                             </button>
                         </h2>
                         <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour" data-bs-parent="#faqAccordion">
@@ -198,7 +198,7 @@ Car Detail | Select and Rent
         <!-- Location Section -->
         <div class="col-lg-5 col-md-5 col-sm-5 location-card-clr">
             <div class="location-box flex-fill d-flex flex-column">
-                <h5 class="fw-bold">Location</h5>
+                <h5 class="fw-bold">{{ __('messages.Location') }}</h5>
                 <div class="map-container flex-grow-1">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.092073138068!2d-122.4312977243305!3d37.76087301515292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7e1fcb531a9b%3A0x51edbcba27e93591!2sPhilz%20Coffee!5e0!3m2!1sen!2sus!4v1700000000000" 
@@ -207,7 +207,7 @@ Car Detail | Select and Rent
                 </div>
                 <div class="help-box mt-3">
                     <div class="help-content">
-                        <div class="help-text">Need Any Help?</div>
+                        <div class="help-text">{{ __('messages.Need Any Help') }}?</div>
                         <p class="help-number">+71 202 102 2124</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="24-hour support">
@@ -221,12 +221,12 @@ Car Detail | Select and Rent
     <div class="row align-items-center">
         <!-- Heading (Always on Left) -->
         <div class="col-12 col-md-6 text-center text-md-start">
-            <h2 class="fw-bold">Choose The Car You Need</h2>
+            <h2 class="fw-bold">{{ __('messages.Choose The Car You Need') }}</h2>
         </div>
         <!-- Button (Center on Mobile, End on Larger Screens) -->
         <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
             <button class="btn  rounded-pill text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#carRentalModal">
-                View All <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
+                {{ __('messages.View All') }} <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
             </button>
         </div>
     </div>
@@ -245,8 +245,8 @@ Car Detail | Select and Rent
         
                         <div class="card-content">
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class="car-price">${{ $car->rent }}/day</h6>
-                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">Book</button>
+                                <h6 class="car-price">${{ $car->rent }}/{{ __('messages.Day') }}</h6>
+                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">{{ __('messages.Book') }}</button>
                             </div>
         
                             <h5 class="text-muted mt-3">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
@@ -254,18 +254,18 @@ Car Detail | Select and Rent
                             <div class="d-flex justify-content-between mt-4">
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly.png" alt="Car" width="20px">
-                                    {{ $car->weight }} kg
+                                    {{ $car->weight }} {{ __('messages.kg') }}
                                 </div>
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car" width="20px">
-                                    {{ $car->mileage }} km
+                                    {{ $car->mileage }} {{ __('messages.km') }}
                                 </div>
                             </div>
         
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car" width="20px">
-                                    {{ $car->seats }} Seater
+                                    {{ $car->seats }} {{ __('messages.Seater') }}
                                 </div>
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car" width="20px">
@@ -295,13 +295,13 @@ Car Detail | Select and Rent
 <!-- end -->
 <div class="container-fluid bg-white">
 <div class="review-container mb-3">
-    <h2>Rate & Reviews</h2>
+    <h2>{{ __('messages.Rate & Reviews') }}</h2>
     <div class="container">
         <div class="row d-flex align-items-start gap-3">
             <!-- Rating Summary Box -->
             <div class="col-md-4 col-12 text-center p-4 rating-box">
                 <h3 class="mt-4">4.95 / 5</h3>
-                <p class="text-muted">(762 Reviews)</p>
+                <p class="text-muted">{{ __('messages.(762 Reviews)') }}</p>
                 <div class="stars text-warning">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -315,7 +315,7 @@ Car Detail | Select and Rent
             <div class="col-md-7 col-12">
                 <div class="flex-grow-1">
                     <div class="d-flex justify-content-between">
-                        <span class="fw-bold">Price</span>
+                        <span class="fw-bold">{{ __('messages.Price') }}</span>
                         <span>4.8/5</span>
                     </div>
                     <div class="progress">
@@ -323,7 +323,7 @@ Car Detail | Select and Rent
                     </div>
     
                     <div class="d-flex justify-content-between mt-2">
-                        <span class="fw-bold">Services</span>
+                        <span class="fw-bold">{{ __('messages.Services') }}</span>
                         <span>4.3/5</span>
                     </div>
                     <div class="progress">
@@ -331,7 +331,7 @@ Car Detail | Select and Rent
                     </div>
     
                     <div class="d-flex justify-content-between mt-2">
-                        <span class="fw-bold">Safety</span>
+                        <span class="fw-bold">{{ __('messages.Safety') }}</span>
                         <span>4.5/5</span>
                     </div>
                     <div class="progress">
@@ -339,7 +339,7 @@ Car Detail | Select and Rent
                     </div>
     
                     <div class="d-flex justify-content-between mt-2">
-                        <span class="fw-bold">Entertainment</span>
+                        <span class="fw-bold">{{ __('messages.Entertainment') }}</span>
                         <span>4.7/5</span>
                     </div>
                     <div class="progress">
@@ -347,7 +347,7 @@ Car Detail | Select and Rent
                     </div>
     
                     <div class="d-flex justify-content-between mt-2">
-                        <span class="fw-bold">Accessibility</span>
+                        <span class="fw-bold">{{ __('messages.Accessibility') }}</span>
                         <span>5/5</span>
                     </div>
                     <div class="progress">
@@ -355,7 +355,7 @@ Car Detail | Select and Rent
                     </div>
     
                     <div class="d-flex justify-content-between mt-2">
-                        <span class="fw-bold">Support</span>
+                        <span class="fw-bold">{{ __('messages.Support') }}</span>
                         <span>4.8/5</span>
                     </div>
                     <div class="progress">
@@ -422,11 +422,11 @@ Car Detail | Select and Rent
 
     <!-- Review Form -->
     <div class="mt-4">
-        <h4>Rate & Reviews</h4>
+        <h4>{{ __('messages.Rate & Reviews') }}</h4>
         <div class="row">
             <div class="col-md-4 col-12 d-flex align-items-center mb-2">
             <div class="col-md-5">
-            <span>Price</span>
+            <span>{{ __('messages.Price') }}</span>
             </div>
             <div class="col-md-5">
                 <div class="stars ms-3">
@@ -440,7 +440,7 @@ Car Detail | Select and Rent
             </div>
             <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                 <div class="col-md-5">
-                    <span>Services</span>
+                    <span>{{ __('messages.Services') }}</span>
                     </div>
                     <div class="col-md-5">
                         <div class="stars ms-3">
@@ -454,7 +454,7 @@ Car Detail | Select and Rent
             </div>
             <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                 <div class="col-md-5">
-                    <span>Safety</span>
+                    <span>{{ __('messages.Safety') }}</span>
                     </div>
                     <div class="col-md-5">
                         <div class="stars ms-3">
@@ -471,7 +471,7 @@ Car Detail | Select and Rent
         <div class="row mt-2">
             <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                 <div class="col-md-5">
-                    <span>Entertainment</span>
+                    <span>{{ __('messages.Entertainment') }}</span>
                     </div>
                     <div class="col-md-5">
                         <div class="stars ms-3">
@@ -485,7 +485,7 @@ Car Detail | Select and Rent
             </div>
             <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                 <div class="col-md-5">
-                    <span>Accessibility</span>
+                    <span>{{ __('messages.Accessibility') }}</span>
                     </div>
                     <div class="col-md-5">
                         <div class="stars ms-3">
@@ -499,7 +499,7 @@ Car Detail | Select and Rent
             </div>
             <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                 <div class="col-md-5">
-                    <span>Support</span>
+                    <span>{{ __('messages.Support') }}</span>
                     </div>
                     <div class="col-md-5">
                         <div class="stars ms-3">
@@ -514,18 +514,18 @@ Car Detail | Select and Rent
         </div>
         <div class="row">
         <div class="col-md-6 mb-2">
-            <input type="text" class="form-control form-control-border" placeholder="Email">
+            <input type="text" class="form-control form-control-border" placeholder="{{ __('messages.Email') }}">
         </div>
         <div class="col-md-6 mb-2">
-            <input type="text" class="form-control form-control-border" placeholder="Phone">
+            <input type="text" class="form-control form-control-border" placeholder="{{ __('messages.Phone') }}">
         </div>
     </div>
         <div class="col-md-12 mb-2">
-            <textarea class="form-control form-control-border" rows="4" placeholder="Your Comment"></textarea>
+            <textarea class="form-control form-control-border" rows="4" placeholder="{{ __('messages.Your Comment') }}"></textarea>
         </div>
         <div class="text-end">
             <button class="btn btn-warning btn-orange-clr rounded-pill text-white px-4 py-2">
-                Submit
+                {{ __('messages.Submit') }}
             </button>
         </div>           
     </div>
