@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-Contact us | Select and Rent
+{{ __('messages.About-us') }} | {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@ Contact us | Select and Rent
      font-weight: 700;
      text-transform: uppercase;
 
-     background: url('/frontend-assets/icons/getintouch.png') no-repeat;
+     background: url('/company-assets/icons/getintouch.png') no-repeat;
      background-size: cover;
      background-position: -106px center; 
 
@@ -26,61 +26,61 @@ Contact us | Select and Rent
         <div class="row align-items-center">
             <!-- Left Side: Contact Info -->
             <div class="col-lg-5 col-md-5 custom-contact-info">
-                <h3 class="get-desktop masked-text">Get In <br> Touch</h3>
-                <h2 class="get-mobile  text-center masked-text ">Get In Touch</h2>
+                <h3 class="get-desktop masked-text">{{ __('messages.Get In') }} <br> {{ __('messages.Touch') }}</h3>
+                <h2 class="get-mobile  text-center masked-text ">{{ __('messages.Get In Touch') }}</h2>
                 
                 <ul class="list-unstyled custom-contact-list">
                     <li>
-                        <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="Phone Icon">
+                        <img src="{{asset('/')}}company-assets/icons/phone.png" alt="Phone Icon">
                         <div>
-                            <h6>Phone</h6>
+                            <h6>{{ __('messages.Phone') }}</h6>
                             <div class="fw-bold">+92 3244469929</div>
                         </div>
                     </li>
                     <li>
-                        <img src="{{asset('/')}}frontend-assets/icons/mail.png" alt="Email Icon">
+                        <img src="{{asset('/')}}company-assets/icons/mail.png" alt="Email Icon">
                         <div>
-                            <h6>Email</h6>
+                            <h6>{{ __('messages.Email') }}</h6>
                             <div class="fw-bold">hello@sparkodic.com</div>
                         </div>
                     </li>
                     <li>
-                        <img src="{{asset('/')}}frontend-assets/icons/home.png" alt="Home Icon">
+                        <img src="{{asset('/')}}company-assets/icons/home.png" alt="Home Icon">
                         <div>
-                            <h6>Address</h6>
+                            <h6>{{ __('messages.Address') }}</h6>
                             <div class="fw-bold">United Kingdom</div>
                         </div>
                     </li>
                 </ul>
 
-                <p class="custom-follow-us">Follow Us</p>
+                <p class="custom-follow-us">{{ __('messages.Follow Us') }}</p>
                 <div class="custom-social-icons">
-                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(3).png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials.png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(1).png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(2).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(3).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials.png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(1).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(2).png" alt=""></a>
                 </div>
             </div>
             <!-- Right Side: Contact Form -->
             <div class="col-lg-7 col-md-7">
                 <div class="custom-contact-form mt-2">
-                    <h3>Contact Form</h3>
-                    <p>Enter your details. And you can feel free to contact us for any kind of information.</p>
+                    <h3>{{ __('messages.Contact Form') }}</h3>
+                    <p>{{ __('messages.Enter your details. And you can feel free to contact us for any kind of information') }}.</p>
                     <form>
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control mb-3" placeholder="First Name">
+                                <input type="text" class="form-control mb-3" placeholder="{{ __('messages.First Name') }}">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control mb-3" placeholder="Last Name">
+                                <input type="text" class="form-control mb-3" placeholder="{{ __('messages.Last Name') }}">
                             </div>
                         </div>
-                        <input type="email" class="form-control mb-3" placeholder="Email">
-                        <input type="tel" class="form-control mb-3" placeholder="Phone">
-                        <textarea class="form-control mb-3" placeholder="Messages" rows="4"></textarea>
+                        <input type="email" class="form-control mb-3" placeholder="{{ __('messages.Email') }}">
+                        <input type="tel" class="form-control mb-3" placeholder="{{ __('messages.Phone') }}">
+                        <textarea class="form-control mb-3" placeholder="{{ __('messages.Messages') }}" rows="4"></textarea>
                         <div class="text-end">
                             <button class="btn btn-orange-clr rounded-pill text-white px-4 py-2">
-                                Submit Now
+                                {{ __('messages.Submit Now') }} 
                             </button>
                         </div>                       
                     </form>

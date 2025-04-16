@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-Car Listing | Select and Rent
+{{ __('messages.Car Listing') }} | {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
@@ -64,7 +64,7 @@ Car Listing | Select and Rent
             <div class="filters p-3">
                 <div class="filter-section">
                     <div class="position-relative">
-                        <input type="text" id="addressFilter" class="form-control car-input-box" placeholder="Address">
+                        <input type="text" id="addressFilter" class="form-control car-input-box" placeholder="{{ __('messages.Address') }}">
                         <ul id="addressDropdown" class="dropdown-menu w-100" style="display: none;"></ul>
                     </div>
                     
@@ -72,13 +72,13 @@ Car Listing | Select and Rent
                                         
                     <div class="car-listing-dropdown-container mb-2">
                         <div id="carModelDropdownBtn" class="dropdown-btn">
-                            <span>Select a Car Model</span>
+                            <span>{{ __('messages.Select a Car Model') }} </span>
                             <i class="dropdown-arrow fas fa-chevron-down"></i>
                         </div>
                         <div id="carModelDropdownMenu" class="dropdown-menu-custom">
-                            <input type="text" id="carModelSearch" class="search-box" placeholder="Search Car Model...">
+                            <input type="text" id="carModelSearch" class="search-box" placeholder="{{ __('messages.Search Car Model') }}...">
                             <ul id="carModelList" class="list-unstyled mb-0">
-                                <li class="dropdown-item-custom text-muted">Loading...</li>
+                                <li class="dropdown-item-custom text-muted">{{ __('messages.Loading') }}...</li>
                             </ul>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ Car Listing | Select and Rent
                
                 
                 <div class="brand-section">
-                    <h5 class="brand-title">All Brands ({{ $totalCars }})</h5>
+                    <h5 class="brand-title">{{ __('messages.All Brands ') }}({{ $totalCars }})</h5>
                     
                     <div class="brand-list">
                         @foreach($categories->take(6) as $category)
@@ -110,11 +110,11 @@ Car Listing | Select and Rent
                                 </button>
                             @endforeach
                         </div>
-                        <button id="viewMoreCategories" class="brand-btn">View More</button>
+                        <button id="viewMoreCategories" class="brand-btn">{{ __('messages.View More') }}</button>
 
                     @endif
                 
-                    <button class="btn find-car-btn btn-dark-blue-clr">Find Car</button>
+                    <button class="btn find-car-btn btn-dark-blue-clr">{{ __('messages.Find Car') }}</button>
                 </div>
                 
                 
@@ -130,25 +130,25 @@ Car Listing | Select and Rent
             <div class="static-display-flex align-items-center">
                 <span class="menu-icon">☰</span>
                 <span class="results">
-                    <span id="current-count">8</span> of {{ $totalCars }} results
-                </span>            
+                    <span id="current-count">8</span> {{ __('messages.of') }} {{ $totalCars }}{{ __('messages.results') }} 
+                </span>
             </div>
             <div class="filter-options static-display-flex align-items-center">
                 <div class="car-listing-dropdown">
                     <span class="filter-icon">⇅</span>
                     <select id="transmission-filter" class="car-listing-form-select">
-                        <option value="">All Cars</option>
-                        <option value="auto">Auto</option>
-                        <option value="manual">Manual</option>
+                        <option value="">{{ __('messages.All Cars') }}</option>
+                        <option value="auto">{{ __('messages.Auto') }}</option>
+                        <option value="manual">{{ __('messages.Manual') }}</option>
                     </select>
                     
                 </div>
                 <div class="car-listing-dropdown">
                     <span class="sort-icon">≡</span>
                     <select id="sort-filter" class="car-listing-form-select">
-                        <option value="">Sort By</option>
-                        <option value="low_to_high">Price (Low to High)</option>
-                        <option value="high_to_low">Price (High to Low)</option>
+                        <option value="">{{ __('messages.Sort By') }}</option>
+                        <option value="low_to_high">{{ __('messages.Price (Low to High)') }}</option>
+                        <option value="high_to_low">{{ __('messages.Price (High to Low)') }}</option>
                     </select>
                 </div>
             </div>
@@ -168,7 +168,7 @@ Car Listing | Select and Rent
         data-offset="8" 
         data-total="{{ $totalCars }}" 
         data-model="Car">
-        Load More
+        {{ __('messages.Load More') }}
         </button>
     
         @endif
