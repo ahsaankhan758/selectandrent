@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Template | Select and Rent</title>
+    <title>{{ __('messages.Email Template') }} | {{ __('messages.Select and Rent') }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -87,18 +87,18 @@
 <body>
     <div class="container">
         <img src="{{ $logo }}" alt="Select and Rent Logo" class="logo">
-        <h2>Welcome to Select and Rent, {{ $user->name }}!</h2>
-        <p class="content">Thank you for registering your company with us. Please click the link below to verify your email address and complete the registration process:</p>
+        <h2>{{ __('messages.Welcome to Select and Rent') }}, {{ $user->name }}!</h2>
+        <p class="content">{{ __('messages.Thank you for registering your company with us. Please click the link below to verify your email address and complete the registration process') }}:</p>
         <a href="{{ route('verification.verify', ['id' => $user->id, 'hash' => sha1($user->email)]) }}" class="button">
-            Verify Your Email
+            {{ __('messages.Verify Your Email') }}
         </a>
         
         <div class="support-box">
-            <p><strong>Need Help?</strong></p>
-            <p>Contact our support team at <br> <strong>hello@selectandrent.com</strong></p>
+            <p><strong>{{ __('messages.Need Help') }}?</strong></p>
+            <p>{{ __('messages.Contact our support team at') }} <br> <strong>hello@selectandrent.com</strong></p>
         </div>
 
-        <p class="footer">Stay connected with us:</p>
+        <p class="footer">{{ __('messages.Stay connected with us') }}:</p>
         <div class="social-icons">
             <a href="#"><img src="{{ $facebook }}" alt="Facebook"></a>
             <a href="#"><img src="{{ $twitter }}" alt="Twitter"></a>
@@ -106,7 +106,7 @@
             <a href="#"><img src="{{ $linkedin }}" alt="LinkedIn"></a>
         </div>
         <hr>
-        <div class="footer">© 2025 All Rights Reserved</div>
+        <div class="footer">© 2025{{ __('messages.All Rights Reserved') }} </div>
     </div>
 </body>
 </html>
