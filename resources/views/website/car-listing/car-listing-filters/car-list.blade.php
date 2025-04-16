@@ -6,8 +6,8 @@
         </a>
         <div class="car-info">
             <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                <h6 class="car-price">${{ $car->rent }}/day</h6>
-                <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">Book</button>
+                <h6 class="car-price">${{ $car->rent }}/{{ __('messages.day') }}</h6>
+                <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
                                
             </div>
             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
@@ -16,15 +16,15 @@
             <div class="car-details">
                 <div class="detail-item">
                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly.png" alt="Car Image" width="20px">
-                    {{ $car->weight }} kg
+                    {{ $car->weight }} {{ __('messages.kg') }}
                 </div>
                 <div class="detail-item">
                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car Image" width="20px">
-                    {{ $car->seats }} Sitze
+                    {{ $car->seats }} {{ __('messages.Seats') }} 
                 </div>
                 <div class="detail-item">
                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car Image" width="20px">
-                    {{ $car->mileage }} km
+                    {{ $car->mileage }} {{ __('messages.km') }} 
                 </div>
                 <div class="detail-item">
                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car Image" width="20px">

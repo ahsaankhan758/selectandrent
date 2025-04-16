@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-Car Booking | Select and Rent
+{{ __('messages.Car Booking') }}| {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
@@ -13,22 +13,22 @@ Car Booking | Select and Rent
         <div class="progress-line"></div>
         <div class="progress-bar-filled"></div>
 
-        <!-- Step 1 -->
-        <div class="progress-step active">
-            <span class="step-number">1</span>
-            <span class="step-text">Booking</span>
+       <!-- Step 1 -->
+       <div class="progress-step active">
+        <span class="step-number">1</span>
+        <span class="step-text">{{ __('messages.Booking') }}</span>
         </div>
 
         <!-- Step 2 -->
         <div class="progress-step">
             <span class="step-number">2</span>
-            <span class="step-text">Confirmation</span>
+            <span class="step-text">{{ __('messages.Confirmation') }}</span>
         </div>
 
         <!-- Step 3 -->
         <div class="progress-step">
             <span class="step-number">3</span>
-            <span class="step-text">Checkout</span>
+            <span class="step-text">{{ __('messages.Checkout') }}</span>
         </div>
     </div>
     @if(session('success'))
@@ -41,7 +41,7 @@ Car Booking | Select and Rent
 
 @if($cartItems->count() > 0)
 <div class="container">
-<a class="text-right" href="{{ route('clear.cart') }}">Clear Cart ({{$cartItemsCount}})</a>
+<a class="text-right" href="{{ route('clear.cart') }}">{{ __('messages.Clear_Cart') }} ({{$cartItemsCount}})</a>
 </div>
 @foreach($cartItems as $cart)
 
@@ -50,9 +50,9 @@ Car Booking | Select and Rent
     <div class="row g-3">
         <!-- Pickup Location -->
         <div class="col-md-3">
-            <label class="form-label">Pickup Location</label>
+            <label class="form-label">{{ __('messages.Pickup Location') }}</label>
             <select class="form-select">
-                <option selected>Select Location</option>
+                <option selected>{{ __('messages.Select Location') }}</option>
                 @if(isset($vehicleLocation) && !empty($vehicleLocation))
                     @foreach($vehicleLocation as $location)
                     <option value="{{$location->id}}">{{$location->city}}</option>
@@ -63,9 +63,9 @@ Car Booking | Select and Rent
 
         <!-- Dropoff Location -->
         <div class="col-md-3">
-            <label class="form-label">Dropoff Location</label>
+            <label class="form-label">{{ __('messages.Dropoff Location') }}</label>
             <select class="form-select">
-                <option selected>Select Location</option>
+                <option selected>{{ __('messages.Select Location') }}</option>
                 @if(isset($vehicleLocation) && !empty($vehicleLocation))
                     @foreach($vehicleLocation as $location)
                     <option value="{{$location->id}}">{{$location->city}}</option>
@@ -76,7 +76,7 @@ Car Booking | Select and Rent
 
         <!-- Pickup Date & Time -->
         <div class="col-md-3">
-            <label class="form-label">Pickup Date Time</label>
+            <label class="form-label">{{ __('messages.Pickup_Date_time') }}</label>
             <div class="input-group">
             <input type="datetime-local" id="getPickupDate" class="form-control time-input">
             </div>
@@ -84,7 +84,7 @@ Car Booking | Select and Rent
 
         <!-- Drop-off Date & Time -->
         <div class="col-md-3">
-            <label class="form-label">Drop-off Date Time</label>
+            <label class="form-label">{{ __('messages.Drop-off_Date_time') }}</label>
             <div class="input-group">
                 <input type="datetime-local" id="getDropoffDate" class="form-control time-input">
             </div>
@@ -101,10 +101,10 @@ Car Booking | Select and Rent
 <!-- CAR DETAIL -->
 <div class="container py-3">
     <div class="vehicle-card d-flex mobile-car">
-        <ul class="col-md-6">Vehicle Info</ul>
-        <ul class="col-md-2">Price</ul>
-        <ul class="col-md-2">Days</ul>
-        <ul class="col-md-2">Action</ul>
+        <ul class="col-md-6">{{ __('messages.Vehicle Info') }}</ul>
+        <ul class="col-md-2">{{ __('messages.Price') }}</ul>
+        <ul class="col-md-2">{{ __('messages.Days') }}</ul>
+        <ul class="col-md-2">{{ __('messages.Action') }}</ul>
     </div>
 </div>
 <div class="container">
@@ -135,18 +135,18 @@ Car Booking | Select and Rent
 <div class="container py-2">
     <div class="row d-flex">
         <div class="col-md-6">
-           <div class="mb-2 text-capitalize"><strong>Seats:</strong> {{$cart->options->seats}}</div>
-           <div class="mb-2 text-capitalize"><strong>weight:</strong> {{$cart->options->weight}}</div>
-           <div class="mb-2 text-capitalize"><strong>Doors:</strong> {{$cart->options->doors}}</div>
-           <div class="mb-2 text-capitalize"><strong>Mileage:</strong> {{$cart->options->mileage}}</div>
-           <div class="mb-2 text-capitalize"><strong>Vehicle Id:</strong> {{$cart->options->lisence_plate}}</div>
-           <div class="mb-2 text-capitalize"><strong>Beam:</strong> {{ $cart->options->beam }}</div>
-           <div class="mb-2 text-capitalize"><strong>Postal Code:</strong>  {{ $cart->options->postal_code }}</div>
-           <div class="mb-2 text-capitalize"><strong>Transmission:</strong> {{ $cart->options->transmission }}</div>
-           <div class="mb-2 text-capitalize"><strong>Engine Size:</strong> {{ $cart->options->engine_size }}</div>
-           <div class="mb-2 text-capitalize"><strong>Exterior Color:</strong> {{ $cart->options->exterior_color }}</div>
-           <div class="mb-2 text-capitalize"><strong>Interior Color:</strong> {{ $cart->options->interior_color }}</div>
-           <div class="mb-2 text-capitalize"><strong>Radius:</strong> 12M</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Seats') }}:</strong> {{$cart->options->seats}}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.weight') }}:</strong> {{$cart->options->weight}}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Doors') }}:</strong> {{$cart->options->doors}}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Mileage') }}:</strong> {{$cart->options->mileage}}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Vehicle Id') }}:</strong> {{$cart->options->lisence_plate}}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.beam') }}:</strong> {{ $cart->options->beam }}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Postal Code') }}:</strong>  {{ $cart->options->postal_code }}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.transmission') }}:</strong> {{ $cart->options->transmission }}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Engine Size') }}:</strong> {{ $cart->options->engine_size }}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Exterior Color') }}:</strong> {{ $cart->options->exterior_color }}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Interior Color') }}:</strong> {{ $cart->options->interior_color }}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.radius') }}:</strong> 12M</div>
         </div>
         <div class="col-md-2 mobile-car">
             <div class="mb-2 empty-box"> </div>
@@ -167,7 +167,7 @@ Car Booking | Select and Rent
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
-            <div class="mb-2"><h6>1 Days</h6></div>
+            <div class="mb-2"><h6>1 {{ __('messages.Days') }}</h6></div>
             <div class="mb-2 empty-box"></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
@@ -198,7 +198,7 @@ Car Booking | Select and Rent
         <!-- Subtotal Box -->
         <div class="col-md-3 col-6">
             <div class="box">
-                <div><strong>Subtotal</strong></div>
+                <div><strong>{{ __('messages.Subtotal') }}</strong></div>
                 <div class="price-car">${{ $subtotal }}</div>
             </div>
         </div>
@@ -211,14 +211,14 @@ Car Booking | Select and Rent
         <!-- Total Box -->
         <div class="col-md-3 col-6">
             <div class="box">
-                <div><strong>Total</strong></div>
+                <div><strong>{{ __('messages.Total') }}</strong></div>
                 <div class="price-car">${{$totalPriceIncludingTax}}</div>
             </div>
         </div>
         <!-- Order Confirmation Button -->
         <div class="col-md-3 col-12">
             <button onclick="window.location.href='{{ url('/confirmation') }}'" class="btn-order btn-orange-clr">
-                Order Confirmation
+                {{ __('messages.Order Confirmation') }}
             </button>
         </div>
     </div>
@@ -229,8 +229,8 @@ Car Booking | Select and Rent
 
 <div class="row">
     <div class="col-md-12 text-center pt-5 bp-5">
-        <p>No car found in your cart</p>
-        <a href="{{route('car.listing')}}" class="btn btn-orange-clr text-white">Car Listing</a>
+        <p>{{ __('messages.No_car_found_in_your_cart') }}</p>
+        <a href="{{route('car.listing')}}" class="btn btn-orange-clr text-white">{{ __('messages.Car_Listing') }}</a>
     </div>
 </div>
 
@@ -240,9 +240,9 @@ Car Booking | Select and Rent
     <div class="row">
         <!--book Section -->
         <div class="col-md-12 mb-4">
-            <h4 class="section-title"><span></span>A Special Note to Our Car Rental Partners</h4>
-            <p class="text-size">At SelectandRent, we value our partnership with car rental companies like yours. Together, we aim to redefine the car rental experience for customers worldwide. Our platform is built to support your growth, offering tools to showcase your fleet, connect with a broader audience, and streamline your operations.<br>
-                Your success is our priority, and we’re here to help you reach new heights with innovative technology, insightful analytics, and dedicated support. Thank you for trusting us to be a part of your journey. Let’s drive forward, together!</p>
+            <h4 class="section-title"><span></span>{{ __('messages.A Special Note to Our Car Rental Partners') }}</h4>
+            <p class="text-size">{{ __('messages.At SelectandRent, we value our partnership with car rental companies like yours. Together, we aim to redefine the car rental experience for customers worldwide. Our platform is built to support your growth, offering tools to showcase your fleet, connect with a broader audience, and streamline your operations') }}.<br>
+                {{ __('messages.Your success is our priority, and we’re here to help you reach new heights with innovative technology, insightful analytics, and dedicated support. Thank you for trusting us to be a part of your journey. Let’s drive forward, together') }} !</p>
         </div>
     </div>
 </div>
