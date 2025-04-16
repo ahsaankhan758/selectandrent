@@ -15,7 +15,7 @@
                   </a>
               </div>
               <!-- Navbar -->
-              <div class="col-md-7">
+              <div class="col-md-6">
                   <nav class="navbar navbar-expand-md" style="white-space: nowrap;">
                       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                           <ul class="navbar-nav">
@@ -61,6 +61,16 @@
                     </li>
                 </ul>
             </div>
+            @if(Cart::instance('cart')->content()->count() > 0 )
+                <div class="col-md-1">
+                    <div class="col-md-1 text-end position-relative">
+                        <a href="{{route('car.booking')}}" class="px-3 text-white position-relative d-inline-block">
+                            <i class="fa-solid fa-car fs-4"></i>
+                            <span class="car-count-badge">{{Cart::instance('cart')->content()->count()}}</span>
+                        </a>
+                    </div> 
+                </div>
+            @endif
               <!-- Get Started Button -->
               <div class="col-md-2 text-end">
                   <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal">
