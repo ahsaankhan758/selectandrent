@@ -32,9 +32,11 @@ $(document).on('click', '#car-booking-btn', function(e) {
             }
             Toast.create(toast);
             // 
+            if(response.status == 'success'){
             setTimeout(function() {
                 window.location.href = '/carbooking';
             }, 2000);
+            }
             // 5000 ms = 5 seconds
             
         },

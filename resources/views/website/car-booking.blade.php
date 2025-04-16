@@ -5,6 +5,7 @@ Car Booking | Select and Rent
 
 @section('content')
 <!-- load ajax for remove cart -->
+<script src="{{asset('/frontend-assets/assets/Js/getDifferenceDays.js')}}"></script>
 <script src="{{asset('/frontend-assets/assets/Js/cartRmoveItems.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <div class="container py-2">
@@ -90,7 +91,7 @@ Car Booking | Select and Rent
         </div>
 
         <!-- Display Difference -->
-        <div class="col-md-6 mt-3">
+        <div class="col-md-3 mt-3">
             <p id="timeDifference"></p>
         </div>
         
@@ -123,6 +124,8 @@ Car Booking | Select and Rent
                 </div>
                 <span class="vehicle-title text-capitalize">{{$cart->options->car_brand}} {{$cart->name}}</span>
                 <p class="car-model-text text-capitalize">{{ $cart->options->year }}, {{$cart->options->car_category}}</p>
+                <p class="fw-bold text-capitalize">$100 / Day</p>
+               
             </div>
             <div class="col-md-6">
 
