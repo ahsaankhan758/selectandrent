@@ -150,7 +150,7 @@ Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
 Route::get('/faqs', [FaqsController::class, 'faqView']);
 Route::get('/about-us', [AboutController::class, 'aboutView']);
 Route::get('/contact', [ContactController::class, 'contactView']);
-Route::get('/carbooking', [CarBookingController::class, 'carBookingView'])->name('carbooking');
+Route::get('/carbooking', [CarBookingController::class, 'carBookingView'])->name('car.booking');
 // by ak
 Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');
 Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
