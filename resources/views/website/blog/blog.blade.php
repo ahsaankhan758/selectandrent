@@ -1,14 +1,14 @@
 @extends('website.layout.master')
 @section('title')
-Blog | Select and Rent
+{{ __('messages.Blog') }} | {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
 <section class="blog-section">
     <div class="container">
         <div class="text-center mb-4">
-            <p class="blog-subtitle">From the Blog</p>
-            <h2 class="blog-title">Car And Bike Rental News</h2>
+            <p class="blog-subtitle">{{ __('messages.From the Blog') }}</p>
+            <h2 class="blog-title">{{ __('messages.Car And Bike Rental News') }}</h2>
         </div>
 
         <div class="row" id="blog-list">
@@ -24,7 +24,7 @@ Blog | Select and Rent
             data-offset="8" 
             data-total="{{ $totalBlogs }}" 
             data-model="Blog">
-            Load More
+            {{ __('messages.Load More') }}
             </button>
             @endif
             </div>
