@@ -29,11 +29,6 @@
                       </div>
                   </nav>
               </div>
-<<<<<<< HEAD
-  
-              <!-- Get Started Button -->
-              <div class="col-md-3 text-end">
-=======
 
               <!-- Multi Lingual -->
               <div class="col-md-1 text-end">
@@ -80,7 +75,6 @@
               <!-- Get Started Button -->
 
               <div class="col-md-2 text-end">
->>>>>>> 8fc77368c0ddef50500ea03c1f558f440e8a2f66
                   <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal">
                     {{ __('messages.get') }} {{ __('messages.started') }}<i class="fa-solid fa-arrow-right"></i>
                   </a>
