@@ -25,15 +25,9 @@
                       </div>
                   </nav>
               </div>
-           
+  
               <!-- Get Started Button -->
-              <div class="col-md-1 text-end position-relative">
-                <a href="{{route('carbooking')}}" class="px-3 text-white position-relative d-inline-block">
-                    <i class="fa-solid fa-car fs-4"></i>
-                    <span class="car-count-badge">{{Cart::instance('cart')->content()->count()}}</span>
-                </a>
-              </div> 
-              <div class="col-md-2 text-end">
+              <div class="col-md-3 text-end">
                   <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal">
                       Get Started <i class="fa-solid fa-arrow-right"></i>
                   </a>
