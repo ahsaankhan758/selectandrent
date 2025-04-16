@@ -29,6 +29,7 @@
                       </div>
                   </nav>
               </div>
+
               <!-- Multi Lingual -->
               <div class="col-md-1 text-end">
                 <ul class="list-unstyled topnav-menu float-end mb-0">
@@ -62,6 +63,7 @@
                 </ul>
             </div>
               <!-- Get Started Button -->
+
               <div class="col-md-2 text-end">
                   <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal">
                     {{ __('messages.get') }} {{ __('messages.started') }}<i class="fa-solid fa-arrow-right"></i>
