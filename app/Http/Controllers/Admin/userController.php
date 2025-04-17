@@ -131,7 +131,6 @@ class userController extends Controller
     public function logout(Request $request)
         {
             $role = Auth::user()->role;
-
             $request->session()->invalidate();
     
             $request->session()->regenerateToken();
@@ -147,7 +146,13 @@ class userController extends Controller
                     ? new JsonResponse([], 204)
                     : redirect('/company/login');
             }
-        
+            elseif(isset($role) && $role == 'user')
+            {
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/');
+            }
+
             return redirect('/login');
         }
 }

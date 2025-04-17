@@ -72,12 +72,16 @@ class AdminMiddleware
                     abort(401);
                 if(Auth::user()->role == 'admin' && $role == 'user')
                     abort(401);
+                if(Auth::user()->role == 'admin' && $role == 'company')
+                    abort(401);
                 if(Auth::user()->role == 'user' && $role == 'admin')
                     abort(401);
-                if(Auth::user()->role == 'admin' && $role == 'company')
-                abort(401);
+                if(Auth::user()->role == 'user' && $role == 'company')
+                    abort(401);
                 if(Auth::user()->role == 'company' && $role == 'admin')
-                abort(401);
+                    abort(401);
+                if(Auth::user()->role == 'company' && $role == 'user')
+                    abort(401);                
             }
             
         return $next($request);

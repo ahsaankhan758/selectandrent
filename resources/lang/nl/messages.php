@@ -481,7 +481,7 @@ return [
 'Full_Name' => 'Volledige naam',
 'Email_Address' => 'E-mailadres',
 'Password' => 'Wachtwoord',
-
+'profile' => 'Profiel',
 
 
 

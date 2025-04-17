@@ -481,7 +481,7 @@ return [
     'Full_Name'=>'Full Name',
     'Email_Address'=>'Email Address',
     'Password'=>'Password',
-    ''=>'',
+    'profile'=>'Profile',
     ''=>'',
     ''=>'',
     ''=>'',

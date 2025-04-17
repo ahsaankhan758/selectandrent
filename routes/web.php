@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\companyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
-
+use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\website\CarRegController;
@@ -59,6 +59,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
     Route::get('company/login',[companyController::class, 'showLoginForm'])->middleware('IsAdmin:company');
     Route::post('company/login', [LoginController::class, 'login'])->name('companyLogin')->middleware('IsAdmin:company');
+
+    //User Login
+    //Route::get('user/signin', [SigninController::class, 'login'])->name('userLogin')->middleware('IsAdmin:user');
+    Route::post('user/signin', [SigninController::class, 'signin'])->name('user.signin')->middleware('IsUser');
     
     // To Get Current Prefix of URL
     $currentPrefix = request()->segment(1);
