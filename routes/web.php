@@ -162,7 +162,7 @@ Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])
 Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
 
 // 
-Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
+Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
 Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
 Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
 // categories routes
