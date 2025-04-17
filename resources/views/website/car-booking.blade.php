@@ -143,7 +143,7 @@
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.beam') }}:</strong> {{ $cart->options->beam }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Postal Code') }}:</strong>  {{ $cart->options->postal_code }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.transmission') }}:</strong> {{ $cart->options->transmission }}</div>
-           <div class="mb-2 text-capitalize"><strong>{{ __('messages.Engine Size') }}:</strong> {{ $cart->options->engine_size }}</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.engine size') }}:</strong> {{ $cart->options->engine_size }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Exterior Color') }}:</strong> {{ $cart->options->exterior_color }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Interior Color') }}:</strong> {{ $cart->options->interior_color }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.radius') }}:</strong> 12M</div>

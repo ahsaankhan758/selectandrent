@@ -481,6 +481,7 @@ return [
 'Full_Name' => 'Nom complet',
 'Email_Address' => 'Adresse e-mail',
 'Password' => 'Mot de passe',
+'profile' => 'Profil',
 
 'client' => 'Client | Clients',
 'plan' => 'Plan | Plans',

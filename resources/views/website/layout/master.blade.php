@@ -20,6 +20,7 @@
 
     <script src="{{asset('/')}}assets/js/loadmore.js"></script>
     <script src="{{asset('/')}}assets/js/car-listing-filters.js"></script>
+    <script src="{{asset('/')}}frontend-assets/assets/js/signin.js"></script>
     
 
     <!-- Include Swiper CSS -->

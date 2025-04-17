@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\UserMiddleware;
 use App\Http\Middleware\CompanyAuth;
 use App\Http\Middleware\IP_Check_Middleware;
 use App\Http\Middleware\RoleMiddleware;
@@ -21,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->appendToGroup('LanguageMiddleware',LanguageMiddleware::class);
         $middleware->alias([
             'IsAdmin' =>AdminMiddleware::class,
+            'IsUser' =>UserMiddleware::class,
             'IPCheck' =>IP_Check_Middleware::class,
             'CompanyAuth' => CompanyAuth::class,  
         ]);

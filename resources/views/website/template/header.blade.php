@@ -1,3 +1,5 @@
+
+<link href="{{asset('/')}}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @if (request()->is('/') || request()->is('carsearch'))
 <div class="hero-header">
@@ -73,12 +75,54 @@
                 </div>
             @endif
               <!-- Get Started Button -->
-
-              <div class="col-md-2 text-end">
-                  <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal">
+            @if(Auth::check())
+                <div class="col-md-2 text-end">
+                    <ul class="list-unstyled topnav-menu float-end mb-0">
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a title="{{ Auth::user()->name }}" class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="mdi mdi-account-circle-outline theme-color text-white"  style="font-size: 25px;"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-view-dashboard-outline theme-color"></i>
+                                    <span> {{ __('messages.dashboard') }} </span>
+                                </a>
+            
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <span class="mdi mdi-account theme-color"></span>
+                                    <span> {{ __('messages.edit') }} {{ __('messages.profile') }}</span>
+                                </a>
+            
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <span class="mdi mdi-book-multiple theme-color"></span>
+                                    <span>{{ __('messages.bookings') }} </span>
+                                </a>
+            
+                                <div class="dropdown-divider"></div>
+            
+                                <!-- item-->
+                                <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <span class="mdi mdi-logout theme-color"></span>
+                                    {{ __('messages.logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+            
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <div class="col-md-2 text-end" id="getStartedButton">
+                    <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal">
                     {{ __('messages.get') }} {{ __('messages.started') }}<i class="fa-solid fa-arrow-right"></i>
-                  </a>
-              </div>
+                    </a>
+                </div>
+            @endif
           </div>
       </div>
   </header>
@@ -99,9 +143,56 @@
                       <img src="{{asset('/')}}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" width="100">
                   </a>
               </div>
-  
-              <!-- Get Started Button (Smaller) -->
-              <a href="#" class="btn rounded-pill px-2 py-1 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal" style="font-size: 10px;">{{ __('messages.get') }} {{ __('messages.started') }} </a>
+
+              @if(Auth::check())
+                <div class="col-md-2 text-end">
+                    <ul class="list-unstyled topnav-menu float-end mb-0">
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a title="{{ Auth::user()->name }}" class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="mdi mdi-account-circle-outline theme-color text-white"  style="font-size: 25px;"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-view-dashboard-outline theme-color"></i>
+                                    <span> {{ __('messages.dashboard') }} </span>
+                                </a>
+            
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <span class="mdi mdi-account theme-color"></span>
+                                    <span> {{ __('messages.edit') }} {{ __('messages.profile') }}</span>
+                                </a>
+            
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <span class="mdi mdi-book-multiple theme-color"></span>
+                                    <span>{{ __('messages.bookings') }} </span>
+                                </a>
+            
+                                <div class="dropdown-divider"></div>
+            
+                                <!-- item-->
+                                <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <span class="mdi mdi-logout theme-color"></span>
+                                    {{ __('messages.logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+            
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            @else
+            <!-- Get Started Button (Smaller) -->
+                <div class="col-md-2 text-end" id="getStartedButtonMobile">
+                    <a href="#" class="btn rounded-pill px-2 py-1 text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#registerModal" style="font-size: 10px;">{{ __('messages.get') }} {{ __('messages.started') }} </a>
+                </div>
+            @endif
+              
+              
           </div>
   
           <!-- Mobile Collapsible Menu -->
@@ -292,7 +383,8 @@
         </div>
         <div class="modal-body">
           <p class="text-center">{{ __('messages.Already have an account?') }} <a href="#" class="login-link-text" data-bs-toggle="modal" data-bs-target="#loginModal">{{ __('messages.login') }}</a></p>
-          <form>
+          <form action="" id="usersign">
+            @csrf
             <div class="mb-3">
               <div class="input-group">
                 <span class="input-group-text"><i class="fa fa-user icon-size"></i></span>
@@ -334,20 +426,21 @@
         </div>
         <div class="modal-body">
           <p class="text-center">{{ __("messages.Don't have an account?") }} <a href="#" class="login-link-text" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></p>
-          <form>
-            <div class="mb-3">
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa fa-envelope icon-size"></i></span>
-                <input type="email" class="form-control" placeholder="{{ __('messages.Enter email') }}">
-              </div>
-            </div>
-            <div class="mb-4">
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
-                <input type="password" class="form-control" placeholder="{{ __('messages.Enter password') }}">
-              </div>
-            </div>
-            <button type="submit" class="btn w-100 btn-color">{{ __('messages.Login') }}</button>
+          <form action="{{ route('user.signin') }}" id="usersignin">
+            @csrf
+                <div class="mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-envelope icon-size"></i></span>
+                    <input type="email" id="get-email" class="form-control" placeholder="{{ __('messages.Enter email') }}">
+                </div>
+                </div>
+                <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
+                    <input type="password" id="get-password" class="form-control" placeholder="{{ __('messages.Enter password') }}">
+                </div>
+                </div>
+                <button type="submit" class="btn w-100 btn-color">{{ __('messages.Login') }}</button>
           </form>
         </div>
       </div>
