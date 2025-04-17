@@ -15,12 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const calculateAndUpdate = () => {
             const pickupDate = new Date(pickupInput.value);
             const dropoffDate = new Date(dropoffInput.value);
-        
+            
             if (pickupInput.value && dropoffInput.value && dropoffDate > pickupDate) {
                 const diffMs = dropoffDate - pickupDate;
                 const diffHrs = diffMs / (1000 * 60 * 60);
                 let diffDays = Math.ceil(diffHrs / 24);
-        
+                // 
+                const DatepickupDate = pickupDate.toISOString().slice(0, 10).replace(/-/g, '-');
+                $('.getDatepickupDate').val(DatepickupDate);
                 // Ensure at least 1 day is charged
                 if (diffDays < 1) diffDays = 1;
         
@@ -63,8 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 timeout: 5000
             };
             Toast.create(toast);
+            // 
+            console.log(data);
             $('.showNewPrice'+data.rowId).html('$'+data.price);
             $('.showDuration'+data.rowId).html(data.qty);
+            $('.calculate-subtotal').html('$'+data.subtotal);
+            $('.calculate-tax').html('$'+data.tax);
+            $('.calculate-total').html('$'+data.total);
         }
         
         )

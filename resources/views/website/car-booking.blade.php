@@ -203,27 +203,55 @@
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>{{ __('messages.Subtotal') }}</strong></div>
-                <div class="price-car">${{ $subtotal }}</div>
+                <div class="price-car calculate-subtotal">${{ $subtotal }}</div>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>VAT</strong></div>
-                <div class="price-car">${{ $tax }}</div>
+                <div class="price-car calculate-tax">${{ $tax }}</div>
             </div>
         </div>
         <!-- Total Box -->
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>{{ __('messages.Total') }}</strong></div>
-                <div class="price-car">${{$totalPriceIncludingTax}}</div>
+                <div class="price-car calculate-total">${{$totalPriceIncludingTax}}</div>
             </div>
         </div>
-        <!-- Order Confirmation Button -->
+        <!-- Order Confirmation form -->
         <div class="col-md-3 col-12">
-            <button onclick="window.location.href='{{ url('/confirmation') }}'" class="btn-order btn-orange-clr">
-                {{ __('messages.Order Confirmation') }}
-            </button>
+        @php
+            $cartArray = json_decode($cartItems, true);
+            $ids = [];
+
+            foreach ($cartArray as $item) {
+                if (isset($item['id'])) {
+                    $ids[] = $item['id'];
+                }
+            }
+        @endphp
+            <form action="{{route('booking.confirmation')}}">
+                @csrf
+                <input type="text" name="vehicleId" value="{{ implode(',', $ids) }}">
+                <input type="text" name="user_id" value="10">
+                <input type="text" name="booking_reference" value="{{implode('-', $ids).rand(100,1000)}}">
+                <input type="text" name="pickup_location" class="getDatepickupDate" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <input type="text" name="" value="">
+                <button class="btn-order btn-orange-clr">
+                    {{ __('messages.Order Confirmation') }}
+                </button>
+            </form>
+            
         </div>
     </div>
 </div>
