@@ -159,6 +159,8 @@ Route::get('/carbooking', [CarBookingController::class, 'carBookingView'])->name
 Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');
 Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
 Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])->name('cart.remove');
+Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
+
 // 
 Route::get('/confirmation', [ConfirmBookingController::class, 'confirmBookingView']);
 Route::get('/checkout', [CheckoutController::class, 'checkoutView']);

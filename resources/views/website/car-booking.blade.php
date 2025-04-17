@@ -45,7 +45,7 @@
 </div>
 @foreach($cartItems as $cart)
 
-<div class="container mt-4">
+<div class="container mt-4 row cart-item" data-row-id="{{ $cart->rowId }}" data-price="{{ $cart->price }}">
 
     <div class="row g-3">
         <!-- Pickup Location -->
@@ -74,26 +74,29 @@
             </select>
         </div>
 
-        <!-- Pickup Date & Time -->
-        <div class="col-md-3">
-            <label class="form-label">{{ __('messages.Pickup_Date_time') }}</label>
-            <div class="input-group">
-            <input type="datetime-local" id="getPickupDate" class="form-control time-input">
+        
+            <!-- Pickup Date & Time -->
+            <div class="col-md-3">
+                <label class="form-label">{{ __('messages.Pickup_Date_time') }}</label>
+                <div class="input-group">
+                    <input type="datetime-local" class="form-control time-input pickup-time">
+                </div>
             </div>
-        </div>
 
-        <!-- Drop-off Date & Time -->
-        <div class="col-md-3">
-            <label class="form-label">{{ __('messages.Drop-off_Date_time') }}</label>
-            <div class="input-group">
-                <input type="datetime-local" id="getDropoffDate" class="form-control time-input">
+            <!-- Drop-off Date & Time -->
+            <div class="col-md-3">
+                <label class="form-label">{{ __('messages.Drop-off_Date_time') }}</label>
+                <div class="input-group">
+                    <input type="datetime-local" class="form-control time-input dropoff-time">
+                </div>
             </div>
-        </div>
 
-        <!-- Display Difference -->
-        <div class="col-md-3 mt-3">
-            <p id="timeDifference"></p>
-        </div>
+            <!-- Display Difference -->
+            <div class="col-md-3 mt-3">
+                <p class="time-difference"></p>
+                <p class="calculated-price"></p>
+            </div>
+       
         
     </div>
     
@@ -124,7 +127,7 @@
                 </div>
                 <span class="vehicle-title text-capitalize">{{$cart->options->car_brand}} {{$cart->name}}</span>
                 <p class="car-model-text text-capitalize">{{ $cart->options->year }}, {{$cart->options->car_category}}</p>
-                <p class="fw-bold text-capitalize">$100 / Day</p>
+                <p class="fw-bold text-capitalize">${{$cart->price}} / Day</p>
                
             </div>
             <div class="col-md-6">
@@ -153,7 +156,7 @@
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
-            <div class="mb-2 text-capitalize"><h6>${{ $cart->price }}</h6></div>
+            <div class="mb-2 text-capitalize d-flex"><h6 class="showNewPrice{{$cart->rowId}}">${{ $cart->price * $cart->qty }}</h6></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"></div>
@@ -167,7 +170,7 @@
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
-            <div class="mb-2"><h6>1 {{ __('messages.Days') }}</h6></div>
+            <div class="mb-2 d-flex"><h6 class="showDuration{{$cart->rowId}}">{{$cart->qty}}</h6><h6>{{ __('messages.Days') }}</h6></div>
             <div class="mb-2 empty-box"></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
@@ -192,6 +195,7 @@
         </div>
     </div>
 </div>
+
 @endforeach
 <div class="container my-3">
     <div class="row justify-content-center align-items-center g-3">

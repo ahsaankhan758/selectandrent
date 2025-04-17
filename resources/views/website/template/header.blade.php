@@ -17,7 +17,11 @@
                   </a>
               </div>
               <!-- Navbar -->
-              <div class="col-md-6">
+              @if(Cart::instance('cart')->content()->count() > 0 )
+              <div class="col-6">
+              @else
+              <div class="col-7">
+              @endif
                   <nav class="navbar navbar-expand-md" style="white-space: nowrap;">
                       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                           <ul class="navbar-nav">
