@@ -482,7 +482,7 @@ return [
 'Email_Address' => 'Adresse e-mail',
 'Password' => 'Mot de passe',
 'profile' => 'Profil',
-
+'engine' => 'Moteur',  
 'client' => 'Client | Clients',
 'plan' => 'Plan | Plans',
 'driver' => 'Chauffeur | Chauffeurs',
