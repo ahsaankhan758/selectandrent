@@ -4,26 +4,39 @@ $.ajaxSetup({
     }
 });
 
-$(document).on('submit', '#usersignin', function(e) {
+$(document).on('submit', '#usersignup', function(e) {
     e.preventDefault(); 
-    console.log('heresignin');
-    var email = $('#get-email').val();
-    var password = $('#get-password').val();
+    console.log('here');
+
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var password = $('#password').val();
+    var confirmPassword = $('#password_confirmation').val();
     var form = $(this); // reference to the form
     var url = form.attr('action'); // get the action attribute
     
     // Optional: Add validation here if needed
+    if(!name){
+        alert('Name Required.');
+        return;
+    }
     if (!email || !password) {
         alert('Both email and password are required.');
         return;
     }
-
+    if(password !== confirmPassword){
+        alert('Password and Confirm Password are not Same.');
+        return;
+    }
+    
     $.ajax({
         url: url, // double-check your route name
         type: "POST",
         data: {
+            name: name,
             email: email,
             password: password,
+            password_confirmation:confirmPassword,
             _token: $('meta[name="csrf-token"]').attr('content')// Laravel CSRF token
         },
         success: function(response) {
@@ -36,21 +49,29 @@ $(document).on('submit', '#usersignin', function(e) {
                 timeout: 5000
             }
             Toast.create(toast);
-            // 
-            if (response.status === 'Success') {
-                let modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
-                if (modal) modal.hide();
-                setTimeout(function() {
-                    // Replace the content in #getStartedButton with server-rendered HTML
-                    $('#getStartedButton').html(response.html);
-                    $('#getStartedButtonMobile').html(response.html);
-                }, 1000); // add a slight delay if needed
-            }
             
+            if (response.status === 'Success') {
+                let modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+                if (modal) modal.hide();
+                document.getElementById('usersignup').reset();
+            }
         },
         error: function(xhr, status, error) {
             console.error('Error:', xhr.responseText);
-            // Show error message
+
+            if (xhr.status === 422) {
+                let errors = xhr.responseJSON.errors;
+
+                for (let field in errors) {
+                    if (errors.hasOwnProperty(field)) {
+                        errors[field].forEach(function(message) {
+                            alert(message); // Or use Toast.create for styled messages
+                        });
+                    }
+                }
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
         }
     });
 });
