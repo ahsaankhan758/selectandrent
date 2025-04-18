@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\website\SignupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
@@ -61,8 +62,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('company/login', [LoginController::class, 'login'])->name('companyLogin')->middleware('IsAdmin:company');
 
     //User Login
-    //Route::get('user/signin', [SigninController::class, 'login'])->name('userLogin')->middleware('IsAdmin:user');
     Route::post('user/signin', [SigninController::class, 'signin'])->name('user.signin')->middleware('IsUser');
+
+    // User Register
+    Route::post('user/signup', [SignupController::class, 'signup'])->name('user.signup');
     
     // To Get Current Prefix of URL
     $currentPrefix = request()->segment(1);
