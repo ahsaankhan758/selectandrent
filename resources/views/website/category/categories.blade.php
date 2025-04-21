@@ -20,10 +20,10 @@
 
        <!-- 🔹 Cars List -->
 
-<div class="container mt-5">
-    <div class="row g-4" id="car-category-list">
-        @include('website.category.include.car-item', ['cars' => $cars])
-    </div>
+    <div class="container mt-5">
+        <div class="row g-4" id="car-category-list">
+            @include('website.category.include.car-item', ['cars' => $cars])
+        </div>
 
     <!-- 🔹 Load More for "All" Category -->
     @if($totalCars > 8)
