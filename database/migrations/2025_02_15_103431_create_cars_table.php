@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('lisence_plate')->nullable();
             $table->string('thumbnail')->nullable();
             $table->json('images')->nullable();
-            $table->string('features');
+            $table->text('features')->nullable();
             $table->tinyInteger('is_featured')->default('0');
             $table->tinyInteger('status')->default('1')->nullable();
             $table->dateTime('date_added')->nullable();
