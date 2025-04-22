@@ -29,7 +29,7 @@ class SigninController extends Controller
             $desciption = Auth::user()->name.' LoggedIn. User Role Is '.$userRole;
             $action = 'LoggedIn';
             $module = 'Website';
-            activityLog($userId, $desciption,$action,$module);
+            //activityLog($userId, $desciption,$action,$module);
 
             return response()->json([
                 'status' => 'Success',
