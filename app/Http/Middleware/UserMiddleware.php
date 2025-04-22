@@ -16,6 +16,7 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
         {
+
             $userRole = User::where('email', $request['email'])->value('role');
             if($userRole == 'user')
                 {
@@ -23,6 +24,7 @@ class UserMiddleware
                     return $next($request);
                 }
                 
+
             else
                 {
                     $request->merge(['user_role' => '']);

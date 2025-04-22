@@ -484,6 +484,11 @@ return [
 'Password' => 'Mot de passe',
 'profile' => 'Profil',
 
+'engine' => 'Moteur',  
+'permissions' => 'Autorisations',
+
+
+
 'client' => 'Client | Clients',
 'plan' => 'Plan | Plans',
 'driver' => 'Chauffeur | Chauffeurs',
