@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\website\SignupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,12 +50,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
         return redirect()->back();
     })->name('change.language');
     
+    // Logout
+    Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
     
     // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
-    Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
@@ -149,6 +151,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             // Financial History
             Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
             Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
+            // Permissions
+            Route::get('permissions',[PermissionController::class, 'index'])->name('permissions');
+            Route::post('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
+
         });
     }
 
