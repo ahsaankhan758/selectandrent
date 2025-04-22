@@ -28,6 +28,7 @@ return [
     'brand' => 'Merk',
     'categories' => 'Categorieën',
     'category' => 'Categorie',
+    'PaymentMethod' => 'Betaalmethode',
     'features' => 'Kenmerken',
     'feature' => 'Kenmerk',
     'model' => 'Model',
@@ -482,8 +483,10 @@ return [
 'Email_Address' => 'E-mailadres',
 'Password' => 'Wachtwoord',
 'profile' => 'Profiel',
+
 'engine' => 'Motor', 
 'permissions' => 'Machtigingen',
+
 
 
 

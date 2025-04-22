@@ -2374,7 +2374,9 @@ margin: 5px 0;
   font-weight: bold;
   padding: 20px 20px;
   border: none;
-  width: 24%;
+
+  width: 50%;
+
 }
 @media (max-width: 480px) {
   .btn-order {

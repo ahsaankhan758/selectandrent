@@ -276,7 +276,9 @@
                     <div class="collapse" id="sub_menu_settings">
                         <ul class="nav-second-level">
                             <li>
+
                                 <a href="{{ route('permissions') }}" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.user') }} {{ __('messages.permissions') }} </span></a>
+
                             </li>
                             <li>
                                 <a href="" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.active') }} </span></a>

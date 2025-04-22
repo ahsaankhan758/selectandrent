@@ -16,13 +16,15 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
         {
-            $user = User::where('email', $request['email'])->first();
-            if($user->role == 'user')
+
+            $userRole = User::where('email', $request['email'])->value('role');
+            if($userRole == 'user')
                 {
-                    $request->merge(['user_role' => $user->role]);
-                    $request->merge(['user_status' => $user->status]);
+                    $request->merge(['user_role' => $userRole]);
                     return $next($request);
                 }
+                
+
             else
                 {
                     $request->merge(['user_role' => '']);

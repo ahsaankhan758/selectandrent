@@ -114,8 +114,10 @@
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Drive') }}</strong> <span>{{ $car->drive }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Economy') }}</strong> <span>{{ $car->fuel_economy }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Type') }}</strong> <span>{{ $car->fuel_type }}</span></li>
+
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.engine') }}</strong> <span>{{ $car->engine_size }} cc</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.year') }}</strong> <span>{{ $car->year }}</span></li>
+
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Mileage') }}</strong> <span>{{ $car->mileage }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Transmission') }}</strong> <span>{{ ucfirst($car->transmission) }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Exterior Color') }}</strong> <span>{{ ucfirst($car->exterior_color) }}</span></li>

@@ -131,38 +131,46 @@ class userController extends Controller
     public function logout(Request $request)
         {
             $role = Auth::user()->role;
+
             $name = Auth::user()->name;
             $userId = Auth::id();
+
             $request->session()->invalidate();
     
             $request->session()->regenerateToken();
             if(isset($role) && $role == 'admin')
             {
+
                 
                 $desciption = $name.' LoggedOut. User Role was '.$role;
                 $action = 'LoggedOut';
                 $module = 'Admin';
                 //activityLog($userId, $desciption,$action,$module);
+
                 return $request->wantsJson()
                     ? new JsonResponse([], 204)
                     : redirect('/admin/login');
             }
+
             elseif(isset($role) && $role == 'company')
             {
                 $desciption = $name.' LoggedOut. User Role was '.$role;
                 $action = 'LoggedOut';
                 $module = 'Company';
                 //activityLog($userId, $desciption,$action,$module);
+
                 return $request->wantsJson()
                     ? new JsonResponse([], 204)
                     : redirect('/company/login');
             }
             elseif(isset($role) && $role == 'user')
             {
+
                 $desciption = $name.' LoggedOut. User Role was '.$role;
                 $action = 'LoggedOut';
                 $module = 'Website';
                 //activityLog($userId, $desciption,$action,$module);
+
                 return $request->wantsJson()
                     ? new JsonResponse([], 204)
                     : redirect('/');

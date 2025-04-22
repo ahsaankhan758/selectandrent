@@ -23,6 +23,7 @@ return [
     'brand' => 'العلامة التجارية',
     'brands' => 'العلامات التجارية',
     'categories' => 'الفئات',
+    'PaymentMethod' => 'طريقة الدفع',
     'category' => 'الفئة',
     'features' => 'المميزات',
     'financial' => 'مالي',
@@ -64,7 +65,9 @@ return [
     'doors' => 'الأبواب',
     'year' => 'السنة',
     'engine size' => 'سعة المحرك (سم³)',
+
     'engine' => 'المحرك', 
+
     'luggage' => 'سعة الصندوق',
     'seats' => 'المقاعد',
     'fuel economy' => 'اقتصاد الوقود (كم/لتر)',
