@@ -7,6 +7,8 @@ $.ajaxSetup({
 $(document).on('submit', '#usersignin', function(e) {
     e.preventDefault(); 
 
+    console.log('heresignin');
+
     var email = $('#get-email').val();
     var password = $('#get-password').val();
     var form = $(this); // reference to the form
@@ -14,7 +16,13 @@ $(document).on('submit', '#usersignin', function(e) {
     
     // Optional: Add validation here if needed
     if (!email || !password) {
-        alert('Both email and password are required.');
+
+        Toast.create({
+            title: 'Validation Error',
+            message: 'Both email and password are required.',
+            timeout: 4000
+        });
+
         return;
     }
 
@@ -28,7 +36,9 @@ $(document).on('submit', '#usersignin', function(e) {
         },
         success: function(response) {
             // console.log(response)
-            console.log(response.message);
+
+            //console.log(response.message);
+
             let toast = {
                 title: response.status,
                 message: response.message,

@@ -22,7 +22,9 @@ return [
     'brand' => 'Brand',
     'categories' => 'Categories',
     'category' => 'Category',
+
     'PaymentMethod'=>'Payment Method',
+
     'features' => 'Features',
     'feature' => 'Feature',
     'model' => 'Model',
@@ -483,8 +485,10 @@ return [
     'Email_Address'=>'Email Address',
     'Password'=>'Password',
     'profile'=>'Profile',
-    ''=>'',
-    ''=>'',
+
+    'engine'=>'Engine',
+    'permissions'=>'Permissions',
+
     ''=>'',
     ''=>'',
     ''=>'',

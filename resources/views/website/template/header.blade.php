@@ -79,7 +79,9 @@
                 </div>
             @endif
               <!-- Get Started Button -->
-            @if(Auth::check())
+
+              @if(Auth::check() && Auth::user()->role == 'user')
+
                 <div class="col-md-2 text-end">
                     <ul class="list-unstyled topnav-menu float-end mb-0">
                         <li class="dropdown notification-list topbar-dropdown">
@@ -148,7 +150,9 @@
                   </a>
               </div>
 
-              @if(Auth::check())
+
+              @if(Auth::check() && Auth::user()->role == 'user')
+
                 <div class="col-md-2 text-end">
                     <ul class="list-unstyled topnav-menu float-end mb-0">
                         <li class="dropdown notification-list topbar-dropdown">
@@ -315,7 +319,9 @@
               </div>
               <div class="col-md-12">
                   <button class="btn btn-orange-clr w-100 d-flex justify-content-center text-white align-items-center">
-                      {{ __('messages.Search') }} <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>
+
+                      {{ __('messages.search') }} <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>
+
                   </button>
               </div>                                    
           </form>
@@ -387,30 +393,40 @@
         </div>
         <div class="modal-body">
           <p class="text-center">{{ __('messages.Already have an account?') }} <a href="#" class="login-link-text" data-bs-toggle="modal" data-bs-target="#loginModal">{{ __('messages.login') }}</a></p>
-          <form action="" id="usersign">
+
+          <form action="{{ route('user.signup') }}" id="usersignup">
+
             @csrf
             <div class="mb-3">
               <div class="input-group">
                 <span class="input-group-text"><i class="fa fa-user icon-size"></i></span>
-                <input type="text" class="form-control" placeholder="{{ __('messages.Enter name') }}">
+
+                <input id="name" type="text" class="form-control" placeholder="{{ __('messages.Enter name') }}">
+
               </div>
             </div>
             <div class="mb-3">
               <div class="input-group">
                 <span class="input-group-text"><i class="fa fa-envelope icon-size"></i></span>
-                <input type="email" class="form-control" placeholder="{{ __('messages.Enter email') }}">
+
+                <input id="email" type="email" class="form-control" placeholder="{{ __('messages.Enter email') }}">
+
               </div>
             </div>
             <div class="mb-3">
               <div class="input-group">
                 <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
-                <input type="password" class="form-control" placeholder="{{ __('messages.Enter password') }}">
+
+                <input id="password" type="password" class="form-control" placeholder="{{ __('messages.Enter password') }}">
+
               </div>
             </div>
             <div class="mb-4">
               <div class="input-group">
                 <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
-                <input type="password" class="form-control" placeholder="{{ __('messages.Confirm password') }}">
+
+                <input id="password_confirmation" type="password" class="form-control" placeholder="{{ __('messages.Confirm password') }}">
+
               </div>
             </div>
             <button type="submit" class="btn w-100 btn-color">{{ __('messages.SIGN UP NOW') }}</button>             

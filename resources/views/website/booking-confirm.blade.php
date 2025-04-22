@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+
 <script src="{{asset('/frontend-assets/assets/Js/payment-gateways/ActivePaymentRadioButtons.js')}}"></script>
 <style>
     .payment-card {
@@ -22,6 +23,7 @@
 <div class="container py-2" id="booking-confirm-container">
     <?php
     $encodedData = base64_encode(serialize($checkoutData));
+
     ?>
     <div class="progress-container">
         <div class="progress-line"></div>
@@ -48,6 +50,7 @@
 </div>
 <!-- end progress bar -->
  <!-- input form -->
+
   <!-- billing -->
 <div class="container heading-background py-3 mb-3">
     <div class="container text-start fw-bold">{{ __('messages.PaymentMethod') }}</div>

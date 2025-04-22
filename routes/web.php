@@ -1,4 +1,8 @@
 <?php
+
+use App\Http\Controllers\admin\PermissionController;
+use App\Http\Controllers\website\SignupController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
@@ -40,7 +44,9 @@ use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
+
 use App\Http\Controllers\website\PaymentGatewaysController;
+
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}', function ($lang) {
@@ -48,12 +54,18 @@ Route::middleware('LanguageMiddleware')->group(function(){
         return redirect()->back();
     })->name('change.language');
     
+
+    // Logout
+    Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
+
     
     // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
+
     Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
+
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
@@ -61,9 +73,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('company/login', [LoginController::class, 'login'])->name('companyLogin')->middleware('IsAdmin:company');
 
     //User Login
-    //Route::get('user/signin', [SigninController::class, 'login'])->name('userLogin')->middleware('IsAdmin:user');
+
     Route::post('user/signin', [SigninController::class, 'signin'])->name('user.signin')->middleware('IsUser');
-    
+
+    // User Register
+    Route::post('user/signup', [SignupController::class, 'signup'])->name('user.signup');
+    Route::get('/confirm-email/{token}', [SignupController::class, 'confirm'])->name('confirm.email');
+
     // To Get Current Prefix of URL
     $currentPrefix = request()->segment(1);
    
@@ -145,6 +161,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
             // Financial History
             Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
             Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
+
+            // Permissions
+            Route::get('permissions',[PermissionController::class, 'index'])->name('permissions');
+            Route::post('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
+
+
         });
     }
 
@@ -162,8 +184,10 @@ Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])
 Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
 Route::any('/booking-confirm', [ConfirmBookingController::class, 'confirmBooking'])->name('booking.confirm');
 
+
 Route::post('/stripe/create-payment-intent', [PaymentGatewaysController::class, 'createPaymentIntent'])->name('booking.payment');
 Route::post('/stripe/webhook', [PaymentGatewaysController::class, 'handleWebhook']);
+
 
 // 
 Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
