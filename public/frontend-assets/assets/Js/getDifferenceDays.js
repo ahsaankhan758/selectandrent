@@ -72,6 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
             $('.calculate-subtotal').html('$'+data.subtotal);
             $('.calculate-tax').html('$'+data.tax);
             $('.calculate-total').html('$'+data.total);
+            // send val to inputs
+            $('.get-subtotal').val(data.subtotal);
+            $('.get-tax').val(data.tax);
+            $('.get-total').val(data.total);
+            $('.get-price-'+data.rowId).val(data.price);
+            $('.get-duration-'+data.rowId).val(data.qty);
         }
         
         )
