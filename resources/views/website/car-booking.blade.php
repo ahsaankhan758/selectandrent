@@ -37,12 +37,25 @@
     @if(session('message'))
     <div id="div1" class="alert alert-danger text-center mt-3 text-capitalize">{{ session('message') }}</div>
     @endif
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Oops! There were some problems with your input:</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 </div>
 
 @if($cartItems->count() > 0)
 <div class="container">
 <a class="text-right" href="{{ route('clear.cart') }}">{{ __('messages.Clear_Cart') }} ({{$cartItemsCount}})</a>
 </div>
+<!-- Order Confirmation form -->
+<form id="bookingForm" action="{{ route('booking.confirmation') }}" method="POST" enctype="multipart/form-data">
+    @csrf
 @foreach($cartItems as $cart)
 
 <div class="container mt-4 row cart-item" data-row-id="{{ $cart->rowId }}" data-price="{{ $cart->price }}">
@@ -51,8 +64,8 @@
         <!-- Pickup Location -->
         <div class="col-md-3">
             <label class="form-label">{{ __('messages.Pickup Location') }}</label>
-            <select class="form-select">
-                <option selected>{{ __('messages.Select Location') }}</option>
+            <select name="pickup_location[]" class="form-select validate-pickup">
+                <option selected disabled>{{ __('messages.Select Location') }}</option>
                 @if(isset($vehicleLocation) && !empty($vehicleLocation))
                     @foreach($vehicleLocation as $location)
                     <option value="{{$location->id}}">{{$location->city}}</option>
@@ -64,8 +77,8 @@
         <!-- Dropoff Location -->
         <div class="col-md-3">
             <label class="form-label">{{ __('messages.Dropoff Location') }}</label>
-            <select class="form-select">
-                <option selected>{{ __('messages.Select Location') }}</option>
+            <select name="dropoff_location[]" class="form-select">
+                <option selected disabled>{{ __('messages.Select Location') }}</option>
                 @if(isset($vehicleLocation) && !empty($vehicleLocation))
                     @foreach($vehicleLocation as $location)
                     <option value="{{$location->id}}">{{$location->city}}</option>
@@ -79,7 +92,7 @@
             <div class="col-md-3">
                 <label class="form-label">{{ __('messages.Pickup_Date_time') }}</label>
                 <div class="input-group">
-                    <input type="datetime-local" class="form-control time-input pickup-time">
+                    <input type="datetime-local" name="pickup_datetime[]" class="form-control time-input pickup-time">
                 </div>
             </div>
 
@@ -87,15 +100,21 @@
             <div class="col-md-3">
                 <label class="form-label">{{ __('messages.Drop-off_Date_time') }}</label>
                 <div class="input-group">
-                    <input type="datetime-local" class="form-control time-input dropoff-time">
+                    <input type="datetime-local" name="dropoff_datetime[]" class="form-control time-input dropoff-time">
                 </div>
             </div>
-
+            <!-- data for submit -->
+            <input type="hidden" name="vehicleId[]" value="{{ $cart->id }}">
+            <input type="hidden" name="user_id[]" value="2">
+            <input type="hidden" class="get-price-{{$cart->rowId}}" name="item_price[]" value="{{$cart->subtotal}}">
+            <input type="hidden" name="price_per_day[]" value="{{$cart->price}}">
+            <input type="hidden" class="get-duration-{{$cart->rowId}}" name="duration[]" value="{{$cart->qty}}">
+           <!-- end form submit -->
             <!-- Display Difference -->
-            <div class="col-md-3 mt-3">
+            <!-- <div class="col-md-3 mt-3">
                 <p class="time-difference"></p>
                 <p class="calculated-price"></p>
-            </div>
+            </div> -->
        
         
     </div>
@@ -107,7 +126,7 @@
         <ul class="col-md-6">{{ __('messages.Vehicle Info') }}</ul>
         <ul class="col-md-2">{{ __('messages.Price') }}</ul>
         <ul class="col-md-2">{{ __('messages.Days') }}</ul>
-        <ul class="col-md-2">{{ __('messages.Action') }}</ul>
+        <ul class="col-md-2">{{ __('messages.action') }}</ul>
     </div>
 </div>
 <div class="container">
@@ -195,8 +214,12 @@
         </div>
     </div>
 </div>
-
 @endforeach
+
+<input type="hidden" name="booking_reference[]" value="{{'SR-'.rand(1000,10000)}}">
+<input type="hidden" name="subtotal[]" class="get-subtotal" value="{{ $subtotal }}">
+<input type="hidden" name="tax[]" class="get-tax" value="{{ $tax }}">
+<input type="hidden" name="total[]" class="get-total" value="{{ $totalPriceIncludingTax }}">
 <div class="container my-3">
     <div class="row justify-content-center align-items-center g-3">
         <!-- Subtotal Box -->
@@ -221,41 +244,14 @@
         </div>
         <!-- Order Confirmation form -->
         <div class="col-md-3 col-12">
-        @php
-            $cartArray = json_decode($cartItems, true);
-            $ids = [];
-
-            foreach ($cartArray as $item) {
-                if (isset($item['id'])) {
-                    $ids[] = $item['id'];
-                }
-            }
-        @endphp
-            <form action="{{route('booking.confirmation')}}">
-                @csrf
-                <input type="text" name="vehicleId" value="{{ implode(',', $ids) }}">
-                <input type="text" name="user_id" value="10">
-                <input type="text" name="booking_reference" value="{{implode('-', $ids).rand(100,1000)}}">
-                <input type="text" name="pickup_location" class="getDatepickupDate" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <input type="text" name="" value="">
-                <button class="btn-order btn-orange-clr">
-                    {{ __('messages.Order Confirmation') }}
-                </button>
-            </form>
-            
+            <button id="submitBtn" class="btn-order btn-orange-clr">
+                {{ __('messages.Order Confirmation') }}
+            </button>
         </div>
     </div>
-</div>
 
+</div>
+</form>
 
 @else
 

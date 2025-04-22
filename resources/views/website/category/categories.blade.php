@@ -1,5 +1,7 @@
 @extends('website.layout.master')
-@section('title', "{{ __('messages.Category') }} | {{ __('messages.Select and Rent') }}")
+@section('title')
+    {{ __('messages.category') }} | {{ __('messages.Select and Rent') }}
+@endsection
 @section('content')
     <div class="container py-4 mt-5">
         <h2 class="text-center mb-3">{{ __('messages.Select a Category') }}</h2>
