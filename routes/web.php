@@ -151,12 +151,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
         });
     }
 
-    // add routes of website by Farhan & Salman
+// add routes of website by Farhan & Salman
 Route::get('/', [WebsiteHomeController::class, 'showView']);
 Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
 Route::get('/faqs', [FaqsController::class, 'faqView']);
 Route::get('/about-us', [AboutController::class, 'aboutView']);
-Route::get('/contact', [ContactController::class, 'contactView']);
+Route::get('/contact', [ContactController::class, 'contactView'])->name('contact');
+Route::post('/contact-submit', [ContactController::class, 'submit'])->name('website.contact');
 Route::get('/carbooking', [CarBookingController::class, 'carBookingView'])->name('car.booking');
 // by ak
 Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');

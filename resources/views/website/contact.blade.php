@@ -4,13 +4,16 @@
 @endsection
 
 @section('content')
+<!-- contact js -->
+<script src="{{asset('/frontend-assets/assets/Js/contact.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <style>
     .masked-text {
      font-size: 64px;
      font-weight: 700;
      text-transform: uppercase;
 
-     background: url('/company-assets/icons/getintouch.png') no-repeat;
+     background: url('/frontend-assets/icons/getintouch.png') no-repeat;
      background-size: cover;
      background-position: -106px center; 
 
@@ -31,21 +34,21 @@
                 
                 <ul class="list-unstyled custom-contact-list">
                     <li>
-                        <img src="{{asset('/')}}company-assets/icons/phone.png" alt="Phone Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="Phone Icon">
                         <div>
                             <h6>{{ __('messages.Phone') }}</h6>
                             <div class="fw-bold">+92 3244469929</div>
                         </div>
                     </li>
                     <li>
-                        <img src="{{asset('/')}}company-assets/icons/mail.png" alt="Email Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/mail.png" alt="Email Icon">
                         <div>
                             <h6>{{ __('messages.Email') }}</h6>
                             <div class="fw-bold">hello@sparkodic.com</div>
                         </div>
                     </li>
                     <li>
-                        <img src="{{asset('/')}}company-assets/icons/home.png" alt="Home Icon">
+                        <img src="{{asset('/')}}frontend-assets/icons/home.png" alt="Home Icon">
                         <div>
                             <h6>{{ __('messages.Address') }}</h6>
                             <div class="fw-bold">United Kingdom</div>
@@ -55,10 +58,10 @@
 
                 <p class="custom-follow-us">{{ __('messages.Follow Us') }}</p>
                 <div class="custom-social-icons">
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(3).png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials.png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(1).png" alt=""></a>
-                    <a href="#"><img src="{{asset('/')}}company-assets/icons/socials(2).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(3).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials.png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(1).png" alt=""></a>
+                    <a href="#"><img src="{{asset('/')}}frontend-assets/icons/socials(2).png" alt=""></a>
                 </div>
             </div>
             <!-- Right Side: Contact Form -->
@@ -66,24 +69,30 @@
                 <div class="custom-contact-form mt-2">
                     <h3>{{ __('messages.Contact Form') }}</h3>
                     <p>{{ __('messages.Enter your details. And you can feel free to contact us for any kind of information') }}.</p>
-                    <form>
+                    @if(session('success'))
+                    <div class="alert alert-success mt-3">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    <form method="POST" id="sendEmailContact" action="{{ route('website.contact') }}">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control mb-3" placeholder="{{ __('messages.First Name') }}">
+                                <input type="text" class="form-control mb-3" name="first_name" placeholder="{{ __('messages.First Name') }}">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control mb-3" placeholder="{{ __('messages.Last Name') }}">
+                                <input type="text" class="form-control mb-3" name="last_name" placeholder="{{ __('messages.Last Name') }}">
                             </div>
                         </div>
-                        <input type="email" class="form-control mb-3" placeholder="{{ __('messages.Email') }}">
-                        <input type="tel" class="form-control mb-3" placeholder="{{ __('messages.Phone') }}">
-                        <textarea class="form-control mb-3" placeholder="{{ __('messages.Messages') }}" rows="4"></textarea>
+                        <input type="email" class="form-control mb-3" name="email" placeholder="{{ __('messages.Email') }}">
+                        <input type="tel" class="form-control mb-3" name="phone" placeholder="{{ __('messages.Phone') }}">
+                        <textarea class="form-control mb-3" name="message" placeholder="{{ __('messages.Messages') }}" rows="4"></textarea>
                         <div class="text-end">
-                            <button class="btn btn-orange-clr rounded-pill text-white px-4 py-2">
-                                {{ __('messages.Submit Now') }} 
+                            <button id="submitBtn" class="btn btn-orange-clr rounded-pill text-white px-4 py-2">
+                                {{ __('messages.Submit Now') }}
                             </button>
                         </div>                       
-                    </form>
+                    </form>                    
                 </div>
             </div>
         </div>
