@@ -29,7 +29,7 @@
                             @if(isset($activityLogs))
                                 @foreach ( $activityLogs as $activityLog)
                                     <tr>
-                                        <td>{{ $activityLog->users->name }}</td>
+                                        <td>{{ $activityLog->users ? $activityLog->users->name : ' ' }}</td>
                                         <td>{{ $activityLog->action }}</td>
                                         <td>{{ $activityLog->module }}</td>
                                         <td>{{ unserialize($activityLog->description) }}</td>

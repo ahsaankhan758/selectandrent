@@ -58,6 +58,7 @@ return [
     'city' => 'المدينة',
     'fuel type' => 'نوع الوقود',
     'transmission' => 'ناقل الحركة',
+    'permissions' => 'الصلاحيات',
     'drive' => 'نظام الدفع',
     'weight' => 'الوزن (كجم)',
     'doors' => 'الأبواب',
