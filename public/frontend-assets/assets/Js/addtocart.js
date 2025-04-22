@@ -23,7 +23,7 @@ $(document).on('click', '#car-booking-btn', function(e) {
             id: carId
         },
         success: function(response) {
-            console.log(response.message);
+            // console.log(response.message);
             let toast = {
                 title: "Alert",
                 message: response.message,

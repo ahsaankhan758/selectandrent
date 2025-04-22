@@ -4,7 +4,11 @@
 @endsection
 
 @section('content')
-<div class="container py-2">
+<div class="container py-2" id="booking-confirm-container">
+    <?php
+    echo "<pre>";
+    print_r($checkoutData);die;
+    ?>
     <div class="progress-container">
         <div class="progress-line"></div>
         <div class="progress-bar-filled-order"></div>
