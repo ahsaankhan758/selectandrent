@@ -6,7 +6,6 @@ $.ajaxSetup({
 
 $(document).on('submit', '#usersignup', function(e) {
     e.preventDefault(); 
-    console.log('here');
 
     var name = $('#name').val();
     var email = $('#email').val();
@@ -17,15 +16,27 @@ $(document).on('submit', '#usersignup', function(e) {
     
     // Optional: Add validation here if needed
     if(!name){
-        alert('Name Required.');
+        Toast.create({
+            title: 'Validation Error',
+            message: 'Name Required.',
+            timeout: 4000
+        });
         return;
     }
     if (!email || !password) {
-        alert('Both email and password are required.');
+        Toast.create({
+            title: 'Validation Error',
+            message: 'Both email and password are required.',
+            timeout: 4000
+        });
         return;
     }
     if(password !== confirmPassword){
-        alert('Password and Confirm Password are not Same.');
+        Toast.create({
+            title: 'Validation Error',
+            message: 'Password and Confirm Password are not Same.',
+            timeout: 4000
+        });
         return;
     }
     
@@ -41,7 +52,7 @@ $(document).on('submit', '#usersignup', function(e) {
         },
         success: function(response) {
             // console.log(response)
-            console.log(response.message);
+            //console.log(response.message);
             let toast = {
                 title: response.status,
                 message: response.message,
@@ -65,7 +76,13 @@ $(document).on('submit', '#usersignup', function(e) {
                 for (let field in errors) {
                     if (errors.hasOwnProperty(field)) {
                         errors[field].forEach(function(message) {
-                            alert(message); // Or use Toast.create for styled messages
+                            Toast.create({
+                                title: 'Validation Error',
+                                message: message,
+                                status: 'error',
+                                timeout: 4000
+                            });
+                            
                         });
                     }
                 }

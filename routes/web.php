@@ -66,7 +66,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     // User Register
     Route::post('user/signup', [SignupController::class, 'signup'])->name('user.signup');
-    
+    Route::get('/confirm-email/{token}', [SignupController::class, 'confirm'])->name('confirm.email');
+
     // To Get Current Prefix of URL
     $currentPrefix = request()->segment(1);
    
