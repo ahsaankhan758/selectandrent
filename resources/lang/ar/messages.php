@@ -23,6 +23,7 @@ return [
     'brand' => 'العلامة التجارية',
     'brands' => 'العلامات التجارية',
     'categories' => 'الفئات',
+    'PaymentMethod' => 'طريقة الدفع',
     'category' => 'الفئة',
     'features' => 'المميزات',
     'financial' => 'مالي',

@@ -28,6 +28,7 @@ return [
     'brand' => 'Marque',
     'categories' => 'Catégories',
     'category' => 'Catégorie',
+    'PaymentMethod' => 'Méthode de paiement',
     'features' => 'Caractéristiques',
     'feature' => 'Caractéristique',
     'model' => 'Modèle',

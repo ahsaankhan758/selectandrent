@@ -22,6 +22,7 @@ return [
     'brand' => 'Brand',
     'categories' => 'Categories',
     'category' => 'Category',
+    'PaymentMethod'=>'Payment Method',
     'features' => 'Features',
     'feature' => 'Feature',
     'model' => 'Model',

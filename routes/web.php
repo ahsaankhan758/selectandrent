@@ -40,7 +40,7 @@ use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
-
+use App\Http\Controllers\website\PaymentGatewaysController;
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}', function ($lang) {
@@ -161,6 +161,9 @@ Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('cle
 Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])->name('cart.remove');
 Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
 Route::any('/booking-confirm', [ConfirmBookingController::class, 'confirmBooking'])->name('booking.confirm');
+
+Route::post('/stripe/create-payment-intent', [PaymentGatewaysController::class, 'createPaymentIntent'])->name('booking.payment');
+Route::post('/stripe/webhook', [PaymentGatewaysController::class, 'handleWebhook']);
 
 // 
 Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
