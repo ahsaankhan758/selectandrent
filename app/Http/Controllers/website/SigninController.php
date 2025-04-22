@@ -19,7 +19,8 @@ class SigninController extends Controller
 
         // Attempt login
         $userRole = $request->user_role; // Fetched From Middleware
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $userRole == 'user') {
+        $userStatus = $request->user_status; 
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $userRole == 'user' && $userStatus == 1) {
             // Regenerate session to prevent fixation
             $request->session()->regenerate();
             
@@ -44,6 +45,13 @@ class SigninController extends Controller
                     'message' => 'Invalid credentials.',
                 ]); 
             }
+        elseif($userStatus == 0)
+        {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'Please Confirm Your Email From Inbox.',
+            ]); 
+        }
 
         // Failed login response
         throw ValidationException::withMessages([

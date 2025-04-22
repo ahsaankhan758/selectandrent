@@ -8,7 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserRegister;
+use App\Mail\UserActivatedEmail;
 use Illuminate\Support\Str;
+
 
 class SignupController extends Controller
 {
@@ -38,18 +40,39 @@ class SignupController extends Controller
             ]);
 
         }
-    public function confirm($token)
-        {
-            $user = User::where('confirmation_token', $token)->first();
+        
 
-            if (!$user) {
-                return redirect('/')->with('error', 'Invalid or expired confirmation link.');
-            }
+public function confirm($token)
+{
+    $user = User::where('confirmation_token', $token)->first();
 
-            $user->status = 1;
-            $user->confirmation_token = null; // Optional: clear the token
-            $user->save();
+    if (!$user) {
+        return response()->json([
+            'status' => 'Error',
+            'message' => 'Email Already Confirmed.',
+        ], 404);
+    }
 
-            return redirect('/')->with('success', 'Email confirmed! Your account is now active.');
-        }
+    // Check if already confirmed
+    if ($user->status == 1) {
+        return response()->json([
+            
+        ]);
+    }
+
+    $user->update([
+        'status' => 1,
+        'confirmation_token' => null,
+    ]);
+    
+    Mail::to($user->email)->send(new UserActivatedEmail($user));
+    return redirect('/');
+
+
+    // return response()->json([
+    //     'status' => 'Success',
+    //     'message' => 'Email confirmed successfully. You can now log in.',
+    // ]);
+}
+
 }
