@@ -107,7 +107,7 @@
         <ul class="col-md-6">{{ __('messages.Vehicle Info') }}</ul>
         <ul class="col-md-2">{{ __('messages.Price') }}</ul>
         <ul class="col-md-2">{{ __('messages.Days') }}</ul>
-        <ul class="col-md-2">{{ __('messages.Action') }}</ul>
+        <ul class="col-md-2">{{ __('messages.action') }}</ul>
     </div>
 </div>
 <div class="container">
