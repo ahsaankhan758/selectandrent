@@ -19,8 +19,10 @@ class SigninController extends Controller
 
         // Attempt login
         $userRole = $request->user_role; // Fetched From Middleware
+
         $userStatus = $request->user_status; 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $userRole == 'user' && $userStatus == 1) {
+
             // Regenerate session to prevent fixation
             $request->session()->regenerate();
             
@@ -30,7 +32,9 @@ class SigninController extends Controller
             $desciption = Auth::user()->name.' LoggedIn. User Role Is '.$userRole;
             $action = 'LoggedIn';
             $module = 'Website';
-            //activityLog($userId, $desciption,$action,$module);
+
+            activityLog($userId, $desciption,$action,$module);
+
 
             return response()->json([
                 'status' => 'Success',
@@ -45,6 +49,7 @@ class SigninController extends Controller
                     'message' => 'Invalid credentials.',
                 ]); 
             }
+
         elseif($userStatus == 0)
         {
             return response()->json([
@@ -52,6 +57,7 @@ class SigninController extends Controller
                 'message' => 'Please Confirm Your Email From Inbox.',
             ]); 
         }
+
 
         // Failed login response
         throw ValidationException::withMessages([

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
+use App\Models\PaymentGateways;
+
 use App\Models\Booking;
 use App\Models\BookingItem;
 
@@ -62,7 +65,10 @@ class ConfirmBookingController extends Controller
         }
 
         $checkoutData = $request->all();
-        return view('website.booking-confirm', compact('checkoutData'));
+
+        $paymentGateways = PaymentGateways::all();
+        return view('website.booking-confirm', compact('checkoutData','paymentGateways'));
+
     }
 
 

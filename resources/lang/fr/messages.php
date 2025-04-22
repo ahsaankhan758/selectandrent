@@ -28,6 +28,7 @@ return [
     'brand' => 'Marque',
     'categories' => 'Catégories',
     'category' => 'Catégorie',
+    'PaymentMethod' => 'Méthode de paiement',
     'features' => 'Caractéristiques',
     'feature' => 'Caractéristique',
     'model' => 'Modèle',
@@ -482,8 +483,10 @@ return [
 'Email_Address' => 'Adresse e-mail',
 'Password' => 'Mot de passe',
 'profile' => 'Profil',
+
 'engine' => 'Moteur',  
 'permissions' => 'Autorisations',
+
 
 
 'client' => 'Client | Clients',
