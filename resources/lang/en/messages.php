@@ -483,7 +483,7 @@ return [
     'Password'=>'Password',
     'profile'=>'Profile',
     'engine'=>'Engine',
-    ''=>'',
+    'permissions'=>'Permissions',
     ''=>'',
     ''=>'',
     ''=>'',

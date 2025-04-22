@@ -483,6 +483,8 @@ return [
 'Password' => 'Wachtwoord',
 'profile' => 'Profiel',
 'engine' => 'Motor', 
+'permissions' => 'Machtigingen',
+
 
 
 'client' => 'Klant | Klanten',
