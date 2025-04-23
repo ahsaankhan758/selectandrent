@@ -94,7 +94,8 @@
                                     <i class="mdi mdi-view-dashboard-outline theme-color"></i>
                                     <span> {{ __('messages.dashboard') }} </span>
                                 </a>
-            
+                                
+                                
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <span class="mdi mdi-account theme-color"></span>
