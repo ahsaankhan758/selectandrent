@@ -3,6 +3,9 @@
     {{ __('messages.category') }} | {{ __('messages.Select and Rent') }}
 @endsection
 @section('content')
+<!-- add to cart js -->
+<script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
     <div class="container py-4 mt-5">
         <h2 class="text-center mb-3">{{ __('messages.Select a Category') }}</h2>
         <!-- 🔹 Category Buttons -->
@@ -18,10 +21,11 @@
 
 
        <!-- 🔹 Cars List -->
-<div class="container mt-5">
-    <div class="row g-4" id="car-category-list">
-        @include('website.category.include.car-item', ['cars' => $cars])
-    </div>
+
+    <div class="container mt-5">
+        <div class="row g-4" id="car-category-list">
+            @include('website.category.include.car-item', ['cars' => $cars])
+        </div>
 
     <!-- 🔹 Load More for "All" Category -->
     @if($totalCars > 8)
