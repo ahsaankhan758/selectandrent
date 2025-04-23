@@ -10,13 +10,28 @@
         <form method="POST" action="{{ route('storePermissions') }}">
         @csrf
 
-        <div class="form-group mb-4">
-            <label for="role">Select Role:</label>
-            <select id="role" name="role" class="form-control w-25" >
-                <option value="admin" >Admin</option>
-                <option value="company" >Company User</option>
-            </select>
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="role1">Select Role:</label>
+                    <select id="role1" name="role1" class="form-control">
+                        <option value="admin">Admin</option>
+                        <option value="company">Company User</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="role2">Select Admin / Company</label>
+                    <select id="role2" name="role2" class="form-control">
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
         </div>
+        
         
         <!-- Permissions Table -->
         <table class="table table-bordered text-center">
