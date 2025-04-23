@@ -1,4 +1,5 @@
-// Set CSRF token for all AJAX requests
+$(document).ready(function () {
+    // Set CSRF token for all AJAX requests
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -7,12 +8,12 @@ $.ajaxSetup({
 
 // Handle click on Book Now button
 $(document).on('click', '#car-booking-btn', function(e) {
+    e.preventDefault();
     
-
     var $button = $(this);
     var carId = $button.data('carid');
     var originalBtnText = $button.html();
-
+    console.log(carId)
     // Show loader on button
     $(this).html(`<img src="../frontend-assets/assets/loader.gif" alt="Loading..." width="25">`);
  
@@ -50,4 +51,5 @@ $(document).on('click', '#car-booking-btn', function(e) {
             $button.prop('disabled', false);
         }
     });
+});
 });
