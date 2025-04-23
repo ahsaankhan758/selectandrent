@@ -39,9 +39,10 @@
                                 @endforeach 
                             @endif
                         </tbody>
-                        {{ $activityLogs->links() }}
                     </table>
-                    
+                    <div class="mt-3">
+                        {{ $activityLogs->links() }}
+                    </div>
                 </div> 
             </div>
         </form> 
