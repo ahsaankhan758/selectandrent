@@ -451,6 +451,7 @@
                 <div class="mb-3">
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa fa-envelope icon-size"></i></span>
+                    <input type="hidden" name="user_status" id="get-user_status" value="1">
                     <input type="email" id="get-email" class="form-control" placeholder="{{ __('messages.Enter email') }}">
                 </div>
                 </div>

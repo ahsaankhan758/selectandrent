@@ -186,8 +186,8 @@ Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
 Route::any('/booking-confirm', [ConfirmBookingController::class, 'confirmBooking'])->name('booking.confirm');
 
 
-Route::post('/stripe/create-payment-intent', [PaymentGatewaysController::class, 'createPaymentIntent'])->name('booking.payment');
-Route::post('/stripe/webhook', [PaymentGatewaysController::class, 'handleWebhook']);
+Route::post('/payment/create-payment-intent', [PaymentGatewaysController::class, 'redirectToBookingCheckout'])->name('booking.payment');
+Route::post('/payment/webhook', [PaymentGatewaysController::class, 'handleWebhook']);
 
 
 // 

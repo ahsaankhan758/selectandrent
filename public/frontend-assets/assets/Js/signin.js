@@ -7,10 +7,11 @@ $.ajaxSetup({
 $(document).on('submit', '#usersignin', function(e) {
     e.preventDefault(); 
 
-    console.log('heresignin');
+    // console.log('heresignin');
 
     var email = $('#get-email').val();
     var password = $('#get-password').val();
+    var user_status = $('#get-user_status').val();
     var form = $(this); // reference to the form
     var url = form.attr('action'); // get the action attribute
     
@@ -32,6 +33,7 @@ $(document).on('submit', '#usersignin', function(e) {
         data: {
             email: email,
             password: password,
+            user_status: user_status,
             _token: $('meta[name="csrf-token"]').attr('content')// Laravel CSRF token
         },
         success: function(response) {

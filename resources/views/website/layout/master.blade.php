@@ -21,7 +21,7 @@
     <script src="{{asset('/')}}assets/js/loadmore.js"></script>
     <script src="{{asset('/')}}assets/js/car-listing-filters.js"></script>
     <script src="{{asset('/')}}frontend-assets/assets/js/signin.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
     <script src="{{asset('/')}}frontend-assets/assets/js/signup.js"></script>
 
     

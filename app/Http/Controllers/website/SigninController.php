@@ -16,7 +16,6 @@ class SigninController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-
         // Attempt login
         $userRole = $request->user_role; // Fetched From Middleware
 
@@ -43,12 +42,12 @@ class SigninController extends Controller
             ]);
         }
         elseif($userRole == '')
-            {
-                return response()->json([
-                    'status' => 'Error',
-                    'message' => 'Invalid credentials.',
-                ]); 
-            }
+        {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'Invalid credentials.',
+            ]); 
+        }
 
         elseif($userStatus == 0)
         {

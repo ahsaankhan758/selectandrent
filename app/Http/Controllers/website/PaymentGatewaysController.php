@@ -5,30 +5,42 @@ namespace App\Http\Controllers\website;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-use Stripe\PaymentIntent;
+use Stripe\Checkout\Session;
 
 
 class PaymentGatewaysController extends Controller
 {
-    public function createPaymentIntent(Request $request)
+    public function redirectToBookingCheckout(Request $request)
     {
         $decoded_checkoutData = base64_decode($request->checkoutData);
         $unserialize_checkoutData = unserialize($decoded_checkoutData);
-        echo "<pre>";
-        print_r($request->all());die;
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        // echo "<pre>";
+        // print_r($request->paymentMethod);die;
 
-        $amount =5 * 100; // Stripe uses cents
+        if($request->paymentMethod == 'stripe'){
+            Stripe::setApiKey(config('services.stripe.secret'));
+            $checkoutSession = Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => 'Your Product Name',
+                        ],
+                        'unit_amount' => 199, 
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route('stripe.checkout') . '?success=true',
+                'cancel_url' => route('stripe.checkout') . '?canceled=true',
+            ]);
 
-        $intent = PaymentIntent::create([
-            'amount' => $amount,
-            'currency' => 'usd',
-            'payment_method_types' => ['card'],
-        ]);
-
-        return response()->json([
-            'clientSecret' => $intent->client_secret
-        ]);
+            return redirect($checkoutSession->url);
+        }else{
+            return "in working..";
+        }
+        
     }
 
     public function handleWebhook(Request $request)
