@@ -16,52 +16,45 @@ class SigninController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-
-        // Attempt login
-        $userRole = $request->user_role; // Fetched From Middleware
-
-        $userStatus = $request->user_status; 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $userRole == 'user' && $userStatus == 1) {
-
-            // Regenerate session to prevent fixation
+    
+        $userRole = $request->user_role; // From middleware
+        $userStatus = $request->user_status; // From middleware
+    
+        // Block login if user status is 0
+        if ($userStatus == 0) {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'Please Confirm Your Email From Inbox.',
+            ]);
+        }
+    
+        // Proceed with login only if status is active (1)
+        if ($userStatus == 1 && Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $userRole == 'user') {
+    
             $request->session()->regenerate();
-            
+    
             $html = view('website.template.include')->render();
-            // Save Activity Log
+    
+            // Log activity
             $userId = Auth::id();
-            $desciption = Auth::user()->name.' LoggedIn. User Role Is '.$userRole;
+            $description = Auth::user()->name . ' LoggedIn. User Role Is ' . $userRole;
             $action = 'LoggedIn';
             $module = 'Website';
-
-            activityLog($userId, $desciption,$action,$module);
-
-
+    
+            activityLog($userId, $description, $action, $module);
+    
             return response()->json([
                 'status' => 'Success',
                 'message' => 'Login successful!',
                 'html' => $html,
             ]);
         }
-        elseif($userRole == '')
-            {
-                return response()->json([
-                    'status' => 'Error',
-                    'message' => 'Invalid credentials.',
-                ]); 
-            }
-
-        elseif($userStatus == 0)
-        {
-            return response()->json([
-                'status' => 'Error',
-                'message' => 'Please Confirm Your Email From Inbox.',
-            ]); 
-        }
-
-
-        // Failed login response
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
+    
+        // Invalid credentials or missing role
+        return response()->json([
+            'status' => 'Error',
+            'message' => 'Invalid credentials.',
         ]);
     }
+    
 }
