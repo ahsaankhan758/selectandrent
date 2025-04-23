@@ -10,7 +10,7 @@ class ActivityLogController extends Controller
 {
     public function index()
         {
-            $activityLogs = ActivityLog::orderBy('created_at', 'desc')->paginate(20);
+            $activityLogs = ActivityLog::orderBy('created_at', 'desc')->paginate(10);
             return view('admin.activityLogs', compact('activityLogs'));
         }
     public function destroy(Request $request)
