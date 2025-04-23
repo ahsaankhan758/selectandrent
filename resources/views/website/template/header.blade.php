@@ -102,7 +102,7 @@
                                 </a>
             
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{route('website.booking')}}" class="dropdown-item notify-item">
                                     <span class="mdi mdi-book-multiple theme-color"></span>
                                     <span>{{ __('messages.bookings') }} </span>
                                 </a>
@@ -358,6 +358,10 @@
               <h2 class="fw-bold">{{ __('messages.blog') }}</h2>
               @elseif(request()->is('blog-detail/*'))
               <h2 class="fw-bold">{{ __('messages.Blog') }}</h2>
+              @elseif(request()->is('booking'))
+              <h2 class="fw-bold">Bookings</h2>
+              @elseif(request()->is('dashboard'))
+              <h2 class="fw-bold">Dashboard</h2>
               @elseif(request()->is('faqs'))
               <h2 class="fw-bold">{{ __('messages.FAQ') }}</h2>
               <p>{{ __('messages.Got Questions? We’ve Got Answers') }}</p>

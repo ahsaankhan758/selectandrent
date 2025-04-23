@@ -46,7 +46,9 @@ use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 
 use App\Http\Controllers\website\ConfirmBookingController;
+use App\Http\Controllers\Website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
+use App\Http\Controllers\Website\WebsiteDashboardController;
 
 
 Route::middleware('LanguageMiddleware')->group(function(){
@@ -145,7 +147,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/contact/received', [AdminContactController::class, 'received'])->name('contact.received');
             Route::get('/contact/failed', [AdminContactController::class, 'failed'])->name('contact.failed');
             Route::delete('deleteContact',[AdminContactController::class, 'delete'])->name('deleteContact');
-            Route::delete('deleteFailedContact', [AdminContactController::class, 'deleteFailed'])->name('deleteFailedContact');
+           Route::delete('deleteFailedContact', [AdminContactController::class, 'deleteFailed'])->name('deleteFailedContact');
             //Calendar Routes
             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
             Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
@@ -243,7 +245,10 @@ Route::get('email/verify', [VerificationController::class, 'show'])->name('verif
 Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth', 'signed']);
 Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend')->middleware('auth');
 
-
+// booking page website
+Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
+// dashboard page website
+Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
 
 
 
