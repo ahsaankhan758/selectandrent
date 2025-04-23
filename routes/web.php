@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\admin\PermissionController;
-use App\Http\Controllers\website\SignupController;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
+
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -20,21 +18,24 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\companyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
-use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\website\CarRegController;
+use App\Http\Controllers\website\SigninController;
+use App\Http\Controllers\website\SignupController;
 use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
 use App\Http\Controllers\Admin\IP_AddressController;
+use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\website\carDetailController;
 use App\Http\Controllers\website\CarSearchController;
+use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
@@ -43,8 +44,8 @@ use App\Http\Controllers\website\CarRegisterController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
-use App\Http\Controllers\website\ConfirmBookingController;
 
+use App\Http\Controllers\website\ConfirmBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 
 
@@ -140,6 +141,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Activity Logs
             Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
             Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
+            // Contact us 
+            Route::get('/contact/received', [AdminContactController::class, 'received'])->name('contact.received');
+            Route::get('/contact/failed', [AdminContactController::class, 'failed'])->name('contact.failed');
+            Route::delete('deleteContact',[AdminContactController::class, 'delete'])->name('deleteContact');
+            Route::delete('deleteFailedContact', [AdminContactController::class, 'deleteFailed'])->name('deleteFailedContact');
             //Calendar Routes
             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
             Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
