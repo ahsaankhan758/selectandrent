@@ -191,16 +191,14 @@ Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('car
 Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
 Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])->name('cart.remove');
 Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
-Route::any('/booking-confirm', [ConfirmBookingController::class, 'confirmBooking'])->name('booking.confirm');
 
 
-Route::post('/stripe/create-payment-intent', [PaymentGatewaysController::class, 'createPaymentIntent'])->name('booking.payment');
-Route::post('/stripe/webhook', [PaymentGatewaysController::class, 'handleWebhook']);
-
+Route::post('/payment/create-payment-checkout', [PaymentGatewaysController::class, 'redirectToPaymentCheckout'])->name('booking.payment');
+Route::get('/payment/booking-cancel', [PaymentGatewaysController::class, 'cancelPayment'])->name('booking.cancel');
 
 // 
 Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
-Route::get('/checkout', [CheckoutController::class, 'checkoutView']);
+Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
 Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
 // categories routes
 Route::get('/categories', [CategoryController::class, 'categoryView']);

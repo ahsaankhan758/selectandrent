@@ -103,9 +103,9 @@
                     <input type="datetime-local" name="dropoff_datetime[]" class="form-control time-input dropoff-time">
                 </div>
             </div>
+           
             <!-- data for submit -->
             <input type="hidden" name="vehicleId[]" value="{{ $cart->id }}">
-            <input type="hidden" name="user_id[]" value="2">
             <input type="hidden" class="get-price-{{$cart->rowId}}" name="item_price[]" value="{{$cart->subtotal}}">
             <input type="hidden" name="price_per_day[]" value="{{$cart->price}}">
             <input type="hidden" class="get-duration-{{$cart->rowId}}" name="duration[]" value="{{$cart->qty}}">
@@ -244,9 +244,11 @@
         </div>
         <!-- Order Confirmation form -->
         <div class="col-md-3 col-12">
+       
             <button id="submitBtn" class="btn-order btn-orange-clr">
                 {{ __('messages.Order Confirmation') }}
             </button>
+       
         </div>
     </div>
 

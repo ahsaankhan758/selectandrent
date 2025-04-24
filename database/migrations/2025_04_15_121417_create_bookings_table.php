@@ -14,12 +14,20 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phonenumber')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('billing_addresss')->nullable();
             $table->string('booking_reference')->unique();
             $table->decimal('subtotal', 10, 2)->nullable();
             $table->decimal('total_price', 10, 2);
             $table->string('transaction_id')->nullable();
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
-            $table->enum('booking_status', ['without-payment','pending','confirmed','cancelled','completed'])->default('pending');
+            $table->enum('booking_status', ['pending','confirmed','cancelled','completed'])->default('pending');
             $table->string('payment_method')->nullable();
             $table->string('coupon_code')->nullable();
             $table->decimal('discount_amount', 10, 2)->nullable();
