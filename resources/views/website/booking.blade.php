@@ -24,6 +24,7 @@ Booking | Select and Rent
                     <th class="text-nowrap table-clr">Tax </th>
                     <th class="text-nowrap table-clr">Insurance</th>
                     <th class="text-nowrap table-clr">Notes</th>
+                    <th class="text-nowrap table-clr">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,11 @@ Booking | Select and Rent
                     <td class="py-4 text-center">{{ number_format($booking->tax_amount, 2) }}</td>
                     <td class="py-4 text-center">{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
                     <td class="py-4 text-center">{{ $booking->notes }}</td>
+                    <td class="py-4 text-center">
+                        <a href="{{ route('website.bookingdetail', $booking->id) }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
                 </tr>
                               
                 @empty

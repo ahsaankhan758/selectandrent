@@ -363,6 +363,8 @@
               <h2 class="fw-bold">Bookings</h2>
               @elseif(request()->is('dashboard'))
               <h2 class="fw-bold">Dashboard</h2>
+              @elseif(request()->is('booking-detail/*'))
+              <h2 class="fw-bold">Booking Detail</h2>
               @elseif(request()->is('faqs'))
               <h2 class="fw-bold">{{ __('messages.FAQ') }}</h2>
               <p>{{ __('messages.Got Questions? We’ve Got Answers') }}</p>
