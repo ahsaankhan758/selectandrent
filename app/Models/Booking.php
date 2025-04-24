@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\BookingDetail;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
@@ -27,4 +29,10 @@ class Booking extends Model
     {
         return $this->hasMany(BookingItem::class, 'booking_id', 'id');
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+
 }
