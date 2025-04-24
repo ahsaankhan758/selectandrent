@@ -7,29 +7,31 @@ Dashboard | Select and Rent
 <div class="container py-5">
     <div class="row g-4">
 
+        <!-- Reusable Card Template Start -->
         <!-- Card 1 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card bg-primary text-white shadow rounded-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-primary text-white shadow rounded-4 h-100">
                 <div class="card-body d-flex align-items-center p-4">
-                    <div class="d-flex justify-content-center align-items-center bg-white bg-opacity-25 rounded-3 me-4" style="width: 70px; height: 70px;">
-                        <i class="fas fa-cart-plus fs-4 text-white"></i>
+                    <div class="me-3">
+                        <div class="bg-white bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
+                            <i class="fas fa-chart-line fs-4 text-white"></i>
+                        </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Orders Received</h6>
-                        <h3 class="mb-1">486</h3>
-                        <small>Completed Orders: 351</small>
+                        <h6 class="mb-1">Statistics</h6>
+                        <h3 class="mb-1">75%</h3>
+                        <small>Growth this month</small>
                     </div>
                 </div>
             </div>
         </div>
-        
 
         <!-- Card 2 -->
         <div class="col-md-6 col-lg-4">
-            <div class="card bg-success text-white shadow rounded-4">
-                <div class="card-body d-flex p-4">
-                    <div class="me-3" style="width: 60px;">
-                        <div class="bg-white bg-opacity-25 rounded-3 p-3 d-flex justify-content-center align-items-start mt-3">
+            <div class="card bg-success text-white shadow rounded-4 h-100">
+                <div class="card-body d-flex align-items-center p-4">
+                    <div class="me-3">
+                        <div class="bg-white bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
                             <i class="fas fa-rocket fs-4 text-white"></i>
                         </div>
                     </div>
@@ -44,10 +46,10 @@ Dashboard | Select and Rent
 
         <!-- Card 3 -->
         <div class="col-md-6 col-lg-4">
-            <div class="card bg-warning text-dark shadow rounded-4">
-                <div class="card-body d-flex p-4">
-                    <div class="me-3" style="width: 60px;">
-                        <div class="bg-dark bg-opacity-25 rounded-3 p-3 d-flex justify-content-center align-items-start mt-3">
+            <div class="card bg-warning text-dark shadow rounded-4 h-100">
+                <div class="card-body d-flex align-items-center p-4">
+                    <div class="me-3">
+                        <div class="bg-dark bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
                             <i class="fas fa-history fs-4 text-dark"></i>
                         </div>
                     </div>
@@ -61,11 +63,13 @@ Dashboard | Select and Rent
         </div>
 
         <!-- Card 4 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card bg-danger text-white shadow rounded-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-danger text-white shadow rounded-4 h-100">
                 <div class="card-body d-flex align-items-center p-4">
-                    <div class="d-flex justify-content-center align-items-center bg-white bg-opacity-25 rounded-3 me-4" style="width: 70px; height: 70px;">
-                        <i class="fas fa-times-circle fs-4 text-white"></i>
+                    <div class="me-3">
+                        <div class="bg-white bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
+                            <i class="fas fa-times-circle fs-4 text-white"></i>
+                        </div>
                     </div>
                     <div>
                         <h6 class="mb-1">Failed Orders</h6>
@@ -75,14 +79,13 @@ Dashboard | Select and Rent
                 </div>
             </div>
         </div>
-        
 
         <!-- Card 5 -->
         <div class="col-md-6 col-lg-4">
-            <div class="card bg-info text-white shadow rounded-4">
-                <div class="card-body d-flex p-4">
-                    <div class="me-3" style="width: 60px;">
-                        <div class="bg-white bg-opacity-25 rounded-3 p-3 d-flex justify-content-center align-items-start mt-3">
+            <div class="card bg-info text-white shadow rounded-4 h-100">
+                <div class="card-body d-flex align-items-center p-4">
+                    <div class="me-3">
+                        <div class="bg-white bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
                             <i class="fas fa-users fs-4 text-white"></i>
                         </div>
                     </div>
@@ -97,10 +100,10 @@ Dashboard | Select and Rent
 
         <!-- Card 6 -->
         <div class="col-md-6 col-lg-4">
-            <div class="card bg-secondary text-white shadow rounded-4">
-                <div class="card-body d-flex p-4">
-                    <div class="me-3" style="width: 60px;">
-                        <div class="bg-white bg-opacity-25 rounded-3 p-3 d-flex justify-content-center align-items-start mt-3">
+            <div class="card bg-secondary text-white shadow rounded-4 h-100">
+                <div class="card-body d-flex align-items-center p-4">
+                    <div class="me-3">
+                        <div class="bg-white bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
                             <i class="fas fa-credit-card fs-4 text-white"></i>
                         </div>
                     </div>
@@ -112,10 +115,10 @@ Dashboard | Select and Rent
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 @endsection
+
 
 
 

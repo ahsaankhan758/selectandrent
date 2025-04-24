@@ -247,6 +247,9 @@ Route::post('email/resend', [VerificationController::class, 'resend'])->name('ve
 
 // booking page website
 Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
+Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
+
+
 // dashboard page website
 Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
 
