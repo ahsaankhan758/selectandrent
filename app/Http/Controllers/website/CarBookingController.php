@@ -22,7 +22,7 @@ class CarBookingController extends Controller
         // echo "<pre>";
         // print_r($cartItems);die;
         $vehicleLocation = CarLocation::all();
-        return view('website.car-booking',compact('cartItems','vehicleLocation', 'subtotal', 'tax','totalPriceIncludingTax','cartItemsCount')); 
+        return view('website.bookings.booking-checkout',compact('cartItems','vehicleLocation', 'subtotal', 'tax','totalPriceIncludingTax','cartItemsCount')); 
     }
 
     public function addToCart(Request $request)

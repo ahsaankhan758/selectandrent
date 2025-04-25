@@ -18,6 +18,6 @@ class CheckoutController extends Controller
             }
         }
 
-        return view('website.checkout'); 
+        return view('website.bookings.checkout'); 
     }
 }
