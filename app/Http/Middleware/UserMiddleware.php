@@ -15,17 +15,32 @@ class UserMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-        {
-            $user = User::where('email', $request['email'])->first();
-            if($user['role'] == 'user')
-                {
-                    $request->merge(['user_role' => $user['role'], 'user_status'=>$user['status'] ]);
-                    return $next($request);
-                }
-            else
-                {
-                    $request->merge(['user_role' => '', 'user_status'=>$user['status']]);
-                    return $next($request);
-                }
+    {
+        $user = User::where('email', $request->input('email'))->first();
+
+        if (!empty($user)) {
+            if ($user->role === 'user') {
+                $request->merge([
+                    'user_role' => $user->role,
+                    'user_status' => $user->status,
+                ]);
+            } else {
+                $request->merge([
+                    'user_role' => '',
+                    'user_status' => $user->status,
+                ]);
+            }
+
+            return $next($request);
         }
+
+        // If user is not found, still return the request with default merged values
+        $request->merge([
+            'user_role' => '',
+            'user_status' => '',
+        ]);
+
+        return $next($request);
+    }
+
 }
