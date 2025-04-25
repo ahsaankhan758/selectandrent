@@ -483,7 +483,7 @@ return [
 'Email_Address' => 'E-mailadres',
 'Password' => 'Wachtwoord',
 'profile' => 'Profiel',
-
+'admin' => 'Beheerder',
 'engine' => 'Motor', 
 'permissions' => 'Machtigingen',
 

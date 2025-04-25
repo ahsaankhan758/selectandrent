@@ -9,6 +9,7 @@ $(document).on('submit', '#usersignup', function(e) {
 
     var name = $('#name').val();
     var email = $('#email').val();
+    var phone = $('#phone').val();
     var password = $('#password').val();
     var confirmPassword = $('#password_confirmation').val();
     var form = $(this); // reference to the form
@@ -31,6 +32,14 @@ $(document).on('submit', '#usersignup', function(e) {
         });
         return;
     }
+    if (!phone) {
+        Toast.create({
+            title: 'Validation Error',
+            message: 'Phone Number is required.',
+            timeout: 4000
+        });
+        return;
+    }
     if(password !== confirmPassword){
         Toast.create({
             title: 'Validation Error',
@@ -46,6 +55,7 @@ $(document).on('submit', '#usersignup', function(e) {
         data: {
             name: name,
             email: email,
+            phone: phone,
             password: password,
             password_confirmation:confirmPassword,
             _token: $('meta[name="csrf-token"]').attr('content')// Laravel CSRF token

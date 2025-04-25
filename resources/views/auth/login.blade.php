@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('loginLayout')
-@section('title') {{ __('messages.Admin') }} {{ __('messages.Login') }} @endsection
+@section('title') {{ __('messages.admin') }} {{ __('messages.Login') }} @endsection
 @section('content')
     <body class="authentication-bg authentication-bg-pattern">
 

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'phone',
         'status',
         'confirmation_token',
     ];
@@ -62,6 +63,10 @@ class User extends Authenticatable
         }
     public function cars()
     {
-        return $this->hasMany(ActivityLog::class, 'user_id','id');
+        return $this->hasMany(Car::class, 'user_id','id');
+    }
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class, 'user_id','id');
     }
 }
