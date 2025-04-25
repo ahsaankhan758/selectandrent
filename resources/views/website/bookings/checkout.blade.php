@@ -44,40 +44,40 @@
         <div class="col-md-3">
             <div class="start-card">
                 <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
-                </div>
-                <div class="start-title"{{ __('messages.Order Number') }}></div>
-                <div class="start-text">311</div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="start-card">
-                <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
-                </div>
-                <div class="start-title">{{ __('messages.Date') }}</div>
-                <div class="start-text">Nov 23, 2024</div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="start-card">
-                <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
-                </div>
-                <div class="start-title">{{ __('messages.Email') }}</div>
-                <div class="start-text">hello@sparkodic.com</div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="start-card">
-                <div>
-                    <img src="{{asset('/')}}company-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
                 <div class="start-title">{{ __('messages.Order Number') }}</div>
-                <div class="start-text">311</div>
+                <div class="start-text">{{ $booking->booking_reference }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="start-card">
+                <div>
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                </div>
+                <div class="start-title">{{ __('messages.Date') }}</div>
+                <div class="start-text">{{ $booking->created_at }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="start-card">
+                <div>
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                </div>
+                <div class="start-title">{{ __('messages.Email') }}</div>
+                <div class="start-text">{{ $booking->email }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="start-card">
+                <div>
+                    <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
+                </div>
+                <div class="start-title">{{ __('messages.total') }}</div>
+                <div class="start-text">{{ $booking->total_price}}</div>
             </div>
         </div>
     </div>
