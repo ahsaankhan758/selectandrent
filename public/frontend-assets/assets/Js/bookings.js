@@ -49,11 +49,14 @@ $(document).on('submit', '#bookingForm', function(e) {
                     }
                     Toast.create(toast);
                     // 
-                    console.log(response.html);
+                    // console.log(response.html);
                     submitBtn.prop('disabled', false).text('Order Confirmation');
                     if(response.status){
                         setTimeout(function () {
                             $('.booking-render-page').html(response.html);
+                            $('.progress_step_active').addClass('active');
+                            $('.update-line-progress-bar').removeClass('progress-bar-filled');
+                            $('.update-line-progress-bar').addClass('progress-bar-filled-order');                            
                         }, 2000);
                     }
                     
