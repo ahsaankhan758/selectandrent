@@ -73,11 +73,6 @@ class ConfirmBookingController extends Controller
 
     }
 
-    public function confirmBooking(Request $request){
-
-        $paymentGateways = PaymentGateways::all();
-        return view('website.bookings.include.booking-confirm', compact('checkoutData','paymentGateways'));
-        
-    }
+   
 
 }
