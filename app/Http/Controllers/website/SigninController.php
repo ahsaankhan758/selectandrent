@@ -41,7 +41,7 @@ class SigninController extends Controller
             $action = 'LoggedIn';
             $module = 'Website';
     
-            activityLog($userId, $description, $action, $module);
+            //activityLog($userId, $description, $action, $module);
     
             return response()->json([
                 'status' => 'Success',

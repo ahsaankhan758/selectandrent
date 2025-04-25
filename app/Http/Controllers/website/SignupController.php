@@ -22,12 +22,14 @@ class SignupController extends Controller
                 'email' => 'required|string|email|max:255|unique:users,email',
                 'password' => 'required|string|same:password_confirmation',
                 'password_confirmation' => 'min:8',
+                'phone' => 'required',
             ]);
             $token = Str::random(64); 
             // Create the user
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'phone' => $request->phone,
                 'password' => Hash::make($request->password),
                 'role' => 'user',
                 'status' => 0,

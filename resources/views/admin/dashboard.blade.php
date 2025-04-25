@@ -1,5 +1,5 @@
 @extends('admin.layouts.Master')
-@section('title') {{ $role }} {{__('messages.dashboard') }} @endsection
+@section('title') {{ ucfirst($role) }} {{__('messages.dashboard') }} @endsection
 @section('content')
     <!-- start page title -->
     <div class="row">
