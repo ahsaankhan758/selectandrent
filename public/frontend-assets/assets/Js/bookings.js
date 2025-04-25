@@ -29,10 +29,9 @@ $(document).on('submit', '#bookingForm', function(e) {
             input.css('border', '');
         }
     });
-    
-    submitBtn.prop('disabled', true).text('Processing...');
 
     if (isValid) {
+        submitBtn.prop('disabled', true).text('Processing...');
         // start ajax
         $.ajax({
             url: form.attr('action'),
@@ -49,7 +48,6 @@ $(document).on('submit', '#bookingForm', function(e) {
                     }
                     Toast.create(toast);
                     // 
-                    // console.log(response.html);
                     submitBtn.prop('disabled', false).text('Order Confirmation');
                     if(response.status){
                         setTimeout(function () {
@@ -59,10 +57,7 @@ $(document).on('submit', '#bookingForm', function(e) {
                             $('.update-line-progress-bar').addClass('progress-bar-filled-order');                            
                         }, 2000);
                     }
-                    
-                    
-
-                     
+                           
             },
             error: function(xhr) {
                 submitBtn.prop('disabled', false).text('Order Confirmation');
