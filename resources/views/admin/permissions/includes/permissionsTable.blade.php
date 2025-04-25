@@ -12,7 +12,7 @@
 
 <thead class="thead-dark">
     <tr>
-        <th>Module</th>
+        <th>{{ __('messages.module') }}</th>
         @foreach ($actions as $action)
             <th>{{ ucfirst($action) }}</th>
         @endforeach
@@ -27,6 +27,7 @@
             <td>{{ $module }}</td>
             @foreach ($actions as $action)
                 <td>
+                    <input type="hidden" name="permissions[{{ $key }}][{{ $action }}]" value="0">
                     <input type="checkbox"
                         name="permissions[{{ $key }}][{{ $action }}]"
                         value="1"
