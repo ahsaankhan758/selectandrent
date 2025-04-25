@@ -1,11 +1,6 @@
-@extends('website.layout.master')
-@section('title')
-{{ __('messages.Car Booking ') }}| {{ __('messages.Select and Rent') }}
-@endsection
-
-@section('content')
-
+<!-- for payment gateways -->
 <script src="{{asset('/frontend-assets/assets/Js/payment-gateways/ActivePaymentRadioButtons.js')}}"></script>
+<!-- end for payment gateways -->
 <style>
     .payment-card {
         transition: 0.3s ease-in-out;
@@ -20,41 +15,11 @@
     border-color: #007bff44;
     }
 </style>
-<div class="container py-2" id="booking-confirm-container">
-    <?php
-    $encodedData = base64_encode(serialize($checkoutData));
-
-    ?>
-    <div class="progress-container">
-        <div class="progress-line"></div>
-        <div class="progress-bar-filled-order"></div>
-
-        <!-- Step 1 -->
-        <div class="progress-step active">
-            <span class="step-number">1</span>
-            <span class="step-text">{{ __('messages.Booking') }}</span>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="progress-step active">
-            <span class="step-number">2</span>
-            <span class="step-text">{{ __('messages.Confirmation') }}</span>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="progress-step">
-            <span class="step-number">3</span>
-            <span class="step-text">{{ __('messages.Checkout') }}</span>
-        </div>
-    </div>
-</div>
-<!-- end progress bar -->
- <!-- input form -->
-
   <!-- billing -->
 <div class="container heading-background py-3 mb-3">
     <div class="container text-start fw-bold">{{ __('messages.PaymentMethod') }}</div>
 </div>
+<?php $encodedData = base64_encode(serialize($checkoutData)); ?>
 <form method="post" id="bookingFormSubmit" action="{{route('booking.payment')}}" enctype="multipart/form-data">
     @csrf
   <input type="hidden" name="checkoutData" value="<?= htmlspecialchars($encodedData) ?>">
@@ -162,6 +127,3 @@
             </div>
 </div>
 </form>
-
-
-@endsection
