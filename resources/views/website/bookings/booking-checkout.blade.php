@@ -13,7 +13,7 @@
 <div class="container py-2">
     <div class="progress-container">
         <div class="progress-line"></div>
-        <div class="progress-bar-filled"></div>
+        <div class="progress-bar-filled update-line-progress-bar"></div>
 
        <!-- Step 1 -->
        <div class="progress-step active">
@@ -22,11 +22,11 @@
         </div>
 
         <!-- Step 2 -->
-        <div class="progress-step">
+        <div class="progress-step progress_step_active">
             <span class="step-number">2</span>
             <span class="step-text">{{ __('messages.Confirmation') }}</span>
         </div>
-
+        
         <!-- Step 3 -->
         <div class="progress-step">
             <span class="step-number">3</span>
@@ -53,4 +53,5 @@
 <div class="container booking-render-page">
     @include('website.bookings.include.car-bookings')
 </div>
+
 @endsection
