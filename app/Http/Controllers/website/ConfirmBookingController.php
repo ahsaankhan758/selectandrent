@@ -5,6 +5,7 @@ namespace App\Http\Controllers\website;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\website\Auth;
 
 use App\Models\PaymentGateways;
 
@@ -49,29 +50,34 @@ class ConfirmBookingController extends Controller
 
         $validated = $request->validate($rules);
 
-        // Additional manual validation: dropoff must be after pickup
         foreach ($request->pickup_datetime as $index => $pickup) {
             $dropoff = $request->dropoff_datetime[$index] ?? null;
-
             if ($dropoff && strtotime($dropoff) <= strtotime($pickup)) {
-                return redirect()->back()
-                    ->withErrors(["dropoff_datetime.$index" => 'Drop-off must be after pickup.'])
-                    ->withInput();
+                return response()->json([
+                    'status' => false,
+                    'errors' => ["dropoff_datetime.$index" => 'Drop-off must be after pickup.']
+                ], 422);
             }
         }
 
         $checkoutData = $request->all();
-
+        
         $paymentGateways = PaymentGateways::all();
-        return view('website.booking-confirm', compact('checkoutData','paymentGateways'));
+        $html = view('website.bookings.include.booking-confirm', compact('checkoutData','paymentGateways'))->render();
+        
+        return response()->json([
+            'status' => true,
+            'message' => "Booking Confirm",
+            'html' => $html,
+        ], 200);
 
     }
 
+    public function confirmBooking(Request $request){
 
-public function confirmBooking(Request $request)
-{
-    
-}
-
+        $paymentGateways = PaymentGateways::all();
+        return view('website.bookings.include.booking-confirm', compact('checkoutData','paymentGateways'));
+        
+    }
 
 }
