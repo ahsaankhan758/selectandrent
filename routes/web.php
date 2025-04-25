@@ -164,9 +164,9 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
             // Permissions
             Route::get('permissions',[PermissionController::class, 'index'])->name('permissions');
-            Route::post('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
-
-
+            Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
+            Route::put('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
+            Route::get('getUserPermissions',[PermissionController::class, 'getUserPermissions'])->name('getUserPermissions');
         });
     }
 

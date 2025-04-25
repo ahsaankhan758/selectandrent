@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-    //
+    protected $table = 'permissions';
+    protected $fillable = [
+        'user_id',
+        'module',
+        'key',
+        'value',
+        'status',
+    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id','id');
+    }
 }

@@ -415,6 +415,14 @@
               </div>
             </div>
             <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-phone icon-size"></i></span>
+  
+                  <input id="phone" class="form-control" placeholder="{{ __('messages.phone') }}">
+  
+                </div>
+              </div>
+            <div class="mb-3">
               <div class="input-group">
                 <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
 
