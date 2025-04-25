@@ -13,48 +13,34 @@ class PermissionController extends Controller
         return view('admin.permissions.index');
     }
     
-    // public function store(Request $request)
-    // {
-    //     $permissions = $request->input('permissions', []);
-
-    //     foreach ($permissions as $module => $actions) {
-    //         foreach ($actions as $action => $value) {
-    //             if ($value) {
-    //                 Permission::create([
-    //                     'user_id' => $request->name,
-    //                     'module' => $module,
-    //                     'key' => $action,
-    //                     'value' => 1,
-    //                 ]);
-    //             }
-    //         }
-    //     }
-    
-    //     return redirect()->back()->with('status', 'Permissions saved successfully.');    
-    // }
-
-    public function store(Request $request)
+public function store(Request $request)
 {
-    $permissions = $request->input('permissions', []);
-    $userId = $request->name; // Make sure this is user_id, not just name
+    $userId = $request->name;
+    $submittedPermissions = $request->input('permissions', []);
 
-    foreach ($permissions as $module => $actions) {
-        foreach ($actions as $action => $value) {
-            // Check if a permission entry already exists
-            $existing = Permission::where('user_id', $userId)
+    // Define your full list of modules and actions
+    $modules = ['users', 'companies', 'vehicle', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log'];
+    $actions = ['view', 'add', 'edit', 'delete'];
+
+    foreach ($modules as $module) {
+        foreach ($actions as $action) {
+            $value = $submittedPermissions[$module][$action] ?? 0;
+
+            // Look for existing permission
+            $permission = Permission::where('user_id', $userId)
                 ->where('module', $module)
                 ->where('key', $action)
                 ->first();
 
-            if ($existing) {
-                // Update only if the value has changed
-                if ($existing->value != $value) {
-                    $existing->value = $value;
-                    $existing->save();
+            if ($permission) {
+                // Update if value changed
+                if ($permission->value != $value) {
+                    $permission->value = $value;
+                    $permission->save();
                 }
             } else {
-                // Create new permission if it doesn't exist and value is 1
-                if ($value == 1) {
+                // Create only if checked (value == 1)
+                if ($value) {
                     Permission::create([
                         'user_id' => $userId,
                         'module' => $module,
@@ -66,10 +52,9 @@ class PermissionController extends Controller
         }
     }
 
-    return redirect()->back()->with('status', 'Permissions updated successfully.');
+    return redirect()->back()->with('status', 'Permissions saved successfully.');
 }
-    
-    
+
     public function selectedUsersList(Request $request){
         $role = $request->role;
         $usersList = User::where('role', $role)->get();
