@@ -28,6 +28,7 @@
     "autoload": {
         "files": [
         "app/Helpers/helpers.php",
+        "app/Helpers/can.php",
         "app/Helpers/PaymentGateway.php"
         ],
         "psr-4": {
