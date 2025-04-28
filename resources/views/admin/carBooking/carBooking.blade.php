@@ -93,7 +93,7 @@
                                 <td>{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
                                 <td>{{ $booking->notes }}</td>
                                 <td>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}" class="action-icon text-danger"> <i class="mdi mdi-eye"></i></a>
                                     {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
                                 </td>
