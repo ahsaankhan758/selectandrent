@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
 use App\Http\Controllers\Admin\IP_AddressController;
 use App\Http\Controllers\admin\PermissionController;
+use App\Http\Controllers\admin\AdminPaymentGateways;
 use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\Admin\ActivityLogController;
@@ -175,6 +176,15 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
             Route::put('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
             Route::get('getUserPermissions',[PermissionController::class, 'getUserPermissions'])->name('getUserPermissions');
+
+            // Admin payment gateways
+            Route::get('paymentgateway',[AdminPaymentGateways::class, 'index'])->name('paymentGateway');
+            Route::get('payment-gateways/{id}', [AdminPaymentGateways::class, 'getGateway'])->name('admin.payment-gateways.get');
+            Route::post('payment-gateways/{id}', [AdminPaymentGateways::class, 'update'])->name('admin.payment-gateways.update');
+            Route::post('/admin/payment-gateways/store', [AdminPaymentGateways::class, 'storeGatewayName'])->name('admin.payment-gateways.store');
+
+
+
         });
     }
 

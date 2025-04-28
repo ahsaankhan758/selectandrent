@@ -307,15 +307,15 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"> 
+                                <a href="{{ route('paymentGateway') }}"> 
                                     <i class="mdi mdi-plus-circle"></i>
-                                    <span class="custom-ml-15">Payment Modules</span>
+                                    <span class="custom-ml-15">{{ __('messages.payment-module') }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#"> 
                                     <i class="mdi mdi-map-marker-multiple"></i>
-                                    <span class="custom-ml-15">Google Map Module</span>
+                                    <span class="custom-ml-15">{{ __('messages.google-map-module') }}</span>
                                 </a>
                             </li>
                             
