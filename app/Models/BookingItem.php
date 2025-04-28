@@ -26,4 +26,16 @@ class BookingItem extends Model
     {
         return $this->belongsTo(Booking::class, 'booking_id');
     }
+
+    public function car()
+{
+    return $this->belongsTo(Car::class, 'car_id');
+}
+// In BookingItem model
+public function vehicle()
+{
+    return $this->belongsTo(Car::class, 'vehicle_id'); // Assuming 'vehicle_id' is the foreign key
+}
+
+
 }
