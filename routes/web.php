@@ -115,6 +115,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
+            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
             //Users Routes
             Route::get('users', [userController::class, 'index'])->name('users');
             Route::get('createuser', [userController::class,'create'])->name('createUser');
