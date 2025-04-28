@@ -489,6 +489,8 @@ return [
 
     'engine'=>'Engine',
     'permissions'=>'Permissions',
+    // payment gateway
+    'payment-gateway'=>'Payment Gateways',
 
     'assign'=>'Assign',
     'set'=>'Set',
@@ -512,7 +514,24 @@ return [
     'plan' => 'Plan | Plans',
     'driver' => 'Driver | Drivers',
     'payment' => 'Payment | Payments',
-    
+
+    'payment-module' => 'Payment Modules',
+    'add-payment-gateway'=> 'Add Payment Gateway',
+    'gateway-name' => 'Gateway Name',
+     'save' => 'Save',
+     'add-new' => 'Add New',
+    'google-map-module' => 'Google Map Modules',
+    'enter-gateway-name'=> 'Enter Gateway Name',
+
+    'for-dev' => 'For Dev',
+    'dev-endpoint' => 'Dev Endpoint',
+    'pro-endpoint' => 'Pro Endpoint',
+    'select-name' => 'Select Name',
+    'c1'=> 'C1',
+    'c2'=> 'C2',
+    'c3'=> 'C3',
+    'c4'=> 'C4',
+    'c5'=> 'C5',
     
     
 ];
