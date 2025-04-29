@@ -13,8 +13,6 @@ Booking | Select and Rent
                     <th class="text-nowrap table-clr">ID</th>
                     <th class="text-nowrap table-clr">User ID</th>
                     <th class="text-nowrap table-clr">Booking Ref</th>
-                    <th class="text-nowrap table-clr">Subtotal </th>
-                    <th class="text-nowrap table-clr">Total </th>
                     <th class="text-nowrap table-clr">Transaction ID</th>
                     <th class="text-nowrap table-clr">Payment Status</th>
                     <th class="text-nowrap table-clr"">Booking Status</th>
@@ -23,6 +21,8 @@ Booking | Select and Rent
                     <th class="text-nowrap table-clr">Discount </th>
                     <th class="text-nowrap table-clr">Tax </th>
                     <th class="text-nowrap table-clr">Insurance</th>
+                    <th class="text-nowrap table-clr">Total </th>
+                    <th class="text-nowrap table-clr">Subtotal </th>
                     <th class="text-nowrap table-clr">Notes</th>
                     <th class="text-nowrap table-clr">Action</th>
                 </tr>
@@ -33,16 +33,16 @@ Booking | Select and Rent
                     <td class="py-4 text-center">{{ $booking->id }}</td>
                     <td class="py-4 text-center">{{ $booking->user_id }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_reference }}</td>
-                    <td class="py-4 text-center">{{ number_format($booking->subtotal, 2) }}</td>
-                    <td class="py-4 text-center">{{ number_format($booking->total_price, 2) }}</td>
                     <td class="py-4 text-center">{{ $booking->transaction_id }}</td>
-                    <td class="py-4 text-center"><span class="badge bg-warning text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
+                    <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
                     <td class="py-4 text-center"><span class="badge bg-secondary text-uppercase">{{ $booking->booking_status }}</span></td>
                     <td class="py-4 text-center">{{ ucfirst($booking->payment_method) }}</td>
                     <td class="py-4 text-center">{{ $booking->coupon_code ?: '—' }}</td>
                     <td class="py-4 text-center">{{ number_format($booking->discount_amount, 2) }}</td>
                     <td class="py-4 text-center">{{ number_format($booking->tax_amount, 2) }}</td>
                     <td class="py-4 text-center">{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
+                    <td class="py-4 text-center">{{ number_format($booking->total_price, 2) }}</td>
+                    <td class="py-4 text-center">{{ number_format($booking->subtotal, 2) }}</td>
                     <td class="py-4 text-center">{{ $booking->notes }}</td>
                     <td class="py-4 text-center">
                         <a href="{{ route('website.bookingdetail', $booking->id) }}">
