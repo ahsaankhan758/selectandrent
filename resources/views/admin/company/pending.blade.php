@@ -60,8 +60,12 @@
                                         <?php $counterPendingCompanies++; ?>
                                     </td>
                                     <td>
-                                        <a title="Approve" href="{{ route('aprovePendingCompany', $compdata->id) }}" class="btn-aprove-company"> <i class="fa-regular fa-circle-check pending-btn" ></i> </a>
-                                        <a title="Delete" href="{{ route('deleteCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash fa-1x delete-btn"></i></a>
+                                        @if(can('companies','edit'))
+                                            <a title="Approve" href="{{ route('aprovePendingCompany', $compdata->id) }}" class="btn-aprove-company"> <i class="fa-regular fa-circle-check pending-btn" ></i> </a>
+                                        @endif
+                                        @if(can('companies','delete'))
+                                            <a title="Delete" href="{{ route('deleteCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash fa-1x delete-btn"></i></a>
+                                        @endif
                                     </td>    
                                 </tr>
                             @endforeach

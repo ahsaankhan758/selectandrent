@@ -51,7 +51,9 @@
                 </div>
     
                 <!-- Add Booking Button -->
-                <button class="btn booking-btn-add">{{ __('messages.add') }} {{ trans_choice('messages.booking',1) }}</button>
+                @if(can('Bookings','add'))
+                    <button class="btn booking-btn-add">{{ __('messages.add') }} {{ trans_choice('messages.booking',1) }}</button>
+                @endif
             </div>
             <table id="myTable" class="table table-striped booking-table">
                 <thead class="text-nowrap">

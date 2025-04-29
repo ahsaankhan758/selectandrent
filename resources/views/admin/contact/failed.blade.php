@@ -12,7 +12,9 @@ Failed Emails
             <div class="card-header">
                 <h4>Failed Emails</h4>
                 <div class="float-end">
-                    <button type="submit" class="btn btn-danger" id="delete-btn-failed" disabled>Delete</button>
+                    @if(can('Contacts','delete')) 
+                        <button type="submit" class="btn btn-danger" id="delete-btn-failed" disabled>Delete</button>
+                    @endif
                 </div>
             </div>
             <div class="card-body">
