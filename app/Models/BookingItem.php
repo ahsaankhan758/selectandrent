@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookingItem extends Model
 {
-    //
-    //
+
     protected $fillable = [
         'booking_id',
         'vehicle_id',
@@ -31,10 +30,13 @@ class BookingItem extends Model
 {
     return $this->belongsTo(Car::class, 'car_id');
 }
-// In BookingItem model
 public function vehicle()
 {
-    return $this->belongsTo(Car::class, 'vehicle_id'); // Assuming 'vehicle_id' is the foreign key
+    return $this->belongsTo(Car::class, 'vehicle_id'); 
+}
+public function carModel()
+{
+    return $this->vehicle->carModel(); 
 }
 
 

@@ -3,72 +3,120 @@
 @section('title')
 Booking Detail | Select and Rent
 @endsection
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 @section('content')
-<div class="container py-2">
-    <div class="row d-flex">
-        <p><strong>Order ID:</strong> {{ $booking->id }}</p>
+
+<div class="container py-4">
+    <div class="bg-white p-4 rounded shadow-sm mb-4">
+        <h4 class="mb-3 text-primary">Booking Summary</h4>
+        <p><strong>Order ID:</strong> #{{ $booking->id }}</p>
         <p><strong>Customer Name:</strong> {{ $booking->user->name ?? 'N/A' }}</p>
     </div>
-</div>
 
-<!-- Booking Items Header -->
-<div class="container py-3">
-    <div class="vehicle-card d-flex mobile-car">
-        <ul class="col-md-12"><b>Booking Items</b></ul>
+    <div class="bg-light p-3 rounded mb-3">
+        <h5 class="mb-0 text-secondary"><i class="bi bi-list-check me-2"></i>Booking Items</h5>
     </div>
-    <hr>
-</div>
-
-<!-- Horizontal Booking Items Cards -->
-<div class="container mb-4">
+    {{-- @php
+    echo"<pre>";
+        print_r($booking);die;
+@endphp --}}
     @foreach($booking->booking_items as $detail)
-        <div class="booking-card shadow-sm rounded-4 mb-4 p-4" style="width: 100%; overflow: visible;">
-            <div class="row g-3">
-                <div class="col-md-3 col-sm-6"><strong>Vehicle ID:</strong> {{ $detail->vehicle_id }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Pickup Location:</strong> {{ $detail->pickup_location }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Dropoff Location:</strong> {{ $detail->dropoff_location }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Pickup:</strong> {{ $detail->pickup_datetime }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Dropoff:</strong> {{ $detail->dropoff_datetime }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Duration (Days):</strong> {{ $detail->duration_days }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Price per Day:</strong> ${{ $detail->price_per_day }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Total Price:</strong> ${{ $detail->total_price }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Driver Required:</strong> {{ $detail->driver_required ? 'Yes' : 'No' }}</div>
-                <div class="col-md-3 col-sm-6"><strong>Notes:</strong> {{ $detail->notes }}</div>
+    
+        <div class="rent-card shadow-sm rounded-4 mb-4 border-0 overflow-hidden">
+            <div class="row g-0">
+                <div class="col-md-3 bg-light d-flex align-items-center justify-content-center p-3">
+                    @php
+                        $thumbnail = $detail->vehicle->thumbnail ?? null;
+                    @endphp
+                
+                    @if($thumbnail && file_exists(public_path('storage/' . $thumbnail)))
+                        <img src="{{ asset('storage/' . $thumbnail) }}" alt="Vehicle Thumbnail" class="img-fluid rounded" style="max-height: 140px; object-fit: contain;">
+                    @else
+                        <img src="{{ asset('/frontend-assets/assets/car-suv.png') }}" alt="Default Vehicle Image" class="img-fluid rounded" style="max-height: 140px; object-fit: contain;">
+                    @endif
+                </div>
+                
+                <!-- Details -->
+                <div class="col-md-9 p-4 bg-white">
+                    <h5 class="mb-3 text-dark">
+                        <i class="bi bi-car-front-fill me-2 text-primary"></i>
+                        <span class="text-secondary"> 
+                            {{ $detail->vehicle->carModel->name ?? 'N/A' }} - {{ $detail->vehicle->year ?? 'N/A' }}
+                        </span>
+                    </h5>
+                    
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-geo-alt-fill text-danger me-1"></i> Pickup:</strong> {{ $detail->pickup_location }}
+                        </div>
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-geo-fill text-success me-1"></i> Dropoff:</strong> {{ $detail->dropoff_location }}
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-calendar-event text-warning me-1"></i> Pickup Date:</strong>
+                            {{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('d M Y, h:i A') }}
+                        </div>
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-calendar-check text-success me-1"></i> Dropoff Date:</strong>
+                            {{ \Carbon\Carbon::parse($detail->dropoff_datetime)->format('d M Y, h:i A') }}
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-clock-fill text-info me-1"></i> Duration:</strong> {{ $detail->duration_days }} day(s)
+                        </div>
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-currency-dollar text-success me-1"></i> Price/Day:</strong> $ {{ $detail->price_per_day }}
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-person-fill-check text-secondary me-1"></i> Driver Required:</strong>
+                            <span class="badge bg-{{ $detail->driver_required ? 'success' : 'secondary' }}">
+                                {{ $detail->driver_required ? 'Yes' : 'No' }}
+                            </span>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <strong><i class="bi bi-cash-coin text-primary me-1"></i> Total:</strong> $ {{ $detail->total_price }}
+                        </div>
+
+                        @if($detail->notes)
+                        <div class="col-md-12">
+                            <strong><i class="bi bi-card-text me-1"></i> Notes:</strong>
+                            <div class="bg-light border rounded p-2 mt-1">{{ $detail->notes }}</div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     @endforeach
-</div>
 
-<!-- Subtotal and Total -->
-<div class="container my-3">
-    <div class="row justify-content-end align-items-center g-3">
-        <div class="col-md-3 col-6">
-            <div class="box">
-                <div class="text-primary"><strong>SubTotal</strong></div>
-                <div class="price-car calculate-subtotal">$ 1000</div>
+    <div class="row justify-content-end">
+        <div class="col-md-4">
+            <div class="bg-white shadow-sm p-3 rounded mb-2 d-flex justify-content-between">
+                <strong class="text-muted">Subtotal:</strong>
+                <span class="text-primary fw-bold">$1000</span>
             </div>
-        </div>
-        <div class="col-md-3 col-6">
-            <div class="box">
-                <div class="text-primary"><strong>Total</strong></div>
-                <div class="price-car calculate-total">$ 2000</div>
+            <div class="bg-white shadow-sm p-3 rounded d-flex justify-content-between">
+                <strong class="text-muted">Total:</strong>
+                <span class="text-success fw-bold">$2000</span>
             </div>
         </div>
     </div>
 </div>
 <style>
-.booking-card {
-  /* Override global fixed height */
+    .rent-card {
+  height: 318px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    }
+    .rent-card img {
+  max-width: 262px;
   height: auto;
-  display: block; /* Or flex if needed for layout */
-  padding: 1rem;  /* Adjust spacing as required */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  border-radius: 0.5rem;
-  background-color: #fff;
 }
-
 </style>
 @endsection
-
-

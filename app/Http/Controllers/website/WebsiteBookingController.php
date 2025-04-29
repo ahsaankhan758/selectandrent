@@ -17,7 +17,7 @@ class WebsiteBookingController extends Controller
 
     public function show($id)
     {
-        $booking = Booking::with(['booking_items', 'user'])->findOrFail($id);
+        $booking = Booking::with(['booking_items.vehicle.carModel', 'user','car'])->findOrFail($id);
         return view('website.bookingdetail', compact('booking'));
     }
     
