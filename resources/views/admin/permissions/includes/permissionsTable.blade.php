@@ -6,7 +6,7 @@
         $storedPermissions[$key][$perm->key] = $perm->value;
     }
 
-    $modules = ['Users', 'Companies', 'Vehicle', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Clients', 'User IP', 'Blogs', 'Activity Log'];
+    $modules = ['Users', 'Companies', 'Vehicle', 'Vehicle Brands', 'Vehicle Categories', 'Vehicle Features', 'Vehicle Models', 'Vehicle Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Clients', 'User IP', 'Blogs', 'Activity Log', 'Contacts'];
     $actions = ['view', 'add', 'edit', 'delete'];
 @endphp
 

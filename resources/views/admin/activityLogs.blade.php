@@ -10,7 +10,9 @@
                 <div class="card-header">
                     <h4>{{__('messages.activity logs') }}</h4>
                     <div class="float-end">
-                        <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-activity">{{__('messages.delete') }}</button>
+                        @if(can('Activity Log','delete'))
+                            <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-activity">{{__('messages.delete') }}</button>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">

@@ -7,9 +7,11 @@
             <div class="card-header">
                 <h4>Car Models</h4>
                 <div class="mt-3 float-end">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        Create
-                    </button>
+                    @if(can('vehicle_models','add'))
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                            Create
+                        </button>
+                    @endif
                 </div>
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
@@ -56,9 +58,13 @@
                                 <tr>
                                     <td>{{ ucfirst(strtolower($modelData->name)) }}</td>
                                     <td>{{ ucfirst(strtolower($modelData->car_brands->name)) }}</td>
-                                    <td><a href="{{ route('deleteCarModel',$modelData->id) }}"  class="btn-delete">
-                                        <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
-                                    </a></td>
+                                    <td>
+                                        @if(can('vehicle_models','delete'))
+                                            <a href="{{ route('deleteCarModel',$modelData->id) }}"  class="btn-delete">
+                                                <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                            </a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif

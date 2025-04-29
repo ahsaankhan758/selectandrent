@@ -7,9 +7,11 @@
             <div class="card-header">
                 <h4>{{ __('messages.cars') }}  {{ __('messages.brand') }}</h4>
                 <div class="mt-3 float-end">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        {{ __('messages.create') }}
-                    </button>
+                    @if(can('vehicle_brands','add'))
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                            {{ __('messages.create') }}
+                        </button>
+                    @endif
                 </div>
                 
                 <div class="modal" id="myModal">
@@ -50,9 +52,13 @@
                             @foreach ($brands as $brandData)
                                 <tr>
                                     <td>{{ ucfirst(strtolower($brandData->name)) }}</td>
-                                    <td><a href="{{ route('deleteCarBrand',$brandData->id) }}"  class="btn-delete">
-                                        <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
-                                    </a></td>
+                                    <td>
+                                        @if(can('vehicle_brands','delete'))
+                                            <a href="{{ route('deleteCarBrand',$brandData->id) }}"  class="btn-delete">
+                                                <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                            </a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
