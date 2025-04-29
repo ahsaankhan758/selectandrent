@@ -121,14 +121,16 @@ class PaymentGatewaysController extends Controller
                 ]);
     
                 return redirect($session->url);
+            }elseif($method === 'paypal'){
+                return "working";
             }
     
-            // Placeholder for other gateways
-            return response()->json([
-                'status' => true,
-                'message' => 'Booking created. Proceed with manual payment or other gateways.',
-                'redirect_url' => route('booking.success'),
-            ]);
+            // // Placeholder for other gateways
+            // return response()->json([
+            //     'status' => true,
+            //     'message' => 'Booking created. Proceed with manual payment or other gateways.',
+            //     'redirect_url' => route('booking.success'),
+            // ]);
     
         } catch (\Exception $e) {
             DB::rollBack();

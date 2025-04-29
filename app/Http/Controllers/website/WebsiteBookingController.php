@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Website;
+namespace App\Http\Controllers\website;
 
 use App\Models\Booking;
 use App\Models\BookingDetail;

@@ -499,6 +499,29 @@ return [
     'driver' => 'سائق | سائقون',
     'payment' => 'دفعة | دفعات',
     'app' => 'تطبيق | تطبيقات',
+
+    'payment-module' => 'وحدات الدفع',
+    'add-payment-gateway' => 'إضافة بوابة دفع',
+    'gateway-name' => 'اسم البوابة',
+    'save' => 'حفظ',
+    'add-new' => 'إضافة جديد',
+    'enter-gateway-name' => 'أدخل اسم بوابة الدفع',
+
+    'google-map-module' => 'وحدات خرائط جوجل',
+
+    'for-dev' => 'للتطوير',
+    'dev-endpoint' => 'نهاية التطوير',
+    'pro-endpoint' => 'نهاية البرو',
+
+    'select-name' => 'اختر الاسم',
+    'c1' => 'C1',
+    'c2' => 'C2',
+    'c3' => 'C3',
+    'c4' => 'C4',
+    'c5' => 'C5',
+
+
+
     
 
 ];

@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+function paymentRadio(){
+  
     const radioInputs = document.querySelectorAll('.payment-radio');
     console.log(radioInputs)
     radioInputs.forEach((radio) => {
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', function () {
             radio.dispatchEvent(new Event('change'));
         }
     });
-});
+
+}
