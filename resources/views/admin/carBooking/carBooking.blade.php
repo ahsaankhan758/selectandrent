@@ -29,7 +29,9 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="text-lg-end">
-                            <button type="button" class="btn btn-danger waves-effect waves-light mb-2 me-2"><i class="mdi mdi-basket me-1"></i> Add New Order</button>
+                            @if(can('Bookings','add'))
+                                <button type="button" class="btn btn-danger waves-effect waves-light mb-2 me-2"><i class="mdi mdi-basket me-1"></i> Add New Order</button>
+                            @endif
                             <button type="button" class="btn btn-light waves-effect mb-2">Export</button>
                         </div>
                     </div><!-- end col-->
@@ -94,8 +96,15 @@
                                 <td>{{ $booking->notes }}</td>
                                 <td>
                                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                    {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+                                    {{-- 
+                                    @if(can('Bookings','edit'))
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                    @endif
+                                    @if(can('Bookings','delete'))
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> 
+                                    @endif    
+                                    --}}
+                                    
                                 </td>
                             </tr> 
                             @empty

@@ -19,7 +19,7 @@ public function store(Request $request)
     $submittedPermissions = $request->input('permissions', []);
 
     // Define your full list of modules and actions
-    $modules = ['users', 'companies', 'vehicle', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log'];
+    $modules = ['users', 'companies', 'vehicle', 'vehicle_brands', 'vehicle_categories', 'vehicle_features', 'vehicle_models', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts'];
     $actions = ['view', 'add', 'edit', 'delete'];
 
     foreach ($modules as $module) {

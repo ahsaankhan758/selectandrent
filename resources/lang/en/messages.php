@@ -5,7 +5,7 @@ return [
     'welcome' => 'Welcome to our website!',
     'login' => 'Login',
     'register' => 'Register',
-    'registerd' => 'Registerd',
+    'registered' => 'Registerd',
     'users' => 'Users',
     'user' => 'User',
     'company' => 'Company',
