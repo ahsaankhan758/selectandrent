@@ -29,7 +29,8 @@
         <ul class="list-unstyled d-flex flex-wrap gap-3">
             @foreach($paymentGateways as $index => $gateway)
             @php 
-                $gatewayValue = strtolower(trim($gateway->name));
+                
+                $gatewayValue = preg_replace('/[^a-z0-9\-]/', '', strtolower(trim($gateway->name)));
                 $gatewayImage = '';
 
                 if (in_array($gatewayValue, ['stripe', 'paypal'])) {
@@ -46,7 +47,7 @@
                         <input type="radio" name="paymentMethod" id="paymentOption_{{ $gatewayValue }}" class="d-none payment-radio" data-bs-toggle="modal" data-bs-target="#loginModal" {{ $index === 0 ? 'checked' : '' }} required/>
                     @endif
 
-                    <label for="paymentOption_{{ $gatewayValue }}" class="payment-card border rounded p-3 d-flex align-items-center gap-2 cursor-pointer"
+                    <label for="paymentOption_{{ $gatewayValue }}" onclick="paymentRadio()" class="{{ $index === 0 ? 'active-payment' : '' }} payment-card border rounded p-3 d-flex align-items-center gap-2 cursor-pointer"
                         style="min-width: 200px;" 
                         @unless(Auth::check()) onclick="showLoginModal()" @endunless>
                         @if($gatewayImage)

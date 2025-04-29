@@ -95,6 +95,7 @@
                                 <td>{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
                                 <td>{{ $booking->notes }}</td>
                                 <td>
+
                                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                     {{-- 
                                     @if(can('Bookings','edit'))
@@ -105,6 +106,7 @@
                                     @endif    
                                     --}}
                                     
+
                                 </td>
                             </tr> 
                             @empty
