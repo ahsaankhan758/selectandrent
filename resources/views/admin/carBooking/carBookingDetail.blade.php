@@ -1,8 +1,6 @@
 @extends('admin.layouts.Master')
 @section('title')  Car Detail | Select And Rent @endsection
 @section('content')
-{{-- <div class="content-page">
-    <div class="content"> --}}
         <div class="container-fluid">  
             <div class="row">
                 <div class="col-12">
@@ -80,6 +78,7 @@
                                     <thead class="table-light">
                                         <tr class="text-nowrap">
                                             <th>Image</th>
+                                            <th>Name</th>
                                             <th>Pickup Location</th>
                                             <th>Dropoff Location</th>
                                             <th>Pickup date</th>
@@ -94,12 +93,18 @@
                                         @foreach($booking->booking_items as $detail)
                                         <tr>
                                             <td>
-                                                @if($detail->vehicle && $detail->vehicle->thumbnail)
-                                                    <img src="{{ asset('storage/' . $detail->vehicle->thumbnail) }}" alt="Vehicle Thumbnail" height="32">
+                                                @php
+                                                    $thumbnail = $detail->vehicle->thumbnail ?? null;
+                                                @endphp
+                                            
+                                                @if($thumbnail && file_exists(public_path('storage/' . $thumbnail)))
+                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Vehicle Thumbnail" height="32">
                                                 @else
-                                                    <span>No Thumbnail</span>
+                                                    <img src="{{ asset('/frontend-assets/assets/car-suv.png') }}" alt="Default Vehicle Image" height="32">
                                                 @endif
                                             </td>
+                                            
+                                            <td class="text-nowrap">{{ $detail->vehicle->carModel->name ?? 'N/A' }} - {{ $detail->vehicle->year ?? 'N/A' }}</td>
                                             <td>{{ $detail->pickup_location }}</td>
                                             <td>{{ $detail->dropoff_location }}</td>
                                             <td>{{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('Y-m-d') }}</td> 
@@ -175,6 +180,4 @@
                 </div>
             </div>   
         </div> 
-    {{-- </div> 
-</div> --}}
 @endsection
