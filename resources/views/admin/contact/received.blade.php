@@ -12,7 +12,9 @@ Received Emails
             <div class="card-header">
                 <h4>Received Emails</h4>
                 <div class="float-end">
-                    <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-recieve" disabled>Delete</button>
+                    @if(can('Contacts','delete')) 
+                        <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-recieve" disabled>Delete</button>
+                    @endif
                 </div>
             </div>
             <div class="card-body">

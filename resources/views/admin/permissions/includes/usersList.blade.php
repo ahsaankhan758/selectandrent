@@ -1,4 +1,4 @@
-<script src="{{asset('/')}}frontend-assets/assets/Js/admin/permissions.js"></script>
+<script src="{{asset('/')}}assets/Js/admin/permissions.js"></script>
 <div class="form-group">
     <label for="name">{{ ucfirst($role) }}</label>
     <select id="getUserName" name="name" class="form-control">

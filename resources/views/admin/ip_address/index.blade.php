@@ -17,7 +17,9 @@
         <div class="card">
             <div class="card-header">
                 <h4>{{ __('messages.user IP') }}</h4>
-                <a href=" {{ route('createIpAddress') }}" class="btn btn-primary float-end" >{{ __('messages.create') }}</a>
+                @if(can('User IP','add'))
+                    <a href=" {{ route('createIpAddress') }}" class="btn btn-primary float-end" >{{ __('messages.create') }}</a>
+                @endif
             </div>
             <div class="card-body">
                 <table class="table table-dark" id="myTable">
@@ -38,15 +40,19 @@
                                     <td>{{ $IP_Data->ip_address }}</td>
                                     @if ( $IP_Data->user_name == $current_user)
                                         <td>
-                                            <a href="{{ route('deleteIpAddresses', $IP_Data->id) }}" class="disabled-link">
-                                                <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
-                                            </a>
+                                            @if(can('User IP','delete'))
+                                                <a href="{{ route('deleteIpAddresses', $IP_Data->id) }}" class="disabled-link">
+                                                    <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                     @else
                                         <td>
-                                            <a href="{{ route('deleteIpAddresses', $IP_Data->id) }}" class="btn-delete">
-                                                <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
-                                            </a>
+                                            @if(can('User IP','delete'))
+                                                <a href="{{ route('deleteIpAddresses', $IP_Data->id) }}" class="btn-delete">
+                                                    <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                     @endif
                                 </tr>

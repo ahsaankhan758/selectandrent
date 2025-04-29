@@ -61,13 +61,9 @@
                                     <td>
                                         @if(can('companies','edit'))
                                             <a title="Approve" href="{{ route('editCompany',$compdata->id) }}"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
-                                        @else    
-                                            <a title="Approve" class="disabled-link" href="javascript:void(0);"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
                                         @endif
                                         @if(can('companies','delete'))
                                             <a title="Delete" href="{{ route('deleteCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash delete-btn"></i></a>
-                                        @else
-                                            <a title="Delete" class="btn-delete disabled-link"><i class="fa-sharp fa-solid fa-trash delete-btn"></i></a>
                                         @endif
                                     </td>    
                                 </tr>

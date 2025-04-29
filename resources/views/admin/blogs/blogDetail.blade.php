@@ -51,12 +51,16 @@
                         </td>
                         <td>{{ Str::limit($blog->detail, 10) }}</td>
                         <td style="white-space: nowrap; width: 100px;">
-                            <a href="{{ route('blogs.edit', $blog->id) }}">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <a href="{{ route('blogs.destroy', $blog->id) }}" class="btn-delete">
-                                <i class="fa-solid fa-trash" style="color: red"></i>
-                            </a>
+                            @if(can('Blogs','edit'))
+                                <a href="{{ route('blogs.edit', $blog->id) }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                            @endif
+                            @if(can('Blogs','delete'))
+                                <a href="{{ route('blogs.destroy', $blog->id) }}" class="btn-delete">
+                                    <i class="fa-solid fa-trash" style="color: red"></i>
+                                </a>
+                            @endif
                         </td>
                     </tr>
                 

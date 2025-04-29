@@ -92,6 +92,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Dashboard
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
+            // Companies Routes
+            Route::get('companies', [companyController::class, 'index'])->name('companies');
+            Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
+            Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
+            Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
+            Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
+            Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
              //Calendar Routes
              Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
              Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
