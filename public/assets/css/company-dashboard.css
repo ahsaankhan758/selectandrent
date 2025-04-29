@@ -924,7 +924,7 @@
 }
 
 .booking-table {
-    display: block !important;
+    /* display: block !important; */
     overflow-x: auto !important;
     white-space: nowrap !important;  
 }
