@@ -15,7 +15,7 @@ class BookingController extends Controller
 
     public function carBookingDetail($id)
     {
-        $booking = Booking::with(['booking_items', 'user','car'])->findOrFail($id);
+        $booking = Booking::with(['booking_items.vehicle.carModel', 'user','car'])->findOrFail($id);
         return view('admin.carBooking.carBookingDetail', compact('booking'));
     }
 
