@@ -184,26 +184,25 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                @else
+                @else --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ Auth::user()->name }}
+                        {{ Auth::user()->companies->name }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">My Profile</a></li>                            
                         <li><a class="dropdown-item" href="#">My Account</a></li>
                         <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
-                        
-                    </ul>
-                    </li>
-            @endguest --}}
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul> --}}
+                </li>
+            {{-- @endguest --}}
             @php
                 $languages = [
                     'en' => ['name' => 'English', 'flag' => 'gb'],
@@ -242,9 +241,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                     <!-- item-->
-                    <div class="dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">{{ __('messages.welcome') }} </h6>
-                    </div>
+                    
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
