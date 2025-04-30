@@ -5,13 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
+use Auth;
 
 class ActivityLogController extends Controller
 {
     public function index()
         {
-            $activityLogs = ActivityLog::orderBy('created_at', 'desc')->paginate(10);
-            return view('admin.activityLogs', compact('activityLogs'));
+            $query = ActivityLog::orderBy('created_at', 'desc');
+    
+            if (Auth::user()->role === 'company') {
+                $query->where('user_id', Auth::id());
+            }
+        
+            $activityLogs = $query->paginate(20);
+        
+            return(view('admin.activityLogs', compact('activityLogs')));
+            // $activityLogs = ActivityLog::orderBy('created_at', 'desc')->paginate(10);
+            // return view('admin.activityLogs', compact('activityLogs'));
         }
     public function destroy(Request $request)
         {

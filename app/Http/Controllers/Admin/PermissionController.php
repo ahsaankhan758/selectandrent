@@ -16,10 +16,14 @@ class PermissionController extends Controller
 public function store(Request $request)
 {
     $userId = $request->name;
+    
     $submittedPermissions = $request->input('permissions', []);
 
     // Define your full list of modules and actions
-    $modules = ['users', 'companies', 'vehicle', 'vehicle_brands', 'vehicle_categories', 'vehicle_features', 'vehicle_models', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts'];
+    if(User::find($userId)?->role == 'admin')
+        $modules = ['users', 'companies', 'vehicle', 'vehicle_brands', 'vehicle_categories', 'vehicle_features', 'vehicle_models', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts'];
+    else 
+        $modules = ['vehicle', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'activity_log',];
     $actions = ['view', 'add', 'edit', 'delete'];
 
     foreach ($modules as $module) {
@@ -70,7 +74,8 @@ public function store(Request $request)
 
     public function getUserPermissions(Request $request){
         $userPermissions = Permission::where( 'user_id' , $request->selectedUserId)->get();
-        $html = view('admin.permissions.includes.permissionsTable', ['userPermissions' => $userPermissions , 'user_id' => $request->selectedUserId] )->render();
+        $userRole = User::find($request->selectedUserId)?->role;
+        $html = view('admin.permissions.includes.permissionsTable', ['userPermissions' => $userPermissions , 'user_id' => $request->selectedUserId , 'user_role' => $userRole] )->render();
         return response()->json([
             'status' => 'Success',
             'html' => $html,

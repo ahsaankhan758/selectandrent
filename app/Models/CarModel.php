@@ -19,6 +19,4 @@ class CarModel extends Model
         {
             return $this->hasMany(Car::class, 'car_model_id', 'id');
         }
-    
-        
 }
