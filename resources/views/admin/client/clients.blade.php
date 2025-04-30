@@ -4,7 +4,7 @@
     <div class="content-body">
         <div class="booking-container  mt-4">
             <div class="booking-header-section">
-                <h2 class="mb-0"> Clients </h2>
+                <h2 class="mb-0">{{ trans_choice('messages.client',2) }} </h2>
             </div>
     
                 <!-- Add Booking Button -->
