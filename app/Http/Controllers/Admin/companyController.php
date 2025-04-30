@@ -26,6 +26,10 @@ class companyController extends Controller
      */
     public function index()
     {
+        // if(Auth::user()->role == 'company'){
+        //     $companies = company::where('user_id', Auth::id() )->orderBy('created_at', 'desc')->paginate(20);
+        //     return view('admin.company.index', compact('companies'));
+        // }
         $companies = company::where('status','1')->orderBy('created_at', 'desc')->paginate(20);
         return view('admin.company.index', compact('companies'));
     }
