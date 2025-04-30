@@ -204,7 +204,7 @@
                         </a>
                     </li>
                 @endif
-                @if(can('Calender','view'))
+                @if(can('Calendar','view'))
                     <li>
                         <a href="calendar">
                             <i class="mdi mdi-calendar-range"></i>
@@ -289,7 +289,7 @@
                 @endif
 
                 {{--end by Farhan  --}}
-                @if(can('Activity Log','view'))  
+                @if(can('Activity_Log','view'))  
                     <li>
                         <a href="{{ route('activityLogs') }}">
                             <i class="bi bi-journal-text"></i>
