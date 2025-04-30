@@ -47,7 +47,6 @@
                                     </div>
                                 </th>
                                 <th>User ID</th>
-                                {{-- <th>Products</th> --}}
                                 <th>Name</th>
                                 <th>Booking Ref</th>
                                 <th>Transaction ID</th>
@@ -74,10 +73,6 @@
                                     </div>
                                 </td>
                                 <td><a href="#" class="text-body fw-bold">{{ $booking->id }}</a></td>
-                                {{-- <td>
-                                    <a href="ecommerce-product-detail.html"><img src="assets/images/products/product-1.png" alt="product-img" height="32" /></a>
-                                    <a href="ecommerce-product-detail.html"><img src="assets/images/products/product-2.png" alt="product-img" height="32" /></a>
-                                </td> --}}
                                 <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                 <td>{{ $booking->booking_reference }}</td> 
                                
@@ -95,8 +90,7 @@
                                 <td>{{ number_format($booking->subtotal, 2) }}</td>
                                 <td>{{ $booking->notes }}</td>
                                 <td>
-
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                     {{-- 
                                     @if(can('Bookings','edit'))
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
@@ -105,8 +99,6 @@
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> 
                                     @endif    
                                     --}}
-                                    
-
                                 </td>
                             </tr> 
                             @empty
