@@ -142,10 +142,10 @@ class userController extends Controller
             {
 
                 
-                $desciption = $name.' LoggedOut. User Role was '.$role;
+                $desciption = $name.' LoggedOut. User Role was '. ucfirst($role);
                 $action = 'LoggedOut';
                 $module = 'Admin';
-                //activityLog($userId, $desciption,$action,$module);
+                activityLog($userId, $desciption,$action,$module);
 
                 return $request->wantsJson()
                     ? new JsonResponse([], 204)
@@ -154,10 +154,10 @@ class userController extends Controller
 
             elseif(isset($role) && $role == 'company')
             {
-                $desciption = $name.' LoggedOut. User Role was '.$role;
+                $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
                 $action = 'LoggedOut';
                 $module = 'Company';
-                //activityLog($userId, $desciption,$action,$module);
+                activityLog($userId, $desciption,$action,$module);
 
                 return $request->wantsJson()
                     ? new JsonResponse([], 204)
@@ -166,10 +166,10 @@ class userController extends Controller
             elseif(isset($role) && $role == 'user')
             {
 
-                $desciption = $name.' LoggedOut. User Role was '.$role;
+                $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
                 $action = 'LoggedOut';
                 $module = 'Website';
-                //activityLog($userId, $desciption,$action,$module);
+                activityLog($userId, $desciption,$action,$module);
 
                 return $request->wantsJson()
                     ? new JsonResponse([], 204)
