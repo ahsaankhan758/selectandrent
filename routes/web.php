@@ -122,6 +122,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
             //Users Routes

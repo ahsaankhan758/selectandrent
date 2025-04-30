@@ -9,6 +9,7 @@ class BookingController extends Controller
 {
     public function index()
     {
+
         $query = Booking::orderBy('created_at', 'desc');
     
         if (Auth::user()->role === 'company') {
