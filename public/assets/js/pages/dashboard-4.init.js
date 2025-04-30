@@ -11,11 +11,11 @@
             resize: !0,
             colors: e,
             backgroundColor: "transparent",
-            labelColor: "#ffffff", // Label text color
+            labelColor: "#ffffff", 
             formatter: function(y) {
                 var total = 0;
-                t.forEach(function(d) { total += d.value; }); // Calculate total
-                return ((y / total) * 100).toFixed(1) + "%"; // Convert value to percentage
+                t.forEach(function(d) { total += d.value; }); 
+                return ((y / total) * 100).toFixed(1) + "%"; 
             }
         });
     };
@@ -26,7 +26,7 @@
         if (t) a = t.split(",");
 
         this.createDonutChart("lifetime-sales", [
-            { label: "", value: 30 },  // Labels removed
+            { label: "", value: 30 },  
             { label: "", value: 50 },
             { label: "", value: 20 }
         ], a);

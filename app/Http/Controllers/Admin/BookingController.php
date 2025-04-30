@@ -10,6 +10,8 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::with('user')->paginate(10);
+        // echo"<pre>";
+        // print_r($bookings);die;
         return(view('admin.carBooking.carBooking', compact('bookings')));
     }
 
