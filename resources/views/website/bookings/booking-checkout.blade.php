@@ -9,6 +9,7 @@
 <script src="{{asset('/frontend-assets/assets/Js/cartRmoveItems.js')}}"></script>
 <script src="{{asset('/frontend-assets/assets/Js/bookings.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
+<script src="{{asset('/frontend-assets/assets/Js/order.js')}}"></script>
 
 <div class="container py-2">
     <div class="progress-container">

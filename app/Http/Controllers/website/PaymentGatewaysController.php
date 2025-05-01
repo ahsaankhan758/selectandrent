@@ -13,6 +13,7 @@ use Stripe\Checkout\Session as StripeSession;
 use App\Models\Booking;
 use App\Models\BookingItem;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class PaymentGatewaysController extends Controller
@@ -32,6 +33,7 @@ class PaymentGatewaysController extends Controller
             'country' => 'required|string',
             'postal_code' => 'required|string',
             'billing_addresss' => 'required|string',
+            'reference_number' => 'required',
         ]);
     
         if ($validator->fails()) {
@@ -39,9 +41,17 @@ class PaymentGatewaysController extends Controller
                 'status' => false,
                 'message' => 'Validation failed',
                 'errors' => $validator->errors()
-            ], 422);
+            ]);
         }
-    
+        
+        if (Auth::check() && $request->email !== Auth::user()->email) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Mismatch Email.',
+                'errors' => 'validation'
+            ]);
+        }               
+
         try {
             // Decode and unserialize checkout data
             $decoded_checkoutData = base64_decode($request->checkoutData);
@@ -69,7 +79,7 @@ class PaymentGatewaysController extends Controller
                 'country' => $request->country,
                 'postal_code' => $request->postal_code,
                 'billing_addresss' => $request->billing_addresss,
-                'booking_reference' => $bookingData['booking_reference'][0],
+                'booking_reference' => $request->reference_number,
                 'subtotal' => $bookingData['subtotal'][0],
                 'total_price' => $bookingData['total'][0],
                 'tax_amount' => $bookingData['tax'][0],
@@ -109,7 +119,7 @@ class PaymentGatewaysController extends Controller
                         'price_data' => [
                             'currency' => 'usd',
                             'product_data' => [
-                                'name' => 'Vehicle Booking',
+                                'name' => $booking->booking_reference,
                             ],
                             'unit_amount' => $amount,
                         ],
@@ -119,10 +129,23 @@ class PaymentGatewaysController extends Controller
                     'success_url' => route('booking.thankyou', ['ref' => $booking->booking_reference]),
                     'cancel_url' => route('booking.cancel', ['ref' => $booking->booking_reference]),
                 ]);
-    
-                return redirect($session->url);
+                // echo "<pre>";
+                // print_r($session);die;
+                // return redirect($session->url);
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Redirecting to stripe payment gateway..',
+                    'redirect_url' => $session->url
+                ]);
+
             }elseif($method === 'paypal'){
-                return "working";
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'working..',
+                    'redirect_url' => '',
+                ]);
+
             }
     
             // // Placeholder for other gateways
@@ -157,7 +180,7 @@ class PaymentGatewaysController extends Controller
                 $booking->update(['payment_status' => 'cancelled']);
             }
         }
-        return view('website.order_cancelled'); 
+        return view('website.cancelled'); 
     }
 
 }
