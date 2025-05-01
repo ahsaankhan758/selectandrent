@@ -10,7 +10,7 @@ Booking Detail | Select and Rent
 <div class="container py-4">
     <div class="bg-white p-4 rounded shadow-sm mb-4">
         <h4 class="mb-3 text-primary">Booking Summary</h4>
-        <p><strong>Order ID:</strong> #{{ $booking->id }}</p>
+        <p><strong>Order Reference:</strong> {{ $booking->booking_reference }}</p>
         <p><strong>Customer Name:</strong> {{ $booking->user->name ?? 'N/A' }}</p>
     </div>
 
@@ -20,8 +20,9 @@ Booking Detail | Select and Rent
     {{-- @php
     echo"<pre>";
         print_r($booking);die;
-@endphp --}}
+    @endphp --}}
     @foreach($booking->booking_items as $detail)
+   
     
         <div class="rent-card shadow-sm rounded-4 mb-4 border-0 overflow-hidden">
             <div class="row g-0">
@@ -48,11 +49,14 @@ Booking Detail | Select and Rent
                     
                     <div class="row gy-3">
                         <div class="col-md-6">
-                            <strong><i class="bi bi-geo-alt-fill text-danger me-1"></i> Pickup:</strong> {{ $detail->pickup_location }}
+                            <strong><i class="bi bi-geo-alt-fill text-danger me-1"></i> Pickup:</strong>
+                            {{ $detail->pickupLocation->city ?? 'N/A' }}
                         </div>
                         <div class="col-md-6">
-                            <strong><i class="bi bi-geo-fill text-success me-1"></i> Dropoff:</strong> {{ $detail->dropoff_location }}
+                            <strong><i class="bi bi-geo-fill text-success me-1"></i> Dropoff:</strong>
+                            {{ $detail->dropoffLocation->city ?? 'N/A' }}
                         </div>
+                        
 
                         <div class="col-md-6">
                             <strong><i class="bi bi-calendar-event text-warning me-1"></i> Pickup Date:</strong>
@@ -91,21 +95,27 @@ Booking Detail | Select and Rent
                 </div>
             </div>
         </div>
-    @endforeach
+        @endforeach
 
     <div class="row justify-content-end">
         <div class="col-md-4">
             <div class="bg-white shadow-sm p-3 rounded mb-2 d-flex justify-content-between">
-                <strong class="text-muted">Subtotal:</strong>
-                <span class="text-primary fw-bold">$1000</span>
+                <strong class="text-muted">Subtotal</strong>
+                <span class="text-primary fw-bold">$ {{ number_format($booking->subtotal) }}</span>
             </div>
+            <div class="bg-white shadow-sm p-3 rounded mb-2 d-flex justify-content-between">
+                <strong class="text-muted">Tax</strong>
+                <span class="text-primary fw-bold">$ {{ number_format($booking->tax_amount) }}</span>
+            </div>
+            
             <div class="bg-white shadow-sm p-3 rounded d-flex justify-content-between">
-                <strong class="text-muted">Total:</strong>
-                <span class="text-success fw-bold">$2000</span>
+                <strong class="text-muted">Total</strong>
+                <span class="text-success fw-bold">$ {{ number_format($booking->total_price) }}</span>
             </div>
         </div>
     </div>
 </div>
+
 <style>
     .rent-card {
   height: 318px;
