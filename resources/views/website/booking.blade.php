@@ -11,7 +11,7 @@ Booking | Select and Rent
             <thead class="table-dark">
                 <tr>
                     <th class="text-nowrap table-clr">ID</th>
-                    <th class="text-nowrap table-clr">User ID</th>
+                    <th class="text-nowrap table-clr">User</th>
                     <th class="text-nowrap table-clr">Booking Ref</th>
                     <th class="text-nowrap table-clr">Transaction ID</th>
                     <th class="text-nowrap table-clr">Payment Status</th>
@@ -31,7 +31,7 @@ Booking | Select and Rent
                 @forelse($bookings as $booking)
                 <tr>
                     <td class="py-4 text-center">{{ $booking->id }}</td>
-                    <td class="py-4 text-center">{{ $booking->user_id }}</td>
+                    <td class="py-4 text-center">{{ $booking->user->name }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_reference }}</td>
                     <td class="py-4 text-center">{{ $booking->transaction_id }}</td>
                     <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
