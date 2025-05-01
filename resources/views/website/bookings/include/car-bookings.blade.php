@@ -193,11 +193,15 @@
         </div>
         <!-- Order Confirmation form -->
         <div class="col-md-3 col-12">
-       
+        @if(auth()->check())
             <button id="submitBtn" class="btn-order btn-orange-clr">
                 {{ __('messages.Order Confirmation') }}
             </button>
-       
+        @else
+        <a href="javascript::void(0)" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn-order btn-orange-clr">
+                {{ __('messages.Order Confirmation') }}
+        </a>
+        @endif
         </div>
     </div>
 

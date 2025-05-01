@@ -7,7 +7,9 @@
         <div class="card mt-4">
             <div class="card-header">
                 <h4>{{__('messages.user') }}</h4>
-                <a href=" {{ route('createUser') }}" class="btn float-end" >{{__('messages.create') }} {{__('messages.user') }}</a>
+                @if(can('users','add'))
+                    <a href=" {{ route('createUser') }}" class="btn float-end" style="background-color: #f06115; color: white " >{{__('messages.create') }} {{__('messages.user') }}</a>
+                @endif
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="myTable">
@@ -32,17 +34,25 @@
                                     <td>{{ $userdata->status }}</td>
                                     @if($userdata->id == $current_user)
                                     <td>
-                                        <a href="{{ route('editUser',$userdata->id) }}" class="disabled-link">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete disabled-link">
-                                            <i class="fa-sharp fa-solid fa-trash" style="color: red" disabled></i>
-                                        </a>
+                                        @if(can('users','edit'))
+                                            <a href="{{ route('editUser',$userdata->id) }}" class="disabled-link">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                        @endif
+                                        @if(can('users','delete'))
+                                            <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete disabled-link">
+                                                <i class="fa-sharp fa-solid fa-trash" style="color: red" disabled></i>
+                                            </a>
+                                        @endif
                                     </td>    
                                 @else
                                     <td>
-                                        <a href="{{ route('editUser',$userdata->id) }}"><i class="fa-solid fa-pen-to-square "></i></a>
-                                        <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash" style="color: red"></i></a>
+                                        @if(can('users','edit'))
+                                            <a href="{{ route('editUser',$userdata->id) }}"><i class="fa-solid fa-pen-to-square "></i></a>
+                                        @endif
+                                        @if(can('users','edit'))
+                                            <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash" style="color: red"></i></a>
+                                        @endif
                                     </td>    
                                     @endif        
                                 </tr>

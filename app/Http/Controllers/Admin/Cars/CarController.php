@@ -19,10 +19,17 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::orderBy('created_at', 'desc')->paginate('20');
-        return view('admin.cars.carsListing.carsListing',compact('cars'));
+        $query = Car::orderBy('created_at', 'desc');
+    
+        if (Auth::user()->role === 'company') {
+            $query->where('user_id', Auth::id());
+        }
+    
+        $cars = $query->paginate(20);
+    
+        return view('admin.cars.carsListing.carsListing', compact('cars'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
