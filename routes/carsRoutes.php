@@ -50,6 +50,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Route::get('carLocations',[CarLocationController::class, 'Index'])->name('carLocations');
         Route::post('addCarLocation',[CarLocationController::class,'store'])->name('addCarLocation');
         Route::get('deleteCarLocation/{id}',[CarLocationController::class, 'destroy'])->name('deleteCarLocation');
+        // city
+        Route::get('cities',[CarLocationController::class, 'showCities'])->name('cities');
+        Route::post('City',[CarLocationController::class,'cityStore'])->name('addCity');
+        Route::get('deleteCity/{id}',[CarLocationController::class, 'destroyCity'])->name('deleteCity');
+
+
         //Car Modle Routes
         Route::get('carModels',[CarModelController::class, 'Index'])->name('carModels');
         Route::post('addCarModel',[CarModelController::class,'store'])->name('addCarModel');
