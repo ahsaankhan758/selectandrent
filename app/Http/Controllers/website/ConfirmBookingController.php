@@ -35,9 +35,6 @@ class ConfirmBookingController extends Controller
             'price_per_day'       => 'required|array',
             'price_per_day.*'     => 'required|numeric|min:0',
 
-            'booking_reference'   => 'required|array',
-            'booking_reference.*' => 'required|string',
-
             'subtotal'            => 'required|array',
             'subtotal.*'          => 'required|numeric|min:0',
 
