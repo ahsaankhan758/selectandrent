@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CarLocation;
 use Illuminate\Database\Eloquent\Model;
 
 class BookingItem extends Model
@@ -37,6 +38,16 @@ public function vehicle()
 public function carModel()
 {
     return $this->vehicle->carModel(); 
+}
+
+public function pickupLocation()
+{
+    return $this->belongsTo(CarLocation::class, 'pickup_location');
+}
+
+public function dropoffLocation()
+{
+    return $this->belongsTo(CarLocation::class, 'dropoff_location');
 }
 
 
