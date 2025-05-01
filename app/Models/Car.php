@@ -61,5 +61,9 @@ public function bookings()
 {
     return $this->hasMany(Booking::class);
 }
+public function carModel()
+{
+    return $this->belongsTo(CarModel::class, 'car_model_id');
+}
 
 }

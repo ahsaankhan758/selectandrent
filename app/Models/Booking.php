@@ -42,11 +42,12 @@ class Booking extends Model
 {
     return $this->belongsTo(User::class, 'user_id');
 }
-// Booking.php
+
 public function car()
 {
     return $this->belongsTo(Car::class);
 }
+
 
 
 
