@@ -5,13 +5,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <div class="page-title-right">
+                        {{-- <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
                                 <li class="breadcrumb-item active">Order Detail</li>
                             </ol>
-                        </div>
+                        </div> --}}
                         <h4 class="page-title">Order Detail</h4>
                     </div>
                 </div>
@@ -25,13 +25,13 @@
                             <h4 class="header-title mb-3">Track Order</h4>
 
                             <div class="row">
-                                <div class="col-lg-6">
+                                {{-- <div class="col-lg-6">
                                     <div class="mb-4">
                                         <h5 class="mt-0">Order ID:</h5>
                                         <p> # {{ $booking->id }}</p>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
+                                </div> --}}
+                                <div class="col-lg-12">
                                     <div class="mb-4">
                                         <h5 class="mt-0">Reference ID:</h5>
                                         <p>{{ $booking->booking_reference }}</p>
@@ -89,6 +89,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{-- @php
+                                            echo"<pre>";
+                                                print_r($booking);die;
+                                        @endphp --}}
                                         @if(isset($booking))
                                         @foreach($booking->booking_items as $detail)
                                         <tr>
@@ -123,16 +127,14 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
+            <div class="row d-flex align-items-stretch mb-3">
+                <div class="col-lg-4">
+                    <div class="card h-100">
                         <div class="card-body">
-                            <h4 class="header-title mb-3">Shipping Information</h4>
-                
+                            <h4 class="header-title mb-3">User Information</h4>
                             <h5 class="font-family-primary fw-semibold">
                                 {{ $booking->first_name ?? 'N/A' }} {{ $booking->last_name ?? 'N/A' }}
                             </h5>
-                
                             <p class="mb-2">
                                 <span class="fw-semibold me-2">Address:</span>
                                 {{ $booking->billing_addresss ?? 'N/A' }}
@@ -145,35 +147,31 @@
                     </div>
                 </div>
                 
-            
-                {{-- <div class="col-lg-4">
-                    <div class="card">
+                <div class="col-lg-4">
+                    <div class="card h-100">
                         <div class="card-body">
                             <h4 class="header-title mb-3">Billing Information</h4>
-
                             <ul class="list-unstyled mb-0">
                                 <li>
-                                    <p class="mb-2"><span class="fw-semibold me-2">Payment Type:</span> Credit Card</p>
-                                    <p class="mb-2"><span class="fw-semibold me-2">Provider:</span> Visa ending in 2851</p>
-                                    <p class="mb-2"><span class="fw-semibold me-2">Valid Date:</span> 02/2020</p>
-                                    <p class="mb-0"><span class="fw-semibold me-2">CVV:</span> xxx</p>
+                                    <p class="mb-2"><span class="fw-semibold me-2">Subtotal:</span>$ {{ number_format($booking->subtotal) }}</p>
+                                    <p class="mb-2"><span class="fw-semibold me-2">Tax:</span>$ {{ number_format($booking->tax_amount) }}</p>
+                                    <p class="mb-2"><span class="fw-semibold me-2">Total:</span>$ {{ number_format($booking->total_price) }}</p>
                                 </li>
                             </ul>
-
                         </div>
                     </div>
-                </div>  --}}
+                </div> 
 
-                <div class="col-lg-6">
-                    <div class="card">
+                <div class="col-lg-4">
+                    <div class="card h-100">
                         <div class="card-body">
-                            <h4 class="header-title ">Delivery Info</h4>
+                            <h4 class="header-title ">Booking Info</h4>
 
                             <div class="text-left">
                                 <i class="mdi mdi-truck-fast h2 text-muted"></i>
-                                <h5><b>UPS Delivery</b></h5>
                                 <p class="mb-1"><span class="fw-semibold">Order ID :</span> # {{ $booking->id }}</p>
                                 <p class="mb-0"><span class="fw-semibold">Payment Mode :</span>{{ $booking->payment_method ?? 'N/A' }}</p>
+                                <p class="mb-2"><span class="fw-semibold me-2"></span></p>
                             </div>
                         </div>
                     </div>
