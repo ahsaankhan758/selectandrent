@@ -8,6 +8,7 @@ use App\Models\CarLocation;
 use App\Models\CarModel;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\City;
 use Auth;
 use App\Models\CarFeature;
 
@@ -28,10 +29,11 @@ class CarController extends Controller
     public function create()
     {
         $categories = CarCategory::orderBy('name', 'asc')->get();
+        $cities = City::orderBy('name', 'asc')->get();
         $locations = CarLocation::orderBy('city', 'asc')->get();
         $models = CarModel::orderBy('name', 'asc')->get();
         $features = CarFeature::orderBy('name')->get();
-        return view('admin.cars.carsListing.create',compact('categories','locations','models','features'));
+        return view('admin.cars.carsListing.create',compact('categories','locations','models','features','cities'));
     }
 
     /**

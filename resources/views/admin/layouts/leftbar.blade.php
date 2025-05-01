@@ -150,6 +150,9 @@
                                 <a href="{{ route('carLocations') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">{{ __('messages.locations') }}</a>
                             </li>
                             <li>
+                                <a href="{{ route('cities') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">city</a>
+                            </li>
+                            <li>
                                 <a href="#">
                                     <i class="mdi mdi-car-side"></i>
                                     <span> {{ __('messages.featured cars') }} </span>
