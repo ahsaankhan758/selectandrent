@@ -38,16 +38,27 @@
                             <lable for="location">{{ __('messages.city') }}</lable>
                             <select name="location" class="form-control">
                                 <option disabled selected>{{ __('messages.select') }}</option>
-                                @if(isset($locations))
-                                    @foreach ( $locations as $locationData)
-                                        <option value="{{ $locationData->id }}">{{ ucfirst(strtolower($locationData->city)) }}</option>
+                                @if(isset($cities))
+                                    @foreach ( $cities as $city)
+                                        <option value="{{ $city->id }}">{{ ucfirst(strtolower($city->name)) }}</option>
                                     @endforeach
                                 @endif
                             </select>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
+                            <lable for="location">Area Name</lable>
+                            <select name="location" class="form-control">
+                                <option disabled selected>{{ __('messages.select') }}</option>
+                                @if(isset($locations))
+                                    @foreach ( $locations as $location)
+                                        <option value="{{ $location->id }}">{{ ucfirst(strtolower($location->area_name)) }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="col-3 form-group mb-3">
                             <lable for="fuel_type">{{ __('messages.fuel type') }}</lable>
                             <select name="fuel_type" class="form-control">
                                 <option disabled selected>{{ __('messages.select') }}</option>
@@ -59,7 +70,7 @@
                                 <option value="LPG">LPG</option>
                             </select>
                         </div>
-                        <div class="col-4 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <lable for="transmission">{{ __('messages.transmission') }}</lable>
                             <select name="transmission" class="form-control">
                                 <option disabled selected>{{ __('messages.select') }}</option>
@@ -67,7 +78,7 @@
                                 <option value="manual">Manual</option>
                             </select>
                         </div>
-                        <div class="col-4 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.drive') }}</label>
                             <select type="text" name="drive" class="form-control" >
                                 <option disabled selected>{{ __('messages.select') }}</option>
