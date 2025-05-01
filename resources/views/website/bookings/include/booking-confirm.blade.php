@@ -20,7 +20,7 @@
     <div class="container text-start fw-bold">{{ __('messages.PaymentMethod') }}</div>
 </div>
 <?php $encodedData = base64_encode(serialize($checkoutData)); ?>
-<form method="post" id="bookingFormSubmit" action="{{route('booking.payment')}}" enctype="multipart/form-data">
+<form method="post" id="orderBookingFormSubmit" action="{{route('booking.payment')}}" enctype="multipart/form-data">
     @csrf
   <input type="hidden" name="checkoutData" value="<?= htmlspecialchars($encodedData) ?>">
   <div class="container cvv-card py-3 mb-3">
@@ -43,7 +43,6 @@
                         <input type="radio" name="paymentMethod" id="paymentOption_{{ $gatewayValue }}" value="{{ $gatewayValue }}" class="d-none payment-radio"
                             {{ $index === 0 ? 'checked' : '' }} required>
                     @else
-                        {{-- Dummy radio for unauthenticated users to intercept click --}}
                         <input type="radio" name="paymentMethod" id="paymentOption_{{ $gatewayValue }}" class="d-none payment-radio" data-bs-toggle="modal" data-bs-target="#loginModal" {{ $index === 0 ? 'checked' : '' }} required/>
                     @endif
 
@@ -82,45 +81,61 @@
                             $user_id = auth()->user()->id;
                         @endphp
                     @endif
-
-                    <input type="text" name="firstName" class="form-control form-control-border" id="firstName" value="{{ $first_name ?? '' }}" placeholder="Enter your first name" required>
+                    <div class="input-group">
+                        <input type="text" name="firstName" class="form-control " id="firstName" value="{{ $first_name ?? '' }}" placeholder="Enter your first name">
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <label for="lastName" class="form-label fw-bold">{{ __('messages.Last Name') }}</label>
-                    <input type="text" name="lastName" class="form-control form-control-border" id="lastName" value="{{ $last_name ?? '' }}" placeholder="Enter your last name" required>
+                    <div class="input-group">
+                    <input type="text" name="lastName" class="form-control" id="lastName" value="{{ $last_name ?? '' }}" placeholder="Enter your last name" >
+                    </div>
                     <input type="hidden" name="user_id" value="{{ $user_id ?? '' }}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label fw-bold">{{ __('messages.Email Address') }}</label>
-                    <input type="email" name="email" class="form-control form-control-border" id="email" value="{{ $email ?? '' }}" placeholder="Enter your email address" readonly required>
+                    <div class="input-group">
+                    <input type="email" name="email" class="form-control" id="email" value="{{ $email ?? '' }}" placeholder="Enter your email address" readonly >
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <label for="phone" class="form-label fw-bold">{{ __('messages.Phone Number') }}</label>
-                    <input type="tel" name="phonenumber" class="form-control form-control-border" id="phone" value="{{ $phone ?? '' }}" placeholder="Enter your phone number" required>
+                    <div class="input-group">
+                    <input type="tel" name="phonenumber" class="form-control" id="phone" value="{{ $phone ?? '' }}" placeholder="Enter your phone number" >
+                    </div>
                 </div>
                 <!-- First Row: 4 Inputs (Card Number, Expiration Month, Expiration Year, CVV) -->
                 <div class="col-md-6">
                     <label class="custom-label">{{ __('messages.city') }}</label>
-                    <input type="text" name="city" class="form-control form-control-border"  placeholder="Enter your city" required>
+                    <div class="input-group">
+                    <input type="text" name="city" class="form-control"  placeholder="Enter your city" >
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <label class="custom-label">{{ __('messages.Country') }}</label>
-                    <input type="text" name="country" class="form-control form-control-border" placeholder="Enter your country" required>
+                    <div class="input-group">
+                    <input type="text" name="country" class="form-control" placeholder="Enter your country" >
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <label class="custom-label">{{ __('messages.Postal Code') }}</label>
-                    <input type="text" name="postal_code" class="form-control form-control-border" placeholder="XXXX" required>
+                    <div class="input-group">
+                    <input type="text" name="postal_code" class="form-control" placeholder="XXXX" >
+                    </div>
                 </div>
     
                 <!-- Second Row: 4-4 Column Layout -->
                 <div class="col-md-6">
                     <label class="custom-label">{{ __('messages.Billing Address') }}</label>
-                    <input type="text" name="billing_addresss" class="form-control form-control-border" placeholder="XXXXXXXXXXXXXXXXXXXX" required>
+                    <div class="input-group">
+                    <input type="text" name="billing_addresss" class="form-control" placeholder="XXXXXXXXXXXXXXXXXXXX" >
+                    </div>
                 </div>
-                
+                <!-- reference number -->
+                 <input type="hidden" name="reference_number" value="{{'SR-'.rand(1000,10000)}}">
                 <div class="col-md-12">
                     @if(auth()->check())
-                    <button type="submit" class="btn-order-book btn-orange-clr mt-4"><i class="fa-solid fa-cart-shopping"></i> {{ __('messages.Process to checkout') }} </button>
+                    <button type="submit" id="OrderSubmitBtn" class="btn-order-book btn-orange-clr mt-4"><i class="fa-solid fa-cart-shopping"></i> {{ __('messages.Process to checkout') }} </button>
                     @else
                     <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn-order-book btn-orange-clr mt-4"><i class="fa-solid fa-cart-shopping"></i> {{ __('messages.Process to checkout') }} </button>
                     @endif

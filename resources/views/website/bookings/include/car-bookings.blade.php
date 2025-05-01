@@ -165,7 +165,6 @@
 </div>
 @endforeach
 
-<input type="hidden" name="booking_reference[]" value="{{'SR-'.rand(1000,10000)}}">
 <input type="hidden" name="subtotal[]" class="get-subtotal" value="{{ $subtotal }}">
 <input type="hidden" name="tax[]" class="get-tax" value="{{ $tax }}">
 <input type="hidden" name="total[]" class="get-total" value="{{ $totalPriceIncludingTax }}">
