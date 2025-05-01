@@ -1,6 +1,10 @@
 @extends('admin.layouts.Master')
 @section('title') {{ ucfirst($role) }} {{__('messages.dashboard') }} @endsection
 @section('content')
+<script>
+    window.orderStatusRoute = "{{ route('orders.status.data') }}";
+</script>
+<script src="{{ asset('assets/js/admin/dashboard.js') }}"></script>
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -151,22 +155,7 @@
             <div id="cardCollapseRentStatus" class="collapse show">
                 <div class="text-center pt-3">
                     <div dir="ltr">
-                        <div id="lifetime-sales" data-colors="#07407B,#f06115,#ebeff2" style="height: 270px;" class="morris-chart mt-3"></div>                
-                        @php
-                        $legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745']; 
-                        $i = 0;
-                    @endphp
-                    
-                    @foreach($statusData as $status => $data)
-                        <div class="d-flex justify-content-between px-3">
-                            <span>
-                                <i class="mdi mdi-square" style="color: {{ $legendColors[$i] ?? '#ccc' }}"></i>
-                                {{ ucfirst($status) }}
-                            </span>
-                            <span>{{ $data['percentage'] }}%</span>
-                        </div>
-                        @php $i++; @endphp
-                    @endforeach
+                        <div id="lifetime-sales" data-colors="#07407B,#f06115,#ebeff2" style="height: 270px;" class="morris-chart mt-3"></div>  
                     </div>
                 </div>
             </div>
@@ -509,70 +498,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-<script>
-    let donutChart;
-    const legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745'];
-
-    function renderChart(data) {
-        $('#lifetime-sales').empty();
-
-        donutChart = new Morris.Donut({
-            element: 'lifetime-sales',
-            data: data,
-            colors: legendColors,
-            formatter: function (y) {
-                return y + '%';
-            }
-        });
-        const legendContainer = document.querySelector('#lifetime-sales').parentElement;
-        legendContainer.querySelectorAll('.d-flex.px-3').forEach(e => e.remove());
-
-        const labels = ['confirmed', 'pending', 'cancelled', 'completed'];
-        labels.forEach((label, i) => {
-            const percentage = data.find(d => d.label.toLowerCase() === label)?.value ?? 0;
-            const legend = `
-                <div class="d-flex justify-content-between px-3">
-                    <span>
-                        <i class="mdi mdi-square" style="color: ${legendColors[i]}"></i>
-                        ${label.charAt(0).toUpperCase() + label.slice(1)}
-                    </span>
-                    <span>${percentage}%</span>
-                </div>
-            `;
-            legendContainer.insertAdjacentHTML('beforeend', legend);
-        });
-    }
-
-    $(document).ready(function () {
-        renderChart([
-            { label: "Confirmed", value: {{ $statusData['confirmed']['percentage'] ?? 0 }} },
-            { label: "Pending", value: {{ $statusData['pending']['percentage'] ?? 0 }} },
-            { label: "Cancelled", value: {{ $statusData['cancelled']['percentage'] ?? 0 }} },
-            { label: "Completed", value: {{ $statusData['completed']['percentage'] ?? 0 }} }
-        ]);
-
-        $('.filter-option').on('click', function (e) {
-            e.preventDefault();
-            const filter = $(this).data('filter');
-            $.ajax({
-                url: '{{ route("orders.status.data") }}',
-                type: 'GET',
-                data: { filter: filter },
-                success: function (response) {
-                    const chartData = [
-                        { label: "Confirmed", value: response.confirmed.percentage },
-                        { label: "Pending", value: response.pending.percentage },
-                        { label: "Cancelled", value: response.cancelled.percentage },
-                        { label: "Completed", value: response.completed.percentage },
-                    ];
-                    renderChart(chartData);
-                },
-                error: function () {
-                    alert('Failed to load data.');
-                }
-            });
-            $(this).closest('.dropdown').find('.dropdown-toggle').html($(this).text() + ' <i class="fas fa-angle-down ms-2"></i>');
-        });
-    });
-</script>
 @endsection
