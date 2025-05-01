@@ -55,6 +55,7 @@ $(document).on('submit', '#usersignin', function(e) {
                     $('#getStartedButton').html(response.html);
                     $('#getStartedButtonMobile').html(response.html);
                 }, 1000); // add a slight delay if needed
+                window.location.reload();
             }
             
         },

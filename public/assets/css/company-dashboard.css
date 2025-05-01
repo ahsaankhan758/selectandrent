@@ -226,9 +226,9 @@
     color: var(--grey-color);
 }
 
-.text-muted {
+/* .text-muted {
     color: var(--grey-color) !important;
-}
+} */
 .activity {
     max-height: 200px;
     overflow-y: auto;
@@ -924,7 +924,7 @@
 }
 
 .booking-table {
-    display: block !important;
+    /* display: block !important; */
     overflow-x: auto !important;
     white-space: nowrap !important;  
 }

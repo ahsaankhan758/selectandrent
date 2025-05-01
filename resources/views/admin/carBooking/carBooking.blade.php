@@ -1,7 +1,6 @@
 @extends('admin.layouts.Master')
 @section('title')  {{ __('messages.car') }}  {{ trans_choice('messages.booking',2) }} @endsection
 @section('content')
-
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -29,7 +28,9 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="text-lg-end">
-                            <button type="button" class="btn btn-danger waves-effect waves-light mb-2 me-2"><i class="mdi mdi-basket me-1"></i> Add New Order</button>
+                            @if(can('Bookings','add'))
+                                <button type="button" class="btn btn-danger waves-effect waves-light mb-2 me-2"><i class="mdi mdi-basket me-1"></i> Add New Order</button>
+                            @endif
                             <button type="button" class="btn btn-light waves-effect mb-2">Export</button>
                         </div>
                     </div><!-- end col-->
@@ -46,11 +47,8 @@
                                     </div>
                                 </th>
                                 <th>User ID</th>
-                                <th>Products</th>
                                 <th>Name</th>
                                 <th>Booking Ref</th>
-                                <th>Subtotal</th>
-                                <th>Total</th>
                                 <th>Transaction ID</th>
                                 <th>Payment Status</th>
                                 <th>Booking Status</th>
@@ -59,6 +57,8 @@
                                 <th>Discount</th>
                                 <th>Tax</th>
                                 <th>Insurance</th>
+                                <th>Total</th>
+                                <th>Subtotal</th>
                                 <th>Notes</th>
                                 <th style="width: 125px;">Action</th>                                
                             </tr>
@@ -72,15 +72,10 @@
                                         <label class="form-check-label" for="customCheck2">&nbsp;</label>
                                     </div>
                                 </td>
-                                <td><a href="ecommerce-order-detail.html" class="text-body fw-bold">{{ $booking->id }}</a></td>
-                                <td>
-                                    <a href="ecommerce-product-detail.html"><img src="assets/images/products/product-1.png" alt="product-img" height="32" /></a>
-                                    <a href="ecommerce-product-detail.html"><img src="assets/images/products/product-2.png" alt="product-img" height="32" /></a>
-                                </td>
+                                <td><a href="#" class="text-body fw-bold">{{ $booking->id }}</a></td>
                                 <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                 <td>{{ $booking->booking_reference }}</td> 
-                                <td>{{ number_format($booking->subtotal, 2) }}</td>
-                                <td>{{ number_format($booking->total_price, 2) }}</td>
+                               
                                 <td>{{ $booking->transaction_id }}</td>
                                 <td>
                                     <h5><span class="badge bg-soft-success text-success"><i class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span></h5>
@@ -91,11 +86,19 @@
                                 <td>{{ number_format($booking->discount_amount, 2) }}</td>
                                 <td>{{ number_format($booking->tax_amount, 2) }}</td>
                                 <td>{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
+                                <td>{{ number_format($booking->total_price, 2) }}</td>
+                                <td>{{ number_format($booking->subtotal, 2) }}</td>
                                 <td>{{ $booking->notes }}</td>
                                 <td>
-                                    <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}" class="action-icon text-danger"> <i class="mdi mdi-eye"></i></a>
-                                    {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+                                    <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    {{-- 
+                                    @if(can('Bookings','edit'))
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                    @endif
+                                    @if(can('Bookings','delete'))
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> 
+                                    @endif    
+                                    --}}
                                 </td>
                             </tr> 
                             @empty

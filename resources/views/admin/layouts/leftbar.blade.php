@@ -84,13 +84,14 @@
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app',2) }}</li>
                
                 @if($role == 'admin')
-
-                    <li>
-                        <a href="{{ route('users') }}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span> {{ __('messages.users') }} </span>
-                        </a>
-                    </li>
+                    @if(can('users','view'))
+                        <li>
+                            <a href="{{ route('users') }}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span> {{ __('messages.users') }} </span>
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
                             <i class="mdi mdi-hexagon-multiple"></i>
@@ -99,15 +100,19 @@
                         </a>
                         <div class="collapse" id="sub_menu_company_listing">
                             <ul class="nav-second-level">
-                                <li>
-                                    <a href="{{ route('createCompany') }}" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.create') }} </span></a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('companies') }}" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.active') }} </span></a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.pending') }}</a>
-                                </li>
+                                @if(can('companies','add'))
+                                    <li>
+                                        <a href="{{ route('createCompany') }}" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.create') }} </span></a>
+                                    </li>
+                                @endif
+                                @if(can('companies','view'))
+                                    <li>
+                                        <a href="{{ route('companies') }}" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.active') }} </span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.pending') }}</a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </li>
@@ -122,27 +127,51 @@
                     </a>
                     <div class="collapse" id="sub_menu_car_listing">
                         <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('createCar') }}" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.create') }}</span></a>
-                            </li>
-                            <li>
-                                <a href="{{ route('carListings') }}" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.listings') }}</span></a>
-                            </li>
-
+                            @if(can('Vehicle','add'))
+                                <li>
+                                    <a href="{{ route('createCar') }}" > <i class="mdi mdi-creation"></i><span class="custom-ml-15">{{ __('messages.create') }}</span></a>
+                                </li>
+                            @endif
+                            @if(can('Vehicle','view'))
+                                <li>
+                                    <a href="{{ route('carListings') }}" > <i class="mdi mdi-image-filter-none"></i><span class="custom-ml-15">{{ __('messages.listings') }}</span></a>
+                                </li>
+                            @endif
                             @if($role == 'admin')
+                                @if(can('vehicle_brands','view'))
+                                    <li>
+                                        <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i><span class="custom-ml-15">{{ __('messages.brands') }}</a>
+                                    </li>
+                                @endif
+                                @if(can('vehicle_categories','view'))
+                                    <li>
+                                        <a href="{{ route('carCategories') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.categories') }}</a>
+                                    </li>
+                                @endif
+                                @if(can('vehicle_features','view'))
+                                    <li>
+                                        <a href="{{ route('carFeatures') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.features') }}</a>
+                                    </li>
+                                @endif
+                                @if(can('vehicle_models','view'))
+                                    <li>
+                                        <a href="{{ route('carModels') }}">  <i class="mdi mdi-car-estate"></i><span class="custom-ml-15">{{ __('messages.models') }}</a>
+                                    </li>
+                                @endif
+                            @endif    
+                            @if(can('vehicle_locations','view'))       
+                                <li>
+                                    <a href="{{ route('carLocations') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">{{ __('messages.locations') }}</a>
+                                </li>
+                            @endif
+                            @if(can('featured_vehicles','view')) 
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-car-side"></i>
+                                        <span> {{ __('messages.featured cars') }} </span>
+                                    </a>
+                                </li>
 
-                                <li>
-                                    <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i><span class="custom-ml-15">{{ __('messages.brands') }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('carCategories') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.categories') }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('carFeatures') }}">   <i class="mdi mdi-car"></i><span class="custom-ml-15">{{ __('messages.features') }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('carModels') }}">  <i class="mdi mdi-car-estate"></i><span class="custom-ml-15">{{ __('messages.models') }}</a>
-                                </li>
 
                             @endif    
 
@@ -158,6 +187,7 @@
                                     <span> {{ __('messages.featured cars') }} </span>
                                 </a>
                             </li>
+
                         </ul>
                     </div>
                 </li>
@@ -182,115 +212,133 @@
                 <li id="sub_menu_car_listing" class="collapse">
                     <a class="dropdown-item custom-ml-15" href="{{ route('carLocations') }}">    <i class="mdi mdi-map-marker-radius"></i>Car Locations</a>
                 </li> --}}
-                
-                <li>
-                    <a href="#">
-                        <i class="mdi mdi-chart-bar"></i>
-                        <span> {{ __('messages.analytics') }} </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendar">
-                        <i class="mdi mdi-calendar-range"></i>
-                        <span> {{ __('messages.calendar') }} </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('carBooking') }}">
-                        <i class="mdi mdi-calendar-multiple-check"></i>
-                        <span>{{ __('messages.bookings') }} </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#sub_menu_financial" data-bs-toggle="collapse">
-                        <i class="mdi mdi-cash-multiple"></i>
-                        <span> {{ __('messages.financial') }} </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sub_menu_financial">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('earningSummary') }}" > <i class="mdi mdi-clipboard-text"></i><span class="custom-ml-15">{{ __('messages.earning') }} {{ __('messages.summary') }}</span></a>
-                            </li>
-                            <li>
-                                <a href="{{ route('transactionHistory') }}" > <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.transaction') }} {{ __('messages.history') }} </span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="{{ route('client') }}">
-                        <i class="mdi mdi-account-group"></i>
-                        <span>{{ trans_choice('messages.client',2) }}   </span>
-                    </a>
-                </li>
-
-                @if($role == 'admin')
-
+                @if(can('Analytics','view'))
                     <li>
-                        <a href="{{ route('ipAddresses') }}">
-                            <i class="mdi mdi-network"></i>
-                            <span> {{ __('messages.users') }} IP  </span>
+                        <a href="#">
+                            <i class="mdi mdi-chart-bar"></i>
+                            <span> {{ __('messages.analytics') }} </span>
                         </a>
                     </li>
-                    {{--Added by Farhan  --}}
+                @endif
+                @if(can('Calendar','view'))
                     <li>
-                        <a href="#sub_menu_blog" data-bs-toggle="collapse">
-                            <i class="mdi mdi-book-open-page-variant"></i>
-                            <span> {{ trans_choice('messages.blog',2) }}   </span>
+                        <a href="calendar">
+                            <i class="mdi mdi-calendar-range"></i>
+                            <span> {{ __('messages.calendar') }} </span>
+                        </a>
+                    </li>
+                @endif
+                @if(can('Bookings','view'))
+                    <li>
+                        <a href="{{ route('carBooking') }}">
+                            <i class="mdi mdi-calendar-multiple-check"></i>
+                            <span>{{ __('messages.bookings') }} </span>
+                        </a>
+                    </li>
+                @endif
+                @if(can('Financial','view'))
+                    <li>
+                        <a href="#sub_menu_financial" data-bs-toggle="collapse">
+                            <i class="mdi mdi-cash-multiple"></i>
+                            <span> {{ __('messages.financial') }} </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sub_menu_blog">
+                        <div class="collapse" id="sub_menu_financial">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('blogs.createBlog') }}"> 
-                                        <i class="mdi mdi-format-list-bulleted"></i>
-                                        <span class="custom-ml-15">{{ __('messages.create') }}</span>
-                                    </a>
+                                    <a href="{{ route('earningSummary') }}" > <i class="mdi mdi-clipboard-text"></i><span class="custom-ml-15">{{ __('messages.earning') }} {{ __('messages.summary') }}</span></a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('blogs.blogDetail') }}"> 
-                                        <i class="mdi mdi-plus-circle"></i>
-                                        <span class="custom-ml-15">{{ __('messages.details') }}</span>
-                                    </a>
+                                    <a href="{{ route('transactionHistory') }}" > <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.transaction') }} {{ __('messages.history') }} </span></a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-
+                @endif
+                @if(can('Clients','view'))
+                    <li>
+                        <a href="{{ route('client') }}">
+                            <i class="mdi mdi-account-group"></i>
+                            <span>{{ trans_choice('messages.client',2) }}   </span>
+                        </a>
+                    </li>
+                @endif
+                @if($role == 'admin')
+                    @if(can('User IP','view'))
+                        <li>
+                            <a href="{{ route('ipAddresses') }}">
+                                <i class="mdi mdi-network"></i>
+                                <span> {{ __('messages.users') }} IP  </span>
+                            </a>
+                        </li>
+                    @endif
+                    {{--Added by Farhan  --}}
+                    @if(can('Blogs','view'))
+                        <li>
+                            <a href="#sub_menu_blog" data-bs-toggle="collapse">
+                                <i class="mdi mdi-book-open-page-variant"></i>
+                                <span> {{ trans_choice('messages.blog',2) }}   </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sub_menu_blog">
+                                <ul class="nav-second-level">
+                                    @if(can('Blogs','add'))
+                                        <li>
+                                            <a href="{{ route('blogs.createBlog') }}"> 
+                                                <i class="mdi mdi-format-list-bulleted"></i>
+                                                <span class="custom-ml-15">{{ __('messages.create') }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if(can('Blogs','view'))
+                                        <li>
+                                            <a href="{{ route('blogs.blogDetail') }}"> 
+                                                <i class="mdi mdi-plus-circle"></i>
+                                                <span class="custom-ml-15">{{ __('messages.details') }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
                 @endif
 
                 {{--end by Farhan  --}}
-                <li>
-                    <a href="{{ route('activityLogs') }}">
-                        <i class="bi bi-journal-text"></i>
-                        <span>{{ __('messages.activity logs') }} </span>
-                    </a>
-                </li>
+                @if(can('Activity_Log','view'))  
+                    <li>
+                        <a href="{{ route('activityLogs') }}">
+                            <i class="bi bi-journal-text"></i>
+                            <span>{{ __('messages.activity logs') }} </span>
+                        </a>
+                    </li>
+                @endif
                 @if($role == 'admin')
-                <li>
-                    <a href="#sub_menu_contact" data-bs-toggle="collapse">
-                        <i class="mdi mdi-email"></i>
-                        <span>Contact</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sub_menu_contact">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('contact.received') }}">
-                                    <i class="mdi mdi-format-list-bulleted"></i>
-                                    <span class="custom-ml-15">Received</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('contact.failed') }}">
-                                    <i class="mdi mdi-plus-circle"></i>
-                                    <span class="custom-ml-15">Failed</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                    @if(can('Contacts','view')) 
+                        <li>
+                            <a href="#sub_menu_contact" data-bs-toggle="collapse">
+                                <i class="mdi mdi-email"></i>
+                                <span>Contact</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sub_menu_contact">
+                                <ul class="nav-second-level">
+                                    <li>
+                                        <a href="{{ route('contact.received') }}">
+                                            <i class="mdi mdi-format-list-bulleted"></i>
+                                            <span class="custom-ml-15">Received</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('contact.failed') }}">
+                                            <i class="mdi mdi-plus-circle"></i>
+                                            <span class="custom-ml-15">Failed</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
                 @endif
                 
 

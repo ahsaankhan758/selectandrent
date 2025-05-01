@@ -34,12 +34,16 @@
                                     @endif
 
                                     <td>
-                                        <a href="{{ route('editCar', $carData->id) }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <a href="{{ route('deleteCar', $carData->id) }}" class="btn-delete">
-                                            <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
-                                        </a>
+                                        @if(can('Vehicle','edit'))
+                                            <a href="{{ route('editCar', $carData->id) }}">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                        @endif
+                                        @if(can('Vehicle','delete'))
+                                            <a href="{{ route('deleteCar', $carData->id) }}" class="btn-delete">
+                                                <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                                 <div class="modal" id="modal{{ $carData->id }}">
