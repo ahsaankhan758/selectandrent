@@ -123,7 +123,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
+            Route::get('/bookings/chart-data', [DashboardController::class, 'getChartData'])->name('bookings.chart-data');
+            Route::get('/earnings-data', [DashboardController::class, 'getEarningsData'])->name('earnings.data');
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
+            Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
             //Users Routes
             Route::get('users', [userController::class, 'index'])->name('users');
@@ -313,8 +316,3 @@ Route::post('/lock-screen', function () {
 //     }
 //     return redirect()->back();
 // })->name('change.language');
-
-
-
-
-
