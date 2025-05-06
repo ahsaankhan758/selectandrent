@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <div class="row mt-3">
-        <!-- Left Side: 4 Cards (2x2 Layout) -->
         <div class="col-lg-6 col-md-12">
 
             <div class="booking-dashboard">
@@ -78,7 +77,6 @@
             </div>
         </div>
 
-        <!-- Right Side: Extra Section -->
         <div class="col-lg-6 col-md-12">
             <div class="chart-container">
                 <h3>Bookings Overview</h3>
@@ -103,8 +101,6 @@
             </div>
         </div>
 
-        <!-- Recent Transactions -->
-        {{-- <div class="row"> --}}
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -138,7 +134,7 @@
                                     @endif
                                     <button type="button" class="btn btn-light waves-effect mb-2">Export</button>
                                 </div>
-                            </div><!-- end col-->
+                            </div>
                         </div>
     
                         <div class="table-responsive">
@@ -183,7 +179,7 @@
                                             <td>{{ $booking->transaction_id }}</td>
                                             <td>
                                                 <h5><span class="badge bg-soft-success text-success"><i
-                                                            class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span>
+                                                class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span>
                                                 </h5>
                                             </td>
                                             <td>
@@ -199,7 +195,7 @@
                                             <td>{{ $booking->notes }}</td>
                                             <td>
                                                 <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
-                                                    class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                             </td>
                                         </tr>
                                     @empty
@@ -213,5 +209,4 @@
                     </div>
                 </div>
             </div>
-        {{-- </div> --}}
     @endsection
