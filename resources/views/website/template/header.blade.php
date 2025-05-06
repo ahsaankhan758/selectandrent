@@ -1,5 +1,6 @@
 
 <link href="{{asset('/')}}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+<script src="{{ asset('/frontend-assets/assets/Js/carSearch.js') }}"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @if (request()->is('/') || request()->is('carsearch'))
 <div class="hero-header">
@@ -250,7 +251,8 @@
   </header>
   
   
-  
+  <script src="{{ asset('/frontend-assets/assets/Js/filtercar.js') }}"></script>
+
   <!-- Hero Section Start -->
   @if (request()->is('/') || request()->is('carsearch'))
   <div class="hero-section text-center text-white">
@@ -260,72 +262,98 @@
       <h1 class="display-5 fw-bold">{{ __('messages.anywhere') }}</h1>
       
       <div class="tabpanel-form mx-auto">
-          <form class="row g-2">
-              <div class="col-md-12">
-                  <div class="row g-2">
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
-                              <option disabled selected>{{ __('messages.brand') }}</option>
-                              <option value="Toyota">Toyota</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
-                              <option disabled selected>{{ __('messages.all') }} {{ __('messages.models') }}</option>
-                              <option value="Corolla">Corolla</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
+        <form id="carSearchForm" action="{{ route('car.search') }}" method="POST" enctype="multipart/form-data" class="row g-2">
+            @csrf        
+            <div class="col-md-12">
+                <div class="row g-2">
+                    <div class="col-md-3 col-6">
+                        <select id="brandDropdown" name="brand" class="form-select" data-url="{{ route('car.brands') }}">
+                            <option disabled selected>{{ __('messages.brand') }}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3 col-6">
+                        <select id="modelDropdown" name="model" class="form-select">
+                            <option disabled selected>{{ __('messages.all') }} {{ __('messages.models') }}</option>
+                        </select>
+                    </div>                    
+                    <div class="col-md-3 col-6">
+                        <select id="beamDropdown" name="beam" class="form-select">
                             <option disabled selected>{{ __('messages.beam') }}</option>
-                            <option value="Toyota Beam">Toyota {{ __('messages.beam') }}</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
+                        </select>
+                    </div>                    
+                    <div class="col-md-3 col-6">
+                        <select id="transmissionDropdown" name="transmission" class="form-select">
                             <option disabled selected>{{ __('messages.transmission') }}</option>
-                            <option value="Auto">{{ __('messages.auto') }}</option>
-                            <option value="Manual">{{ __('messages.manual') }}</option>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="row g-2 mt-1">
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
-                              <option disabled selected>{{ __('messages.radius') }}</option>
-                              <option value="2">2</option>
-                              <option value="5">5</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
-                              <option disabled selected>{{ __('messages.minimum') }}</option>
-                              <option value="2">2</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
-                              <option disabled selected>{{ __('messages.maximum') }}</option>
-                              <option value="10">10</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 col-6">
-                          <select class="form-select">
-                              <option disabled selected>{{ __('messages.postal') }} {{ __('messages.code') }}</option>
-                              <option value="54000">54000</option>
-                              <option value="64000">64000</option>
-                          </select>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <button class="btn btn-orange-clr w-100 d-flex justify-content-center text-white align-items-center">
-
-                      {{ __('messages.search') }} <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>
-
-                  </button>
-              </div>                                    
-          </form>
+                        </select>
+                    </div>
+                </div>
+                <div class="row g-2 mt-1">
+                    <div class="col-md-3 col-6">
+                        <select class="form-select" id="radiusDropdown" name="radius">
+                            <option disabled selected>{{ __('messages.radius') }}</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3 col-6">
+                        <select class="form-select" id="minMileageDropdown" name="minimum">
+                            <option disabled selected hidden>Min</option>
+                            <option disabled style="font-weight:bold;">Mileage</option>
+                            <option value="1000">1000 km</option>
+                            <option value="5000">5000 km</option>
+                            <option value="10000">10000 km</option>
+                            <option value="20000">20000 km</option>
+                            <option value="40000">40000 km</option>
+                            <option value="60000">60000 km</option>
+                            <option value="80000">80000 km</option>
+                            <option value="100000">100000 km</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3 col-6">
+                        <select class="form-select" id="maxMileageDropdown" name="maximum">
+                            <option disabled selected hidden>Max</option>
+                            <option disabled style="font-weight:bold;">Mileage</option>
+                            <option value="1000">1000 km</option>
+                            <option value="5000">5000 km</option>
+                            <option value="10000">10000 km</option>
+                            <option value="20000">20000 km</option>
+                            <option value="40000">40000 km</option>
+                            <option value="60000">60000 km</option>
+                            <option value="80000">80000 km</option>
+                            <option value="100000">100000 km</option>
+                        </select>
+                    </div>
+        
+                    <div class="col-md-3 col-6">
+                        <select class="form-select" name="year" id="year">
+                            <option value="" disabled selected>Year</option>
+                            <?php
+                                $currentYear = date("Y");
+                                for ($year = 1990; $year <= $currentYear; $year++) {
+                                    echo "<option value=\"$year\">$year</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>                    
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-orange-clr w-100 d-flex justify-content-center text-white align-items-center">
+                    {{ __('messages.search') }} <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>
+                </button>
+            </div>                                    
+        </form>        
       </div>
       <img src="{{asset('/')}}frontend-assets/assets/apps-bg-1-300x123.png" alt="Car" class="car-image">
 
