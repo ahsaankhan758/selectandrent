@@ -202,6 +202,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
 // add routes of website by Farhan & Salman
 Route::get('/', [WebsiteHomeController::class, 'showView']);
+Route::post('/car-search', [WebsiteHomeController::class, 'search'])->name('car.search');
+Route::get('/car-brands', [WebsiteHomeController::class, 'getCarBrands'])->name('car.brands');
 Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
 Route::get('/faqs', [FaqsController::class, 'faqView']);
 Route::get('/about-us', [AboutController::class, 'aboutView']);
