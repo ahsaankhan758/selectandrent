@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 {
                                     label: 'Confirmed',
                                     data: confirmed,
-                                    backgroundColor: '#F7A93F',
+                                    backgroundColor: '#E67E22',
                                     borderRadius: 8,
                                     barThickness: 20 
                                 },
