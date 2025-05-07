@@ -23,7 +23,7 @@ class CurrencyController extends Controller
             'rate' => 'required',
             'decimals' => 'required',
             'symbol_placement' => 'required',
-            'is_default' => 'required',
+            // 'is_default' => 'required',
             'is_active' => 'required',
         ]);
         $currency = new Currency;
@@ -34,7 +34,7 @@ class CurrencyController extends Controller
         $currency->decimals = $validatedData['decimals'];
         $currency->primary_order = $request->primary_order;
         $currency->symbol_placement = $validatedData['symbol_placement'];
-        $currency->is_default = $validatedData['is_default'];
+        // $currency->is_default = $validatedData['is_default'];
         $currency->is_active = $validatedData['is_active'];
         $currency->save();
         $userId = Auth::id();
@@ -57,7 +57,7 @@ class CurrencyController extends Controller
             'rate' => 'required',
             'decimals' => 'required',
             'symbol_placement' => 'required',
-            'is_default' => 'required',
+            //'is_default' => 'required',
             'is_active' => 'required',
         ]);
         $currency = Currency::find($id);
@@ -68,7 +68,7 @@ class CurrencyController extends Controller
         $currency->decimals = $validatedData['decimals'];
         $currency->primary_order = $request->primary_order;
         $currency->symbol_placement = $validatedData['symbol_placement'];
-        $currency->is_default = $validatedData['is_default'];
+        //$currency->is_default = $validatedData['is_default'];
         $currency->is_active = $validatedData['is_active'];
         $currency->update();
         // save logs

@@ -82,7 +82,7 @@ class userController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email' .$id,
             'role' => 'required',
         ]);
         $user = User::find($id);
