@@ -357,13 +357,14 @@
                                     <span class="custom-ml-15">{{ __('messages.google-map-module') }}</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('currencies') }}"> 
-                                    <i class="mdi mdi-currency-sign"></i>
-                                    <span class="custom-ml-15">{{ __('messages.currencies') }}</span>
-                                </a>
-                            </li>
-                            
+                            @if(can('Currencies','view'))
+                                <li>
+                                    <a href="{{ route('currencies') }}"> 
+                                        <i class="mdi mdi-currency-sign"></i>
+                                        <span class="custom-ml-15">{{ __('messages.currencies') }}</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </li>

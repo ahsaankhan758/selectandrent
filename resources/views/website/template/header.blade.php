@@ -69,17 +69,26 @@
                     </li>
                 </ul>
             </div>
+            <?php
+                $data = getActiveDefaultCurrency();
 
+                $defaultCurrency = $data['defaultCurrency'];
+                $activeCurrencies = $data['activeCurrencies'];
+            ?>
             <div class="col-md-1">
                 <ul class="list-unstyled topnav-menu float-end mb-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
-                            @isset($defaultCurrency->name)
+                        @if(isset($defaultCurrency->name))
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
                                 {{ $defaultCurrency->name }}
-                            @endisset
-                        </a>
-                        <ul class="dropdown-menu">
-                            @if(isset($activeCurrencies) && isset($defaultCurrency))
+                            </a>
+                        @else
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
+                                Currency
+                            </a>
+                        @endif
+                        @if(isset($activeCurrencies) && isset($defaultCurrency))
+                            <ul class="dropdown-menu">
                                 @foreach ($activeCurrencies as $currency)
                                     @if($currency->name != $defaultCurrency->name)
                                         <li>
@@ -89,8 +98,18 @@
                                         </li>
                                     @endif
                                 @endforeach
-                            @endisset
-                        </ul>
+                            </ul>
+                        @else
+                            <ul class="dropdown-menu">
+                                @foreach ($activeCurrencies as $currency)
+                                    <li>
+                                        <a class="dropdown-item" href=" {{ route('setDefaultCurreny', $currency->id) }}">
+                                            <span>{{ $currency->name }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </li>
                 </ul>
               </div>
@@ -267,6 +286,44 @@
                                     </li>
                                 @endforeach
                             </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <ul class="list-unstyled topnav-menu mb-0">
+                        <li class="nav-item dropdown">
+                            @if(isset($defaultCurrency->name))
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
+                                    {{ $defaultCurrency->name }}
+                                </a>
+                            @else
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
+                                    Currency
+                                </a>
+                            @endif
+                            @if(isset($activeCurrencies) && isset($defaultCurrency))
+                                <ul class="dropdown-menu">
+                                    @foreach ($activeCurrencies as $currency)
+                                        @if($currency->name != $defaultCurrency->name)
+                                            <li>
+                                                <a class="dropdown-item" href=" {{ route('setDefaultCurreny', $currency->id) }}">
+                                                    <span>{{ $currency->name }}</span>
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            @else
+                                <ul class="dropdown-menu">
+                                    @foreach ($activeCurrencies as $currency)
+                                        <li>
+                                            <a class="dropdown-item" href=" {{ route('setDefaultCurreny', $currency->id) }}">
+                                                <span>{{ $currency->name }}</span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </li>
                     </ul>
                 </li>

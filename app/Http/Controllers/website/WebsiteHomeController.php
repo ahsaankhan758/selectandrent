@@ -17,10 +17,8 @@ class WebsiteHomeController extends Controller
 {
     public function showView()
     {
-        $defaultCurrency = Currency::where('is_default', 'Yes')->first();
-        $activeCurrencies = Currency::where('is_active','Yes')->get();
         $cars = Car::orderBy('created_at', 'desc')->take(7)->get();
-        return view('website.index', compact('cars','defaultCurrency','activeCurrencies'));
+        return view('website.index', compact('cars',));
     }
 
     public function search(Request $request)
