@@ -67,18 +67,6 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <lable for="is_default">{{ __('messages.is_default') }}</lable>
-                                <select name="is_default" class="form-control">
-                                    <option disabled selected>Select</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group mb-3">
                                 <lable for="is_active">{{ __('messages.is_active') }}</lable>
                                 <select name="is_active" class="form-control">
                                     <option disabled selected>Select</option>

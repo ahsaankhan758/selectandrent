@@ -68,18 +68,6 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <lable for="is_default">{{ __('messages.is_default') }}</lable>
-                                <select name="is_default" class="form-control">
-                                    <option disabled {{ empty($currency->is_default) ? 'selected' : '' }}>Select</option>
-                                    <option value="Yes" {{ $currency->is_default == 'Yes' ? 'selected' : '' }}>Yes</option>
-                                    <option value="No" {{ $currency->is_default == 'No' ? 'selected' : '' }}>No</option>
-                                </select>
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group mb-3">
                                 <lable for="is_active">{{ __('messages.is_active') }}</lable>
                                 <select name="is_active" class="form-control">
                                     <option disabled {{ empty($currency->is_active) ? 'selected' : '' }}>Select</option>
@@ -87,7 +75,7 @@
                                     <option value="No" {{ $currency->is_active == 'No' ? 'selected' : '' }}>No</option>
                                 </select>                             
                             </div>
-                        </div>
+                        </div>  
                     </div>
                     <div class="row float-end">
                         <div class="form-group mb-3 ">
