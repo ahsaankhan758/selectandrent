@@ -9,9 +9,13 @@ use App\Models\CarModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
+use Illuminate\Support\Facades\Session;
+=======
 use App\Models\Currency;
 
 
+>>>>>>> 1c55756bb7f5d206e19c35fda2c93eb23791f9fe
 
 class WebsiteHomeController extends Controller
 {
@@ -56,19 +60,23 @@ class WebsiteHomeController extends Controller
                 return $query->where('year', $year);
             })
             ->when($request->filled('minimum') && $request->filled('maximum'), function ($query) use ($request) {
-                return $query->where(DB::raw('CAST(mileage AS UNSIGNED)'), '>', $request->minimum)
+                return $query->where(DB::raw('CAST(mileage AS UNSIGNED)'), '>=', $request->minimum)
                              ->where(DB::raw('CAST(mileage AS UNSIGNED)'), '<=', $request->maximum);
-            })           
+            })          
             ->get();
     
+        // return response()->json([
+        //     'status' => true,
+        //     'message' => 'Cars fetched successfully.',
+        //     'data' => $cars,
+        // ]);
+        session(['searchedCars' => $cars]);
+
         return response()->json([
             'status' => true,
-            'message' => 'Cars fetched successfully.',
-            'data' => $cars,
+            'redirect_url' => route('website.carsearch')
         ]);
     }
-    
-
 
     public function getCarBrands(Request $request)
     {
