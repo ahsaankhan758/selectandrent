@@ -19,9 +19,9 @@
               </div>
               <!-- Navbar -->
               @if(Cart::instance('cart')->content()->count() > 0 )
-              <div class="col-6">
+              <div class="col-5">
               @else
-              <div class="col-7">
+              <div class="col-6">
               @endif
                   <nav class="navbar navbar-expand-md" style="white-space: nowrap;">
                       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
@@ -36,7 +36,7 @@
                       </div>
                   </nav>
               </div>
-
+              
               <!-- Multi Lingual -->
               <div class="col-md-1 text-end">
                 <ul class="list-unstyled topnav-menu float-end mb-0">
@@ -69,6 +69,31 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="col-md-1">
+                <ul class="list-unstyled topnav-menu float-end mb-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
+                            @isset($defaultCurrency->name)
+                                {{ $defaultCurrency->name }}
+                            @endisset
+                        </a>
+                        <ul class="dropdown-menu">
+                            @if(isset($activeCurrencies) && isset($defaultCurrency))
+                                @foreach ($activeCurrencies as $currency)
+                                    @if($currency->name != $defaultCurrency->name)
+                                        <li>
+                                            <a class="dropdown-item" href=" {{ route('setDefaultCurreny', $currency->id) }}">
+                                                <span>{{ $currency->name }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @endisset
+                        </ul>
+                    </li>
+                </ul>
+              </div>
             @if(Cart::instance('cart')->content()->count() > 0 )
                 <div class="col-md-1">
                     <div class="col-md-1 text-end position-relative">
@@ -80,7 +105,7 @@
                 </div>
             @endif
               <!-- Get Started Button -->
-
+                
               @if(Auth::check() && Auth::user()->role == 'user')
 
                 <div class="col-md-2 text-end">

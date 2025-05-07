@@ -24,6 +24,7 @@ return [
     'category' => 'Category',
 
     'PaymentMethod'=>'Payment Method',
+    'currencies' => 'Currencies',
 
     'features' => 'Features',
     'feature' => 'Feature',
@@ -532,6 +533,14 @@ return [
     'c3'=> 'C3',
     'c4'=> 'C4',
     'c5'=> 'C5',
-    
+    'symbol' => 'Symbol',
+    'code' => 'Code',
+    'rate' => 'Rate',
+    'decimals' => 'Decimals',
+    'symbol_placement' => 'Symbol Placement',
+    'primary_order' => 'Primary Order',
+    'is_default' => 'Is Default',
+    'is_active' => 'Is Active',
+    'currency' => 'Currency',
     
 ];
