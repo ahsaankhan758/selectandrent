@@ -142,7 +142,7 @@ class companyController extends Controller
          $action = 'Delete';
          $module = 'Company';
          activityLog($userId, $desciption,$action,$module);
-        return redirect()->route('companies')-> with('status','Comapy Data Deleted Successfully.');
+        return redirect()->route('companies')-> with('statusDanger','Comapy Data Deleted Successfully.');
     }
     public function pending()
         {

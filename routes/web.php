@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Controllers\website\WebsiteCurrencyController;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -192,59 +194,67 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::post('payment-gateways/{id}', [AdminPaymentGateways::class, 'update'])->name('admin.payment-gateways.update');
             Route::post('/admin/payment-gateways/store', [AdminPaymentGateways::class, 'storeGatewayName'])->name('admin.payment-gateways.store');
 
-
-
+            //Currencies
+            Route::get('currencies',[CurrencyController::class, 'index'])->name('currencies');
+            Route::get('createCurrency',[CurrencyController::class, 'create'])->name('createCurrency');
+            Route::post('storeCurrency', [CurrencyController::class, 'store'])->name('storeCurrency');   
+            Route::get('editCurrency/{id}', [CurrencyController::class, 'edit'])->name('editCurrency');
+            Route::put('updateCurrency/{id}', [CurrencyController::class, 'update'])->name('updateCurrency');
+            Route::get('deleteCurrency/{id}', [CurrencyController::class, 'delete'])->name('deleteCurrency');
         });
     }
 
-// add routes of website by Farhan & Salman
-Route::get('/', [WebsiteHomeController::class, 'showView']);
-Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
-Route::get('/faqs', [FaqsController::class, 'faqView']);
-Route::get('/about-us', [AboutController::class, 'aboutView']);
-Route::get('/contact', [ContactController::class, 'contactView'])->name('contact');
-Route::post('/contact-submit', [ContactController::class, 'submit'])->name('website.contact');
-Route::get('/carbooking', [CarBookingController::class, 'carBookingView'])->name('car.booking');
-// by ak
-Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');
-Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
-Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])->name('cart.remove');
-Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
+    // add routes of website by Farhan & Salman
+    Route::get('/', [WebsiteHomeController::class, 'showView']);
+    Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
+    Route::get('/faqs', [FaqsController::class, 'faqView']);
+    Route::get('/about-us', [AboutController::class, 'aboutView']);
+    Route::get('/contact', [ContactController::class, 'contactView'])->name('contact');
+    Route::post('/contact-submit', [ContactController::class, 'submit'])->name('website.contact');
+    Route::get('/carbooking', [CarBookingController::class, 'carBookingView'])->name('car.booking');
+    // by ak
+    Route::post('/addToCart', [CarBookingController::class, 'addToCart'])->name('cart.carAdd');
+    Route::get('/clear-cart', [CarBookingController::class, 'clearCart'])->name('clear.cart');
+    Route::post('/cart/remove', [CarBookingController::class, 'removeItemFromCart'])->name('cart.remove');
+    Route::any('/update-cart-price', [CarBookingController::class, 'updatePrice']);
 
 
-Route::post('/payment/create-payment-checkout', [PaymentGatewaysController::class, 'redirectToPaymentCheckout'])->name('booking.payment');
-Route::get('/payment/booking-cancel', [PaymentGatewaysController::class, 'cancelPayment'])->name('booking.cancel');
+    Route::post('/payment/create-payment-checkout', [PaymentGatewaysController::class, 'redirectToPaymentCheckout'])->name('booking.payment');
+    Route::get('/payment/booking-cancel', [PaymentGatewaysController::class, 'cancelPayment'])->name('booking.cancel');
 
-// 
-Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
-Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
-Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
-// categories routes
-Route::get('/categories', [CategoryController::class, 'categoryView']);
-Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
-// end categories
-// car listing routes
-Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
-Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
-Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
-Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
-// end car listing routes
-// added by farhan
-Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
-Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
-Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
-// car register by farhan
-Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
-Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
-// car search page by farhan
-Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
-Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
+    // 
+    Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
+    Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
+    Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
+    // categories routes
+    Route::get('/categories', [CategoryController::class, 'categoryView']);
+    Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
+    // end categories
+    // car listing routes
+    Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
+    Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
+    Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
+    Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
+    // end car listing routes
+    // added by farhan
+    Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
+    Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
+    Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
+    // car register by farhan
+    Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
+    Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
+    // car search page by farhan
+    Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
+    Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
 
-// email template
-// Route::get('/email-template', function () {
-//     return view('website.emailtemplate');
-// });
-Route::get('/verify/{id}/{hash}', [CarRegisterController::class, 'carRegStore'])->name('verification.verify');
+    // email template
+    // Route::get('/email-template', function () {
+    //     return view('website.emailtemplate');
+    // });
+    Route::get('/verify/{id}/{hash}', [CarRegisterController::class, 'carRegStore'])->name('verification.verify');
+
+    //Currency
+    Route::get('setDefaultCurreny/{id}', [WebsiteCurrencyController::class, 'setDefaultCurreny'])->name('setDefaultCurreny');
 });
 
 //Auth Routes

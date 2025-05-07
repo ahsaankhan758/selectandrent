@@ -486,7 +486,7 @@ return [
 'admin' => 'Beheerder',
 'engine' => 'Motor', 
 'permissions' => 'Machtigingen',
-
+'currencies' => 'Valuta\'s',
 
 
 
@@ -515,6 +515,16 @@ return [
 'c3' => 'C3',
 'c4' => 'C4',
 'c5' => 'C5',
+'symbol' => 'Symbool',
+
+'rate' => 'Wisselkoers',
+'decimals' => 'Decimalen',
+'symbol_placement' => 'Symboolpositie',
+'primary_order' => 'Primaire volgorde',
+'is_default' => 'Standaard',
+'is_active' => 'Actief',
+'currency' => 'Valuta',
+
 
 
 ];
