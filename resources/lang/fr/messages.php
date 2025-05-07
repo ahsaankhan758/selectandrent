@@ -12,6 +12,7 @@ return [
     'companies' => 'Entreprises',
     'cars' => 'Voitures',
     'car' => 'Voiture',
+    'currencies' => 'Devises',
     'dashboard' => 'Tableau de bord',
     'dashboards' => 'Tableaux de bord',
     'financial' => 'Financier',
@@ -514,6 +515,16 @@ return [
 'c3' => 'C3',
 'c4' => 'C4',
 'c5' => 'C5',
+'symbol' => 'Symbole',
+
+'rate' => 'Taux',
+'decimals' => 'Décimales',
+'symbol_placement' => 'Placement du symbole',
+'primary_order' => 'Ordre principal',
+'is_default' => 'Par défaut',
+'is_active' => 'Actif',
+'currency' => 'Devise',
+
 
 
 

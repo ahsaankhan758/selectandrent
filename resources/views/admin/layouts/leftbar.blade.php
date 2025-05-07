@@ -164,6 +164,9 @@
                                     <a href="{{ route('carLocations') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">{{ __('messages.locations') }}</a>
                                 </li>
                             @endif
+                            <li>
+                                <a href="{{ route('cities') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">city</a>
+                            </li>
                             @if(can('featured_vehicles','view')) 
                                 <li>
                                     <a href="#">
@@ -171,22 +174,7 @@
                                         <span> {{ __('messages.featured cars') }} </span>
                                     </a>
                                 </li>
-
-
                             @endif    
-
-                            <li>
-                                <a href="{{ route('carLocations') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">{{ __('messages.locations') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('cities') }}">    <i class="mdi mdi-map-marker-radius"></i><span class="custom-ml-15">city</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="mdi mdi-car-side"></i>
-                                    <span> {{ __('messages.featured cars') }} </span>
-                                </a>
-                            </li>
 
                         </ul>
                     </div>
@@ -367,6 +355,12 @@
                                 <a href="#"> 
                                     <i class="mdi mdi-map-marker-multiple"></i>
                                     <span class="custom-ml-15">{{ __('messages.google-map-module') }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('currencies') }}"> 
+                                    <i class="mdi mdi-currency-sign"></i>
+                                    <span class="custom-ml-15">{{ __('messages.currencies') }}</span>
                                 </a>
                             </li>
                             
