@@ -6,9 +6,9 @@
     <div class="card mt-4">
         <div class="card-header">
             <h4> {{ __('messages.currencies') }} </h4>
-            {{-- @if(can('currencies','add')) --}}
+            @if(can('currencies','add'))
                     <a href=" {{ route('createCurrency') }}" class="btn float-end" style="background-color: #f06115; color: white " >{{__('messages.create') }} {{__('messages.currency') }}</a>
-            {{-- @endif --}}
+            @endif
         </div>
         <div class="card-body">
             <table class="table table-striped" id="myTable">
@@ -40,12 +40,12 @@
                                 <td>{{ $currency->is_default }}</td>
                                 <td>{{ $currency->is_active }}</td>
                                 <td>
-                                    {{-- @if(can('currencies','edit')) --}}
+                                    @if(can('currencies','edit'))
                                         <a title="Edit" href="{{ route('editCurrency',$currency->id) }}"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
-                                    {{-- @endif --}}
-                                    {{-- @if(can('currencies','delete')) --}}
+                                    @endif
+                                    @if(can('currencies','delete'))
                                         <a title="Delete" href="{{ route('deleteCurrency',$currency->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash delete-btn"></i></a>
-                                    {{-- @endif --}}
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
