@@ -249,9 +249,6 @@
           </div>
       </div>
   </header>
-  
-  
-  <script src="{{ asset('/frontend-assets/assets/Js/filtercar.js') }}"></script>
 
   <!-- Hero Section Start -->
   @if (request()->is('/') || request()->is('carsearch'))
