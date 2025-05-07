@@ -12,6 +12,7 @@ return [
     'companies' => 'الشركات',
     'cars' => 'السيارات',
     'car' => 'سيارة',
+    'currencies' => 'العملات',
     'dashboard' => 'لوحة التحكم',
     'dashboards' => 'لوحات المعلومات',
     'activity log' => 'سجل النشاط',
@@ -519,6 +520,16 @@ return [
     'c3' => 'C3',
     'c4' => 'C4',
     'c5' => 'C5',
+    'symbol' => 'الرمز',
+
+    'rate' => 'السعر',
+    'decimals' => 'عدد الكسور العشرية',
+    'symbol_placement' => 'موضع الرمز',
+    'primary_order' => 'الترتيب الأساسي',
+    'is_default' => 'الافتراضي',
+    'is_active' => 'نشط',
+    'currency' => 'عملة',
+
 
 
 
