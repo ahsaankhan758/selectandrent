@@ -34,6 +34,7 @@ return [
     'feature' => 'Caractéristique',
     'model' => 'Modèle',
     'location' => 'Emplacement',
+    'area_name' => 'Zone de ramassage',
     'featured cars' => 'Voitures en vedette', 
     'user IP' => 'IP utilisateur',
     'create' => 'Créer',

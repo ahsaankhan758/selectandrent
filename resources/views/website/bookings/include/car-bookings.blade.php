@@ -13,15 +13,39 @@
         <!-- Pickup Location -->
         <div class="col-md-3">
             <label class="form-label">{{ __('messages.Pickup Location') }}</label>
-            <select name="pickup_location[]" class="form-select validate-pickup">
-                <option selected disabled>{{ __('messages.Select Location') }}</option>
-                @if(isset($vehicleLocation) && !empty($vehicleLocation))
+            @php
+                $selectedPickup = isset($cart->options->vehicle_pickup_location) ? $cart->options->vehicle_pickup_location : null;
+                $selectedLocationId = null;
+
+                if (!empty($vehicleLocation) && $selectedPickup) {
+                    foreach ($vehicleLocation as $location) {
+                        if ($location->area_name == $selectedPickup) {
+                            $selectedLocationId = $location->id;
+                            break;
+                        }
+                    }
+                }
+            @endphp
+
+            <select name="pickup_location[]" class="form-select validate-pickup" 
+                {{ $selectedPickup ? 'disabled' : '' }}>
+                <option disabled>{{ __('messages.Select Location') }}</option>
+
+                @if(!empty($vehicleLocation))
                     @foreach($vehicleLocation as $location)
-                    <option value="{{$location->id}}">{{$location->city}}</option>
+                        <option value="{{ $location->id }}"
+                            {{ $selectedPickup == $location->area_name ? 'selected' : '' }}>
+                            {{ $location->area_name }}
+                        </option>
                     @endforeach
                 @endif
             </select>
+
+            @if($selectedPickup && $selectedLocationId)
+                <input type="hidden" name="pickup_location[]" value="{{ $selectedLocationId }}">
+            @endif
         </div>
+
 
         <!-- Dropoff Location -->
         <div class="col-md-3">
@@ -30,7 +54,7 @@
                 <option selected disabled>{{ __('messages.Select Location') }}</option>
                 @if(isset($vehicleLocation) && !empty($vehicleLocation))
                     @foreach($vehicleLocation as $location)
-                    <option value="{{$location->id}}">{{$location->city}}</option>
+                    <option value="{{$location->id}}">{{$location->area_name}}</option>
                     @endforeach
                 @endif
             </select>
