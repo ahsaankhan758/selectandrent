@@ -317,7 +317,6 @@
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                 <h6 class="car-price">${{ $car->rent }}/{{ __('messages.Day') }}</h6>
                                 <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
-                               
                             </div>
                             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
         
