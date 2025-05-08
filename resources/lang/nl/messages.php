@@ -33,6 +33,7 @@ return [
     'feature' => 'Kenmerk',
     'model' => 'Model',
     'location' => 'Locatie',
+    'area_name' => 'Ophaalgebied',
     'featured cars' => 'Uitgelichte auto\'s',
     'user IP' => 'Gebruiker IP',
     'create' => 'Aanmaken',

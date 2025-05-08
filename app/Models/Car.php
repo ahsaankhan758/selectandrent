@@ -39,31 +39,30 @@ class Car extends Model
         'images' => 'array', 
     ];
     
-    
     public function car_categories()
-        {
-            return $this->belongsTo(CarCategory::class, 'car_category_id', 'id');
-        }
+    {
+        return $this->belongsTo(CarCategory::class, 'car_category_id', 'id');
+    }
     public function car_locations()
-        {
-            return $this->belongsTo(CarLocation::class, 'car_location_id', 'id');
-        }
+    {
+        return $this->belongsTo(CarLocation::class, 'car_location_id', 'id');
+    }
     public function car_models()
-        {
-            return $this->belongsTo(CarModel::class, 'car_model_id', 'id');
-        }   
+    {
+        return $this->belongsTo(CarModel::class, 'car_model_id', 'id');
+    }   
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     } 
 
-public function bookings()
-{
-    return $this->hasMany(Booking::class);
-}
-public function carModel()
-{
-    return $this->belongsTo(CarModel::class, 'car_model_id');
-}
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+    public function carModel()
+    {
+        return $this->belongsTo(CarModel::class, 'car_model_id');
+    }
 
 }
