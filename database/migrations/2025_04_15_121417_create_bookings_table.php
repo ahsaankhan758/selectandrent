@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('booking_reference')->unique();
             $table->decimal('subtotal', 10, 2)->nullable();
             $table->decimal('total_price', 10, 2);
+            $table->string('currency')->nullable();
             $table->string('transaction_id')->nullable();
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
             $table->enum('booking_status', ['pending','confirmed','cancelled','completed'])->default('pending');
