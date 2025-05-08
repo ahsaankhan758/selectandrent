@@ -23,10 +23,10 @@ $(document).ready(function () {
                         brandDropdown.append(`<option value="${brand.id}">${brand.name}</option>`);
                     });
 
-                    beamDropdown.html('<option disabled selected>Beam</option>');
-                    $.each(response.beams, function (i, beam) {
-                        beamDropdown.append(`<option value="${beam}">${beam}</option>`);
-                    });
+                    // beamDropdown.html('<option disabled selected>Beam</option>');
+                    // $.each(response.beams, function (i, beam) {
+                    //     beamDropdown.append(`<option value="${beam}">${beam}</option>`);
+                    // });
 
                     transmissionDropdown.html('<option disabled selected>Transmission</option>');
                     $.each(response.transmissions, function (i, trans) {
