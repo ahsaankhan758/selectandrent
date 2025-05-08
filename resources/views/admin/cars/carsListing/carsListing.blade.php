@@ -20,6 +20,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                            
                         <?php $counter = 0;?>
                         @if(isset($cars))
                             @foreach ($cars as $carData)
@@ -59,12 +60,14 @@
                                                             <div class="detail-item"><span>{{ $carData->detail }}</span></div>
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="detail-item"><strong>{{ __('messages.lisence plate') }}:</strong> <span>{{ $carData->lisence_plate }}</span></div>
                                                             <div class="detail-item"><strong>{{ __('messages.brand') }}:</strong> <span>{{ $carData->car_models->car_brands->name }}</span></div>
                                                             <div class="detail-item"><strong>{{ __('messages.category') }}:</strong> <span>{{ $carData->car_categories->name }}</span></div>
-                                                            <div class="detail-item"><strong>{{ __('messages.location') }}:</strong> <span>{{ $carData->car_locations->city }}</span></div>
+                                                            <div class="detail-item"><strong>{{ __('messages.city') }}:</strong> <span>{{ isset($carData->car_locations->city->name) ? $carData->car_locations->city->name : '' }}</span></div>
+                                                            <div class="detail-item"><strong>{{ __('messages.area_name') }}:</strong> <span>{{ isset($carData->car_locations->area_name) ? $carData->car_locations->area_name : 'Area name not available' }}</span></div>
                                                             <div class="detail-item"><strong>{{ __('messages.beam') }}:</strong> <span>{{ $carData->beam }}</span></div>
                                                             <div class="detail-item"><strong>{{ __('messages.transmission') }}:</strong> <span>{{ $carData->transmission }}</span></div>
                                                             <div class="detail-item"><strong>{{ __('messages.rent') }}:</strong> <span>{{ $carData->rent }}</span></div>

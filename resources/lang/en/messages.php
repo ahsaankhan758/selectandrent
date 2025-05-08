@@ -30,6 +30,7 @@ return [
     'feature' => 'Feature',
     'model' => 'Model',
     'location' => 'Location',
+    'area_name' => 'Pickup Area',
     'featured cars' => 'Featured Cars',
     'user IP' => 'User IP',
     'create' => 'Create',

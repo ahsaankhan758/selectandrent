@@ -122,6 +122,7 @@
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Transmission') }}</strong> <span>{{ ucfirst($car->transmission) }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Exterior Color') }}</strong> <span>{{ ucfirst($car->exterior_color) }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Interior Color') }}</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
+                    <li class="d-flex justify-content-between"><strong>{{ __('messages.location') }}</strong> <span>{{ ucfirst($car->car_locations->city->name) }}</span></li>
 
                 </ul>
                 <!-- for add to cart  -->
@@ -196,16 +197,22 @@
                 </div>
             </div>
         </div>
-
+    
         <!-- Location Section -->
         <div class="col-lg-5 col-md-5 col-sm-5 location-card-clr">
             <div class="location-box flex-fill d-flex flex-column">
                 <h5 class="fw-bold">{{ __('messages.Location') }}</h5>
                 <div class="map-container flex-grow-1">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.092073138068!2d-122.4312977243305!3d37.76087301515292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7e1fcb531a9b%3A0x51edbcba27e93591!2sPhilz%20Coffee!5e0!3m2!1sen!2sus!4v1700000000000" 
-                        loading="lazy">
-                    </iframe>
+                    <!-- map -->
+                <iframe id="mapIframe" width="600" height="450" style="border:0;" loading="lazy" allowfullscreen></iframe>
+                <script>
+                    // Example dynamic coordinates (replace with your actual dynamic variables)
+                    const latitude = `{{$car->car_locations->latitude}}`;
+                    const longitude = `{{$car->car_locations->longitude}}`;
+                    const mapSrc = `https://maps.google.com/maps?q=${latitude},${longitude}&z=14&output=embed`;
+                    // Apply to the iframe
+                    document.getElementById('mapIframe').src = mapSrc;
+                </script>
                 </div>
                 <div class="help-box mt-3">
                     <div class="help-content">

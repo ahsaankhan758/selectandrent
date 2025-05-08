@@ -19,9 +19,9 @@ class CarLocation extends Model
             return $this->hasMany(Car::class, 'car_location_id', 'id');
         }
 
-        public function city()
-        {
-            return $this->belongsTo(City::class, 'city_id');
-        }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
 
 }

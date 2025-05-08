@@ -35,6 +35,7 @@ return [
     'feature' => 'الميزة',
     'model' => 'الموديل',
     'location' => 'الموقع',
+    'area_name' => 'منطقة الاستلام',
     'featured cars' => 'السيارات المميزة', 
     'user IP' => 'عنوان IP للمستخدم',
     'create' => 'إنشاء',
