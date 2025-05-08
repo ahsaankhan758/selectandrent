@@ -228,32 +228,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('/payment/create-payment-checkout', [PaymentGatewaysController::class, 'redirectToPaymentCheckout'])->name('booking.payment');
     Route::get('/payment/booking-cancel', [PaymentGatewaysController::class, 'cancelPayment'])->name('booking.cancel');
 
-<<<<<<< HEAD
-// 
-Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
-Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
-Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
-// categories routes
-Route::get('/categories', [CategoryController::class, 'categoryView']);
-Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
-// end categories
-// car listing routes
-Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
-Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
-Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
-Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
-// end car listing routes
-// added by farhan
-Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
-Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
-Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
-// car register by farhan
-Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
-Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
-// car search page by farhan
-Route::get('/carsearch', [CarSearchController::class, 'CarSearchView'])->name('website.carsearch');
-Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
-=======
+
     // 
     Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
     Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
@@ -287,7 +262,7 @@ Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('
 
     //Currency
     Route::get('setDefaultCurreny/{id}', [WebsiteCurrencyController::class, 'setDefaultCurreny'])->name('setDefaultCurreny');
->>>>>>> 1c55756bb7f5d206e19c35fda2c93eb23791f9fe
+
 
 });
 
