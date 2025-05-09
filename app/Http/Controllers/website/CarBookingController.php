@@ -55,6 +55,8 @@ class CarBookingController extends Controller
                 'car_location_id' => $vehicle->car_location_id,
                 'vehicle_city' => $vehicle->car_locations->city->name,
                 'vehicle_pickup_location' => $vehicle->car_locations->area_name,
+                'vehicle_latitude' => $vehicle->car_locations->latitude,
+                'vehicle_longitude' => $vehicle->car_locations->longitude,
                 'car_model_id' => $vehicle->car_model_id,
                 'car_model' => $vehicle->car_models->name,
                 'car_brand' => $vehicle->car_models->car_brands->name,

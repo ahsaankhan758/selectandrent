@@ -12,39 +12,41 @@
     <div class="row g-3">
         <!-- Pickup Location -->
         <div class="col-md-3">
-            <label class="form-label">{{ __('messages.Pickup Location') }}</label>
-            @php
-                $selectedPickup = isset($cart->options->vehicle_pickup_location) ? $cart->options->vehicle_pickup_location : null;
-                $selectedLocationId = null;
+        <label class="form-label">{{ __('messages.Pickup Location') }}</label>
 
-                if (!empty($vehicleLocation) && $selectedPickup) {
-                    foreach ($vehicleLocation as $location) {
-                        if ($location->area_name == $selectedPickup) {
-                            $selectedLocationId = $location->id;
-                            break;
-                        }
+        @php
+            $selectedPickup = $cart->options->vehicle_pickup_location ?? null;
+            $selectedLocationId = null;
+
+            if (!empty($vehicleLocation) && $selectedPickup) {
+                foreach ($vehicleLocation as $location) {
+                    if ($location->area_name === $selectedPickup) {
+                        $selectedLocationId = $location->id;
+                        break;
                     }
                 }
-            @endphp
+            }
+        @endphp
 
-            <select name="pickup_location[]" class="form-select validate-pickup" 
-                {{ $selectedPickup ? 'disabled' : '' }}>
-                <option disabled>{{ __('messages.Select Location') }}</option>
+        <select name="pickup_location[]" class="form-select validate-pickup"
+            @if($selectedPickup) disabled @endif>
+            <option disabled {{ !$selectedPickup ? 'selected' : '' }}>
+                {{ __('messages.Select Location') }}
+            </option>
 
-                @if(!empty($vehicleLocation))
-                    @foreach($vehicleLocation as $location)
-                        <option value="{{ $location->id }}"
-                            {{ $selectedPickup == $location->area_name ? 'selected' : '' }}>
-                            {{ $location->area_name }}
-                        </option>
-                    @endforeach
-                @endif
-            </select>
+            @foreach($vehicleLocation ?? [] as $location)
+                <option value="{{ $location->id }}"
+                    {{ $selectedPickup === $location->area_name ? 'selected' : '' }}>
+                    {{ $location->area_name }}
+                </option>
+            @endforeach
+        </select>
 
-            @if($selectedPickup && $selectedLocationId)
-                <input type="hidden" name="pickup_location[]" value="{{ $selectedLocationId }}">
-            @endif
-        </div>
+        @if($selectedPickup && $selectedLocationId)
+            <input type="hidden" name="pickup_location[]" value="{{ $selectedLocationId }}">
+        @endif
+    </div>
+
 
 
         <!-- Dropoff Location -->
@@ -119,6 +121,7 @@
                 </div>
                 <span class="vehicle-title text-capitalize">{{$cart->options->car_brand}} {{$cart->name}}</span>
                 <p class="car-model-text text-capitalize">{{ $cart->options->year }}, {{$cart->options->car_category}}</p>
+                <p class="fw-bold text-capitalize">{{$cart->options->vehicle_city}}</p>
                 <p class="fw-bold text-capitalize">${{$cart->price}} / Day</p>
                
             </div>
@@ -141,7 +144,7 @@
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.engine size') }}:</strong> {{ $cart->options->engine_size }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Exterior Color') }}:</strong> {{ $cart->options->exterior_color }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Interior Color') }}:</strong> {{ $cart->options->interior_color }}</div>
-           <div class="mb-2 text-capitalize"><strong>{{ __('messages.radius') }}:</strong> 12M</div>
+           <div class="mb-2 text-capitalize"><strong>{{ __('messages.radius') }}:</strong><span id="getRadius{{$cart->rowId}}">0M</span></div>
         </div>
         <div class="col-md-2 mobile-car">
             <div class="mb-2 empty-box"> </div>
@@ -187,6 +190,7 @@
         </div>
     </div>
 </div>
+
 @endforeach
 
 <input type="hidden" name="subtotal[]" class="get-subtotal" value="{{ $subtotal }}">
@@ -252,3 +256,62 @@
         </div>
     </div>
 </div>
+<script>
+    // Prepare cars from backend (Blade)
+    const cartCars = [
+        @foreach($cartItems as $cart)
+            {
+                rowId: '{{ $cart->rowId }}',
+                lat: {!! json_encode($cart->options->vehicle_latitude) !!},
+                lon: {!! json_encode($cart->options->vehicle_longitude) !!}
+            }@if(!$loop->last),@endif
+        @endforeach
+    ];
+
+    // Get user's location
+    navigator.geolocation.getCurrentPosition(handleLocationSuccess, handleLocationError);
+
+    function handleLocationSuccess(position) {
+        const userLat = position.coords.latitude;
+        const userLon = position.coords.longitude;
+
+        cartCars.forEach(car => {
+            fetchRouteDistance(userLat, userLon, car.lat, car.lon, car.rowId);
+        });
+    }
+
+    function handleLocationError(err) {
+        console.error("Geolocation error:", err);
+    }
+
+    function fetchRouteDistance(userLat, userLon, carLat, carLon, rowId) {
+        const apiKey = '5b3ce3597851110001cf6248c2f382b55a5c4f1c8b1c0d73ff71a65e';
+        const url = 'https://api.openrouteservice.org/v2/directions/driving-car/geojson';
+
+        const requestBody = {
+            coordinates: [
+                [userLon, userLat], // Origin
+                [carLon, carLat]    // Destination
+            ]
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': apiKey,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(data => {
+            const distanceMeters = data?.features?.[0]?.properties?.summary?.distance || 0;
+            const distanceKm = (distanceMeters / 1000).toFixed(2);
+            console.log(`Distance to car ${rowId}: ${distanceKm} KM`);
+            document.getElementById(`getRadius${rowId}`).innerHTML = `${distanceKm} KM`;
+        })
+        .catch(error => {
+            console.error(`Error fetching route for car ${rowId}:`, error);
+        });
+    }
+</script>
