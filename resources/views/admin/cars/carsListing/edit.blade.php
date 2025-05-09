@@ -45,12 +45,11 @@
                         <div class="col-4 form-group mb-3">
                             <lable for="location">{{ __('messages.city') }}</lable>
                             <select name="location" class="form-control">
-                                <option value="{{ $car->car_locations->id }}" selected>{{ ucfirst(strtolower($car->car_locations->city)) }}</option>
+                                <option value="{{ $car->car_locations->city->id }}" selected>{{ ucfirst(strtolower($car->car_locations->city->name)) }}</option>
                                 @if(isset($locations))    
                                     @foreach ( $locations as $locationData)
-                                        @if( $locationData->city == $car->car_locations->city)
-                                        @else
-                                            <option value="{{ $locationData->id }}">{{ ucfirst(strtolower($locationData->city)) }}</option>
+                                        @if( $locationData->city->name != $car->car_locations->city->name)
+                                            <option value="{{ $locationData->city->id }}">{{ ucfirst(strtolower($locationData->city->name)) }}</option>
                                         @endif
                                     @endforeach
                                 @endif
@@ -58,11 +57,25 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
+                            <label for="location">{{ __('messages.area_name') }}</label>
+                            <select name="location" id="location" class="form-control">
+                                @if(isset($locations))
+                                    @foreach ($locations as $location)
+                                        <option value="{{ $location->id }}"
+                                            {{ $car->car_locations->id == $location->id ? 'selected' : '' }}>
+                                            {{ ucfirst(strtolower($location->area_name)) }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-3 form-group mb-3">
                             <lable for="fuel_type">{{ __('messages.fuel type') }}</lable>
                             <input type="text" name="fuel_type" class="form-control" value="{{ $car->fuel_type }}">
                         </div>
-                        <div class="col-4 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <lable for="transmission">{{ __('messages.transmission') }}</lable>
                             <select name="transmission" class="form-control">
                                 @if ($car->transmission == 'auto')
@@ -74,7 +87,7 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="col-4 form-group mb-3">
+                        <div class="col-3 form-group mb-3">
                             <label for="seats">{{ __('messages.seats') }}</label>
                             <input type="text" name="seats" class="form-control" value="{{ $car->seats }}">
                         </div>

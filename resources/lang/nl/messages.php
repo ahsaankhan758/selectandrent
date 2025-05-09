@@ -17,6 +17,7 @@ return [
     'financial' => 'Financieel',
     'earning' => 'Verdiensten',
     'summary' => 'Samenvatting',
+    'of'=>'van',
     'transaction' => 'Transactie',
     'history' => 'Geschiedenis',
     'activity log' => 'Activiteitenlogboek',

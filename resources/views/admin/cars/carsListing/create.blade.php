@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                         <div class="col-3 form-group mb-3">
-                            <lable for="location">Area Name</lable>
+                            <lable for="location">{{ __('messages.area_name') }}</lable>
                             <select name="location" class="form-control">
                                 <option disabled selected>{{ __('messages.select') }}</option>
                                 @if(isset($locations))

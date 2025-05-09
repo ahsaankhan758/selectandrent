@@ -488,6 +488,7 @@ return [
     'Email_Address'=>'Email Address',
     'Password'=>'Password',
     'profile'=>'Profile',
+    'of'=>'Of',
 
     'engine'=>'Engine',
     'permissions'=>'Permissions',
