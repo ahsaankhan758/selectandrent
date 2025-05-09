@@ -91,7 +91,7 @@
                
                 
                 <div class="brand-section">
-                    <h5 class="brand-title">{{ __('messages.All Brands ') }}({{ $totalCars }})</h5>
+                    <h5 class="brand-title">{{ __('messages.All Brands') }}({{ $totalCars }})</h5>
                     
                     <div class="brand-list">
                         @foreach($categories->take(6) as $category)
@@ -130,7 +130,7 @@
             <div class="static-display-flex align-items-center">
                 <span class="menu-icon">☰</span>
                 <span class="results">
-                    <span id="current-count">8</span> {{ __('messages.of') }} {{ $totalCars }}{{ __('messages.results') }} 
+                    <span id="current-count">8</span> {{ __('messages.of') }} {{ $totalCars }} {{ __('messages.results') }} 
                 </span>
             </div>
             <div class="filter-options static-display-flex align-items-center">
