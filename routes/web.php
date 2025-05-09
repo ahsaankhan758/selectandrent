@@ -251,7 +251,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
     Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
     // car search page by farhan
-    Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
+    Route::get('/carsearch', [CarSearchController::class, 'CarSearchView'])->name('website.carsearch');
     Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
 
     // email template
