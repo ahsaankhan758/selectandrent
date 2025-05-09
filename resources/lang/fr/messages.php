@@ -18,6 +18,7 @@ return [
     'financial' => 'Financier',
     'earning' => 'Revenu',
     'summary' => 'Résumé',
+    'of'=>'de',
     'transaction' => 'Transaction',
     'history' => 'Historique',
     'activity log' => 'Journal d\'activité',

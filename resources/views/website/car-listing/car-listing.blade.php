@@ -58,7 +58,9 @@
 
 <div class="container">
     <div class="row">
+
             @include('website.car-listing.car-listing-filters.vehiclefilterlist')
+
 
         <!-- Main Content -->
         <div class="col-md-9">
@@ -67,7 +69,7 @@
             <div class="static-display-flex align-items-center">
                 <span class="menu-icon">☰</span>
                 <span class="results">
-                    <span id="current-count">8</span> {{ __('messages.of') }} {{ $totalCars }}{{ __('messages.results') }} 
+                    <span id="current-count">8</span> {{ __('messages.of') }} {{ $totalCars }} {{ __('messages.results') }} 
                 </span>
             </div>
             <div class="filter-options static-display-flex align-items-center">

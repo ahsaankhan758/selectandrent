@@ -134,7 +134,7 @@ class CarController extends Controller
     {
         $car = Car::find($id);
         $categories = CarCategory::orderBy('name', 'asc')->get();
-        $locations = CarLocation::orderBy('city', 'asc')->get();
+        $locations = CarLocation::orderBy('area_name', 'asc')->get();
         $models = CarModel::orderBy('name', 'asc')->get();
         $features = CarFeature::orderBy('name')->get();
         return view('admin.cars.carsListing.edit',compact('car','categories','locations','models','features'));

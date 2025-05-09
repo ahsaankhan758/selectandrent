@@ -47,6 +47,7 @@ return [
     'action' => 'الإجراء',
     'back' => 'العودة',
     'submit' => 'إرسال',
+    'of'=>'من',
     'password' => 'كلمة المرور',
     'confirm password' => 'تأكيد كلمة المرور',
     'choose role' => 'اختر دورًا',
