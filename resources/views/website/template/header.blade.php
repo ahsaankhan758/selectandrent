@@ -135,7 +135,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{route('website.dashboard')}}" class="dropdown-item notify-item">
                                     <i class="mdi mdi-view-dashboard-outline theme-color"></i>
                                     <span> {{ __('messages.dashboard') }} </span>
                                 </a>
