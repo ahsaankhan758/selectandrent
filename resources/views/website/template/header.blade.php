@@ -358,9 +358,12 @@
                     </div>                    
                     <div class="col-md-3 col-6">
                         <select id="beamDropdown" name="beam" class="form-select">
-                            <option disabled selected>{{ __('messages.beam') }}</option>
+                            <option disabled selected>Beam (km)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </select>
-                    </div>                    
+                    </div>                                      
                     <div class="col-md-3 col-6">
                         <select id="transmissionDropdown" name="transmission" class="form-select">
                             <option disabled selected>{{ __('messages.transmission') }}</option>
@@ -370,7 +373,7 @@
                 <div class="row g-2 mt-1">
                     <div class="col-md-3 col-6">
                         <select class="form-select" id="radiusDropdown" name="radius">
-                            <option disabled selected>{{ __('messages.radius') }}</option>
+                            <option disabled selected>{{ __('messages.radius') }} (km)</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
