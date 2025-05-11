@@ -53,7 +53,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Failed Orders</h6>
+                        <h6 class="mb-1">Cancel Orders</h6>
                         <h3 class="mb-1">{{ $statusCounts['cancelled'] }}</h3>
                         {{-- <small>Cancelled: 5</small> --}}
                     </div>
@@ -108,7 +108,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Cancelled Payemnt</h6>
+                        <h6 class="mb-1">Cancelled Payment</h6>
                         <h3 class="mb-1">${{ number_format($priceTotals['cancelled']) }}</h3>
                         {{-- <small>Successful: 1100</small> --}}
                     </div>
