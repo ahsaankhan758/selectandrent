@@ -13,12 +13,17 @@ class userController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $current_user = Auth::id();
-        $users = User::orderBy('created_at', 'desc')->paginate(20);
-        return view('admin.user.index', compact('users','current_user'));
-    }
+   public function index()
+{
+    $current_user = Auth::id();
+    
+      $users = User::where('role', 'admin')
+                 ->orderBy('created_at', 'desc')
+                 ->paginate(20);
+    
+    return view('admin.user.index', compact('users', 'current_user'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,14 +42,15 @@ class userController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'role' => 'required',
+            // 'role' => 'required',
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6',
         ]);
         $user = new User;
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
-        $user->role = $validatedData['role'];
+        // $user->role = $validatedData['role'];
+        $user->role = 'admin';
         $user->password = $validatedData['password'];
         $user->save();
         // save logs

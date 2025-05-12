@@ -26,7 +26,7 @@
                         <tr>
                             {{-- <td class="text-center">{{ $customer->id }}</td> --}}
                             <td class="text-center">{{ $customer->name }}</td>
-                            <td class="text-center">{{ $customer->phone }}</td>
+                            <td class="text-center">{{ $customer->bookings->first()->phonenumber ?? 'N/A' }}</td>
                             <td class="text-center">{{ $customer->email }}</td>
                         </tr>
                         @endforeach

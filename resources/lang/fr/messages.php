@@ -157,7 +157,7 @@ return [
 'maximum' => 'Maximum',
 'postal' => 'Postal',
 'code' => 'Code',
-'Search Result Page' => 'Page des résultats de recherche',
+'Search Result Page' => 'Liste',
 'List of available cars based on user search filters (location, date, type, etc.)' => 'Liste des voitures disponibles selon les filtres de recherche (lieu, date, type, etc.)',
 'Your Trusted Partner for 24/7 Taxi Services' => 'Votre partenaire de confiance pour les services de taxi 24h/24 et 7j/7',
 'Reliable and Round-the-Clock Taxi Services in the Heart of New York' => 'Services de taxi fiables 24h/24 au cœur de New York',

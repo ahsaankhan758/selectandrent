@@ -93,6 +93,12 @@
                         </li>
                     @endif
                     <li>
+                        <a href="{{ route('usersignup') }}">
+                            <i class="mdi mdi-account-plus"></i>
+                            <span>{{ __('messages.Sign-up') }}</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
                             <i class="mdi mdi-hexagon-multiple"></i>
                             <span> {{ __('messages.companies') }} </span>
@@ -251,12 +257,7 @@
                         </a>
                     </li>
                 @endif
-                <li>
-                    <a href="{{ route('usersignup') }}">
-                        <i class="mdi mdi-account-plus"></i>
-                        <span>{{ __('messages.Sign-up') }}</span>
-                    </a>
-                </li>
+                
                 @if($role == 'admin')
                     @if(can('User IP','view'))
                         <li>

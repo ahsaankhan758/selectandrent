@@ -15,7 +15,7 @@
                 <table class="table table-striped" id="myTable">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
+                        {{-- <th scope="col">Id</th> --}}
                         <th scope="col">{{__('messages.name') }}</th>
                         <th scope="col">{{__('messages.email') }}</th>
                         <th scope="col">{{__('messages.role') }}</th>
@@ -27,11 +27,11 @@
                         @if(isset($users))
                             @foreach ($users as $userdata)
                                 <tr>
-                                    <td>{{ $userdata->id }}</td>
+                                    {{-- <td>{{ $userdata->id }}</td> --}}
                                     <td>{{ $userdata->name }}</td>
                                     <td>{{ $userdata->email }}</td>
-                                    <td>{{ $userdata->role }}</td>
-                                    <td>{{ $userdata->status }}</td>
+                                    <td> {{ $userdata->role == 'admin' ? 'Admin' : ($userdata->role == 'user' ? 'User' : ($userdata->role == 'company' ? 'Company' : 'Unknown')) }}</td>
+                                    <td>{{ $userdata->status == 1 ? 'Active' : 'Deactive' }}</td>   
                                     @if($userdata->id == $current_user)
                                     <td>
                                         @if(can('users','edit'))

@@ -156,7 +156,7 @@ return [
     'maximum' => 'Maximum',
     'postal' => 'Postal',
     'code' => 'Code',
-    'Search Result Page' => 'Search Result Page',
+    'Search Result Page' => 'Listing',
     'List of available cars based on user search filters (location, date, type, etc.)' => 'List of available cars based on user search filters (location, date, type, etc.)',
     'Your Trusted Partner for 24/7 Taxi Services' => 'Your Trusted Partner for 24/7 Taxi Services',
     'Reliable and Round-the-Clock Taxi Services in the Heart of New York' => 'Reliable and Round-the-Clock Taxi Services in the Heart of New York',
@@ -545,9 +545,8 @@ return [
     'is_active' => 'Is Active',
     'currency' => 'Currency',
     'Sign-up' => 'Sign up',
-    'usersignup' => 'User Sign up',
+    'usersignup' => 'Users',
     'nouser' => 'No users found',
-    '' => '',
     '' => '',
     
 ];

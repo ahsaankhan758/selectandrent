@@ -1697,6 +1697,21 @@ margin: 5px 0;
      padding-bottom: 2rem;
   }
 }
+@media (min-width: 1441px) and (max-width: 3840px) {
+  .mobile-container {
+    display: none !important;
+  }
+  .desktop-view {
+    display: block !important;
+  }
+   .mobile-benefits {
+    display: none !important;
+  }
+  .desktop-benefits {
+    display: block !important;
+  }
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
   .mobile-container {
     display: none !important;
