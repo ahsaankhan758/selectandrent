@@ -527,6 +527,9 @@ return [
 'is_active' => 'Actief',
 'currency' => 'Valuta',
 
+'Sign-up' => 'Aanmelden',
+'usersignup' => 'Gebruiker aanmelden',
+'nouser' => 'Geen gebruikers gevonden',
 
 
 ];

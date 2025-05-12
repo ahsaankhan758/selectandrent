@@ -251,6 +251,12 @@
                         </a>
                     </li>
                 @endif
+                <li>
+                    <a href="{{ route('usersignup') }}">
+                        <i class="mdi mdi-account-plus"></i>
+                        <span>{{ __('messages.Sign-up') }}</span>
+                    </a>
+                </li>
                 @if($role == 'admin')
                     @if(can('User IP','view'))
                         <li>

@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\CurrencyController;
-use App\Http\Controllers\website\WebsiteCurrencyController;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -21,6 +19,7 @@ use App\Http\Controllers\Admin\companyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
 use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\website\SigninController;
@@ -29,9 +28,10 @@ use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
+use App\Http\Controllers\admin\AdminPaymentGateways;
 use App\Http\Controllers\Admin\IP_AddressController;
 use App\Http\Controllers\admin\PermissionController;
-use App\Http\Controllers\admin\AdminPaymentGateways;
+use App\Http\Controllers\Admin\usersignupController;
 use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\Admin\ActivityLogController;
@@ -51,6 +51,7 @@ use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
 use App\Http\Controllers\Website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
+use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\Website\WebsiteDashboardController;
 
 
@@ -137,6 +138,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('edituser/{id}',[userController::class,'edit'])->name('editUser');
             Route::put('updateuser/{id}',[userController::class,'update'])->name('updateUser');
             Route::get('deleteuser/{id}',[userController::class,'destroy'])->name('deleteUser'); 
+         
             //Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
@@ -173,6 +175,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
+            Route::get('usersignup', [usersignupController::class, 'showSignupForm'])->name('usersignup');
             // Blogs added by farhan
             Route::get('blog/create', [AdminBlogController::class, 'createBlog'])->name('blogs.createBlog');
             Route::post('blog/store', [AdminBlogController::class, 'store'])->name('blogs.store');   
