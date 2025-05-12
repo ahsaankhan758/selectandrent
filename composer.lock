@@ -8947,6 +8947,7 @@
         },
         {
             "name": "spatie/backtrace",
+
             "version": "1.7.4",
             "source": {
                 "type": "git",
@@ -8957,6 +8958,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/backtrace/zipball/cd37a49fce7137359ac30ecc44ef3e16404cccbe",
                 "reference": "cd37a49fce7137359ac30ecc44ef3e16404cccbe",
+
                 "shasum": ""
             },
             "require": {
@@ -8994,7 +8996,9 @@
                 "spatie"
             ],
             "support": {
+
                 "source": "https://github.com/spatie/backtrace/tree/1.7.4"
+
             },
             "funding": [
                 {
@@ -9006,7 +9010,9 @@
                     "type": "other"
                 }
             ],
+
             "time": "2025-05-08T15:41:09+00:00"
+
         },
         {
             "name": "spatie/error-solutions",
