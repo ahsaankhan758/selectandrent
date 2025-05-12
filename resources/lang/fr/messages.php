@@ -526,8 +526,9 @@ return [
 'is_default' => 'Par défaut',
 'is_active' => 'Actif',
 'currency' => 'Devise',
-
-
+'Sign-up' => 'Inscription',
+'usersignup' => 'Inscription utilisateur',
+'nouser' => 'Aucun utilisateur trouvé',
 
 
 ];
