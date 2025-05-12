@@ -12,30 +12,49 @@
     $actions = ['view', 'add', 'edit', 'delete'];
 @endphp
 
+
 <thead class="thead-dark">
     <tr>
-        <th>{{ __('messages.module') }}</th>
+        <th>
+            {{ __('messages.module') }}
+        </th>
         @foreach ($actions as $action)
             <th>{{ ucfirst($action) }}</th>
         @endforeach
+        <th>Check/Uncheck Module</th>
     </tr>
 </thead>
 <tbody>
     @foreach ($modules as $module)
-        @php
-            $key = strtolower(str_replace(' ', '_', $module));
-        @endphp
-        <tr>
-            <td>{{ $module }}</td>
-            @foreach ($actions as $action)
-                <td>
-                    <input type="hidden" name="permissions[{{ $key }}][{{ $action }}]" value="0">
-                    <input type="checkbox"
-                        name="permissions[{{ $key }}][{{ $action }}]"
-                        value="1"
-                        {{ (isset($storedPermissions[$key][$action]) && $storedPermissions[$key][$action] == 1) ? 'checked' : '' }}>
-                </td>
-            @endforeach
-        </tr>
-    @endforeach
+    @php
+        $key = strtolower(str_replace(' ', '_', $module));
+    @endphp
+    <tr>
+        <td>
+            {{ $module }}
+        </td>
+        @foreach ($actions as $action)
+            <td>
+                <input type="hidden" name="permissions[{{ $key }}][{{ $action }}]" value="0">
+                <input
+                    type="checkbox"
+                    class="permission-checkbox"
+                    data-row="{{ $key }}"
+                    name="permissions[{{ $key }}][{{ $action }}]"
+                    value="1"
+                    {{ (isset($storedPermissions[$key][$action]) && $storedPermissions[$key][$action] == 1) ? 'checked' : '' }}
+                >
+            </td>
+        @endforeach
+        <td>
+            <input type="checkbox" class="row-checkbox" data-row="{{ $key }}">
+        </td>
+    </tr>
+@endforeach
 </tbody>
+
+
+
+
+
+    

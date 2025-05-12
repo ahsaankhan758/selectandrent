@@ -135,9 +135,18 @@ class userController extends Controller
             $name = Auth::user()->name;
             $userId = Auth::id();
 
+            $currencyData = [
+                'defaultCurrencyCode' => session('defaultCurrencyCode'),
+                'defaultCurrencyName' => session('defaultCurrencyName'),
+                'defaultCurrencySymbol' => session('defaultCurrencySymbol'),
+                'defaultCurrencyRate' => session('defaultCurrencyRate'),
+            ];
+
             $request->session()->invalidate();
-    
             $request->session()->regenerateToken();
+
+            session($currencyData);
+
             if(isset($role) && $role == 'admin')
             {
 

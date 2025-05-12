@@ -25,8 +25,14 @@
             <div class="col-md-3 d-none" id="nameList" >
             </div>
         </div>
-        
+        <div id="checkAll" class="mb-2 d-none d-flex justify-content-end">
+            <div>
+                <input type="checkbox" id="masterCheckbox">
+                <label for="masterCheckbox">Check/Uncheck All</label>
+            </div>
+        </div>
         <!-- Permissions Table -->
+        
         <table class="table table-bordered text-center d-none" id="permissionsTable">
             
         </table>

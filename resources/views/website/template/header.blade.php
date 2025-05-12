@@ -78,9 +78,13 @@
             <div class="col-md-1">
                 <ul class="list-unstyled topnav-menu float-end mb-0">
                     <li class="nav-item dropdown">
-                        @if(isset($defaultCurrency->name))
+                        @if(session('defaultCurrencyCode'))
                             <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
-                                {{ $defaultCurrency->name }}
+                                {{ session('defaultCurrencyCode') }}
+                            </a>
+                        @elseif(isset($defaultCurrency))
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
+                                {{ $defaultCurrency->code }}
                             </a>
                         @else
                             <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
