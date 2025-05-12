@@ -9,25 +9,7 @@ Dashboard | Select and Rent
 
         <!-- Reusable Card Template Start -->
         <!-- Card 1 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card bg-primary text-white shadow rounded-4 h-100">
-                <div class="card-body d-flex align-items-center p-4">
-                    <div class="me-3">
-                        <div class="bg-white bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
-                            <i class="fas fa-chart-line fs-4 text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="mb-1">Statistics</h6>
-                        <h3 class="mb-1">75%</h3>
-                        <small>Growth this month</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="col-md-6 col-lg-4">
+         <div class="col-md-6 col-lg-4">
             <div class="card bg-success text-white shadow rounded-4 h-100">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="me-3">
@@ -36,16 +18,15 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">New Launch</h6>
-                        <h3 class="mb-1">123</h3>
-                        <small>Success Launches: 98</small>
+                        <h6 class="mb-1">Confirmed Orders</h6>
+                        <h3 class="mb-1">{{ $statusCounts['confirmed'] }}</h3>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Card 3 -->
-        <div class="col-md-6 col-lg-4">
+       
+        <!-- Card 2 -->
+         <div class="col-md-6 col-lg-4">
             <div class="card bg-warning text-dark shadow rounded-4 h-100">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="me-3">
@@ -55,15 +36,15 @@ Dashboard | Select and Rent
                     </div>
                     <div>
                         <h6 class="mb-1">Pending Orders</h6>
-                        <h3 class="mb-1">67</h3>
-                        <small>Awaiting Payment: 22</small>
+                        <h3 class="mb-1">{{ $statusCounts['pending'] }}</h3>
+                        {{-- <small>Awaiting Payment: 22</small> --}}
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="col-md-6 col-lg-4">
+        <!-- Card 3 -->
+         <div class="col-md-6 col-lg-4">
             <div class="card bg-danger text-white shadow rounded-4 h-100">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="me-3">
@@ -72,16 +53,17 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Failed Orders</h6>
-                        <h3 class="mb-1">19</h3>
-                        <small>Cancelled: 5</small>
+                        <h6 class="mb-1">Cancel Orders</h6>
+                        <h3 class="mb-1">{{ $statusCounts['cancelled'] }}</h3>
+                        {{-- <small>Cancelled: 5</small> --}}
                     </div>
                 </div>
             </div>
         </div>
+         
 
-        <!-- Card 5 -->
-        <div class="col-md-6 col-lg-4">
+        <!-- Card 4 -->
+       <div class="col-md-6 col-lg-4">
             <div class="card bg-info text-white shadow rounded-4 h-100">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="me-3">
@@ -90,9 +72,27 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Active Users</h6>
-                        <h3 class="mb-1">765</h3>
-                        <small>Online Now: 132</small>
+                        <h6 class="mb-1">Confirmed Payment</h6>
+                        <h3 class="mb-1">${{ number_format($priceTotals['confirmed']) }}</h3>
+                        {{-- <small>Online Now: 132</small> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+         <div class="col-md-6 col-lg-4">
+            <div class="card bg-primary text-white shadow rounded-4 h-100">
+                <div class="card-body d-flex align-items-center p-4">
+                    <div class="me-3">
+                        <div class="bg-white bg-opacity-25 rounded-3 d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
+                            <i class="fas fa-chart-line fs-4 text-white"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="mb-1">Pending Payment</h6>
+                        <h3 class="mb-1">${{ number_format($priceTotals['pending']) }}</h3>
+                        {{-- <small>Growth this month</small> --}}
                     </div>
                 </div>
             </div>
@@ -108,9 +108,9 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Transactions</h6>
-                        <h3 class="mb-1">1204</h3>
-                        <small>Successful: 1100</small>
+                        <h6 class="mb-1">Cancelled Payment</h6>
+                        <h3 class="mb-1">${{ number_format($priceTotals['cancelled']) }}</h3>
+                        {{-- <small>Successful: 1100</small> --}}
                     </div>
                 </div>
             </div>

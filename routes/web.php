@@ -228,6 +228,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('/payment/create-payment-checkout', [PaymentGatewaysController::class, 'redirectToPaymentCheckout'])->name('booking.payment');
     Route::get('/payment/booking-cancel', [PaymentGatewaysController::class, 'cancelPayment'])->name('booking.cancel');
 
+
     // 
     Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
     Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
@@ -250,7 +251,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
     Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
     // car search page by farhan
-    Route::get('/carsearch', [CarSearchController::class, 'CarSearchView']);
+    Route::get('/carsearch', [CarSearchController::class, 'CarSearchView'])->name('website.carsearch');
     Route::get('/fetch-models', [CarSearchController::class, 'fetchModels'])->name('fetch.models');
 
     // email template

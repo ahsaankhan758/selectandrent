@@ -6,19 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('car_category_id');
             $table->unsignedBigInteger('car_location_id');
-            $table->unsignedBigInteger('car_model_id');
-            $table->string('year')->nullable()->nullable();
-            $table->string('beam')->nullable()->nullable();
+            $table->unsignedBigInteger('car_model_id'); // Ensure this is unsignedBigInteger
+            $table->string('year')->nullable();
+            $table->string('beam')->nullable();
             $table->string('transmission')->nullable();
             $table->string('rent')->nullable();
             $table->string('seats')->nullable();
@@ -37,20 +35,21 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->json('images')->nullable();
             $table->text('features')->nullable();
-            $table->tinyInteger('is_featured')->default('0');
-            $table->tinyInteger('status')->default('1')->nullable();
+            $table->tinyInteger('is_featured')->default(0);
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->dateTime('date_added')->nullable();
             $table->timestamps();
-            $table->foreign('car_category_id')->references('id')->on('car_categories')->onDelete('NO ACTION')->onUpdate('cascade');
-            $table->foreign('car_model_id')->references('id')->on('car_models')->onDelete('NO ACTION')->onUpdate('cascade');
-            $table->foreign('car_location_id')->references('id')->on('car_locations')->onDelete('NO ACTION')->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('NO ACTION')->onUpdate('cascade');
+        
+            // Foreign keys with proper cascading behavior
+            $table->foreign('car_category_id')->references('id')->on('car_categories')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('car_model_id')->references('id')->on('car_models')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('car_location_id')->references('id')->on('car_locations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
+        
+        
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('cars');

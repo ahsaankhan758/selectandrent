@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-
+use Illuminate\Support\Facades\Session;
 
 
 class WebsiteHomeController extends Controller
@@ -43,9 +43,12 @@ class WebsiteHomeController extends Controller
                     $q->where('id', $brand);
                 });
             })
+            // ->when($request->beam, function ($query, $beam) {
+            //     return $query->where('beam', 'like', "%$beam%");
+            // })
             ->when($request->beam, function ($query, $beam) {
-                return $query->where('beam', 'like', "%$beam%");
-            })
+                return $query->where('beam', $beam);
+            })            
             ->when($request->transmission, function ($query, $transmission) {
                 return $query->where('transmission', 'like', "%$transmission%");
             })
@@ -70,6 +73,7 @@ class WebsiteHomeController extends Controller
 
         return response()->json([
             'status' => true,
+            'message' => 'Cars fetched successfully.',
             'redirect_url' => route('website.carsearch')
         ]);
     }
