@@ -545,9 +545,8 @@ return [
     'is_active' => 'Is Active',
     'currency' => 'Currency',
     'Sign-up' => 'Sign up',
-    'usersignup' => 'User Sign up',
+    'usersignup' => 'Users',
     'nouser' => 'No users found',
-    '' => '',
     '' => '',
     
 ];
