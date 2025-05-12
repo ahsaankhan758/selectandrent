@@ -13,10 +13,10 @@
             <h4 class="fw-bold">{{ __('messages.Our Personal Coach') }} </h4>
             <p class="text-muted text-font">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }} .</p>
             <ul class="list-unstyled">
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">{{ __('messages.Passive Income') }}  </li>
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security"> {{ __('messages.Reduced Costs') }} </li>
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">{{ __('messages.Peace of Mind') }}  </li>
-                <li class="mb-1"><img src="{{asset('/')}}company-assets/icons/Security2.png" alt="security">{{ __('messages.Flexibility') }}  </li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">{{ __('messages.Passive Income') }}  </li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.Reduced Costs') }} </li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">{{ __('messages.Peace of Mind') }}  </li>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security">{{ __('messages.Flexibility') }}  </li>
             </ul>
         </div>
 

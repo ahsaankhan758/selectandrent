@@ -447,7 +447,7 @@
           <div class="container text-height">
             @if(request()->is('carlisting'))
             <h2 class="fw-bold">{{ __('messages.Search Result Page') }}</h2>
-            <p>{{ __('messages.List of available cars based on user search filters (location, date, type, etc.)') }}</p>
+            {{-- <p>{{ __('messages.List of available cars based on user search filters (location, date, type, etc.)') }}</p> --}}
               @elseif(request()->is('carbooking') || request()->is('confirmation'))
               <h2 class="fw-bold">{{ __('messages.Car Booking') }}</h2>
               @elseif(request()->is('checkout'))
