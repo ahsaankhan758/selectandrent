@@ -119,7 +119,7 @@
                 </div>
                 <span class="vehicle-title text-capitalize">{{$cart->options->car_brand}} {{$cart->name}}</span>
                 <p class="car-model-text text-capitalize">{{ $cart->options->year }}, {{$cart->options->car_category}}</p>
-                <p class="fw-bold text-capitalize">${{$cart->price}} / Day</p>
+                <p class="fw-bold text-capitalize">{{ convertPrice($cart->price, 0) }} / Day</p>
                
             </div>
             <div class="col-md-6">
@@ -148,7 +148,7 @@
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
             <div class="mb-3 empty-box"> </div>
-            <div class="mb-2 text-capitalize d-flex"><h6 class="showNewPrice{{$cart->rowId}}">${{ $cart->price * $cart->qty }}</h6></div>
+            <div class="mb-2 text-capitalize d-flex"><h6 class="showNewPrice{{$cart->rowId}}">{{ convertPrice($cart->price * $cart->qty, 0)  }}</h6></div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"> </div>
             <div class="mb-2 empty-box"></div>

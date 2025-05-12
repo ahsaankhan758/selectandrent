@@ -105,7 +105,7 @@
             <div class="rental-card p-4 shadow rounded">
                 <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
                     <h5 class="mb-0 py-3">{{ __('messages.Rental Price') }}</h5>
-                    <h3 class="fw-bold py-3 mb-0">${{ $car->rent }} <span class="fs-6">/ Day</span></h3>
+                    <h3 class="fw-bold py-3 mb-0">{{ convertPrice($car->rent, 0) }} <span class="fs-6">/ Day</span></h3>
                 </div>
                 <ul class="list-unstyled px-3 py-2">
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Seats') }}</strong> <span>{{ $car->seats }} </span></li>
@@ -207,8 +207,8 @@
                 <iframe id="mapIframe" width="600" height="450" style="border:0;" loading="lazy" allowfullscreen></iframe>
                 <script>
                     // Example dynamic coordinates (replace with your actual dynamic variables)
-                    const latitude = `{{$car->car_locations->latitude}}`;
-                    const longitude = `{{$car->car_locations->longitude}}`;
+                    const latitude = `{{$car->car_locations}}`;
+                    const longitude = `{{$car->car_locations}}`;
                     const mapSrc = `https://maps.google.com/maps?q=${latitude},${longitude}&z=14&output=embed`;
                     // Apply to the iframe
                     document.getElementById('mapIframe').src = mapSrc;
