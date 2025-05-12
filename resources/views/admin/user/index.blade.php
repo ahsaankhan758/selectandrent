@@ -30,7 +30,7 @@
                                     {{-- <td>{{ $userdata->id }}</td> --}}
                                     <td>{{ $userdata->name }}</td>
                                     <td>{{ $userdata->email }}</td>
-                                    <td>{{ $userdata->role }}</td>
+                                    <td> {{ $userdata->role == 'admin' ? 'Admin' : ($userdata->role == 'user' ? 'User' : ($userdata->role == 'company' ? 'Company' : 'Unknown')) }}</td>
                                     <td>{{ $userdata->status == 1 ? 'Active' : 'Deactive' }}</td>   
                                     @if($userdata->id == $current_user)
                                     <td>

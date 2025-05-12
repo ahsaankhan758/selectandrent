@@ -19,13 +19,13 @@
                         <lable for="email">{{__('messages.email') }}</lable>
                         <input type="email" name="email" class="form-control">
                     </div>    
-                    <div class="form-group mb-3">
+                    {{-- <div class="form-group mb-3">
                         <label for="role">{{__('messages.choose role') }}</label>
                         <select id="role" class="form-control" name="role">
                             <option value="user">{{__('messages.user') }}</option>
-                            <option value="admin" disabled>Admin</option>
-                        </select>
-                    </div>
+                            <option value="admin">Admin</option>
+                        </select>   
+                    </div> --}}
                     <div class="form-group mb-3">
                         <label for="password">{{__('messages.password') }}</label>
                         <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">

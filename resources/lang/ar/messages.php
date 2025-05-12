@@ -161,7 +161,7 @@ return [
 'maximum' => 'الحد الأقصى',
 'postal' => 'بريدي',
 'code' => 'رمز',
-'Search Result Page' => 'صفحة نتائج البحث',
+'Search Result Page' => 'قائمة النتائج',
 'List of available cars based on user search filters (location, date, type, etc.)' => 'قائمة السيارات المتاحة بناءً على عوامل تصفية البحث الخاصة بالمستخدم (الموقع، التاريخ، النوع، إلخ)',
 'Your Trusted Partner for 24/7 Taxi Services' => 'شريكك الموثوق لخدمات التاكسي على مدار الساعة',
 'Reliable and Round-the-Clock Taxi Services in the Heart of New York' => 'خدمات تاكسي موثوقة على مدار الساعة في قلب نيويورك',
