@@ -461,7 +461,7 @@
               <h2 class="fw-bold">{{ __('messages.categories') }}</h2>
               <p>{{ __('messages.Find the Perfect Ride: Explore Our Wide Range of Car Categories') }}</p>
               @elseif(request()->is('join-our-program'))
-              <h2 class="fw-bold">{{ __('messages.join') }}{{ __('messages.our') }}{{ __('messages.program') }}</h2>
+              <h2 class="fw-bold">{{ __('messages.join') }} {{ __('messages.our') }} {{ __('messages.program') }}</h2>
               <p>"{{ __('messages.An easy way to rent out your cars quickly and efficiently') }}"</p>
               @elseif(request()->is('about-us'))
               <h2 class="fw-bold">{{ __('messages.about us') }}</h2>

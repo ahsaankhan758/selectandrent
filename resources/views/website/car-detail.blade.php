@@ -126,7 +126,11 @@
 
                 </ul>
                 <!-- for add to cart  -->
+                 @if(auth()->check())
                 <button data-carid="{{ $car->id }}" id="car-booking-btn" class="btn btn-purchase w-100 rounded-pill mt-3">{{ __('messages.Book Now') }}</button>
+                @else
+                <button class="btn btn-purchase w-100 rounded-pill mt-3" data-bs-toggle="modal" data-bs-target="#loginModal">{{ __('messages.Book Now') }}</button>
+                @endif
                 <!-- end add to cart -->
             </div>
         </div>
@@ -207,10 +211,11 @@
                 <iframe id="mapIframe" width="600" height="450" style="border:0;" loading="lazy" allowfullscreen></iframe>
                 <script>
                     // Example dynamic coordinates (replace with your actual dynamic variables)
-                    const latitude = `{{$car->car_locations}}`;
-                    const longitude = `{{$car->car_locations}}`;
+                    const latitude = `{{$car->car_locations->latitude}}`;
+                    const longitude = `{{$car->car_locations->longitude}}`;
                     const mapSrc = `https://maps.google.com/maps?q=${latitude},${longitude}&z=14&output=embed`;
                     // Apply to the iframe
+                    
                     document.getElementById('mapIframe').src = mapSrc;
                 </script>
                 </div>
@@ -234,7 +239,7 @@
         </div>
         <!-- Button (Center on Mobile, End on Larger Screens) -->
         <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
-            <button class="btn  rounded-pill text-white btn-orange-clr" data-bs-toggle="modal" data-bs-target="#carRentalModal">
+            <button class="btn  rounded-pill text-white btn-orange-clr" onclick="window.location.href='{{ url('/carlisting') }}'">
                 {{ __('messages.View All') }} <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
             </button>
         </div>
@@ -246,17 +251,23 @@
 <div class="container py-4">
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-
             @foreach($cars as $car)
-                <div class="swiper-slide">
+                <div class="swiper-slide mb-2">
                     <div class="custom-card2">
-                        <img src="{{  asset(Storage::url($car->thumbnail)) }}" class="custom-card-img" alt="Car Image">
-        
+                    <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                        {{-- old path {{ Storage::url($car->thumbnail) }} --}}
+                        <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img" alt="Car Image">
+                    </a>
                         <div class="card-content">
                             <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                <h6 class="car-price">${{ $car->rent }}/{{ __('messages.Day') }}</h6>
-                                <button class="book-btn" onclick="window.location.href='{{ url('/cardetail/' . $car->id) }}'">{{ __('messages.Book') }}</button>
+                                <h6 class="car-price">{{ convertPrice($car->rent, 0)  }}/{{ __('messages.Day') }}</h6>
+                                @if(auth()->check())
+                                <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
+                                @else
+                                <button class="book-btn" data-bs-toggle="modal" data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
+                                @endif
                             </div>
+                            <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
         
                             <h5 class="text-muted mt-3">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
         
@@ -281,12 +292,12 @@
                                     {{ ucfirst($car->transmission) }}
                                 </div>
                             </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-
         </div>
 
         <!-- Swiper Navigation -->
