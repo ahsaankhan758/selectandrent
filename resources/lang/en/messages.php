@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 return [
     'all' => 'All',
@@ -548,6 +548,16 @@ return [
     'Sign-up' => 'Sign up',
     'usersignup' => 'Users',
     'nouser' => 'No users found',
-    '' => '',
+    'usercontacts' => 'Users Contacts',
+    'userdelete' => 'Delete',
+    'userfirst' => 'First Name',
+    'userlast' => 'Last Name',
+    'useremail' => 'Email',
+    'userphone' => 'Phone',
+    'usermessage' => 'Message',
+    'userdate' => 'Date',
+    'useremailsent' => 'Email Sent',
+    'nomails' => 'No received emails found.',
+
     
 ];

@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -19,6 +18,7 @@ use App\Http\Controllers\Admin\companyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
 use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Admin\Cars\CarController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\website\CarRegController;
@@ -46,8 +46,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\CarRegisterController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
-use App\Http\Controllers\website\WebsiteHomeController;
 
+use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
 use App\Http\Controllers\Website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
@@ -92,6 +92,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
    
     if($currentPrefix == 'company'){
         Route::prefix('company')->middleware(['auth','IsAdmin:company'])->group(function(){
+            // edit by farhan
+            Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
+            Route::get('/bookings/chart-data', [DashboardController::class, 'getChartData'])->name('bookings.chart-data');
+            Route::get('/earnings-data', [DashboardController::class, 'getEarningsData'])->name('earnings.data');
+            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            // end edit
             //Dashboard
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
@@ -161,14 +167,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
             Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
             // Contact us 
-            Route::get('/contact/received', [AdminContactController::class, 'received'])->name('contact.received');
-            Route::get('/contact/failed', [AdminContactController::class, 'failed'])->name('contact.failed');
+            Route::get('/contact', [AdminContactController::class, 'received'])->name('contact.received');
             Route::delete('deleteContact',[AdminContactController::class, 'delete'])->name('deleteContact');
-           Route::delete('deleteFailedContact', [AdminContactController::class, 'deleteFailed'])->name('deleteFailedContact');
             //Calendar Routes
             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-            Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
-            Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents'); // Add new event
+            Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); 
+            Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents');
             // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
             // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
             //Car Bookings Routes
@@ -246,6 +250,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
     Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
     // end car listing routes
+    Route::get('/get-locations/{city_id}', [CarController::class, 'getLocations']);
     // added by farhan
     Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
     Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');

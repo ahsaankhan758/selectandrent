@@ -122,7 +122,11 @@
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Transmission') }}</strong> <span>{{ ucfirst($car->transmission) }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Exterior Color') }}</strong> <span>{{ ucfirst($car->exterior_color) }}</span></li>
                     <li class="d-flex justify-content-between"><strong>{{ __('messages.Interior Color') }}</strong> <span>{{ ucfirst($car->interior_color) }}</span></li>
-                    <li class="d-flex justify-content-between"><strong>{{ __('messages.location') }}</strong> <span>{{ ucfirst($car->car_locations->city->name) }}</span></li>
+                    <li class="d-flex justify-content-between">
+                        <strong>{{ __('messages.location') }}</strong>
+                        <span>{{ ucfirst(optional(optional($car->car_locations)->city)->name) }}</span>
+                    </li>
+
 
                 </ul>
                 <!-- for add to cart  -->
@@ -137,7 +141,6 @@
         
     </div>
 </div>
-
 
 <!-- end bmw -->
  <!-- start accordian and map -->
@@ -221,8 +224,15 @@
                 </div>
                 <div class="help-box mt-3">
                     <div class="help-content">
+                        <div class="help-text-1">{{$car->users->companies->name}}</div>
+                        <p class="help-number">{{$car->users->companies->email}}</p>
+                    </div>
+                    <img src="http://127.0.0.1:8000/frontend-assets/icons/phone.png" alt="24-hour support">
+                </div>
+                <div class="help-box mt-3">
+                    <div class="help-content">
                         <div class="help-text">{{ __('messages.Need Any Help') }}?</div>
-                        <p class="help-number">+71 202 102 2124</p>
+                        <p class="help-number">{{$car->users->companies->phone}}</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="24-hour support">
                 </div>

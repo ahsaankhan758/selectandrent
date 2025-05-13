@@ -531,6 +531,16 @@ return [
 'Sign-up' => 'Aanmelden',
 'usersignup' => 'Gebruiker aanmelden',
 'nouser' => 'Geen gebruikers gevonden',
+'usercontacts' => 'Gebruikerscontacten',
+'userdelete' => 'Verwijderen',
+'userfirst' => 'Voornaam',
+'userlast' => 'Achternaam',
+'useremail' => 'E-mail',
+'userphone' => 'Telefoonnummer',
+'usermessage' => 'Bericht',
+'userdate' => 'Datum',
+'useremailsent' => 'E-mail verzonden',
+'nomails' => 'Geen ontvangen e-mails gevonden.',
 
 
 ];

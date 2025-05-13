@@ -311,31 +311,13 @@
                 @if($role == 'admin')
                     @if(can('Contacts','view')) 
                         <li>
-                            <a href="#sub_menu_contact" data-bs-toggle="collapse">
+                            <a href="{{ route('contact.received') }}">
                                 <i class="mdi mdi-email"></i>
-                                <span>Contact</span>
-                                <span class="menu-arrow"></span>
+                                <span>{{ __('messages.contact') }}</span>
                             </a>
-                            <div class="collapse" id="sub_menu_contact">
-                                <ul class="nav-second-level">
-                                    <li>
-                                        <a href="{{ route('contact.received') }}">
-                                            <i class="mdi mdi-format-list-bulleted"></i>
-                                            <span class="custom-ml-15">Received</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('contact.failed') }}">
-                                            <i class="mdi mdi-plus-circle"></i>
-                                            <span class="custom-ml-15">Failed</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                     @endif
                 @endif
-                
 
                 @if($role == 'admin')
                 <li>

@@ -530,6 +530,16 @@ return [
 'Sign-up' => 'Inscription',
 'usersignup' => 'Inscription utilisateur',
 'nouser' => 'Aucun utilisateur trouvé',
+'usercontacts' => 'Contacts des utilisateurs',
+'userdelete' => 'Supprimer',
+'userfirst' => 'Prénom',
+'userlast' => 'Nom de famille',
+'useremail' => 'E-mail',
+'userphone' => 'Téléphone',
+'usermessage' => 'Message',
+'userdate' => 'Date',
+'useremailsent' => 'E-mail envoyé',
+'nomails' => 'Aucun e-mail reçu trouvé.',
 
 
 ];
