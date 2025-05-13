@@ -204,20 +204,20 @@
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>{{ __('messages.Subtotal') }}</strong></div>
-                <div class="price-car calculate-subtotal">${{ $subtotal }}</div>
+                <div class="price-car calculate-subtotal">{{ convertPrice($subtotal, 0) }}</div>
             </div>
         </div>
         <div class="col-md-3 col-6">
             <div class="box">
-                <div><strong>VAT</strong></div>
-                <div class="price-car calculate-tax">${{ $tax }}</div>
+                <div><strong>{{ __('messages.tax') }}</strong></div>
+                <div class="price-car calculate-tax">{{ convertPrice($tax, 0) }}</div>
             </div>
         </div>
         <!-- Total Box -->
         <div class="col-md-3 col-6">
             <div class="box">
                 <div><strong>{{ __('messages.Total') }}</strong></div>
-                <div class="price-car calculate-total">${{$totalPriceIncludingTax}}</div>
+                <div class="price-car calculate-total">{{ convertPrice($totalPriceIncludingTax, 0) }}</div>
             </div>
         </div>
         <!-- Order Confirmation form -->
