@@ -224,15 +224,16 @@
                 </div>
                 <div class="help-box mt-3">
                     <div class="help-content">
-                        <div class="help-text-1">{{$car->users->companies->name}}</div>
-                        <p class="help-number">{{$car->users->companies->email}}</p>
+                       <div class="help-text-1">{{ optional(optional($car->users)->companies)->name }}</div>
+                        <p class="help-number">{{ optional(optional($car->users)->companies)->email }}</p>
+
                     </div>
                     <img src="http://127.0.0.1:8000/frontend-assets/icons/phone.png" alt="24-hour support">
                 </div>
                 <div class="help-box mt-3">
                     <div class="help-content">
                         <div class="help-text">{{ __('messages.Need Any Help') }}?</div>
-                        <p class="help-number">{{$car->users->companies->phone}}</p>
+                        <p class="help-number">{{ optional(optional($car->users)->companies)->phone }}</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="24-hour support">
                 </div>
