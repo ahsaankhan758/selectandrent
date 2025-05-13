@@ -5,39 +5,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="row mb-2">
-                    <div class="col-lg-8">
-                        <form class="d-flex flex-wrap align-items-center">
-                            <label for="inputPassword2" class="visually-hidden">Search</label>
-                            <div class="me-3">
-                                <input type="search" class="form-control my-1 my-lg-0" id="inputPassword2" placeholder="Search...">
-                            </div>
-                            <label for="status-select" class="me-2">Status</label>
-                            <div class="me-sm-3">
-                                <select class="form-select form-select my-1 my-lg-0" id="status-select">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Paid</option>
-                                    <option value="2">Awaiting Authorization</option>
-                                    <option value="3">Payment failed</option>
-                                    <option value="4">Cash On Delivery</option>
-                                    <option value="5">Fulfilled</option>
-                                    <option value="6">Unfulfilled</option>
-                                </select>
-                            </div>
-                        </form>                            
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="text-lg-end">
-                            @if(can('Bookings','add'))
-                                <button type="button" class="btn btn-danger waves-effect waves-light mb-2 me-2"><i class="mdi mdi-basket me-1"></i> Add New Order</button>
-                            @endif
-                            <button type="button" class="btn btn-light waves-effect mb-2">Export</button>
-                        </div>
-                    </div><!-- end col-->
-                </div>
-
                 <div class="table-responsive">
-                    <table class="table table-centered table-nowrap mb-0">
+                    <table class="table table-centered table-nowrap mb-0" id="myTable">
                         <thead class="table-light">
                             <tr>
                                 <th style="width: 20px;">
