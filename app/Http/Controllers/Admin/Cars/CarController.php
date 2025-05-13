@@ -43,6 +43,15 @@ class CarController extends Controller
         return view('admin.cars.carsListing.create',compact('categories','locations','models','features','cities'));
     }
 
+public function getLocations($city_id)
+{
+    // Fetch the locations based on city_id
+    $locations = CarLocation::where('city_id', $city_id)->get();
+    
+    // Return the locations as JSON
+    return response()->json($locations);
+}
+
     /**
      * Store a newly created resource in storage.
      */
@@ -53,7 +62,6 @@ class CarController extends Controller
         'category' => 'required',
         'year' => 'required',
         'location' => 'required',
-        'beam' => 'required',
         'transmission' => 'required',
         'seats' => 'required',
         'weight' => 'required',
@@ -78,7 +86,6 @@ class CarController extends Controller
        $car->car_category_id = $validatedData['category'];
        $car->car_location_id = $validatedData['location'];
        $car->year = $validatedData['year'];
-       $car->beam = $validatedData['beam'];
        $car->seats = $validatedData['seats'];
        $car->transmission = $validatedData['transmission'];
        $car->weight = $validatedData['weight'];
@@ -107,7 +114,7 @@ class CarController extends Controller
             }     
        $car->features = serialize($request['features']); 
        $car->status = $request['status'];
-       $car->date_added = $validatedData['date_added'];    
+       $car->date_added = $validatedData['date_added'];  
        $car->save();
        // save logs
        $userId = Auth::id();
@@ -149,7 +156,6 @@ class CarController extends Controller
             'category' => 'required',
             'year' => 'required',
             'location' => 'required',
-            'beam' => 'required',
             'transmission' => 'required',
             'seats' => 'required',
             'weight' => 'required',
@@ -171,7 +177,6 @@ class CarController extends Controller
            $car->year = $validatedData['year'];
            $car->car_category_id = $validatedData['category'];
            $car->car_location_id = $validatedData['location'];
-           $car->beam = $validatedData['beam'];
            $car->seats = $validatedData['seats'];
            $car->transmission = $validatedData['transmission'];
            $car->weight = $validatedData['weight'];

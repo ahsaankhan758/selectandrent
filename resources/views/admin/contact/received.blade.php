@@ -1,6 +1,6 @@
 @extends('admin.layouts.Master')
 @section('title')
-Received Emails
+{{ __('messages.usercontacts') }}
 @endsection
 
 @section('content')
@@ -10,46 +10,56 @@ Received Emails
         @method('DELETE')
         <div class="card mt-4">
             <div class="card-header">
-                <h4>Received Emails</h4>
+                <h4>{{ __('messages.usercontacts') }}</h4>
                 <div class="float-end">
                     @if(can('Contacts','delete')) 
-                        <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-recieve" disabled>Delete</button>
+                        <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-recieve" disabled>{{ __('messages.userdelete') }}</button>
                     @endif
                 </div>
             </div>
             <div class="card-body">
+                <div class="table-responsive">
                 <table class="table table-striped" id="myTable">
-                    <thead class="text-center">
+                    <thead class="text-center text-nowrap">
                         <tr>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Message</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">{{ __('messages.userfirst') }}</th>
+                            <th scope="col">{{ __('messages.userlast') }}</th>
+                            <th scope="col">{{ __('messages.useremail') }}</th>
+                            <th scope="col">{{ __('messages.userphone') }}</th>
+                            <th scope="col">{{ __('messages.usermessage') }}</th>
+                            <th scope="col">{{ __('messages.userdate') }}</th>
+                            <th scope="col">{{ __('messages.useremailsent') }}</th>
                             <th><input type="checkbox" id="selectAllLogs"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(isset($contacts))
                             @foreach ($contacts as $contact)
-                                <tr>
+                                <tr class="text-nowrap">
                                     <td>{{ $contact->first_name }}</td>
                                     <td>{{ $contact->last_name }}</td>
                                     <td>{{ $contact->email }}</td>
                                     <td>{{ $contact->phone }}</td>
                                     <td>{{ Str::limit($contact->message, 50) }}</td>
                                     <td>{{ $contact->created_at->format('d M Y h:i A') }}</td>
+                                    <td>
+                                        @if($contact->status == 1)
+                                            <span class="badge bg-success">Yes</span>
+                                        @else
+                                            <span class="badge bg-danger">No</span>
+                                        @endif
+                                    </td>
                                     <td><input type="checkbox" name="selected_ids[]" value="{{ $contact->id }}" class="logCheckbox"></td>
                                 </tr>
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="7" class="text-center">No received emails found.</td>
+                                <td colspan="7" class="text-center">{{ __('messages.nomails') }}</td>
                             </tr>
                         @endif
                     </tbody>
                 </table>
+            </div>
 
                 <div class="mt-3">
                     {{ $contacts->links() }}
