@@ -2,6 +2,10 @@
 @extends('admin.layouts.Master')
 @section('title') {{ __('messages.create') }} {{ __('messages.car') }} @endsection
 @section('content')
+   <script src="{{ asset('assets/js/admin/locationArea.js') }}"></script>
+<script>
+window.getLocationsUrl = "{{ url('/get-locations') }}";
+</script>
 
     <div class="col-12">
         <div class="card mt-4">
@@ -34,12 +38,12 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="col-4 form-group mb-3">
-                            <lable for="location">{{ __('messages.city') }}</lable>
-                            <select name="location" class="form-control">
+                       <div class="col-4 form-group mb-3">
+                            <label for="location">{{ __('messages.city') }}</label>
+                            <select name="city" class="form-control" id="city">
                                 <option disabled selected>{{ __('messages.select') }}</option>
                                 @if(isset($cities))
-                                    @foreach ( $cities as $city)
+                                    @foreach ($cities as $city)
                                         <option value="{{ $city->id }}">{{ ucfirst(strtolower($city->name)) }}</option>
                                     @endforeach
                                 @endif
@@ -48,14 +52,9 @@
                     </div>
                     <div class="row">
                         <div class="col-3 form-group mb-3">
-                            <lable for="location">{{ __('messages.area_name') }}</lable>
-                            <select name="location" class="form-control">
+                            <label for="location">{{ __('messages.area_name') }}</label>
+                            <select name="location" class="form-control" id="location" disabled>
                                 <option disabled selected>{{ __('messages.select') }}</option>
-                                @if(isset($locations))
-                                    @foreach ( $locations as $location)
-                                        <option value="{{ $location->id }}">{{ ucfirst(strtolower($location->area_name)) }}</option>
-                                    @endforeach
-                                @endif
                             </select>
                         </div>
                         <div class="col-3 form-group mb-3">
@@ -125,21 +124,18 @@
                             <lable for="fuel_economy">{{ __('messages.fuel economy') }}</lable>
                             <input type="text" name="fuel_economy" class="form-control">
                         </div>
-                        <div class="col-4 form-group mb-3">
-                            <lable for="beam">{{ __('messages.beam') }}</lable>
-                            <input type="text" name="beam" class="form-control">
-                        </div>
                         
                         <div class="col-4 form-group mb-3">
                             <label for="exterior_color">{{ __('messages.exterior color') }}</label>
                             <input type="text" name="exterior_color" class="form-control" >
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4 form-group mb-3">
+                          <div class="col-4 form-group mb-3">
                             <lable for="interior_color">{{ __('messages.interior color') }}</lable>
                             <input type="text" name="interior_color" class="form-control">
                         </div>
+                    </div>
+                    <div class="row">
+                      
                         <div class="col-4 form-group mb-3">
                             <lable for="lisence_plate">{{ __('messages.lisence plate') }}</lable>
                             <input type="text" name="lisence_plate" class="form-control">
@@ -148,13 +144,13 @@
                             <label for="rent">{{ __('messages.rent') }}</label>
                             <input type="text" name="rent" class="form-control" >
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-4 form-group mb-3">
                             <label for="mileage">{{ __('messages.mileage') }}</label>
                             <input type="text" name="mileage" class="form-control" >
                         </div>
-                        <div class="col-8 form-group mb-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group mb-3">
                             <lable for="detail">{{ __('messages.detail') }}</lable>
                             <textarea name="detail" class="form-control"></textarea>
                         </div>
@@ -249,12 +245,12 @@
                 placeholder: "Search and select a model",
                 allowClear: true,
                 ajax: {
-                    url: '/search-models', // API route to get models dynamically
+                    url: '/search-models', 
                     dataType: 'json',
-                    delay: 250, // Delay to avoid too many requests
+                    delay: 250,
                     data: function(params) {
                         return {
-                            search: params.term // Search input from the user
+                            search: params.term 
                         };
                     },
                     processResults: function(data) {
@@ -274,8 +270,8 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            let today = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD format
-            document.getElementById("date_added").value = today; // Set input value
+            let today = new Date().toISOString().split('T')[0]; 
+            document.getElementById("date_added").value = today;
         });
     </script>
     

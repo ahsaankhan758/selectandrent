@@ -130,21 +130,18 @@
                             <lable for="fuel_economy">{{ __('messages.fuel economy') }}</lable>
                             <input type="text" name="fuel_economy" class="form-control" value="{{ $car->fuel_economy }}">
                         </div>
-                        <div class="col-4 form-group mb-3">
-                            <lable for="beam">{{ __('messages.beam') }}</lable>
-                            <input type="text" name="beam" class="form-control" value="{{ $car->beam }}">
-                        </div>
                         
                         <div class="col-4 form-group mb-3">
                             <label for="exterior_color">{{ __('messages.exterior color') }}</label>
                             <input type="text" name="exterior_color" class="form-control" value="{{ $car->exterior_color }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-4 form-group mb-3">
                             <lable for="interior_color">{{ __('messages.interior color') }}</lable>
                             <input type="text" name="interior_color" class="form-control" value="{{ $car->interior_color }}">
                         </div>
+                    </div>
+                    <div class="row">
+                        
                         <div class="col-4 form-group mb-3">
                             <lable for="lisence_plate">{{ __('messages.lisence plate') }}</lable>
                             <input type="text" name="lisence_plate" class="form-control" value="{{ $car->lisence_plate }}">
@@ -153,13 +150,13 @@
                             <label for="rent">{{ __('messages.rent') }}</label>
                             <input type="text" name="rent" class="form-control" value="{{ $car->rent }}">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4 form-group mb-3">
+                         <div class="col-4 form-group mb-3">
                             <label for="mileage">{{ __('messages.mileage') }}</label>
                             <input type="text" name="mileage" class="form-control" value="{{ $car->mileage }}">
                         </div>
-                        <div class="col-8 form-group mb-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group mb-3">
                             <lable for="detail">{{ __('messages.detail') }}</lable>
                             <textarea name="detail" class="form-control">{{ $car->detail }}</textarea>
                         </div>  

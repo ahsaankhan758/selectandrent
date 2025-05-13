@@ -1941,6 +1941,13 @@ margin: 5px 0;
   margin-bottom: 2px; 
   text-align: center;
 }
+.help-text-1 {
+  font-size: 18px;
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 2px; 
+  text-align: center;
+}
 
 .help-number {
   text-align: center;
