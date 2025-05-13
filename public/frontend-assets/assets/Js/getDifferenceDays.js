@@ -67,11 +67,11 @@ document.addEventListener('DOMContentLoaded', function () {
             Toast.create(toast);
             // 
             console.log(data);
-            $('.showNewPrice'+data.rowId).html('$'+data.price);
+            $('.showNewPrice'+data.rowId).html(data.price);
             $('.showDuration'+data.rowId).html(data.qty);
-            $('.calculate-subtotal').html('$'+data.subtotal);
-            $('.calculate-tax').html('$'+data.tax);
-            $('.calculate-total').html('$'+data.total);
+            $('.calculate-subtotal').html(data.subtotal);
+            $('.calculate-tax').html(data.tax);
+            $('.calculate-total').html(data.total);
             // send val to inputs
             $('.get-subtotal').val(data.subtotal);
             $('.get-tax').val(data.tax);
