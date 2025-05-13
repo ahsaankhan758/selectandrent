@@ -6,9 +6,12 @@
         </a>
         <div class="car-info">
             <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                <h6 class="car-price">${{ $car->rent }}/{{ __('messages.day') }}</h6>
+                <h6 class="car-price">{{ convertPrice($car->rent, 0)  }}/{{ __('messages.Day') }}</h6>
+                @if(auth()->check())
                 <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
-                               
+                @else
+                <button class="book-btn" data-bs-toggle="modal" data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
+                @endif
             </div>
             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
             <h5 class="car-name">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
