@@ -151,11 +151,11 @@ class CarBookingController extends Controller
             'status' => 'success',
             'message' => 'Item Updated Successfully From Cart',
             'qty'=> $qty,
-            'price'=> $newPrice,
+            'price'=> convertPrice($newPrice,0),
             'rowId'=> $rowId,
-            'subtotal'=> $subtotal,
-            'tax'=> $tax,
-            'total'=> $totalPriceIncludingTax,
+            'subtotal'=> convertPrice($subtotal,0),
+            'tax'=> convertPrice($tax,0),
+            'total'=> convertPrice($totalPriceIncludingTax,0),
         ]);
     }
   

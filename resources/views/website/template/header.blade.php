@@ -28,9 +28,9 @@
                           <ul class="navbar-nav">
                               <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
                               <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">{{ __('messages.categories') }}</a></li>
-                              <li class="nav-item"><a class="nav-link" href="{{ url('/join-our-program') }}">{{ __('messages.our') }} {{ __('messages.program') }}</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ url('/join-our-program') }}">{{ __('messages.program') }}</a></li>
                               <li class="nav-item"><a class="nav-link" href="{{ url('/blog') }}">{{ __('messages.blogs') }}</a></li>
-                              <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">{{ __('messages.about us') }}</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">{{ __('messages.about') }}</a></li>
                               <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">{{ __('messages.contact') }}</a></li>
                           </ul>
                       </div>
@@ -453,7 +453,7 @@
             <h2 class="fw-bold">{{ __('messages.Search Result Page') }}</h2>
             {{-- <p>{{ __('messages.List of available cars based on user search filters (location, date, type, etc.)') }}</p> --}}
               @elseif(request()->is('carbooking') || request()->is('confirmation'))
-              <h2 class="fw-bold">{{ __('messages.Car Booking') }}</h2>
+              <h2 class="fw-bold">{{ __('messages.Booking') }}</h2>
               @elseif(request()->is('checkout'))
               <h2 class="fw-bold">{{ __('messages.Your Trusted Partner for 24/7 Taxi Services') }}</h2>
               <p>{{ __('messages.Reliable and Round-the-Clock Taxi Services in the Heart of New York') }}</p>
