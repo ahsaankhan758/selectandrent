@@ -525,7 +525,7 @@ return [
      'add-new' => 'Add New',
     'google-map-module' => 'Google Map Modules',
     'enter-gateway-name'=> 'Enter Gateway Name',
-
+    'earnings' => 'Earnings',
     'for-dev' => 'For Dev',
     'dev-endpoint' => 'Dev Endpoint',
     'pro-endpoint' => 'Pro Endpoint',

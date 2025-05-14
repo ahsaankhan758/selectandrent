@@ -58,18 +58,22 @@
                 <li>
                      <a href="#sidebarDashboards" data-bs-toggle="collapse">
                         <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="badge bg-success rounded-pill float-end">2</span>
+                        {{-- <span class="badge bg-success rounded-pill float-end">2</span> --}}
                         <span> {{ __('messages.dashboards') }} </span>
                     </a>
                     <div class="collapse" id="sidebarDashboards">
                         <ul class="nav-second-level">
                             <li> 
                                 <a href="{{ route('dashboard') }}">
-                                    {{ __('messages.dashboard') }} 1
+                                    <i class="mdi mdi-wallet"></i>
+                                    {{ __('messages.earnings') }} 
                                 </a> 
                              </li>
                             <li>
-                                <a href="{{ route('bookingDashboard') }}">{{ __('messages.dashboard') }} 2</a>
+                                <a href="{{ route('bookingDashboard') }}">
+                                    <i class="mdi mdi-calendar-multiple-check"></i>
+                                    {{ __('messages.bookings') }}
+                                 </a>
                             </li>
                             {{-- <li>
                                 <a href="dashboard-3.html">Dashboard 3</a>
@@ -340,10 +344,26 @@
                     <div class="collapse" id="sub_menu_settings">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('permissions') }}" > 
+                                <a href="#sub_menu_permissions" data-bs-toggle="collapse" > 
                                     <i class="mdi mdi-creation"></i>
                                     <span class="custom-ml-15">{{ __('messages.user') }} {{ __('messages.permissions') }}</span>
                                 </a>
+                                <div class="collapse" id="sub_menu_permissions">
+                                    <ul class="nav-third-level">
+                                        <li>
+                                            <a href="{{ route('permissions', 'admin') }}">
+                                                <i class="mdi mdi-account-star"></i>
+                                               <span class="custom-ml-15">{{ __('messages.admin') }}</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('permissions', 'company') }}">
+                                                <i class="mdi mdi-account"></i>
+                                                <span class="custom-ml-15">{{ __('messages.company') }}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                             <li>
                                 <a href="{{ route('paymentGateway') }}"> 
