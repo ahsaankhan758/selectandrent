@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
-    public function index(){
-        return view('admin.permissions.index');
+    public function index($role){
+        $role = ($role === 'admin') ? 'admin' : 'company';
+        $usersList = User::where('role', $role)->get();
+        return view('admin.permissions.index', compact('role', 'usersList'));
     }
     
 public function store(Request $request)
@@ -24,7 +26,7 @@ public function store(Request $request)
         $modules = ['users', 'companies', 'vehicle', 'vehicle_brands', 'vehicle_categories', 'vehicle_features', 'vehicle_models', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts', 'currencies'];
     else 
         $modules = ['vehicle', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'activity_log',];
-    $actions = ['view', 'add', 'edit', 'delete'];
+    $actions = ['view', 'edit'];
 
     foreach ($modules as $module) {
         foreach ($actions as $action) {
