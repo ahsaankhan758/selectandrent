@@ -124,7 +124,7 @@
                         <div class="row mt-3">
                             <div class="col-12 text-center">
                                 <p> <a href="auth-recoverpw.html" class="text-white-50 ms-1">Forgot your password?</a></p>
-                                <p class="text-white-50">Don't have an account? <a href="auth-register.html" class="text-white ms-1"><b>Sign Up</b></a></p>
+                                <!-- <p class="text-white-50">Don't have an account? <a href="auth-register.html" class="text-white ms-1"><b>Sign Up</b></a></p> -->
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
@@ -138,9 +138,7 @@
         <!-- end page -->
 
 
-        <footer class="footer footer-alt">
-            2015 - <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="" class="text-white-50">Coderthemes</a> 
-        </footer>
+        <footer class="footer footer-alt"></footer>
 
         <!-- Vendor js -->
         <script src="{{asset('/')}}assets/js/vendor.min.js"></script>

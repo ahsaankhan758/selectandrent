@@ -54,7 +54,7 @@
 
                         <!-- title-->
                         
-                        <p class="text-muted mb-4">Enter your email address and password to access account.</p>
+                        <p class="text-muted mt-4"></p>
 
                         <!-- form -->
                         <form method="POST" action="{{ route('companyLogin') }}">
@@ -111,9 +111,7 @@
                         <!-- end form-->
 
                         <!-- Footer-->
-                        <footer class="footer footer-alt">
-                            <p class="text-muted">Don't have an account? <a href="auth-register-2.html" class="text-muted ms-1"><b>Sign Up</b></a></p>
-                        </footer>
+                        <footer class="footer footer-alt"></footer>
 
                     </div> <!-- end .card-body -->
                 </div> <!-- end .align-items-center.d-flex.h-100-->
@@ -123,12 +121,12 @@
             <!-- Auth fluid right content -->
             <div class="auth-fluid-right text-center">
                 <div class="auth-user-testimonial">
-                    <h2 class="mb-3 text-white">I love the color!</h2>
-                    <p class="lead"><i class="mdi mdi-format-quote-open"></i> I've been using your theme from the previous developer for our web app, once I knew new version is out, I immediately bought with no hesitation. Great themes, good documentation with lots of customization available and sample app that really fit our need. <i class="mdi mdi-format-quote-close"></i>
+                    <h2 class="mb-3 text-white">Select and Rent Company</h2>
+                    <p class="lead"><i class="mdi mdi-format-quote-open"></i> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. <i class="mdi mdi-format-quote-close"></i>
                     </p>
-                    <h5 class="text-white">
+                    <!-- <h5 class="text-white">
                         - Fadlisaad (Ubold Admin User)
-                    </h5>
+                    </h5> -->
                 </div> <!-- end auth-user-testimonial-->
             </div>
             <!-- end Auth fluid right content -->
