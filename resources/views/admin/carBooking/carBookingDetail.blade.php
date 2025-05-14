@@ -1,33 +1,32 @@
 @extends('admin.layouts.Master')
-@section('title')  Car Detail | Select And Rent @endsection
+@section('title') {{ __('messages.bookingcardeatil') }} @endsection
 @section('content')
         <div class="container-fluid">  
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Order Detail</h4>
+                        <h4 class="page-title">{{ __('messages.booking_orderdetail') }}</h4>
                     </div>
                 </div>
             </div>     
             <!-- end page title --> 
-
-            <div class="row">
-                <div class="col-lg-4">
+                <div class="row">
+                @foreach($booking->booking_items as $item)
+                  <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title mb-3">Track Order</h4>
-
+                            <h4 class="header-title mb-3">{{ __('messages.booking_trackorder') }}</h4>
                             <div class="row">
                                 {{-- <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <h5 class="mt-0">Order ID:</h5>
-                                        <p> # {{ $booking->id }}</p>
+                                        <h5 class="mt-0">Reference ID:</h5>
+                                        <p>{{ $booking->booking_reference }}</p>
                                     </div>
                                 </div> --}}
                                 <div class="col-lg-12">
                                     <div class="mb-4">
-                                        <h5 class="mt-0">Reference ID:</h5>
-                                        <p>{{ $booking->booking_reference }}</p>
+                                        <h5 class="mt-0">{{ __('messages.booking_platenumber') }}</h5>
+                                        <p>{{ $item->vehicle->lisence_plate ?? 'N/A' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -35,57 +34,74 @@
                             <div class="track-order-list">
                                 <ul class="list-unstyled">
                                     <li class="completed">
-                                        <h5 class="mt-0 mb-1">Order Placed</h5>
-                                        <p class="text-muted">April 21 2019 <small class="text-muted">07:22 AM</small> </p>
+                                        <h5 class="mt-0 mb-1">{{ __('messages.booking_orderplaced') }}</h5>
+                                        <p class="text-muted">
+                                            {{ \Carbon\Carbon::parse($booking->created_at)->format('F d Y') }}
+                                            <small class="text-muted">{{ \Carbon\Carbon::parse($booking->created_at)->format('h:i A') }}</small>
+                                        </p>
                                     </li>
-                                    <li class="completed">
-                                        <h5 class="mt-0 mb-1">Packed</h5>
-                                        <p class="text-muted">April 22 2019 <small class="text-muted">12:16 AM</small></p>
+                                   <li class="{{ $booking->payment_status == 'pending' ? '' : 'completed' }}">
+                                        @if($booking->payment_status == 'pending')
+                                            <span class="active-dot dot"></span>
+                                        @endif
+                                        <h5 class="mt-0 mb-1">{{ __('messages.bookingpayment') }}</h5>
+                                        <p class="text-muted">
+                                            {{ ucfirst($booking->payment_status ?? 'N/A') }}
+                                        </p>
                                     </li>
-                                    <li>
-                                        <span class="active-dot dot"></span>
-                                        <h5 class="mt-0 mb-1">Shipped</h5>
-                                        <p class="text-muted">April 22 2019 <small class="text-muted">05:16 PM</small></p>
-                                    </li>
-                                    <li>
-                                        <h5 class="mt-0 mb-1"> Delivered</h5>
-                                        <p class="text-muted">Estimated delivery within 3 days</p>
-                                    </li>
+                                 <li class="{{ $booking->booking_status == 'completed' ? 'completed' : ($booking->payment_status == 'paid' ? '' : '') }}">
+    @if($booking->booking_status != 'completed' && $booking->payment_status == 'paid')
+        <span class="active-dot dot"></span>
+    @endif
+    <h5 class="mt-0 mb-1">{{ __('messages.pickup_status') }}</h5>
+    <p class="text-muted">
+        {{ \Carbon\Carbon::parse($item->pickup_datetime)->format('F d Y') }}
+        <small class="text-muted">{{ \Carbon\Carbon::parse($item->pickup_datetime)->format('h:i A') }}</small>
+    </p>
+</li>
+
+<li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
+    <h5 class="mt-0 mb-1">{{ __('messages.dropoff_status') }}</h5>
+    <p class="text-muted">
+        {{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('F d Y') }}
+        <small class="text-muted">{{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('h:i A') }}</small>
+    </p>
+</li>
+
+<li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
+    <h5 class="mt-0 mb-1">{{ __('messages.order_completed') }}</h5>
+    <p class="text-muted">{{ ucfirst($booking->booking_status ?? 'N/A') }}</p>
+</li>
+
                                 </ul>
-
-                                {{-- <div class="text-center mt-4">
-                                    <a href="#" class="btn btn-primary">Show Details</a>
-                                </div> --}}
                             </div>
-
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                @endforeach
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title mb-3">Order id # {{ $booking->id }}</h4>
+                            <h4 class="header-title mb-3">{{ __('messages.booking_referenceid') }} {{ $booking->booking_reference }}</h4>
 
                             <div class="table-responsive">
                                 <table class="table table-bordered table-centered mb-0">
                                     <thead class="table-light">
                                         <tr class="text-nowrap">
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Pickup Location</th>
-                                            <th>Dropoff Location</th>
-                                            <th>Pickup date</th>
-                                            <th>Pickup time</th>
-                                            <th>Dropoff date</th>
-                                            <th>Dropoff time</th>
-                                            <th>Days</th>
+                                            <th>{{ __('messages.booking_image') }}</th>
+                                            <th>{{ __('messages.booking_name') }}</th>
+                                            <th>{{ __('messages.booking_pickuplocation') }}</th>
+                                            <th>{{ __('messages.booking_dropofflocation') }}</th>
+                                            <th>{{ __('messages.booking_pickupdate') }}</th>
+                                            <th>{{ __('messages.booking_pickuptime') }}</th>
+                                            <th>{{ __('messages.booking_dropoffdate') }}</th>
+                                            <th>{{ __('messages.booking_dropofftime') }}</th>
+                                            <th>{{ __('messages.booking_days') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @php
-                                            echo"<pre>";
-                                                print_r($booking);die;
-                                        @endphp --}}
                                         @if(isset($booking))
                                         @foreach($booking->booking_items as $detail)
                                         <tr>
@@ -124,16 +140,16 @@
                 <div class="col-lg-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h4 class="header-title mb-3">User Information</h4>
+                            <h4 class="header-title mb-3">{{ __('messages.booking_userinfo') }}</h4>
                             <h5 class="font-family-primary fw-semibold">
                                 {{ $booking->first_name ?? 'N/A' }} {{ $booking->last_name ?? 'N/A' }}
                             </h5>
                             <p class="mb-2">
-                                <span class="fw-semibold me-2">Address:</span>
+                                <span class="fw-semibold me-2">{{ __('messages.booking_address') }}</span>
                                 {{ $booking->billing_addresss ?? 'N/A' }}
                             </p>
                             <p class="mb-2">
-                                <span class="fw-semibold me-2">Phone:</span>
+                                <span class="fw-semibold me-2">{{ __('messages.booking_phone') }}</span>
                                 {{ $booking->phonenumber ?? 'N/A' }}
                             </p>
                         </div>
@@ -143,12 +159,12 @@
                 <div class="col-lg-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h4 class="header-title mb-3">Billing Information</h4>
+                            <h4 class="header-title mb-3">{{ __('messages.booking_billinginfo') }}</h4>
                             <ul class="list-unstyled mb-0">
                                 <li>
-                                    <p class="mb-2"><span class="fw-semibold me-2">Subtotal:</span>$ {{ number_format($booking->subtotal) }}</p>
-                                    <p class="mb-2"><span class="fw-semibold me-2">Tax:</span>$ {{ number_format($booking->tax_amount) }}</p>
-                                    <p class="mb-2"><span class="fw-semibold me-2">Total:</span>$ {{ number_format($booking->total_price) }}</p>
+                                    <p class="mb-2"><span class="fw-semibold me-2">{{ __('messages.booking_subtotal') }}</span>$ {{ number_format($booking->subtotal) }}</p>
+                                    <p class="mb-2"><span class="fw-semibold me-2">{{ __('messages.booking_tax') }}</span>$ {{ number_format($booking->tax_amount) }}</p>
+                                    <p class="mb-2"><span class="fw-semibold me-2">{{ __('messages.booking_total') }}</span>$ {{ number_format($booking->total_price) }}</p>
                                 </li>
                             </ul>
                         </div>
@@ -158,12 +174,12 @@
                 <div class="col-lg-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h4 class="header-title ">Booking Info</h4>
+                            <h4 class="header-title ">{{ __('messages.booking_bookinginfo') }}</h4>
 
                             <div class="text-left">
                                 <i class="mdi mdi-truck-fast h2 text-muted"></i>
-                                <p class="mb-1"><span class="fw-semibold">Order ID :</span> # {{ $booking->id }}</p>
-                                <p class="mb-0"><span class="fw-semibold">Payment Mode :</span>{{ $booking->payment_method ?? 'N/A' }}</p>
+                                <p class="mb-1"><span class="fw-semibold">{{ __('messages.booking_orderid') }}</span> # {{ $booking->id }}</p>
+                                <p class="mb-0"><span class="fw-semibold">{{ __('messages.booking_paymentmode') }}</span> {{ $booking->payment_method ?? 'N/A' }}</p>
                                 <p class="mb-2"><span class="fw-semibold me-2"></span></p>
                             </div>
                         </div>

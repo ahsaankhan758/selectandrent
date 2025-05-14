@@ -16,7 +16,7 @@ class BookingController extends Controller
             $query->where('user_id', Auth::id());
         }
     
-        $bookings = $query->with('user')->paginate(20);
+        $bookings = $query->with('user')->paginate(10);
     
         return(view('admin.carBooking.carBooking', compact('bookings')));
         
