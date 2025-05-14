@@ -118,7 +118,7 @@
                   </div>  
               </div>
           </div>
-          <div class="footer-bottom">©2025 Nwlogics. {{ __('messages.All Right Reserved') }}</div>
+          <div class="footer-bottom">©<?=date('Y');?> selectandrent. {{ __('messages.All Right Reserved') }}</div>
       </div>
   </div>
   @endif
