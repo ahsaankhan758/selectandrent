@@ -1,52 +1,103 @@
 $(document).ready(function() {
     
-    $('#role').on('change', function() {
-        $('#savePermissionsBtn').addClass('d-none');
-        $('#permissionsTable').addClass('d-none');
-        $('#checkAll').addClass('d-none');
-        var selectedRole = $(this).val();
+    // $('#role').on('change', function() {
+    //     $('#savePermissionsBtn').addClass('d-none');
+    //     $('#permissionsTable').addClass('d-none');
+    //     $('#checkAll').addClass('d-none');
+    //     var selectedRole = $(this).val();
     
-        $.ajax({
-            url: 'getUsersList', 
-            type: "GET",
-            data: {
-                role: selectedRole
-            },
+    //     $.ajax({
+    //         url: 'getUsersList', 
+    //         type: "GET",
+    //         data: {
+    //             role: selectedRole
+    //         },
             
-            success: function(response) {
-                $('#nameList').removeClass('d-none');
-                $('#nameList').html(response.html);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', xhr.responseText);
-                alert('Something went wrong while fetching users.');
-            }
-        });
-    });
+    //         success: function(response) {
+    //             $('#nameList').removeClass('d-none');
+    //             $('#nameList').html(response.html);
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.error('Error:', xhr.responseText);
+    //             alert('Something went wrong while fetching users.');
+    //         }
+    //     });
+    // });
     
     $('#getUserName').on('change', function () {
         var selectedUserId = $(this).val();
-    
+        console.log('Selected User ID:', selectedUserId);
         $.ajax({
-            url: 'getUserPermissions',
+            url: '/admin/getUserPermissions',
             type: "GET",
             data: {
                 selectedUserId: selectedUserId
             },
             success: function (response) {
+                console.log('Response:', response);
                 $('#permissionsTable').removeClass('d-none').html(response.html);
+                // Show/hide vehicle submodules with arrow toggle
+                // Toggle submodules when clicking the whole Vehicle row
+                // Smooth toggle of submodules when clicking Vehicle row
+                // Show/hide vehicle submodules with arrow toggle
+                $('.vehicle-parent-row .toggle-arrow').on('click', function () {
+                    const $arrow = $(this);
+                    const subRows = $('.vehicle-submodule');
+
+                    const isCollapsed = subRows.hasClass('d-none');
+
+                    if (isCollapsed) {
+                        subRows.removeClass('d-none');
+                        $arrow.text('▼');
+                    } else {
+                        subRows.addClass('d-none');
+
+                        // Uncheck all checkboxes in submodules when hiding
+                        subRows.find('input[type="checkbox"]').prop('checked', false);
+                        $arrow.text('►');
+                    }
+                });
+
+
+
                 $('#savePermissionsBtn').removeClass('d-none');
                 $('#checkAll').removeClass('d-none');
-    
-                // ✅ Now that the table exists, bind the master checkbox event
+                
+                // ✅ Bind the checkboxes now that the table exists
                 bindMasterCheckbox();
                 updateMasterCheckboxState();
+
+                // ✅ Submodule toggling logic
+                function updateVehicleSubmodulesVisibility() {
+                    const viewChecked = $(`input[name="permissions[vehicle][view]"]`).is(':checked');
+                    const editChecked = $(`input[name="permissions[vehicle][edit]"]`).is(':checked');
+                    const rowChecked = $(`.row-checkbox[data-row="vehicle"]`).is(':checked');
+
+                    console.log('Vehicle - View:', viewChecked, 'Edit:', editChecked, 'Row:', rowChecked);
+
+                    if (viewChecked || editChecked || rowChecked) {
+                        $('.vehicle-submodule').removeClass('d-none');
+                    } else {
+                        $('.vehicle-submodule').addClass('d-none').find('input[type="checkbox"]').prop('checked', false);
+                    }
+                }
+
+                // ✅ Run on load
+                updateVehicleSubmodulesVisibility();
+
+                // ✅ Bind events after AJAX render
+                $(`input[name="permissions[vehicle][view]"],
+                input[name="permissions[vehicle][edit]"],
+                .row-checkbox[data-row="vehicle"]`).on('change', function () {
+                    updateVehicleSubmodulesVisibility();
+                });
             },
             error: function (xhr, status, error) {
                 console.error('Error:', xhr.responseText);
                 alert('Something went wrong while fetching users.');
             }
         });
+
     });
     
 });
@@ -128,4 +179,29 @@ function updateRowCheckboxes() {
         }
     });
 }
+
+function updateVehicleSubmodulesVisibility() {
+        const viewChecked = $(`input[name="permissions[vehicle][view]"]`).is(':checked');
+        const editChecked = $(`input[name="permissions[vehicle][edit]"]`).is(':checked');
+        const rowChecked = $(`.row-checkbox[data-row="vehicle"]`).is(':checked');
+
+        console.log('Vehicle - View:', viewChecked, 'Edit:', editChecked, 'Row:', rowChecked);
+
+        if ((viewChecked && editChecked) || rowChecked) {
+            $('.vehicle-submodule').removeClass('d-none');
+        } else {
+            $('.vehicle-submodule').addClass('d-none');
+        }
+    }
+
+    $(document).ready(function () {
+        updateVehicleSubmodulesVisibility(); // Run on page load
+
+        // Bind to any change on Vehicle permissions
+        $(`input[name="permissions[vehicle][view]"],
+           input[name="permissions[vehicle][edit]"],
+           .row-checkbox[data-row="vehicle"]`).on('change', function () {
+            updateVehicleSubmodulesVisibility();
+        });
+    });
 

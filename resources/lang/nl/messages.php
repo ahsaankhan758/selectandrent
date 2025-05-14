@@ -518,6 +518,7 @@ return [
 'c4' => 'C4',
 'c5' => 'C5',
 'symbol' => 'Symbool',
+'earnings' => 'Verdiensten',
 
 'rate' => 'Wisselkoers',
 'decimals' => 'Decimalen',

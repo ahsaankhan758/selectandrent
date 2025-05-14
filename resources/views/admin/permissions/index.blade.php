@@ -11,7 +11,8 @@
         @csrf
             @method('PUT')
         <div class="row mb-4">
-            <div class="col-md-3">
+            <input type="hidden" name="role" class="form-control">
+            {{-- <div class="col-md-3">
                 <div class="form-group">
                     <label for="role">{{ __('messages.') }}Role</label>
                     <select id="role" name="role" class="form-control">
@@ -20,9 +21,18 @@
                         <option value="company">Company User</option>
                     </select>
                 </div>
-            </div>
+            </div> --}}
         
-            <div class="col-md-3 d-none" id="nameList" >
+            <div class="col-md-3" id="nameList" >
+                <div class="form-group">
+                <label for="name">User</label>
+                <select id="getUserName" name="name" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    @foreach ($usersList as $user)
+                        <option value={{ $user->id }}>{{ $user->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             </div>
         </div>
         <div id="checkAll" class="mb-2 d-none d-flex justify-content-end">
