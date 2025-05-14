@@ -25,20 +25,20 @@
                                                 $currentLocale = app()->getLocale();
                                             }
                                     @endphp
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                            <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span>  {{ $languages[$currentLocale]['name'] }}
+                                    <div class="dropdown text-end mb-3">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span> {{ $languages[$currentLocale]['name'] }}
                                         </a>
                                         <ul class="dropdown-menu">
                                             @foreach ($languages as $langCode => $lang)
                                                 <li>
                                                     <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
-                                                        <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> <span>{{ $lang['name'] }}</span>
+                                                        <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> {{ $lang['name'] }}
                                                     </a>
                                                 </li>
                                             @endforeach
                                         </ul>
-                                    </li>
+                                    </div>
                                 </ul>
                                 <div class="text-center w-75 m-auto">
                                     <div class="auth-logo">
