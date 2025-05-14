@@ -81,7 +81,7 @@
         <script src="{{asset('/')}}assets/js/app.min.js"></script>
         <script src="{{asset('/')}}assets/js/admin.js"></script>
         <!-- Permissions -->
-        <script src="{{asset('/')}}assets/Js/admin/permissions.js"></script>
+        <script src="{{asset('/')}}assets/js/admin/permissions.js"></script>
         <script type="text/javascript">
             // For Delete Confirmation
             $(".btn-delete").click(function(){

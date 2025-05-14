@@ -28,9 +28,9 @@ use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
-use App\Http\Controllers\admin\AdminPaymentGateways;
+use App\Http\Controllers\Admin\AdminPaymentGateways;
 use App\Http\Controllers\Admin\IP_AddressController;
-use App\Http\Controllers\admin\PermissionController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\usersignupController;
 use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
@@ -49,10 +49,10 @@ use App\Http\Controllers\website\WebsiteBlogController;
 
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
-use App\Http\Controllers\Website\WebsiteBookingController;
+use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
-use App\Http\Controllers\Website\WebsiteDashboardController;
+use App\Http\Controllers\website\WebsiteDashboardController;
 
 
 Route::middleware('LanguageMiddleware')->group(function(){
@@ -272,6 +272,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('setDefaultCurreny/{id}', [WebsiteCurrencyController::class, 'setDefaultCurreny'])->name('setDefaultCurreny');
 
 
+    // booking page website
+    Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
+    Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
+
+
+    // dashboard page website
+    Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
 });
 
 //Auth Routes

@@ -575,7 +575,7 @@
         </div>
         <div class="modal-body">
           <p class="text-center">{{ __("messages.Don't have an account?") }} <a href="#" class="login-link-text" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></p>
-          <form action="{{ route('user.signin') }}" id="usersignin">
+          <form action="{{ route('user.signin') }}" id="usersignin" method="post">
             @csrf
                 <div class="mb-3">
                 <div class="input-group">
