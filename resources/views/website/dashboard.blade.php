@@ -37,7 +37,6 @@ Dashboard | Select and Rent
                     <div>
                         <h6 class="mb-1">Pending Orders</h6>
                         <h3 class="mb-1">{{ $statusCounts['pending'] }}</h3>
-                        {{-- <small>Awaiting Payment: 22</small> --}}
                     </div>
                 </div>
             </div>
@@ -55,7 +54,6 @@ Dashboard | Select and Rent
                     <div>
                         <h6 class="mb-1">Cancel Orders</h6>
                         <h3 class="mb-1">{{ $statusCounts['cancelled'] }}</h3>
-                        {{-- <small>Cancelled: 5</small> --}}
                     </div>
                 </div>
             </div>
@@ -74,7 +72,6 @@ Dashboard | Select and Rent
                     <div>
                         <h6 class="mb-1">Confirmed Payment</h6>
                         <h3 class="mb-1">${{ number_format($priceTotals['confirmed']) }}</h3>
-                        {{-- <small>Online Now: 132</small> --}}
                     </div>
                 </div>
             </div>
@@ -92,7 +89,6 @@ Dashboard | Select and Rent
                     <div>
                         <h6 class="mb-1">Pending Payment</h6>
                         <h3 class="mb-1">${{ number_format($priceTotals['pending']) }}</h3>
-                        {{-- <small>Growth this month</small> --}}
                     </div>
                 </div>
             </div>
@@ -110,7 +106,6 @@ Dashboard | Select and Rent
                     <div>
                         <h6 class="mb-1">Cancelled Payment</h6>
                         <h3 class="mb-1">${{ number_format($priceTotals['cancelled']) }}</h3>
-                        {{-- <small>Successful: 1100</small> --}}
                     </div>
                 </div>
             </div>
