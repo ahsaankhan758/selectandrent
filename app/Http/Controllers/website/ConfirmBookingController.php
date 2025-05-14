@@ -15,6 +15,7 @@ class ConfirmBookingController extends Controller
 {
     public function confirmBookingView(Request $request)
     {
+        
         $rules = [
 
             'pickup_location'     => 'required|array',

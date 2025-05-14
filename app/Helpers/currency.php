@@ -13,7 +13,7 @@ function getActiveDefaultCurrency(){
     ];
 }
 
-function convertPrice($amount, $round = 2)
+function convertPrice($amount, $round = 2, $symbol_check = 1)
 {
     // Get session values
     $code = session('defaultCurrencyCode');
@@ -36,9 +36,13 @@ function convertPrice($amount, $round = 2)
     $placement = $defaultCurrency->symbol_placement ?? 'before';
     
     $price = round($rate * $amount, $round);
-
-    return $placement === 'after' 
+    if($symbol_check == 1){
+        return $placement === 'after' 
         ? $price . ' ' . $symbol 
         : $symbol . ' ' . $price;
+    }else {
+        return $price;
+    }
+    
 }
 
