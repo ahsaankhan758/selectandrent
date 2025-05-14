@@ -18,9 +18,7 @@ class CarBookingController extends Controller
         $tax = Cart::tax();
         $totalPriceIncludingTax = Cart::total();
         $cartItemsCount = Cart::instance('cart')->content()->count();
-        
-        // echo "<pre>";
-        // print_r($cartItems);die;
+       
         $vehicleLocation = CarLocation::all();
         return view('website.bookings.booking-checkout',compact('cartItems','vehicleLocation', 'subtotal', 'tax','totalPriceIncludingTax','cartItemsCount')); 
     }
@@ -152,10 +150,14 @@ class CarBookingController extends Controller
             'message' => 'Item Updated Successfully From Cart',
             'qty'=> $qty,
             'price'=> convertPrice($newPrice,0),
+            'price_input'=> convertPrice($newPrice,0,0),
             'rowId'=> $rowId,
             'subtotal'=> convertPrice($subtotal,0),
+            'subtotal_input'=> convertPrice($subtotal,0,0),
             'tax'=> convertPrice($tax,0),
+            'tax_input'=> convertPrice($tax,0,0),
             'total'=> convertPrice($totalPriceIncludingTax,0),
+            'total_input'=> convertPrice($totalPriceIncludingTax,0,0),
         ]);
     }
   
