@@ -587,5 +587,10 @@ return [
     'booking_orderid'         => 'رقم الطلب:',
     'booking_paymentmode'     => 'طريقة الدفع:',
     'booking_phone' => 'الهاتف:',
+    'booking_orderplaced' => 'تم وضع الطلب',
+    'bookingpayment' => 'حالة الدفع',
+    'pickup_status' => 'حالة الاستلام',
+    'dropoff_status' => 'حالة التسليم',
+    'order_completed' => 'الطلب مكتمل',
 
 ];

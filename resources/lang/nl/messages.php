@@ -581,5 +581,10 @@ return [
     'booking_orderid'         => 'Bestelnummer:',
     'booking_paymentmode'     => 'Betaalmethode:',
     'booking_phone' => 'Telefoon:',
+    'booking_orderplaced' => 'Bestelling Geplaatst',
+    'bookingpayment' => 'Betalingsstatus',
+    'pickup_status' => 'Ophaling Status',
+    'dropoff_status' => 'Aflevering Status',
+    'order_completed' => 'Bestelling Voltooid',
 
 ];

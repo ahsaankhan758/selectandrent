@@ -34,22 +34,45 @@
                             <div class="track-order-list">
                                 <ul class="list-unstyled">
                                     <li class="completed">
-                                        <h5 class="mt-0 mb-1">Order Placed</h5>
-                                        <p class="text-muted">April 21 2019 <small class="text-muted">07:22 AM</small> </p>
+                                        <h5 class="mt-0 mb-1">{{ __('messages.booking_orderplaced') }}</h5>
+                                        <p class="text-muted">
+                                            {{ \Carbon\Carbon::parse($booking->created_at)->format('F d Y') }}
+                                            <small class="text-muted">{{ \Carbon\Carbon::parse($booking->created_at)->format('h:i A') }}</small>
+                                        </p>
                                     </li>
-                                    <li class="completed">
-                                        <h5 class="mt-0 mb-1">Packed</h5>
-                                        <p class="text-muted">April 22 2019 <small class="text-muted">12:16 AM</small></p>
+                                   <li class="{{ $booking->payment_status == 'pending' ? '' : 'completed' }}">
+                                        @if($booking->payment_status == 'pending')
+                                            <span class="active-dot dot"></span>
+                                        @endif
+                                        <h5 class="mt-0 mb-1">{{ __('messages.bookingpayment') }}</h5>
+                                        <p class="text-muted">
+                                            {{ ucfirst($booking->payment_status ?? 'N/A') }}
+                                        </p>
                                     </li>
-                                    <li>
-                                        <span class="active-dot dot"></span>
-                                        <h5 class="mt-0 mb-1">Shipped</h5>
-                                        <p class="text-muted">April 22 2019 <small class="text-muted">05:16 PM</small></p>
-                                    </li>
-                                    <li>
-                                        <h5 class="mt-0 mb-1"> Delivered</h5>
-                                        <p class="text-muted">Estimated delivery within 3 days</p>
-                                    </li>
+                                 <li class="{{ $booking->booking_status == 'completed' ? 'completed' : ($booking->payment_status == 'paid' ? '' : '') }}">
+    @if($booking->booking_status != 'completed' && $booking->payment_status == 'paid')
+        <span class="active-dot dot"></span>
+    @endif
+    <h5 class="mt-0 mb-1">{{ __('messages.pickup_status') }}</h5>
+    <p class="text-muted">
+        {{ \Carbon\Carbon::parse($item->pickup_datetime)->format('F d Y') }}
+        <small class="text-muted">{{ \Carbon\Carbon::parse($item->pickup_datetime)->format('h:i A') }}</small>
+    </p>
+</li>
+
+<li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
+    <h5 class="mt-0 mb-1">{{ __('messages.dropoff_status') }}</h5>
+    <p class="text-muted">
+        {{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('F d Y') }}
+        <small class="text-muted">{{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('h:i A') }}</small>
+    </p>
+</li>
+
+<li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
+    <h5 class="mt-0 mb-1">{{ __('messages.order_completed') }}</h5>
+    <p class="text-muted">{{ ucfirst($booking->booking_status ?? 'N/A') }}</p>
+</li>
+
                                 </ul>
                             </div>
                         </div>

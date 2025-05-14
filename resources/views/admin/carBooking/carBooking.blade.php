@@ -45,7 +45,6 @@
                                 </td>
                                 <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                 <td>{{ $booking->booking_reference }}</td> 
-                               
                                 <td>{{ $booking->transaction_id }}</td>
                                 <td>
                                     <h5><span class="badge bg-soft-success text-success"><i class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span></h5>
