@@ -11,8 +11,8 @@
         @csrf
             @method('PUT')
         <div class="row mb-4">
-            <input type="hidden" name="role" class="form-control">
-            {{-- <div class="col-md-3">
+            {{-- <input type="hidden" name="role" class="form-control">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="role">{{ __('messages.') }}Role</label>
                     <select id="role" name="role" class="form-control">

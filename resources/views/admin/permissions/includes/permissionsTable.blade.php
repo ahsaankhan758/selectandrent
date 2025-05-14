@@ -26,12 +26,12 @@
 </thead>
 @php
     $vehicleSubmodules = [
-        'Vehicle Brands',
-        'Vehicle Categories',
-        'Vehicle Features',
-        'Vehicle Models',
-        'Vehicle Locations',
-        'Featured Vehicles'
+        'Brands',
+        'Categories',
+        'Features',
+        'Models',
+        'Locations',
+        'Vehicles'
     ];
 @endphp
 
@@ -53,7 +53,7 @@
                 @if ($key === 'vehicle')
                     <span class="toggle-arrow" style="cursor: pointer;">►</span>
                 @endif
-                {{ $module }}
+                {!! $key === 'vehicle' ? '<strong>' . $module . '</strong>' : e($module) !!}
             </td>
 
                 @foreach ($actions as $action)
@@ -96,8 +96,8 @@
                 @php
                     $subKey = strtolower(str_replace(' ', '_', $submodule));
                 @endphp
-                <tr class="vehicle-submodule d-none" data-parent="vehicle" data-submodule="{{ $subKey }}" style="background-color: #f0f0f0;">
-                    <td>  {{ $submodule }}</td>
+                <tr class="vehicle-submodule d-none ml-4" data-parent="vehicle" data-submodule="{{ $subKey }}" style="background-color: #f0f0f0;">
+                    <td> ↳ {{ $submodule }}</td>
                     @foreach ($actions as $action)
                         <td>
                             <input type="hidden" name="permissions[{{ $subKey }}][{{ $action }}]" value="0">

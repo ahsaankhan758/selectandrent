@@ -66,21 +66,24 @@ $(document).ready(function() {
                 // ✅ Bind the checkboxes now that the table exists
                 bindMasterCheckbox();
                 updateMasterCheckboxState();
+                handleVehicleParentAutoCheck();
 
                 // ✅ Submodule toggling logic
                 function updateVehicleSubmodulesVisibility() {
                     const viewChecked = $(`input[name="permissions[vehicle][view]"]`).is(':checked');
                     const editChecked = $(`input[name="permissions[vehicle][edit]"]`).is(':checked');
                     const rowChecked = $(`.row-checkbox[data-row="vehicle"]`).is(':checked');
+                    const submodulesChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
 
-                    console.log('Vehicle - View:', viewChecked, 'Edit:', editChecked, 'Row:', rowChecked);
-
-                    if (viewChecked || editChecked || rowChecked) {
+                    if (viewChecked || editChecked || rowChecked || submodulesChecked) {
                         $('.vehicle-submodule').removeClass('d-none');
+                        $('.vehicle-parent-row .toggle-arrow').text('▼'); // arrow down
                     } else {
-                        $('.vehicle-submodule').addClass('d-none').find('input[type="checkbox"]').prop('checked', false);
+                        $('.vehicle-submodule').addClass('d-none');
+                        $('.vehicle-parent-row .toggle-arrow').text('►'); // arrow right
                     }
                 }
+
 
                 // ✅ Run on load
                 updateVehicleSubmodulesVisibility();
@@ -181,18 +184,20 @@ function updateRowCheckboxes() {
 }
 
 function updateVehicleSubmodulesVisibility() {
-        const viewChecked = $(`input[name="permissions[vehicle][view]"]`).is(':checked');
-        const editChecked = $(`input[name="permissions[vehicle][edit]"]`).is(':checked');
-        const rowChecked = $(`.row-checkbox[data-row="vehicle"]`).is(':checked');
+    const viewChecked = $(`input[name="permissions[vehicle][view]"]`).is(':checked');
+    const editChecked = $(`input[name="permissions[vehicle][edit]"]`).is(':checked');
+    const rowChecked = $(`.row-checkbox[data-row="vehicle"]`).is(':checked');
+    const submodulesChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
 
-        console.log('Vehicle - View:', viewChecked, 'Edit:', editChecked, 'Row:', rowChecked);
-
-        if ((viewChecked && editChecked) || rowChecked) {
-            $('.vehicle-submodule').removeClass('d-none');
-        } else {
-            $('.vehicle-submodule').addClass('d-none');
-        }
+    if (viewChecked || editChecked || rowChecked || submodulesChecked) {
+        $('.vehicle-submodule').removeClass('d-none');
+        $('.vehicle-parent-row .toggle-arrow').text('▼'); // arrow down
+    } else {
+        $('.vehicle-submodule').addClass('d-none');
+        $('.vehicle-parent-row .toggle-arrow').text('►'); // arrow right
     }
+}
+
 
     $(document).ready(function () {
         updateVehicleSubmodulesVisibility(); // Run on page load
@@ -204,4 +209,21 @@ function updateVehicleSubmodulesVisibility() {
             updateVehicleSubmodulesVisibility();
         });
     });
+
+function handleVehicleParentAutoCheck() {
+    $('.vehicle-submodule input[type="checkbox"]').on('change', function () {
+        const anyChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
+
+        // If any submodule is checked, check vehicle[view]
+        if (anyChecked) {
+            $(`input[name="permissions[vehicle][view]"]`).prop('checked', true);
+        }
+
+        updateRowCheckboxes();
+        updateMasterCheckboxState();
+        updateVehicleSubmodulesVisibility();
+    });
+}
+
+
 
