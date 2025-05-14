@@ -116,7 +116,7 @@ class PaymentGatewaysController extends Controller
                 if (empty($currencyCode)) {
                     $currencyCode = Currency::where('is_default', 'Yes')->where('is_active','Yes')->value('code');
                 }
-
+                // 
                 Stripe::setApiKey($gateway->c2); // secret key
     
                 $session = StripeSession::create([
