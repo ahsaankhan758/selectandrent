@@ -73,10 +73,10 @@ document.addEventListener('DOMContentLoaded', function () {
             $('.calculate-tax').html(data.tax);
             $('.calculate-total').html(data.total);
             // send val to inputs
-            $('.get-subtotal').val(data.subtotal);
-            $('.get-tax').val(data.tax);
-            $('.get-total').val(data.total);
-            $('.get-price-'+data.rowId).val(data.price);
+            $('.get-subtotal').val(data.subtotal_input);
+            $('.get-tax').val(data.tax_input);
+            $('.get-total').val(data.total_input);
+            $('.get-price-'+data.rowId).val(data.price_input);
             $('.get-duration-'+data.rowId).val(data.qty);
         }
         

@@ -12,6 +12,7 @@ use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
 use App\Models\Booking;
 use App\Models\BookingItem;
+use App\Models\Currency;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -110,14 +111,19 @@ class PaymentGatewaysController extends Controller
                 if (!$gateway || empty($gateway->c2)) {
                     throw new \Exception('Stripe credentials not configured.');
                 }
-    
+                // currency code
+                $currencyCode = session('defaultCurrencyCode');
+                if (empty($currencyCode)) {
+                    $currencyCode = Currency::where('is_default', 'Yes')->where('is_active','Yes')->value('code');
+                }
+                // 
                 Stripe::setApiKey($gateway->c2); // secret key
     
                 $session = StripeSession::create([
                     'payment_method_types' => ['card'],
                     'line_items' => [[
                         'price_data' => [
-                            'currency' => 'usd',
+                            'currency' => $currencyCode,
                             'product_data' => [
                                 'name' => $booking->booking_reference,
                             ],
