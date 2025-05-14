@@ -597,6 +597,13 @@ return [
     'booking_orderid'         => 'Order ID :',
     'booking_paymentmode'     => 'Payment Mode :',
     'booking_phone' => 'Phone:',
+    'booking_orderplaced' => 'Order Placed',
+    'bookingpayment' => 'Payment Status',
+    'pickup_status' => 'Pickup Status',
+    'dropoff_status' => 'Dropoff Status',
+    'order_completed' => 'Order Completed',
+
+
 
 
     

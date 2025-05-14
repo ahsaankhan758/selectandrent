@@ -580,5 +580,11 @@ return [
     'booking_orderid'         => 'ID de commande :',
     'booking_paymentmode'     => 'Mode de paiement :',
     'booking_phone' => 'Téléphone :',
+    'booking_orderplaced' => 'Commande Passée',
+    'bookingpayment' => 'Statut de Paiement',
+    'pickup_status' => 'Statut de Ramassage',
+    'dropoff_status' => 'Statut de Dépôt',
+    'order_completed' => 'Commande Complétée',
+
 
 ];
