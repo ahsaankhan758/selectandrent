@@ -30,7 +30,7 @@ use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
 use App\Http\Controllers\admin\AdminPaymentGateways;
 use App\Http\Controllers\Admin\IP_AddressController;
-use App\Http\Controllers\admin\PermissionController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\usersignupController;
 use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
