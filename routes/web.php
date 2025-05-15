@@ -95,6 +95,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             // edit by farhan
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
             Route::get('/bookings/chart-data', [DashboardController::class, 'getChartData'])->name('bookings.chart-data');
+            Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/earnings-data', [DashboardController::class, 'getEarningsData'])->name('earnings.data');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
             // end edit

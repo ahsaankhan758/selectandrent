@@ -568,7 +568,7 @@ return [
     'booking_orderdetail'     => 'تفاصيل الطلب',
     'booking_trackorder'      => 'تتبع الطلب',
     'booking_platenumber'     => 'رقم اللوحة:',
-    'booking_referenceid'     => 'معرّف المرجع:',
+    'booking_referenceid' => 'معرّف مرجع الطلب:',
     'booking_image'           => 'صورة',
     'booking_name'            => 'الاسم',
     'booking_pickuplocation'  => 'موقع الاستلام',
