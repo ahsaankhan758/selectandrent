@@ -23,9 +23,9 @@ public function store(Request $request)
 
     // Define your full list of modules and actions
     if(User::find($userId)?->role == 'admin')
-        $modules = ['users', 'companies', 'vehicle', 'vehicle_brands', 'vehicle_categories', 'vehicle_features', 'vehicle_models', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts', 'currencies'];
+        $modules = ['users', 'companies', 'vehicle', 'brands', 'categories', 'features', 'models', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts', 'currencies'];
     else 
-        $modules = ['vehicle', 'vehicle_locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'activity_log',];
+        $modules = ['vehicle', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'clients', 'activity_log',];
     $actions = ['view', 'edit'];
 
     foreach ($modules as $module) {
