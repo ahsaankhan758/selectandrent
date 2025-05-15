@@ -6,9 +6,9 @@
         $storedPermissions[$key][$perm->key] = $perm->value;
     }
     if($user_role == 'admin')
-        $modules = ['Users', 'Companies', 'Vehicle', 'Vehicle Brands', 'Vehicle Categories', 'Vehicle Features', 'Vehicle Models', 'Vehicle Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Clients', 'User IP', 'Blogs', 'Activity Log', 'Contacts', 'Currencies'];
+        $modules = ['Users', 'Companies', 'Vehicle', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Clients', 'User IP', 'Blogs', 'Activity Log', 'Contacts', 'Currencies'];
     else
-        $modules = ['Vehicle', 'Vehicle Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Clients', 'Activity Log'];
+        $modules = ['Vehicle', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Clients', 'Activity Log'];
     $actions = ['view', 'edit'];
 @endphp
 
@@ -31,7 +31,7 @@
         'Features',
         'Models',
         'Locations',
-        'Vehicles'
+        'Featured Vehicles'
     ];
 @endphp
 
