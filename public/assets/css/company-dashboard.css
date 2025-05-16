@@ -675,7 +675,7 @@
     color: #dc3545;
 }
 /* summary css */
-.summary{
+/* .summary{
     margin-top: -250px;
     padding: 0px 10px 0px 10px;
 }
@@ -691,13 +691,15 @@
 }
 @media (min-width: 481px) and (max-width: 768px) {
     .summary {
-        margin-top: -145px; 
+        margin-top: -500px; 
+    padding: 0px 10px 0px 10px;
+
     }
 }
 .summary2 {
-    margin-top: -80px;
+    margin-top: -150px;
     padding: 0px 10px 0px 10px;
-}
+} */
 /* end cummary css */
 /* reminder */
 
@@ -906,23 +908,38 @@
     overflow-x: auto;
     white-space: nowrap;
 }
-@media (min-width: 993px) and (max-width: 1200px) {
+/* @media (min-width: 993px) and (max-width: 1024px) {
   .booking-table {
     display: table;
     overflow-x: auto;
     white-space: nowrap;
 }
 .summary2 {
-  margin-top: -370px !important; 
+  margin-top: -80px !important; 
   padding: 0px 15px;
 }
 
 .summary {
-  margin-top: -210px !important;
+  margin-top: -332px !important;
   padding: 0px 15px;
 }
 }
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .booking-table {
+    display: table;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.summary2 {
+  margin-top: -80px !important; 
+  padding: 0px 15px;
+}
 
+.summary {
+  margin-top: -153px !important;
+  padding: 0px 15px;
+}
+} */
 .booking-table {
     /* display: block !important; */
     overflow-x: auto !important;
@@ -931,3 +948,64 @@
 
   /* end booking datatable */
 
+/* Default Styles */
+.summary {
+    margin-top: -250px;
+    padding: 0px 10px;
+}
+
+.summary2 {
+    margin-top: -150px;
+    padding: 0px 10px;
+}
+
+/* Small Devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .summary,
+    .summary2 {
+        margin-top: 0px !important;
+        padding: 0px 10px !important;
+    }
+}
+
+/* Medium Devices (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .summary {
+        margin-top: -500px;
+        padding: 0px 10px;
+    }
+}
+
+/* Large Tablets (993px to 1024px) */
+@media (min-width: 993px) and (max-width: 1024px) {
+    .booking-table {
+        display: table;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .summary {
+        margin-top: -332px !important;
+        padding: 0px 15px;
+    }
+    .summary2 {
+        margin-top: -80px !important;
+        padding: 0px 15px;
+    }
+}
+
+/* Desktops (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .booking-table {
+        display: table;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .summary {
+        margin-top: -150px !important;
+        padding: 0px 15px;
+    }
+    .summary2 {
+        margin-top: -80px !important;
+        padding: 0px 15px;
+    }
+}

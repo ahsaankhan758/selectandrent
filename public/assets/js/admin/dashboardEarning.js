@@ -3,63 +3,47 @@ $(document).ready(function () {
     let donutChart;
     const legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745'];
 
-function renderChart(data) {
-    const total = data.reduce((sum, d) => sum + d.value, 0);
-    const isDefault = total === 0;
+    function renderChart(data, period = 'this_week') {
+        const total = data.reduce((sum, d) => sum + d.value, 0);
 
-    const chartData = isDefault
-        ? [{ label: "0%", value: 100 }]
-        : data;
+        let chartData = data;
+        let chartColors = legendColors;
 
-    const chartColors = isDefault
-        ? ['#07407B'] // Blue for empty
-        : legendColors;
+        if (total === 0 && period === 'this_week') {
+            chartData = [{ label: "Confirmed", value: 100 }];
+            chartColors = [legendColors[0]]; 
+        }
 
-    $('#lifetime-sales').empty();
+        $('#lifetime-sales').empty();
 
-    // Draw donut
-    donutChart = new Morris.Donut({
-        element: 'lifetime-sales',
-        data: chartData,
-        colors: chartColors,
-        formatter: function (y) {
-            return "0%"; // Always show 0%
-        },
-        resize: true
-    });
+        donutChart = new Morris.Donut({
+            element: 'lifetime-sales',
+            data: chartData,
+            colors: chartColors,
+            formatter: function (y, dataItem) {
+                const actualItem = data.find(d => d.label === dataItem.label);
+                return (actualItem?.value ?? 0) + '%';
+            }
+        });
 
-    // Remove duplicate text if it's 0%
-    if (isDefault) {
-        setTimeout(() => {
-            $('#lifetime-sales').find('text').each(function (i) {
-                if ($(this).text() === '0%' && i > 0) {
-                    $(this).remove();
-                }
-            });
-        }, 10);
+        const legendContainer = document.querySelector('#lifetime-sales').parentElement;
+        legendContainer.querySelectorAll('.d-flex.px-3').forEach(e => e.remove());
+
+        const labels = ['confirmed', 'pending', 'cancelled', 'completed'];
+        labels.forEach((label, i) => {
+            const percentage = data.find(d => d.label.toLowerCase() === label)?.value ?? 0;
+            const legend = `
+                <div class="d-flex justify-content-between px-3">
+                    <span>
+                        <i class="mdi mdi-square" style="color: ${legendColors[i]}"></i>
+                        ${label.charAt(0).toUpperCase() + label.slice(1)}
+                    </span>
+                    <span>${percentage}%</span>
+                </div>
+            `;
+            legendContainer.insertAdjacentHTML('beforeend', legend);
+        });
     }
-
-    // Draw the 4 legends below
-    const legendContainer = document.querySelector('#lifetime-sales').parentElement;
-    legendContainer.querySelectorAll('.d-flex.px-3').forEach(e => e.remove());
-
-    const labels = ['confirmed', 'pending', 'cancelled', 'completed'];
-    labels.forEach((label, i) => {
-        const percentage = data.find(d => d.label.toLowerCase() === label)?.value ?? 0;
-        const legend = `
-            <div class="d-flex justify-content-between px-3">
-                <span>
-                    <i class="mdi mdi-square" style="color: ${legendColors[i]}"></i>
-                    ${label.charAt(0).toUpperCase() + label.slice(1)}
-                </span>
-                <span>${percentage}%</span>
-            </div>
-        `;
-        legendContainer.insertAdjacentHTML('beforeend', legend);
-    });
-}
-
-
 
     function loadDefaultChart() {
         const defaultFilter = 'week';

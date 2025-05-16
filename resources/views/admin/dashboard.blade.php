@@ -214,15 +214,6 @@
                                 <small class="text-muted">2028-08-10</small>
                             </div>
                         </div>
-                        <div class="reminder-item">
-                            <div class="reminder-icon">
-                                <i class="mdi mdi-alert-circle-outline"></i>
-                            </div>
-                            <div>
-                                <p class="mb-1 reminder-text">Inspect and service the fleet vehicles.</p>
-                                <small class="text-muted">2028-08-10</small>
-                            </div>
-                        </div>
                         <!-- Reminder 2 -->
                         <div class="reminder-item">
                             <div class="reminder-icon">
