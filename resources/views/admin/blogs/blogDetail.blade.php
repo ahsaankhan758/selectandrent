@@ -56,7 +56,7 @@
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             @endif
-                            @if(can('Blogs','delete'))
+                            @if(can('Blogs','edit'))
                                 <a href="{{ route('blogs.destroy', $blog->id) }}" class="btn-delete">
                                     <i class="fa-solid fa-trash" style="color: red"></i>
                                 </a>

@@ -6,7 +6,7 @@
     <div class="card mt-4">
         <div class="card-header">
             <h4> {{ __('messages.currencies') }} </h4>
-            @if(can('currencies','add'))
+            @if(can('currencies','edit'))
                     <a href=" {{ route('createCurrency') }}" class="btn float-end" style="background-color: #f06115; color: white " >{{__('messages.create') }} {{__('messages.currency') }}</a>
             @endif
         </div>
@@ -43,7 +43,7 @@
                                     @if(can('currencies','edit'))
                                         <a title="Edit" href="{{ route('editCurrency',$currency->id) }}"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
                                     @endif
-                                    @if(can('currencies','delete'))
+                                    @if(can('currencies','edit'))
                                         <a title="Delete" href="{{ route('deleteCurrency',$currency->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash delete-btn"></i></a>
                                     @endif
                                 </td>
