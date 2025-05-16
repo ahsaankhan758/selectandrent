@@ -63,7 +63,7 @@
                                         @if(can('companies','edit'))
                                             <a title="Approve" href="{{ route('aprovePendingCompany', $compdata->id) }}" class="btn-aprove-company"> <i class="fa-regular fa-circle-check pending-btn" ></i> </a>
                                         @endif
-                                        @if(can('companies','delete'))
+                                        @if(can('companies','edit'))
                                             <a title="Delete" href="{{ route('deleteCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash fa-1x delete-btn"></i></a>
                                         @endif
                                     </td>    

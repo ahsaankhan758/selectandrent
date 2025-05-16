@@ -4,14 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
+use App\Models\company;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
     public function index($role){
-        $role = ($role === 'admin') ? 'admin' : 'company';
-        $usersList = User::where('role', $role)->get();
+        // $role = ($role === 'admin') ? 'admin' : 'company';
+        if($role == 'admin')
+            $usersList = User::where('role', $role)->get();
+        else
+            $usersList = company::where('status', 1)
+                ->whereHas('user', function ($query) {
+                    $query->where('role', 'company');
+                })
+                ->get();
         return view('admin.permissions.index', compact('role', 'usersList'));
     }
     

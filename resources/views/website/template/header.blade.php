@@ -80,7 +80,7 @@
                     <li class="nav-item dropdown">
                         @if(session('defaultCurrencyCode'))
                             <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
-                                {{ session('defaultCurrencyCode') }}
+                                {{ session('defaultCurrencyCode') }} 
                             </a>
                         @elseif(isset($defaultCurrency))
                             <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
@@ -88,7 +88,11 @@
                             </a>
                         @else
                             <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown" role="button" data-bs-toggle="dropdown">
-                                Currency
+                                <?php
+                                    setDefaultCurreny(); 
+                                    header("Location: " . $_SERVER['REQUEST_URI']); 
+                                    exit(); 
+                                ?>
                             </a>
                         @endif
                         @if(isset($activeCurrencies) && isset($defaultCurrency))
@@ -103,7 +107,7 @@
                                     @endif
                                 @endforeach
                             </ul>
-                        @else
+                        {{-- @else
                             <ul class="dropdown-menu">
                                 @foreach ($activeCurrencies as $currency)
                                     <li>
@@ -112,8 +116,8 @@
                                         </a>
                                     </li>
                                 @endforeach
-                            </ul>
-                        @endif
+                            </ul>--}}
+                        @endif 
                     </li>
                 </ul>
               </div>
