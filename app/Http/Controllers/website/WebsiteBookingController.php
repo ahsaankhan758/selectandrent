@@ -25,6 +25,7 @@ class WebsiteBookingController extends Controller
         'booking_items.vehicle.carModel',
         'booking_items.pickupLocation',
         'booking_items.dropoffLocation',
+        'booking_items.vehicle.user.company',
         'user',
         'car'
     ])->findOrFail($id);
