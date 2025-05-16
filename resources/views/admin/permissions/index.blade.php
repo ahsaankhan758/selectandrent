@@ -29,7 +29,11 @@
                 <select id="getUserName" name="name" class="form-control">
                     <option value="" disabled selected>Select</option>
                     @foreach ($usersList as $user)
-                        <option value={{ $user->id }}>{{ $user->name }}</option>
+                        @if($role == 'admin')
+                            <option value={{ $user->id }}>{{ $user->name }}1</option>
+                        @else
+                            <option value={{ $user->user_id }}>{{ $user->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

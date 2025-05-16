@@ -7,7 +7,7 @@
         <div class="card mt-4">
             <div class="card-header">
                 <h4>{{__('messages.user') }}</h4>
-                @if(can('users','add'))
+                @if(can('users','edit'))
                     <a href=" {{ route('createUser') }}" class="btn float-end" style="background-color: #f06115; color: white " >{{__('messages.create') }} {{__('messages.user') }}</a>
                 @endif
             </div>
@@ -39,7 +39,7 @@
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                         @endif
-                                        @if(can('users','delete'))
+                                        @if(can('users','edit'))
                                             <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete disabled-link">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red" disabled></i>
                                             </a>
