@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-header">
                 <h4>{{ __('messages.user IP') }}</h4>
-                @if(can('User IP','add'))
+                @if(can('User IP','edit'))
                     <a href=" {{ route('createIpAddress') }}" class="btn btn-primary float-end" >{{ __('messages.create') }}</a>
                 @endif
             </div>
@@ -40,7 +40,7 @@
                                     <td>{{ $IP_Data->ip_address }}</td>
                                     @if ( $IP_Data->user_name == $current_user)
                                         <td>
-                                            @if(can('User IP','delete'))
+                                            @if(can('User IP','edit'))
                                                 <a href="{{ route('deleteIpAddresses', $IP_Data->id) }}" class="disabled-link">
                                                     <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                                 </a>
@@ -48,7 +48,7 @@
                                         </td>
                                     @else
                                         <td>
-                                            @if(can('User IP','delete'))
+                                            @if(can('User IP','edit'))
                                                 <a href="{{ route('deleteIpAddresses', $IP_Data->id) }}" class="btn-delete">
                                                     <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                                 </a>

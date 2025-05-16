@@ -46,3 +46,76 @@ function convertPrice($amount, $round = 2, $symbol_check = 1)
     
 }
 
+// Set Default Currency To EUR and Create 2 More For Database Record
+function setDefaultCurreny()
+    {
+        
+        $defaultCurreny = Currency::where('code','EUR')->first();
+        if(!empty($defaultCurreny))
+            {
+                $defaultCurreny->is_default = 'Yes';
+                $defaultCurreny->save();
+                echo $defaultCurreny->code;
+            }
+        else
+            {
+           function createCurrency(array $data) {
+                $currency = new Currency;
+                $currency->name = $data['name'];
+                $currency->symbol = $data['symbol'];
+                $currency->code = $data['code'];
+                $currency->rate = $data['rate'];
+                $currency->decimals = $data['decimals'];
+                $currency->symbol_placement = $data['symbol_placement'];
+                $currency->primary_order = $data['primary_order'];
+                $currency->is_default = $data['is_default'];
+                $currency->is_active = $data['is_active'];
+                $currency->save();
+
+                return $currency;
+            }
+
+            $currencies = [
+                [
+                    'name' => 'EUR',
+                    'symbol' => '€',
+                    'code' => 'EUR',
+                    'rate' => '1',
+                    'decimals' => '2',
+                    'symbol_placement' => 'before',
+                    'primary_order' => '1',
+                    'is_default' => 'Yes',
+                    'is_active' => 'Yes',
+                ],
+                [
+                    'name' => 'GBP',
+                    'symbol' => '£',
+                    'code' => 'GBP',
+                    'rate' => '0.81',
+                    'decimals' => '2',
+                    'symbol_placement' => 'before',
+                    'primary_order' => '1',
+                    'is_default' => 'No',
+                    'is_active' => 'Yes',
+                ],
+                [
+                    'name' => 'AED',
+                    'symbol' => 'AED',
+                    'code' => 'AED',
+                    'rate' => '4.56',
+                    'decimals' => '2',
+                    'symbol_placement' => 'before',
+                    'primary_order' => '1',
+                    'is_default' => 'No',
+                    'is_active' => 'Yes',
+                ],
+            ];
+
+            foreach ($currencies as $data) {
+                $currency = createCurrency($data);
+                if ($currency->code === 'EUR')
+                    echo $currency->code . PHP_EOL;
+            }
+
+        }
+    }

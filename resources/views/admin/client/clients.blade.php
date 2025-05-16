@@ -7,7 +7,7 @@
                 <h2 class="mb-0">{{ trans_choice('messages.client',2) }} </h2>
             </div>
             <!-- Add Booking Button -->
-            {{-- @if(can('Bookings','add'))
+            {{-- @if(can('Bookings','edit'))
                 <button class="btn booking-btn-add">{{ __('messages.add') }} {{ trans_choice('messages.booking',1) }}</button>
             @endif --}}
             </div>

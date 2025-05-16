@@ -40,7 +40,7 @@
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                         @endif
-                                        @if(can('Vehicle','delete'))
+                                        @if(can('Vehicle','edit'))
                                             <a href="{{ route('deleteCar', $carData->id) }}" class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                             </a>

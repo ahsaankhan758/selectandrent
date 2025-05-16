@@ -12,7 +12,7 @@
             <div class="card-header">
                 <h4>{{ __('messages.usercontacts') }}</h4>
                 <div class="float-end">
-                    @if(can('Contacts','delete')) 
+                    @if(can('Contacts','edit')) 
                         <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-recieve" disabled>{{ __('messages.userdelete') }}</button>
                     @endif
                 </div>

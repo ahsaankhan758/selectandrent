@@ -7,7 +7,7 @@
             <div class="card-header">
                 <h4>{{ __('messages.cars') }}  {{ __('messages.brand') }}</h4>
                 <div class="mt-3 float-end">
-                    @if(can('vehicle_brands','add'))
+                    @if(can('vehicle_brands','edit'))
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                             {{ __('messages.create') }}
                         </button>
@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{ ucfirst(strtolower($brandData->name)) }}</td>
                                     <td>
-                                        @if(can('vehicle_brands','delete'))
+                                        @if(can('vehicle_brands','edit'))
                                             <a href="{{ route('deleteCarBrand',$brandData->id) }}"  class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                             </a>
