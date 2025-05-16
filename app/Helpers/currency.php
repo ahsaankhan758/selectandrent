@@ -31,20 +31,31 @@ function convertPrice($amount, $round = 2, $symbol_check = 1)
 
     $defaultCurrency = $query->first();
 
-    $rate = $defaultCurrency->rate ?? 1;
-    $symbol = $defaultCurrency->symbol ?? $defaultCurrency->code ?? '';
-    $placement = $defaultCurrency->symbol_placement ?? 'before';
-    
+    // Fallback in case no currency is found
+    if (!$defaultCurrency) {
+        $rate = 1;
+        $symbol = '';
+        $placement = 'before';
+    } else {
+        $rate = is_numeric($defaultCurrency->rate) ? (float) $defaultCurrency->rate : 1;
+        $symbol = $defaultCurrency->symbol ?? $defaultCurrency->code ?? '';
+        $placement = $defaultCurrency->symbol_placement ?? 'before';
+    }
+
+    $amount = (float) $amount;
+    $round = (int) $round;
+
     $price = round($rate * $amount, $round);
-    if($symbol_check == 1){
-        return $placement === 'after' 
-        ? $price . ' ' . $symbol 
-        : $symbol . ' ' . $price;
-    }else {
+
+    if ($symbol_check == 1) {
+        return $placement === 'after'
+            ? $price . ' ' . $symbol
+            : $symbol . ' ' . $price;
+    } else {
         return $price;
     }
-    
 }
+
 
 // Set Default Currency To EUR and Create 2 More For Database Record
 function setDefaultCurreny()
@@ -119,3 +130,4 @@ function setDefaultCurreny()
 
         }
     }
+
