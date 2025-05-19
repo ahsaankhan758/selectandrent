@@ -577,7 +577,7 @@ return [
     'booking_orderdetail'     => 'Order Detail',
     'booking_trackorder'      => 'Track Order',
     'booking_platenumber'     => 'Plate Number:',
-    'booking_referenceid'     => 'Reference ID:',
+    'booking_referenceid'     => 'Order Reference ID:',
     'booking_image'           => 'Image',
     'booking_name'            => 'Name',
     'booking_pickuplocation'  => 'Pickup Location',

@@ -49,30 +49,29 @@
                                             {{ ucfirst($booking->payment_status ?? 'N/A') }}
                                         </p>
                                     </li>
-                                 <li class="{{ $booking->booking_status == 'completed' ? 'completed' : ($booking->payment_status == 'paid' ? '' : '') }}">
-    @if($booking->booking_status != 'completed' && $booking->payment_status == 'paid')
-        <span class="active-dot dot"></span>
-    @endif
-    <h5 class="mt-0 mb-1">{{ __('messages.pickup_status') }}</h5>
-    <p class="text-muted">
-        {{ \Carbon\Carbon::parse($item->pickup_datetime)->format('F d Y') }}
-        <small class="text-muted">{{ \Carbon\Carbon::parse($item->pickup_datetime)->format('h:i A') }}</small>
-    </p>
-</li>
+                                    <li class="{{ $booking->booking_status == 'completed' ? 'completed' : ($booking->payment_status == 'paid' ? '' : '') }}">
+                                        @if($booking->booking_status != 'completed' && $booking->payment_status == 'paid')
+                                            <span class="active-dot dot"></span>
+                                        @endif
+                                        <h5 class="mt-0 mb-1">{{ __('messages.pickup_status') }}</h5>
+                                        <p class="text-muted">
+                                            {{ \Carbon\Carbon::parse($item->pickup_datetime)->format('F d Y') }}
+                                            <small class="text-muted">{{ \Carbon\Carbon::parse($item->pickup_datetime)->format('h:i A') }}</small>
+                                        </p>
+                                    </li>
 
-<li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
-    <h5 class="mt-0 mb-1">{{ __('messages.dropoff_status') }}</h5>
-    <p class="text-muted">
-        {{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('F d Y') }}
-        <small class="text-muted">{{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('h:i A') }}</small>
-    </p>
-</li>
+                                    <li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
+                                        <h5 class="mt-0 mb-1">{{ __('messages.dropoff_status') }}</h5>
+                                        <p class="text-muted">
+                                            {{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('F d Y') }}
+                                            <small class="text-muted">{{ \Carbon\Carbon::parse($item->dropoff_datetime)->format('h:i A') }}</small>
+                                        </p>
+                                    </li>
 
-<li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
-    <h5 class="mt-0 mb-1">{{ __('messages.order_completed') }}</h5>
-    <p class="text-muted">{{ ucfirst($booking->booking_status ?? 'N/A') }}</p>
-</li>
-
+                                    <li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
+                                        <h5 class="mt-0 mb-1">{{ __('messages.order_completed') }}</h5>
+                                        <p class="text-muted">{{ ucfirst($booking->booking_status ?? 'N/A') }}</p>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -91,6 +90,7 @@
                                     <thead class="table-light">
                                         <tr class="text-nowrap">
                                             <th>{{ __('messages.booking_image') }}</th>
+                                            <th>{{ __('messages.company') }}</th>
                                             <th>{{ __('messages.booking_name') }}</th>
                                             <th>{{ __('messages.booking_pickuplocation') }}</th>
                                             <th>{{ __('messages.booking_dropofflocation') }}</th>
@@ -116,10 +116,10 @@
                                                     <img src="{{ asset('/frontend-assets/assets/car-suv.png') }}" alt="Default Vehicle Image" height="32">
                                                 @endif
                                             </td>
-                                            
+                                            <td>{{ $detail->vehicle->users->name}}</td>
                                             <td class="text-nowrap">{{ $detail->vehicle->carModel->name ?? 'N/A' }} - {{ $detail->vehicle->year ?? 'N/A' }}</td>
-                                            <td>{{ $detail->pickup_location }}</td>
-                                            <td>{{ $detail->dropoff_location }}</td>
+                                            <td>{{ $detail->pickupLocation->area_name ?? 'N/A' }}</td>
+                                            <td>{{ $detail->dropoffLocation->area_name ?? 'N/A' }}</td>
                                             <td>{{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('Y-m-d') }}</td> 
                                             <td>{{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('H:i:s') }}</td> 
                                             <td>{{ \Carbon\Carbon::parse($detail->dropoff_datetime)->format('Y-m-d') }}</td>

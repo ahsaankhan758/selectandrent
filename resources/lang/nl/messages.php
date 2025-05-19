@@ -562,7 +562,7 @@ return [
     'booking_orderdetail'     => 'Bestelgegevens',
     'booking_trackorder'      => 'Volg bestelling',
     'booking_platenumber'     => 'Kenteken:',
-    'booking_referenceid'     => 'Referentie-ID:',
+    'booking_referenceid' => 'Bestelreferentie:',
     'booking_image'           => 'Afbeelding',
     'booking_name'            => 'Naam',
     'booking_pickuplocation'  => 'Ophaallocatie',
