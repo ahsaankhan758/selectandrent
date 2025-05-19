@@ -78,9 +78,9 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
+            {{-- </div>
+            <div class="row"> --}}
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title mb-3">{{ __('messages.booking_referenceid') }} {{ $booking->booking_reference }}</h4>
@@ -116,7 +116,7 @@
                                                     <img src="{{ asset('/frontend-assets/assets/car-suv.png') }}" alt="Default Vehicle Image" height="32">
                                                 @endif
                                             </td>
-                                            <td>{{ $detail->vehicle->users->name}}</td>
+                                            <td>{{ $detail->vehicle->company->name}}</td>
                                             <td class="text-nowrap">{{ $detail->vehicle->carModel->name ?? 'N/A' }} - {{ $detail->vehicle->year ?? 'N/A' }}</td>
                                             <td>{{ $detail->pickupLocation->area_name ?? 'N/A' }}</td>
                                             <td>{{ $detail->dropoffLocation->area_name ?? 'N/A' }}</td>
