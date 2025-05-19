@@ -64,5 +64,11 @@ class Car extends Model
     {
         return $this->belongsTo(CarModel::class, 'car_model_id');
     }
+    
+    public function company()
+    {
+        return $this->hasOne(Company::class, 'user_id', 'user_id');
+    }
+
 
 }

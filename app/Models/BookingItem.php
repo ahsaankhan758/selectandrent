@@ -28,27 +28,32 @@ class BookingItem extends Model
     }
 
     public function car()
-{
-    return $this->belongsTo(Car::class, 'car_id');
-}
-public function vehicle()
-{
-    return $this->belongsTo(Car::class, 'vehicle_id'); 
-}
-public function carModel()
-{
-    return $this->vehicle->carModel(); 
-}
+    {
+        return $this->belongsTo(Car::class, 'car_id');
+    }
+    public function vehicle()
+    {
+        return $this->belongsTo(Car::class, 'vehicle_id'); 
+    }
+    public function carModel()
+    {
+        return $this->vehicle->carModel(); 
+    }
 
-public function pickupLocation()
-{
-    return $this->belongsTo(CarLocation::class, 'pickup_location');
-}
+    public function pickupLocation()
+    {
+        return $this->belongsTo(CarLocation::class, 'pickup_location');
+    }
 
-public function dropoffLocation()
-{
-    return $this->belongsTo(CarLocation::class, 'dropoff_location');
-}
+    public function dropoffLocation()
+    {
+        return $this->belongsTo(CarLocation::class, 'dropoff_location');
+    }
 
+   // BookingItem.php
+public function getCompany()
+{
+    return $this->vehicle?->company;
+}
 
 }
