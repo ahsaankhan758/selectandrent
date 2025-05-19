@@ -8,13 +8,13 @@
 
     if ($user_role == 'admin') {
         $modules = ['Users', 'Companies', 'Vehicle', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Earning Summary', 'Transaction History', 'Clients', 'User IP', 'Blogs', 'Activity Log', 'Contacts', 'Currencies'];
+        $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles'];
     } else {
         $modules = ['Vehicle', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Earning Summary', 'Transaction History', 'Clients', 'Activity Log'];
+        $vehicleSubmodules = ['Locations', 'Featured Vehicles'];
     }
 
     $actions = ['view', 'edit'];
-
-    $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles'];
     $financialSubmodules = ['Earning Summary', 'Transaction History'];
 @endphp
 
