@@ -28,7 +28,7 @@
        
         
         <div class="brand-section">
-            <h5 class="brand-title">{{ __('messages.All Brands ') }}({{ $totalCars }})</h5>
+            <h5 class="brand-title">{{ __('messages.All Brands') }} ({{ $totalCars }})</h5>
             
             <div class="brand-list">
                 @foreach($categories->take(6) as $category)
@@ -49,7 +49,7 @@
                 </div>
                 <button id="viewMoreCategories" class="brand-btn">{{ __('messages.View More') }}</button>
             @endif
-            <button class="btn find-car-btn btn-dark-blue-clr">{{ __('messages.Find Car') }}</button>
+            <!-- <button class="btn find-car-btn btn-dark-blue-clr">{{ __('messages.Find Car') }}</button> -->
         </div>
     </div>
 </div>
