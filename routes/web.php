@@ -26,6 +26,7 @@ use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\website\SignupController;
 use App\Http\Controllers\Admin\AdminBlogController;
+use App\Http\Controllers\Admin\analyticsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
@@ -45,8 +46,8 @@ use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\CarRegisterController;
-use App\Http\Controllers\website\JoinProgramController;
 
+use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
@@ -131,6 +132,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     if($currentPrefix == 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
+            // analytics page
+            Route::get('/analytics', [analyticsController::class, 'index'])->name('Analytics');
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
@@ -302,16 +305,10 @@ Route::post('email/resend', [VerificationController::class, 'resend'])->name('ve
 Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
 Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
 
-
 // dashboard page website
 Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
-
-
-
+// for analytics
 Route::post('/track-click', [ActivityController::class, 'trackClick']);
-
-
-
 
 
 // Load carsRoutes
