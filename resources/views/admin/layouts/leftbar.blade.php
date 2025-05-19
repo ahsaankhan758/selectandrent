@@ -212,7 +212,7 @@
                 </li> --}}
                 @if(can('Analytics','view'))
                     <li>
-                        <a href="#">
+                        <a href="{{ route('Analytics') }}">
                             <i class="mdi mdi-chart-bar"></i>
                             <span> {{ __('messages.analytics') }} </span>
                         </a>

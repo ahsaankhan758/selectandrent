@@ -21,10 +21,7 @@
     <script src="{{asset('/')}}assets/Js/loadmore.js"></script>
     <script src="{{asset('/')}}assets/Js/car-listing-filters.js"></script>
     <script src="{{asset('/')}}frontend-assets/assets/Js/signin.js"></script>
-
     <script src="{{asset('/')}}frontend-assets/assets/Js/signup.js"></script>
-
-    
 
     <!-- Include Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -33,47 +30,7 @@
 <body class="bg-light">
 @yield('content')
 </body>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.body.addEventListener('click', function (e) {
-        // Find closest clickable element
-        let el = e.target.closest('a, button, img, div');
-
-        if (!el) return;
-
-        // Get details
-        let tag = el.tagName;
-        let text = el.innerText || el.alt || el.title || '';
-        text = text.trim().substring(0, 100); // max length 100
-        let href = el.getAttribute('href') || el.getAttribute('src') || '';
-        let currentURL = window.location.href;
-        let userAgent = navigator.userAgent;
-
-        // Get browser from JS (optional, for more accurate client side)
-        function getBrowser(userAgent) {
-            if (userAgent.indexOf('Chrome') !== -1 && userAgent.indexOf('Edg') === -1) return 'Chrome';
-            if (userAgent.indexOf('Firefox') !== -1) return 'Firefox';
-            if (userAgent.indexOf('Safari') !== -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
-            if (userAgent.indexOf('Edg') !== -1) return 'Edge';
-            if (userAgent.indexOf('Trident') !== -1 || userAgent.indexOf('MSIE') !== -1) return 'Internet Explorer';
-            return 'Unknown';
-        }
-
-        fetch('/track-click', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                element_clicked: `${tag} - ${text || href}`,
-                current_url: currentURL,
-                browser: getBrowser(userAgent)
-            })
-        });
-    });
-});
-</script>
+<script src="{{asset('/')}}frontend-assets/assets/Js/track-analytics-clicks.js"></script>
 @include('website.template.footer')
 
 <!-- Include Swiper JS -->
