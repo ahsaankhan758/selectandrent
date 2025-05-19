@@ -21,14 +21,23 @@ class WebsiteBookingController extends Controller
 
     public function show($id)
 {
-    $booking = Booking::with([
-        'booking_items.vehicle.carModel',
-        'booking_items.pickupLocation',
-        'booking_items.dropoffLocation',
-        'booking_items.vehicle.user.company',
-        'user',
-        'car'
-    ])->findOrFail($id);
+    // $booking = Booking::with([
+    //     'booking_items.vehicle.carModel',
+    //     'booking_items.pickupLocation',
+    //     'booking_items.dropoffLocation',
+    //     'user',
+    //     'car'
+    // ])->findOrFail($id);
+
+   $booking = Booking::with([
+    'booking_items.vehicle.carModel',
+    'booking_items.vehicle.company', 
+    'booking_items.pickupLocation',
+    'booking_items.dropoffLocation',
+    'user',
+    'car'
+])->findOrFail($id);
+
 
     return view('website.bookingdetail', compact('booking'));
 }
