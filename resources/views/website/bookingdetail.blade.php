@@ -50,11 +50,11 @@ Booking Detail | Select and Rent
                     <div class="row gy-3">
                         <div class="col-md-6">
                             <strong><i class="bi bi-geo-alt-fill text-danger me-1"></i> Pickup:</strong>
-                            {{ $detail->pickupLocation->city ?? 'N/A' }}
+                            {{ $detail->pickupLocation->area_name ?? 'N/A' }}
                         </div>
                         <div class="col-md-6">
                             <strong><i class="bi bi-geo-fill text-success me-1"></i> Dropoff:</strong>
-                            {{ $detail->dropoffLocation->city ?? 'N/A' }}
+                            {{ $detail->dropoffLocation->area_name ?? 'N/A' }}
                         </div>
                         
 

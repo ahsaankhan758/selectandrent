@@ -13,6 +13,7 @@ use Stripe\Checkout\Session as StripeSession;
 use App\Models\Booking;
 use App\Models\BookingItem;
 use App\Models\Currency;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class PaymentGatewaysController extends Controller
         $validator = Validator::make($request->all(), [
             'checkoutData' => 'required|string',
             'paymentMethod' => 'required|string',
-            'user_id' => 'required|integer',
+            'user_id' => 'required|integer', 
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'email' => 'required|email',
@@ -64,7 +65,7 @@ class PaymentGatewaysController extends Controller
     
             $method = $request->paymentMethod;
             $gateway = payment($method);
-            $amount = (int) round($bookingData['total'][0] * 100); // Convert to cents
+            $amount = (int) round($bookingData['total'][0] * 100);
             $qty = Cart::instance('cart')->content()->count();
             // print_r($amount);
             DB::beginTransaction();
@@ -105,6 +106,39 @@ class PaymentGatewaysController extends Controller
             }
     
             DB::commit();
+
+            // Fetch booking items again to include relation
+$bookingItems = BookingItem::where('booking_id', $booking->id)->get();
+
+// Assume currencyCode already fetched above
+$currency = $currencyCode ?? 'USD';
+
+// Send email to customer
+Mail::send('website.email.bookingorder', [
+    'booking' => $booking,
+    'bookingItems' => $bookingItems,
+    'currency' => $currency,
+], function ($message) use ($booking) {
+    $message->to($booking->email)
+            ->subject('Your Booking Confirmation - ' . $booking->booking_reference);
+});
+
+// Send email to each vehicle's company
+foreach ($bookingItems as $item) {
+    $vehicle = \App\Models\BookingItem::find($item->vehicle_id);
+    if ($vehicle && $vehicle->company_email) {
+        Mail::send('website.email.bookingorder', [
+            'booking' => $booking,
+            'bookingItems' => [$item], // send only related item
+            'currency' => $currency,
+        ], function ($message) use ($vehicle, $booking) {
+            $message->to($vehicle->company_email)
+                    ->subject('New Booking Received - ' . $booking->booking_reference);
+        });
+    }
+}
+
+
     
             // Handle Stripe payment
             if ($method === 'stripe') {

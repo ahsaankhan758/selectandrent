@@ -561,7 +561,7 @@ return [
     'booking_orderdetail'     => 'Détail de la commande',
     'booking_trackorder'      => 'Suivre la commande',
     'booking_platenumber'     => 'Numéro de plaque :',
-    'booking_referenceid'     => 'ID de référence :',
+    'booking_referenceid' => 'Référence de commande :',
     'booking_image'           => 'Image',
     'booking_name'            => 'Nom',
     'booking_pickuplocation'  => 'Lieu de prise en charge',

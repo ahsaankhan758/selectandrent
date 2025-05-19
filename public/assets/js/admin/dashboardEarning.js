@@ -3,23 +3,23 @@ $(document).ready(function () {
     let donutChart;
     const legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745'];
 
-    function renderChart(data) {
+    function renderChart(data, period = 'this_week') {
         const total = data.reduce((sum, d) => sum + d.value, 0);
-        const chartData = total === 0
-            ? [
-                { label: "Confirmed", value: 25 },
-                { label: "Pending", value: 25 },
-                { label: "Cancelled", value: 25 },
-                { label: "Completed", value: 25 }
-            ]
-            : data;
+
+        let chartData = data;
+        let chartColors = legendColors;
+
+        if (total === 0 && period === 'this_week') {
+            chartData = [{ label: "Confirmed", value: 100 }];
+            chartColors = [legendColors[0]]; 
+        }
 
         $('#lifetime-sales').empty();
 
         donutChart = new Morris.Donut({
             element: 'lifetime-sales',
             data: chartData,
-            colors: legendColors,
+            colors: chartColors,
             formatter: function (y, dataItem) {
                 const actualItem = data.find(d => d.label === dataItem.label);
                 return (actualItem?.value ?? 0) + '%';
