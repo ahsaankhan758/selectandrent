@@ -6,6 +6,7 @@ use App\Http\Middleware\CompanyAuth;
 use App\Http\Middleware\IP_Check_Middleware;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\LanguageMiddleware;
+use App\Http\Middleware\TrackUserActivity;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         
     )
     ->withMiddleware(function (Middleware $middleware) {
+       $middleware->appendToGroup('web', TrackUserActivity::class);
         $middleware->appendToGroup('LanguageMiddleware',LanguageMiddleware::class);
         $middleware->alias([
             'IsAdmin' =>AdminMiddleware::class,
