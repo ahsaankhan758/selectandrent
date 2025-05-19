@@ -40,8 +40,10 @@ class CarListingController extends Controller
 
    // *Apply Address (Search Location Name)*
    if ($request->has('address') && !empty($request->address)) {
+    echo "<pre>";
+    print_r($request->all());die;
     $query->whereHas('car_locations', function ($q) use ($request) {
-        $q->where('city', 'LIKE', '%' . $request->address . '%'); // Search in car_locations table
+        $q->where('area_name', 'LIKE', '%' . $request->address . '%'); // Search in car_locations table
     });
     }   
 
@@ -166,11 +168,12 @@ public function loadMoreCars(Request $request)
     public function searchLocations(Request $request)
 {
     $search = $request->input('query');
-
+    echo "<pre>";
+    print_r($request->all());die;
     // Fetch matching cities from `car_locations` table
-    $locations = CarLocation::where('city', 'LIKE', '%' . $search . '%')
+    $locations = CarLocation::where('area_name', 'LIKE', '%' . $search . '%')
         ->limit(10)
-        ->get(['id', 'city']);
+        ->get(['id', 'area_name']);
 
     return response()->json($locations);
 }
