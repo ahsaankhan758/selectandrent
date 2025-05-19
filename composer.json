@@ -11,9 +11,7 @@
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
         "phpmailer/phpmailer": "^6.9",
-
         "stripe/stripe-php": "^17.1",
-
         "surfsidemedia/shoppingcart": "^2.0"
     },
     "require-dev": {
