@@ -9,11 +9,15 @@ use App\Models\UserActivity;
 
 class TrackUserActivity
 {
-    public function handle(Request $request, Closure $next)
-    {
-        $response = $next($request);
+   public function handle(Request $request, Closure $next)
+{
+    $response = $next($request);
 
-        try {
+    try {
+        $user = Auth::user();
+
+        // Track if user is guest OR logged in user with role 'user'
+        if (is_null($user) || $user->role === 'user') {
             $userAgent = $request->header('User-Agent');
             $browser = $this->getBrowser($userAgent);
 
@@ -21,18 +25,21 @@ class TrackUserActivity
                 'ip_address' => $request->ip(),
                 'browser' => $browser,
                 'url' => $request->fullUrl(),
-                'user_id' => Auth::check() ? Auth::id() : null,
+                'user_id' => $user ? $user->id : null,
                 'method' => $request->method(),
                 'referrer' => $request->headers->get('referer'),
                 'action_type' => 'view',
                 'element_clicked' => null,
             ]);
-        } catch (\Exception $e) {
-            // Log or ignore
         }
-
-        return $response;
+        // Agar role company ya admin hai to kuch nahi hoga
+    } catch (\Exception $e) {
+        // Handle exception or ignore
     }
+
+    return $response;
+}
+
 
     private function getBrowser($userAgent)
     {
