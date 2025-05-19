@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\EventController;
@@ -45,8 +46,8 @@ use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\CarRegisterController;
 use App\Http\Controllers\website\JoinProgramController;
-use App\Http\Controllers\website\WebsiteBlogController;
 
+use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
 use App\Http\Controllers\website\ConfirmBookingController;
 use App\Http\Controllers\website\WebsiteBookingController;
@@ -305,6 +306,9 @@ Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->n
 // dashboard page website
 Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
 
+
+
+Route::post('/track-click', [ActivityController::class, 'trackClick']);
 
 
 
