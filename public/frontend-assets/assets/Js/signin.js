@@ -14,7 +14,6 @@ $(document).on('submit', '#usersignin', function(e) {
     var form = $(this); // reference to the form
     var url = form.attr('action'); // get the action attribute
     
-    //  alert(url);
     // Optional: Add validation here if needed
     if (!email || !password) {
 
