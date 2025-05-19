@@ -249,7 +249,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/carlisting', [CarListingController::class, 'carListingView'])->name('car.listing');
     Route::get('/load-more-cars', [CarListingController::class, 'loadMoreCars'])->name('load.more.cars');
     Route::get('/get-car-models', [CarListingController::class, 'getCarModels'])->name('get.car.models');
-    Route::get('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
+    Route::any('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
     // end car listing routes
     Route::get('/get-locations/{city_id}', [CarController::class, 'getLocations']);
     // added by farhan
