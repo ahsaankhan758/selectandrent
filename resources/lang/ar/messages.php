@@ -594,4 +594,8 @@ return [
     'dropoff_status' => 'حالة التسليم',
     'order_completed' => 'الطلب مكتمل',
 
+    'terms' => 'الشروط والأحكام',
+    'privacy' => 'سياسة الخصوصية',
+
+
 ];

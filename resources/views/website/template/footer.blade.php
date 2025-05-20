@@ -81,13 +81,14 @@
                       <hr class="hr-white">
                   </div>
                   <ul class="list-unstyled footer-links">
-                      <li><a href="{{ url('/') }}">{{ __('messages.Home') }}</a></li>
+                      {{-- <li><a href="{{ url('/') }}">{{ __('messages.Home') }}</a></li> --}}
                       <li><a href="{{ url('/about-us') }}">{{ __('messages.About') }}</a></li>
-                      <li><a href="#">{{ __('messages.Services') }}</a></li>
                       <li><a href="{{ url('/carlisting') }}">{{ __('messages.Vehicles') }}</a></li>
                       <li><a href="{{ url('/join-our-program') }}">{{ __('messages.Pricing') }}</a></li>
                       <li><a href="{{ url('/faqs') }}">{{ __('messages.FAQ') }}</a></li>
                       <li><a href="{{ url('/contact') }}">{{ __('messages.Contact') }}</a></li>
+                      <li><a href="{{ url('/terms&conditions') }}">{{ __('messages.terms') }}</a></li>
+                      <li><a href="{{ url('/privacy-policy') }}">{{ __('messages.privacy') }}</a></li>
                   </ul>                    
               </div>
               <div class="col-md-3 col-6">

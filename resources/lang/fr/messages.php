@@ -587,5 +587,7 @@ return [
     'dropoff_status' => 'Statut de Dépôt',
     'order_completed' => 'Commande Complétée',
 
+    'terms' => 'Conditions générales',
+    'privacy' => 'Politique de confidentialité',
 
 ];

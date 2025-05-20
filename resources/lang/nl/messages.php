@@ -588,4 +588,8 @@ return [
     'dropoff_status' => 'Aflevering Status',
     'order_completed' => 'Bestelling Voltooid',
 
+    'terms' => 'Algemene voorwaarden',
+    'privacy' => 'Privacybeleid',
+
+
 ];

@@ -26,7 +26,7 @@ use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\website\SignupController;
 use App\Http\Controllers\Admin\AdminBlogController;
-use App\Http\Controllers\Admin\analyticsController;
+use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
@@ -133,7 +133,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     if($currentPrefix == 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
             // analytics page
-            Route::get('/analytics', [analyticsController::class, 'index'])->name('Analytics');
+            Route::get('/analytics', [AnalyticsController::class, 'index'])->name('Analytics');
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
@@ -240,7 +240,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('/payment/create-payment-checkout', [PaymentGatewaysController::class, 'redirectToPaymentCheckout'])->name('booking.payment');
     Route::get('/payment/booking-cancel', [PaymentGatewaysController::class, 'cancelPayment'])->name('booking.cancel');
 
-
+    Route::get('/terms&conditions', function () {
+        return view('website.terms&condition');
+    });
+     Route::get('/privacy-policy', function () {
+        return view('website.privacypolicy');
+    });
     // 
     Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
     Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');

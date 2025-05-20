@@ -603,6 +603,10 @@ return [
     'dropoff_status' => 'Dropoff Status',
     'order_completed' => 'Order Completed',
 
+    'terms' => 'Terms & Conditions',
+    'privacy' => 'Privacy Policy',
+
+
 
 
 
