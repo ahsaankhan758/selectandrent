@@ -9,5 +9,5 @@ class Event extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'start', 'end','className'];
+    protected $fillable = ['title', 'start', 'end','className','location',];
 }

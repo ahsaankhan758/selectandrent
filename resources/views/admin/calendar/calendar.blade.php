@@ -34,6 +34,7 @@
                         </div>
                         <div class="modal-body px-4 pb-4 pt-0">
                             <form name="event-form" id="form-event">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-3">
@@ -59,12 +60,22 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2">
+                                    <label class="form-label">Category</label>
+                                            <select class="form-select" name="location" id="event-location">
+                                                <option value="bg-danger" >Lahore</option>
+                                                <option value="bg-success">Multan</option>
+                                                <option value="bg-primary">Pindi</option>
+                                                <option value="bg-info">karachi</option>
+                                            </select>
+                                </div>
+                                <div class="row mt-2">
                                     <div class="col-md-6 col-4">
-                                        <button type="button" class="btn btn-danger" id="btn-delete-event">Delete</button>
+                                        <button type="button" class="btn btn-danger" id="btn-delete-event" >Delete</button>
                                     </div>
                                     <div class="col-md-6 col-8 text-end">
                                         <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-success" id="btn-save-event">Save</button>
+                                        <button type="submit" class="btn btn-success" id="btn-edit-event">Edit</button>
                                     </div>
                                 </div>
                             </form>
