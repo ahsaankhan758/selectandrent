@@ -119,7 +119,7 @@
                   </div>  
               </div>
           </div>
-          <div class="footer-bottom">©<?=date('Y');?> selectandrent. {{ __('messages.All Right Reserved') }}</div>
+          <div class="footer-bottom">©<?=date('Y');?> Select And Rent. {{ __('messages.All Right Reserved') }}</div>
       </div>
   </div>
   @endif
