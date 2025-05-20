@@ -66,7 +66,7 @@
           </div>
           <div class="text-center">
               <a href="mailto:joseh@contact.com" class="contact-btn"><i class="fas fa-envelope"></i> joseh@contact.com</a>
-              <p><i class="fas fa-clock"></i> {{ __('messages.Monday-Saturday: 10am-6pm') }} <br>{{ __('messages.Closed Monday') }}</p>
+              <p><i class="fas fa-clock"></i> {{ __('messages.Monday-Saturday: 10am-6pm') }} <br>{{ __('messages.sunday') }}</p>
           </div>
       </div>
   </div>

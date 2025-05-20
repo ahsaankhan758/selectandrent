@@ -244,7 +244,7 @@ return [
     "It's easy to get in contact with me. Either call or write" => "It's easy to get in contact with me. Either call or write",
     '24/7 service' => '24/7 service',
     'Monday-Saturday: 10am-6pm' => 'Monday-Saturday: 10am-6pm',
-    'Closed Monday' => 'Closed Monday',
+    'sunday' => 'Closed Sunday',
     'Quick Links' => 'Quick Links',
     'Home' => 'Home',
     'About' => 'About',
