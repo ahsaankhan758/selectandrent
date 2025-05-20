@@ -38,6 +38,7 @@ return new class extends Migration
             $table->tinyInteger('is_featured')->default(0);
             $table->tinyInteger('status')->default(1)->nullable();
             $table->dateTime('date_added')->nullable();
+            $table->enum('upload_type', ['calendar', 'manual',' api'])->default('manual');
             $table->timestamps();
         
             // Foreign keys with proper cascading behavior
