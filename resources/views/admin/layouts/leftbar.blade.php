@@ -220,7 +220,7 @@
                 @endif
                 @if(can('Calendar','view'))
                     <li>
-                        <a href="calendar">
+                        <a href="{{ route('calendar') }}">
                             <i class="mdi mdi-calendar-range"></i>
                             <span> {{ __('messages.calendar') }} </span>
                         </a>
