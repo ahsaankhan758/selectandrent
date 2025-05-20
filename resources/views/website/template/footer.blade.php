@@ -66,7 +66,7 @@
           </div>
           <div class="text-center">
               <a href="mailto:joseh@contact.com" class="contact-btn"><i class="fas fa-envelope"></i> joseh@contact.com</a>
-              <p><i class="fas fa-clock"></i> {{ __('messages.Monday-Saturday: 10am-6pm') }} <br>{{ __('messages.Closed Monday') }}</p>
+              <p><i class="fas fa-clock"></i> {{ __('messages.Monday-Saturday: 10am-6pm') }} <br>{{ __('messages.sunday') }}</p>
           </div>
       </div>
   </div>
@@ -81,13 +81,14 @@
                       <hr class="hr-white">
                   </div>
                   <ul class="list-unstyled footer-links">
-                      <li><a href="{{ url('/') }}">{{ __('messages.Home') }}</a></li>
+                      {{-- <li><a href="{{ url('/') }}">{{ __('messages.Home') }}</a></li> --}}
                       <li><a href="{{ url('/about-us') }}">{{ __('messages.About') }}</a></li>
-                      <li><a href="#">{{ __('messages.Services') }}</a></li>
                       <li><a href="{{ url('/carlisting') }}">{{ __('messages.Vehicles') }}</a></li>
                       <li><a href="{{ url('/join-our-program') }}">{{ __('messages.Pricing') }}</a></li>
                       <li><a href="{{ url('/faqs') }}">{{ __('messages.FAQ') }}</a></li>
                       <li><a href="{{ url('/contact') }}">{{ __('messages.Contact') }}</a></li>
+                      <li><a href="{{ url('/terms&conditions') }}">{{ __('messages.terms') }}</a></li>
+                      <li><a href="{{ url('/privacy-policy') }}">{{ __('messages.privacy') }}</a></li>
                   </ul>                    
               </div>
               <div class="col-md-3 col-6">
@@ -118,7 +119,7 @@
                   </div>  
               </div>
           </div>
-          <div class="footer-bottom">©<?=date('Y');?> selectandrent. {{ __('messages.All Right Reserved') }}</div>
+          <div class="footer-bottom">©<?=date('Y');?> Select And Rent. {{ __('messages.All Right Reserved') }}</div>
       </div>
   </div>
   @endif

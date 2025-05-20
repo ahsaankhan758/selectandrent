@@ -244,7 +244,7 @@ return [
 "It's easy to get in contact with me. Either call or write" => "C’est facile de me contacter. Appelez ou écrivez",
 '24/7 service' => 'Service 24/7',
 'Monday-Saturday: 10am-6pm' => 'Lundi - Samedi : 10h - 18h',
-'Closed Monday' => 'Fermé le lundi',
+'sunday' => 'Fermé le dimanche',
 'Quick Links' => 'Liens rapides',
 'Home' => 'Accueil',
 'About' => 'À propos',
@@ -587,5 +587,7 @@ return [
     'dropoff_status' => 'Statut de Dépôt',
     'order_completed' => 'Commande Complétée',
 
+    'terms' => 'Conditions générales',
+    'privacy' => 'Politique de confidentialité',
 
 ];

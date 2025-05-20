@@ -108,38 +108,38 @@ class PaymentGatewaysController extends Controller
             DB::commit();
 
             // Fetch booking items again to include relation
-$bookingItems = BookingItem::where('booking_id', $booking->id)->get();
+            $bookingItems = BookingItem::where('booking_id', $booking->id)->get();
 
-// Assume currencyCode already fetched above
-$currency = $currencyCode ?? 'USD';
+            // Assume currencyCode already fetched above
+            $currency = $currencyCode ?? 'USD';
 
-// Send email to customer
-Mail::send('website.email.bookingorder', [
-    'booking' => $booking,
-    'bookingItems' => $bookingItems,
-    'currency' => $currency,
-], function ($message) use ($booking) {
-    $message->to($booking->email)
-            ->subject('Your Booking Confirmation - ' . $booking->booking_reference);
-});
+            // Send email to customer
+            Mail::send('website.email.bookingorder', [
+                'booking' => $booking,
+                'bookingItems' => $bookingItems,
+                'currency' => $currency,
+            ], function ($message) use ($booking) {
+                $message->to($booking->email)
+                        ->subject('Your Booking Confirmation - ' . $booking->booking_reference);
+            });
 
-// Send email to each vehicle's company
-foreach ($bookingItems as $item) {
-    $vehicle = \App\Models\BookingItem::find($item->vehicle_id);
-    if ($vehicle && $vehicle->company_email) {
-        Mail::send('website.email.bookingorder', [
-            'booking' => $booking,
-            'bookingItems' => [$item], // send only related item
-            'currency' => $currency,
-        ], function ($message) use ($vehicle, $booking) {
-            $message->to($vehicle->company_email)
-                    ->subject('New Booking Received - ' . $booking->booking_reference);
-        });
-    }
-}
+            foreach ($bookingItems as $item) {
+                $vehicle = $item->vehicle;
+                $company = $vehicle->company ?? null;
+                $companyUser = $company?->user ?? null;
 
+                if ($companyUser && $companyUser->email) {
+                    Mail::send('website.email.bookingorder', [
+                        'booking' => $booking,
+                        'bookingItems' => [$item],
+                        'currency' => $currency,
+                    ], function ($message) use ($companyUser, $booking) {
+                        $message->to($companyUser->email)
+                                ->subject('New Booking Received - ' . $booking->booking_reference);
+                    });
+                }
+            }
 
-    
             // Handle Stripe payment
             if ($method === 'stripe') {
                 if (!$gateway || empty($gateway->c2)) {

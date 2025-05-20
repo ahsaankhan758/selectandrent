@@ -1,5 +1,6 @@
 <!-- for payment gateways -->
 <script src="{{asset('/frontend-assets/assets/Js/payment-gateways/ActivePaymentRadioButtons.js')}}"></script>
+<script src="{{asset('/frontend-assets/assets/Js/terms-check.js')}}"></script>
 <!-- end for payment gateways -->
 <style>
     .payment-card {
@@ -7,8 +8,13 @@
         border: 2px solid transparent;
     }
 
+    #OrderSubmitBtn:disabled {
+    opacity: 0.6; /* Light/faded effect */
+    cursor: not-allowed; /* Optional: shows it's not clickable */
+}
+
     .payment-card.active-payment {
-        border-color: #000; /* Bootstrap primary */
+        border-color: #000;
         box-shadow: 0 0 8px rgb(21 23 25 / 30%);
     }
     .payment-card:hover {
@@ -133,13 +139,33 @@
                 </div>
                 <!-- reference number -->
                  <input type="hidden" name="reference_number" value="{{'SR-'.rand(1000,10000)}}">
-                <div class="col-md-12">
+                {{-- <div class="col-md-12">
                     @if(auth()->check())
                     <button type="submit" id="OrderSubmitBtn" class="btn-order-book btn-orange-clr mt-4"><i class="fa-solid fa-cart-shopping"></i> {{ __('messages.Process to checkout') }} </button>
                     @else
                     <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn-order-book btn-orange-clr mt-4"><i class="fa-solid fa-cart-shopping"></i> {{ __('messages.Process to checkout') }} </button>
                     @endif
-                </div>            
+                </div>             --}}
+                <div class="col-md-12">
+    <!-- Terms and Conditions Checkbox -->
+    <div class="form-check mt-3">
+        <input class="form-check-input" type="checkbox" id="agreeTerms">
+        <label class="form-check-label" for="agreeTerms">
+            I agree to the <a href="{{ url('/terms&conditions') }}" style="text-decoration: none;">Terms and Conditions</a>
+        </label>
+    </div>
+
+    <!-- Submit Button -->
+    @if(auth()->check())
+        <button type="submit" id="OrderSubmitBtn" class="btn-order-book btn-orange-clr mt-4" disabled>
+            <i class="fa-solid fa-cart-shopping"></i> {{ __('messages.Process to checkout') }}
+        </button>
+    @else
+        <button data-bs-toggle="modal" data-bs-target="#loginModal" id="OrderSubmitBtn" class="btn-order-book btn-orange-clr mt-4" disabled>
+            <i class="fa-solid fa-cart-shopping"></i> {{ __('messages.Process to checkout') }}
+        </button>
+    @endif
+</div>
             </div>
 </div>
 </form>

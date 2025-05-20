@@ -243,7 +243,7 @@ return [
 "It's easy to get in contact with me. Either call or write" => "Het is makkelijk om contact met mij op te nemen. Bel of schrijf gerust",
 '24/7 service' => '24/7 service',
 'Monday-Saturday: 10am-6pm' => 'Maandag - Zaterdag: 10.00 - 18.00 uur',
-'Closed Monday' => 'Gesloten op maandag',
+'sunday' => 'Gesloten op zondag',
 'Quick Links' => 'Snelle links',
 'Home' => 'Home',
 'About' => 'Over',
@@ -587,5 +587,9 @@ return [
     'pickup_status' => 'Ophaling Status',
     'dropoff_status' => 'Aflevering Status',
     'order_completed' => 'Bestelling Voltooid',
+
+    'terms' => 'Algemene voorwaarden',
+    'privacy' => 'Privacybeleid',
+
 
 ];
