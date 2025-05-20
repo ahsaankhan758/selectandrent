@@ -479,6 +479,10 @@
               <h2 class="fw-bold">{{ __('messages.Blog') }}</h2>
               @elseif(request()->is('booking'))
               <h2 class="fw-bold">Bookings</h2>
+              @elseif(request()->is('terms&conditions'))
+              <h2 class="fw-bold">Terms & Conditions</h2>
+              @elseif(request()->is('privacy-policy'))
+              <h2 class="fw-bold">Privacy Policy</h2>
               @elseif(request()->is('dashboard'))
               <h2 class="fw-bold">Dashboard</h2>
               @elseif(request()->is('booking-detail/*'))

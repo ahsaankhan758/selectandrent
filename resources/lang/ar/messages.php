@@ -248,7 +248,7 @@ return [
 "It's easy to get in contact with me. Either call or write" => "من السهل التواصل معي. إما بالاتصال أو الكتابة",
 '24/7 service' => 'خدمة 24/7',
 'Monday-Saturday: 10am-6pm' => 'من الاثنين إلى السبت: 10 صباحًا - 6 مساءً',
-'Closed Monday' => 'مغلق يوم الاثنين',
+'sunday' => 'مغلق يوم الأحد',
 'Quick Links' => 'روابط سريعة',
 'Home' => 'الرئيسية',
 'About' => 'من نحن',
@@ -593,5 +593,9 @@ return [
     'pickup_status' => 'حالة الاستلام',
     'dropoff_status' => 'حالة التسليم',
     'order_completed' => 'الطلب مكتمل',
+
+    'terms' => 'الشروط والأحكام',
+    'privacy' => 'سياسة الخصوصية',
+
 
 ];

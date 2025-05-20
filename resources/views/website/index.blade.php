@@ -283,6 +283,7 @@
         </div>
     </div>       
 </div>
+</div>
 
 <section class="container py-4 mt-5">
     <div class="row align-items-center">
