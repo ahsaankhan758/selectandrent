@@ -606,9 +606,34 @@ return [
     'terms' => 'Terms & Conditions',
     'privacy' => 'Privacy Policy',
 
+    'analytics_title' => 'Analytics Dashboard',
+    'breadcrumb_analytics' => 'Analytics',
+    'breadcrumb_dashboard' => 'Dashboard',
+    'page_title' => 'Analytics Overview',
+    'homepage_views' => 'Homepage Views',
+    'unique' => 'Unique',
+    'car_detail_views' => 'Car Detail Views',
+    'car_booking_clicks' => 'Car Booking Clicks',
+    'customer_dashboard_views' => 'Customer Dashboard Views',
+    'customer_booking_views' => 'Customer Booking Views',
+    'signup_views' => 'Signup Views',
+    'signin_views' => 'Signin Views',
+    'profile_view' => 'Profile View',
+    'password_reset_views' => 'Password Reset Views',
+    'contact_views' => 'Contact Views',
+    'blog_views' => 'Blog Views',
+    'views' => 'Views',
+     'home_page_clicks' => 'Home Page Clicks',
+    'car_detail_clicks' => 'Car Detail Clicks',
+    'car_booking_views' => 'Car Booking Views',
+    'customer_dashboard_clicks' => 'Customer Dashboard Clicks',
+    'customer_booking_clicks' => 'Customer Booking Clicks',
+    'signup_clicks' => 'Signup Clicks',
+    'signin_clicks' => 'Signin Clicks',
+    'profile_clicks' => 'Profile Clicks',
+    'password_reset_clicks' => 'Password Reset Clicks',
+    'contact_clicks'  => 'Contact Clicks',
+    'blog_clicks' => 'Blog Clicks',
+    'view_clicks' => 'View Clicks',
 
-
-
-
-    
 ];
