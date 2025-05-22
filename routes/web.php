@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\companyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
+use App\Http\Controllers\Admin\AnalyticController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\Cars\CarController;
 use App\Http\Controllers\Admin\CurrencyController;
@@ -26,7 +27,6 @@ use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\website\SignupController;
 use App\Http\Controllers\Admin\AdminBlogController;
-use App\Http\Controllers\Admin\AnalyticController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
@@ -47,6 +47,7 @@ use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\CarRegisterController;
 
+use App\Http\Controllers\Website\EditProfileController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
@@ -221,7 +222,9 @@ Route::middleware('LanguageMiddleware')->group(function(){
         });
     }
 
-
+// Route::get('/edit-profile', [EditProfileController::class, 'showprofile'])->name('website.edit_profile');
+Route::get('/edit-profile/{id}', [EditProfileController::class, 'editProfile'])->name('website.edit_profile');
+Route::post('/edit-profile/{id}', [EditProfileController::class, 'updateProfile'])->name('website.update_profile');
     // add routes of website by Farhan & Salman
     Route::get('/', [WebsiteHomeController::class, 'showView']);
     Route::post('/car-search', [WebsiteHomeController::class, 'search'])->name('car.search');

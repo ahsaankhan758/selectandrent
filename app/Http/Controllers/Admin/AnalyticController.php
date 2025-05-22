@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\UserActivity;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AnalyticController extends Controller
 {
@@ -149,6 +150,35 @@ $uniqueBlogPageClicks = UserActivity::where('url', 'like', '%/blog')
                                     ->where('method', 'click')
                                     ->distinct('ip_address')
                                     ->count('ip_address');
+// terms and condition  
+$termsPageViews = UserActivity::where('url', 'like', '%/terms&conditions')->count();
+
+$uniqueTermsPageViews = UserActivity::where('url', 'like', '%/terms&conditions')
+                                    ->distinct('ip_address')
+                                    ->count('ip_address');
+
+$termsPageClicks = UserActivity::where('url', 'like', '%/terms&conditions')
+                                ->where('method', 'click')
+                                ->count();
+
+$uniqueTermsPageClicks = UserActivity::where('url', 'like', '%/terms&conditions')
+                                     ->where('method', 'click')
+                                     ->distinct('ip_address')
+                                     ->count('ip_address');
+// privacy policy
+$privacyPolicyViews = UserActivity::where('url', 'like', '%/privacy-policy')->count();
+$uniquePrivacyPolicyViews = UserActivity::where('url', 'like', '%/privacy-policy')
+                                        ->distinct('ip_address')
+                                        ->count('ip_address');
+
+$privacyPolicyClicks = UserActivity::where('url', 'like', '%/privacy-policy')
+                                   ->where('method', 'click')
+                                   ->count();
+$uniquePrivacyPolicyClicks = UserActivity::where('url', 'like', '%/privacy-policy')
+                                         ->where('method', 'click')
+                                         ->distinct('ip_address')
+                                         ->count('ip_address');
+
                                    
     return view('admin.analytics', compact(
     'homepageViews', 'uniqueHomepageViews',
@@ -169,6 +199,10 @@ $uniqueBlogPageClicks = UserActivity::where('url', 'like', '%/blog')
     'contactPageClicks', 'uniqueContactPageClicks',
     'blogPageViews', 'uniqueBlogPageViews',
     'blogPageClicks', 'uniqueBlogPageClicks',
+     'termsPageViews', 'uniqueTermsPageViews',
+    'termsPageClicks', 'uniqueTermsPageClicks',
+    'privacyPolicyViews', 'uniquePrivacyPolicyViews',
+    'privacyPolicyClicks', 'uniquePrivacyPolicyClicks',
 ));
 
 }

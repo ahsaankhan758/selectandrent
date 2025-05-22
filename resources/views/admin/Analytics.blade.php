@@ -237,15 +237,15 @@
                 {{-- Profile Clicks --}}
                 <div class="mb-3 border-bottom pb-2">
                     <h6 class="text-muted mb-1">{{ __('messages.profile_clicks') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $profileClicks ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueProfileClicks ?? '--' }}</small>
+                    <p class="mb-0 text-dark fs-5 fw-bold">0</p>
+                    <small class="text-muted">{{ __('messages.unique') }} 0</small>
                 </div>
 
                 {{-- Profile Views --}}
                 <div>
                     <h6 class="text-muted mb-1">{{ __('messages.profile_view') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $profileViews ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueProfileViews ?? '--' }}</small>
+                    <p class="mb-0 text-dark fs-5 fw-bold">0</p>
+                    <small class="text-muted">{{ __('messages.unique') }} 0</small>
                 </div>
             </div>
         </div>
@@ -265,14 +265,14 @@
             {{-- Stats Section --}}
             <div class="col-8 bg-light p-3">
                 <div class="mb-3 border-bottom pb-2">
-                    <h6 class="text-muted mb-1">{{ __('messages.password_reset_clicks') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $passwordResetClicks ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniquePasswordResetClicks ?? '--' }}</small>
+                    <h6 class="text-muted mb-1">{{ __('messages.terms_page_clicks') }}</h6>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $termsPageClicks }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueTermsPageClicks }}</small>
                 </div>
                 <div>
-                    <h6 class="text-muted mb-1">{{ __('messages.password_reset_views') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $passwordResetViews ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniquePasswordResetViews ?? '--' }}</small>
+                    <h6 class="text-muted mb-1">{{ __('messages.terms_page_views') }}</h6>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $termsPageViews }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueTermsPageViews }}</small>
                 </div>
             </div>
         </div>
@@ -292,13 +292,13 @@
             <div class="col-8 bg-light p-3">
                 <div class="mb-3 border-bottom pb-2">
                     <h6 class="text-muted mb-1">{{ __('messages.contact_clicks') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $contactClicks ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueContactClicks ?? '--' }}</small>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $contactPageViews }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueContactPageViews }}</small>
                 </div>
                 <div>
                     <h6 class="text-muted mb-1">{{ __('messages.contact_views') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $contactPageViews ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueContactPageViews ?? '--' }}</small>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $contactPageClicks }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueContactPageClicks }}</small>
                 </div>
             </div>
         </div>
@@ -318,13 +318,13 @@
             <div class="col-8 bg-light p-3">
                 <div class="mb-3 border-bottom pb-2">
                     <h6 class="text-muted mb-1">{{ __('messages.blog_clicks') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $blogClicks ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueBlogClicks ?? '--' }}</small>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $blogPageClicks }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueBlogPageClicks }}</small>
                 </div>
                 <div>
                     <h6 class="text-muted mb-1">{{ __('messages.blog_views') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $blogPageViews ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueBlogPageViews ?? '--' }}</small>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $blogPageViews }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueContactPageClicks }}</small>
                 </div>
             </div>
         </div>
@@ -344,14 +344,14 @@
             {{-- Stats Section --}}
             <div class="col-8 bg-light p-3">
                 <div class="mb-3 border-bottom pb-2">
-                    <h6 class="text-muted mb-1">{{ __('messages.view_clicks') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $viewsClicks ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueViewsClicks ?? '--' }}</small>
+                    <h6 class="text-muted mb-1">{{ __('messages.privacy_page_clicks') }}</h6>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $privacyPolicyClicks }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniquePrivacyPolicyClicks }}</small>
                 </div>
                 <div>
-                    <h6 class="text-muted mb-1">{{ __('messages.views') }}</h6>
-                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $views ?? '--' }}</p>
-                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueViews ?? '--' }}</small>
+                    <h6 class="text-muted mb-1">{{ __('messages.privacy_page_views') }}</h6>
+                    <p class="mb-0 text-dark fs-5 fw-bold">{{ $privacyPolicyViews }}</p>
+                    <small class="text-muted">{{ __('messages.unique') }} {{ $uniquePrivacyPolicyViews }}</small>
                 </div>
             </div>
         </div>

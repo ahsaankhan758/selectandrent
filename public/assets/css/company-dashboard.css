@@ -1009,3 +1009,20 @@
         padding: 0px 15px;
     }
 }
+
+@media (min-width: 1441px) {
+     .booking-table {
+        display: table;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .summary {
+        margin-top: -25px !important;
+        padding: 0px 15px;
+    }
+    .summary2 {
+        margin-top: -80px !important;
+        padding: 0px 15px;
+    }
+}
+
