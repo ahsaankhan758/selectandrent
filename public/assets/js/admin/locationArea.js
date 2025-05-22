@@ -3,8 +3,10 @@ $(document).ready(function() {
 
     $('select[name="city"]').change(function() {
         var city_id = $(this).val(); 
-
-      
+        loadArea(city_id);
+    
+    });
+    function loadArea(city_id){
         if (city_id) {
             $.ajax({
                 url: window.getLocationsUrl + '/' + city_id, 
@@ -31,5 +33,5 @@ $(document).ready(function() {
             $('select[name="location"]').empty();
             $('select[name="location"]').append('<option value="" selected>Select Area</option>');
         }
-    });
+    }
 });
