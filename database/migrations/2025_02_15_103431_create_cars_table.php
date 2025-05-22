@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('fuel_type')->nullable();
             $table->string('exterior_color')->nullable();
             $table->string('interior_color')->nullable();
-            $table->string('lisence_plate')->nullable();
+            $table->string('lisence_plate')->nullable()->unique();
             $table->string('thumbnail')->nullable();
             $table->json('images')->nullable();
             $table->text('features')->nullable();
