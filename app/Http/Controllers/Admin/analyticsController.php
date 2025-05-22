@@ -49,7 +49,6 @@ $uniqueCarDetailClicks = UserActivity::where('url', 'like', url('/cardetail/%'))
                                      ->distinct('ip_address')
                                      ->count('ip_address');
                                   
-
     // Car Booking Page Views (/carbooking)
     $carBookingViews = UserActivity::where('url', 'like', '%/carbooking')->count();
     $uniqueCarBookingViews = UserActivity::where('url', 'like', '%/carbooking')
