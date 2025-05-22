@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\website\FaqsController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\companyController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
 use App\Http\Controllers\Admin\AnalyticController;
@@ -45,8 +46,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\website\CarRegisterController;
 
+use App\Http\Controllers\website\CarRegisterController;
 use App\Http\Controllers\Website\EditProfileController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
@@ -95,6 +96,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
    
     if($currentPrefix == 'company'){
         Route::prefix('company')->middleware(['auth','IsAdmin:company'])->group(function(){
+            Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
+            Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
             // edit by farhan
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
             Route::get('/bookings/chart-data', [DashboardController::class, 'getChartData'])->name('bookings.chart-data');
@@ -133,6 +136,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     if($currentPrefix == 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
+            Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
+            Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
             // analytics page
             Route::get('/analytics', [AnalyticController::class, 'index'])->name('Analytics');
             //Dashborad
@@ -221,11 +226,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('deleteCurrency/{id}', [CurrencyController::class, 'delete'])->name('deleteCurrency');
         });
     }
-
-// Route::get('/edit-profile', [EditProfileController::class, 'showprofile'])->name('website.edit_profile');
-Route::get('/edit-profile/{id}', [EditProfileController::class, 'editProfile'])->name('website.edit_profile');
-Route::post('/edit-profile/{id}', [EditProfileController::class, 'updateProfile'])->name('website.update_profile');
     // add routes of website by Farhan & Salman
+
+    Route::get('/edit-profile/{id}', [EditProfileController::class, 'editProfile'])->name('website.edit_profile');
+    Route::post('/edit-profile/{id}', [EditProfileController::class, 'updateProfile'])->name('website.update_profile');
+
     Route::get('/', [WebsiteHomeController::class, 'showView']);
     Route::post('/car-search', [WebsiteHomeController::class, 'search'])->name('car.search');
     Route::get('/car-brands', [WebsiteHomeController::class, 'getCarBrands'])->name('car.brands');
