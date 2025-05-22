@@ -26,7 +26,7 @@ use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\website\SignupController;
 use App\Http\Controllers\Admin\AdminBlogController;
-use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\AnalyticController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
@@ -133,7 +133,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     if($currentPrefix == 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
             // analytics page
-            Route::get('/analytics', [AnalyticsController::class, 'index'])->name('Analytics');
+            Route::get('/analytics', [AnalyticController::class, 'index'])->name('Analytics');
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
