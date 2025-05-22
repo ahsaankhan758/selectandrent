@@ -210,7 +210,8 @@
                 <li id="sub_menu_car_listing" class="collapse">
                     <a class="dropdown-item custom-ml-15" href="{{ route('carLocations') }}">    <i class="mdi mdi-map-marker-radius"></i>Car Locations</a>
                 </li> --}}
-                @if(can('Analytics','view'))
+                {{-- @if(can('Analytics','view')) --}}
+                @if(Auth::check() && Auth::user()->role === 'admin')
                     <li>
                         <a href="{{ route('Analytics') }}">
                             <i class="mdi mdi-chart-bar"></i>
