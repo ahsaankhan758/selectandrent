@@ -1,11 +1,11 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserActivity;
 use Illuminate\Http\Request;
 
-class AnalyticsController extends Controller
+class AnalyticController extends Controller
 {
     public function index()
 {
@@ -172,5 +172,4 @@ $uniqueBlogPageClicks = UserActivity::where('url', 'like', '%/blog')
 ));
 
 }
-
 }
