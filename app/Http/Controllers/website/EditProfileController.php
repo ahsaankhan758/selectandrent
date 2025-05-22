@@ -19,26 +19,6 @@ class EditProfileController extends Controller
         return view('website.edit_profile', compact('user'));
     }
 
-    // public function updateProfile(Request $request, $id)
-    // {
-    //     if (Auth::id() != $id) {
-    //         abort(403, 'Unauthorized action.');
-    //     }
-
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|email',
-    //         'phone' => 'nullable|string|max:20',
-    //     ]);
-
-    //     $user = User::findOrFail($id);
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->phone = $request->phone;
-    //     $user->save();
-
-    //     return redirect()->route('website.edit_profile', $id)->with('success', 'Profile updated successfully!');
-    // }
 
     public function updateProfile(Request $request, $id)
 {
