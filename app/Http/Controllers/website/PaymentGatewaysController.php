@@ -108,6 +108,7 @@ class PaymentGatewaysController extends Controller
             DB::commit();
 
             // Fetch booking items again to include relation
+
 $bookingItems = BookingItem::where('booking_id', $booking->id)->get();
 
 
@@ -158,6 +159,7 @@ foreach ($bookingItems as $item) {
                         'currency' => $currencyCode,
                         'product_data' => [
                             'name' => $booking->booking_reference,
+
                         ],
                         'unit_amount' => $amount,
                     ],

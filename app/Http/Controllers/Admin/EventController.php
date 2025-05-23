@@ -13,41 +13,71 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all()->map(function ($event) {
-            return [
+           return [
                 'id' => $event->id,
                 'title' => $event->title,
-                'start' => Carbon::parse($event->start)->toIso8601String(), // Convert to ISO 8601
-                'end' => $event->end ? Carbon::parse($event->end)->toIso8601String() : null, // Convert if exists
-                'className' => $event->className
+                'start' => Carbon::parse($event->start)->toIso8601String(),
+                'end' => $event->end ? Carbon::parse($event->end)->toIso8601String() : null,
+                'className' => [$event->className],
+                'extendedProps' => [
+                    'location' => $event->location,
+                ],
             ];
+
         });
         
        
         return response()->json($events);
     }
-    public function store(Request $request)
-    {
-        // $request->validate([
-        //     'title' => 'required|string|max:255',
-        //     'start' => 'required|date',
-        //     'end' => 'nullable|date',
-        //     'className' => 'required|string|max:255',
-        // ]);
-
-        foreach ($request->events as $eventData) {
-            $event = Event::create([
-                'title' => $eventData['title'],
-                'start' => Carbon::parse($eventData['start'])->format('Y-m-d H:i:s'),
-                'end' => isset($eventData['end']) ? Carbon::parse($eventData['end'])->format('Y-m-d H:i:s') : null,
-                'className' => $eventData['className'],
+       public function store(Request $request)
+        {
+            $validated = $request->validate([
+                'title' => 'required|string',
+                'category' => 'required|string',
+                'start' => 'required|date',
+                'end' => 'nullable|date',
+                'location' => 'required',
             ]);
-    
-    //        $createdEvents[] = $event;
-        }
 
-        return response()->json(['message' => 'Event created successfully!', 'event' => $event], 201);
+            $event = Event::create([
+                'title' => $validated['title'],
+                'start' => $validated['start'],
+                'end' => $validated['end'] ?? $validated['start'],
+                'className' => $validated['category'],
+                'location' => $validated['location']
+            ]);
+
+            return response()->json([
+                'message' => 'Event saved successfully',
+                'event' => $event
+            ]);
+        }
+    public function update(Request $request){
+        $validated =  $request->validate([
+            'title' => 'required',
+            'newTitle' => 'required',
+            'location' => 'required'
+        ]);
+        $selectedTitle = Event::where('title', $validated['title'])->first();
+        $selectedTitle->title = $validated['newTitle'];
+        $selectedTitle->location = $validated['location'];
+        $selectedTitle->update();
+
+        return response()->json([
+            'message' => 'Event Updated Successfully',
+        ]);
     }
-  
+    public function delete(Request $request){
+        $validated =  $request->validate([
+            'title' => 'required'
+        ]);
+        $selectedTitle = Event::where('title', $validated['title']);
+        $selectedTitle->delete();
+
+        return response()->json([
+            'message' => 'Event Deleted Successfully',
+        ]);
+    }
 }
 
 

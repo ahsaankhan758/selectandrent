@@ -138,10 +138,22 @@
                 <div class="col-md-2 text-end">
                     <ul class="list-unstyled topnav-menu float-end mb-0">
                         <li class="dropdown notification-list topbar-dropdown">
-                            <a title="{{ Auth::user()->name }}" class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="mdi mdi-account-circle-outline theme-color text-white"  style="font-size: 25px;"></i>
-                            </a>
+                            @php
+                            $profileImage = Auth::user()->profile_image;
+                            @endphp
+
+                        <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light text-white"
+                        data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" title="">
+                            @if ($profileImage && file_exists(public_path($profileImage)))
+                                <img src="{{ asset($profileImage) }}" alt="Profile" width="30" height="30"
+                                    class="rounded-circle object-fit-cover" style="object-fit: cover;">
+                            @else
+                                <i class="mdi mdi-account-circle-outline theme-color text-white" style="font-size: 25px;"></i>
+                            @endif
+                        </a>
+
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <a class="dropdown-item notify-item">Welcome {{ Auth::user()->name }}</a>
                                 <!-- item-->
                                 <a href="{{route('website.dashboard')}}" class="dropdown-item notify-item">
                                     <i class="mdi mdi-view-dashboard-outline theme-color"></i>
@@ -150,7 +162,7 @@
                                 
                                 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{ route('website.edit_profile', Auth::id()) }}" class="dropdown-item notify-item">
                                     <span class="mdi mdi-account theme-color"></span>
                                     <span> {{ __('messages.edit') }} {{ __('messages.profile') }}</span>
                                 </a>
@@ -478,11 +490,17 @@
               @elseif(request()->is('blog-detail/*'))
               <h2 class="fw-bold">{{ __('messages.Blog') }}</h2>
               @elseif(request()->is('booking'))
-              <h2 class="fw-bold">Bookings</h2>
+              <h2 class="fw-bold">{{ __('messages.header_booking') }}</h2>
+              @elseif(request()->is('terms&conditions'))
+              <h2 class="fw-bold">{{ __('messages.header_term') }}</h2>
+              @elseif(request()->is('privacy-policy'))
+              <h2 class="fw-bold">{{ __('messages.header_privacy') }}</h2>
               @elseif(request()->is('dashboard'))
-              <h2 class="fw-bold">Dashboard</h2>
+              <h2 class="fw-bold">{{ __('messages.header_dash') }}</h2>
               @elseif(request()->is('booking-detail/*'))
-              <h2 class="fw-bold">Booking Detail</h2>
+              <h2 class="fw-bold">{{ __('messages.header_book_detail') }}</h2>
+              @elseif(request()->is('edit-profile/*'))
+              <h2 class="fw-bold">{{ __('messages.update_profile') }}</h2>
               @elseif(request()->is('faqs'))
               <h2 class="fw-bold">{{ __('messages.FAQ') }}</h2>
               <p>{{ __('messages.Got Questions? We’ve Got Answers') }}</p>

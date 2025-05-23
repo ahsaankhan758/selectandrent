@@ -8,7 +8,7 @@ class CarLocation extends Model
 {
     protected $fillable = [
         'city_id',
-        'area',
+        'area_name',
         'latitude',
         'longitude',
         'postal_code',
