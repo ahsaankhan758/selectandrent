@@ -479,7 +479,7 @@ return [
 'Car_Register' => 'Enregistrer une voiture',
 'Register_With_Car_Rental' => 'S\'inscrire avec le service de location',
 'Contact_Info' => 'Informations de contact',
-'Company Website' => 'Site web de l\'entreprise',
+'Company_Website' => 'Site web de l\'entreprise',
 'Company_Name' => 'Nom de l\'entreprise',
 'Company_Email' => 'Email de l\'entreprise',
 'Company_Phone' => 'Téléphone de l\'entreprise',

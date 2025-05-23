@@ -33,6 +33,7 @@ use App\Http\Controllers\website\ContactController;
 use App\Http\Controllers\Admin\AdminPaymentGateways;
 use App\Http\Controllers\Admin\IP_AddressController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\usersignupController;
 use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
@@ -127,6 +128,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Activity Logs
             Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
             Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
+            // notifications by ak
+            Route::get('/notifications/clear', [NotificationController::class, 'clear'])->name('notifications.clear');
+            Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+            Route::get('/notifications/all', [NotificationController::class, 'index'])->name('notifications.all');
+            Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
         });
     }
 
@@ -216,6 +222,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('editCurrency/{id}', [CurrencyController::class, 'edit'])->name('editCurrency');
             Route::put('updateCurrency/{id}', [CurrencyController::class, 'update'])->name('updateCurrency');
             Route::get('deleteCurrency/{id}', [CurrencyController::class, 'delete'])->name('deleteCurrency');
+
+             // notifications by ak
+            Route::get('/notifications/clear', [NotificationController::class, 'clear'])->name('notifications.clear');
+            Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+            Route::get('/notifications/all', [NotificationController::class, 'index'])->name('notifications.all');
+            Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
+
         });
     }
 

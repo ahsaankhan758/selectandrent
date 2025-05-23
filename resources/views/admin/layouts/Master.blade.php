@@ -20,6 +20,7 @@
         <link href="{{asset('/')}}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- Head js -->
         <script src="{{asset('/')}}assets/js/head.js"></script>
+        
         <link href="{{asset('/')}}assets/css/admin.css" rel="stylesheet" type="text/css" />
 
         <!-- company dashboard css -->
@@ -82,6 +83,8 @@
         <script src="{{asset('/')}}assets/js/admin.js"></script>
         <!-- Permissions -->
         <script src="{{asset('/')}}assets/js/admin/permissions.js"></script>
+        <!-- notifications -->
+        <script src="{{asset('/')}}assets/js/admin/notifications.js"></script>
         <script type="text/javascript">
             // For Delete Confirmation
             $(".btn-delete").click(function(){
@@ -100,5 +103,14 @@
                 $("#div1").delay(6000).fadeOut(1500); 
             });
         </script>
+        @if(auth()->check() && auth()->user()->role == 'company')
+        <script>
+            window.baseUrl = "{{ url('/company') }}";
+        </script>
+        @else
+        <script>
+            window.baseUrl = "{{ url('/admin') }}";
+        </script>
+        @endif
     </body>
 </html>
