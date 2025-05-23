@@ -37,25 +37,23 @@
 <!-- Include Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
   var swiper = new Swiper(".mySwiper", {
     loop: true,
     autoplay: {
-        delay: 3000, // 3 sec
-        disableOnInteraction: false,
+      delay: 3000,
+      disableOnInteraction: false,
     },
     navigation: {
-        nextEl: ".carousel-control-prev-custom",
-        prevEl: ".carousel-control-next-custom",
+      nextEl: ".carousel-control-next-custom",
+      prevEl: ".carousel-control-prev-custom",
     },
     breakpoints: {
-        320: { slidesPerView: 1, spaceBetween: 10 }, // Mobile
-        768: { slidesPerView: 3, spaceBetween: 15 }, // Tablet
-        1024: { slidesPerView: 4, spaceBetween: 20 }, // Desktop
+      320: { slidesPerView: 1, spaceBetween: 10 },
+      768: { slidesPerView: 2, spaceBetween: 15 },
+      1024: { slidesPerView: 3, spaceBetween: 30 },
     },
-});
-// hide status
-$(document).ready(function(){  
-    $("#div1").delay(6000).fadeOut(1500); 
+  });
 });
 </script>
 </body>
