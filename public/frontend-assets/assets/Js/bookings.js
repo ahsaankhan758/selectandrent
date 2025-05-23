@@ -67,7 +67,7 @@ $(document).on('submit', '#bookingForm', function(e) {
                     $.each(errors, function(key, val) {
                         errorMsg += val[0] + '\n';
                     });
-                    alert(errorMsg);
+                    // alert(errorMsg);
                 } else {
                     alert('An unexpected error occurred.');
                 }

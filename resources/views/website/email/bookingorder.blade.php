@@ -138,7 +138,7 @@
 
     <div class="footer">
         Regards,<br>
-              <strong>{{$booking->car->users->companies->name}}</strong>
+              <strong>{{$booking->car->users->companies->name?? ''}}</strong>
     </div>
 
 </body>

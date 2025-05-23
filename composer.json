@@ -28,7 +28,8 @@
         "app/Helpers/helpers.php",
         "app/Helpers/can.php",
         "app/Helpers/PaymentGateway.php",
-        "app/Helpers/currency.php"
+        "app/Helpers/currency.php",
+        "app/Helpers/Notifications.php"
         ],
         "psr-4": {
             "App\\": "app/",
