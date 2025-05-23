@@ -34,6 +34,7 @@ class Car extends Model
         'is_featured',
         'status',
         'date_added',
+        'upload_type',
     ];
     protected $casts = [
         'images' => 'array', 

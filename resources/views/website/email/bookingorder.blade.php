@@ -136,10 +136,12 @@
 
     <p>We will contact you soon with further updates.</p>
 
+
     <div class="footer">
         Regards,<br>
               <strong>{{$booking->car->users->companies->name?? ''}}</strong>
     </div>
+
 
 </body>
 </html>

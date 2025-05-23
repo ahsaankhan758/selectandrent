@@ -31,13 +31,14 @@ return new class extends Migration
             $table->string('fuel_type')->nullable();
             $table->string('exterior_color')->nullable();
             $table->string('interior_color')->nullable();
-            $table->string('lisence_plate')->nullable();
+            $table->string('lisence_plate')->nullable()->unique();
             $table->string('thumbnail')->nullable();
             $table->json('images')->nullable();
             $table->text('features')->nullable();
             $table->tinyInteger('is_featured')->default(0);
             $table->tinyInteger('status')->default(1)->nullable();
             $table->dateTime('date_added')->nullable();
+            $table->enum('upload_type', ['calendar', 'manual',' api'])->default('manual');
             $table->timestamps();
         
             // Foreign keys with proper cascading behavior

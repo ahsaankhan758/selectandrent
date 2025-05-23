@@ -16,8 +16,10 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\website\FaqsController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\companyController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
+use App\Http\Controllers\Admin\AnalyticController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\Cars\CarController;
 use App\Http\Controllers\Admin\CurrencyController;
@@ -26,7 +28,6 @@ use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\website\SignupController;
 use App\Http\Controllers\Admin\AdminBlogController;
-use App\Http\Controllers\Admin\analyticsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FinancialController;
 use App\Http\Controllers\website\ContactController;
@@ -46,8 +47,9 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\website\CarRegisterController;
 
+use App\Http\Controllers\website\CarRegisterController;
+use App\Http\Controllers\Website\EditProfileController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
@@ -95,6 +97,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
    
     if($currentPrefix == 'company'){
         Route::prefix('company')->middleware(['auth','IsAdmin:company'])->group(function(){
+            Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
+            Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
             // edit by farhan
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
             Route::get('/bookings/chart-data', [DashboardController::class, 'getChartData'])->name('bookings.chart-data');
@@ -115,7 +119,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
              //Calendar Routes
              Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
              Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
-             Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents'); // Add new event
+             Route::post('/storeEvent', [EventController::class, 'store'])->name('storeEvent'); // Add new event
              // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
              // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
              //Car Bookings Routes
@@ -138,8 +142,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     if($currentPrefix == 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
+            Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
+            Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
             // analytics page
-            Route::get('/analytics', [analyticsController::class, 'index'])->name('Analytics');
+            Route::get('/analytics', [AnalyticController::class, 'index'])->name('Analytics');
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
@@ -181,9 +187,18 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/contact', [AdminContactController::class, 'received'])->name('contact.received');
             Route::delete('deleteContact',[AdminContactController::class, 'delete'])->name('deleteContact');
             //Calendar Routes
+            // Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
+            // Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); 
+            // Route::post('/storeEvent', [EventController::class, 'store'])->name('storeEvent');
+            // Route::put('/updateEvent', [EventController::class, 'update'])->name('updateEvent');
+            // Route::delete('/deleteEvent', [EventController::class, 'delete'])->name('deleteEvent');
             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-            Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); 
-            Route::post('/storeEvents', [EventController::class, 'store'])->name('storeEvents');
+            Route::get('/getVehicles', [CalendarController::class, 'getVehicles'])->name('getVehicles'); 
+            Route::post('/storeVehicle', [CalendarController::class, 'store'])->name('storeVehicle');
+            Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
+            Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
+            Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
+
             // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
             // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
             //Car Bookings Routes
@@ -231,9 +246,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
         });
     }
-
-
     // add routes of website by Farhan & Salman
+
+    Route::get('/edit-profile/{id}', [EditProfileController::class, 'editProfile'])->name('website.edit_profile');
+    Route::post('/edit-profile/{id}', [EditProfileController::class, 'updateProfile'])->name('website.update_profile');
+
     Route::get('/', [WebsiteHomeController::class, 'showView']);
     Route::post('/car-search', [WebsiteHomeController::class, 'search'])->name('car.search');
     Route::get('/car-brands', [WebsiteHomeController::class, 'getCarBrands'])->name('car.brands');
@@ -253,7 +270,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('/payment/create-payment-checkout', [PaymentGatewaysController::class, 'redirectToPaymentCheckout'])->name('booking.payment');
     Route::get('/payment/booking-cancel', [PaymentGatewaysController::class, 'cancelPayment'])->name('booking.cancel');
 
-
+    Route::get('/terms&conditions', function () {
+        return view('website.terms&condition');
+    });
+     Route::get('/privacy-policy', function () {
+        return view('website.privacypolicy');
+    });
     // 
     Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
     Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
@@ -313,10 +335,6 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice')->middleware('auth');
 Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth', 'signed']);
 Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend')->middleware('auth');
-
-// booking page website
-Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
-Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
 
 // dashboard page website
 Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
