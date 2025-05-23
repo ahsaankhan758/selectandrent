@@ -136,11 +136,11 @@
 
     <p>We will contact you soon with further updates.</p>
 
-  <div class="footer">
-    Regards,<br>
-    <strong>{{ $bookingItems[0]->vehicle->company->name ?? 'N/A' }}</strong>
-  </div>
 
+    <div class="footer">
+        Regards,<br>
+              <strong>{{$booking->car->users->companies->name?? ''}}</strong>
+    </div>
 
 
 </body>

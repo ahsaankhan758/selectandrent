@@ -478,7 +478,7 @@ return [
 'Car_Register' => 'Auto registreren',
 'Register_With_Car_Rental' => 'Registreren bij autoverhuur',
 'Contact_Info' => 'Contactgegevens',
-'Company Website' => 'Bedrijfswebsite',
+'Company_Website' => 'Bedrijfswebsite',
 'Company_Name' => 'Bedrijfsnaam',
 'Company_Email' => 'E-mailadres van het bedrijf',
 'Company_Phone' => 'Telefoonnummer van het bedrijf',

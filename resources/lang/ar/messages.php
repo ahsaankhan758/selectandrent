@@ -484,7 +484,7 @@ return [
 'Car_Register' => 'تسجيل السيارة',
 'Register_With_Car_Rental' => 'سجل مع خدمة تأجير السيارات',
 'Contact_Info' => 'معلومات التواصل',
-'Company Website' => 'موقع الشركة',
+'Company_Website' => 'موقع الشركة',
 'Company_Name' => 'اسم الشركة',
 'Company_Email' => 'البريد الإلكتروني للشركة',
 'Company_Phone' => 'هاتف الشركة',

@@ -481,7 +481,7 @@ return [
     'Car_Register'=>'Car-Register',
     'Register_With_Car_Rental'=>'Register With Car Rental',
     'Contact_Info'=>'Contact Info',
-    'Company Website'=>'Company Website',
+    'Company_Website'=>'Company Website',
     'Company_Name'=>'Company Name',
     'Company_Email'=>'Company Email',
     'Company_Phone'=>'Company Phone',

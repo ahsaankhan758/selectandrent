@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CompanyVerificationMail;
 use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\DB;
+
 
 class CarRegisterController extends Controller
 {
@@ -30,34 +32,54 @@ class CarRegisterController extends Controller
             'companyEmail' => 'required|email|unique:companies,email',
             'password' => 'required|min:6',
             'phone' => 'required',
-            'website' => 'required|url',
+            'website' => 'required',
         ]);
-    
-        // Create user
-        $user = new User;
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        $user->password = Hash::make($validatedData['password']);
-        $user->role = 'company';
-        $user->save();
-    
-        // Create company
-        $company = new Company;
-        $company->user_id = $user->id;
-        $company->name = $validatedData['companyName'];
-        $company->email = $validatedData['companyEmail'];
-        $company->phone = $validatedData['phone'];
-        $company->website = $validatedData['website'];
-        $company->save();
-    
+
+        DB::beginTransaction();
+
         try {
-            // Mail::to($user->email)->send(new CompanyVerificationMail($user));
+            // Create user
+            $user = new User;
+            $user->name = $validatedData['name'];
+            $user->email = $validatedData['email'];
+            $user->password = Hash::make($validatedData['password']);
+            $user->role = 'company';
+            $user->save();
+
+            // Create company
+            $company = new Company;
+            $company->user_id = $user->id;
+            $company->name = $validatedData['companyName'];
+            $company->email = $validatedData['companyEmail'];
+            $company->phone = $validatedData['phone'];
+            $company->website = $validatedData['website'];
+            $company->save();
+
+            // Send notification to admin
+            $adminId = User::where('role', 'admin')->value('id');
+
+            if ($adminId) {
+                $notificationType = 4; // company registration
+                $fromUserId = $user->id;
+                $toUserId = $adminId;
+                $userId = $adminId;
+                $message = 'A new company (' . $company->name . ') has registered and is awaiting your approval.';
+
+                saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
+            }
+
+            // Send verification mail
             Mail::to($user->email)->queue(new CompanyVerificationMail($user));
+
+            DB::commit();
+
+            return redirect()->route('website.register')->with('status', 'Company and user registered successfully. Awaiting admin approval.');
         } catch (\Exception $e) {
-            return back()->with('error', 'Mail not sent: ' . $e->getMessage());
+            DB::rollBack();
+
+            return back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
-        
-        return redirect()->route('website.register')->with('status', 'Company And User Added Successfully.');
     }
+
     
 }

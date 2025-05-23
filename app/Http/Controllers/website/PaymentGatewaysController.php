@@ -108,92 +108,84 @@ class PaymentGatewaysController extends Controller
             DB::commit();
 
             // Fetch booking items again to include relation
-            $bookingItems = BookingItem::where('booking_id', $booking->id)->get();
 
-            // Assume currencyCode already fetched above
-            $currency = $currencyCode ?? 'USD';
+$bookingItems = BookingItem::where('booking_id', $booking->id)->get();
 
-            // Send email to customer
-            Mail::send('website.email.bookingorder', [
-                'booking' => $booking,
-                'bookingItems' => $bookingItems,
-                'currency' => $currency,
-            ], function ($message) use ($booking) {
-                $message->to($booking->email)
-                        ->subject('Your Booking Confirmation - ' . $booking->booking_reference);
-            });
 
-            foreach ($bookingItems as $item) {
-                $vehicle = $item->vehicle;
-                $company = $vehicle->company ?? null;
-                $companyUser = $company?->user ?? null;
+// currency code
+$currencyCode = session('defaultCurrencyCode');
+if (empty($currencyCode)) {
+    $currencyCode = Currency::where('is_default', 'Yes')->where('is_active','Yes')->value('code');
+}
 
-                if ($companyUser && $companyUser->email) {
-                    Mail::send('website.email.bookingorder', [
-                        'booking' => $booking,
-                        'bookingItems' => [$item],
-                        'currency' => $currency,
-                    ], function ($message) use ($companyUser, $booking) {
-                        $message->to($companyUser->email)
-                                ->subject('New Booking Received - ' . $booking->booking_reference);
-                    });
-                }
-            }
+// Send email to customer
+Mail::send('website.email.bookingorder', [
+    'booking' => $booking,
+    'bookingItems' => $bookingItems,
+    'currency' => $currencyCode,
+], function ($message) use ($booking) {
+    $message->to($booking->email)
+            ->subject('Your Booking Confirmation - ' . $booking->booking_reference);
+});
 
-            // Handle Stripe payment
-            if ($method === 'stripe') {
-                if (!$gateway || empty($gateway->c2)) {
-                    throw new \Exception('Stripe credentials not configured.');
-                }
-                // currency code
-                $currencyCode = session('defaultCurrencyCode');
-                if (empty($currencyCode)) {
-                    $currencyCode = Currency::where('is_default', 'Yes')->where('is_active','Yes')->value('code');
-                }
-                // 
-                Stripe::setApiKey($gateway->c2); // secret key
+
+// Send email to each vehicle's company
+foreach ($bookingItems as $item) {
+    $vehicle = \App\Models\BookingItem::find($item->vehicle_id);
+    if ($vehicle && $vehicle->company_email) {
+        Mail::send('website.email.bookingorder', [
+            'booking' => $booking,
+            'bookingItems' => [$item], // send only related item
+            'currency' => $currencyCode,
+        ], function ($message) use ($vehicle, $booking) {
+            $message->to($vehicle->company_email)
+                    ->subject('New Booking Received - ' . $booking->booking_reference);
+        });
+    }
+}
     
-                $session = StripeSession::create([
-                    'payment_method_types' => ['card'],
-                    'line_items' => [[
-                        'price_data' => [
-                            'currency' => $currencyCode,
-                            'product_data' => [
-                                'name' => $booking->booking_reference,
-                            ],
-                            'unit_amount' => $amount,
+        // Handle Stripe payment
+        if ($method === 'stripe') {
+            if (!$gateway || empty($gateway->c2)) {
+                throw new \Exception('Stripe credentials not configured.');
+            }
+            
+            Stripe::setApiKey($gateway->c2); // secret key
+
+            $session = StripeSession::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => $currencyCode,
+                        'product_data' => [
+                            'name' => $booking->booking_reference,
+
                         ],
-                        'quantity' => 1,
-                    ]],
-                    'mode' => 'payment',
-                    'success_url' => route('booking.thankyou', ['ref' => $booking->booking_reference]),
-                    'cancel_url' => route('booking.cancel', ['ref' => $booking->booking_reference]),
-                ]);
-                // echo "<pre>";
-                // print_r($session);die;
-                // return redirect($session->url);
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Redirecting to stripe payment gateway..',
-                    'redirect_url' => $session->url
-                ]);
+                        'unit_amount' => $amount,
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route('booking.thankyou', ['ref' => $booking->booking_reference]),
+                'cancel_url' => route('booking.cancel', ['ref' => $booking->booking_reference]),
+            ]);
+        
+            return response()->json([
+                'status' => true,
+                'message' => 'Redirecting to stripe payment gateway..',
+                'redirect_url' => $session->url
+            ]);
 
-            }elseif($method === 'paypal'){
+        }elseif($method === 'paypal'){
 
-                return response()->json([
-                    'status' => false,
-                    'message' => 'working..',
-                    'redirect_url' => '',
-                ]);
+            return response()->json([
+                'status' => false,
+                'message' => 'working..',
+                'redirect_url' => '',
+            ]);
 
-            }
+        }
     
-            // // Placeholder for other gateways
-            // return response()->json([
-            //     'status' => true,
-            //     'message' => 'Booking created. Proceed with manual payment or other gateways.',
-            //     'redirect_url' => route('booking.success'),
-            // ]);
     
         } catch (\Exception $e) {
             DB::rollBack();
