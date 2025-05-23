@@ -53,27 +53,20 @@
     }
 </style>
 @section('content')
-   
+      <script>
+    window.registerRoute = "{{ route('website.register') }}";
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
+<script src="{{ asset('/frontend-assets/assets/Js/companyregister.js') }}"></script>
     <div class="container">
         <div class="text-center mb-4 mt-4">
             <img src="{{asset('/')}}frontend-assets/icons/select-and-rent-logo-3.png" alt="Logo" width="100">
             <h2 class="fw-bold mb-5">{{ __('messages.Register_With_Car_Rental') }}</h2>
         </div>
-       @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        @if(session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
 
         <div class="row">
             <div class="col-md-6 mb-2">
-                <form action="{{ route('website.register') }}" method="POST">
+                <form id="registerForm" action="{{ route('website.register') }}" method="POST">
                     @csrf
                     {{-- user detail --}}
                     <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Full_Name') }}" name="name">
