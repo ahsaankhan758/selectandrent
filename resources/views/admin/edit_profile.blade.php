@@ -1,6 +1,6 @@
 @extends('admin.layouts.Master')
 @section('title')
-   Edit Profile 
+{{__('messages.edit_title') }}
 @endsection
 @section('content')
     <div class="row">
@@ -8,11 +8,17 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                        <li class="breadcrumb-item active">Edit Profile</li>
+                        <li class="breadcrumb-item">
+                            @if(auth()->check() && auth()->user()->role === 'admin')
+                                <a href="#">Admin</a>
+                            @else
+                                <a href="#">Company</a>
+                            @endif
+                        </li>
+                        <li class="breadcrumb-item active">{{__('messages.update_profile') }}</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Edit Profile</h4>
+                <h4 class="page-title">{{__('messages.update_profile') }}</h4>
             </div>
         </div>
     </div>
@@ -48,28 +54,29 @@
                         @else
                             <img src="{{ asset('frontend-assets/assets/profile/default.png') }}" alt="Default Profile Image" class="rounded-circle mb-3 profile-preview-img" style="width: 120px; height: 120px; object-fit: cover;">
                         @endif
+                        <label for="profile_image" class="form-label">{{__('messages.profile_image') }}</label>
                         <input type="file" name="profile_image" class="form-control" accept="image/*">
                     </div>
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label">{{__('messages.profile_name') }}</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" value="{{ old('name', $user->name) }}">
                     </div>
 
                     {{-- Email disabled as per your code --}}
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label">{{__('messages.email') }}</label>
                         <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" value="{{ old('email', $user->email) }}" disabled>
                     </div>
 
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
+                        <label for="phone" class="form-label">{{__('messages.number') }}</label>
                         <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter your phone number" value="{{ old('phone', $user->phone) }}">
                     </div>
 
                     <div class="row">
                         <div class="col-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-info waves-effect waves-light">Update</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light">{{__('messages.save') }}</button>
                         </div>
                     </div>
 
