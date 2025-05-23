@@ -59,13 +59,25 @@
             <img src="{{asset('/')}}frontend-assets/icons/select-and-rent-logo-3.png" alt="Logo" width="100">
             <h2 class="fw-bold mb-5">{{ __('messages.Register_With_Car_Rental') }}</h2>
         </div>
+       @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if(session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-6 mb-2">
                 <form action="{{ route('website.register') }}" method="POST">
                     @csrf
                     {{-- user detail --}}
-                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Full Name') }}" name="name">
-                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Email Address') }}" name="email">
+                    <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Full_Name') }}" name="name">
+                    <input type="email" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Email_Address') }}" name="email">
                     <input type="password" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Password') }}" name="password">
                     {{-- company detail --}}
                     <input type="text" class="form-control mb-3 form-control-border static-width" placeholder="{{ __('messages.Company_Name') }}" name="companyName">
@@ -81,7 +93,7 @@
             </div>
             <div class="col-md-6">
                 <div class="contact-info">
-                    <h3>{{ __('messages.Contact Info') }}</h3>
+                    <h3>{{ __('messages.Contact_Info') }}</h3>
             
                     <div class="info-item">
                         <img src="{{asset('/')}}frontend-assets/icons/phone.png" alt="Phone Icon">

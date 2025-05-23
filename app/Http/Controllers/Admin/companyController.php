@@ -81,6 +81,14 @@ class companyController extends Controller
        $action = 'Create';
        $module = 'Company';
        activityLog($userId, $desciption,$action,$module);
+        // Send notification to admin 
+        $adminId = User::where('role', 'admin')->value('id');
+        $notificationType = 4; // register company
+        $fromUserId = $user->id; // logged in user
+        $toUserId = $adminId;
+        $userId = $adminId; 
+        $message = 'A new company (' . $compnay->name . ') has registered and is awaiting your approval.';
+        saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
         return redirect ()->route('companies')->with('status','Company Added Successfully.');
     }
 
