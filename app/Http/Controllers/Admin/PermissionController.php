@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class PermissionController extends Controller
 {
     public function index($role){
+       
         // $role = ($role === 'admin') ? 'admin' : 'company';
         if($role == 'admin')
             $usersList = User::where('role', $role)->get();
