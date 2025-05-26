@@ -77,7 +77,10 @@ public function getLocations($city_id)
         'lisence_plate' => 'required|unique:cars',
         'rent' => 'required',
         'detail' => 'required',
-        'date_added' => 'required'
+        'date_added' => 'required',
+        'rent_type' => 'required|in:day,hour',
+        'advance_deposit' => 'required|numeric',
+        'min_age' => 'required|integer',
        ]);
        $userId = Auth::id();
        $car = new Car;
@@ -91,6 +94,9 @@ public function getLocations($city_id)
        $car->weight = $validatedData['weight'];
        $car->doors = $validatedData['doors'];
        $car->mileage = $validatedData['mileage'];
+       $car->advance_deposit = $validatedData['advance_deposit'];
+       $car->min_age = $validatedData['min_age'];
+       $car->rent_type = $validatedData['rent_type'];
        $car->engine_size = $validatedData['engine_size'];
        $car->luggage = $validatedData['luggage'];
        $car->drive = $validatedData['drive'];
@@ -171,6 +177,9 @@ public function getLocations($city_id)
             'lisence_plate' => 'required',
             'rent' => 'required',
             'detail' => 'required',
+            'rent_type' => 'required|in:day,hour',
+            'advance_deposit' => 'required|numeric',
+            'min_age' => 'required|integer',
            ]);
            $car = Car::find($id);
            $car->car_model_id = $validatedData['model'];
@@ -182,6 +191,9 @@ public function getLocations($city_id)
            $car->weight = $validatedData['weight'];
            $car->doors = $validatedData['doors'];
            $car->mileage = $validatedData['mileage'];
+           $car->advance_deposit = $validatedData['advance_deposit'];
+           $car->min_age = $validatedData['min_age'];
+           $car->rent_type = $validatedData['rent_type'];
            $car->engine_size = $validatedData['engine_size'];
            $car->luggage = $validatedData['luggage'];
            $car->drive = $validatedData['drive'];
