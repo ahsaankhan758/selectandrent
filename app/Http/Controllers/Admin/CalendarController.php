@@ -65,16 +65,24 @@ class CalendarController extends Controller
                     'mileage' => $vehicle->mileage,
                     'detail' => $vehicle->detail,
                     'status' => $vehicle->status,
-                ],
+                    "thumbnail" => $vehicle->thumbnail,
+                    'images' => is_string($vehicle->images) 
+                    ? @unserialize($vehicle->images) ?: [] 
+                    : (is_array($vehicle->images) ? $vehicle->images : []),
+
+                    'features' => is_string($vehicle->features) 
+                    ? @unserialize($vehicle->features) ?: [] 
+                    : (is_array($vehicle->features) ? $vehicle->features : []),
+                    ],
             ];
 
         });
         
-       
         return response()->json($vehicles);
     }
        public function store(Request $request)
         {
+
             $validator = Validator::make($request->all(), [
                 'lisence_plate' => 'required|unique:cars',
                 'start' => 'required',
@@ -99,6 +107,9 @@ class CalendarController extends Controller
                 
             ]);
 
+            $features = $request->input('features');
+            $serializedFeatures = serialize($features);
+
             if ($validator->fails()) {
                 return response()->json([
                     'errors' => $validator->errors(),
@@ -111,6 +122,7 @@ class CalendarController extends Controller
             $vehicle->user_id = auth()->id();
             $vehicle->date_added = $request->start;
             $vehicle->upload_type = 'calendar';
+            $vehicle->features = $serializedFeatures;
             $vehicle->save();
 
             
@@ -156,6 +168,39 @@ class CalendarController extends Controller
         $validated = $validator->validated();
 
         $selectedVehicle = Car::find($request->vehicle_id);
+        
+        if ($request->hasFile('thumbnail')) {
+            if (!empty($selectedVehicle->thumbnail)) {
+                $old_thumbnail = storage_path('app/public/' . $selectedVehicle->thumbnail);
+                if (file_exists($old_thumbnail)) {
+                    unlink($old_thumbnail);
+                }
+            }
+
+            $selectedVehicle->thumbnail = $request->file('thumbnail')->store('carThumbnail', 'public');
+        }
+
+        if($request->hasFile('images'))
+                {
+                    if(!empty($selectedVehicle->images))
+                        {   
+                            foreach( unserialize($selectedVehicle->images) as $image)
+                                {
+                                    $old_image = storage_path('app/public/' . $image);
+                                    if(file_exists($old_image)){
+                                        unlink($old_image);
+                                    }
+                                }
+                        }
+                    foreach ($request->file('images') as $imageFile) {
+                        $imagePaths[] = $imageFile->store('carImages', 'public');
+                    }
+                    $selectedVehicle->images = serialize($imagePaths);   
+                }
+
+        $features = $request->input('features');
+        $serializedFeatures = serialize($features);
+        $selectedVehicle->features = $serializedFeatures;
         $selectedVehicle->update($validated);
 
         return response()->json([
