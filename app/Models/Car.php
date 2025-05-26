@@ -38,6 +38,7 @@ class Car extends Model
     ];
     protected $casts = [
         'images' => 'array', 
+        'features' => 'array',
     ];
     
     public function car_categories()

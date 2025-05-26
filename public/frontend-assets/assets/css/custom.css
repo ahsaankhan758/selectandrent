@@ -18,7 +18,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
-
+.card_orange_clr{
+  color: var(--text-orange) !important;
+}
 .table-clr {
   background-color: var(--text-blue) !important;
   color: white !important;
@@ -246,22 +248,33 @@ color: var(--black-color);
 /* end card css */
 /* view cars */
 .custom-card2 {
-width: 100%;
-max-width: 270px;
-height: auto;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-border-radius: 10px;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-overflow: hidden;
-background: #fff;
-margin: auto;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: #fff;
+    margin: auto;
+    padding: 10px;
+}
+
+/* Desktop pe cards ko wide dikhane ke liye */
+@media (min-width: 1024px) {
+  .swiper-slide {
+    width: 100% !important;
+    max-width: 350px; /* Bada size */
+  }
+}
+.carousel-control-prev-custom,
+.carousel-control-next-custom {
+    cursor: pointer;
 }
 
 .custom-card-img {
 width: 100%;
-height: 150px;
+height: 200px !important;
 object-fit: cover; 
 }
 
