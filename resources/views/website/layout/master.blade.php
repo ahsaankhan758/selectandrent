@@ -48,10 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
       nextEl: ".carousel-control-next-custom",
       prevEl: ".carousel-control-prev-custom",
     },
+    slidesPerView: 3,       // fixed slides per view
+    spaceBetween: 15,       // kam space
+    centeredSlides: false,  // ensure not centered
+
     breakpoints: {
-      320: { slidesPerView: 1, spaceBetween: 10 },
-      768: { slidesPerView: 2, spaceBetween: 15 },
-      1024: { slidesPerView: 3, spaceBetween: 30 },
+      320: { slidesPerView: 1, spaceBetween: 5 },
+      768: { slidesPerView: 2, spaceBetween: 10 },
+      1024: { slidesPerView: 3, spaceBetween: 15 },
     },
   });
 });

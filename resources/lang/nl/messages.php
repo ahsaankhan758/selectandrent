@@ -639,7 +639,7 @@ return [
 'cc' => 'Creditcard',
 'deposit' => 'Storting',
 'min' => 'Minimumleeftijd',
-
+'rent_type' => 'Huurtype',
     'user_info' => 'Gebruikersinformatie',
 'company_info' => 'Bedrijfsinformatie',
 'company_profile' => 'Bedrijfsprofiel',
@@ -647,5 +647,18 @@ return [
 'company_email' => 'Bedrijfse-mailadres',
 'company_phone' => 'Bedrijfstelefoon',
 'company_website' => 'Bedrijfswebsite',
+'electric'   => 'Elektrisch',
+'hybrid'     => 'Hybride',
+'petrol'     => 'Benzine',
+'diesel'     => 'Diesel',
+'gasoline'   => 'Gasoline',
+'lpg'        => 'LPG',
+'select'     => 'Selecteer',
+'auto'       => 'Automatisch',
+'manual'     => 'Handmatig',
+'2_wheel'    => '2 Wielen',
+'4_wheel'    => '4 Wielen',
+'per_day'    => 'Per dag',
+'per_hour'   => 'Per uur',
 
 ];
