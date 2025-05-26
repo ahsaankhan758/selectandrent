@@ -15,7 +15,9 @@ class WebsiteBookingController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $bookings = Booking::with('user')->where('user_id', $userId)->paginate(10); 
+        $bookings = Booking::with('booking_items.vehicle.company','user')->where('user_id', $userId)->paginate(10); 
+        // echo"<pre>";
+        // print_r($bookings);die;
         return view('website.booking', compact('bookings'));
     }
 

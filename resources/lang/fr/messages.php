@@ -659,5 +659,6 @@ return [
 '4_wheel'    => '4 Roues',
 'per_day'    => 'Par jour',
 'per_hour'   => 'Par heure',
-
+'user' => 'Utilisateur',
+'no_booking' => 'Aucune réservation trouvée.',
 ];
