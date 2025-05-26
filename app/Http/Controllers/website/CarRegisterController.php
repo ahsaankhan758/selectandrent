@@ -57,7 +57,6 @@ class CarRegisterController extends Controller
 
             // Send notification to admin
             $adminId = User::where('role', 'admin')->value('id');
-
             if ($adminId) {
                 $notificationType = 4; // company registration
                 $fromUserId = $user->id;

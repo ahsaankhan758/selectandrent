@@ -1,6 +1,13 @@
 $(document).ready(function(){
+    // Call once when the page loads
     loadNotificationsData();
+
+    // Call every 5 seconds (5000 milliseconds)
+    setInterval(function() {
+        loadNotificationsData();
+    }, 5000);
 });
+
  
   function loadNotificationsData() {
 
