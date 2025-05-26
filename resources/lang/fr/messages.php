@@ -637,7 +637,7 @@ return [
 'cc' => 'Carte de crédit',
 'deposit' => 'Dépôt',
 'min' => 'Âge minimum',
-
+'rent_type' => 'Type de location',
     'user_info' => 'Informations de l’utilisateur',
 'company_info' => 'Informations sur l’entreprise',
 'company_profile' => 'Profil de l’entreprise',
@@ -646,5 +646,18 @@ return [
 'company_phone' => 'Téléphone de l’entreprise',
 'company_website' => 'Site Web de l’entreprise',
 
+'electric'   => 'Électrique',
+'hybrid'     => 'Hybride',
+'petrol'     => 'Essence',
+'diesel'     => 'Diesel',
+'gasoline'   => 'Gazoline',
+'lpg'        => 'GPL',
+'select'     => 'Sélectionner',
+'auto'       => 'Automatique',
+'manual'     => 'Manuel',
+'2_wheel'    => '2 Roues',
+'4_wheel'    => '4 Roues',
+'per_day'    => 'Par jour',
+'per_hour'   => 'Par heure',
 
 ];
