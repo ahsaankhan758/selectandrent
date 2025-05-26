@@ -636,4 +636,16 @@ return [
     'header_privacy' => 'Privacybeleid',
     'header_dash' => 'Dashboard',
     'header_book_detail' => 'Boekingsdetails',
+'cc' => 'Creditcard',
+'deposit' => 'Storting',
+'min' => 'Minimumleeftijd',
+
+    'user_info' => 'Gebruikersinformatie',
+'company_info' => 'Bedrijfsinformatie',
+'company_profile' => 'Bedrijfsprofiel',
+'company_name' => 'Bedrijfsnaam',
+'company_email' => 'Bedrijfse-mailadres',
+'company_phone' => 'Bedrijfstelefoon',
+'company_website' => 'Bedrijfswebsite',
+
 ];
