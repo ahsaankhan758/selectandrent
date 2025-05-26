@@ -660,5 +660,6 @@ return [
 '4_wheel'    => '4 Wielen',
 'per_day'    => 'Per dag',
 'per_hour'   => 'Per uur',
-
+'user' => 'Gebruiker',
+'no_booking' => 'Geen boekingen gevonden.',
 ];
