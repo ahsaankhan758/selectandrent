@@ -10,29 +10,40 @@ Booking | Select and Rent
         <table class="table table-hover table-striped table-bordered mb-0">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-nowrap table-clr">ID</th>
-                    <th class="text-nowrap table-clr">User</th>
-                    <th class="text-nowrap table-clr">Booking Ref</th>
-                    <th class="text-nowrap table-clr">Transaction ID</th>
-                    <th class="text-nowrap table-clr">Payment Status</th>
-                    <th class="text-nowrap table-clr"">Booking Status</th>
-                    <th class="text-nowrap table-clr">Payment Method</th>
-                    <th class="text-nowrap table-clr">Coupon</th>
-                    <th class="text-nowrap table-clr">Discount </th>
-                    <th class="text-nowrap table-clr">Tax </th>
-                    <th class="text-nowrap table-clr">Insurance</th>
-                    <th class="text-nowrap table-clr">Total </th>
-                    <th class="text-nowrap table-clr">Subtotal </th>
-                    <th class="text-nowrap table-clr">Notes</th>
-                    <th class="text-nowrap table-clr">Action</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.action') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.user') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingref') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.company_name') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingtransaction') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingpayment') }}</th>
+                    <th class="text-nowrap table-clr"">{{ __('messages.bookingstatus') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingmethod') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingcoupon') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingdiscount') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingtax') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookinginsurance') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingtotal') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingsubtotal') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingnotes') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($bookings as $booking)
                 <tr>
-                    <td class="py-4 text-center">{{ $booking->id }}</td>
+                <td class="py-4 text-center">
+                    <div class="d-inline-flex align-items-center">
+                        <a href="{{ route('website.bookingdetail', $booking->id) }}" class="me-2" title="View Booking">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <span class="text-muted mx-2">|</span>
+                        <a href="" title="Send Message" class="ms-2">
+                            <img src="/frontend-assets/icons/review.webp" width="18px" height="18px" alt="">
+                        </a>
+                    </div>
+                </td>
                     <td class="py-4 text-center">{{ $booking->user->name }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_reference }}</td>
+                    <td class="py-4 text-center">{{ $booking->booking_items->first()->vehicle->company->name ?? '' }}</td>
                     <td class="py-4 text-center">{{ $booking->transaction_id }}</td>
                     <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
                     <td class="py-4 text-center"><span class="badge bg-secondary text-uppercase">{{ $booking->booking_status }}</span></td>
@@ -44,16 +55,11 @@ Booking | Select and Rent
                     <td class="py-4 text-center">{{ number_format($booking->total_price, 2) }}</td>
                     <td class="py-4 text-center">{{ number_format($booking->subtotal, 2) }}</td>
                     <td class="py-4 text-center">{{ $booking->notes }}</td>
-                    <td class="py-4 text-center">
-                        <a href="{{ route('website.bookingdetail', $booking->id) }}">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                    </td>
                 </tr>
                               
                 @empty
                 <tr>
-                    <td colspan="16" class="text-center">No bookings found.</td>
+                    <td colspan="16" class="text-center">{{ __('messages.bookingpayment') }}</td>
                 </tr>
                 @endforelse
             </tbody>

@@ -161,8 +161,8 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                         <div class="col-4 form-group mb-3">
                             <label for="rent_type">{{ __('messages.rent_type') }}</label>
                             <select name="rent_type" id="rent_type" class="form-control">
-                                <option disabled selected>{{ __('messages.select') }}</option>
-                                <option value="day">{{ __('messages.per_day') }}</option>
+                                <option disabled>{{ __('messages.select') }}</option>
+                                <option value="day" selected>{{ __('messages.per_day') }}</option>
                                 <option value="hour">{{ __('messages.per_hour') }}</option>  
                             </select>
                         </div>
