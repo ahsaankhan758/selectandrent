@@ -9,43 +9,87 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-      public function editProfile($id)
-    {
-        if (Auth::id() != $id) {
-            abort(403, 'Unauthorized action.');
-        }
+    public function editProfile($id)
+{
+    $user = User::with('companies')->findOrFail($id);  
+    $company = $user->companies;
+    return view('admin.edit_profile', compact('user', 'company'));
+}
 
-        $user = User::findOrFail($id);
-        return view('admin.edit_profile', compact('user'));
-    }
+public function updateProfile(Request $request, $id)
+{
+    $user = User::findOrFail($id);
 
-    public function updateProfile(Request $request, $id)
-    {
-        if (Auth::id() != $id) {
-            abort(403, 'Unauthorized action.');
-        }
+    $rules = [
+        'name' => 'nullable|string|max:255', 
+        'phone' => 'nullable|string|max:20',
+        'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ];
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            // 'email' => 'required|email',
-            'phone' => 'nullable|string|max:20',
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    if ($user->role === 'company') {
+        $rules = array_merge($rules, [
+            'company_name' => 'nullable|string|max:255',
+            'company_email' => 'nullable|email',
+            'company_phone' => 'nullable|string|max:20',
+            'company_website' => 'nullable|url',
+            'company_detail' => 'nullable|string',
+            'company_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+    }
 
-        $user = User::findOrFail($id);
+    $request->validate($rules);
+
+    if ($request->filled('name')) {
         $user->name = $request->name;
-        // $user->email = $request->email;
+    }
+    if ($request->filled('phone')) {
         $user->phone = $request->phone;
+    }
 
-        if ($request->hasFile('profile_image')) {
-            $image = $request->file('profile_image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('frontend-assets/assets/profile'), $imageName);
-            $user->profile_image = 'frontend-assets/assets/profile/' . $imageName;
+    if ($request->hasFile('profile_image')) {
+        $image = $request->file('profile_image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('frontend-assets/assets/profile'), $imageName);
+        $user->profile_image = 'frontend-assets/assets/profile/' . $imageName;
+    }
+
+    $user->save();
+
+    if ($user->role === 'company') {
+        $company = $user->companies->first();
+
+        if (!$company) {
+            $company = new Company();
+            $company->user_id = $user->id;
         }
 
-        $user->save();
+        if ($request->filled('company_name')) {
+            $company->name = $request->company_name;
+        }
+        if ($request->filled('company_email')) {
+            $company->email = $request->company_email;
+        }
+        if ($request->filled('company_phone')) {
+            $company->phone = $request->company_phone;
+        }
+        if ($request->filled('company_website')) {
+            $company->website = $request->company_website;
+        }
+        if ($request->filled('company_detail')) {
+            $company->detail = $request->company_detail;
+        }
 
-        return redirect()->route('admin.edit_profile', $id)->with('success', 'Profile updated successfully!');
+        if ($request->hasFile('company_profile')) {
+            $logo = $request->file('company_profile');
+            $logoName = time() . '_' . $logo->getClientOriginalName();
+            $logo->move(public_path('frontend-assets/assets/companyprofile'), $logoName);
+            $company->company_profile = 'frontend-assets/assets/companyprofile/' . $logoName;
+        }
+
+        $company->save();
     }
+
+    return redirect()->route('admin.edit_profile', $id)->with('success', 'Profile updated successfully!');
+}
+
 }
