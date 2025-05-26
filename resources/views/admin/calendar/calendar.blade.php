@@ -231,17 +231,23 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                                 <div class="row">
                                     <div class="col-3 form-group mb-3">
                                         <label for="thumbnail">{{ __('messages.thumbnail') }}</label>
-                                        <input type="file" name="thumbnail" class="form-control"  id="thumbnail" onchange="PreviewThumbnail();">
+                                        <input type="file" name="thumbnail" class="form-control" id="thumbnail" onchange="PreviewThumbnail();">
                                         <div class="mt-1">
-                                            <img id="uploadThumbnailPreview" style="width: 100px; height: 100px; display: none;" />
+                                            <img id="uploadThumbnailPreview" class="thumbnail" />
                                         </div>
                                     </div>
                                     <div class="col-3 form-group mb-3">
-                                        <label for="images">{{ __('messages.images') }}</label>
-                                        <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages()" multiple>
-                                        <div class="mt-1" id="uploadImagePreview">
-                                        </div>
+                                    <label for="images">{{ __('messages.images') }}</label>
+                                    <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages();" multiple>
+                                    <div class="mt-1" id="currentImagePreview">
+                                        @if(isset($car->images))
+                                            @foreach (unserialize($car->images) as $image)
+                                                <img src="{{asset('/')}}storage/{{ $image }}" class="image" id="imagesPreview" />
+                                            @endforeach
+                                        @endif
                                     </div>
+                                    <div class="mt-1" id="uploadImagePreview"></div>
+                                </div>
                                     <div class="col-3 form-group mb-3">
                                         {{-- <label for="drive">{{ __('messages.status') }}</label> --}}
                                         <select name="status" id="status" class="form-control">
@@ -282,8 +288,42 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
             </div>
         </div>
     </div> 
+    <script type="text/javascript">
+        function PreviewThumbnail() {
+            var reader = new FileReader();
+            reader.readAsDataURL(document.getElementById("thumbnail").files[0]);
+            reader.onload = function (oFREvent) {
+                var preview = document.getElementById("uploadThumbnailPreview");
+                preview.src = oFREvent.target.result;
+                preview.style.display = "block";
+            };
+        }
 
-
+        function PreviewImages() {
+            var previewContainer = document.getElementById("uploadImagePreview");
+            previewContainer.innerHTML = ""; 
+            var files = document.getElementById("images").files; 
+            if (files.length > 0) {
+                document.getElementById("currentImagePreview").style.display = "none";
+                for (let i = 0; i < files.length; i++) {
+                    let reader = new FileReader();
+                    reader.onload = function (oFREvent) {
+                        let img = document.createElement("img");
+                        img.src = oFREvent.target.result;
+                        img.style.width = "120px";  
+                        img.style.height = "120px";
+                        img.style.borderRadius = "8px";
+                        img.style.margin = "5px";
+                        img.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(files[i]);
+                }
+            }
+        }
+        
+        
+    </script>
 @endsection
 
 
