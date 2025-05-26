@@ -665,5 +665,6 @@ return [
 '4_wheel'       => '4 Wheel',
 'per_day'       => 'Per Day',
 'per_hour'      => 'Per Hour',
-''=>'',
+'user'=>'User',
+'no_booking'=>'No bookings found.',
 ];
