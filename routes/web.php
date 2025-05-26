@@ -135,7 +135,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             // notifications by ak
             Route::get('/notifications/clear', [NotificationController::class, 'clear'])->name('notifications.clear');
             Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
-            Route::get('/notifications/all', [NotificationController::class, 'index'])->name('notifications.all');
+            Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
         });
     }
@@ -241,7 +241,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
              // notifications by ak
             Route::get('/notifications/clear', [NotificationController::class, 'clear'])->name('notifications.clear');
             Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
-            Route::get('/notifications/all', [NotificationController::class, 'index'])->name('notifications.all');
+            Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
 
         });

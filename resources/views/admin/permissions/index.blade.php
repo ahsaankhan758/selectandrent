@@ -30,9 +30,9 @@
                     <option value="" disabled selected>Select</option>
                     @foreach ($usersList as $user)
                         @if($role == 'admin')
-                            <option value={{ $user->id }}>{{ $user->name }}1</option>
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @else
-                            <option value={{ $user->user_id }}>{{ $user->name }}</option>
+                            <option value="{{ $user->user_id }}">{{ $user->name }}</option>
                         @endif
                     @endforeach
                 </select>

@@ -118,7 +118,18 @@ class CarRegisterController extends Controller
         }
 
         Mail::to($user->email)->queue(new CompanyVerificationMail($user));
+        
+        // Send notification to admin
+        $adminId = User::where('role', 'admin')->value('id');
+        if ($adminId) {
+            $notificationType = 4; // company registration
+            $fromUserId = $user->id;
+            $toUserId = $adminId;
+            $userId = $adminId;
+            $message = 'A new company (' . $company->name . ') has registered and is awaiting your approval.';
 
+            saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
+        }
         DB::commit();
 
        if ($request->ajax()) {
@@ -134,8 +145,10 @@ class CarRegisterController extends Controller
     } catch (\Exception $e) {
         DB::rollBack();
 
+
         if ($request->ajax()) {
             return response()->json(['message' => 'An error occurred: ' . $e->getMessage()]);
+
         }
 
         return back()->with('error', 'An error occurred: ' . $e->getMessage());

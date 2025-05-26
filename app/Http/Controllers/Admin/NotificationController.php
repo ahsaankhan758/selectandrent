@@ -24,22 +24,29 @@ class NotificationController extends Controller
         return back();
     }
 
-    public function index()
+    public function notificationView()
     {
-        $notifications = Notification::where('to_user_id', auth()->id())
-                                    ->latest()
-                                    ->paginate(20);
-        return view('notifications.index', compact('notifications'));
+        $user = auth()->user();
+
+        $query = Notification::orderBy('created_at', 'desc');
+
+        // if ($user->role === 'company') {
+        //     $query->where('to_user_id', $user->id);
+        // }
+
+        $notifications = $query->paginate(10); // Use same pagination for both, or adjust as needed
+       
+        return view('admin.notifications.notification_view', compact('notifications'));
     }
+
+
 
     public function getNotifications()
     {
         $userId = auth()->id();
 
         $notifications = Notification::where('to_user_id', $userId)
-            ->orderBy('created_at', 'desc')
-            ->limit(10)
-            ->get();
+            ->orderBy('created_at', 'desc')->paginate(10);
 
         $html = view('admin.notifications.notification', compact('notifications'))->render();
 
