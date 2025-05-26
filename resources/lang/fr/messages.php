@@ -634,5 +634,17 @@ return [
     'header_privacy' => 'Politique de confidentialité',
     'header_dash' => 'Tableau de bord',
     'header_book_detail' => 'Détails de la réservation',
+'cc' => 'Carte de crédit',
+'deposit' => 'Dépôt',
+'min' => 'Âge minimum',
+
+    'user_info' => 'Informations de l’utilisateur',
+'company_info' => 'Informations sur l’entreprise',
+'company_profile' => 'Profil de l’entreprise',
+'company_name' => 'Nom de l’entreprise',
+'company_email' => 'Email de l’entreprise',
+'company_phone' => 'Téléphone de l’entreprise',
+'company_website' => 'Site Web de l’entreprise',
+
 
 ];

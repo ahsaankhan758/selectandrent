@@ -641,4 +641,16 @@ return [
     'header_privacy' => 'سياسة الخصوصية',
     'header_dash' => 'لوحة التحكم',
     'header_book_detail' => 'تفاصيل الحجز',
+    'cc' => 'بطاقة ائتمان',
+'deposit' => 'الوديعة',
+'min' => 'الحد الأدنى للعمر',
+
+    'user_info' => 'معلومات المستخدم',
+'company_info' => 'معلومات الشركة',
+'company_profile' => 'ملف الشركة',
+'company_name' => 'اسم الشركة',
+'company_email' => 'البريد الإلكتروني للشركة',
+'company_phone' => 'هاتف الشركة',
+'company_website' => 'موقع الشركة الإلكتروني',
+
 ];
