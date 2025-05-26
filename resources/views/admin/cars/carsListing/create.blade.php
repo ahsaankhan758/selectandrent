@@ -61,28 +61,28 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                             <lable for="fuel_type">{{ __('messages.fuel type') }}</lable>
                             <select name="fuel_type" class="form-control">
                                 <option disabled selected>{{ __('messages.select') }}</option>
-                                <option value="electric">Electric</option>
-                                <option value="hybrid">Hybrid</option>
-                                <option value="petrol">Petrol</option>
-                                <option value="diesel">Diesel</option>
-                                <option value="gasoline">Gasoline</option>
-                                <option value="LPG">LPG</option>
+                                <option value="electric">{{ __('messages.electric') }}</option>
+                                <option value="hybrid">{{ __('messages.hybrid') }}</option>
+                                <option value="petrol">{{ __('messages.petrol') }}</option>
+                                <option value="diesel">{{ __('messages.diesel') }}</option>
+                                <option value="gasoline">{{ __('messages.gasoline') }}</option>
+                                <option value="LPG">{{ __('messages.lpg') }}</option>
                             </select>
                         </div>
                         <div class="col-3 form-group mb-3">
                             <lable for="transmission">{{ __('messages.transmission') }}</lable>
                             <select name="transmission" class="form-control">
                                 <option disabled selected>{{ __('messages.select') }}</option>
-                                <option value="auto">Auto</option>
-                                <option value="manual">Manual</option>
+                                <option value="auto">{{ __('messages.auto') }}</option>
+                                <option value="manual">{{ __('messages.manual') }}</option>
                             </select>
                         </div>
                         <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.drive') }}</label>
                             <select type="text" name="drive" class="form-control" >
                                 <option disabled selected>{{ __('messages.select') }}</option>
-                                <option value="2 Wheel">2 Wheel</option>
-                                <option value="4 Wheel">4 Wheel</option>
+                                <option value="2 Wheel">{{ __('messages.2_wheel') }}</option>
+                                <option value="4 Wheel">{{ __('messages.4_wheel') }}</option>
                             </select>
                         </div>
                     </div>
@@ -149,6 +149,24 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                             <input type="text" name="mileage" class="form-control" >
                         </div>
                     </div>
+                     <div class="row">
+                        <div class="col-4 form-group mb-3">
+                            <label for="advance_deposit">{{ __('messages.deposit') }}</label>
+                            <input type="number" name="advance_deposit" id="advance_deposit" class="form-control" placeholder="Enter deposit amount">
+                        </div>
+                        <div class="col-4 form-group mb-3">
+                            <label for="min_age">{{ __('messages.min') }}</label>
+                            <input type="number" name="min_age" id="min_age" class="form-control" min="18" placeholder="Enter minimum age">
+                        </div>
+                        <div class="col-4 form-group mb-3">
+                            <label for="rent_type">{{ __('messages.rent_type') }}</label>
+                            <select name="rent_type" id="rent_type" class="form-control">
+                                <option disabled selected>{{ __('messages.select') }}</option>
+                                <option value="day">{{ __('messages.per_day') }}</option>
+                                <option value="hour">{{ __('messages.per_hour') }}</option>  
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12 form-group mb-3">
                             <lable for="detail">{{ __('messages.detail') }}</lable>
@@ -172,8 +190,8 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                         <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.status') }}</label>
                             <select name="status" class="form-control">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option value="1">{{ __('messages.active') }}</option>
+                                <option value="0">{{ __('messages.inactive') }}</option>
                             </select>
                         </div>
                         <div class="col-3 form-group mb-3">

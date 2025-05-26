@@ -80,10 +80,10 @@
                             <select name="transmission" class="form-control">
                                 @if ($car->transmission == 'auto')
                                     <option value="{{ $car->transmission }}" selected>{{ ucfirst(strtolower($car->transmission)) }}</option>
-                                    <option value="manual">Manual</option>
+                                    <option value="manual">{{ __('messages.manual') }}</option>
                                 @else
                                     <option value="{{ $car->transmission }}" selected>{{ ucfirst(strtolower($car->transmission)) }}</option>
-                                    <option value="auto">Auto</option>
+                                    <option value="auto">{{ __('messages.auto') }}</option>
                                 @endif
                             </select>
                         </div>
@@ -155,6 +155,24 @@
                             <input type="text" name="mileage" class="form-control" value="{{ $car->mileage }}">
                         </div>
                     </div>
+                     <div class="row">
+                        <div class="col-4 form-group mb-3">
+                            <label for="advance_deposit">{{ __('messages.deposit') }}</label>
+                            <input type="number" name="advance_deposit" id="advance_deposit" class="form-control" placeholder="Enter deposit amount" value="{{ $car->advance_deposit }}">
+                        </div>
+                        <div class="col-4 form-group mb-3">
+                            <label for="min_age">{{ __('messages.min') }}</label>
+                            <input type="number" name="min_age" id="min_age" class="form-control" min="18" placeholder="Enter minimum age" value="{{ $car->min_age }}">
+                        </div>
+                        <div class="col-4 form-group mb-3">
+                            <label for="rent_type">{{ __('messages.rent_type') }}</label>
+                            <select name="rent_type" id="rent_type" class="form-control">
+                                <option disabled {{ empty($car->rent_type) ? 'selected' : '' }}>{{ __('messages.select') }}</option>
+                                <option value="day" {{ (isset($car->rent_type) && $car->rent_type == 'day') ? 'selected' : '' }}>Per Day</option>
+                                <option value="hour" {{ (isset($car->rent_type) && $car->rent_type == 'hour') ? 'selected' : '' }}>Per Hour</option>  
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12 form-group mb-3">
                             <lable for="detail">{{ __('messages.detail') }}</lable>
@@ -186,11 +204,11 @@
                             <select name="status" class="form-control">
                                 
                                 @if($car->status == 1)
-                                    <option value="1" selected>Active</option>
-                                    <option value="0">Inactive</option>
+                                    <option value="1" selected>{{ __('messages.active') }}</option>
+                                    <option value="0">{{ __('messages.inactive') }}</option>
                                 @else
-                                    <option value="1">Active</option>
-                                    <option value="0" selected>Inactive</option>
+                                    <option value="1">{{ __('messages.active') }}</option>
+                                    <option value="0" selected>{{ __('messages.inactive') }}</option>
                                 @endif
 
                             </select>

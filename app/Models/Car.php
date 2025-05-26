@@ -35,6 +35,12 @@ class Car extends Model
         'status',
         'date_added',
         'upload_type',
+        'upload_type',
+        'upload_type',
+        'upload_type',
+        'advance_deposit',
+        'min_age',
+        'rent_type',
     ];
     protected $casts = [
         'images' => 'array', 

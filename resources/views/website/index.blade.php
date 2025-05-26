@@ -389,9 +389,16 @@
                                                 {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} | {{$car->fuel_type}}</h6>
                                         </div>
                                         <div>
-                                            <img src="/frontend-assets/assets/customeruser.png" alt="Logo"
-                                                width="60" height="60">
-                                        </div>
+                                        @php
+                                            $companyProfile = $car->users->companies->company_profile ?? null;
+                                        @endphp
+
+                                        @if($companyProfile)
+                                            <img src="{{ asset($companyProfile) }}" alt="Company Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
+                                        @else
+                                            <img src="{{ asset('frontend-assets/assets/customeruser.png') }}" alt="Default Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
+                                        @endif
+                                    </div>
                                     </div>
 
                                     <hr>
@@ -402,11 +409,11 @@
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.deposit') }}</h6>
-                                            <p>2000</p>
+                                            <p>{{$car->advance_deposit}}</p>
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.min') }}</h6>
-                                            <p>18-21</p>
+                                            <p>{{$car->min_age}}</p>
                                         </div>
                                     </div>
                                     <hr>
