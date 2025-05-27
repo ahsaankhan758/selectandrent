@@ -14,7 +14,6 @@ Booking | Select and Rent
                     <th class="text-nowrap table-clr">{{ __('messages.user') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingref') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.company_name') }}</th>
-                    <th class="text-nowrap table-clr">{{ __('messages.bookingtransaction') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingpayment') }}</th>
                     <th class="text-nowrap table-clr"">{{ __('messages.bookingstatus') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingmethod') }}</th>
@@ -30,21 +29,20 @@ Booking | Select and Rent
             <tbody>
                 @forelse($bookings as $booking)
                 <tr>
-                <td class="py-4 text-center">
-                    <div class="d-inline-flex align-items-center">
-                        <a href="{{ route('website.bookingdetail', $booking->id) }}" class="me-2" title="View Booking">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                        <span class="text-muted mx-2">|</span>
-                        <a href="" title="Send Message" class="ms-2">
-                            <img src="/frontend-assets/icons/review.webp" width="18px" height="18px" alt="">
-                        </a>
-                    </div>
-                </td>
+                    <td class="py-4 text-center">
+                        <div class="d-inline-flex align-items-center">
+                            <a href="{{ route('website.bookingdetail', $booking->id) }}" class="me-2" title="View Booking">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <span class="text-muted mx-2">|</span>
+                            <a href="" title="Send Message" class="ms-2">
+                                <img src="/frontend-assets/icons/review.webp" width="18px" height="18px" alt="">
+                            </a>
+                        </div>
+                    </td>
                     <td class="py-4 text-center">{{ $booking->user->name }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_reference }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_items->first()->vehicle->company->name ?? '' }}</td>
-                    <td class="py-4 text-center">{{ $booking->transaction_id }}</td>
                     <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
                     <td class="py-4 text-center"><span class="badge bg-secondary text-uppercase">{{ $booking->booking_status }}</span></td>
                     <td class="py-4 text-center">{{ ucfirst($booking->payment_method) }}</td>

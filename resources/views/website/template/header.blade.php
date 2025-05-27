@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @if (request()->is('/') || request()->is('carsearch'))
 <div class="hero-header">
+@elseif(request()->is('cardetail/*'))
+<style>
+    .header-container{
+        background-color: #07407B !important;
+    }
+</style>
 @else
 <div class="hero-header-2">
 @endif
@@ -464,11 +470,16 @@
   @else
     <!-- Start -->
      <section class="join-program text-center text-white position-relative">
-          <div class="container text-height">
+        <?php 
+        $clsHeight = 'text-height';    
+         if(request()->is('cardetail/*')) {
+            $clsHeight = '';
+         }
+        ?>
+          <div class="container {{$clsHeight}}">
             @if(request()->is('carlisting'))
             <h2 class="fw-bold">{{ __('messages.Search Result Page') }}</h2>
-            {{-- <p>{{ __('messages.List of available cars based on user search filters (location, date, type, etc.)') }}</p> --}}
-              @elseif(request()->is('carbooking') || request()->is('confirmation'))
+            @elseif(request()->is('carbooking') || request()->is('confirmation'))
               <h2 class="fw-bold">{{ __('messages.Booking') }}</h2>
               @elseif(request()->is('checkout'))
               <h2 class="fw-bold">{{ __('messages.Your Trusted Partner for 24/7 Taxi Services') }}</h2>
@@ -508,9 +519,6 @@
               <h2 class="fw-bold">{{ __('messages.contact us') }}</h2>
               @elseif(request()->is('register-car-rental'))
               <h2 class="fw-bold">{{ __('messages.Company Register') }}</h2>
-              @elseif(request()->is('cardetail/*'))
-              <h2 class="fw-bold">{{ __('messages.Car Details') }}</h2>
-              <p>{{ __('messages.Find the Perfect Ride for Your Journey') }} – {{ __('messages.Explore, Compare, and Book Effortlessly!') }}</p>
               @endif
           </div>
           <!-- Background Curve -->
