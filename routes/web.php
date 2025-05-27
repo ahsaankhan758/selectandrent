@@ -99,16 +99,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Route::prefix('company')->middleware(['auth','IsAdmin:company'])->group(function(){
             Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
             Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
-            // edit by farhan
-            Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
-            Route::get('/bookings/chart-data', [DashboardController::class, 'getChartData'])->name('bookings.chart-data');
-            Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
-            Route::get('/earnings-data', [DashboardController::class, 'getEarningsData'])->name('earnings.data');
-            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
-            // end edit
             //Dashboard
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
+            Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
+            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
             // Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
@@ -125,8 +120,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
              //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Financial History
-            Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
-            Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
+            Route::get('financial',[FinancialController::class, 'earningSummary'])->name('earningSummary');
+            Route::get('/orders-status-data', [FinancialController::class, 'getOrderStatusData'])->name('orders.status.data');
+            Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
+            Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
             //Activity Logs
@@ -148,9 +145,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/analytics', [AnalyticController::class, 'index'])->name('Analytics');
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-            Route::get('/orders-status-data', [DashboardController::class, 'getOrderStatusData'])->name('orders.status.data');
-            Route::get('/bookings/chart-data', [DashboardController::class, 'getChartData'])->name('bookings.chart-data');
-            Route::get('/earnings-data', [DashboardController::class, 'getEarningsData'])->name('earnings.data');
+          
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
@@ -215,9 +210,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('blog/{id}', [AdminBlogController::class, 'delete'])->name('blogs.destroy');
             // end blog
             // Financial History
-            Route::get('earningSummary',[FinancialController::class, 'earningSummary'])->name('earningSummary');
-            Route::get('transactionHistory',[FinancialController::class, 'transactionHistory'])->name('transactionHistory');
-
+            Route::get('financial',[FinancialController::class, 'earningSummary'])->name('earningSummary');
+            Route::get('/orders-status-data', [FinancialController::class, 'getOrderStatusData'])->name('orders.status.data');
+            Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
+            Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
             // Permissions
             Route::get('permissions/{role}',[PermissionController::class, 'index'])->name('permissions');
             Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
