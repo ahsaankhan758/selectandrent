@@ -263,6 +263,7 @@
     }
 
     CalendarApp.prototype.onEventClick = function (event) {
+        
         this.$formEvent[0].reset();
         this.$formEvent.removeClass("was-validated");
         this.$newEventData = null;
@@ -277,19 +278,34 @@
         $("#lisence_plate").val(this.$selectedEvent.title);
         $("#event-category").val(this.$selectedEvent.classNames[0]);
         
-        const thumbnail = this.$selectedEvent.extendedProps.thumbnail;
-        if (thumbnail) {
-            $("#uploadThumbnailPreview").attr("src", '/storage/' + thumbnail);
-        }
+        // let thumbnail = this.$selectedEvent.extendedProps.thumbnail;
+        // if (typeof thumbnail !== "string") {
+        //       thumbnail = event.event.extendedProps.thumbnail;
+        //       console.log(thumbnail)
+        // }
+        
+        // if (thumbnail) {
+        //     $("#uploadThumbnailPreview").attr("src", '/storage/' + thumbnail);
+        // }
+        $("#ThumbnailPreview").empty();
+        const SelectedThumbnail = this.$selectedEvent.extendedProps.thumbnail;
+        const thumb = $("<img>").attr("src", "/storage/" + SelectedThumbnail).addClass("thumbnail").css({ width: "120px", margin: "5px" });
+        $("#ThumbnailPreview").append(thumb);
 
         $("#currentImagePreview").empty();
         const images = this.$selectedEvent.extendedProps.images;
         if (Array.isArray(images)) {
             images.forEach(image => {
                 const img = $("<img>")
-                    .attr("src", "/storage/" + image)
-                    .addClass("image") // optional styling class
-                    .css({ width: "100px", margin: "5px" }); // style as needed
+                .attr("src", "/storage/" + image)
+                .css({
+                    width: "120px",
+                    height: "120px",
+                    borderRadius: "8px",
+                    margin: "5px",
+                    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)"
+                });
+
                 $("#currentImagePreview").append(img);
             });
         }
@@ -329,37 +345,39 @@
     };
 
     CalendarApp.prototype.onSelect = function (event) {
+        
         this.$formEvent[0].reset();
         this.$formEvent.removeClass("was-validated");
+        this.$selectedEvent = null;
+        this.$newEventData = event;
+        $("#currentImagePreview").html('');
+        $("#ThumbnailPreview").html('');
 
         // Manually clear location dropdown and disable it
         $('#location').html('<option disabled selected>Select</option>').prop('disabled', true);
 
-        // Reset file inputs
-        $('#thumbnail').val('');
-        $('#images').val('');
+        // // Reset file inputs
+        // $('#thumbnail').val('');
+        // $('#images').val('');
 
-        // Clear preview images
-        $('#uploadThumbnailPreview').attr('src', '').hide();
-        // Clear uploaded image previews
-        $('#uploadImagePreview').empty().hide();
+        // // Clear preview images
+        //$('#uploadThumbnailPreview').removeAttr('src');
+        // // Clear uploaded image previews
+        // $('#uploadImagePreview').empty().hide();
 
-        // Clear existing (preloaded) image previews, if any
-        $('#currentImagePreview').empty().hide();
+        // // Clear existing (preloaded) image previews, if any
+        // $('#currentImagePreview').empty().hide();
 
 
-        // Clear selected features
-        $("input[name='features[]']").prop('checked', false);
+        // // Clear selected features
+        // $("input[name='features[]']").prop('checked', false);
 
-        // Clear hidden ID field
-        $('#vehicle_id').val('');
+        // // Clear hidden ID field
+        // $('#vehicle_id').val('');
 
-        // Hide/show relevant buttons
         this.$btnDeleteEvent.hide();
         this.$btnEditEvent.hide();
         this.$btnSaveEvent.show();
-
-        // Reset modal title and show
         this.$modalTitle.text("Create Vehicle");
         this.$modal.show();
         this.$calendarObj.unselect();
@@ -384,7 +402,7 @@
             {
                 return new Promise((resolve) => {
                     $.ajax({
-                            url: "/admin/getVehicles", 
+                            url: window.baseUrl+ '/getVehicles', 
                             method: "GET",
                             dataType: "json",
                             success: function (response) {
@@ -392,7 +410,10 @@
                             console.log(response);
                             resolve(response);
                             
-                            document.getElementById("uploadThumbnailPreview").src = "/storage/" + selectedEvent.extendedProps.thumbnail;
+                            //document.getElementById("uploadThumbnailPreview").src = "/storage/" + selectedEvent.extendedProps.thumbnail;
+                            $("#ThumbnailPreview").empty();
+                            const thumb = $("<img>").attr("src", "/storage/" + selectedEvent.extendedProps.thumbnail);
+                            $("#ThumbnailPreview").append(thumb);
 
                             $("#currentImagePreview").empty();
                             const images = selectedEvent.extendedProps.images;
@@ -443,11 +464,11 @@
                 const event = info.event;
 
                 $.ajax({
-                    url: '/admin/updateEventDate', // Adjust this URL to your backend route
+                    url: window.baseUrl+'/updateEventDate', 
                     method: 'POST',
                     data: {
-                        vehicle_id: event.extendedProps.vehicle_id, // Adjust this based on your ID field
-                        new_start: event.start.toISOString(), // Send the new start date
+                        vehicle_id: event.extendedProps.vehicle_id, 
+                        new_start: event.start.toISOString(), 
                     },
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -457,7 +478,7 @@
                             alert('Date updated successfully');
                         } else {
                             alert('Update failed: ' + response.message);
-                            info.revert(); // Revert drag if server rejects update
+                            info.revert(); 
                         }
                     },
                     error: function(xhr) {
@@ -489,7 +510,8 @@
             headerToolbar: {
                 left: "prev,next today",
                 center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+                right: "dayGridMonth,listMonth"
+                //right: "dayGridMonth,listMonth"
             },
             events: vehicles,
             editable: true,
@@ -536,60 +558,12 @@
             if (form.checkValidity()) {
                 if (self.$selectedEvent) {
 
-                    // const fileInput = document.getElementById("thumbnail");
-                    // //const thumbnail  = fileInput.files[0]; // For single file
-
-                    // //const images = document.getElementById("images").files;
-                    
-                    // const selectedFeatures = [];
-                    // $("input[name='features[]']:checked").each(function () {
-                    //     selectedFeatures.push($(this).val());
-                    // });
-                    
-                    // $.ajax({
-                    //     headers: {
-                    //         'Accept': 'application/json'
-                    //     },
-                    //     url: "/admin/updateVehicle",
-                    //     method: "PUT",
-
-                    //     data: {
-                    //         lisence_plate: $('#lisence_plate').val(),
-                    //         vehicle_id: $('#vehicle_id').val(),
-                    //         car_model_id: $('#model').val(),
-                    //         car_category_id : $('#category').val(),
-                    //         city: $('#city').val(),
-                    //         car_location_id: $('#location').val(),
-                    //         fuel_type: $('#fuel_type').val(),
-                    //         transmission: $('#transmission').val(),
-                    //         drive: $('#drive').val(),
-                    //         weight: $('#weight').val(),
-                    //         doors: $('#doors').val(),
-                    //         year: $('#year').val(),
-                    //         engine_size: $('#engine_size').val(),
-                    //         luggage: $('#luggage').val(),
-                    //         seats: $('#seats').val(),
-                    //         fuel_economy: $('#fuel_economy').val(),
-                    //         exterior_color: $('#exterior_color').val(),
-                    //         interior_color: $('#interior_color').val(),
-                    //         rent: $('#rent').val(),
-                    //         mileage: $('#mileage').val(),
-                    //         detail: $('#detail').val(),
-                    //         status: $('#status').val(),
-                    //         //thumbnail: thumbnail,
-                    //         // images: images,
-                    //         features: selectedFeatures
-                    //     },
-                    const selectedFeatures = [];
-                    $("input[name='features[]']:checked").each(function () {
-                        selectedFeatures.push($(this).val());
-                    });
-
                     const formData = new FormData();
 
                     formData.append('_method', 'PUT');
 
                     const thumbnailInput = document.getElementById("thumbnail");
+                    const thumbnailProp = thumbnailInput.files[0];
                     if (thumbnailInput.files.length > 0) {
                         formData.append("thumbnail", thumbnailInput.files[0]);
                     }
@@ -630,7 +604,7 @@
                         headers: {
                             'Accept': 'application/json'
                         },
-                        url: "/admin/updateVehicle",
+                        url: window.baseUrl+"/updateVehicle",
                         method: "POST", 
                         data: formData,
                         processData: false, 
@@ -654,9 +628,35 @@
                                 self.$modal.show();
                             }
 
-                            if(response.status == 'success'){
+                            if(response.status === 'success'){
+                                location.reload();
+                                var thumbNewPath = response.thumbnailProp;
+                                console.log(thumbNewPath)+here;
+                                if (thumbnailInput.files.length > 0){
+                                    self.$selectedEvent.setExtendedProp("thumbnail", thumbNewPath);
+                                }
+                                //self.$selectedEvent.setExtendedProp("location", $("#event-location").val());
                                 self.$selectedEvent.setProp("title", $('#lisence_plate').val());
-            
+
+                                // $("#ThumbnailPreview").empty();
+                                // const thumb = $("<img>").attr("src", "/storage/" + selectedEvent.extendedProps.thumbnail);
+                                // $("#ThumbnailPreview").append(thumb);
+
+                                // $("#currentImagePreview").empty();
+                                // const images = selectedEvent.extendedProps.images;
+                                // if (Array.isArray(images)) {
+                                //     images.forEach(image => {
+                                //         const img = $("<img>")
+                                //             .attr("src", "/storage/" + image)
+                                //             .addClass("image") // optional class
+                                //             .css({ width: "100px", margin: "5px" }); // optional styling
+                                //         $("#currentImagePreview").append(img);
+                                //     });
+                                // }
+                                
+                                if(imageInput.files.length > 0){
+                                    self.$selectedEvent.setExtendedProp("images", imageInput);
+                                }
                                 // Correctly update all extendedProps
                                 const props = [
                                     "model", "category", "city", "location", "fuel_type", "transmission",
@@ -669,8 +669,7 @@
                                     self.$selectedEvent.setExtendedProp(prop, $("#" + prop).val());
                                 });
 
-                                self.$selectedEvent.setExtendedProp("uploadThumbnailPreview", thumbnailInput.files[0]);
-
+                                
                                 // const thumbnail = this.$selectedEvent.extendedProps.thumbnail;
                                 // if (thumbnail) {
                                 //     $("#uploadThumbnailPreview").attr("src", '/storage/' + thumbnail);
@@ -679,6 +678,8 @@
                                 self.$selectedEvent.setExtendedProp("features", selectedFeatures);
                                 alert(response.message);
                                 self.$modal.hide();
+                            }else {
+                                console.error("Server responded with failure:", response.message);
                             }
                         },
                         error: function (xhr) {
@@ -688,40 +689,91 @@
                 } else {
 
                     var start = self.$newEventData.dateStr || new Date().toISOString();
-                    const selectedFeatures = [];
+                    
+                    // const selectedFeatures = [];
+                    // $("input[name='features[]']:checked").each(function () {
+                    //     selectedFeatures.push($(this).val());
+                    // });
+
+                    const formData = new FormData();
+                    formData.append('start', start)
+                    const thumbnailInput = document.getElementById("thumbnail");
+                    const thumbnailProp = thumbnailInput.files[0];
+                    if (thumbnailInput.files.length > 0) {
+                        formData.append("thumbnail", thumbnailInput.files[0]);
+                    }
+
+                    const imageInput = document.getElementById("images");
+                    for (let i = 0; i < imageInput.files.length; i++) {
+                        formData.append("images[]", imageInput.files[i]);
+                    }
+
+                    formData.append('lisence_plate', $('#lisence_plate').val());
+                    formData.append('vehicle_id', $('#vehicle_id').val());
+                    formData.append('car_model_id', $('#model').val());
+                    formData.append('car_category_id', $('#category').val());
+                    formData.append('city', $('#city').val());
+                    formData.append('car_location_id', $('#location').val());
+                    formData.append('fuel_type', $('#fuel_type').val());
+                    formData.append('transmission', $('#transmission').val());
+                    formData.append('drive', $('#drive').val());
+                    formData.append('weight', $('#weight').val());
+                    formData.append('doors', $('#doors').val());
+                    formData.append('year', $('#year').val());
+                    formData.append('engine_size', $('#engine_size').val());
+                    formData.append('luggage', $('#luggage').val());
+                    formData.append('seats', $('#seats').val());
+                    formData.append('fuel_economy', $('#fuel_economy').val());
+                    formData.append('exterior_color', $('#exterior_color').val());
+                    formData.append('interior_color', $('#interior_color').val());
+                    formData.append('rent', $('#rent').val());
+                    formData.append('mileage', $('#mileage').val());
+                    formData.append('detail', $('#detail').val());
+                    formData.append('status', $('#status').val());
+
                     $("input[name='features[]']:checked").each(function () {
-                        selectedFeatures.push($(this).val());
+                        formData.append("features[]", $(this).val());
                     });
 
                     $.ajax({
-                        url: "/admin/storeVehicle",
-                        method: "POST",
-                        
-                        data: {
-                            lisence_plate: $("#lisence_plate").val(),
-                            start: start,
-                            car_model_id: $('#model').val(),
-                            car_category_id : $('#category').val(),
-                            car_location_id: $('#location').val(),
-                            city: $('#city').val(),
-                            fuel_type: $('#fuel_type').val(),
-                            transmission: $('#transmission').val(),
-                            drive: $('#drive').val(),
-                            weight: $('#weight').val(),
-                            doors: $('#doors').val(),
-                            year: $('#year').val(),
-                            engine_size: $('#engine_size').val(),
-                            luggage: $('#luggage').val(),
-                            seats: $('#seats').val(),
-                            fuel_economy: $('#fuel_economy').val(),
-                            exterior_color: $('#exterior_color').val(),
-                            interior_color: $('#interior_color').val(),
-                            rent: $('#rent').val(),
-                            mileage: $('#mileage').val(),
-                            detail: $('#detail').val(),
-                            status: $('#status').val(),
-                            features: selectedFeatures,
+                        headers: {
+                            'Accept': 'application/json'
                         },
+                        url: window.baseUrl+ "/storeVehicle",
+                        method: "POST", 
+                        data: formData,
+                        processData: false, 
+                        contentType: false, 
+
+                    // $.ajax({
+                    //     url: "/admin/storeVehicle",
+                    //     method: "POST",
+                        
+                    //     data: {
+                    //         lisence_plate: $("#lisence_plate").val(),
+                    //         start: start,
+                    //         car_model_id: $('#model').val(),
+                    //         car_category_id : $('#category').val(),
+                    //         car_location_id: $('#location').val(),
+                    //         city: $('#city').val(),
+                    //         fuel_type: $('#fuel_type').val(),
+                    //         transmission: $('#transmission').val(),
+                    //         drive: $('#drive').val(),
+                    //         weight: $('#weight').val(),
+                    //         doors: $('#doors').val(),
+                    //         year: $('#year').val(),
+                    //         engine_size: $('#engine_size').val(),
+                    //         luggage: $('#luggage').val(),
+                    //         seats: $('#seats').val(),
+                    //         fuel_economy: $('#fuel_economy').val(),
+                    //         exterior_color: $('#exterior_color').val(),
+                    //         interior_color: $('#interior_color').val(),
+                    //         rent: $('#rent').val(),
+                    //         mileage: $('#mileage').val(),
+                    //         detail: $('#detail').val(),
+                    //         status: $('#status').val(),
+                    //         features: selectedFeatures,
+                    //     },
                         success: function (response) {
 
                             if(response.status == 'error'){
@@ -799,7 +851,7 @@
         $(this.$btnDeleteEvent).on("click", function () {
             if (self.$selectedEvent) {
                     $.ajax({
-                        url: "/admin/deleteVehicle",
+                        url: window.baseUrl+ "/deleteVehicle",
                         method: "DELETE",
                         
                         data: {
@@ -863,7 +915,10 @@ $(document).ready(function () {
     // When either close button is clicked
     $('#event-modal').on('hidden.bs.modal', function () {
         $("#error-message").addClass("d-none");
-        
+        if ($("#images")[0].files.length > 0) {
+            location.reload();
+        }
+
     });
 });
 

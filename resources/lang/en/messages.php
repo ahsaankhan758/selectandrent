@@ -667,6 +667,15 @@ return [
 'per_hour'      => 'Per Hour',
 'user'=>'User',
 'no_booking'=>'No bookings found.',
+
+'confirm_order'=>'Confirmed Orders',
+'pending_order'=>'Pending Orders',
+'cancel_order' => 'Cancel Orders',
+'confirm_payment' => 'Confirmed Payment',
+'pending_payment' => 'Pending Payment',
+'cancel_payment' => 'Cancelled Payment',
+
+
 'featured_vehicle'=>'Featured Vehicle',
 'newArrival'=>'New Arrival',
 'financial'=>'Financial',
@@ -684,6 +693,7 @@ return [
 'booking_overview'=>'Bookings Overview',
 'reminders'=>'Reminders',
 'earning_summary'=>'Earnings Summary',
+
 '12_month'=>'Last 12 Months',
 '3_month'=>'Last 3 Months',
 '6_month'=>'Last 6 Months',
@@ -693,4 +703,5 @@ return [
 'pending_booking'=>'Pending Bookings',
 'upcoming_booking'=>'Upcoming Bookings',
 'booking_all'=>'Booking All',
+
 ];
