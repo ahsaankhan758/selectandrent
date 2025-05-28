@@ -7,20 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     //
-     protected $fillable = [
-        'user_id',
-        'car_id',
-        'rating',
-        'comment'
-    ];
+    protected $fillable = ['user_id', 'vehicle_id', 'rating', 'comment'];
 
-    public function cars()
+    public function user()
     {
-        return $this->hasMany(Car::class, 'user_id','id');
+        return $this->belongsTo(User::class);
     }
-    
-    public function users()
+
+    public function car()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    } 
+        return $this->belongsTo(Car::class);
+    }
 }

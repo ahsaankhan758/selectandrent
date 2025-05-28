@@ -667,6 +667,14 @@ return [
 'per_hour'   => 'لكل ساعة',
 'user' => 'المستخدم',
 'no_booking' => 'لم يتم العثور على حجوزات.',
+
+'confirm_order' => 'الطلبات المؤكدة',
+'pending_order' => 'الطلبات المعلقة',
+'cancel_order' => 'الطلبات الملغاة',
+'confirm_payment' => 'تم تأكيد الدفع',
+'pending_payment' => 'في انتظار الدفع',
+'cancel_payment' => 'تم إلغاء الدفع',
+
 'featured_vehicle' => 'السيارة المميزة',
 'newArrival' => 'وصل حديثًا',
 'financial' => 'مالي',
@@ -684,5 +692,6 @@ return [
 'booking_overview' => 'نظرة عامة على الحجوزات',
 'reminders' => 'التذكيرات',
 'earning_summary' => 'ملخص الأرباح',
+
 
 ];
