@@ -7,7 +7,16 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
 </script>
 {{-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.15/index.global.min.js'></script> --}}
-
+<!-- Blade: Define baseUrl first -->
+@if(auth()->check() && auth()->user()->role == 'company')
+    <script>
+        window.baseUrl = "{{ url('/company') }}";
+    </script>
+@else
+    <script>
+        window.baseUrl = "{{ url('/admin') }}";
+    </script>
+@endif
     <div class="row">
         <div class="col">
             <div class="page-title-box">
@@ -232,29 +241,25 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                                     <div class="col-3 form-group mb-3">
                                         <label for="thumbnail">{{ __('messages.thumbnail') }}</label>
                                         <input type="file" name="thumbnail" class="form-control" id="thumbnail" onchange="PreviewThumbnail();">
-                                        <div class="mt-1">
-                                            <img id="uploadThumbnailPreview" class="thumbnail" />
+                                        <div class="mt-1" id="ThumbnailPreview">
+                                            
                                         </div>
                                     </div>
-                                    <div class="col-3 form-group mb-3">
+                                    <div class="col-9 form-group mb-3">
                                     <label for="images">{{ __('messages.images') }}</label>
                                     <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages();" multiple>
                                     <div class="mt-1" id="currentImagePreview">
-                                        @if(isset($car->images))
-                                            @foreach (unserialize($car->images) as $image)
-                                                <img src="{{asset('/')}}storage/{{ $image }}" class="image" id="imagesPreview" />
-                                            @endforeach
-                                        @endif
+                                       
                                     </div>
                                     <div class="mt-1" id="uploadImagePreview"></div>
                                 </div>
-                                    <div class="col-3 form-group mb-3">
+                                    <!-- <div class="col-3 form-group mb-3">
                                         {{-- <label for="drive">{{ __('messages.status') }}</label> --}}
                                         <select name="status" id="status" class="form-control">
                                             <option value="1">Active</option>
                                             <option value="0">Inactive</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     {{-- <div class="col-3 form-group mb-3">
                                         <label for="drive">{{ __('messages.date') }} {{ __('messages.added') }}</label>
                                         <input type="date" name="date_added" class="form-control" id="date_added">
@@ -290,14 +295,32 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
     </div> 
     <script type="text/javascript">
         function PreviewThumbnail() {
-            var reader = new FileReader();
-            reader.readAsDataURL(document.getElementById("thumbnail").files[0]);
-            reader.onload = function (oFREvent) {
-                var preview = document.getElementById("uploadThumbnailPreview");
-                preview.src = oFREvent.target.result;
-                preview.style.display = "block";
-            };
+            const fileInput = document.getElementById("thumbnail");
+            const previewContainer = document.getElementById("ThumbnailPreview");
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Clear previous preview if any
+                    previewContainer.innerHTML = "";
+
+                    // Create new image element
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.className = "thumbnail";
+                    img.style.width = "100px";
+                    img.style.margin = "5px";
+                    img.alt = "Thumbnail Preview";
+                    console.log(img);
+                    // Append to the container
+                    previewContainer.appendChild(img);
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
         }
+
 
         function PreviewImages() {
             var previewContainer = document.getElementById("uploadImagePreview");

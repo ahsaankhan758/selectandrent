@@ -112,11 +112,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
             Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
              //Calendar Routes
-             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-             Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
-             Route::post('/storeEvent', [EventController::class, 'store'])->name('storeEvent'); // Add new event
-             // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
-             // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
+            Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
+            Route::get('/getVehicles', [CalendarController::class, 'getVehicles'])->name('getVehicles'); 
+            Route::post('/storeVehicle', [CalendarController::class, 'store'])->name('storeVehicle');
+            Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
+            Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
+            Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
+             
              //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Financial History
@@ -182,20 +184,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/contact', [AdminContactController::class, 'received'])->name('contact.received');
             Route::delete('deleteContact',[AdminContactController::class, 'delete'])->name('deleteContact');
             //Calendar Routes
-            // Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-            // Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); 
-            // Route::post('/storeEvent', [EventController::class, 'store'])->name('storeEvent');
-            // Route::put('/updateEvent', [EventController::class, 'update'])->name('updateEvent');
-            // Route::delete('/deleteEvent', [EventController::class, 'delete'])->name('deleteEvent');
             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
             Route::get('/getVehicles', [CalendarController::class, 'getVehicles'])->name('getVehicles'); 
             Route::post('/storeVehicle', [CalendarController::class, 'store'])->name('storeVehicle');
             Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
             Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
             Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
-
-            // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
-            // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
             //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Client Routes
