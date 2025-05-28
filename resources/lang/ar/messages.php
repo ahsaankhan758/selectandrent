@@ -684,5 +684,13 @@ return [
 'booking_overview' => 'نظرة عامة على الحجوزات',
 'reminders' => 'التذكيرات',
 'earning_summary' => 'ملخص الأرباح',
-
+'12_month' => 'آخر 12 شهرًا',
+'3_month'  => 'آخر 3 أشهر',
+'6_month'  => 'آخر 6 أشهر',
+'confirmed' => 'تم التأكيد',
+'complete_booking' => 'الحجوزات المكتملة',
+'cancelled_booking' => 'الحجوزات الملغاة',
+'pending_booking' => 'الحجوزات المعلقة',
+'upcoming_booking' => 'الحجوزات القادمة',
+ 'booking_all' => 'جميع الحجوزات',
 ];

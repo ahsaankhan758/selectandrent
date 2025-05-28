@@ -13,87 +13,239 @@ use Illuminate\Support\Facades\DB;
 
 class FinancialController extends Controller
 {
-    // public function earningSummary()
+        
+    // public function earningSummary(Request $request)
     //     {
-    //         return view('admin.financial.earningSummary');
+    //         $companyId = isset($request->company_id) ? $request->company_id : null;
+
+    //         $role = Auth::user()->role;
+
+    //         $companyUsers = User::where('role', 'company')->where('status', 1)->pluck('id');
+
+    //         $companies = company::whereIn('user_id', $companyUsers)->pluck('name', 'id');
+           
+    //         print_r($companyId);die;
+    //         $bookings = Booking::with('user')->orderBy('created_at', 'desc')->take(10)->get();
+        
+    //         $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+    //         $statusData = [];
+    //         $totalBookings = Booking::count();
+        
+    //         foreach ($statuses as $status) {
+    //             $count = Booking::where('booking_status', $status)->count();
+    //             $percentage = $totalBookings > 0 ? round(($count / $totalBookings) * 100) : 0;
+        
+    //             $statusData[$status] = [
+    //                 'count' => $count,
+    //                 'percentage' => $percentage,
+    //             ];
+    //         }
+        
+    //         $confirmedtotalprice = Booking::where('booking_status', 'confirmed')->sum('total_price');
+    //         $pendingtotalprice = Booking::where('booking_status', 'pending')->sum('total_price');
+    //         $confirmedCount = Booking::where('booking_status', 'confirmed')->count();
+    //         $pendingCount = Booking::where('booking_status', 'pending')->count();
+    //         $cancelCount = Booking::where('booking_status', 'cancelled')->count();
+    //         $completedCount = Booking::where('booking_status', 'completed')->count();
+        
+    //         return view('admin.financial.financial', compact(
+    //             'role', 'bookings', 
+    //             'statusData', 'totalBookings', 
+    //             'confirmedtotalprice', 'pendingtotalprice', 
+    //             'confirmedCount', 'pendingCount','cancelCount','completedCount','companies','companyId'
+    //         ));
     //     }
-        
-    public function earningSummary()
-        {
-            $role = Auth::user()->role;
-            $bookings = Booking::with('user')->paginate(10);
-        
-            $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-            $statusData = [];
-            $totalBookings = Booking::count();
-        
-            foreach ($statuses as $status) {
-                $count = Booking::where('booking_status', $status)->count();
-                $percentage = $totalBookings > 0 ? round(($count / $totalBookings) * 100) : 0;
-        
-                $statusData[$status] = [
-                    'count' => $count,
-                    'percentage' => $percentage,
-                ];
-            }
-        
-            $confirmedtotalprice = Booking::where('booking_status', 'confirmed')->sum('total_price');
-            $pendingtotalprice = Booking::where('booking_status', 'pending')->sum('total_price');
-            $confirmedCount = Booking::where('booking_status', 'confirmed')->count();
-            $pendingCount = Booking::where('booking_status', 'pending')->count();
-            $cancelCount = Booking::where('booking_status', 'cancelled')->count();
-            $completedCount = Booking::where('booking_status', 'completed')->count();
-        
-            return view('admin.financial.financial', compact(
-                'role', 'bookings', 
-                'statusData', 'totalBookings', 
-                'confirmedtotalprice', 'pendingtotalprice', 
-                'confirmedCount', 'pendingCount','cancelCount','completedCount'
-            ));
+
+    public function earningSummary(Request $request)
+    {
+        $companyUserId = $request->company_id ?? null;
+        $role = Auth::user()->role;
+
+ 
+        $companyUsers = User::where('role', 'company')->where('status', 1)->pluck('id');
+        $companies = Company::whereIn('user_id', $companyUsers)->pluck('name', 'user_id');
+
+      
+        $bookingQuery = Booking::with('booking_items.vehicle.users');
+
+        if ($companyUserId) {
+            $bookingQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+                $q->where('user_id', $companyUserId);
+            });
         }
 
-        public function getOrderStatusData(Request $request)
-        {
-            $filter = $request->filter;
+        $bookings = $bookingQuery->orderBy('created_at', 'desc')->take(10)->get();
 
-            if ($filter === 'today') {
-                $fromDate = Carbon::today();
-                $toDate = Carbon::today()->endOfDay();
-            } elseif ($filter === 'week') {
-                $fromDate = Carbon::now()->startOfWeek();
-                $toDate = Carbon::now()->endOfWeek();
-            } elseif ($filter === 'month') {
-                $fromDate = Carbon::now()->startOfMonth();
-                $toDate = Carbon::now()->endOfMonth();
-            } elseif ($filter === 'last_month') {
-                $fromDate = Carbon::now()->subMonth()->startOfMonth();
-                $toDate = Carbon::now()->subMonth()->endOfMonth();
-            } else {
-                $fromDate = null;
-                $toDate = null;
+        // Status summary
+        $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+        $statusData = [];
+
+        $totalBookingsQuery = Booking::query();
+        if ($companyUserId) {
+            $totalBookingsQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+                $q->where('user_id', $companyUserId);
+            });
+        }
+        $totalBookings = $totalBookingsQuery->count();
+
+        foreach ($statuses as $status) {
+            $query = Booking::where('booking_status', $status);
+            if ($companyUserId) {
+                $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+                    $q->where('user_id', $companyUserId);
+                });
             }
+
+            $count = $query->count();
+            $percentage = $totalBookings > 0 ? round(($count / $totalBookings) * 100) : 0;
+
+            $statusData[$status] = [
+                'count' => $count,
+                'percentage' => $percentage,
+            ];
+        }
+
+        // Financial summaries
+        $confirmedQuery = Booking::where('booking_status', 'confirmed');
+        $pendingQuery = Booking::where('booking_status', 'pending');
+
+        if ($companyUserId) {
+            $confirmedQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+                $q->where('user_id', $companyUserId);
+            });
+
+            $pendingQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+                $q->where('user_id', $companyUserId);
+            });
+        }
+
+        $confirmedtotalprice = $confirmedQuery->sum('total_price');
+        $pendingtotalprice = $pendingQuery->sum('total_price');
+
+        $confirmedCount = $confirmedQuery->count();
+        $pendingCount = $pendingQuery->count();
+
+        $cancelCount = Booking::where('booking_status', 'cancelled')
+            ->when($companyUserId, function ($q) use ($companyUserId) {
+                $q->whereHas('booking_items.vehicle', function ($q2) use ($companyUserId) {
+                    $q2->where('user_id', $companyUserId);
+                });
+            })->count();
+
+        $completedCount = Booking::where('booking_status', 'completed')
+            ->when($companyUserId, function ($q) use ($companyUserId) {
+                $q->whereHas('booking_items.vehicle', function ($q2) use ($companyUserId) {
+                    $q2->where('user_id', $companyUserId);
+                });
+            })->count();
+
+        return view('admin.financial.financial', compact(
+            'role', 'bookings', 
+            'statusData', 'totalBookings', 
+            'confirmedtotalprice', 'pendingtotalprice', 
+            'confirmedCount', 'pendingCount', 
+            'cancelCount', 'completedCount', 
+            'companies', 'companyUserId'
+        ));
+    }
+
+
+
+
+        // public function getOrderStatusData(Request $request)
+        // {
+        //     $filter = $request->filter;
+
+        //     if ($filter === 'today') {
+        //         $fromDate = Carbon::today();
+        //         $toDate = Carbon::today()->endOfDay();
+        //     } elseif ($filter === 'week') {
+        //         $fromDate = Carbon::now()->startOfWeek();
+        //         $toDate = Carbon::now()->endOfWeek();
+        //     } elseif ($filter === 'month') {
+        //         $fromDate = Carbon::now()->startOfMonth();
+        //         $toDate = Carbon::now()->endOfMonth();
+        //     } elseif ($filter === 'last_month') {
+        //         $fromDate = Carbon::now()->subMonth()->startOfMonth();
+        //         $toDate = Carbon::now()->subMonth()->endOfMonth();
+        //     } else {
+        //         $fromDate = null;
+        //         $toDate = null;
+        //     }
             
-            $query = Booking::query();
+        //     $query = Booking::query();
 
-            if ($fromDate && $toDate) {
-                $query->whereBetween('created_at', [$fromDate, $toDate]);
-            }
+        //     if ($fromDate && $toDate) {
+        //         $query->whereBetween('created_at', [$fromDate, $toDate]);
+        //     }
 
-            $total = $query->count();
-            $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-            $data = [];
+        //     $total = $query->count();
+        //     $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+        //     $data = [];
 
-            foreach ($statuses as $status) {
-                $count = (clone $query)->where('booking_status', $status)->count();
-                $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
+        //     foreach ($statuses as $status) {
+        //         $count = (clone $query)->where('booking_status', $status)->count();
+        //         $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
 
-                $data[$status] = [
-                    'percentage' => $percentage
-                ];
-            }
+        //         $data[$status] = [
+        //             'percentage' => $percentage
+        //         ];
+        //     }
 
-            return response()->json($data);
-        }
+        //     return response()->json($data);
+        // }
+
+
+      public function getOrderStatusData(Request $request)
+{
+    $filter = $request->filter;
+    $companyUserId = $request->company_id;
+
+    if ($filter === 'today') {
+        $fromDate = Carbon::today();
+        $toDate = Carbon::today()->endOfDay();
+    } elseif ($filter === 'week') {
+        $fromDate = Carbon::now()->startOfWeek();
+        $toDate = Carbon::now()->endOfWeek();
+    } elseif ($filter === 'month') {
+        $fromDate = Carbon::now()->startOfMonth();
+        $toDate = Carbon::now()->endOfMonth();
+    } elseif ($filter === 'last_month') {
+        $fromDate = Carbon::now()->subMonth()->startOfMonth();
+        $toDate = Carbon::now()->subMonth()->endOfMonth();
+    } else {
+        $fromDate = null;
+        $toDate = null;
+    }
+
+    $query = Booking::query();
+
+    // Filter by company user ID using the relation through vehicle -> user_id
+    if ($companyUserId) {
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+            $q->where('user_id', $companyUserId);
+        });
+    }
+
+    if ($fromDate && $toDate) {
+        $query->whereBetween('created_at', [$fromDate, $toDate]);
+    }
+
+    $total = $query->count();
+    $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+    $data = [];
+
+    foreach ($statuses as $status) {
+        $count = (clone $query)->where('booking_status', $status)->count();
+        $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
+
+        $data[$status] = ['percentage' => $percentage];
+    }
+
+    return response()->json($data);
+}
+
+
 
         public function getChartData(Request $request)
         {
