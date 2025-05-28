@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-Dashboard | Select and Rent 
+{{ __('messages.dashboard')}} | Select and Rent 
 @endsection
 
 @section('content')
@@ -9,6 +9,9 @@ Dashboard | Select and Rent
 
         <!-- Reusable Card Template Start -->
         <!-- Card 1 -->
+         <div class="col-md-12 col-lg-12">
+         <a href="{{route('website.booking')}}" class="btn btn-primary">Give Reviews</a>
+         </div>
          <div class="col-md-6 col-lg-4">
             <div class="card bg-success text-white shadow rounded-4 h-100">
                 <div class="card-body d-flex align-items-center p-4">
@@ -18,7 +21,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Confirmed Orders</h6>
+                        <h6 class="mb-1">{{ __('messages.confirm_order')}}</h6>
                         <h3 class="mb-1">{{ $statusCounts['confirmed'] }}</h3>
                     </div>
                 </div>
@@ -35,7 +38,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Pending Orders</h6>
+                        <h6 class="mb-1">{{ __('messages.pending_order')}}</h6>
                         <h3 class="mb-1">{{ $statusCounts['pending'] }}</h3>
                     </div>
                 </div>
@@ -52,7 +55,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Cancel Orders</h6>
+                        <h6 class="mb-1">{{ __('messages.cancel_order')}}</h6>
                         <h3 class="mb-1">{{ $statusCounts['cancelled'] }}</h3>
                     </div>
                 </div>
@@ -70,7 +73,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Confirmed Payment</h6>
+                        <h6 class="mb-1">{{ __('messages.confirm_payment')}}</h6>
                         <h3 class="mb-1">${{ number_format($priceTotals['confirmed']) }}</h3>
                     </div>
                 </div>
@@ -87,7 +90,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Pending Payment</h6>
+                        <h6 class="mb-1">{{ __('messages.pending_payment')}}</h6>
                         <h3 class="mb-1">${{ number_format($priceTotals['pending']) }}</h3>
                     </div>
                 </div>
@@ -104,7 +107,7 @@ Dashboard | Select and Rent
                         </div>
                     </div>
                     <div>
-                        <h6 class="mb-1">Cancelled Payment</h6>
+                        <h6 class="mb-1">{{ __('messages.cancel_payment')}}</h6>
                         <h3 class="mb-1">${{ number_format($priceTotals['cancelled']) }}</h3>
                     </div>
                 </div>
