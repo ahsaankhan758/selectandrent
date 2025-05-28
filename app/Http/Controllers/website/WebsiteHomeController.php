@@ -17,8 +17,10 @@ class WebsiteHomeController extends Controller
 {
     public function showView()
     {
-        $cars = Car::orderBy('created_at', 'desc')->take(7)->get();
-        return view('website.index', compact('cars',));
+        $cars = Car::orderBy('created_at', 'desc')->take(10)->get();
+        $featuredVehicle = Car::where('is_featured', '1')->take(10)->get();
+        $newArrival = Car::orderBy('created_at', 'desc')->take(10)->get();
+        return view('website.index', compact('cars','featuredVehicle','newArrival'));
     }
 
     public function search(Request $request)
@@ -26,7 +28,7 @@ class WebsiteHomeController extends Controller
         $request->validate([
             'brand' => 'nullable|numeric',
             'model' => 'nullable|numeric',
-            'beam' => 'nullable|string',
+            // 'beam' => 'nullable|string',
             'transmission' => 'nullable|string',
             // 'radius' => 'nullable|numeric',
             'minimum' => 'nullable|numeric',
