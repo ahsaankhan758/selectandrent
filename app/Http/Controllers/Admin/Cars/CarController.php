@@ -119,7 +119,7 @@ public function getLocations($city_id)
        // save logs
        $userId = Auth::id();
        $userName = Auth::user()->name;
-       $desciption = $userName.' Created [ Car Lisence Plate '.$car->lisence_plate.'] [Car Name '.$car->car_models->name.'] Successfully.';
+       $desciption = $userName.' Created [ Car Lisence Plate: '.$car->lisence_plate.'] [Car Name '.$car->car_models->name.'] Successfully.';
        $action = 'Create';
        $module = 'Car';
        activityLog($userId, $desciption,$action,$module);
@@ -261,16 +261,16 @@ public function getLocations($city_id)
             }
         }
         //Unlink Images
-    if(!empty($car->images))
-    {   
-        foreach(unserialize($car->images) as $image)
-            {
-                $old_image = storage_path('app/public/' . $image);
-                if (file_exists($old_image)) {
-                    unlink($old_image);
+        if(!empty($car->images))
+        {   
+            foreach(unserialize($car->images) as $image)
+                {
+                    $old_image = storage_path('app/public/' . $image);
+                    if (file_exists($old_image)) {
+                        unlink($old_image);
+                    }
                 }
-            }
-    }
+        }
         $car->delete();
          // save logs
          $userId = Auth::id();
