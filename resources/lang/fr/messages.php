@@ -661,4 +661,11 @@ return [
 'per_hour'   => 'Par heure',
 'user' => 'Utilisateur',
 'no_booking' => 'Aucune réservation trouvée.',
+'confirm_order' => 'Commandes confirmées',
+'pending_order' => 'Commandes en attente',
+'cancel_order' => 'Commandes annulées',
+'confirm_payment' => 'Paiement confirmé',
+'pending_payment' => 'Paiement en attente',
+'cancel_payment' => 'Paiement annulé',
+
 ];
