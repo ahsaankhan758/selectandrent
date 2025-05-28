@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
         public function bookingDashboard()
         {
-            $bookings = Booking::with('user')->paginate(10);
+            $bookings = Booking::with('user')->orderBy('created_at', 'desc')->take(10)->get();
             $today = Carbon::today();
         
             $futureConfirmedCount = Booking::where('booking_status', 'confirmed')
@@ -32,9 +32,7 @@ class DashboardController extends Controller
                 ->count();
         
             $pendingCount = Booking::where('booking_status', 'pending')->count();
-        
             $cancelledCount = Booking::where('booking_status', 'cancelled')->count();
-        
             $confirmedCount = Booking::where('booking_status', 'confirmed')->count();
         
             return view('admin.bookingDashboard', compact(

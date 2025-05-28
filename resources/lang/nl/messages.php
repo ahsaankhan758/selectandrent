@@ -688,5 +688,14 @@ return [
 'reminders' => 'Herinneringen',
 'earning_summary' => 'Inkomstenoverzicht',
 
+'12_month' => 'Afgelopen 12 maanden',
+'3_month'  => 'Afgelopen 3 maanden',
+'6_month'  => 'Afgelopen 6 maanden',
+'confirmed' => 'Bevestigd',
+'complete_booking' => 'Voltooide boekingen',
+'cancelled_booking' => 'Geannuleerde boekingen',
+'pending_booking' => 'In afwachting van boekingen',
+'upcoming_booking' => 'Aankomende boekingen',
+ 'booking_all' => 'Alle boekingen',
 
 ];

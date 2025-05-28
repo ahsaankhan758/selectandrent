@@ -693,6 +693,15 @@ return [
 'booking_overview'=>'Bookings Overview',
 'reminders'=>'Reminders',
 'earning_summary'=>'Earnings Summary',
-''=>'',
+
+'12_month'=>'Last 12 Months',
+'3_month'=>'Last 3 Months',
+'6_month'=>'Last 6 Months',
+'confirmed'=>'Confirmed',
+'complete_booking'=>'Completed Bookings',
+'cancelled_booking'=>'Canceled Bookings',
+'pending_booking'=>'Pending Bookings',
+'upcoming_booking'=>'Upcoming Bookings',
+'booking_all'=>'Booking All',
 
 ];

@@ -69,12 +69,12 @@
                                     {{ __('messages.earnings') }} 
                                 </a> 
                              </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('bookingDashboard') }}">
                                     <i class="mdi mdi-calendar-multiple-check"></i>
                                     {{ __('messages.bookings') }}
                                  </a>
-                            </li>
+                            </li> --}}
                             {{-- <li>
                                 <a href="dashboard-3.html">Dashboard 3</a>
                             </li>
@@ -229,7 +229,7 @@
                 @endif
                 @if(can('Bookings','view'))
                     <li>
-                        <a href="{{ route('carBooking') }}">
+                        <a href="{{ route('bookingDashboard') }}">
                             <i class="mdi mdi-calendar-multiple-check"></i>
                             <span>{{ __('messages.bookings') }} </span>
                         </a>
