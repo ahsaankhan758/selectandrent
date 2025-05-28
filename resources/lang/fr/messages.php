@@ -687,5 +687,14 @@ return [
 'reminders' => 'Rappels',
 'earning_summary' => 'Résumé des gains',
 
+'12_month' => '12 derniers mois',
+'3_month'  => '3 derniers mois',
+'6_month'  => '6 derniers mois',
+'confirmed' => 'Confirmé',
+'complete_booking' => 'Réservations terminées',
+'cancelled_booking' => 'Réservations annulées',
+'pending_booking' => 'Réservations en attente',
+'upcoming_booking' => 'Réservations à venir',
+ 'booking_all' => 'Toutes les réservations',
 
 ];

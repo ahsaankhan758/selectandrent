@@ -9,7 +9,6 @@ $.ajaxSetup({
 // Handle click on Book Now button
 $(document).on('click', '#car-booking-btn', function(e) {
     e.preventDefault();
-    
     var $button = $(this);
     var carId = $button.data('carid');
     var originalBtnText = $button.html();

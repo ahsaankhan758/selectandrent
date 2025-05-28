@@ -25,11 +25,23 @@
     </div>
     <!-- end page title -->
     <!-- added by farhan -->
+    <div class="col-lg-12 my-3">
+        <div class="col-lg-3 justify-content-start">
+            <select name="company_id" id="options-dropdown" class="form-control">
+                <option value="">Select a company</option>
+                @foreach ($companies as $id => $name)
+                    <option value="{{ $id }}" {{ request('company_id') == $id ? 'selected' : '' }}>
+                        {{ $name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
     <div class="row">
         <!-- 8 Column Section -->
         <div class="col-xl-8 col-md-8">
             <div class="row">
-
                 <div class="col-md-6">
                     <div class="card p-3">
                         <div class="d-flex align-items-center">
@@ -126,15 +138,19 @@
                         <div class="dropdown">
                             <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                               {{ __('messages.week') }} <i class="fas fa-angle-down ms-2"></i>
+                                {{ __('messages.week') }} <i class="fas fa-angle-down ms-2"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item filter-option" href="#" data-filter="week">{{ __('messages.week') }}</a>
+                                <li><a class="dropdown-item filter-option" href="#"
+                                        data-filter="week">{{ __('messages.week') }}</a>
                                 </li>
-                                <li><a class="dropdown-item filter-option" href="#" data-filter="month">{{ __('messages.month') }}</a>
+                                <li><a class="dropdown-item filter-option" href="#"
+                                        data-filter="month">{{ __('messages.month') }}</a>
                                 </li>
-                                <li><a class="dropdown-item filter-option" href="#" data-filter="last_month">{{ __('messages.last_month') }}</a></li>
-                                <li><a class="dropdown-item filter-option" href="#" data-filter="year">{{ __('messages.this_year') }}</a>
+                                <li><a class="dropdown-item filter-option" href="#"
+                                        data-filter="last_month">{{ __('messages.last_month') }}</a></li>
+                                <li><a class="dropdown-item filter-option" href="#"
+                                        data-filter="year">{{ __('messages.this_year') }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -164,11 +180,14 @@
                             {{ __('messages.this_year') }} <i class="fas fa-angle-down ms-2"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="bookingDropdown">
-                            <li><a class="dropdown-item" href="#" onclick="updateChart('this_year')">{{ __('messages.this_year') }}</a>
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="updateChart('this_year')">{{ __('messages.this_year') }}</a>
                             </li>
-                            <li><a class="dropdown-item" href="#" onclick="updateChart('month')">{{ __('messages.month') }}</a>
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="updateChart('month')">{{ __('messages.month') }}</a>
                             </li>
-                            <li><a class="dropdown-item" href="#" onclick="updateChart('last_month')">{{ __('messages.last_month') }}</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="updateChart('last_month')">{{ __('messages.last_month') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -228,17 +247,17 @@
                         <div class="dropdown">
                             <button id="dropdownBtn" class="btn btn-light btn-sm dropdown-toggle" type="button"
                                 data-bs-toggle="dropdown">
-                                Last 12 Months <i class="fas fa-angle-down ms-2"></i>
+                                {{ __('messages.12_month') }} <i class="fas fa-angle-down ms-2"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" onclick="fetchEarnings(1, 'Last Month')">Last
-                                    Month</a>
-                                <a class="dropdown-item" href="#" onclick="fetchEarnings(3, 'Last 3 Months')">Last
-                                    3 Months</a>
-                                <a class="dropdown-item" href="#" onclick="fetchEarnings(6, 'Last 6 Months')">Last
-                                    6 Months</a>
                                 <a class="dropdown-item" href="#"
-                                    onclick="fetchEarnings(12, 'Last 12 Months')">Last 12 Months</a>
+                                    onclick="fetchEarnings(1, 'Last Month')">{{ __('messages.last_month') }}</a>
+                                <a class="dropdown-item" href="#"
+                                    onclick="fetchEarnings(3, 'Last 3 Months')">{{ __('messages.3_month') }}</a>
+                                <a class="dropdown-item" href="#"
+                                    onclick="fetchEarnings(6, 'Last 6 Months')">{{ __('messages.6_month') }}</a>
+                                <a class="dropdown-item" href="#"
+                                    onclick="fetchEarnings(12, 'Last 12 Months')">{{ __('messages.12_month') }}</a>
                             </div>
                         </div>
                     </div>
@@ -255,6 +274,10 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-centered table-nowrap mb-0" id="myTable">
+                            <div class="col-lg-12">
+                                <a href="{{ route('carBooking') }}"
+                                    class="btn btn-success">{{ __('messages.booking_all') }}</a>
+                            </div>
                             <thead class="table-light">
                                 <tr>
                                     <th style="width: 20px;">
@@ -263,21 +286,20 @@
                                             <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                         </div>
                                     </th>
-                                    <th>User ID</th>
-                                    <th>Name</th>
-                                    <th>Booking Ref</th>
-                                    <th>Transaction ID</th>
-                                    <th>Payment Status</th>
-                                    <th>Booking Status</th>
-                                    <th>Payment Method</th>
-                                    <th>Coupon</th>
-                                    <th>Discount</th>
-                                    <th>Tax</th>
-                                    <th>Insurance</th>
-                                    <th>Total</th>
-                                    <th>Subtotal</th>
-                                    <th>Notes</th>
-                                    <th style="width: 125px;">Action</th>
+                                    <th style="width: 125px;">{{ __('messages.action') }}</th>
+                                    <th>{{ __('messages.name') }}</th>
+                                    <th>{{ __('messages.bookingref') }}</th>
+                                    <th>{{ __('messages.bookingtransaction') }}</th>
+                                    <th>{{ __('messages.bookingpayment') }}</th>
+                                    <th>{{ __('messages.bookingstatus') }}</th>
+                                    <th>{{ __('messages.bookingmethod') }}</th>
+                                    <th>{{ __('messages.bookingcoupon') }}</th>
+                                    <th>{{ __('messages.bookingdiscount') }}</th>
+                                    <th>{{ __('messages.bookingtax') }}</th>
+                                    <th>{{ __('messages.bookinginsurance') }}</th>
+                                    <th>{{ __('messages.bookingtotal') }}</th>
+                                    <th>{{ __('messages.bookingsubtotal') }}</th>
+                                    <th>{{ __('messages.bookingnotes') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -289,7 +311,10 @@
                                                 <label class="form-check-label" for="customCheck2">&nbsp;</label>
                                             </div>
                                         </td>
-                                        <td><a href="#" class="text-body fw-bold">{{ $booking->id }}</a></td>
+                                        <td>
+                                            <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
+                                                class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                        </td>
                                         <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                         <td>{{ $booking->booking_reference }}</td>
                                         <td>{{ $booking->transaction_id }}</td>
@@ -309,26 +334,28 @@
                                         <td>{{ number_format($booking->total_price, 2) }}</td>
                                         <td>{{ number_format($booking->subtotal, 2) }}</td>
                                         <td>{{ $booking->notes }}</td>
-                                        <td>
-                                            <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
-                                                class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="16" class="text-center">No bookings found.</td>
+                                        <td colspan="16" class="text-center">{{ __('messages.no_booking') }}</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                       <div class="d-flex justify-content-end">
-                            {{ $bookings->links() }}
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('options-dropdown').addEventListener('change', function() {
+            const companyId = this.value;
+            const url = companyId ?
+                `{{ route('earningSummary') }}?company_id=${companyId}` :
+                `{{ route('earningSummary') }}`;
+            window.location.href = url;
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -4,6 +4,9 @@
 @endsection
 
 @section('content')
+<!-- add to cart js -->
+<script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <!-- Fancybox CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
 <!-- Fancybox JS -->

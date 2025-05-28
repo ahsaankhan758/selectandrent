@@ -9,11 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-     public function up()
+      public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            // Add 'profile_image' before 'name'
-            $table->string('profile_image')->nullable()->after('id');
+            // Add 'profile_image' after 'name'
+            $table->string('profile_image')->nullable()->after('name');
         });
     }
 
