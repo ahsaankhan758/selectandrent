@@ -58,6 +58,7 @@ use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
+use App\Http\Controllers\website\ReviewController;
 
 
 Route::middleware('LanguageMiddleware')->group(function(){
@@ -305,11 +306,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
     // booking page website
     Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
     Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
+    // website review save
+    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 
 
     // dashboard page website
     Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
-});
+
 
 //Auth Routes
 // Auth::routes();
@@ -326,12 +329,10 @@ Route::get('email/verify', [VerificationController::class, 'show'])->name('verif
 Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth', 'signed']);
 Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend')->middleware('auth');
 
-// dashboard page website
-Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
 // for analytics
 Route::post('/track-click', [ActivityController::class, 'trackClick']);
 
-
+});
 // Load carsRoutes
 require base_path('routes/carsRoutes.php');    
 

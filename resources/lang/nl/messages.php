@@ -662,6 +662,14 @@ return [
 'per_hour'   => 'Per uur',
 'user' => 'Gebruiker',
 'no_booking' => 'Geen boekingen gevonden.',
+
+'confirm_order' => 'Bevestigde bestellingen',
+'pending_order' => 'In afwachting van bestellingen',
+'cancel_order' => 'Geannuleerde bestellingen',
+'confirm_payment' => 'Bevestigde betaling',
+'pending_payment' => 'In afwachting van betaling',
+'cancel_payment' => 'Geannuleerde betaling',
+
 'featured_vehicle' => 'Uitgelicht voertuig',
 'newArrival' => 'Nieuwe aankomst',
 'financial' => 'Financieel',
@@ -679,5 +687,6 @@ return [
 'booking_overview' => 'Boekingsoverzicht',
 'reminders' => 'Herinneringen',
 'earning_summary' => 'Inkomstenoverzicht',
+
 
 ];

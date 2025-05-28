@@ -667,6 +667,15 @@ return [
 'per_hour'      => 'Per Hour',
 'user'=>'User',
 'no_booking'=>'No bookings found.',
+
+'confirm_order'=>'Confirmed Orders',
+'pending_order'=>'Pending Orders',
+'cancel_order' => 'Cancel Orders',
+'confirm_payment' => 'Confirmed Payment',
+'pending_payment' => 'Pending Payment',
+'cancel_payment' => 'Cancelled Payment',
+
+
 'featured_vehicle'=>'Featured Vehicle',
 'newArrival'=>'New Arrival',
 'financial'=>'Financial',
@@ -685,4 +694,5 @@ return [
 'reminders'=>'Reminders',
 'earning_summary'=>'Earnings Summary',
 ''=>'',
+
 ];
