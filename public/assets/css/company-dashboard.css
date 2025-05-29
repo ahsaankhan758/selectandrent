@@ -1001,11 +1001,11 @@
         white-space: nowrap;
     }
     .summary {
-        margin-top: -150px !important;
+        margin-top: 0px !important;
         padding: 0px 15px;
     }
     .summary2 {
-        margin-top: -80px !important;
+        margin-top: 0px !important;
         padding: 0px 15px;
     }
 }
