@@ -1,14 +1,14 @@
 
 @extends('admin.layouts.Master')
-@section('title') {{__('messages.users') }} @endsection
+@section('title') {{__('messages.admins') }} @endsection
 @section('content')
 
     <div class="col-12">
         <div class="card mt-4">
             <div class="card-header">
-                <h4>{{__('messages.user') }}</h4>
+                <h4>{{__('messages.admins') }}</h4>
                 @if(can('users','edit'))
-                    <a href=" {{ route('createUser') }}" class="btn float-end" style="background-color: #f06115; color: white " >{{__('messages.create') }} {{__('messages.user') }}</a>
+                    <a href=" {{ route('createUser') }}" class="btn float-end" style="background-color: #f06115; color: white " >{{__('messages.create') }} {{__('messages.admin') }}</a>
                 @endif
             </div>
             <div class="card-body">

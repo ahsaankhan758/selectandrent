@@ -1,6 +1,8 @@
  <?php
 
 return [
+    'employee' => 'Employee',
+    'employees' => 'Employees',
     'all' => 'All',
     'welcome' => 'Welcome to our website!',
     'login' => 'Login',
@@ -22,10 +24,11 @@ return [
     'brand' => 'Brand',
     'categories' => 'Categories',
     'category' => 'Category',
-
+    'admins' => 'Admins',
     'PaymentMethod'=>'Payment Method',
     'currencies' => 'Currencies',
-
+    'id_number' => 'ID Number',
+    'age' => 'Age',
     'features' => 'Features',
     'feature' => 'Feature',
     'model' => 'Model',

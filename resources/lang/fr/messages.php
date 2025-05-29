@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'employee' => 'Employé',
+    'employees' => 'Employés',
+    'admins' => 'Administrateurs',
     'all' => 'Tous',
     'welcome' => 'Bienvenue sur notre site Web!',
     'login' => 'Connexion',
@@ -18,6 +21,8 @@ return [
     'financial' => 'Financier',
     'earning' => 'Revenu',
     'summary' => 'Résumé',
+    'id_number' => 'Numéro d\'identité',
+    'age' => 'Âge',
     'of'=>'de',
     'transaction' => 'Transaction',
     'history' => 'Historique',

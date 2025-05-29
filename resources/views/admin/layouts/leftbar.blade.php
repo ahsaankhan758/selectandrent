@@ -92,10 +92,20 @@
                         <li>
                             <a href="{{ route('users') }}">
                                 <i class="mdi mdi-account-circle-outline"></i>
-                                <span> {{ __('messages.users') }} </span>
+                                <span> {{ __('messages.admins') }} </span>
                             </a>
                         </li>
                     @endif
+                @endif
+                @if(can('users','view'))
+                    <li>
+                        <a href="{{ route('employee') }}">
+                            <i class="mdi mdi-account-circle-outline"></i>
+                            <span> {{ __('messages.employees') }} </span>
+                        </a>
+                    </li>
+                @endif
+                @if($role == 'admin')
                     <li>
                         <a href="{{ route('usersignup') }}">
                             <i class="mdi mdi-account-plus"></i>
