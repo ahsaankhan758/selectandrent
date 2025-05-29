@@ -6,7 +6,6 @@
 @section('content')
 
 <style>
-
 #addressDropdown {
     position: absolute;
     top: 100%;
@@ -21,35 +20,27 @@
     z-index: 1000; 
     display: none; 
 }
-
-
 #addressDropdown.show {
     display: block;
 }
-
 /* Style dropdown items */
 #addressDropdown .dropdown-item {
     padding: 8px 12px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
-
 /* Hover effect for dropdown items */
 #addressDropdown .dropdown-item:hover {
     background-color: #f8f9fa;
 }
-
 /* Style for muted/no results */
 #addressDropdown .text-muted {
     color: #6c757d;
     pointer-events: none; 
 }
-
 .position-relative {
     position: relative;
 }
-
-
 </style>
 
 <!-- add to cart js -->
@@ -58,10 +49,7 @@
 
 <div class="container">
     <div class="row">
-
             @include('website.car-listing.car-listing-filters.vehiclefilterlist')
-
-
         <!-- Main Content -->
         <div class="col-md-9">
            <!-- Sorting & Filtering -->
@@ -79,8 +67,7 @@
                         <option value="">{{ __('messages.All Cars') }}</option>
                         <option value="auto">{{ __('messages.Auto') }}</option>
                         <option value="manual">{{ __('messages.Manual') }}</option>
-                    </select>
-                    
+                    </select>        
                 </div>
                 <div class="car-listing-dropdown">
                     <span class="sort-icon">≡</span>
@@ -93,13 +80,11 @@
             </div>
         </div>
 
-        
         <!-- Car Listing Grid -->
         <div class="row" id="car-list">
             @include('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])
         </div>
         <div class="text-center mb-5">
-
         @if($totalCars > 8)
         <button class="load-more-btn btn btn-orange-clr text-white" 
         data-target="car-list" 
@@ -109,22 +94,16 @@
         data-model="Car">
         {{ __('messages.Load More') }}
         </button>
-    
         @endif
         </div>  
-                  
-            
         </div>
     </div>
 </div>
-
 
 <script>
     var carListingRoute = "{{ route('car.listing') }}";
     var carListingFilterRoute = "{{ route('get.car.models') }}";
     var carListingAddressFilter = "{{ route('search.locations') }}";
 </script>
-
-
 
 @endsection

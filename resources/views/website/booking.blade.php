@@ -45,7 +45,6 @@ Booking | Select and Rent
                     <th class="text-nowrap table-clr">{{ __('messages.user') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingref') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.company_name') }}</th>
-                    <th class="text-nowrap table-clr">{{ __('messages.bookingtransaction') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingpayment') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingstatus') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingmethod') }}</th>
@@ -61,6 +60,7 @@ Booking | Select and Rent
             <tbody>
                 @forelse($bookings as $booking)
                 <tr>
+
                 <td class="py-4 text-center">
                     <div class="d-inline-flex align-items-center">
                         <a href="{{ route('website.bookingdetail', $booking->id) }}" class="me-2" title="View Booking">
@@ -72,11 +72,16 @@ Booking | Select and Rent
                         </a>
                     </div>
                 </td>
+
                     <td class="py-4 text-center">{{ $booking->user->name }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_reference }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_items->first()->vehicle->company->name ?? '' }}</td>
+<<<<<<< HEAD
                     <td class="py-4 text-center">{{ $booking->transaction_id }}</td>
                     <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}1</span></td>
+=======
+                    <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
+>>>>>>> ae600008511c812a4b3ece16fbca96d1e2066647
                     <td class="py-4 text-center"><span class="badge bg-secondary text-uppercase">{{ $booking->booking_status }}</span></td>
                     <td class="py-4 text-center">{{ ucfirst($booking->payment_method) }}</td>
                     <td class="py-4 text-center">{{ $booking->coupon_code ?: '—' }}</td>

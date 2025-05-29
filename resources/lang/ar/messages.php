@@ -667,11 +667,31 @@ return [
 'per_hour'   => 'لكل ساعة',
 'user' => 'المستخدم',
 'no_booking' => 'لم يتم العثور على حجوزات.',
+
 'confirm_order' => 'الطلبات المؤكدة',
 'pending_order' => 'الطلبات المعلقة',
 'cancel_order' => 'الطلبات الملغاة',
 'confirm_payment' => 'تم تأكيد الدفع',
 'pending_payment' => 'في انتظار الدفع',
 'cancel_payment' => 'تم إلغاء الدفع',
+
+'featured_vehicle' => 'السيارة المميزة',
+'newArrival' => 'وصل حديثًا',
+'financial' => 'مالي',
+'order_confirm' => 'الطلبات المؤكدة',
+'total_revenue' => 'إجمالي الإيرادات',
+'order_complete' => 'الطلبات المكتملة',
+'order_cancel' => 'الطلبات الملغاة',
+'order_pending' => 'الطلبات المعلقة',
+'pending_revenue' => 'الإيرادات المعلقة',
+'order_status' => 'حالة الطلبات',
+'week' => 'هذا الأسبوع',
+'month' => 'هذا الشهر',
+'last_month' => 'الشهر الماضي',
+'this_year' => 'هذا العام',
+'booking_overview' => 'نظرة عامة على الحجوزات',
+'reminders' => 'التذكيرات',
+'earning_summary' => 'ملخص الأرباح',
+
 
 ];
