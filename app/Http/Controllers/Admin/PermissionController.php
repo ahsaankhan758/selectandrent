@@ -19,8 +19,7 @@ class PermissionController extends Controller
             $usersList = company::where('status', 1)
                 ->whereHas('user', function ($query) {
                     $query->where('role', 'company');
-                })
-                ->get();
+                })->get();
         return view('admin.permissions.index', compact('role', 'usersList'));
     }
     

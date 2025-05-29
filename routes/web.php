@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\Auth\LoginController;
@@ -105,6 +107,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            //Employees
+            Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
+            Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
+            Route::post('store', [EmployeeController::class,'store'])->name('storeEmployee');
+            Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
+            Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
+            Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
             // Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
@@ -159,7 +168,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('edituser/{id}',[userController::class,'edit'])->name('editUser');
             Route::put('updateuser/{id}',[userController::class,'update'])->name('updateUser');
             Route::get('deleteuser/{id}',[userController::class,'destroy'])->name('deleteUser'); 
-         
+            //Employees
+            Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
+            Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
+            Route::post('store', [EmployeeController::class,'store'])->name('storeEmployee');
+            Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
+            Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
+            Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
             //Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');

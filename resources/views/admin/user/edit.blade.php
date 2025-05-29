@@ -1,12 +1,12 @@
 
 @extends('admin.layouts.Master')
-@section('title') {{__('messages.update') }} {{__('messages.user') }}@endsection
+@section('title') {{__('messages.update') }} {{__('messages.admin') }}@endsection
 @section('content')
 
     <div class="col-6">
         <div class="card mt-4">
             <div class="card-header">
-                <h4>{{__('messages.update') }} {{__('messages.user') }}</h4>
+                <h4>{{__('messages.update') }} {{__('messages.Admin') }}</h4>
                 <a href=" {{ route('users') }}" class="btn btn-primary float-end" >{{__('messages.back') }}</a>
             </div>
             <div class="card-body">
