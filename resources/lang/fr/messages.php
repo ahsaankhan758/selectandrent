@@ -661,11 +661,31 @@ return [
 'per_hour'   => 'Par heure',
 'user' => 'Utilisateur',
 'no_booking' => 'Aucune réservation trouvée.',
+
 'confirm_order' => 'Commandes confirmées',
 'pending_order' => 'Commandes en attente',
 'cancel_order' => 'Commandes annulées',
 'confirm_payment' => 'Paiement confirmé',
 'pending_payment' => 'Paiement en attente',
 'cancel_payment' => 'Paiement annulé',
+
+'featured_vehicle' => 'Véhicule en vedette',
+'newArrival' => 'Nouveauté',
+'financial' => 'Financier',
+'order_confirm' => 'Commandes confirmées',
+'total_revenue' => 'Revenu total',
+'order_complete' => 'Commandes complétées',
+'order_cancel' => 'Commandes annulées',
+'order_pending' => 'Commandes en attente',
+'pending_revenue' => 'Revenu en attente',
+'order_status' => 'Statut des commandes',
+'week' => 'Cette semaine',
+'month' => 'Ce mois-ci',
+'last_month' => 'Le mois dernier',
+'this_year' => 'Cette année',
+'booking_overview' => 'Aperçu des réservations',
+'reminders' => 'Rappels',
+'earning_summary' => 'Résumé des gains',
+
 
 ];

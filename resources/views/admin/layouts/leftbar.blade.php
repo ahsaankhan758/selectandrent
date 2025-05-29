@@ -236,26 +236,11 @@
                     </li>
                 @endif
                 @if(can('Financial','view'))
-                    <li>
-                        <a href="#sub_menu_financial" data-bs-toggle="collapse">
+                  <li>
+                        <a href="{{ route('earningSummary')}}">
                             <i class="mdi mdi-cash-multiple"></i>
-                            <span> {{ __('messages.financial') }} </span>
-                            <span class="menu-arrow"></span>
+                            <span>{{ __('messages.financial') }}</span>
                         </a>
-                        <div class="collapse" id="sub_menu_financial">
-                            <ul class="nav-second-level">
-                                @if(can('earning_summary','view'))
-                                    <li>
-                                        <a href="{{ route('earningSummary') }}" > <i class="mdi mdi-clipboard-text"></i><span class="custom-ml-15">{{ __('messages.earning') }} {{ __('messages.summary') }}</span></a>
-                                    </li>
-                                @endif
-                                @if(can('transaction_history','view'))
-                                    <li>
-                                        <a href="{{ route('transactionHistory') }}" > <i class="mdi mdi-clock"></i><span class="custom-ml-15">{{ __('messages.transaction') }} {{ __('messages.history') }} </span></a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
                     </li>
                 @endif
                 @if(can('Clients','view'))

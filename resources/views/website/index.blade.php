@@ -139,8 +139,206 @@
             </div>
         </div>
     </div>
+    @if(count($featuredVehicle)>0)
+    <section class="container py-4 mt-5">
+        <div class="row align-items-center">
+            <!-- Heading (Always on Left) -->
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <h2 class="fw-bold">{{ __('messages.featured_vehicle') }}</h2>
+            </div>
+            <!-- Button (Center on Mobile, End on Larger Screens) -->
+            <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
+                <button class="btn rounded-pill text-white btn-orange-clr"
+                    onclick="window.location.href='{{ url('/carlisting') }}'">
+                    {{ __('messages.View All') }}
+                    <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png" class="ms-2"
+                        width="20" height="20" alt="">
+                </button>
+            </div>
 
+        </div>
+    </section>
+  <!--featured cars view -->
+    <div class="container py-4">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                @foreach ($featuredVehicle as $car)
+                    <div class="swiper-slide mb-2">
+                        <div class="custom-card2">
+                            <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                                <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
+                                    alt="Car Image">
+                            </a>
+                            <div class="card-content">
+                                <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h5 class="text-muted card_orange_clr">
+                                                {{ $car->car_models->car_brands->name ?? ' ' }}
+                                                {{ $car->car_models->name ?? ' ' }}
+                                                {{ $car->year ?? ' ' }}
+                                            </h5>
+                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }} {{ $car->engine_size }}
+                                                {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} | {{$car->fuel_type}}</h6>
+                                        </div>
+                                        <div>
+                                        @php
+                                            $companyProfile = $car->users->companies->company_profile ?? null;
+                                        @endphp
 
+                                        @if($companyProfile)
+                                            <img src="{{ asset($companyProfile) }}" alt="Company Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
+                                        @else
+                                            <img src="{{ asset('frontend-assets/assets/customeruser.png') }}" alt="Default Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
+                                        @endif
+                                    </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="d-flex justify-content-between w-100">
+                                        <div class="flex-fill text-center mx-2">
+                                            <h6>{{ __('messages.mileage') }}</h6>
+                                            <p><i class="fas fa-tachometer-alt"></i> {{ $car->mileage }}</p>
+                                        </div>
+                                        <div class="flex-fill text-center mx-2">
+                                            <h6>{{ __('messages.deposit') }}</h6>
+                                            <p>{{convertPrice($car->advance_deposit,0)}}</p>
+                                        </div>
+                                        <div class="flex-fill text-center mx-2">
+                                            <h6>{{ __('messages.min') }}</h6>
+                                            <p><i class="fa-solid fa-user"></i> {{$car->min_age}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </a>
+                                <div class="d-flex justify-content-between bg-light align-items-center rounded">
+                                    <h6 class="card_orange_clr ms-2">
+                                        {{ convertPrice($car->rent, 0) }}/{{ __('messages.Day') }}</h6>
+                                    @if (auth()->check())
+                                        <button class="book-btn" data-carid="{{ $car->id }}"
+                                            id="car-booking-btn">{{ __('messages.Book') }}</button>
+                                    @else
+                                        <button class="book-btn" data-bs-toggle="modal"
+                                            data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Swiper Navigation -->
+        <div class="d-flex justify-content-center mt-3">
+            <a class="carousel-control-prev-custom me-3">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <a class="carousel-control-next-custom">
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+    @endif
+    <section class="container py-4 mt-5">
+        <div class="row align-items-center">
+            <!-- Heading (Always on Left) -->
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <h2 class="fw-bold">{{ __('messages.newArrival') }}</h2>
+            </div>
+            <!-- Button (Center on Mobile, End on Larger Screens) -->
+            <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
+                <button class="btn rounded-pill text-white btn-orange-clr"
+                    onclick="window.location.href='{{ url('/carlisting') }}'">
+                    {{ __('messages.View All') }}
+                    <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png" class="ms-2"
+                        width="20" height="20" alt="">
+                </button>
+            </div>
+
+        </div>
+    </section>
+      <!-- cars view -->
+    <div class="container py-4">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                @foreach ($newArrival as $car)
+                    <div class="swiper-slide mb-2">
+                        <div class="custom-card2">
+                            <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                                <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
+                                    alt="Car Image">
+                            </a>
+                            <div class="card-content">
+                                <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h5 class="text-muted card_orange_clr">
+                                                {{ $car->car_models->car_brands->name ?? ' ' }}
+                                                {{ $car->car_models->name ?? ' ' }}
+                                                {{ $car->year ?? ' ' }}
+                                            </h5>
+                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }} {{ $car->engine_size }}
+                                                {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} | {{$car->fuel_type}}</h6>
+                                        </div>
+                                        <div>
+                                        @php
+                                            $companyProfile = $car->users->companies->company_profile ?? null;
+                                        @endphp
+
+                                        @if($companyProfile)
+                                            <img src="{{ asset($companyProfile) }}" alt="Company Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
+                                        @else
+                                            <img src="{{ asset('frontend-assets/assets/customeruser.png') }}" alt="Default Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
+                                        @endif
+                                    </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="d-flex justify-content-between w-100">
+                                        <div class="flex-fill text-center mx-2">
+                                            <h6>{{ __('messages.mileage') }}</h6>
+                                            <p><i class="fas fa-tachometer-alt"></i> {{ $car->mileage }}</p>
+                                        </div>
+                                        <div class="flex-fill text-center mx-2">
+                                            <h6>{{ __('messages.deposit') }}</h6>
+                                            <p>{{convertPrice($car->advance_deposit,0)}}</p>
+                                        </div>
+                                        <div class="flex-fill text-center mx-2">
+                                            <h6>{{ __('messages.min') }}</h6>
+                                            <p><i class="fa-solid fa-user"></i> {{$car->min_age}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </a>
+                                <div class="d-flex justify-content-between bg-light align-items-center rounded">
+                                    <h6 class="card_orange_clr ms-2">
+                                        {{ convertPrice($car->rent, 0) }}/{{ __('messages.Day') }}</h6>
+                                    @if (auth()->check())
+                                        <button class="book-btn" data-carid="{{ $car->id }}"
+                                            id="car-booking-btn">{{ __('messages.Book') }}</button>
+                                    @else
+                                        <button class="book-btn" data-bs-toggle="modal"
+                                            data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Swiper Navigation -->
+        <div class="d-flex justify-content-center mt-3">
+            <a class="carousel-control-prev-custom me-3">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <a class="carousel-control-next-custom">
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
 
     <!-- chose section -->
     <div class="container-fluid bg-white chose-bg-img mt-4">
@@ -405,15 +603,15 @@
                                     <div class="d-flex justify-content-between w-100">
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.mileage') }}</h6>
-                                            <p>{{ $car->mileage }}</p>
+                                            <p><i class="fas fa-tachometer-alt"></i> {{ $car->mileage }}</p>
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.deposit') }}</h6>
-                                            <p>{{$car->advance_deposit}}</p>
+                                            <p>{{convertPrice($car->advance_deposit,0)}}</p>
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.min') }}</h6>
-                                            <p>{{$car->min_age}}</p>
+                                            <p><i class="fa-solid fa-user"></i> {{$car->min_age}}</p>
                                         </div>
                                     </div>
                                     <hr>
