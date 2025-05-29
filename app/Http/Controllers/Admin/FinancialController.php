@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\company;
 use App\Models\IP_Address;
+use App\Models\BookingItem;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class FinancialController extends Controller
 {
@@ -58,12 +59,13 @@ class FinancialController extends Controller
 
     public function earningSummary(Request $request)
     {
-        $companyUserId = $request->company_id ?? null;
+        $companyUserId = $request->user_id ?? null;
+        // print_r($companyUserId);die;
         $role = Auth::user()->role;
 
  
-        $companyUsers = User::where('role', 'company')->where('status', 1)->pluck('id');
-        $companies = Company::whereIn('user_id', $companyUsers)->pluck('name', 'user_id');
+        // $companyUsers = User::where('role', 'company')->where('status', 1)->pluck('id');
+        $companies = Company::where('status',1)->pluck('name', 'user_id');
 
       
         $bookingQuery = Booking::with('booking_items.vehicle.users');
@@ -197,142 +199,256 @@ class FinancialController extends Controller
 
 
       public function getOrderStatusData(Request $request)
-{
-    $filter = $request->filter;
-    $companyUserId = $request->company_id;
+    {
+        $filter = $request->filter;
+        $companyUserId = $request->user_id;
 
-    if ($filter === 'today') {
-        $fromDate = Carbon::today();
-        $toDate = Carbon::today()->endOfDay();
-    } elseif ($filter === 'week') {
-        $fromDate = Carbon::now()->startOfWeek();
-        $toDate = Carbon::now()->endOfWeek();
-    } elseif ($filter === 'month') {
-        $fromDate = Carbon::now()->startOfMonth();
-        $toDate = Carbon::now()->endOfMonth();
-    } elseif ($filter === 'last_month') {
-        $fromDate = Carbon::now()->subMonth()->startOfMonth();
-        $toDate = Carbon::now()->subMonth()->endOfMonth();
-    } else {
-        $fromDate = null;
-        $toDate = null;
+        if ($filter === 'today') {
+            $fromDate = Carbon::today();
+            $toDate = Carbon::today()->endOfDay();
+        } elseif ($filter === 'week') {
+            $fromDate = Carbon::now()->startOfWeek();
+            $toDate = Carbon::now()->endOfWeek();
+        } elseif ($filter === 'month') {
+            $fromDate = Carbon::now()->startOfMonth();
+            $toDate = Carbon::now()->endOfMonth();
+        } elseif ($filter === 'last_month') {
+            $fromDate = Carbon::now()->subMonth()->startOfMonth();
+            $toDate = Carbon::now()->subMonth()->endOfMonth();
+        } else {
+            $fromDate = null;
+            $toDate = null;
+        }
+
+        $query = Booking::query();
+
+        // Filter by company user ID using the relation through vehicle -> user_id
+        if ($companyUserId) {
+            $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+                $q->where('user_id', $companyUserId);
+            });
+        }
+
+        if ($fromDate && $toDate) {
+            $query->whereBetween('created_at', [$fromDate, $toDate]);
+        }
+
+        $total = $query->count();
+        $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+        $data = [];
+
+        foreach ($statuses as $status) {
+            $count = (clone $query)->where('booking_status', $status)->count();
+            $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
+
+            $data[$status] = ['percentage' => $percentage];
+        }
+
+        return response()->json($data);
     }
 
-    $query = Booking::query();
+// booking chart
 
-    // Filter by company user ID using the relation through vehicle -> user_id
+public function getChartData(Request $request)
+{
+    $type = $request->query('type'); 
+    $companyUserId = $request->user_id ?? null;
+    $now = Carbon::now();
+    $labels = [];
+    $data = [];
+
+    $query = Booking::with(['booking_items.vehicle']);
+
     if ($companyUserId) {
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
             $q->where('user_id', $companyUserId);
         });
     }
 
-    if ($fromDate && $toDate) {
-        $query->whereBetween('created_at', [$fromDate, $toDate]);
+    if ($type === 'month') {
+        $query->whereMonth('created_at', $now->month)
+              ->whereYear('created_at', $now->year);
+
+        $bookings = $query->get()->groupBy(function($booking) {
+            return Carbon::parse($booking->created_at)->day;
+        });
+
+        foreach (range(1, $now->daysInMonth) as $day) {
+            $labels[] = "{$day} {$now->format('F')}";
+            $data[] = isset($bookings[$day]) ? $bookings[$day]->count() : 0;
+        }
+
+    }
+    elseif ($type === 'last_month') {
+        $lastMonth = $now->copy()->subMonth();
+
+        $query->whereMonth('created_at', $lastMonth->month)
+              ->whereYear('created_at', $lastMonth->year);
+
+        $bookings = $query->get()->groupBy(function($booking) {
+            return Carbon::parse($booking->created_at)->day;
+        });
+
+        foreach (range(1, $lastMonth->daysInMonth) as $day) {
+            $labels[] = "{$day} {$lastMonth->format('F')}";
+            $data[] = isset($bookings[$day]) ? $bookings[$day]->count() : 0;
+        }
+
+    }
+    elseif ($type === 'this_year') {
+        $query->whereYear('created_at', $now->year);
+
+        $bookings = $query->get()->groupBy(function($booking) {
+            return Carbon::parse($booking->created_at)->month;
+        });
+
+        $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $data[] = isset($bookings[$i]) ? $bookings[$i]->count() : 0;
+        }
     }
 
-    $total = $query->count();
-    $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-    $data = [];
-
-    foreach ($statuses as $status) {
-        $count = (clone $query)->where('booking_status', $status)->count();
-        $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
-
-        $data[$status] = ['percentage' => $percentage];
-    }
-
-    return response()->json($data);
+    return response()->json([
+        'labels' => $labels,
+        'data' => $data
+    ]);
 }
 
 
+        // public function getChartData(Request $request)
+        // {
+        //     $type = $request->query('type'); 
+        //     $companyUserId = $request->user_id ?? null;
+        //     $now = Carbon::now();
+        //     $labels = [];
+        //     $data = [];
 
-        public function getChartData(Request $request)
-        {
-            $type = $request->query('type'); 
+        //     if ($type === 'month') {
+        //         $bookings = DB::table('bookings')
+        //             ->whereMonth('created_at', $now->month)
+        //             ->whereYear('created_at', $now->year)
+        //             ->selectRaw('DAY(created_at) as day, COUNT(*) as total')
+        //             ->groupBy('day')
+        //             ->orderBy('day')
+        //             ->pluck('total', 'day');
 
-            $now = Carbon::now();
-            $labels = [];
-            $data = [];
+        //         foreach (range(1, $now->daysInMonth) as $day) {
+        //             $labels[] = "{$day} {$now->format('F')}";
+        //             $data[] = $bookings[$day] ?? 0;
+        //         }
 
-            if ($type === 'month') {
-                $bookings = DB::table('bookings')
-                    ->whereMonth('created_at', $now->month)
-                    ->whereYear('created_at', $now->year)
-                    ->selectRaw('DAY(created_at) as day, COUNT(*) as total')
-                    ->groupBy('day')
-                    ->orderBy('day')
-                    ->pluck('total', 'day');
+        //     } elseif ($type === 'last_month') {
+        //         $lastMonth = $now->copy()->subMonth();
 
-                foreach (range(1, $now->daysInMonth) as $day) {
-                    $labels[] = "{$day} {$now->format('F')}";
-                    $data[] = $bookings[$day] ?? 0;
-                }
+        //         $bookings = DB::table('bookings')
+        //             ->whereMonth('created_at', $lastMonth->month)
+        //             ->whereYear('created_at', $lastMonth->year)
+        //             ->selectRaw('DAY(created_at) as day, COUNT(*) as total')
+        //             ->groupBy('day')
+        //             ->orderBy('day')
+        //             ->pluck('total', 'day');
 
-            } elseif ($type === 'last_month') {
-                $lastMonth = $now->copy()->subMonth();
+        //         foreach (range(1, $lastMonth->daysInMonth) as $day) {
+        //             $labels[] = "{$day} {$lastMonth->format('F')}";
+        //             $data[] = $bookings[$day] ?? 0;
+        //         }
 
-                $bookings = DB::table('bookings')
-                    ->whereMonth('created_at', $lastMonth->month)
-                    ->whereYear('created_at', $lastMonth->year)
-                    ->selectRaw('DAY(created_at) as day, COUNT(*) as total')
-                    ->groupBy('day')
-                    ->orderBy('day')
-                    ->pluck('total', 'day');
+        //     } elseif ($type === 'this_year') {
+        //         $bookings = DB::table('bookings')
+        //             ->whereYear('created_at', $now->year)
+        //             ->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+        //             ->groupBy('month')
+        //             ->orderBy('month')
+        //             ->pluck('total', 'month');
 
-                foreach (range(1, $lastMonth->daysInMonth) as $day) {
-                    $labels[] = "{$day} {$lastMonth->format('F')}";
-                    $data[] = $bookings[$day] ?? 0;
-                }
+        //         $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        //         for ($i = 1; $i <= 12; $i++) {
+        //             $data[] = $bookings[$i] ?? 0;
+        //         }
+        //     }
 
-            } elseif ($type === 'this_year') {
-                $bookings = DB::table('bookings')
-                    ->whereYear('created_at', $now->year)
-                    ->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
-                    ->groupBy('month')
-                    ->orderBy('month')
-                    ->pluck('total', 'month');
+        //     return response()->json([
+        //         'labels' => $labels,
+        //         'data' => $data
+        //     ]);
+        // }
 
-                $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                for ($i = 1; $i <= 12; $i++) {
-                    $data[] = $bookings[$i] ?? 0;
-                }
-            }
+// earning summary
 
-            return response()->json([
-                'labels' => $labels,
-                'data' => $data
-            ]);
-        }
+public function getEarningsData(Request $request)
+{
+    $companyUserId = $request->user_id ?? null;
+    $months = $request->query('months', 12);
 
-        public function getEarningsData(Request $request)
-        {
-            $months = $request->query('months', 12);
+    $now = Carbon::now();
+    $startDate = $now->copy()->subMonths($months - 1)->startOfMonth();
+
+    // Query base
+    $query = Booking::where('booking_status', 'confirmed')
+        ->where('created_at', '>=', $startDate);
+
+    // If companyUserId is given, filter using relation
+    if ($companyUserId) {
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+            $q->where('user_id', $companyUserId);
+        });
+    }
+
+    // Fetch and group by month
+    $earnings = $query->get()
+        ->groupBy(function ($booking) {
+            return Carbon::parse($booking->created_at)->format('M');
+        })
+        ->map(function ($monthBookings) {
+            return $monthBookings->sum('total_price');
+        });
+
+    // Build response
+    $labels = [];
+    $data = [];
+
+    for ($i = 0; $i < $months; $i++) {
+        $monthName = $now->copy()->subMonths($months - 1 - $i)->format('M');
+        $labels[] = $monthName;
+        $data[] = $earnings[$monthName] ?? 0;
+    }
+
+    return response()->json([
+        'labels' => $labels,
+        'data' => $data
+    ]);
+}
+
+        // public function getEarningsData(Request $request)
+        // {
+        //     $companyUserId = $request->user_id ?? null;
+        //     $months = $request->query('months', 12);
     
-            $now = Carbon::now();
-            $startDate = $now->copy()->subMonths($months - 1)->startOfMonth();
+        //     $now = Carbon::now();
+        //     $startDate = $now->copy()->subMonths($months - 1)->startOfMonth();
     
-            $earnings = Booking::where('booking_status', 'confirmed')
-                ->where('created_at', '>=', $startDate)
-                ->get()
-                ->groupBy(function ($booking) {
-                    return Carbon::parse($booking->created_at)->format('M');
-                })
-                ->map(function ($monthBookings) {
-                    return $monthBookings->sum('total_price');
-                });
+        //     $earnings = Booking::where('booking_status', 'confirmed')
+        //         ->where('created_at', '>=', $startDate)
+        //         ->get()
+        //         ->groupBy(function ($booking) {
+        //             return Carbon::parse($booking->created_at)->format('M');
+        //         })
+        //         ->map(function ($monthBookings) {
+        //             return $monthBookings->sum('total_price');
+        //         });
     
-            $labels = [];
-            $data = [];
-            for ($i = 0; $i < $months; $i++) {
-                $monthName = $now->copy()->subMonths($months - 1 - $i)->format('M');
-                $labels[] = $monthName;
-                $data[] = $earnings[$monthName] ?? 0;
-            }
+        //     $labels = [];
+        //     $data = [];
+        //     for ($i = 0; $i < $months; $i++) {
+        //         $monthName = $now->copy()->subMonths($months - 1 - $i)->format('M');
+        //         $labels[] = $monthName;
+        //         $data[] = $earnings[$monthName] ?? 0;
+        //     }
     
-            return response()->json([
-                'labels' => $labels,
-                'data' => $data
-            ]);
-        }
+        //     return response()->json([
+        //         'labels' => $labels,
+        //         'data' => $data
+        //     ]);
+        // }
 }
