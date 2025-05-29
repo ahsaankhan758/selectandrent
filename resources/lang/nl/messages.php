@@ -1,7 +1,10 @@
 <?php
 
 return [
+    'employee' => 'Werknemer',
+    'employees' => 'Werknemers',
     'all' => 'Allemaal',
+    'admins' => 'Beheerders',
     'welcome' => 'Welkom op onze website!',
     'login' => 'Inloggen',
     'register' => 'Registreren',
@@ -12,6 +15,8 @@ return [
     'companies' => 'Bedrijven',
     'cars' => 'Auto\'s',
     'car' => 'Auto',
+    'id_number' => 'Identificatienummer',
+    'age' => 'Leeftijd',
     'dashboard' => 'Dashboard',
     'dashboards' => 'Dashboards',
     'financial' => 'Financieel',

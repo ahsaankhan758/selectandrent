@@ -1,6 +1,9 @@
 <?php 
 
 return [
+    'employee' => 'موظف',
+    'admins' => 'المشرفون',
+    'employees' => 'الموظفون',
     'all' => 'الكل',
     'welcome' => 'مرحبًا بك في موقعنا!',
     'login' => 'تسجيل الدخول',
@@ -11,6 +14,8 @@ return [
     'company' => 'الشركة',
     'companies' => 'الشركات',
     'cars' => 'السيارات',
+    'id_number' => 'رقم الهوية',
+    'age' => 'العمر',
     'car' => 'سيارة',
     'currencies' => 'العملات',
     'dashboard' => 'لوحة التحكم',
