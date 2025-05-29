@@ -150,7 +150,7 @@ $(document).ready(function () {
             type: 'GET',
             data: {
                 filter: filter,
-                company_id: getSelectedCompanyId()
+                user_id: getSelectedCompanyId()
             },
             success: function (response) {
                 const chartData = [
@@ -186,7 +186,6 @@ $(document).ready(function () {
 
 
 // booking chart 
-
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("bookingsChart").getContext("2d");
 
@@ -238,8 +237,21 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
+    // Get selected user_id from dropdown
+    function getSelectedCompanyId() {
+        return document.getElementById('options-dropdown').value;
+    }
+
+    // Fetch chart data with selected user_id and type
     function fetchData(type = 'this_year') {
-        fetch(`${window.bookingChartRoute}?type=${type}`)
+        const userId = getSelectedCompanyId();
+        const url = new URL(window.bookingChartRoute);
+        url.searchParams.append('type', type);
+        if (userId) {
+            url.searchParams.append('user_id', userId);
+        }
+
+        fetch(url)
             .then((res) => res.json())
             .then((response) => {
                 chart.data.labels = response.labels;
@@ -256,16 +268,101 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    // Expose globally to use in buttons/dropdowns
     window.updateChart = fetchData;
+
+    // Initial chart load
     fetchData('this_year');
+
+    // Optional: Trigger fetch on dropdown change
+    document.getElementById('options-dropdown').addEventListener('change', () => {
+        fetchData(document.getElementById('bookingDropdown').dataset.type || 'this_year');
+    });
 });
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     const ctx = document.getElementById("bookingsChart").getContext("2d");
+
+//     let chart = new Chart(ctx, {
+//         type: "bar",
+//         data: {
+//             labels: [],
+//             datasets: [{
+//                 label: "Bookings",
+//                 data: [],
+//                 backgroundColor: [],
+//                 borderRadius: 5,
+//             }],
+//         },
+//         options: {
+//             responsive: true,
+//             plugins: {
+//                 tooltip: {
+//                     enabled: true,
+//                     backgroundColor: "#000",
+//                     bodyColor: "#fff",
+//                     displayColors: false,
+//                     titleColor: "#ddd",
+//                     padding: 10,
+//                     callbacks: {
+//                         title: function (tooltipItems) {
+//                             return `Date: ${tooltipItems[0].label}`;
+//                         },
+//                         label: function (tooltipItem) {
+//                             return `Bookings: ${tooltipItem.raw}`;
+//                         }
+//                     }
+//                 }
+//             },
+//             scales: {
+//                 y: {
+//                     beginAtZero: true,
+//                     suggestedMax: 10,
+//                 },
+//             },
+//             onHover: (event, chartElement) => {
+//                 if (chartElement.length) {
+//                     const index = chartElement[0].index;
+//                     const backgroundColors = chart.data.datasets[0].data.map((_, i) => i === index ? 'orange' : 'navy');
+//                     chart.data.datasets[0].backgroundColor = backgroundColors;
+//                     chart.update();
+//                 }
+//             }
+//         },
+//     });
+
+//        function getSelectedCompanyId() {
+//         return $('#options-dropdown').val();
+//     }
+
+//     function fetchData(type = 'this_year') {
+//         fetch(`${window.bookingChartRoute}?type=${type}`)
+//             .then((res) => res.json())
+//             .then((response) => {
+//                 chart.data.labels = response.labels;
+//                 chart.data.datasets[0].data = response.data;
+//                 chart.data.datasets[0].backgroundColor = response.data.map((_, i) => i === 5 ? 'orange' : 'navy');
+//                 chart.update();
+
+//                 const labelMap = {
+//                     'this_year': 'This Year',
+//                     'month': 'This Month',
+//                     'last_month': 'Last Month'
+//                 };
+//                 document.getElementById('bookingDropdown').textContent = labelMap[type] || 'Select Range';
+//             });
+//     }
+
+//     window.updateChart = fetchData;
+//     fetchData('this_year');
+// });
 
 
 // earning summary 
-
 document.addEventListener("DOMContentLoaded", function () {
     let chart;
 
+    // Initialize chart with labels and data
     function initChart(labels, data) {
         var options = {
             chart: {
@@ -299,13 +396,21 @@ document.addEventListener("DOMContentLoaded", function () {
         chart.render();
     }
 
-    window.fetchEarnings = function(months = 12, label = 'Last 12 Months') {
-        fetch(`${window.earningsdata}?months=${months}`)
+    // ✅ Get selected user_id from dropdown
+    function getSelectedCompanyId() {
+        return document.getElementById('options-dropdown').value;
+    }
+
+    // Fetch data and update chart
+    window.fetchEarnings = function (months = 12, label = 'Last 12 Months') {
+        const userId = getSelectedCompanyId(); // ✅ Get user ID
+
+        fetch(`${window.earningsdata}?months=${months}&user_id=${userId}`)
             .then(response => response.json())
             .then(data => {
                 if (chart) {
                     chart.updateOptions({
-                        series: [{ data: data.data }],
+                        series: [{ name: "Earnings", data: data.data }],
                         xaxis: { categories: data.labels }
                     });
                 } else {
@@ -316,5 +421,61 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     };
 
+    // Initial fetch on page load
     fetchEarnings(12, 'Last 12 Months');
 });
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     let chart;
+
+//     function initChart(labels, data) {
+//         var options = {
+//             chart: {
+//                 type: 'line',
+//                 height: 300,
+//                 toolbar: { show: false }
+//             },
+//             series: [{
+//                 name: "Earnings",
+//                 data: data
+//             }],
+//             xaxis: {
+//                 categories: labels
+//             },
+//             stroke: { curve: 'smooth', width: 3 },
+//             markers: {
+//                 size: 0,
+//                 hover: { size: 6, colors: ['#07407B'] }
+//             },
+//             colors: ['#07407B'],
+//             tooltip: {
+//                 enabled: true,
+//                 x: { show: true },
+//                 y: {
+//                     formatter: (val) => `$${parseFloat(val).toLocaleString()}`
+//                 }
+//             }
+//         };
+
+//         chart = new ApexCharts(document.querySelector("#earnings-chart"), options);
+//         chart.render();
+//     }
+
+//     window.fetchEarnings = function(months = 12, label = 'Last 12 Months') {
+//         fetch(`${window.earningsdata}?months=${months}`)
+//             .then(response => response.json())
+//             .then(data => {
+//                 if (chart) {
+//                     chart.updateOptions({
+//                         series: [{ data: data.data }],
+//                         xaxis: { categories: data.labels }
+//                     });
+//                 } else {
+//                     initChart(data.labels, data.data);
+//                 }
+
+//                 document.getElementById("dropdownBtn").innerText = label;
+//             });
+//     };
+//     fetchEarnings(12, 'Last 12 Months');
+// });

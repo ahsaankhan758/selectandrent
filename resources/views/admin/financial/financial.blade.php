@@ -25,17 +25,26 @@
     </div>
     <!-- end page title -->
     <!-- added by farhan -->
-    <div class="col-lg-12 my-3">
+    <div class="col-lg-12 my-3 row">
         <div class="col-lg-3 justify-content-start">
-            <select name="company_id" id="options-dropdown" class="form-control">
+            <select name="user_id" id="options-dropdown" class="form-control">
                 <option value="">Select a company</option>
                 @foreach ($companies as $id => $name)
-                    <option value="{{ $id }}" {{ request('company_id') == $id ? 'selected' : '' }}>
+                    <option value="{{ $id }}" {{ request('user_id') == $id ? 'selected' : '' }}>
                         {{ $name }}
                     </option>
                 @endforeach
             </select>
         </div>
+         <!-- Start Date Picker -->
+    <div class="col-lg-3">
+        <input type="date" id="start-date" class="form-control" placeholder="Start Date">
+    </div>
+
+    <!-- End Date Picker -->
+    <div class="col-lg-3">
+        <input type="date" id="end-date" class="form-control" placeholder="End Date">
+    </div>
     </div>
 
     <div class="row">
@@ -49,7 +58,7 @@
                                 <i class="fa fa-car-side"></i>
                             </div>
                             <div class="ms-3">
-                                <h6 class="text-muted mb-1">{{ __('messages.order_confirm') }}</h6>
+                                <h6 class="text-muted mb-2">{{ __('messages.order_confirm') }}</h6>
                                 <h2 class="text-dark">{{ $confirmedCount }}</h2>
                             </div>
                         </div>
@@ -63,7 +72,7 @@
                                 <i class="fa fa-dollar-sign"></i>
                             </div>
                             <div class="ms-3">
-                                <h6 class="text-muted mb-1">{{ __('messages.total_revenue') }}</h6>
+                                <h6 class="text-muted mb-2">{{ __('messages.total_revenue') }}</h6>
                                 <h2 class="text-dark"> ${{ intval($confirmedtotalprice) }}
                                 </h2>
                             </div>
@@ -78,7 +87,7 @@
                                 <i class="fa fa-car"></i>
                             </div>
                             <div class="ms-3">
-                                <h6 class="text-muted mb-1">{{ __('messages.order_complete') }}</h6>
+                                <h6 class="text-muted mb-2">{{ __('messages.order_complete') }}</h6>
                                 <h2 class="text-dark">{{ $completedCount }}</h2>
                             </div>
                         </div>
@@ -92,7 +101,7 @@
                                 <i class="fa fa-dollar-sign"></i>
                             </div>
                             <div class="ms-3">
-                                <h6 class="text-muted mb-1">{{ __('messages.order_cancel') }}</h6>
+                                <h6 class="text-muted mb-2">{{ __('messages.order_cancel') }}</h6>
                                 <h2 class="text-dark">{{ $cancelCount }}</h2>
                             </div>
                         </div>
@@ -106,7 +115,7 @@
                                 <i class="fa fa-car"></i>
                             </div>
                             <div class="ms-3">
-                                <h6 class="text-muted mb-1">{{ __('messages.order_pending') }}</h6>
+                                <h6 class="text-muted mb-2">{{ __('messages.order_pending') }}</h6>
                                 <h2 class="text-dark">{{ $pendingCount }}</h2>
                             </div>
                         </div>
@@ -120,7 +129,7 @@
                                 <i class="fa fa-dollar-sign"></i>
                             </div>
                             <div class="ms-3">
-                                <h6 class="text-muted mb-1">{{ __('messages.pending_revenue') }}</h6>
+                                <h6 class="text-muted mb-2">{{ __('messages.pending_revenue') }}</h6>
                                 <h2 class="text-dark"> ${{ intval($pendingtotalprice) }}</h2>
                             </div>
                         </div>
@@ -156,8 +165,8 @@
                         </div>
                     </div>
 
-                    <div id="cardCollapseRentStatus" class="collapse show mt-3">
-                        <div class="text-center pt-3">
+                    <div id="cardCollapseRentStatus" class="collapse show">
+                        <div class="text-center">
                             <div dir="ltr">
                                 <div id="lifetime-sales" data-colors="#07407B,#f06115,#ebeff2" style="height: 270px;"
                                     class="morris-chart mt-3"></div>
@@ -170,7 +179,7 @@
     </div>
     <!-- added by farhan -->
     <div class="row">
-        <div class="col-xl-8 col-md-8 summary2">
+        <div class="col-xl-12 col-md-12 summary2">
             <div class="card p-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h3>{{ __('messages.booking_overview') }}</h3>
@@ -194,7 +203,7 @@
                 <canvas id="bookingsChart"></canvas>
             </div>
         </div>
-        <div class="col-xl-4 col-md-4">
+        {{-- <div class="col-xl-4 col-md-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body reminder-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -236,10 +245,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="row mt-2">
-        <div class="col-xl-8 col-md-8 summary">
+        <div class="col-xl-12 col-md-12 summary">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -349,9 +358,9 @@
     </div>
     <script>
         document.getElementById('options-dropdown').addEventListener('change', function() {
-            const companyId = this.value;
-            const url = companyId ?
-                `{{ route('earningSummary') }}?company_id=${companyId}` :
+            const userId = this.value;
+            const url = userId ?
+                `{{ route('earningSummary') }}?user_id=${userId}` :
                 `{{ route('earningSummary') }}`;
             window.location.href = url;
         });
