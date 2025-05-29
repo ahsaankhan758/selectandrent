@@ -58,6 +58,7 @@ use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
+use App\Http\Controllers\website\ReviewController;
 
 
 Route::middleware('LanguageMiddleware')->group(function(){
@@ -112,11 +113,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
             Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
              //Calendar Routes
-             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-             Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); // Fetch events
-             Route::post('/storeEvent', [EventController::class, 'store'])->name('storeEvent'); // Add new event
-             // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
-             // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
+            Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
+            Route::get('/getVehicles', [CalendarController::class, 'getVehicles'])->name('getVehicles'); 
+            Route::post('/storeVehicle', [CalendarController::class, 'store'])->name('storeVehicle');
+            Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
+            Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
+            Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
+             
              //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Financial History
@@ -182,20 +185,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/contact', [AdminContactController::class, 'received'])->name('contact.received');
             Route::delete('deleteContact',[AdminContactController::class, 'delete'])->name('deleteContact');
             //Calendar Routes
-            // Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-            // Route::get('/getEvents', [EventController::class, 'index'])->name('getEvents'); 
-            // Route::post('/storeEvent', [EventController::class, 'store'])->name('storeEvent');
-            // Route::put('/updateEvent', [EventController::class, 'update'])->name('updateEvent');
-            // Route::delete('/deleteEvent', [EventController::class, 'delete'])->name('deleteEvent');
             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
             Route::get('/getVehicles', [CalendarController::class, 'getVehicles'])->name('getVehicles'); 
             Route::post('/storeVehicle', [CalendarController::class, 'store'])->name('storeVehicle');
             Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
             Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
             Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
-
-            // Route::put('/events/{id}', [EventController::class, 'update']); // Update event
-            // Route::delete('/events/{id}', [EventController::class, 'destroy']); // Delete event
             //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Client Routes
@@ -311,11 +306,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
     // booking page website
     Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
     Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
+    // website review save
+    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 
 
     // dashboard page website
     Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
-});
+
 
 //Auth Routes
 // Auth::routes();
@@ -332,12 +329,10 @@ Route::get('email/verify', [VerificationController::class, 'show'])->name('verif
 Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth', 'signed']);
 Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend')->middleware('auth');
 
-// dashboard page website
-Route::get('/dashboard', [WebsiteDashboardController::class, 'index'])->name('website.dashboard');
 // for analytics
 Route::post('/track-click', [ActivityController::class, 'trackClick']);
 
-
+});
 // Load carsRoutes
 require base_path('routes/carsRoutes.php');    
 

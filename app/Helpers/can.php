@@ -8,6 +8,8 @@ function can($module, $action, $userId = null)
         ->where('key', $action)
         ->where('value', 1)
         ->first();
-
-    return $permission ? true : false;
+    if(auth()->user()->role == 'admin' || auth()->user()->role == 'company'){
+        return true;
+    }
+     return $permission ? true : false;
 }

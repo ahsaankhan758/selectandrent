@@ -37,8 +37,14 @@ class CalendarController extends Controller
     }
      public function getVehicles()
     {
-        $vehicles = Car::where('upload_type','calendar')->get()->map(function ($vehicle) {
-           return [
+        $query = Car::where('upload_type', 'calendar');
+
+        if (Auth::user()->role === 'company') {
+            $query->where('user_id', Auth::id());
+        }
+
+        $vehicles = $query->get()->map(function ($vehicle) {
+            return [
                 'title' => $vehicle->lisence_plate,
                 'className' => 'bg-success',
                 'start' => Carbon::parse($vehicle->date_added)->toIso8601String(),
@@ -67,18 +73,18 @@ class CalendarController extends Controller
                     'status' => $vehicle->status,
                     "thumbnail" => $vehicle->thumbnail,
                     'images' => is_string($vehicle->images) 
-                    ? @unserialize($vehicle->images) ?: [] 
-                    : (is_array($vehicle->images) ? $vehicle->images : []),
+                        ? @unserialize($vehicle->images) ?: [] 
+                        : (is_array($vehicle->images) ? $vehicle->images : []),
 
                     'features' => is_string($vehicle->features) 
-                    ? @unserialize($vehicle->features) ?: [] 
-                    : (is_array($vehicle->features) ? $vehicle->features : []),
-                    ],
+                        ? @unserialize($vehicle->features) ?: [] 
+                        : (is_array($vehicle->features) ? $vehicle->features : []),
+                ],
             ];
-
         });
-        
-        return response()->json($vehicles);
+
+return response()->json($vehicles);
+
     }
        public function store(Request $request)
         {
@@ -122,10 +128,29 @@ class CalendarController extends Controller
             $vehicle->user_id = auth()->id();
             $vehicle->date_added = $request->start;
             $vehicle->upload_type = 'calendar';
+
+            if($request->hasFile('thumbnail'))
+                {
+                    $vehicle->thumbnail = $request->file('thumbnail')->store('carThumbnail','public');
+                }
+            if($request->hasFile('images'))
+                {
+                    foreach ($request->file('images') as $imageFile) {
+                        $imagePaths[] = $imageFile->store('carImages', 'public');
+                    }
+                    $vehicle->images = serialize($imagePaths) ;   
+                }     
+
             $vehicle->features = $serializedFeatures;
             $vehicle->save();
 
-            
+            // save logs
+            $userId = Auth::id();
+            $userName = Auth::user()->name;
+            $desciption = $userName.' Created [ Vehicle License Plate: '.$validated['lisence_plate'].'] [Vehicle Name: '.$vehicle->car_models->name.'] Successfully.';
+            $action = 'Create';
+            $module = 'Vehicle [Calendar]';
+            activityLog($userId, $desciption,$action,$module);
             return response()->json([
                 'message' => 'Vehicle Created successfully',
                 'licensePlate' => $validated['lisence_plate'],
@@ -178,6 +203,7 @@ class CalendarController extends Controller
             }
 
             $selectedVehicle->thumbnail = $request->file('thumbnail')->store('carThumbnail', 'public');
+            
         }
 
         if($request->hasFile('images'))
@@ -202,10 +228,18 @@ class CalendarController extends Controller
         $serializedFeatures = serialize($features);
         $selectedVehicle->features = $serializedFeatures;
         $selectedVehicle->update($validated);
-
+        
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Updated [ Vehicle License Plate: '.$selectedVehicle->lisence_plate.'] [Vehicle Name: '.$selectedVehicle->car_models->name.'] Successfully.';
+        $action = 'Update';
+        $module = 'Vehicle [Calendar]';
+        activityLog($userId, $desciption,$action,$module);
         return response()->json([
             'message' => 'Vehicle Updated Successfully',
             'status' => 'success',
+            'thumbnailProp' => $selectedVehicle->thumbnail
         ]);
     }
     public function delete(Request $request){
@@ -213,8 +247,33 @@ class CalendarController extends Controller
             'vehicle_id' => 'required'
         ]);
         $vehical = Car::find($validated['vehicle_id']);
+        if(!empty($vehical->thumbnail))
+        {
+            $old_thumbnail = storage_path('app/public/' . $vehical->thumbnail);
+            if (file_exists($old_thumbnail)) {
+                unlink($old_thumbnail);
+            }
+        }
+        //Unlink Images
+        if(!empty($vehical->images))
+        {   
+            foreach(unserialize($vehical->images) as $image)
+                {
+                    $old_image = storage_path('app/public/' . $image);
+                    if (file_exists($old_image)) {
+                        unlink($old_image);
+                    }
+                }
+        }
         $vehical->delete();
 
+        // save logs
+         $userId = Auth::id();
+         $userName = Auth::user()->name;
+         $desciption = $userName.' Deleted [ Vehicle License Plate: '.$vehical->lisence_plate.'] [Vehicle Name: '.$vehical->car_models->name.'] Successfully.';
+         $action = 'Delete';
+         $module = 'Vehicle [Calendar]';
+         activityLog($userId, $desciption,$action,$module);
         return response()->json([
             'message' => 'Event Deleted Successfully',
         ]);
