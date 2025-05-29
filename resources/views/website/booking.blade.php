@@ -34,6 +34,7 @@ Booking | Select and Rent
   }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
  <!-- end css -->
 <div class="container py-5">
     <div class="table-responsive rounded">
@@ -66,7 +67,7 @@ Booking | Select and Rent
                             <i class="fa fa-eye"></i>
                         </a>
                         <span class="text-muted mx-2">|</span>
-                        <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" title="Give Review" class="ms-2">
+                        <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" data-booking-id="{{ $booking->id }}" title="Give Review" class="ms-2">
                             <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
                         </a>
                     </div>
@@ -75,7 +76,12 @@ Booking | Select and Rent
                     <td class="py-4 text-center">{{ $booking->user->name }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_reference }}</td>
                     <td class="py-4 text-center">{{ $booking->booking_items->first()->vehicle->company->name ?? '' }}</td>
+<<<<<<< HEAD
+                    <td class="py-4 text-center">{{ $booking->transaction_id }}</td>
+                    <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}1</span></td>
+=======
                     <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
+>>>>>>> ae600008511c812a4b3ece16fbca96d1e2066647
                     <td class="py-4 text-center"><span class="badge bg-secondary text-uppercase">{{ $booking->booking_status }}</span></td>
                     <td class="py-4 text-center">{{ ucfirst($booking->payment_method) }}</td>
                     <td class="py-4 text-center">{{ $booking->coupon_code ?: '—' }}</td>
@@ -89,7 +95,7 @@ Booking | Select and Rent
                               
                 @empty
                 <tr>
-                    <td colspan="16" class="text-center">{{ __('messages.bookingpayment') }}</td>
+                    <td colspan="16" class="text-center">{{ __('messages.no_booking') }}</td>
                 </tr>
                 @endforelse
             </tbody>
@@ -108,6 +114,7 @@ Booking | Select and Rent
     <form action="{{route('review.store')}}" method="POST" id="reviewForm" class="w-100">
       @csrf
       <input type="hidden" name="vehicle_id" id="modal_vehicle_id">
+      <input type="hidden" name="booking_id" id="modal_booking_id">
       <div class="modal-content shadow-lg border-0 rounded-4">
         <div class="modal-header text-center border-0">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -125,7 +132,7 @@ Booking | Select and Rent
           </div>
 
           <div class="mb-3">
-            <label for="comment" class="form-label fw-semibold">Comment</label>
+            <label for="comment" class="form-label fw-semibold">Comment (Optional)</label>
             <textarea name="comment" class="form-control" rows="4" placeholder="Share your experience..."></textarea>
           </div>
         </div>
@@ -137,6 +144,7 @@ Booking | Select and Rent
     </form>
   </div>
 </div>
+
 <script src="{{ asset('/frontend-assets/assets/Js/reviews.js') }}"></script>
 <!-- end review -->
 @endsection
