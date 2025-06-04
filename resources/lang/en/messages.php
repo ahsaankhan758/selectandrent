@@ -1,6 +1,9 @@
  <?php
 
 return [
+    'featured vehicles' => 'Featured Vehicles',
+    'vehicles' => 'Vehicles',
+    'designation' => 'Designation',
     'employee' => 'Employee',
     'employees' => 'Employees',
     'all' => 'All',

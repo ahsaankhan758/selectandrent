@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'featured vehicles' => 'Uitgelichte voertuigen',
+    'vehicles' => 'Voertuigen',
+    'designation' => 'Functietitel',
     'employee' => 'Werknemer',
     'employees' => 'Werknemers',
     'all' => 'Allemaal',

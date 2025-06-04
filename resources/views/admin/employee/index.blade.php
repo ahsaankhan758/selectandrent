@@ -17,10 +17,9 @@
                     <tr>
                         <th scope="col">{{__('messages.name') }}</th>
                         <th scope="col">{{__('messages.email') }}</th>
-                        <th scope="col">{{__('messages.role') }}</th>
+                        <th scope="col">{{__('messages.designation') }}</th>
                         <th scope="col">{{__('messages.phone') }}</th>
                         <th scope="col">{{__('messages.id_number') }}</th>
-                        <th scope="col">{{__('messages.type') }}</th>
                         <th scope="col">{{__('messages.age') }}</th>
                         <th scope="col">{{__('messages.address') }}</th>
                         <th scope="col">{{__('messages.action') }}</th>
@@ -32,10 +31,9 @@
                                 <tr>
                                     <td>{{ $employee->employee->name }}</td>
                                     <td>{{ $employee->employee->email }}</td>
-                                    <td> {{ $employee->employee->role }}</td>
+                                    <td> {{ $employee->designation }}</td>
                                     <td> {{ $employee->employee->phone }}</td>
                                     <td> {{ $employee->id_number }}</td>
-                                    <td> {{ $employee->type }}</td>
                                     <td> {{ $employee->age }}</td>
                                     <td> {{ $employee->address }}</td>
                                     <td>

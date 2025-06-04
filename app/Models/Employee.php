@@ -10,8 +10,8 @@ class Employee extends Model
     protected $fillable =[
         'owner_user_id',
         'e_user_id',
+        'designation',
         'id_number',
-        'type',
         'age',
         'address',
         'status',
