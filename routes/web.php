@@ -87,8 +87,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('company/login',[companyController::class, 'showLoginForm'])->name('companyLoginForm')->middleware('IsAdmin:company');
     Route::post('company/login', [LoginController::class, 'login'])->name('companyLogin')->middleware('IsAdmin:company');
 
-    //User Login
+    //Employee Login
+    Route::get('employee',[EmployeeController::class, 'redirectToEmployeeLogin']);
+    Route::get('employee/login',[EmployeeController::class, 'showLoginForm'])->name('employeeLoginForm')->middleware('IsAdmin:employeeForm');
+    Route::post('employee/login', [LoginController::class, 'login'])->name('employeeLogin')->middleware('IsAdmin:employee');
 
+    //User Login
     Route::post('user/signin', [SigninController::class, 'signin'])->name('user.signin')->middleware('IsUser');
 
     // User Register
@@ -156,6 +160,111 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     if($currentPrefix == 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
+            Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
+            Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
+            // analytics page
+            Route::get('/analytics', [AnalyticController::class, 'index'])->name('Analytics');
+            //Dashborad
+            Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+          
+            Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
+            Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
+            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            //Users Routes
+            Route::get('users', [userController::class, 'index'])->name('users');
+            Route::get('createuser', [userController::class,'create'])->name('createUser');
+            Route::post('storeuser', [userController::class,'store'])->name('storeUser');
+            Route::get('edituser/{id}',[userController::class,'edit'])->name('editUser');
+            Route::put('updateuser/{id}',[userController::class,'update'])->name('updateUser');
+            Route::get('deleteuser/{id}',[userController::class,'destroy'])->name('deleteUser'); 
+            //Employees
+            Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
+            Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
+            Route::post('store', [EmployeeController::class,'store'])->name('storeEmployee');
+            Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
+            Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
+            Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
+            
+            //Companies Routes
+            Route::get('companies', [companyController::class, 'index'])->name('companies');
+            Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
+            Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
+            Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
+            Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
+            Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
+            Route::get('pending',[companyController::class , 'pending'])->name('pending');
+            Route::get('aprovePendingCompany/{id}',[companyController::class , 'aprovePending'])->name('aprovePendingCompany');
+            //IP Routes
+            Route::get('ipAddresses', [IP_AddressController::class , 'index'])->name('ipAddresses');
+            Route::get('createIpAddress', [IP_AddressController::class, 'create'])->name('createIpAddress');
+            Route::post('storeIpAddress', [IP_AddressController::class, 'store'])->name('storeIpAddress');
+            Route::get('editIpAddress/{id}', [IP_AddressController::class , 'edit'])->name('editIpAddresses');
+            Route::put('updateIpAddress/{id}', [IP_AddressController::class , 'update'])->name('updateIpAddresses');
+            Route::get('deleteIpAddress/{id}', [IP_AddressController::class , 'destroy'])->name('deleteIpAddresses');
+            //Settings
+            Route::get('settings', [SettingsController::class , 'index'])->name('settings');
+            //Activity Logs
+            Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
+            Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');
+            // Contact us 
+            Route::get('/contact', [AdminContactController::class, 'received'])->name('contact.received');
+            Route::delete('deleteContact',[AdminContactController::class, 'delete'])->name('deleteContact');
+            //Calendar Routes
+            Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
+            Route::get('/getVehicles', [CalendarController::class, 'getVehicles'])->name('getVehicles'); 
+            Route::post('/storeVehicle', [CalendarController::class, 'store'])->name('storeVehicle');
+            Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
+            Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
+            Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
+            //Car Bookings Routes
+            Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
+            // Client Routes
+            Route::get('client',[ClientController::class, 'index'])->name('client');
+            Route::get('usersignup', [usersignupController::class, 'showSignupForm'])->name('usersignup');
+            // Blogs added by farhan
+            Route::get('blog/create', [AdminBlogController::class, 'createBlog'])->name('blogs.createBlog');
+            Route::post('blog/store', [AdminBlogController::class, 'store'])->name('blogs.store');   
+            Route::get('blog/detail', [AdminBlogController::class, 'getBlogDetail'])->name('blogs.blogDetail');
+            Route::get('blog/edit/{id}', [AdminBlogController::class, 'edit'])->name('blogs.edit');
+            Route::put('blog/update/{id}', [AdminBlogController::class, 'update'])->name('blogs.update');
+            Route::get('blog/{id}', [AdminBlogController::class, 'delete'])->name('blogs.destroy');
+            // end blog
+            // Financial History
+            Route::get('financial',[FinancialController::class, 'earningSummary'])->name('earningSummary');
+            Route::get('/orders-status-data', [FinancialController::class, 'getOrderStatusData'])->name('orders.status.data');
+            Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
+            Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
+            // Permissions
+            Route::get('permissions/{role}',[PermissionController::class, 'index'])->name('permissions');
+            Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
+            Route::put('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
+            Route::get('getUserPermissions',[PermissionController::class, 'getUserPermissions'])->name('getUserPermissions');
+
+            // Admin payment gateways
+            Route::get('paymentgateway',[AdminPaymentGateways::class, 'index'])->name('paymentGateway');
+            Route::get('payment-gateways/{id}', [AdminPaymentGateways::class, 'getGateway'])->name('admin.payment-gateways.get');
+            Route::post('payment-gateways/{id}', [AdminPaymentGateways::class, 'update'])->name('admin.payment-gateways.update');
+            Route::post('/admin/payment-gateways/store', [AdminPaymentGateways::class, 'storeGatewayName'])->name('admin.payment-gateways.store');
+
+            //Currencies
+            Route::get('currencies',[CurrencyController::class, 'index'])->name('currencies');
+            Route::get('createCurrency',[CurrencyController::class, 'create'])->name('createCurrency');
+            Route::post('storeCurrency', [CurrencyController::class, 'store'])->name('storeCurrency');   
+            Route::get('editCurrency/{id}', [CurrencyController::class, 'edit'])->name('editCurrency');
+            Route::put('updateCurrency/{id}', [CurrencyController::class, 'update'])->name('updateCurrency');
+            Route::get('deleteCurrency/{id}', [CurrencyController::class, 'delete'])->name('deleteCurrency');
+
+             // notifications by ak
+            Route::get('/notifications/clear', [NotificationController::class, 'clear'])->name('notifications.clear');
+            Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+            Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
+            Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
+
+        });
+    }
+
+    if($currentPrefix == 'employee'){
+        Route::prefix('employee')->middleware(['auth','IsAdmin:employee'])->group(function(){
             Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
             Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
             // analytics page

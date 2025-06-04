@@ -45,6 +45,14 @@ class LoginController extends Controller
                 return 'company/login';
             }
         }
+
+        if ($user->role === 'employee') {
+            if ($user->status == 1) {
+                return 'employee/dashboard';
+            } else {
+                return 'employee/login';
+            }
+        }
     
         // Default redirect path if role is not admin or company
         return '/';

@@ -34,21 +34,8 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group mb-3">
-                                <lable for="role">{{ __('messages.role') }}</lable>
-                                @php
-                                    $currentRole = $employee->employee->role;
-                                    $roles = ['Role1', 'Role2', 'Role3', 'Role4'];
-                                @endphp
-
-                                <select name="role" class="form-control">
-                                    <option selected value="{{ $currentRole }}">{{ $currentRole }}</option>
-
-                                    @foreach ($roles as $role)
-                                        @if ($role !== $currentRole)
-                                            <option value="{{ $role }}">{{ $role }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                                <lable for="designation">{{ __('messages.designation') }}</lable>
+                                <input type="text" name="designation" class="form-control" value="{{ $employee->designation }}">
                             </div>
                             <div class="form-group mb-3">
                                 <lable for="id_number">{{ __('messages.id_number') }} </lable>

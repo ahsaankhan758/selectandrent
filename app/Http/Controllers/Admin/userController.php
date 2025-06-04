@@ -190,6 +190,18 @@ class userController extends Controller
                     ? new JsonResponse([], 204)
                     : redirect('/');
             }
+            elseif(isset($role) && $role == 'employee')
+            {
+
+                $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
+                $action = 'LoggedOut';
+                $module = 'Employee';
+                activityLog($userId, $desciption,$action,$module);
+
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/employee/login');
+            }
 
             return redirect('/login');
         }
