@@ -177,15 +177,12 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                         <div class="col-3 form-group mb-3">
                             <label for="thumbnail">{{ __('messages.thumbnail') }}</label>
                             <input type="file" name="thumbnail" class="form-control"  id="thumbnail" onchange="PreviewThumbnail();">
-                            <div class="mt-1">
-                                <img id="uploadThumbnailPreview" style="width: 100px; height: 100px; display: none;" />
-                            </div>
+                            
                         </div>
                         <div class="col-3 form-group mb-3">
                             <label for="images">{{ __('messages.images') }}</label>
                             <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages()" multiple>
-                            <div class="mt-1" id="uploadImagePreview">
-                            </div>
+                            
                         </div>
                         <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.status') }}</label>
@@ -197,6 +194,13 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                         <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.date') }} {{ __('messages.added') }}</label>
                             <input type="date" name="date_added" class="form-control" id="date_added">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mt-1 col-3">
+                            <img id="uploadThumbnailPreview" style="width: 100px; height: 100px; display: none;" />
+                        </div>
+                        <div class="mt-1 col-6" id="uploadImagePreview">
                         </div>
                     </div>
                     <h4 class="mt-3">{{ __('messages.features') }}</h4>

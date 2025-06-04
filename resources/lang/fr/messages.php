@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'featured vehicles' => 'Véhicules en vedette',
+    'vehicles' => 'Véhicules',
+    'designation' => 'Désignation',
     'employee' => 'Employé',
     'employees' => 'Employés',
     'admins' => 'Administrateurs',

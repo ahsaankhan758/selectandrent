@@ -6,7 +6,7 @@
         $storedPermissions[$key][$perm->key] = $perm->value;
     }
 
-    if ($user_role == 'admin') {
+    if ($user_role == 'admin' || $ownerRole == 'admin') {
         $modules = ['Users', 'Companies', 'Vehicle', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Earning Summary', 'Transaction History', 'Clients', 'User IP', 'Blogs', 'Activity Log', 'Contacts', 'Currencies'];
         $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles'];
     } else {

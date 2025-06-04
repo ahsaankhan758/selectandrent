@@ -9,10 +9,18 @@ use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 
 class EmployeeController extends Controller
 {
+    public function redirectToEmployeeLogin(){
+        return redirect('employee/login');
+    }
+    public function showLoginForm()
+        {
+            return view('employee.login');
+        }
     public function index(){
 
         $employees = Employee::where('owner_user_id', auth()->id())->orderBy('created_at', 'desc')->paginate(20);
@@ -28,15 +36,16 @@ class EmployeeController extends Controller
         'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
         'password_confirmation' => 'min:6',
         'phone' => 'required',
-        'role' => 'required',
+        'designation' => 'required',
         'id_number' => 'required',
         'address' => 'required',
         ]);
         $user = new User;
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
-        $user->password = $validatedData['password'];
-        $user->role = $validatedData['role'];
+        $user->designation = $validatedData['designation'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->role = 'employee';
         $user->phone = $validatedData['phone'];
         $user->save();
         $employee = new Employee;
@@ -95,20 +104,20 @@ class EmployeeController extends Controller
         'name' => 'required',
         'email' => 'required|email|unique:users,email,'. $id,
         'phone' => 'required',
-        'role' => 'required',
         'id_number' => 'required',
         'address' => 'required',
+        'designation' => 'required',
         ]);
         $user = User::find($id);
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
-        $user->role = $validatedData['role'];
         $user->phone = $validatedData['phone'];
         $user->update();
         $employee = Employee::where('e_user_id',$id)->first();
         $employee->id_number = $validatedData['id_number'];
         $employee->age = $request['age'];
         $employee->address = $validatedData['address'];
+        $employee->designation = $validatedData['designation'];
         $employee->update();
         // save logs
         $userId = Auth::id();
