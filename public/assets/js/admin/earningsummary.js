@@ -1,4 +1,4 @@
-
+// table and card render
 $(document).ready(function () {
     $('#options-dropdown, #startDate, #endDate').on('change', function () {
         let userId = $('#options-dropdown').val();
@@ -23,7 +23,8 @@ $(document).ready(function () {
                     end_date: enddate || null
                 },
                 success: function (response) {
-                    $('#cards-container').html(response);
+                $('#cards-container').html(response.cards);       
+                $('#dashboardtable').html(response.table); 
                 },
                 error: function (xhr) {
                     alert('Data load failed: ' + xhr.statusText);
@@ -32,7 +33,7 @@ $(document).ready(function () {
         }
     });
 });
-
+// donut chart
 $(document).ready(function () {
     let donutChart;
     const legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745'];
@@ -131,7 +132,6 @@ $(document).ready(function () {
         $(this).closest('.dropdown').find('.chart-dropdown-toggle').html($(this).text() + ' <i class="fas fa-angle-down ms-2"></i>');
     });
 });
-
 
 // booking chart 
 document.addEventListener("DOMContentLoaded", function () {
@@ -240,12 +240,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetchData('this_year');
 
-    // On user dropdown change
     document.getElementById('options-dropdown').addEventListener('change', () => {
         fetchData(document.getElementById('bookingDropdown').dataset.type || 'this_year');
     });
 
-    // On date input change (assuming you have date inputs with these IDs)
     const startDateInput = document.getElementById('startDate');
     const endDateInput = document.getElementById('endDate');
     if (startDateInput && endDateInput) {
@@ -258,14 +256,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
 // earning summary 
 
 document.addEventListener("DOMContentLoaded", function () {
     let chart;
 
     function initChart(labels, data) {
-        var options = {
+        const options = {
             chart: {
                 type: 'line',
                 height: 300,
@@ -288,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 enabled: true,
                 x: { show: true },
                 y: {
-                    formatter: (val) => `$${parseFloat(val).toLocaleString()}`
+                    formatter: val => `$${parseFloat(val).toLocaleString()}`
                 }
             }
         };
@@ -297,8 +294,19 @@ document.addEventListener("DOMContentLoaded", function () {
         chart.render();
     }
 
-    window.fetchEarnings = function(months = 12, label = 'Last 12 Months') {
-        fetch(`${window.earningsdata}?months=${months}`)
+    window.fetchEarnings = function (months = 12, label = 'Last 12 Months') {
+        const userId = document.getElementById("options-dropdown").value;
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+
+        const params = new URLSearchParams({
+            months: months,
+            ...(userId && { user_id: userId }),
+            ...(startDate && { start_date: startDate }),
+            ...(endDate && { end_date: endDate })
+        });
+
+        fetch(`${window.earningsdata}?${params.toString()}`)
             .then(response => response.json())
             .then(data => {
                 if (chart) {
@@ -313,5 +321,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("dropdownBtn").innerText = label;
             });
     };
+
+    document.getElementById("options-dropdown").addEventListener("change", () => fetchEarnings());
+    document.getElementById("startDate").addEventListener("change", () => fetchEarnings());
+    document.getElementById("endDate").addEventListener("change", () => fetchEarnings());
+
     fetchEarnings(12, 'Last 12 Months');
 });
