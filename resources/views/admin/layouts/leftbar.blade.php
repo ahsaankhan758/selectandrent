@@ -69,12 +69,12 @@
                                     {{ __('messages.earnings') }} 
                                 </a> 
                              </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('bookingDashboard') }}">
                                     <i class="mdi mdi-calendar-multiple-check"></i>
                                     {{ __('messages.bookings') }}
                                  </a>
-                            </li>
+                            </li> --}}
                             {{-- <li>
                                 <a href="dashboard-3.html">Dashboard 3</a>
                             </li>
@@ -92,10 +92,20 @@
                         <li>
                             <a href="{{ route('users') }}">
                                 <i class="mdi mdi-account-circle-outline"></i>
-                                <span> {{ __('messages.users') }} </span>
+                                <span> {{ __('messages.admins') }} </span>
                             </a>
                         </li>
                     @endif
+                @endif
+                @if(can('users','view'))
+                    <li>
+                        <a href="{{ route('employee') }}">
+                            <i class="mdi mdi-account-circle-outline"></i>
+                            <span> {{ __('messages.employees') }} </span>
+                        </a>
+                    </li>
+                @endif
+                @if($role == 'admin')
                     <li>
                         <a href="{{ route('usersignup') }}">
                             <i class="mdi mdi-account-plus"></i>
@@ -229,7 +239,7 @@
                 @endif
                 @if(can('Bookings','view'))
                     <li>
-                        <a href="{{ route('carBooking') }}">
+                        <a href="{{ route('bookingDashboard') }}">
                             <i class="mdi mdi-calendar-multiple-check"></i>
                             <span>{{ __('messages.bookings') }} </span>
                         </a>
@@ -314,61 +324,66 @@
                 @endif
 
                 @if($role == 'admin')
-                <li>
-                    <a href="#sub_menu_settings" data-bs-toggle="collapse">
-                        <i class="mdi mdi-cog"></i>
-                        <span>{{ __('messages.settings') }} </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sub_menu_settings">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="#sub_menu_permissions" data-bs-toggle="collapse" > 
-                                    <i class="mdi mdi-creation"></i>
-                                    <span class="custom-ml-15">{{ __('messages.user') }} {{ __('messages.permissions') }}</span>
-                                </a>
-                                <div class="collapse" id="sub_menu_permissions">
-                                    <ul class="nav-third-level">
-                                        <li>
-                                            <a href="{{ route('permissions', 'admin') }}">
-                                                <i class="mdi mdi-account-star"></i>
-                                               <span class="custom-ml-15">{{ __('messages.admin') }}</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('permissions', 'company') }}">
-                                                <i class="mdi mdi-account"></i>
-                                                <span class="custom-ml-15">{{ __('messages.company') }}</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="{{ route('paymentGateway') }}"> 
-                                    <i class="mdi mdi-plus-circle"></i>
-                                    <span class="custom-ml-15">{{ __('messages.payment-module') }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"> 
-                                    <i class="mdi mdi-map-marker-multiple"></i>
-                                    <span class="custom-ml-15">{{ __('messages.google-map-module') }}</span>
-                                </a>
-                            </li>
-                            @if(can('Currencies','view'))
+                    <li>
+                        <a href="#sub_menu_settings" data-bs-toggle="collapse">
+                            <i class="mdi mdi-cog"></i>
+                            <span>{{ __('messages.settings') }} </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sub_menu_settings">
+                            <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('currencies') }}"> 
-                                        <i class="mdi mdi-currency-sign"></i>
-                                        <span class="custom-ml-15">{{ __('messages.currencies') }}</span>
+                                    <a href="#sub_menu_permissions" data-bs-toggle="collapse" > 
+                                        <i class="mdi mdi-creation"></i>
+                                        <span class="custom-ml-15">{{ __('messages.permissions') }}</span>
+                                    </a>
+                                    <div class="collapse" id="sub_menu_permissions">
+                                        <ul class="nav-third-level">
+                                            <li>
+                                                <a href="{{ route('permissions', 'admin') }}">
+                                                    <i class="mdi mdi-account-star"></i>
+                                                <span class="custom-ml-15">{{ __('messages.admin') }}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('permissions', 'company') }}">
+                                                    <i class="mdi mdi-account"></i>
+                                                    <span class="custom-ml-15">{{ __('messages.company') }}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="{{ route('paymentGateway') }}"> 
+                                        <i class="mdi mdi-plus-circle"></i>
+                                        <span class="custom-ml-15">{{ __('messages.payment-module') }}</span>
                                     </a>
                                 </li>
-                            @endif
-                        </ul>
-                    </div>
-                </li>
-                
-
+                                <li>
+                                    <a href="#"> 
+                                        <i class="mdi mdi-map-marker-multiple"></i>
+                                        <span class="custom-ml-15">{{ __('messages.google-map-module') }}</span>
+                                    </a>
+                                </li>
+                                @if(can('Currencies','view'))
+                                    <li>
+                                        <a href="{{ route('currencies') }}"> 
+                                            <i class="mdi mdi-currency-sign"></i>
+                                            <span class="custom-ml-15">{{ __('messages.currencies') }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('permissions', 'selfCompany') }}"> 
+                            <i class="mdi mdi-creation"></i>
+                            <span class="custom-ml-15">{{ __('messages.permissions') }}</span>
+                        </a>
+                    </li>
                 @endif
                 {{-- <li>
                     <a href="apps-chat.html">

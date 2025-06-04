@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\Auth\LoginController;
@@ -82,7 +84,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
-    Route::get('company/login',[companyController::class, 'showLoginForm'])->middleware('IsAdmin:company');
+    Route::get('company/login',[companyController::class, 'showLoginForm'])->name('companyLoginForm')->middleware('IsAdmin:company');
     Route::post('company/login', [LoginController::class, 'login'])->name('companyLogin')->middleware('IsAdmin:company');
 
     //User Login
@@ -105,6 +107,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            //Employees
+            Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
+            Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
+            Route::post('store', [EmployeeController::class,'store'])->name('storeEmployee');
+            Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
+            Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
+            Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
             // Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
@@ -137,6 +146,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
             Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
+            // Permissions
+            Route::get('permissions/{role}',[PermissionController::class, 'index'])->name('permissions');
+            Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
+            Route::put('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
+            Route::get('getUserPermissions',[PermissionController::class, 'getUserPermissions'])->name('getUserPermissions');
         });
     }
 
@@ -159,7 +173,14 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('edituser/{id}',[userController::class,'edit'])->name('editUser');
             Route::put('updateuser/{id}',[userController::class,'update'])->name('updateUser');
             Route::get('deleteuser/{id}',[userController::class,'destroy'])->name('deleteUser'); 
-         
+            //Employees
+            Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
+            Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
+            Route::post('store', [EmployeeController::class,'store'])->name('storeEmployee');
+            Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
+            Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
+            Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
+            
             //Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
