@@ -4,6 +4,7 @@
 @endsection
 @section('content')
     <script>
+        window.earningSummaryUrl = "{{ route('earningSummary') }}";
         window.orderStatusRoute = "{{ route('orders.status.data') }}";
         window.bookingChartRoute = "{{ route('bookings.chart-data') }}";
         window.earningsdata = "{{ route('earnings.data') }}";
@@ -36,106 +37,21 @@
                 @endforeach
             </select>
         </div>
-         <!-- Start Date Picker -->
-    <div class="col-lg-3">
-        <input type="date" id="start-date" class="form-control" placeholder="Start Date">
-    </div>
+        <!-- Start Date Picker -->
+        <div class="col-lg-3">
+            <input type="date" id="startDate" class="form-control" placeholder="Start Date">
+        </div>
 
-    <!-- End Date Picker -->
-    <div class="col-lg-3">
-        <input type="date" id="end-date" class="form-control" placeholder="End Date">
-    </div>
+        <!-- End Date Picker -->
+        <div class="col-lg-3">
+            <input type="date" id="endDate" class="form-control" placeholder="End Date">
+        </div>
     </div>
 
     <div class="row">
         <!-- 8 Column Section -->
-        <div class="col-xl-8 col-md-8">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-box">
-                                <i class="fa fa-car-side"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="text-muted mb-2">{{ __('messages.order_confirm') }}</h6>
-                                <h2 class="text-dark">{{ $confirmedCount }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-box">
-                                <i class="fa fa-dollar-sign"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="text-muted mb-2">{{ __('messages.total_revenue') }}</h6>
-                                <h2 class="text-dark"> ${{ intval($confirmedtotalprice) }}
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-box">
-                                <i class="fa fa-car"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="text-muted mb-2">{{ __('messages.order_complete') }}</h6>
-                                <h2 class="text-dark">{{ $completedCount }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-box">
-                                <i class="fa fa-dollar-sign"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="text-muted mb-2">{{ __('messages.order_cancel') }}</h6>
-                                <h2 class="text-dark">{{ $cancelCount }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-box">
-                                <i class="fa fa-car"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="text-muted mb-2">{{ __('messages.order_pending') }}</h6>
-                                <h2 class="text-dark">{{ $pendingCount }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-box">
-                                <i class="fa fa-dollar-sign"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="text-muted mb-2">{{ __('messages.pending_revenue') }}</h6>
-                                <h2 class="text-dark"> ${{ intval($pendingtotalprice) }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-xl-8 col-md-8" id="cards-container">
+            @include('admin.financial.include.cards')
         </div>
         <!-- 4 Column Section (Rent Status Card) -->
         <!-- Chart Container -->
@@ -329,7 +245,7 @@
                                         <td>{{ $booking->transaction_id }}</td>
                                         <td>
                                             <h5><span class="badge bg-soft-success text-success"><i
-                                                        class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span>
+                                                class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span>
                                             </h5>
                                         </td>
                                         <td>
@@ -356,7 +272,7 @@
             </div>
         </div>
     </div>
-    <script>
+    {{-- <script>
         document.getElementById('options-dropdown').addEventListener('change', function() {
             const userId = this.value;
             const url = userId ?
@@ -364,7 +280,7 @@
                 `{{ route('earningSummary') }}`;
             window.location.href = url;
         });
-    </script>
+    </script> --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -14,197 +14,117 @@ use Illuminate\Support\Facades\Auth;
 
 class FinancialController extends Controller
 {
-        
-    // public function earningSummary(Request $request)
-    //     {
-    //         $companyId = isset($request->company_id) ? $request->company_id : null;
+public function earningSummary(Request $request)
+{
+    $companyUserId = $request->user_id ?? null;
+    $startDate = $request->start_date ?? null;
+    $endDate = $request->end_date ?? null;
 
-    //         $role = Auth::user()->role;
+    $role = Auth::user()->role;
+    $companies = Company::where('status', 1)->pluck('name', 'user_id');
 
-    //         $companyUsers = User::where('role', 'company')->where('status', 1)->pluck('id');
+    // Convert dates to proper Y-m-d format if provided
+    if ($startDate) {
+        $startDate = date('Y-m-d', strtotime($startDate));
+    }
+    if ($endDate) {
+        $endDate = date('Y-m-d', strtotime($endDate));
+    }
 
-    //         $companies = company::whereIn('user_id', $companyUsers)->pluck('name', 'id');
-           
-    //         print_r($companyId);die;
-    //         $bookings = Booking::with('user')->orderBy('created_at', 'desc')->take(10)->get();
-        
-    //         $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-    //         $statusData = [];
-    //         $totalBookings = Booking::count();
-        
-    //         foreach ($statuses as $status) {
-    //             $count = Booking::where('booking_status', $status)->count();
-    //             $percentage = $totalBookings > 0 ? round(($count / $totalBookings) * 100) : 0;
-        
-    //             $statusData[$status] = [
-    //                 'count' => $count,
-    //                 'percentage' => $percentage,
-    //             ];
-    //         }
-        
-    //         $confirmedtotalprice = Booking::where('booking_status', 'confirmed')->sum('total_price');
-    //         $pendingtotalprice = Booking::where('booking_status', 'pending')->sum('total_price');
-    //         $confirmedCount = Booking::where('booking_status', 'confirmed')->count();
-    //         $pendingCount = Booking::where('booking_status', 'pending')->count();
-    //         $cancelCount = Booking::where('booking_status', 'cancelled')->count();
-    //         $completedCount = Booking::where('booking_status', 'completed')->count();
-        
-    //         return view('admin.financial.financial', compact(
-    //             'role', 'bookings', 
-    //             'statusData', 'totalBookings', 
-    //             'confirmedtotalprice', 'pendingtotalprice', 
-    //             'confirmedCount', 'pendingCount','cancelCount','completedCount','companies','companyId'
-    //         ));
-    //     }
-
-    public function earningSummary(Request $request)
-    {
-        $companyUserId = $request->user_id ?? null;
-        // print_r($companyUserId);die;
-        $role = Auth::user()->role;
-
- 
-        // $companyUsers = User::where('role', 'company')->where('status', 1)->pluck('id');
-        $companies = Company::where('status',1)->pluck('name', 'user_id');
-
-      
-        $bookingQuery = Booking::with('booking_items.vehicle.users');
-
+    // Helper function to apply company and date filters
+    $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate) {
         if ($companyUserId) {
-            $bookingQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+            $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
                 $q->where('user_id', $companyUserId);
             });
         }
-
-        $bookings = $bookingQuery->orderBy('created_at', 'desc')->take(10)->get();
-
-        // Status summary
-        $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-        $statusData = [];
-
-        $totalBookingsQuery = Booking::query();
-        if ($companyUserId) {
-            $totalBookingsQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-                $q->where('user_id', $companyUserId);
-            });
+        if ($startDate && $endDate) {
+            // Filter by date only (ignore time)
+            $query->whereDate('created_at', '>=', $startDate)
+                  ->whereDate('created_at', '<=', $endDate);
         }
-        $totalBookings = $totalBookingsQuery->count();
+    };
 
-        foreach ($statuses as $status) {
-            $query = Booking::where('booking_status', $status);
-            if ($companyUserId) {
-                $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-                    $q->where('user_id', $companyUserId);
-                });
-            }
+    // Total bookings query
+    $totalBookingsQuery = Booking::query();
+    $applyFilters($totalBookingsQuery);
+    $totalBookings = $totalBookingsQuery->count();
 
-            $count = $query->count();
-            $percentage = $totalBookings > 0 ? round(($count / $totalBookings) * 100) : 0;
+    // Booking status counts and percentages
+    $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+    $statusData = [];
+    foreach ($statuses as $status) {
+        $query = Booking::where('booking_status', $status);
+        $applyFilters($query);
+        $count = $query->count();
+        $percentage = $totalBookings > 0 ? round(($count / $totalBookings) * 100) : 0;
 
-            $statusData[$status] = [
-                'count' => $count,
-                'percentage' => $percentage,
-            ];
-        }
+        $statusData[$status] = [
+            'count' => $count,
+            'percentage' => $percentage,
+        ];
+    }
 
-        // Financial summaries
-        $confirmedQuery = Booking::where('booking_status', 'confirmed');
-        $pendingQuery = Booking::where('booking_status', 'pending');
+    // Confirmed and Pending total prices and counts
+    $confirmedQuery = Booking::where('booking_status', 'confirmed');
+    $pendingQuery = Booking::where('booking_status', 'pending');
+    $applyFilters($confirmedQuery);
+    $applyFilters($pendingQuery);
 
-        if ($companyUserId) {
-            $confirmedQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-                $q->where('user_id', $companyUserId);
-            });
+    $confirmedTotalPrice = $confirmedQuery->sum('total_price');
+    $pendingTotalPrice = $pendingQuery->sum('total_price');
+    $confirmedCount = $confirmedQuery->count();
+    $pendingCount = $pendingQuery->count();
 
-            $pendingQuery->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-                $q->where('user_id', $companyUserId);
-            });
-        }
+    $cancelCount = Booking::where('booking_status', 'cancelled');
+    $applyFilters($cancelCount);
+    $cancelCount = $cancelCount->count();
 
-        $confirmedtotalprice = $confirmedQuery->sum('total_price');
-        $pendingtotalprice = $pendingQuery->sum('total_price');
+    $completedCount = Booking::where('booking_status', 'completed');
+    $applyFilters($completedCount);
+    $completedCount = $completedCount->count();
 
-        $confirmedCount = $confirmedQuery->count();
-        $pendingCount = $pendingQuery->count();
-
-        $cancelCount = Booking::where('booking_status', 'cancelled')
-            ->when($companyUserId, function ($q) use ($companyUserId) {
-                $q->whereHas('booking_items.vehicle', function ($q2) use ($companyUserId) {
-                    $q2->where('user_id', $companyUserId);
-                });
-            })->count();
-
-        $completedCount = Booking::where('booking_status', 'completed')
-            ->when($companyUserId, function ($q) use ($companyUserId) {
-                $q->whereHas('booking_items.vehicle', function ($q2) use ($companyUserId) {
-                    $q2->where('user_id', $companyUserId);
-                });
-            })->count();
-
-        return view('admin.financial.financial', compact(
-            'role', 'bookings', 
-            'statusData', 'totalBookings', 
-            'confirmedtotalprice', 'pendingtotalprice', 
-            'confirmedCount', 'pendingCount', 
-            'cancelCount', 'completedCount', 
-            'companies', 'companyUserId'
+    if ($request->ajax()) {
+        return view('admin.financial.include.cards', compact(
+            'statusData',
+            'confirmedTotalPrice',
+            'pendingTotalPrice',
+            'confirmedCount',
+            'pendingCount',
+            'cancelCount',
+            'completedCount'
         ));
     }
 
+    // For normal full page load
+    $bookingQuery = Booking::with('booking_items.vehicle.users');
+    $applyFilters($bookingQuery);
+    $bookings = $bookingQuery->orderBy('created_at', 'desc')->take(10)->get();
 
+    return view('admin.financial.financial', compact(
+        'role', 'bookings',
+        'statusData', 'totalBookings',
+        'confirmedTotalPrice', 'pendingTotalPrice',
+        'confirmedCount', 'pendingCount',
+        'cancelCount', 'completedCount',
+        'companies', 'companyUserId'
+    ));
+}
 
+public function getOrderStatusData(Request $request)
+{
+    $filter = $request->filter;
+    $companyUserId = $request->user_id;
 
-        // public function getOrderStatusData(Request $request)
-        // {
-        //     $filter = $request->filter;
+    $startDate = $request->start_date ?? null;
+    $endDate = $request->end_date ?? null;
 
-        //     if ($filter === 'today') {
-        //         $fromDate = Carbon::today();
-        //         $toDate = Carbon::today()->endOfDay();
-        //     } elseif ($filter === 'week') {
-        //         $fromDate = Carbon::now()->startOfWeek();
-        //         $toDate = Carbon::now()->endOfWeek();
-        //     } elseif ($filter === 'month') {
-        //         $fromDate = Carbon::now()->startOfMonth();
-        //         $toDate = Carbon::now()->endOfMonth();
-        //     } elseif ($filter === 'last_month') {
-        //         $fromDate = Carbon::now()->subMonth()->startOfMonth();
-        //         $toDate = Carbon::now()->subMonth()->endOfMonth();
-        //     } else {
-        //         $fromDate = null;
-        //         $toDate = null;
-        //     }
-            
-        //     $query = Booking::query();
-
-        //     if ($fromDate && $toDate) {
-        //         $query->whereBetween('created_at', [$fromDate, $toDate]);
-        //     }
-
-        //     $total = $query->count();
-        //     $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-        //     $data = [];
-
-        //     foreach ($statuses as $status) {
-        //         $count = (clone $query)->where('booking_status', $status)->count();
-        //         $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
-
-        //         $data[$status] = [
-        //             'percentage' => $percentage
-        //         ];
-        //     }
-
-        //     return response()->json($data);
-        // }
-
-
-      public function getOrderStatusData(Request $request)
-    {
-        $filter = $request->filter;
-        $companyUserId = $request->user_id;
-
+    if ($startDate && $endDate) {
+        $fromDate = Carbon::parse($startDate)->startOfDay();
+        $toDate = Carbon::parse($endDate)->endOfDay();
+    } else {
         if ($filter === 'today') {
-            $fromDate = Carbon::today();
+            $fromDate = Carbon::today()->startOfDay();
             $toDate = Carbon::today()->endOfDay();
         } elseif ($filter === 'week') {
             $fromDate = Carbon::now()->startOfWeek();
@@ -219,166 +139,136 @@ class FinancialController extends Controller
             $fromDate = null;
             $toDate = null;
         }
-
-        $query = Booking::query();
-
-        // Filter by company user ID using the relation through vehicle -> user_id
-        if ($companyUserId) {
-            $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-                $q->where('user_id', $companyUserId);
-            });
-        }
-
-        if ($fromDate && $toDate) {
-            $query->whereBetween('created_at', [$fromDate, $toDate]);
-        }
-
-        $total = $query->count();
-        $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-        $data = [];
-
-        foreach ($statuses as $status) {
-            $count = (clone $query)->where('booking_status', $status)->count();
-            $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
-
-            $data[$status] = ['percentage' => $percentage];
-        }
-
-        return response()->json($data);
     }
-
-// booking chart
-
-public function getChartData(Request $request)
-{
-    $type = $request->query('type'); 
-    $companyUserId = $request->user_id ?? null;
-    $now = Carbon::now();
-    $labels = [];
-    $data = [];
-
-    $query = Booking::with(['booking_items.vehicle']);
-
+    $query = Booking::query();
     if ($companyUserId) {
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
             $q->where('user_id', $companyUserId);
         });
     }
 
-    if ($type === 'month') {
-        $query->whereMonth('created_at', $now->month)
-              ->whereYear('created_at', $now->year);
+    if ($fromDate && $toDate) {
+        $query->whereDate('created_at', '>=', $fromDate->format('Y-m-d'))
+              ->whereDate('created_at', '<=', $toDate->format('Y-m-d'));
+    }
 
-        $bookings = $query->get()->groupBy(function($booking) {
-            return Carbon::parse($booking->created_at)->day;
+    $total = $query->count();
+    $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+    $data = [];
+
+    foreach ($statuses as $status) {
+        $count = (clone $query)->where('booking_status', $status)->count();
+        $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
+
+        $data[$status] = ['percentage' => $percentage];
+    }
+
+    return response()->json($data);
+}
+
+// booking chart
+
+public function getChartData(Request $request)
+{
+    $type = $request->query('type');
+    $companyUserId = $request->user_id ?? null;
+    $startDate = $request->start_date ?? null;
+    $endDate = $request->end_date ?? null;
+    $now = Carbon::now();
+
+    $labels = [];
+    $data = [];
+
+    $query = Booking::with(['booking_items.vehicle']);
+
+    // Filter by user_id if provided
+    if ($companyUserId) {
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+            $q->where('user_id', $companyUserId);
+        });
+    }
+
+    // Filter by date range if both dates are provided
+    if ($startDate && $endDate) {
+        $start = Carbon::parse($startDate)->startOfDay();
+        $end = Carbon::parse($endDate)->endOfDay();
+
+        $query->whereBetween('created_at', [$start, $end]);
+
+        $bookings = $query->get()->groupBy(function ($booking) {
+            return Carbon::parse($booking->created_at)->format('Y-m-d');
         });
 
-        foreach (range(1, $now->daysInMonth) as $day) {
-            $labels[] = "{$day} {$now->format('F')}";
-            $data[] = isset($bookings[$day]) ? $bookings[$day]->count() : 0;
+        // Create labels and data for each day in the period
+        $period = \Carbon\CarbonPeriod::create($startDate, $endDate);
+        foreach ($period as $date) {
+            $dateKey = $date->format('Y-m-d');
+            $labels[] = $date->format('d M Y');
+            $data[] = isset($bookings[$dateKey]) ? $bookings[$dateKey]->count() : 0;
         }
 
-    }
-    elseif ($type === 'last_month') {
-        $lastMonth = $now->copy()->subMonth();
+    } else {
+        // Otherwise, fallback on type-based filtering
 
-        $query->whereMonth('created_at', $lastMonth->month)
-              ->whereYear('created_at', $lastMonth->year);
+        switch ($type) {
+            case 'month':
+                $query->whereMonth('created_at', $now->month)
+                      ->whereYear('created_at', $now->year);
 
-        $bookings = $query->get()->groupBy(function($booking) {
-            return Carbon::parse($booking->created_at)->day;
-        });
+                $bookings = $query->get()->groupBy(function ($booking) {
+                    return Carbon::parse($booking->created_at)->day;
+                });
 
-        foreach (range(1, $lastMonth->daysInMonth) as $day) {
-            $labels[] = "{$day} {$lastMonth->format('F')}";
-            $data[] = isset($bookings[$day]) ? $bookings[$day]->count() : 0;
-        }
+                for ($day = 1; $day <= $now->daysInMonth; $day++) {
+                    $labels[] = "{$day} {$now->format('F')}";
+                    $data[] = isset($bookings[$day]) ? $bookings[$day]->count() : 0;
+                }
+                break;
 
-    }
-    elseif ($type === 'this_year') {
-        $query->whereYear('created_at', $now->year);
+            case 'last_month':
+                $lastMonth = $now->copy()->subMonth();
 
-        $bookings = $query->get()->groupBy(function($booking) {
-            return Carbon::parse($booking->created_at)->month;
-        });
+                $query->whereMonth('created_at', $lastMonth->month)
+                      ->whereYear('created_at', $lastMonth->year);
 
-        $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                $bookings = $query->get()->groupBy(function ($booking) {
+                    return Carbon::parse($booking->created_at)->day;
+                });
 
-        for ($i = 1; $i <= 12; $i++) {
-            $data[] = isset($bookings[$i]) ? $bookings[$i]->count() : 0;
+                for ($day = 1; $day <= $lastMonth->daysInMonth; $day++) {
+                    $labels[] = "{$day} {$lastMonth->format('F')}";
+                    $data[] = isset($bookings[$day]) ? $bookings[$day]->count() : 0;
+                }
+                break;
+
+            case 'this_year':
+            default:
+                $query->whereYear('created_at', $now->year);
+
+                $bookings = $query->get()->groupBy(function ($booking) {
+                    return Carbon::parse($booking->created_at)->month;
+                });
+
+                $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                for ($month = 1; $month <= 12; $month++) {
+                    $data[] = isset($bookings[$month]) ? $bookings[$month]->count() : 0;
+                }
+                break;
         }
     }
 
     return response()->json([
         'labels' => $labels,
-        'data' => $data
+        'data' => $data,
     ]);
 }
-
-
-        // public function getChartData(Request $request)
-        // {
-        //     $type = $request->query('type'); 
-        //     $companyUserId = $request->user_id ?? null;
-        //     $now = Carbon::now();
-        //     $labels = [];
-        //     $data = [];
-
-        //     if ($type === 'month') {
-        //         $bookings = DB::table('bookings')
-        //             ->whereMonth('created_at', $now->month)
-        //             ->whereYear('created_at', $now->year)
-        //             ->selectRaw('DAY(created_at) as day, COUNT(*) as total')
-        //             ->groupBy('day')
-        //             ->orderBy('day')
-        //             ->pluck('total', 'day');
-
-        //         foreach (range(1, $now->daysInMonth) as $day) {
-        //             $labels[] = "{$day} {$now->format('F')}";
-        //             $data[] = $bookings[$day] ?? 0;
-        //         }
-
-        //     } elseif ($type === 'last_month') {
-        //         $lastMonth = $now->copy()->subMonth();
-
-        //         $bookings = DB::table('bookings')
-        //             ->whereMonth('created_at', $lastMonth->month)
-        //             ->whereYear('created_at', $lastMonth->year)
-        //             ->selectRaw('DAY(created_at) as day, COUNT(*) as total')
-        //             ->groupBy('day')
-        //             ->orderBy('day')
-        //             ->pluck('total', 'day');
-
-        //         foreach (range(1, $lastMonth->daysInMonth) as $day) {
-        //             $labels[] = "{$day} {$lastMonth->format('F')}";
-        //             $data[] = $bookings[$day] ?? 0;
-        //         }
-
-        //     } elseif ($type === 'this_year') {
-        //         $bookings = DB::table('bookings')
-        //             ->whereYear('created_at', $now->year)
-        //             ->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
-        //             ->groupBy('month')
-        //             ->orderBy('month')
-        //             ->pluck('total', 'month');
-
-        //         $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        //         for ($i = 1; $i <= 12; $i++) {
-        //             $data[] = $bookings[$i] ?? 0;
-        //         }
-        //     }
-
-        //     return response()->json([
-        //         'labels' => $labels,
-        //         'data' => $data
-        //     ]);
-        // }
 
 // earning summary
 
 public function getEarningsData(Request $request)
 {
-    $companyUserId = $request->user_id ?? null;
+    $companyUserId = $request->user_id ?? null; 
     $months = $request->query('months', 12);
 
     $now = Carbon::now();
