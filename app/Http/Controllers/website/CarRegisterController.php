@@ -16,6 +16,7 @@ use Illuminate\Validation\Rule;
 
 class CarRegisterController extends Controller
 {
+    
     public function CarRegisterView()
     {
 
