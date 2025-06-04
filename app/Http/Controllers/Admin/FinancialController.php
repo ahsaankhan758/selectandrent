@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\company;
+use App\Models\Country;
 use App\Models\IP_Address;
 use App\Models\BookingItem;
 use Illuminate\Http\Request;
@@ -17,11 +18,13 @@ class FinancialController extends Controller
     public function earningSummary(Request $request)
 {
     $companyUserId = $request->user_id ?? null;
+    $countryId = $request->country_id ?? null;
     $startDate = $request->start_date ?? null;
     $endDate = $request->end_date ?? null;
 
     $role = Auth::user()->role;
     $companies = Company::where('status', 1)->pluck('name', 'user_id');
+    $countryNames = Country::with('companies')->where('status', 1)->get()->pluck('name','id');
 
     if ($startDate) {
         $startDate = date('Y-m-d', strtotime($startDate));
@@ -30,17 +33,27 @@ class FinancialController extends Controller
         $endDate = date('Y-m-d', strtotime($endDate));
     }
 
-    $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate) {
-        if ($companyUserId) {
-            $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-                $q->where('user_id', $companyUserId);
-            });
-        }
-        if ($startDate && $endDate) {
-            $query->whereDate('created_at', '>=', $startDate)
-                  ->whereDate('created_at', '<=', $endDate);
-        }
-    };
+   $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate , $countryId) {
+    if ($companyUserId) {
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+            $q->where('user_id', $companyUserId);
+        });
+    }
+
+    if ($countryId) {
+        $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
+            $q->whereIn('user_id', $companyUserIds);
+        });
+    }
+
+    if ($startDate && $endDate) {
+        $query->whereDate('created_at', '>=', $startDate)
+              ->whereDate('created_at', '<=', $endDate);
+    }
+};
+
 
     $totalBookingsQuery = Booking::query();
     $applyFilters($totalBookingsQuery);
@@ -107,14 +120,70 @@ class FinancialController extends Controller
         'confirmedTotalPrice', 'pendingTotalPrice',
         'confirmedCount', 'pendingCount',
         'cancelCount', 'completedCount',
-        'companies', 'companyUserId'
+        'companies', 'companyUserId',
+        'countryNames' , 'countryId'
     ));
 }
 
+// public function getOrderStatusData(Request $request)
+// {
+//     $filter = $request->filter;
+//     $companyUserId = $request->user_id;
+
+//     $startDate = $request->start_date ?? null;
+//     $endDate = $request->end_date ?? null;
+
+//     if ($startDate && $endDate) {
+//         $fromDate = Carbon::parse($startDate)->startOfDay();
+//         $toDate = Carbon::parse($endDate)->endOfDay();
+//     } else {
+//         if ($filter === 'today') {
+//             $fromDate = Carbon::today()->startOfDay();
+//             $toDate = Carbon::today()->endOfDay();
+//         } elseif ($filter === 'week') {
+//             $fromDate = Carbon::now()->startOfWeek();
+//             $toDate = Carbon::now()->endOfWeek();
+//         } elseif ($filter === 'month') {
+//             $fromDate = Carbon::now()->startOfMonth();
+//             $toDate = Carbon::now()->endOfMonth();
+//         } elseif ($filter === 'last_month') {
+//             $fromDate = Carbon::now()->subMonth()->startOfMonth();
+//             $toDate = Carbon::now()->subMonth()->endOfMonth();
+//         } else {
+//             $fromDate = null;
+//             $toDate = null;
+//         }
+//     }
+//     $query = Booking::query();
+//     if ($companyUserId) {
+//         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+//             $q->where('user_id', $companyUserId);
+//         });
+//     }
+
+//     if ($fromDate && $toDate) {
+//         $query->whereDate('created_at', '>=', $fromDate->format('Y-m-d'))
+//               ->whereDate('created_at', '<=', $toDate->format('Y-m-d'));
+//     }
+
+//     $total = $query->count();
+//     $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+//     $data = [];
+
+//     foreach ($statuses as $status) {
+//         $count = (clone $query)->where('booking_status', $status)->count();
+//         $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
+
+//         $data[$status] = ['percentage' => $percentage];
+//     }
+
+//     return response()->json($data);
+// }
 public function getOrderStatusData(Request $request)
 {
     $filter = $request->filter;
-    $companyUserId = $request->user_id;
+    $companyUserId = $request->user_id ?? null;
+    $countryId = $request->country_id ?? null;
 
     $startDate = $request->start_date ?? null;
     $endDate = $request->end_date ?? null;
@@ -140,10 +209,20 @@ public function getOrderStatusData(Request $request)
             $toDate = null;
         }
     }
+
     $query = Booking::query();
+
     if ($companyUserId) {
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
             $q->where('user_id', $companyUserId);
+        });
+    }
+
+    if ($countryId) {
+        $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
+            $q->whereIn('user_id', $companyUserIds);
         });
     }
 
@@ -172,6 +251,7 @@ public function getChartData(Request $request)
 {
     $type = $request->query('type');
     $companyUserId = $request->user_id ?? null;
+    $countryId = $request->country_id ?? null;
     $startDate = $request->start_date ?? null;
     $endDate = $request->end_date ?? null;
     $now = Carbon::now();
@@ -184,6 +264,14 @@ public function getChartData(Request $request)
     if ($companyUserId) {
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
             $q->where('user_id', $companyUserId);
+        });
+    }
+
+     if ($countryId) {
+        $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
+            $q->whereIn('user_id', $companyUserIds);
         });
     }
 
@@ -263,6 +351,7 @@ public function getChartData(Request $request)
 public function getEarningsData(Request $request)
 {
     $companyUserId = $request->query('user_id');
+    $countryId = $request->country_id ?? null;
     $startDateInput = $request->query('start_date');
     $endDateInput = $request->query('end_date');
     $months = $request->query('months', 12);
@@ -278,6 +367,14 @@ public function getEarningsData(Request $request)
     if ($companyUserId) {
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
             $q->where('user_id', $companyUserId);
+        });
+    }
+
+     if ($countryId) {
+        $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+
+        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
+            $q->whereIn('user_id', $companyUserIds);
         });
     }
 

@@ -83,4 +83,9 @@ class User extends Authenticatable
     return $this->hasMany(Booking::class, 'user_id', 'id');
 }
 
+public function country()
+{
+    return $this->belongsTo(Country::class);
+}
+
 }
