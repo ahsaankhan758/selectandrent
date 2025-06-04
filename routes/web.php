@@ -84,7 +84,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
-    Route::get('company/login',[companyController::class, 'showLoginForm'])->middleware('IsAdmin:company');
+    Route::get('company/login',[companyController::class, 'showLoginForm'])->name('companyLoginForm')->middleware('IsAdmin:company');
     Route::post('company/login', [LoginController::class, 'login'])->name('companyLogin')->middleware('IsAdmin:company');
 
     //User Login
@@ -146,6 +146,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
             Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
+            // Permissions
+            Route::get('permissions/{role}',[PermissionController::class, 'index'])->name('permissions');
+            Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
+            Route::put('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
+            Route::get('getUserPermissions',[PermissionController::class, 'getUserPermissions'])->name('getUserPermissions');
         });
     }
 
@@ -175,6 +180,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
             Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
             Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
+            
             //Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
