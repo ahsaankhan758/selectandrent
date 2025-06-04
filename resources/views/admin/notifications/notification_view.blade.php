@@ -1,6 +1,6 @@
 @extends('admin.layouts.Master')
 @section('title')
-{{ __('messages.notification') }}
+{{ __('messages.notifications') }}
 @endsection
 
 @section('content')
@@ -14,14 +14,14 @@
                         <i class="mdi mdi-dots-vertical"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a href="{{route('notifications.clear')}}" class="dropdown-item">Mark all as read</a>
+                        <a href="{{route('notifications.clear')}}" class="dropdown-item">{{ __('messages.mark_as') }}</a>
                         <!-- <a href="javascript:void(0);" class="dropdown-item">Settings</a> -->
                     </div>
                 </div>
                 
-                <h4 class="header-title mb-3">({{count($notifications)}}) Notifications</h4>
+                <h4 class="header-title mb-3">({{count($notifications)}}) {{ __('messages.notifications') }}</h4>
                 <div class="inbox-widget" data-simplebar style="max-height: 407px;">
-                    @forelse ($notifications as $notification)
+                    @forelse ($notifications_data as $notification)
                         <div class="inbox-item">
                             <div class="inbox-item-img">
                                 <img src="{{ $notification->from_user && $notification->from_user->profile_image 
@@ -49,10 +49,10 @@
                             </p>
                         </div>
                     @empty
-                        <p class="text-center text-muted">No notifications found.</p>
+                        <p class="text-center text-muted">{{ __('messages.not_found') }}</p>
                     @endforelse
                 </div>
-              
+                {{ $notifications_data->links() }}
             </div>
         </div> <!-- end card -->
     </div> <!-- end col -->
