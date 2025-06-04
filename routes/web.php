@@ -287,7 +287,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
     Route::get('/blog-detail/{id}', [WebsiteBlogController::class, 'blogDetail'])->name('blog.detail');
     // car register by farhan
-    Route::get('/register-car-rental', [CarRegisterController::class, 'CarRegisterView']);
+    Route::get('/register-with-car-rental', [CarRegisterController::class, 'CarRegisterView']);
     Route::post('/register-car-rental', [CarRegisterController::class, 'carRegStore'])->name('website.register');
     // car search page by farhan
     Route::get('/carsearch', [CarSearchController::class, 'CarSearchView'])->name('website.carsearch');

@@ -693,6 +693,8 @@ return [
 'booking_overview'=>'Bookings Overview',
 'reminders'=>'Reminders',
 'earning_summary'=>'Earnings Summary',
-''=>'',
+'notifications' => 'Notifications',
+'mark_as' => 'Mark all as read',
+'not_found' => 'Not found',
 
 ];

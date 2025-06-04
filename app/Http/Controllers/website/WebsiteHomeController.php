@@ -44,9 +44,9 @@ class WebsiteHomeController extends Controller
                 });
             })
            
-            ->when($request->beam, function ($query, $beam) {
-                return $query->where('beam', $beam);
-            })            
+            // ->when($request->beam, function ($query, $beam) {
+            //     return $query->where('beam', $beam);
+            // })            
             ->when($request->transmission, function ($query, $transmission) {
                 return $query->where('transmission', 'like', "%$transmission%");
             })
