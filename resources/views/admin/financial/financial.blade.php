@@ -26,26 +26,8 @@
     </div>
     <!-- end page title -->
     <!-- added by farhan -->
-    <div class="col-lg-12 my-3 row">
-        <div class="col-lg-3 justify-content-start">
-            <select name="user_id" id="options-dropdown" class="form-control">
-                <option value="">Select a company</option>
-                @foreach ($companies as $id => $name)
-                    <option value="{{ $id }}" {{ request('user_id') == $id ? 'selected' : '' }}>
-                        {{ $name }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-        <!-- Start Date Picker -->
-        <div class="col-lg-3">
-            <input type="date" id="startDate" class="form-control" placeholder="Start Date">
-        </div>
-
-        <!-- End Date Picker -->
-        <div class="col-lg-3">
-            <input type="date" id="endDate" class="form-control" placeholder="End Date">
-        </div>
+    <div class="col-lg-12 my-3 row" >
+        @include('admin.financial.include.filter')
     </div>
 
     <div class="row">
@@ -61,8 +43,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h4 class="header-title mb-0">{{ __('messages.order_status') }}</h4>
                         <div class="dropdown">
-                            <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                           <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ __('messages.week') }} <i class="fas fa-angle-down ms-2"></i>
                             </button>
                             <ul class="dropdown-menu">

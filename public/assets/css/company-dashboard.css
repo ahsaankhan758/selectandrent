@@ -48,7 +48,7 @@
     --car-scroll:#ccc;
     --table-head:#ECF5FA;
 }
-                /*  Container  */
+   /*  Container  */
 .booking-container {
     background: var(--white-color);
     border-radius: 12px;

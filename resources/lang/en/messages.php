@@ -706,5 +706,6 @@ return [
 'pending_booking'=>'Pending Bookings',
 'upcoming_booking'=>'Upcoming Bookings',
 'booking_all'=>'Booking All',
+'Select_Country' => 'Select Country',
 
 ];
