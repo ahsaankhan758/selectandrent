@@ -1,6 +1,9 @@
 <?php 
 
 return [
+    'featured vehicles' => 'المركبات المميزة',
+    'vehicles' => 'المركبات',
+    'designation' => 'المسمى الوظيفي',
     'employee' => 'موظف',
     'admins' => 'المشرفون',
     'employees' => 'الموظفون',

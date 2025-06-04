@@ -82,14 +82,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="role">{{ __('messages.role') }}</lable>
-                                    <select name="role" class="form-control">
-                                        <option disabled selected>{{ __('messages.select') }}</option>
-                                        <option value="Role1">Role1</option>
-                                        <option value="Role2">Role2</option>
-                                        <option value="Role3">Role3</option>
-                                        <option value="Role4">Role4</option>
-                                    </select>
+                                    <lable for="designation">{{ __('messages.designation') }}</lable>
+                                    <input type="text" name="designation" class="form-control">
                                 </div>
                                 <div class="form-group mb-3">
                                     <lable for="id_number">{{ __('messages.id_number') }} </lable>

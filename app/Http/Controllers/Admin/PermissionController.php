@@ -31,9 +31,11 @@ public function store(Request $request)
     $userId = $request->name;
     
     $submittedPermissions = $request->input('permissions', []);
-
-    // Define your full list of modules and actions
-    if(User::find($userId)?->role == 'admin')
+    $userRole = User::find($userId)?->role;
+    $ownerUserId = Employee::where('e_user_id', $userId)->value('owner_user_id');
+    $ownerRole = User::find($ownerUserId)?->role;
+    
+    if($userRole == 'admin' || $ownerRole == 'admin')
         $modules = ['users', 'companies', 'vehicle', 'brands', 'categories', 'features', 'models', 'locations', 'featured_vehicles', 'analytics', 'earning_summary', 'transaction_history', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts', 'currencies'];
     else 
         $modules = ['vehicle', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'earning_summary', 'transaction_history', 'clients', 'activity_log',];
@@ -85,7 +87,9 @@ public function store(Request $request)
     public function getUserPermissions(Request $request){
         $userPermissions = Permission::where( 'user_id' , $request->selectedUserId)->get();
         $userRole = User::find($request->selectedUserId)?->role;
-        $html = view('admin.permissions.includes.permissionsTable', ['userPermissions' => $userPermissions , 'user_id' => $request->selectedUserId , 'user_role' => $userRole] )->render();
+        $ownerUserId = Employee::where('e_user_id', $request->selectedUserId)->value('owner_user_id');
+        $ownerRole = User::find($ownerUserId)?->role; 
+        $html = view('admin.permissions.includes.permissionsTable', ['userPermissions' => $userPermissions , 'user_id' => $request->selectedUserId , 'user_role' => $userRole, 'ownerRole' => $ownerRole] )->render();
         return response()->json([
             'status' => 'Success',
             'html' => $html,
