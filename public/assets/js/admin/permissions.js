@@ -4,12 +4,13 @@ $(document).ready(function() {
         var selectedUserId = $(this).val();
         console.log('Selected User ID:', selectedUserId);
         $.ajax({
-            url: '/admin/getUserPermissions',
+            url: window.baseUrl+ '/getUserPermissions',
             type: "GET",
             data: { selectedUserId: selectedUserId },
             success: function (response) {
                 console.log('Response:', response);
                 $('#permissionsTable').removeClass('d-none').html(response.html);
+
                 bindMasterCheckbox();
                 handleFinancialParentAutoCheck();
                 bindVehicleSubmenuEvents();
@@ -90,6 +91,19 @@ $(document).ready(function() {
        input[name="permissions[financial][edit]"],
        .row-checkbox[data-row="financial"]`).on('change', function () {
         updateFinancialSubmodulesVisibility();
+    });
+
+    $('#company').on('change', function() {
+        var selectedCompany = $(this).val();
+        console.log('Selected User ID:', selectedCompany);
+        $.ajax({
+            url: window.baseUrl+ '/getUsersList',
+            type: "GET",
+            data: { selectedCompany: selectedCompany },
+            success: function (response){
+                $('#employeeList').removeClass('d-none').html(response.html);
+            },
+        });
     });
 });
 
@@ -319,3 +333,5 @@ function bindFinancialSubmenuEvents() {
 $(document).ready(function () {
     bindFinancialSubmenuEvents();
 });
+
+

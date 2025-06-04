@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Mail\EmployeeConformation;
 use App\Models\Employee;
+use App\Models\Permission;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 
 class EmployeeController extends Controller
@@ -43,6 +46,32 @@ class EmployeeController extends Controller
         $employee->age = $request['age'];
         $employee->address = $validatedData['address'];
         $employee->save();
+
+        $userId = $user->id;
+    
+        $submittedPermissions = $request->input('permissions', []);
+
+        if(auth()->user()->role == 'admin')
+            $modules = ['users', 'companies', 'vehicle', 'brands', 'categories', 'features', 'models', 'locations', 'featured_vehicles', 'analytics', 'earning_summary', 'transaction_history', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts', 'currencies'];
+        else 
+            $modules = ['vehicle', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'earning_summary', 'transaction_history', 'clients', 'activity_log',];
+        $actions = ['view', 'edit'];
+
+        foreach ($modules as $module) {
+            foreach ($actions as $action) {
+                $value = $submittedPermissions[$module][$action] ?? 0;
+                // Create only if checked (value == 1)
+                if ($value) {
+                    Permission::create([
+                        'user_id' => $userId,
+                        'module' => $module,
+                        'key' => $action,
+                        'value' => 1,
+                    ]);
+                }
+            }
+        }
+     
         // save logs 
         $userId = Auth::id();
         $userName = Auth::user()->name;
@@ -54,6 +83,7 @@ class EmployeeController extends Controller
         $action = 'Create';
         $module = 'Employee';
         activityLog($userId, $desciption,$action,$module);
+        Mail::to($user->email)->send(new EmployeeConformation($user, $validatedData['password']));
         return redirect ()->route('employee')->with('status','Employee Created Successfully.');
     }
     public function edit($id){
@@ -95,6 +125,8 @@ class EmployeeController extends Controller
     }
     public function destroy($id){
         $user = User::find($id);
+        $permissions = Permission::where('user_id', $user->id);
+        $permissions->delete();
         $user->delete();
         // save logs
         $userId = Auth::id();
