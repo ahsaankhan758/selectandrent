@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Models\Permission;
 use App\Models\company;
 use App\Models\User;
@@ -13,13 +14,15 @@ class PermissionController extends Controller
     public function index($role){
        
         // $role = ($role === 'admin') ? 'admin' : 'company';
-        if($role == 'admin')
-            $usersList = User::where('role', $role)->get();
-        else
-            $usersList = company::where('status', 1)
-                ->whereHas('user', function ($query) {
-                    $query->where('role', 'company');
-                })->get();
+        if($role == 'admin'){
+            $usersList = Employee::where('owner_user_id', auth()->id())->get();
+        }
+        elseif($role == 'company'){
+            $usersList = company::all();
+        }
+        elseif($role == 'selfCompany'){
+            $usersList = Employee::where('owner_user_id', auth()->id())->get();
+        }
         return view('admin.permissions.index', compact('role', 'usersList'));
     }
     
@@ -70,11 +73,8 @@ public function store(Request $request)
 }
 
     public function selectedUsersList(Request $request){
-        $role = $request->role;
-        $usersList = User::where('role', $role)->get();
-        // echo '<pre>';
-        // print_r($usersList);
-        $html = view('admin.permissions.includes.usersList', ['usersList' => $usersList, 'role' => $role ])->render();
+        $usersList = Employee::where('owner_user_id', $request->selectedCompany)->get();
+        $html = view('admin.permissions.includes.usersList', ['usersList' => $usersList ])->render();
         return response()->json([
             'status' => 'Success',
             'usersList' => $usersList,
