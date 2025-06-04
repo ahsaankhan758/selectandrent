@@ -1,6 +1,9 @@
 <?php 
 
 return [
+    'employee' => 'موظف',
+    'admins' => 'المشرفون',
+    'employees' => 'الموظفون',
     'all' => 'الكل',
     'welcome' => 'مرحبًا بك في موقعنا!',
     'login' => 'تسجيل الدخول',
@@ -11,6 +14,8 @@ return [
     'company' => 'الشركة',
     'companies' => 'الشركات',
     'cars' => 'السيارات',
+    'id_number' => 'رقم الهوية',
+    'age' => 'العمر',
     'car' => 'سيارة',
     'currencies' => 'العملات',
     'dashboard' => 'لوحة التحكم',
@@ -692,8 +697,21 @@ return [
 'booking_overview' => 'نظرة عامة على الحجوزات',
 'reminders' => 'التذكيرات',
 'earning_summary' => 'ملخص الأرباح',
+<<<<<<< HEAD
 'notifications' => 'الإشعارات',
 'mark_as' => 'تحديد الكل كمقروء',
 'not_found' => 'غير موجود',
+=======
+
+'12_month' => 'آخر 12 شهرًا',
+'3_month'  => 'آخر 3 أشهر',
+'6_month'  => 'آخر 6 أشهر',
+'confirmed' => 'تم التأكيد',
+'complete_booking' => 'الحجوزات المكتملة',
+'cancelled_booking' => 'الحجوزات الملغاة',
+'pending_booking' => 'الحجوزات المعلقة',
+'upcoming_booking' => 'الحجوزات القادمة',
+ 'booking_all' => 'جميع الحجوزات',
+>>>>>>> 937a0cfcbbe9404ebd814a1aeb582246a0c6a22e
 
 ];
