@@ -28,9 +28,7 @@ class WebsiteHomeController extends Controller
         $request->validate([
             'brand' => 'nullable|numeric',
             'model' => 'nullable|numeric',
-            // 'beam' => 'nullable|string',
             'transmission' => 'nullable|string',
-            // 'radius' => 'nullable|numeric',
             'minimum' => 'nullable|numeric',
             'maximum' => 'nullable|numeric',
             'year' => 'nullable|numeric',
@@ -45,9 +43,7 @@ class WebsiteHomeController extends Controller
                     $q->where('id', $brand);
                 });
             })
-            // ->when($request->beam, function ($query, $beam) {
-            //     return $query->where('beam', 'like', "%$beam%");
-            // })
+           
             ->when($request->beam, function ($query, $beam) {
                 return $query->where('beam', $beam);
             })            

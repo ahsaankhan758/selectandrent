@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('car_location_id');
             $table->unsignedBigInteger('car_model_id'); // Ensure this is unsignedBigInteger
             $table->string('year')->nullable();
-            $table->string('beam')->nullable();
             $table->string('transmission')->nullable();
             $table->string('rent')->nullable();
             $table->string('seats')->nullable();

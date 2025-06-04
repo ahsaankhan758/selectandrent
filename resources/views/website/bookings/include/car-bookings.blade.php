@@ -113,11 +113,15 @@
             </div>
             <div class="col-md-3 align-items-center">
                 <div class="stars text-warning">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                    @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= floor($averageRating))
+                        <i class="fas fa-star text-warning"></i> 
+                    @elseif ($i == ceil($averageRating) && fmod($averageRating, 1) != 0)
+                        <i class="fas fa-star-half-alt text-warning"></i> 
+                    @else
+                        <i class="far fa-star text-warning"></i> 
+                    @endif
+                    @endfor
                 </div>
                 <span class="vehicle-title text-capitalize">{{$cart->options->car_brand}} {{$cart->name}}</span>
                 <p class="car-model-text text-capitalize">{{ $cart->options->year }}, {{$cart->options->car_category}}</p>
@@ -140,7 +144,6 @@
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Doors') }}:</strong> {{$cart->options->doors}}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Mileage') }}:</strong> {{$cart->options->mileage}}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Vehicle Id') }}:</strong> {{$cart->options->lisence_plate}}</div>
-           <div class="mb-2 text-capitalize"><strong>{{ __('messages.beam') }}:</strong> {{ $cart->options->beam }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.Postal Code') }}:</strong>  {{ $cart->options->postal_code }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.transmission') }}:</strong> {{ $cart->options->transmission }}</div>
            <div class="mb-2 text-capitalize"><strong>{{ __('messages.engine size') }}:</strong> {{ $cart->options->engine_size }}</div>
