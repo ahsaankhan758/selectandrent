@@ -640,7 +640,7 @@
             </div>
             <div class="modal-body renteal-body">
                 <img src="{{asset('/')}}frontend-assets/icons/rental-modal-popup-img.png" alt="Illustration" class="rental-header-img">
-                <button class="rental-register-btn" onclick="window.location.href='{{ url('/register-car-rental') }}'">
+                <button class="rental-register-btn" onclick="window.location.href='{{ url('/register-with-car-rental') }}'">
                     <img src="{{asset('/')}}frontend-assets/icons/car-rental-register-btn-icon.png" class="rental-btn-icon" alt="Register">
                     {{ __('messages.Register with car rental') }}
                 </button>

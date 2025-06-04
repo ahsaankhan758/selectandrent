@@ -692,6 +692,8 @@ return [
 'booking_overview' => 'نظرة عامة على الحجوزات',
 'reminders' => 'التذكيرات',
 'earning_summary' => 'ملخص الأرباح',
-
+'notifications' => 'الإشعارات',
+'mark_as' => 'تحديد الكل كمقروء',
+'not_found' => 'غير موجود',
 
 ];
