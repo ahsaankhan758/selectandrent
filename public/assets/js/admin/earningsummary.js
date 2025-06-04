@@ -1,98 +1,37 @@
-// pie chart
-// $(document).ready(function () {
-//     let donutChart;
-//     const legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745'];
 
-//     function renderChart(data, period = 'this_week') {
-//         const total = data.reduce((sum, d) => sum + d.value, 0);
+$(document).ready(function () {
+    $('#options-dropdown, #startDate, #endDate').on('change', function () {
+        let userId = $('#options-dropdown').val();
+        let startdate = $('#startDate').val();
+        let enddate = $('#endDate').val();
+        var isValid = false;
 
-//         let chartData = data;
-//         let chartColors = legendColors;
-
-//         if (total === 0 && period === 'this_week') {
-//             chartData = [{ label: "Confirmed", value: 100 }];
-//             chartColors = [legendColors[0]]; 
-//         }
-
-//         $('#lifetime-sales').empty();
-
-//         donutChart = new Morris.Donut({
-//             element: 'lifetime-sales',
-//             data: chartData,
-//             colors: chartColors,
-//             formatter: function (y, dataItem) {
-//                 const actualItem = data.find(d => d.label === dataItem.label);
-//                 return (actualItem?.value ?? 0) + '%';
-//             }
-//         });
-
-//         const legendContainer = document.querySelector('#lifetime-sales').parentElement;
-//         legendContainer.querySelectorAll('.d-flex.px-3').forEach(e => e.remove());
-
-//         const labels = ['confirmed', 'pending', 'cancelled', 'completed'];
-//         labels.forEach((label, i) => {
-//             const percentage = data.find(d => d.label.toLowerCase() === label)?.value ?? 0;
-//             const legend = `
-//                 <div class="d-flex justify-content-between px-3">
-//                     <span>
-//                         <i class="mdi mdi-square" style="color: ${legendColors[i]}"></i>
-//                         ${label.charAt(0).toUpperCase() + label.slice(1)}
-//                     </span>
-//                     <span>${percentage}%</span>
-//                 </div>
-//             `;
-//             legendContainer.insertAdjacentHTML('beforeend', legend);
-//         });
-//     }
-
-//     function loadDefaultChart() {
-//         const defaultFilter = 'week';
-//         $.ajax({
-//             url: window.orderStatusRoute,
-//             type: 'GET',
-//             data: { filter: defaultFilter },
-//             success: function (response) {
-//                 const chartData = [
-//                     { label: "Confirmed", value: response.confirmed.percentage },
-//                     { label: "Pending", value: response.pending.percentage },
-//                     { label: "Cancelled", value: response.cancelled.percentage },
-//                     { label: "Completed", value: response.completed.percentage }
-//                 ];
-//                 renderChart(chartData);
-//                 $('.chart-dropdown-toggle').html('This Week <i class="fas fa-angle-down ms-2"></i>');
-//             },
-//             error: function () {
-//                 alert('Failed to load default chart data.');
-//             }
-//         });
-//     }
-
-//     loadDefaultChart();
-
-//     $('.filter-option').on('click', function (e) {
-//         e.preventDefault();
-//         const filter = $(this).data('filter');
-
-//         $.ajax({
-//             url: window.orderStatusRoute,
-//             type: 'GET',
-//             data: { filter: filter },
-//             success: function (response) {
-//                 const chartData = [
-//                     { label: "Confirmed", value: response.confirmed.percentage },
-//                     { label: "Pending", value: response.pending.percentage },
-//                     { label: "Cancelled", value: response.cancelled.percentage },
-//                     { label: "Completed", value: response.completed.percentage }
-//                 ];
-//                 renderChart(chartData);
-//             },
-//             error: function () {
-//                 alert('Failed to load data.');
-//             }
-//         });
-//         $(this).closest('.dropdown').find('.chart-dropdown-toggle').html($(this).text() + ' <i class="fas fa-angle-down ms-2"></i>');
-//     });
-// });
+            if (userId) {
+                isValid = true;
+            }
+            if (startdate && enddate) {
+                isValid = true;
+            }
+            
+        if (isValid) {
+            $.ajax({
+                url: window.earningSummaryUrl,
+                type: 'GET',
+                data: {
+                    user_id: userId,
+                    start_date: startdate || null,
+                    end_date: enddate || null
+                },
+                success: function (response) {
+                    $('#cards-container').html(response);
+                },
+                error: function (xhr) {
+                    alert('Data load failed: ' + xhr.statusText);
+                }
+            });
+        }
+    });
+});
 
 $(document).ready(function () {
     let donutChart;
@@ -145,13 +84,25 @@ $(document).ready(function () {
     }
 
     function fetchAndRenderChart(filter = 'week') {
+        const userId = getSelectedCompanyId();
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
+
+        const useDefault = !userId && !startDate && !endDate;
+
+        const ajaxParams = useDefault
+            ? { filter: filter }
+            : {
+                filter: filter,
+                user_id: userId || null,
+                start_date: startDate || null,
+                end_date: endDate || null
+            };
+
         $.ajax({
             url: window.orderStatusRoute,
             type: 'GET',
-            data: {
-                filter: filter,
-                user_id: getSelectedCompanyId()
-            },
+            data: ajaxParams,
             success: function (response) {
                 const chartData = [
                     { label: "Confirmed", value: response.confirmed.percentage },
@@ -167,15 +118,12 @@ $(document).ready(function () {
         });
     }
 
-    // Initial load
     fetchAndRenderChart();
 
-    // Company change handler
-    $('#options-dropdown').on('change', function () {
+    $('#options-dropdown, #startDate, #endDate').on('change', function () {
         fetchAndRenderChart();
     });
 
-    // Filter click
     $('.filter-option').on('click', function (e) {
         e.preventDefault();
         const filter = $(this).data('filter');
@@ -237,23 +185,43 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
-    // Get selected user_id from dropdown
     function getSelectedCompanyId() {
         return document.getElementById('options-dropdown').value;
     }
 
-    // Fetch chart data with selected user_id and type
+    function getDateRange() {
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+        if (startDateInput && endDateInput) {
+            const startDate = startDateInput.value;
+            const endDate = endDateInput.value;
+            if (startDate && endDate) {
+                return { startDate, endDate };
+            }
+        }
+        return null;
+    }
+
     function fetchData(type = 'this_year') {
         const userId = getSelectedCompanyId();
+        const dateRange = getDateRange();
+
         const url = new URL(window.bookingChartRoute);
-        url.searchParams.append('type', type);
+
         if (userId) {
             url.searchParams.append('user_id', userId);
         }
 
+        if (dateRange) {
+            url.searchParams.append('start_date', dateRange.startDate);
+            url.searchParams.append('end_date', dateRange.endDate);
+        } else {
+            url.searchParams.append('type', type);
+        }
+
         fetch(url)
-            .then((res) => res.json())
-            .then((response) => {
+            .then(res => res.json())
+            .then(response => {
                 chart.data.labels = response.labels;
                 chart.data.datasets[0].data = response.data;
                 chart.data.datasets[0].backgroundColor = response.data.map((_, i) => i === 5 ? 'orange' : 'navy');
@@ -268,101 +236,34 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Expose globally to use in buttons/dropdowns
     window.updateChart = fetchData;
 
-    // Initial chart load
     fetchData('this_year');
 
-    // Optional: Trigger fetch on dropdown change
+    // On user dropdown change
     document.getElementById('options-dropdown').addEventListener('change', () => {
         fetchData(document.getElementById('bookingDropdown').dataset.type || 'this_year');
     });
+
+    // On date input change (assuming you have date inputs with these IDs)
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    if (startDateInput && endDateInput) {
+        startDateInput.addEventListener('change', () => {
+            fetchData(document.getElementById('bookingDropdown').dataset.type || 'this_year');
+        });
+        endDateInput.addEventListener('change', () => {
+            fetchData(document.getElementById('bookingDropdown').dataset.type || 'this_year');
+        });
+    }
 });
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     const ctx = document.getElementById("bookingsChart").getContext("2d");
-
-//     let chart = new Chart(ctx, {
-//         type: "bar",
-//         data: {
-//             labels: [],
-//             datasets: [{
-//                 label: "Bookings",
-//                 data: [],
-//                 backgroundColor: [],
-//                 borderRadius: 5,
-//             }],
-//         },
-//         options: {
-//             responsive: true,
-//             plugins: {
-//                 tooltip: {
-//                     enabled: true,
-//                     backgroundColor: "#000",
-//                     bodyColor: "#fff",
-//                     displayColors: false,
-//                     titleColor: "#ddd",
-//                     padding: 10,
-//                     callbacks: {
-//                         title: function (tooltipItems) {
-//                             return `Date: ${tooltipItems[0].label}`;
-//                         },
-//                         label: function (tooltipItem) {
-//                             return `Bookings: ${tooltipItem.raw}`;
-//                         }
-//                     }
-//                 }
-//             },
-//             scales: {
-//                 y: {
-//                     beginAtZero: true,
-//                     suggestedMax: 10,
-//                 },
-//             },
-//             onHover: (event, chartElement) => {
-//                 if (chartElement.length) {
-//                     const index = chartElement[0].index;
-//                     const backgroundColors = chart.data.datasets[0].data.map((_, i) => i === index ? 'orange' : 'navy');
-//                     chart.data.datasets[0].backgroundColor = backgroundColors;
-//                     chart.update();
-//                 }
-//             }
-//         },
-//     });
-
-//        function getSelectedCompanyId() {
-//         return $('#options-dropdown').val();
-//     }
-
-//     function fetchData(type = 'this_year') {
-//         fetch(`${window.bookingChartRoute}?type=${type}`)
-//             .then((res) => res.json())
-//             .then((response) => {
-//                 chart.data.labels = response.labels;
-//                 chart.data.datasets[0].data = response.data;
-//                 chart.data.datasets[0].backgroundColor = response.data.map((_, i) => i === 5 ? 'orange' : 'navy');
-//                 chart.update();
-
-//                 const labelMap = {
-//                     'this_year': 'This Year',
-//                     'month': 'This Month',
-//                     'last_month': 'Last Month'
-//                 };
-//                 document.getElementById('bookingDropdown').textContent = labelMap[type] || 'Select Range';
-//             });
-//     }
-
-//     window.updateChart = fetchData;
-//     fetchData('this_year');
-// });
 
 
 // earning summary 
+
 document.addEventListener("DOMContentLoaded", function () {
     let chart;
 
-    // Initialize chart with labels and data
     function initChart(labels, data) {
         var options = {
             chart: {
@@ -396,21 +297,13 @@ document.addEventListener("DOMContentLoaded", function () {
         chart.render();
     }
 
-    // ✅ Get selected user_id from dropdown
-    function getSelectedCompanyId() {
-        return document.getElementById('options-dropdown').value;
-    }
-
-    // Fetch data and update chart
-    window.fetchEarnings = function (months = 12, label = 'Last 12 Months') {
-        const userId = getSelectedCompanyId(); // ✅ Get user ID
-
-        fetch(`${window.earningsdata}?months=${months}&user_id=${userId}`)
+    window.fetchEarnings = function(months = 12, label = 'Last 12 Months') {
+        fetch(`${window.earningsdata}?months=${months}`)
             .then(response => response.json())
             .then(data => {
                 if (chart) {
                     chart.updateOptions({
-                        series: [{ name: "Earnings", data: data.data }],
+                        series: [{ data: data.data }],
                         xaxis: { categories: data.labels }
                     });
                 } else {
@@ -420,62 +313,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("dropdownBtn").innerText = label;
             });
     };
-
-    // Initial fetch on page load
     fetchEarnings(12, 'Last 12 Months');
 });
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     let chart;
-
-//     function initChart(labels, data) {
-//         var options = {
-//             chart: {
-//                 type: 'line',
-//                 height: 300,
-//                 toolbar: { show: false }
-//             },
-//             series: [{
-//                 name: "Earnings",
-//                 data: data
-//             }],
-//             xaxis: {
-//                 categories: labels
-//             },
-//             stroke: { curve: 'smooth', width: 3 },
-//             markers: {
-//                 size: 0,
-//                 hover: { size: 6, colors: ['#07407B'] }
-//             },
-//             colors: ['#07407B'],
-//             tooltip: {
-//                 enabled: true,
-//                 x: { show: true },
-//                 y: {
-//                     formatter: (val) => `$${parseFloat(val).toLocaleString()}`
-//                 }
-//             }
-//         };
-
-//         chart = new ApexCharts(document.querySelector("#earnings-chart"), options);
-//         chart.render();
-//     }
-
-//     window.fetchEarnings = function(months = 12, label = 'Last 12 Months') {
-//         fetch(`${window.earningsdata}?months=${months}`)
-//             .then(response => response.json())
-//             .then(data => {
-//                 if (chart) {
-//                     chart.updateOptions({
-//                         series: [{ data: data.data }],
-//                         xaxis: { categories: data.labels }
-//                     });
-//                 } else {
-//                     initChart(data.labels, data.data);
-//                 }
-
-//                 document.getElementById("dropdownBtn").innerText = label;
-//             });
-//     };
-//     fetchEarnings(12, 'Last 12 Months');
-// });
