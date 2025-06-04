@@ -13,33 +13,33 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
 <div class="container">
-<h2 class="fw-bold bmw-text-color text-capitalize">{{ $car->car_models->car_brands->name ?? ' ' }} {{ $car->car_models->name ?? ' ' }} {{ $car->year ?? ' ' }}</h2>
-<p>{{ $car->engine_size }} cc | {{ $car->drive }} | {{ ucfirst($car->transmission) }} | {{$car->lisence_plate}}</p>
+<h2 class="fw-bold bmw-text-color text-capitalize">{{ $vehicle->car_models->car_brands->name ?? ' ' }} {{ $vehicle->car_models->name ?? ' ' }} {{ $vehicle->year ?? ' ' }}</h2>
+<p>{{ $vehicle->engine_size }} cc | {{ $vehicle->drive }} | {{ ucfirst($vehicle->transmission) }} | {{$vehicle->lisence_plate}}</p>
 <div class="d-flex flex-wrap gap-2 mt-3">
     <div class="custom-badge-2">
-        <i class="fa-solid fa-user me-2"></i> {{ $car->min_age }} {{ __('Min. age') }}
+        <i class="fa-solid fa-user me-2"></i> {{ $vehicle->min_age }} {{ __('Min. age') }}
     </div>
     <div class="custom-badge-2">
-        <i class="fa-solid fa-gauge-high me-2"></i> {{ $car->mileage }} {{ __('km by the day') }}
+        <i class="fa-solid fa-gauge-high me-2"></i> {{ $vehicle->mileage }} {{ __('km by the day') }}
     </div>
     <div class="custom-badge-2">
-         {{ convertPrice($car->advance_deposit, 0) }} {{ __('Deposit') }}
+         {{ convertPrice($vehicle->advance_deposit, 0) }} {{ __('Deposit') }}
     </div>
     <div class="custom-badge-2">
-       <i class="fa-solid fa-location-dot me-2"></i> {{ $car->car_locations->area_name }} {{ ucfirst(optional(optional($car->car_locations)->city)->name) }}
+       <i class="fa-solid fa-location-dot me-2"></i> {{ $vehicle->car_locations->area_name }} {{ ucfirst(optional(optional($vehicle->car_locations)->city)->name) }}
     </div>
 </div>
 </div>
 @php
-    $images = unserialize($car->images);
+    $images = unserialize($vehicle->images);
 @endphp
 
 <div class="container mt-5">
     <div class="car-gallery">
         <!-- Main Image (clickable, opens carousel at index 0) -->
         <div class="main-image">
-            <a data-fancybox="gallery" href="{{ asset(Storage::url($car->thumbnail)) }}" data-caption="Main Car Image" data-index="0">
-                <img src="{{ asset(Storage::url($car->thumbnail)) }}" alt="Main Car Image">
+            <a data-fancybox="gallery" href="{{ asset(Storage::url($vehicle->thumbnail)) }}" data-caption="Main Car Image" data-index="0">
+                <img src="{{ asset(Storage::url($vehicle->thumbnail)) }}" alt="Main Car Image">
             </a>
         </div>
 
@@ -64,12 +64,12 @@
             <div class="col-lg-8 col-md-8 col-sm-8">
                 <div>
                     
-                    <p class="bmw-text">{{ $car->detail }}</p>
+                    <p class="bmw-text">{{ $vehicle->detail }}</p>
 
                     <h4 class="mt-4">{{ __('messages.features') }}</h4>
                     <div class="row">
                         @php
-                            $features = unserialize($car->features);
+                            $features = unserialize($vehicle->features);
                         @endphp
 
                         @if (is_array($features) && count($features) > 0)
@@ -94,46 +94,46 @@
                 <div class="rental-card p-4 shadow rounded">
                     <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
                         <h5 class="mb-0 py-3">{{ __('messages.Rental Price') }}</h5>
-                        <h3 class="fw-bold py-3 mb-0">{{ convertPrice($car->rent, 0) }} <span class="fs-6">/ Day</span>
+                        <h3 class="fw-bold py-3 mb-0">{{ convertPrice($vehicle->rent, 0) }} <span class="fs-6">/ Day</span>
                         </h3>
                     </div>
                     <ul class="list-unstyled px-3 py-2">
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Seats') }}</strong>
-                            <span>{{ $car->seats }} </span></li>
+                            <span>{{ $vehicle->seats }} </span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Doors') }}</strong>
-                            <span>{{ $car->doors }} </span></li>
+                            <span>{{ $vehicle->doors }} </span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Luggage') }}</strong>
-                            <span>{{ $car->luggage }}</span></li>
+                            <span>{{ $vehicle->luggage }}</span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Drive') }}</strong>
-                            <span>{{ $car->drive }}</span></li>
+                            <span>{{ $vehicle->drive }}</span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Economy') }}</strong>
-                            <span>{{ $car->fuel_economy }}</span></li>
+                            <span>{{ $vehicle->fuel_economy }}</span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Type') }}</strong>
-                            <span>{{ $car->fuel_type }}</span></li>
+                            <span>{{ $vehicle->fuel_type }}</span></li>
 
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.engine') }}</strong>
-                            <span>{{ $car->engine_size }} cc</span></li>
+                            <span>{{ $vehicle->engine_size }} cc</span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.year') }}</strong>
-                            <span>{{ $car->year }}</span></li>
+                            <span>{{ $vehicle->year }}</span></li>
 
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Mileage') }}</strong>
-                            <span>{{ $car->mileage }}</span></li>
+                            <span>{{ $vehicle->mileage }}</span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Transmission') }}</strong>
-                            <span>{{ ucfirst($car->transmission) }}</span></li>
+                            <span>{{ ucfirst($vehicle->transmission) }}</span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Exterior Color') }}</strong>
-                            <span>{{ ucfirst($car->exterior_color) }}</span></li>
+                            <span>{{ ucfirst($vehicle->exterior_color) }}</span></li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Interior Color') }}</strong>
-                            <span>{{ ucfirst($car->interior_color) }}</span></li>
+                            <span>{{ ucfirst($vehicle->interior_color) }}</span></li>
                         <li class="d-flex justify-content-between">
                             <strong>{{ __('messages.location') }}</strong>
-                            <span>{{ ucfirst(optional(optional($car->car_locations)->city)->name) }}</span>
+                            <span>{{ ucfirst(optional(optional($vehicle->car_locations)->city)->name) }}</span>
                         </li>
 
 
                     </ul>
                     <!-- for add to cart  -->
                     @if (auth()->check())
-                        <button data-carid="{{ $car->id }}" id="car-booking-btn"
+                        <button data-carid="{{ $vehicle->id }}" id="car-booking-btn"
                             class="btn btn-purchase w-100 rounded-pill mt-3">{{ __('messages.Book Now') }}</button>
                     @else
                         <button class="btn btn-purchase w-100 rounded-pill mt-3" data-bs-toggle="modal"
@@ -229,8 +229,8 @@
                             allowfullscreen></iframe>
                         <script>
                             // Example dynamic coordinates (replace with your actual dynamic variables)
-                            const latitude = `{{ $car->car_locations->latitude }}`;
-                            const longitude = `{{ $car->car_locations->longitude }}`;
+                            const latitude = `{{ $vehicle->car_locations->latitude }}`;
+                            const longitude = `{{ $vehicle->car_locations->longitude }}`;
                             const mapSrc = `https://maps.google.com/maps?q=${latitude},${longitude}&z=14&output=embed`;
                             // Apply to the iframe
 
@@ -239,8 +239,8 @@
                     </div>
                     <div class="help-box mt-3">
                         <div class="help-content">
-                            <div class="help-text-1">{{ optional(optional($car->users)->companies)->name }}</div>
-                            <p class="help-number">{{ optional(optional($car->users)->companies)->email }}</p>
+                            <div class="help-text-1">{{ optional(optional($vehicle->users)->companies)->name }}</div>
+                            <p class="help-number">{{ optional(optional($vehicle->users)->companies)->email }}</p>
 
                         </div>
                         <img src="http://127.0.0.1:8000/frontend-assets/icons/phone.png" alt="24-hour support">
@@ -248,7 +248,7 @@
                     <div class="help-box mt-3">
                         <div class="help-content">
                             <div class="help-text">{{ __('messages.Need Any Help') }}?</div>
-                            <p class="help-number">{{ optional(optional($car->users)->companies)->phone }}</p>
+                            <p class="help-number">{{ optional(optional($vehicle->users)->companies)->phone }}</p>
                         </div>
                         <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="24-hour support">
                     </div>
@@ -280,28 +280,28 @@
     <div class="container py-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                @foreach ($cars as $car)
+                @foreach ($vehicles as $vehicle)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
-                            <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
-                                <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
+                            <a href="{{ url('/cardetail/' . $vehicle->id) }}" class="link">
+                                <img src="{{ asset('storage/' . $vehicle->thumbnail) }}" class="custom-card-img"
                                     alt="Car Image">
                             </a>
                             <div class="card-content">
-                                <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                                <a href="{{ url('/cardetail/' . $vehicle->id) }}" class="link">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
                                             <h5 class="text-muted card_orange_clr">
-                                                {{ $car->car_models->car_brands->name ?? ' ' }}
-                                                {{ $car->car_models->name ?? ' ' }}
-                                                {{ $car->year ?? ' ' }}
+                                                {{ $vehicle->car_models->car_brands->name ?? ' ' }}
+                                                {{ $vehicle->car_models->name ?? ' ' }}
+                                                {{ $vehicle->year ?? ' ' }}
                                             </h5>
-                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }} {{ $car->engine_size }}
-                                                {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} | {{$car->fuel_type}}</h6>
+                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }} {{ $vehicle->engine_size }}
+                                                {{ __('messages.cc') }} | {{ ucfirst($vehicle->transmission) }} | {{$vehicle->fuel_type}}</h6>
                                         </div>
                                         <div>
                                         @php
-                                            $companyProfile = $car->users->companies->company_profile ?? null;
+                                            $companyProfile = $vehicle->users->companies->company_profile ?? null;
                                         @endphp
 
                                         @if($companyProfile)
@@ -316,45 +316,45 @@
                                     <div class="d-flex justify-content-between w-100">
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.mileage') }}</h6>
-                                            <p><i class="fas fa-tachometer-alt"></i> {{ $car->mileage }}</p>
+                                            <p><i class="fas fa-tachometer-alt"></i> {{ $vehicle->mileage }}</p>
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.deposit') }}</h6>
-                                            <p>{{convertPrice($car->advance_deposit,0)}}</p>
+                                            <p>{{convertPrice($vehicle->advance_deposit,0)}}</p>
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.min') }}</h6>
-                                            <p><i class="fa-solid fa-user"></i> {{$car->min_age}}</p>
+                                            <p><i class="fa-solid fa-user"></i> {{$vehicle->min_age}}</p>
                                         </div>
                                     </div>
                                     <hr>
                                     {{-- <div class="d-flex justify-content-between mt-4">
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly.png" alt="Car" width="20px">
-                                    {{ $car->weight }} {{ __('messages.kg') }}
+                                    {{ $vehicle->weight }} {{ __('messages.kg') }}
                                 </div>
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car" width="20px">
-                                    {{ $car->mileage }} {{ __('messages.km') }}
+                                    {{ $vehicle->mileage }} {{ __('messages.km') }}
                                 </div>
                             </div>
         
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car" width="20px">
-                                    {{ $car->seats }} {{ __('messages.Seater') }}
+                                    {{ $vehicle->seats }} {{ __('messages.Seater') }}
                                 </div>
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car" width="20px">
-                                    {{ ucfirst($car->transmission) }}
+                                    {{ ucfirst($vehicle->transmission) }}
                                 </div>
                             </div> --}}
                                 </a>
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
-                                        {{ convertPrice($car->rent, 0) }}/{{ __('messages.Day') }}</h6>
+                                        {{ convertPrice($vehicle->rent, 0) }}/{{ __('messages.Day') }}</h6>
                                     @if (auth()->check())
-                                        <button class="book-btn" data-carid="{{ $car->id }}"
+                                        <button class="book-btn" data-carid="{{ $vehicle->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
                                     @else
                                         <button class="book-btn" data-bs-toggle="modal"
@@ -381,26 +381,31 @@
 
 
     <!-- end -->
+     @if($reviews->count() > 0)
     <div class="container-fluid bg-white">
         <div class="review-container mb-3">
-            <h2>{{ __('messages.Rate & Reviews') }}</h2>
+            <h2>{{ __('messages.Rate_and_Reviews') }}</h2>
             <div class="container">
-                <div class="row d-flex align-items-start gap-3">
+                <div class="row d-flex align-items-start">
                     <!-- Rating Summary Box -->
-                    <div class="col-md-4 col-12 text-center p-4 rating-box">
-                        <h3 class="mt-4">4.95 / 5</h3>
-                        <p class="text-muted">{{ __('messages.(762 Reviews)') }}</p>
+                    <div class="col-md-4 col-12 text-left p-4 ">
+                        <h3 class="mt-4">{{$averageRating}} / 5</h3>
+                        <p class="text-muted">{{$reviews->count()}} {{ __('messages.reviews') }}</p>
                         <div class="stars text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                             @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= floor($averageRating))
+                                    <i class="fas fa-star text-warning"></i> 
+                                @elseif ($i == ceil($averageRating) && fmod($averageRating, 1) != 0)
+                                    <i class="fas fa-star-half-alt text-warning"></i> 
+                                @else
+                                    <i class="far fa-star text-warning"></i> 
+                                @endif
+                             @endfor
                         </div>
                     </div>
 
                     <!-- Rating Details -->
-                    <div class="col-md-7 col-12">
+                    <!-- <div class="col-md-7 col-12">
                         <div class="flex-grow-1">
                             <div class="d-flex justify-content-between">
                                 <span class="fw-bold">{{ __('messages.Price') }}</span>
@@ -450,70 +455,41 @@
                                 <div class="progress-bar" style="width: 85%;"></div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
             <!-- User Reviews -->
             <div class="mt-4">
+                @foreach($reviews as $review)
                 <div class="review-card">
                     <div class="review-header d-flex align-items-center">
-                        <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="User">
+                        <img src="{{ asset($review->user->profile_image) }}" alt="User">
                         <div>
-                            <h5>Sarah Johnson</h5>
-                            <p class="text-muted">December 4, 2024 at 3:12 pm</p>
+                            <h5>{{ucfirst($review->user->name)}}</h5>
+                            <p class="text-muted">{{ $review->created_at->diffForHumans() }}</p>
                         </div>
                         <div class="stars destop-star ms-auto">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $review->rating)
+                                    <i class="fas fa-star text-warning"></i> 
+                                @else
+                                    <i class="far fa-star text-warning"></i> 
+                                @endif
+                            @endfor
                         </div>
+
                     </div>
+                    @if(!empty($review->comment))
                     <hr class="Reviews-hr">
-                    <div class="stars mobile-star ms-auto">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>We had a fantastic time on The High Roller. The views were amazing, and the ride was very smooth.
-                        It’s a great way to see Las Vegas from a different perspective. The staff were friendly and helpful.
-                        Definitely worth it! The High Roller was one of the highlights of our Las Vegas trip.</p>
+                    @endif
+                    <p>{{ucfirst($review->comment)}}</p>
                 </div>
-                <div class="review-card">
-                    <div class="review-header d-flex align-items-center">
-                        <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="User">
-                        <div>
-                            <h5>Sarah Johnson</h5>
-                            <p class="text-muted">December 4, 2024 at 3:12 pm</p>
-                        </div>
-                        <div class="stars destop-star ms-auto">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <hr class="Reviews-hr">
-                    <div class="stars mobile-star ms-auto">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>We had a fantastic time on The High Roller. The views were amazing, and the ride was very smooth.
-                        It’s a great way to see Las Vegas from a different perspective. The staff were friendly and helpful.
-                        Definitely worth it! The High Roller was one of the highlights of our Las Vegas trip.</p>
-                </div>
+                @endforeach
             </div>
 
             <!-- Review Form -->
-            <div class="mt-4">
+            <!-- <div class="mt-4">
                 <h4>{{ __('messages.Rate & Reviews') }}</h4>
                 <div class="row">
                     <div class="col-md-4 col-12 d-flex align-items-center mb-2">
@@ -622,9 +598,10 @@
                         {{ __('messages.Submit') }}
                     </button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
+    @endif
     <!-- Include Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
