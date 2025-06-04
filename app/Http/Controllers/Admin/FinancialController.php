@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FinancialController extends Controller
 {
-public function earningSummary(Request $request)
+    public function earningSummary(Request $request)
 {
     $companyUserId = $request->user_id ?? null;
     $startDate = $request->start_date ?? null;
@@ -23,7 +23,6 @@ public function earningSummary(Request $request)
     $role = Auth::user()->role;
     $companies = Company::where('status', 1)->pluck('name', 'user_id');
 
-    // Convert dates to proper Y-m-d format if provided
     if ($startDate) {
         $startDate = date('Y-m-d', strtotime($startDate));
     }
@@ -31,7 +30,6 @@ public function earningSummary(Request $request)
         $endDate = date('Y-m-d', strtotime($endDate));
     }
 
-    // Helper function to apply company and date filters
     $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate) {
         if ($companyUserId) {
             $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
@@ -39,18 +37,15 @@ public function earningSummary(Request $request)
             });
         }
         if ($startDate && $endDate) {
-            // Filter by date only (ignore time)
             $query->whereDate('created_at', '>=', $startDate)
                   ->whereDate('created_at', '<=', $endDate);
         }
     };
 
-    // Total bookings query
     $totalBookingsQuery = Booking::query();
     $applyFilters($totalBookingsQuery);
     $totalBookings = $totalBookingsQuery->count();
 
-    // Booking status counts and percentages
     $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
     $statusData = [];
     foreach ($statuses as $status) {
@@ -65,7 +60,6 @@ public function earningSummary(Request $request)
         ];
     }
 
-    // Confirmed and Pending total prices and counts
     $confirmedQuery = Booking::where('booking_status', 'confirmed');
     $pendingQuery = Booking::where('booking_status', 'pending');
     $applyFilters($confirmedQuery);
@@ -84,8 +78,12 @@ public function earningSummary(Request $request)
     $applyFilters($completedCount);
     $completedCount = $completedCount->count();
 
+    $bookingQuery = Booking::with('booking_items.vehicle.users');
+    $applyFilters($bookingQuery);
+    $bookings = $bookingQuery->orderBy('created_at', 'desc')->take(10)->get();
+
     if ($request->ajax()) {
-        return view('admin.financial.include.cards', compact(
+        $cardsView = view('admin.financial.include.cards', compact(
             'statusData',
             'confirmedTotalPrice',
             'pendingTotalPrice',
@@ -93,13 +91,15 @@ public function earningSummary(Request $request)
             'pendingCount',
             'cancelCount',
             'completedCount'
-        ));
-    }
+        ))->render();
 
-    // For normal full page load
-    $bookingQuery = Booking::with('booking_items.vehicle.users');
-    $applyFilters($bookingQuery);
-    $bookings = $bookingQuery->orderBy('created_at', 'desc')->take(10)->get();
+        $bookingTableView = view('admin.financial.include.dashboardBookingtable', compact('bookings'))->render();
+
+        return response()->json([
+            'cards' => $cardsView,
+            'table' => $bookingTableView
+        ]);
+    }
 
     return view('admin.financial.financial', compact(
         'role', 'bookings',
@@ -181,14 +181,12 @@ public function getChartData(Request $request)
 
     $query = Booking::with(['booking_items.vehicle']);
 
-    // Filter by user_id if provided
     if ($companyUserId) {
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
             $q->where('user_id', $companyUserId);
         });
     }
 
-    // Filter by date range if both dates are provided
     if ($startDate && $endDate) {
         $start = Carbon::parse($startDate)->startOfDay();
         $end = Carbon::parse($endDate)->endOfDay();
@@ -199,7 +197,6 @@ public function getChartData(Request $request)
             return Carbon::parse($booking->created_at)->format('Y-m-d');
         });
 
-        // Create labels and data for each day in the period
         $period = \Carbon\CarbonPeriod::create($startDate, $endDate);
         foreach ($period as $date) {
             $dateKey = $date->format('Y-m-d');
@@ -208,8 +205,6 @@ public function getChartData(Request $request)
         }
 
     } else {
-        // Otherwise, fallback on type-based filtering
-
         switch ($type) {
             case 'month':
                 $query->whereMonth('created_at', $now->month)
@@ -265,80 +260,51 @@ public function getChartData(Request $request)
 }
 
 // earning summary
-
 public function getEarningsData(Request $request)
 {
-    $companyUserId = $request->user_id ?? null; 
+    $companyUserId = $request->query('user_id');
+    $startDateInput = $request->query('start_date');
+    $endDateInput = $request->query('end_date');
     $months = $request->query('months', 12);
-
     $now = Carbon::now();
-    $startDate = $now->copy()->subMonths($months - 1)->startOfMonth();
 
-    // Query base
-    $query = Booking::where('booking_status', 'confirmed')
-        ->where('created_at', '>=', $startDate);
+    $startDate = $startDateInput ? Carbon::parse($startDateInput)->startOfDay() : $now->copy()->subMonths($months - 1)->startOfMonth();
+    $endDate = $endDateInput ? Carbon::parse($endDateInput)->endOfDay() : $now->endOfDay();
 
-    // If companyUserId is given, filter using relation
+    $query = Booking::with(['booking_items.vehicle'])
+        ->where('booking_status', 'confirmed')
+        ->whereBetween('created_at', [$startDate, $endDate]);
+
     if ($companyUserId) {
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
             $q->where('user_id', $companyUserId);
         });
     }
 
-    // Fetch and group by month
-    $earnings = $query->get()
-        ->groupBy(function ($booking) {
-            return Carbon::parse($booking->created_at)->format('M');
-        })
-        ->map(function ($monthBookings) {
-            return $monthBookings->sum('total_price');
-        });
+    $bookings = $query->get();
 
-    // Build response
+    $earnings = $bookings->groupBy(function ($booking) {
+        return Carbon::parse($booking->created_at)->format('M Y');
+    })->map(function ($group) {
+        return $group->sum('total_price');
+    });
+
     $labels = [];
     $data = [];
 
-    for ($i = 0; $i < $months; $i++) {
-        $monthName = $now->copy()->subMonths($months - 1 - $i)->format('M');
-        $labels[] = $monthName;
-        $data[] = $earnings[$monthName] ?? 0;
+    $period = Carbon::parse($startDate)->startOfMonth();
+    $end = Carbon::parse($endDate)->endOfMonth();
+
+    while ($period <= $end) {
+        $label = $period->format('M Y');
+        $labels[] = $label;
+        $data[] = $earnings[$label] ?? 0;
+        $period->addMonth();
     }
 
     return response()->json([
         'labels' => $labels,
-        'data' => $data
+        'data' => $data,
     ]);
 }
-
-        // public function getEarningsData(Request $request)
-        // {
-        //     $companyUserId = $request->user_id ?? null;
-        //     $months = $request->query('months', 12);
-    
-        //     $now = Carbon::now();
-        //     $startDate = $now->copy()->subMonths($months - 1)->startOfMonth();
-    
-        //     $earnings = Booking::where('booking_status', 'confirmed')
-        //         ->where('created_at', '>=', $startDate)
-        //         ->get()
-        //         ->groupBy(function ($booking) {
-        //             return Carbon::parse($booking->created_at)->format('M');
-        //         })
-        //         ->map(function ($monthBookings) {
-        //             return $monthBookings->sum('total_price');
-        //         });
-    
-        //     $labels = [];
-        //     $data = [];
-        //     for ($i = 0; $i < $months; $i++) {
-        //         $monthName = $now->copy()->subMonths($months - 1 - $i)->format('M');
-        //         $labels[] = $monthName;
-        //         $data[] = $earnings[$monthName] ?? 0;
-        //     }
-    
-        //     return response()->json([
-        //         'labels' => $labels,
-        //         'data' => $data
-        //     ]);
-        // }
 }
