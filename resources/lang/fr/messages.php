@@ -1,9 +1,18 @@
 <?php
 
 return [
+
+    'pick/drop' => 'Ramassage / Dépôt',
+'actualpickupdate' => 'Date réelle de ramassage',
+'actualpickuptime' => 'Heure réelle de ramassage',
+'actualdropupdate' => 'Date réelle de dépôt',
+'actualdropuptime' => 'Heure réelle de dépôt',
+
+
     'featured vehicles' => 'Véhicules en vedette',
     'vehicles' => 'Véhicules',
     'designation' => 'Désignation',
+
     'employee' => 'Employé',
     'employees' => 'Employés',
     'admins' => 'Administrateurs',
