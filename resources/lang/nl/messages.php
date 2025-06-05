@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'vehicle_max_weight' => 'Voer het maximale gewicht in dat deze auto kan dragen', 
     'featured vehicles' => 'Uitgelichte voertuigen',
     'vehicles' => 'Voertuigen',
     'designation' => 'Functietitel',

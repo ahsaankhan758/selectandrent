@@ -60,10 +60,10 @@
                                     </td>
                                     <td>
                                         @if(can('companies','edit'))
-                                            <a title="Edit" href="{{ route('editCurrency',$compdata->id) }}"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
+                                            <a title="Edit" href="{{ route('updateCompany',$compdata->id) }}"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
                                         @endif
                                         @if(can('companies','edit'))
-                                            <a title="Delete" href="{{ route('deleteCurrency',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash delete-btn"></i></a>
+                                            <a title="Delete" href="{{ route('deleteCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash delete-btn"></i></a>
                                         @endif
                                     </td>    
                                 </tr>
