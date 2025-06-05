@@ -1,14 +1,66 @@
+$(document).ready(function () {
+    $('#options-dropdown, #startDate, #endDate, #country-dropdown').on('change', function () {
+        let userId = $('#options-dropdown').val();
+        let startdate = $('#startDate').val();
+        let enddate = $('#endDate').val();
+        let countryId = $('#country-dropdown').val();
+        let isValid = false;
+
+        if (userId || countryId) {
+            isValid = true;
+        }
+        if (startdate && enddate) {
+            isValid = true;
+        }
+
+        if (isValid) {
+            $.ajax({
+                url: window.bookingDashboardUrl, 
+                type: 'GET',
+                data: {
+                    user_id: userId || null,
+                    country_id: countryId || null,
+                    start_date: startdate || null,
+                    end_date: enddate || null
+                },
+                success: function (response) {
+                    $('#dashboardtable').html(response.table);
+                    $('#cards-container').html(response.cards);
+                },
+                error: function (xhr) {
+                    alert('Data load failed: ' + xhr.statusText);
+                }
+            });
+        }
+    });
+});
+
+
+// chart
 document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById('bookingsChart').getContext('2d');
     let chart;
 
     function loadChartData(months = 12) {
-        fetch(`${window.bookingOverviewDataRoute}?months=${months}`)
+        let userId = $('#options-dropdown').val();
+        let countryId = $('#country-dropdown').val();
+        let startDate = $('#startDate').val();
+        let endDate = $('#endDate').val();
+
+        let params = new URLSearchParams({
+            months: months,
+            user_id: userId || '',
+            country_id: countryId || '',
+            start_date: startDate || '',
+            end_date: endDate || ''
+        });
+
+        fetch(`${window.bookingOverviewDataRoute}?${params.toString()}`)
             .then(res => res.json())
             .then(data => {
                 const labels = data.map(d => d.month);
                 const confirmed = data.map(d => d.confirmed);
-                const cancelled = data.map(d => -d.cancelled); 
+                const cancelled = data.map(d => -d.cancelled);
 
                 if (chart) {
                     chart.data.labels = labels;
@@ -26,26 +78,21 @@ document.addEventListener('DOMContentLoaded', function () {
                                     data: confirmed,
                                     backgroundColor: '#E67E22',
                                     borderRadius: 8,
-                                    barThickness: 20 
+                                    barThickness: 20
                                 },
                                 {
                                     label: 'Cancelled',
                                     data: cancelled,
                                     backgroundColor: '#07407B',
                                     borderRadius: 8,
-                                    barThickness: 20 
+                                    barThickness: 20
                                 }
                             ]
-                            
                         },
                         options: {
                             responsive: true,
                             maintainAspectRatio: true,
-                            layout: {
-                                padding: {
-                                    bottom: 30 
-                                }
-                            },
+                            layout: { padding: { bottom: 30 } },
                             plugins: {
                                 legend: { display: false },
                                 tooltip: {
@@ -65,19 +112,14 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
                             },
                             scales: {
-                                x: {
-                                    stacked: true,
-                                    grid: { display: false }
-                                },
+                                x: { stacked: true, grid: { display: false } },
                                 y: {
                                     stacked: true,
                                     grid: { color: "#ddd" },
                                     beginAtZero: true,
                                     ticks: {
                                         stepSize: 1,
-                                        callback: function (value) {
-                                            return Math.abs(value);
-                                        }
+                                        callback: value => Math.abs(value)
                                     }
                                 }
                             }
@@ -87,9 +129,17 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    // Initial load
     loadChartData();
 
+    // When month dropdown changes
     document.getElementById('monthSelector').addEventListener('change', function () {
         loadChartData(this.value);
+    });
+
+    // Reload chart on filter change
+    $('#options-dropdown, #startDate, #endDate, #country-dropdown').on('change', function () {
+        const selectedMonths = document.getElementById('monthSelector').value;
+        loadChartData(selectedMonths);
     });
 });
