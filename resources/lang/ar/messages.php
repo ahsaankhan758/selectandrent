@@ -1,11 +1,16 @@
 <?php 
 
 return [
-    'pick/drop' => 'الاستلام / التسليم',
-'actualpickupdate' => 'تاريخ الاستلام الفعلي',
-'actualpickuptime' => 'وقت الاستلام الفعلي',
-'actualdropupdate' => 'تاريخ التسليم الفعلي',
-'actualdropuptime' => 'وقت التسليم الفعلي',
+
+  'pick/drop' => 'الاستلام / التسليم',
+  'actualpickupdate' => 'تاريخ الاستلام الفعلي',
+  'actualpickuptime' => 'وقت الاستلام الفعلي',
+  'actualdropupdate' => 'تاريخ التسليم الفعلي',
+  'actualdropuptime' => 'وقت التسليم الفعلي',
+
+    'featured vehicles' => 'المركبات المميزة',
+    'vehicles' => 'المركبات',
+    'designation' => 'المسمى الوظيفي',
 
     'employee' => 'موظف',
     'admins' => 'المشرفون',
@@ -704,6 +709,10 @@ return [
 'reminders' => 'التذكيرات',
 'earning_summary' => 'ملخص الأرباح',
 
+'notifications' => 'الإشعارات',
+'mark_as' => 'تحديد الكل كمقروء',
+'not_found' => 'غير موجود',
+
 '12_month' => 'آخر 12 شهرًا',
 '3_month'  => 'آخر 3 أشهر',
 '6_month'  => 'آخر 6 أشهر',
@@ -713,5 +722,6 @@ return [
 'pending_booking' => 'الحجوزات المعلقة',
 'upcoming_booking' => 'الحجوزات القادمة',
  'booking_all' => 'جميع الحجوزات',
+
 
 ];

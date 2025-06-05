@@ -1,11 +1,16 @@
 <?php
 
 return [
+
     'pick/drop' => 'Ophalen / Afzetten',
 'actualpickupdate' => 'Werkelijke ophaaldatum',
 'actualpickuptime' => 'Werkelijke ophaaltijd',
 'actualdropupdate' => 'Werkelijke afleverdatum',
 'actualdropuptime' => 'Werkelijke aflevertijd',
+
+    'featured vehicles' => 'Uitgelichte voertuigen',
+    'vehicles' => 'Voertuigen',
+    'designation' => 'Functietitel',
 
     'employee' => 'Werknemer',
     'employees' => 'Werknemers',
@@ -366,6 +371,9 @@ return [
 'Seater' => 'Zitter',
 'Rate_and_Reviews' => 'Beoordelingen en recensies',
 'reviews' => 'beoordelingen',
+'notifications' => 'Meldingen',
+'mark_as' => 'Markeer alles als gelezen',
+'not_found' => 'Niet gevonden',
 'Safety' => 'Veiligheid',
 'Entertainment' => 'Amusement',
 'Accessibility' => 'Toegankelijkheid',
