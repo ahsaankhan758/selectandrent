@@ -18,7 +18,6 @@
                                 <th>{{ __('messages.bookingview') }}</th>
                                 <th>{{ __('messages.bookingname') }}</th>
                                 <th>{{ __('messages.bookingref') }}</th>
-                                <th>{{ __('messages.bookingtransaction') }}</th>
                                 <th>{{ __('messages.bookingpayment') }}</th>
                                 <th>{{ __('messages.bookingstatus') }}</th>
                                 <th>{{ __('messages.bookingmethod') }}</th>
@@ -45,7 +44,6 @@
                                 </td>
                                 <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                 <td>{{ $booking->booking_reference }}</td> 
-                                <td>{{ $booking->transaction_id }}</td>
                                 <td>
                                     <h5><span class="badge bg-soft-success text-success"><i class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span></h5>
                                 </td>

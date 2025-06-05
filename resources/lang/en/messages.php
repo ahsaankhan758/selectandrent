@@ -1,10 +1,18 @@
  <?php
 
 return [
+
     'vehicle_max_weight' => 'Enter the Maximum Weight This Car Can Carry',
+  'pick/drop' => 'Pickup/Dropoff',
+  'actualpickupdate' => 'Actual Pickup Date',
+  'actualpickuptime' => 'Actual Pickup Time',
+  'actualdropupdate' => 'Actual Dropoff Date',
+  'actualdropuptime' => 'Actual Dropoff Time',
+
     'featured vehicles' => 'Featured Vehicles',
     'vehicles' => 'Vehicles',
     'designation' => 'Designation',
+
     'employee' => 'Employee',
     'employees' => 'Employees',
     'all' => 'All',
