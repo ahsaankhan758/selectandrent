@@ -696,11 +696,10 @@ return [
 'booking_overview'=>'Bookings Overview',
 'reminders'=>'Reminders',
 'earning_summary'=>'Earnings Summary',
-<<<<<<< HEAD
+
 'notifications' => 'Notifications',
 'mark_as' => 'Mark all as read',
 'not_found' => 'Not found',
-=======
 
 '12_month'=>'Last 12 Months',
 '3_month'=>'Last 3 Months',
@@ -712,6 +711,6 @@ return [
 'upcoming_booking'=>'Upcoming Bookings',
 'booking_all'=>'Booking All',
 'Select_Country' => 'Select Country',
->>>>>>> 937a0cfcbbe9404ebd814a1aeb582246a0c6a22e
+
 
 ];
