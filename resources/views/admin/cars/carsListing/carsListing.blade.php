@@ -99,8 +99,13 @@
                                                     </div>
                                                     <h4 class="mt-3">{{ __('messages.features') }}</h4>
                                                     <div class="row mt-3">
-                                                        @if (isset($carData->features) && $carData->features)
-                                                            @foreach (unserialize($carData->features) as $feature)
+                                                        <?php 
+                                                            $car_data = isset($carData->features) && @unserialize($carData->features) !== false 
+                                                                ? unserialize($carData->features) 
+                                                                : [];
+                                                        ?>
+                                                        @if (isset($car_data) && $car_data)
+                                                            @foreach ($car_data as $feature)
                                                                 <div class="col-3"><i class="mdi mdi-checkbox-marked-outline"></i>{{ $feature }}</div>
                                                             @endforeach
                                                         @endif

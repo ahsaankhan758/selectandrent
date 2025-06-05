@@ -2,10 +2,53 @@
 @extends('admin.layouts.Master')
 @section('title') {{ __('messages.create') }} {{ __('messages.car') }} @endsection
 @section('content')
-   <script src="{{ asset('assets/js/admin/locationArea.js') }}"></script>
-<script>
-window.getLocationsUrl = "{{ url('/get-locations') }}";
-</script>
+    <script src="{{ asset('assets/js/admin/locationArea.js') }}"></script>
+
+    <style>
+        .tooltip-icon {
+        position: relative;
+        cursor: pointer;
+        }
+
+        .tooltip-icon .tooltip-text {
+        visibility: hidden;
+        background-color: #f06115;
+        color: #fff;
+        padding: 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        position: absolute;
+        top: -5px;
+        left: 20px;
+        white-space: nowrap;
+        z-index: 1;
+        }
+
+        .tooltip-icon:hover .tooltip-text {
+        visibility: visible;
+        }
+        .image-tooltip {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 8px;
+            z-index: 9999;
+            top: 100px; /* adjust as needed */
+            left: 200px; /* adjust as needed */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+
+        .image-tooltip img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+        }
+    </style>
+    <script>
+    window.getLocationsUrl = "{{ url('/get-locations') }}";
+    </script>
 
     <div class="col-12">
         <div class="card mt-4">
@@ -88,7 +131,13 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                     </div>
                     <div class="row">
                         <div class="col-4 form-group mb-3">
-                            <lable for="weight">{{ __('messages.weight') }}</lable>
+                            <lable for="weight">{{ __('messages.weight') }}
+                                <span class="tooltip-icon">
+                                <i >ℹ️</i>
+                                <span class="tooltip-text">{{ __('messages.vehicle_max_weight') }}</span>
+                            </span>
+                            </lable>
+
                             <input type="text" name="weight" class="form-control">
                         </div>
                         <div class="col-4 form-group mb-3">
@@ -180,9 +229,15 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
                             
                         </div>
                         <div class="col-3 form-group mb-3">
-                            <label for="images">{{ __('messages.images') }}</label>
+                            <label for="images">{{ __('messages.images') }}
+                                <span class="tooltip-icon" onclick="toggleImageTooltip()">
+                                    <i style="cursor: pointer;">ℹ️How To Upload Pictures</i>
+                                </span>
+                            </label>
+                            <div id="imageTooltip" class="image-tooltip">
+                                <img src="{{ asset('assets/images/How_to_Upload_Pictures.jpg') }}" alt="Weight Info" />
+                            </div>
                             <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages()" multiple>
-                            
                         </div>
                         <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.status') }}</label>
@@ -296,6 +351,31 @@ window.getLocationsUrl = "{{ url('/get-locations') }}";
             document.getElementById("date_added").value = today;
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+    </script>
+    <script>
+        function toggleImageTooltip() {
+            const tooltip = document.getElementById('imageTooltip');
+            tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Optional: close tooltip if clicked outside
+        document.addEventListener('click', function(event) {
+            const tooltip = document.getElementById('imageTooltip');
+            const icon = document.querySelector('.tooltip-icon');
+
+            if (!tooltip.contains(event.target) && !icon.contains(event.target)) {
+                tooltip.style.display = 'none';
+            }
+        });
+    </script>
+
     
 @endsection
 
