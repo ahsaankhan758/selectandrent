@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'vehicle_max_weight' => 'Entrez le poids maximal que cette voiture peut transporter',
     'featured vehicles' => 'Véhicules en vedette',
     'vehicles' => 'Véhicules',
     'designation' => 'Désignation',

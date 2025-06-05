@@ -90,16 +90,16 @@
                                             {{ __('messages.login') }}
                                         </button>
     
-                                        @if (Route::has('password.request'))
+                                        <!-- @if (Route::has('password.request'))
                                             <a class="btn-link mt-3" href="{{ route('password.request') }}">
                                                 {{ __('messages.forgot your password?') }}
                                             </a>
-                                        @endif
+                                        @endif -->
                                     </div>
 
                                 </form>
 
-                                <div class="text-center">
+                                <!-- <div class="text-center">
                                     <h5 class="mt-3 text-muted">{{ __('messages.sign in with')}}</h5>
                                     <ul class="social-list list-inline mt-3 mb-0">
                                         <li class="list-inline-item">
@@ -115,20 +115,13 @@
                                             <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
 
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->
 
-                        <div class="row mt-3">
-                            <div class="col-12 text-center">
-                                <p> <a href="auth-recoverpw.html" class="text-white-50 ms-1">Forgot your password?</a></p>
-                                <!-- <p class="text-white-50">Don't have an account? <a href="auth-register.html" class="text-white ms-1"><b>Sign Up</b></a></p> -->
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
+                        
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->

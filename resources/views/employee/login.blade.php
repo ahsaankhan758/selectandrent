@@ -100,11 +100,11 @@
                                     {{ __('messages.login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                <!-- @if (Route::has('password.request'))
                                     <a class="btn-link mt-3" href="{{ route('password.request') }}">
                                         {{ __('messages.forgot your password?') }}
                                     </a>
-                                @endif
+                                @endif -->
                             </div>
 
                         </form>

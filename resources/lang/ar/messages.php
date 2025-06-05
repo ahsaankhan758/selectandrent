@@ -1,6 +1,7 @@
 <?php 
 
 return [
+    'vehicle_max_weight' => 'أدخل الحد الأقصى للوزن الذي يمكن لهذه السيارة حمله',
     'featured vehicles' => 'المركبات المميزة',
     'vehicles' => 'المركبات',
     'designation' => 'المسمى الوظيفي',
