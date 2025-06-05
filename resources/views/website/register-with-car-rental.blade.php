@@ -87,7 +87,7 @@
                         placeholder="{{ __('messages.Company_Phone') }}" name="phone">
                     <input type="text" class="form-control mb-3 form-control-border static-width"
                         placeholder="{{ __('messages.Company_Website') }}" name="website">
-                    <select class="form-control mb-3 form-control-border static-width" name="country_id" required>
+                    <select class="form-control mb-3 p-3 form-control-border static-width" name="country_id" required>
                         <option value="" disabled selected>{{ __('messages.Select_Country') }}</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->id }}">{{ $country->name }}</option>
