@@ -700,11 +700,10 @@ return [
 'booking_overview' => 'نظرة عامة على الحجوزات',
 'reminders' => 'التذكيرات',
 'earning_summary' => 'ملخص الأرباح',
-<<<<<<< HEAD
+
 'notifications' => 'الإشعارات',
 'mark_as' => 'تحديد الكل كمقروء',
 'not_found' => 'غير موجود',
-=======
 
 '12_month' => 'آخر 12 شهرًا',
 '3_month'  => 'آخر 3 أشهر',
@@ -715,6 +714,6 @@ return [
 'pending_booking' => 'الحجوزات المعلقة',
 'upcoming_booking' => 'الحجوزات القادمة',
  'booking_all' => 'جميع الحجوزات',
->>>>>>> 937a0cfcbbe9404ebd814a1aeb582246a0c6a22e
+
 
 ];

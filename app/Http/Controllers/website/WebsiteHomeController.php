@@ -79,7 +79,6 @@ class WebsiteHomeController extends Controller
     public function getCarBrands(Request $request)
     {
         $brands = CarBrand::all();
-        $beams = Car::distinct()->pluck('beam');
         $transmissions = Car::distinct()->pluck('transmission');
         if ($request->has('brand_id')) {
             $models = CarModel::where('car_brand_id', $request->brand_id)->get();
@@ -91,7 +90,6 @@ class WebsiteHomeController extends Controller
             'status' => true,
             'brands' => $brands,
             'models' => $models,
-            'beams' => $beams,
             'transmissions' => $transmissions 
         ]);
     }
