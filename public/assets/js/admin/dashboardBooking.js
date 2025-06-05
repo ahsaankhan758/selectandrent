@@ -128,16 +128,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
     }
-
-    // Initial load
     loadChartData();
 
-    // When month dropdown changes
     document.getElementById('monthSelector').addEventListener('change', function () {
         loadChartData(this.value);
     });
 
-    // Reload chart on filter change
     $('#options-dropdown, #startDate, #endDate, #country-dropdown').on('change', function () {
         const selectedMonths = document.getElementById('monthSelector').value;
         loadChartData(selectedMonths);
