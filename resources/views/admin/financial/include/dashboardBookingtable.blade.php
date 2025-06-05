@@ -14,10 +14,10 @@
                                      <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                  </div>
                              </th>
+                             <th>{{ __('messages.pick/drop') }}</th>
                              <th style="width: 125px;">{{ __('messages.action') }}</th>
                              <th>{{ __('messages.name') }}</th>
                              <th>{{ __('messages.bookingref') }}</th>
-                             <th>{{ __('messages.bookingtransaction') }}</th>
                              <th>{{ __('messages.bookingpayment') }}</th>
                              <th>{{ __('messages.bookingstatus') }}</th>
                              <th>{{ __('messages.bookingmethod') }}</th>
@@ -40,12 +40,38 @@
                                      </div>
                                  </td>
                                  <td>
+                                     @foreach ($booking->booking_items as $item)
+                                         @if ($booking->booking_status == 'confirmed')
+                                             @if (!$item->actual_pickup_datetime)
+                                                 <form action="{{ route('booking.pickup', $item->id) }}" method="POST"
+                                                     style="display:inline;">
+                                                     @csrf
+                                                     <button class="btn btn-success btn-sm">Pickup</button>
+                                                 </form>
+                                             @elseif (!$item->actual_dropoff_datetime)
+                                                 <form action="{{ route('booking.dropoff', $item->id) }}"
+                                                     method="POST" style="display:inline;">
+                                                     @csrf
+                                                     <button class="btn btn-danger btn-sm">Dropoff</button>
+                                                 </form>
+                                             @else
+                                                 <span class="badge bg-info">Completed</span>
+                                             @endif
+                                         @else
+                                             @if ($item->actual_pickup_datetime && $item->actual_dropoff_datetime)
+                                                 —
+                                             @endif
+                                         @endif
+                                     @endforeach
+                                 </td>
+
+                                 <td>
                                      <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
-                                         class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                         class="action-icon">
+                                         <i class="mdi mdi-eye"></i></a>
                                  </td>
                                  <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                  <td>{{ $booking->booking_reference }}</td>
-                                 <td>{{ $booking->transaction_id }}</td>
                                  <td>
                                      <h5><span class="badge bg-soft-success text-success"><i
                                                  class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span>

@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'pick/drop' => 'Ramassage / Dépôt',
+'actualpickupdate' => 'Date réelle de ramassage',
+'actualpickuptime' => 'Heure réelle de ramassage',
+'actualdropupdate' => 'Date réelle de dépôt',
+'actualdropuptime' => 'Heure réelle de dépôt',
+
     'employee' => 'Employé',
     'employees' => 'Employés',
     'admins' => 'Administrateurs',

@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'pick/drop' => 'Ophalen / Afzetten',
+'actualpickupdate' => 'Werkelijke ophaaldatum',
+'actualpickuptime' => 'Werkelijke ophaaltijd',
+'actualdropupdate' => 'Werkelijke afleverdatum',
+'actualdropuptime' => 'Werkelijke aflevertijd',
+
     'employee' => 'Werknemer',
     'employees' => 'Werknemers',
     'all' => 'Allemaal',

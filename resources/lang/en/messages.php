@@ -1,6 +1,11 @@
  <?php
 
 return [
+  'pick/drop' => 'Pickup/Dropoff',
+  'actualpickupdate' => 'Actual Pickup Date',
+  'actualpickuptime' => 'Actual Pickup Time',
+  'actualdropupdate' => 'Actual Dropoff Date',
+  'actualdropuptime' => 'Actual Dropoff Time',
     'employee' => 'Employee',
     'employees' => 'Employees',
     'all' => 'All',

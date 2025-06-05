@@ -136,6 +136,9 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/orders-status-data', [FinancialController::class, 'getOrderStatusData'])->name('orders.status.data');
             Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
             Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
+            Route::post('/booking/pickup/{id}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
+            Route::post('/booking/dropoff/{id}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
+
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
             //Activity Logs
@@ -230,6 +233,9 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/orders-status-data', [FinancialController::class, 'getOrderStatusData'])->name('orders.status.data');
             Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
             Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
+          Route::post('/booking/pickup/{bookingItemId}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
+    Route::post('/booking/dropoff/{bookingItemId}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
+
             // Permissions
             Route::get('permissions/{role}',[PermissionController::class, 'index'])->name('permissions');
             Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');

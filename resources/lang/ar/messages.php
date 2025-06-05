@@ -1,6 +1,12 @@
 <?php 
 
 return [
+    'pick/drop' => 'الاستلام / التسليم',
+'actualpickupdate' => 'تاريخ الاستلام الفعلي',
+'actualpickuptime' => 'وقت الاستلام الفعلي',
+'actualdropupdate' => 'تاريخ التسليم الفعلي',
+'actualdropuptime' => 'وقت التسليم الفعلي',
+
     'employee' => 'موظف',
     'admins' => 'المشرفون',
     'employees' => 'الموظفون',
