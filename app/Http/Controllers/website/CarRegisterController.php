@@ -12,26 +12,39 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CompanyVerificationMail;
 use Illuminate\Support\Facades\Hash; 
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Validation\Rule;
 
 class CarRegisterController extends Controller
 {
+    
     public function CarRegisterView()
     {
+
         $countries = Country::where('status', 1)->orderBy('name')->get();
-        return view('website.register-car-rental', compact('countries'));  
+        return view('website.register-with-car-rental', compact('countries'));  
+
     }
 
     public function carRegStore(Request $request)
     {
+
+        
         $validatedData = $request->validate([
             'name' => 'required',
             'companyName' => 'required|unique:companies,name',
-            'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->where(function ($query) use ($request) {
+                    return $query->where('role', 'company');
+                }),
+            ],
+
             'companyEmail' => 'required|email|unique:companies,email',
             'password' => 'required|min:6',
             'phone' => 'required',
             'website' => 'required',
+
             'country_id' => 'required|exists:countries,id',
         ]);
 
@@ -90,4 +103,5 @@ class CarRegisterController extends Controller
             return back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }
+
 }

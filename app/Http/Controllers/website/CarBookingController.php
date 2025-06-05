@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use App\Models\Car;
 use App\Models\CarLocation;
+use App\Models\Review;
 use Laravel\Ui\Presets\React;
+use Surfsidemedia\Shoppingcart\CartItem;
 
 class CarBookingController extends Controller
 {
@@ -18,9 +20,18 @@ class CarBookingController extends Controller
         $tax = Cart::tax();
         $totalPriceIncludingTax = Cart::total();
         $cartItemsCount = Cart::instance('cart')->content()->count();
-       
+        // reviews avg rating in stars
+        $averageRating = 0;
+        if ($cartItemsCount > 0 && $cartItems->first()?->id) {
+            $vehicleId = $cartItems->first()->id;
+            $reviews = Review::with('user')->where('vehicle_id', $vehicleId)->orderBy('created_at', 'desc')->get();
+            if ($reviews->isNotEmpty()) {
+                $averageRating = round($reviews->avg('rating'), 1);
+            }
+        }
+
         $vehicleLocation = CarLocation::all();
-        return view('website.bookings.booking-checkout',compact('cartItems','vehicleLocation', 'subtotal', 'tax','totalPriceIncludingTax','cartItemsCount')); 
+        return view('website.bookings.booking-checkout',compact('cartItems','vehicleLocation', 'subtotal', 'tax','totalPriceIncludingTax','cartItemsCount', 'averageRating')); 
     }
 
     public function addToCart(Request $request)
@@ -32,12 +43,13 @@ class CarBookingController extends Controller
         $cartItems = Cart::instance('cart')->content();
 
         // Check if the same car already exists in the cart
-        $alreadyInCart = $cartItems->where('id', $vehicle->id)->first();
+        $alreadyInCart = $cartItems->count();
+        // print_r($alreadyInCart);die;
 
-        if ($alreadyInCart) {
+        if ($alreadyInCart > 0) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'This car is already in your cart.'
+                'message' => 'Remove existing product from cart before adding a new one.'
             ]);
         }
 
@@ -60,7 +72,6 @@ class CarBookingController extends Controller
                 'car_brand' => $vehicle->car_models->car_brands->name,
                 'year' => $vehicle->year,
                 'postal_code' => $vehicle->car_locations->postal_code,
-                'beam' => $vehicle->beam,
                 'transmission' => $vehicle->transmission,
                 'seats' => $vehicle->seats,
                 'weight' => $vehicle->weight,
