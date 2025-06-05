@@ -1,9 +1,17 @@
 <?php 
 
 return [
+
+  'pick/drop' => 'الاستلام / التسليم',
+  'actualpickupdate' => 'تاريخ الاستلام الفعلي',
+  'actualpickuptime' => 'وقت الاستلام الفعلي',
+  'actualdropupdate' => 'تاريخ التسليم الفعلي',
+  'actualdropuptime' => 'وقت التسليم الفعلي',
+
     'featured vehicles' => 'المركبات المميزة',
     'vehicles' => 'المركبات',
     'designation' => 'المسمى الوظيفي',
+
     'employee' => 'موظف',
     'admins' => 'المشرفون',
     'employees' => 'الموظفون',
