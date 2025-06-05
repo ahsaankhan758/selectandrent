@@ -124,61 +124,29 @@ class FinancialController extends Controller
         'countryNames' , 'countryId'
     ));
 }
+public function markPickup($bookingItemId)
+{
+    $bookingItem = BookingItem::findOrFail($bookingItemId);
+    $bookingItem->actual_pickup_datetime = now();
+    $bookingItem->save();
 
-// public function getOrderStatusData(Request $request)
-// {
-//     $filter = $request->filter;
-//     $companyUserId = $request->user_id;
+    return back()->with('success', 'Pickup time recorded successfully.');
+}
 
-//     $startDate = $request->start_date ?? null;
-//     $endDate = $request->end_date ?? null;
+public function markDropoff($bookingItemId)
+{
+    $bookingItem = BookingItem::findOrFail($bookingItemId);
+    $bookingItem->actual_dropoff_datetime = now();
+    $bookingItem->save();
 
-//     if ($startDate && $endDate) {
-//         $fromDate = Carbon::parse($startDate)->startOfDay();
-//         $toDate = Carbon::parse($endDate)->endOfDay();
-//     } else {
-//         if ($filter === 'today') {
-//             $fromDate = Carbon::today()->startOfDay();
-//             $toDate = Carbon::today()->endOfDay();
-//         } elseif ($filter === 'week') {
-//             $fromDate = Carbon::now()->startOfWeek();
-//             $toDate = Carbon::now()->endOfWeek();
-//         } elseif ($filter === 'month') {
-//             $fromDate = Carbon::now()->startOfMonth();
-//             $toDate = Carbon::now()->endOfMonth();
-//         } elseif ($filter === 'last_month') {
-//             $fromDate = Carbon::now()->subMonth()->startOfMonth();
-//             $toDate = Carbon::now()->subMonth()->endOfMonth();
-//         } else {
-//             $fromDate = null;
-//             $toDate = null;
-//         }
-//     }
-//     $query = Booking::query();
-//     if ($companyUserId) {
-//         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-//             $q->where('user_id', $companyUserId);
-//         });
-//     }
+    // Update related booking's status to completed
+    $booking = $bookingItem->booking;
+    $booking->booking_status = 'completed';
+    $booking->save();
 
-//     if ($fromDate && $toDate) {
-//         $query->whereDate('created_at', '>=', $fromDate->format('Y-m-d'))
-//               ->whereDate('created_at', '<=', $toDate->format('Y-m-d'));
-//     }
+    return back()->with('success', 'Dropoff time recorded and booking marked as completed.');
+}
 
-//     $total = $query->count();
-//     $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
-//     $data = [];
-
-//     foreach ($statuses as $status) {
-//         $count = (clone $query)->where('booking_status', $status)->count();
-//         $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
-
-//         $data[$status] = ['percentage' => $percentage];
-//     }
-
-//     return response()->json($data);
-// }
 public function getOrderStatusData(Request $request)
 {
     $filter = $request->filter;
