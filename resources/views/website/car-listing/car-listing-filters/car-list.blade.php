@@ -46,7 +46,7 @@
             <hr class="my-2">
 
             <div class="d-flex justify-content-between align-items-center bg-light rounded px-2 py-1">
-                <h6 class="card_orange_clr mb-0">{{ convertPrice($car->rent, 0) }}/{{ __('messages.Day') }}</h6>
+                <h6 class="card_orange_clr mb-0">{{ convertPrice($car->rent, 0) }}/{{$car->rent_type}}</h6>
                 @if (auth()->check())
                     <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
                 @else
