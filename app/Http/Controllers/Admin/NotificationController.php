@@ -30,14 +30,15 @@ class NotificationController extends Controller
 
         $query = Notification::orderBy('created_at', 'desc');
 
-        // if ($user->role === 'company') {
-        //     $query->where('to_user_id', $user->id);
-        // }
+        
+        $query->where('to_user_id', $user->id);
+        
 
-        $notifications = $query->paginate(10); // Use same pagination for both, or adjust as needed
-       
-        return view('admin.notifications.notification_view', compact('notifications'));
+        $notifications_data = $query->paginate(10);
+
+        return view('admin.notifications.notification_view', compact('notifications_data'));
     }
+
 
 
 
@@ -45,10 +46,10 @@ class NotificationController extends Controller
     {
         $userId = auth()->id();
 
-        $notifications = Notification::where('to_user_id', $userId)
+        $notifications_data = Notification::where('to_user_id', $userId)
             ->orderBy('created_at', 'desc')->paginate(10);
 
-        $html = view('admin.notifications.notification', compact('notifications'))->render();
+        $html = view('admin.notifications.notification', compact('notifications_data'))->render();
 
         return response()->json(['html' => $html]);
     }

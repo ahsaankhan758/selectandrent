@@ -1,11 +1,17 @@
 <?php
 
 return [
+
     'pick/drop' => 'Ramassage / Dépôt',
 'actualpickupdate' => 'Date réelle de ramassage',
 'actualpickuptime' => 'Heure réelle de ramassage',
 'actualdropupdate' => 'Date réelle de dépôt',
 'actualdropuptime' => 'Heure réelle de dépôt',
+
+
+    'featured vehicles' => 'Véhicules en vedette',
+    'vehicles' => 'Véhicules',
+    'designation' => 'Désignation',
 
     'employee' => 'Employé',
     'employees' => 'Employés',
@@ -367,6 +373,9 @@ return [
 'Seater' => 'Places',
 'Rate_and_Reviews' => 'Notes et avis',
 'reviews' => 'avis',
+'notifications' => 'Notifications',
+'mark_as' => 'Tout marquer comme lu',
+'not_found' => 'Non trouvé',
 'Safety' => 'Sécurité',
 'Entertainment' => 'Divertissement',
 'Accessibility' => 'Accessibilité',

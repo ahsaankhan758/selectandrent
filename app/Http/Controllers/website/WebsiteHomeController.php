@@ -28,9 +28,7 @@ class WebsiteHomeController extends Controller
         $request->validate([
             'brand' => 'nullable|numeric',
             'model' => 'nullable|numeric',
-            // 'beam' => 'nullable|string',
             'transmission' => 'nullable|string',
-            // 'radius' => 'nullable|numeric',
             'minimum' => 'nullable|numeric',
             'maximum' => 'nullable|numeric',
             'year' => 'nullable|numeric',
@@ -45,12 +43,10 @@ class WebsiteHomeController extends Controller
                     $q->where('id', $brand);
                 });
             })
+           
             // ->when($request->beam, function ($query, $beam) {
-            //     return $query->where('beam', 'like', "%$beam%");
-            // })
-            ->when($request->beam, function ($query, $beam) {
-                return $query->where('beam', $beam);
-            })            
+            //     return $query->where('beam', $beam);
+            // })            
             ->when($request->transmission, function ($query, $transmission) {
                 return $query->where('transmission', 'like', "%$transmission%");
             })
@@ -83,7 +79,6 @@ class WebsiteHomeController extends Controller
     public function getCarBrands(Request $request)
     {
         $brands = CarBrand::all();
-        $beams = Car::distinct()->pluck('beam');
         $transmissions = Car::distinct()->pluck('transmission');
         if ($request->has('brand_id')) {
             $models = CarModel::where('car_brand_id', $request->brand_id)->get();
@@ -95,7 +90,6 @@ class WebsiteHomeController extends Controller
             'status' => true,
             'brands' => $brands,
             'models' => $models,
-            'beams' => $beams,
             'transmissions' => $transmissions 
         ]);
     }

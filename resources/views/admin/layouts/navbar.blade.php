@@ -96,10 +96,10 @@
                                 </li>
                             @endif
                 @else --}}
-                @if (Auth::user()->role == 'company')
+                @if (Auth::user()->role == 'company' || Auth::user()->role == 'employee')
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->companies->name ?? '' }}
+                            {{ Auth::user()->companies->name ?? Auth::user()->name }}
                         </a>
                         {{-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">My Profile</a></li>                            

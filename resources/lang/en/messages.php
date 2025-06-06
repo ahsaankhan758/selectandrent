@@ -1,11 +1,17 @@
  <?php
 
 return [
+
   'pick/drop' => 'Pickup/Dropoff',
   'actualpickupdate' => 'Actual Pickup Date',
   'actualpickuptime' => 'Actual Pickup Time',
   'actualdropupdate' => 'Actual Dropoff Date',
   'actualdropuptime' => 'Actual Dropoff Time',
+
+    'featured vehicles' => 'Featured Vehicles',
+    'vehicles' => 'Vehicles',
+    'designation' => 'Designation',
+
     'employee' => 'Employee',
     'employees' => 'Employees',
     'all' => 'All',
@@ -702,6 +708,10 @@ return [
 'reminders'=>'Reminders',
 'earning_summary'=>'Earnings Summary',
 
+'notifications' => 'Notifications',
+'mark_as' => 'Mark all as read',
+'not_found' => 'Not found',
+
 '12_month'=>'Last 12 Months',
 '3_month'=>'Last 3 Months',
 '6_month'=>'Last 6 Months',
@@ -712,5 +722,6 @@ return [
 'upcoming_booking'=>'Upcoming Bookings',
 'booking_all'=>'Booking All',
 'Select_Country' => 'Select Country',
+
 
 ];

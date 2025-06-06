@@ -12,7 +12,6 @@ class Car extends Model
         'car_location_id',
         'car_model_id',
         'year',
-        'beam',
         'transmission',
         'rent',
         'seats',
