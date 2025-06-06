@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\BookingStatusMail;
+use Illuminate\Support\Facades\Mail;
 
 class FinancialController extends Controller
 {
@@ -124,11 +126,37 @@ class FinancialController extends Controller
         'countryNames' , 'countryId'
     ));
 }
+// public function markPickup($bookingItemId)
+// {
+//     $bookingItem = BookingItem::findOrFail($bookingItemId);
+//     $bookingItem->actual_pickup_datetime = now();
+//     $bookingItem->save();
+
+//     return back()->with('success', 'Pickup time recorded successfully.');
+// }
+
+// public function markDropoff($bookingItemId)
+// {
+//     $bookingItem = BookingItem::findOrFail($bookingItemId);
+//     $bookingItem->actual_dropoff_datetime = now();
+//     $bookingItem->save();
+
+//     $booking = $bookingItem->booking;
+//     $booking->booking_status = 'completed';
+//     $booking->save();
+
+//     return back()->with('success', 'Dropoff time recorded and booking marked as completed.');
+// }
+
 public function markPickup($bookingItemId)
 {
     $bookingItem = BookingItem::findOrFail($bookingItemId);
     $bookingItem->actual_pickup_datetime = now();
     $bookingItem->save();
+
+    $booking = $bookingItem->booking;
+
+    Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
 
     return back()->with('success', 'Pickup time recorded successfully.');
 }
@@ -139,13 +167,15 @@ public function markDropoff($bookingItemId)
     $bookingItem->actual_dropoff_datetime = now();
     $bookingItem->save();
 
-    // Update related booking's status to completed
     $booking = $bookingItem->booking;
     $booking->booking_status = 'completed';
     $booking->save();
 
+    Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your car has been dropped off successfully.'));
+
     return back()->with('success', 'Dropoff time recorded and booking marked as completed.');
 }
+
 
 public function getOrderStatusData(Request $request)
 {
