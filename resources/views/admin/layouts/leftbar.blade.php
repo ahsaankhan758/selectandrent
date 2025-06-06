@@ -87,7 +87,7 @@
 
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app',2) }}</li>
                
-                @if($role == 'admin')
+                @if($role == 'admin' || $role == 'employee')
                     @if(can('users','view'))
                         <li>
                             <a href="{{ route('users') }}">
@@ -141,7 +141,7 @@
                 <li>
                     <a href="#sub_menu_car_listing" data-bs-toggle="collapse">
                         <i class="mdi mdi-car-side"></i>
-                        <span> {{ __('messages.cars') }} </span>
+                        <span> {{ __('messages.vehicles') }} </span>
                         <span class="menu-arrow"></span>
                        
                     </a>
@@ -191,7 +191,7 @@
                                 <li>
                                     <a href="#">
                                         <i class="mdi mdi-car-side"></i>
-                                        <span> {{ __('messages.featured cars') }} </span>
+                                        <span> {{ __('messages.featured vehicles') }} </span>
                                     </a>
                                 </li>
                             @endif    
@@ -377,7 +377,7 @@
                             </ul>
                         </div>
                     </li>
-                @else
+                @elseif($role == 'company')
                     <li>
                         <a href="{{ route('permissions', 'selfCompany') }}"> 
                             <i class="mdi mdi-creation"></i>
