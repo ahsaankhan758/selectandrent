@@ -14,6 +14,17 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
+
+     public function vehicle()
+    {
+        return $this->belongsTo(Car::class, 'vehicle_id'); 
+    }
+
+     public function carModel()
+    {
+        return $this->vehicle->carModel(); 
+    }
+
     public function car()
     {
         return $this->belongsTo(Car::class);

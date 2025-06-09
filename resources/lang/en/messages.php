@@ -1,7 +1,10 @@
  <?php
 
 return [
-
+  'review' => 'Review',
+  'review_details' => 'Vehicle Review',
+  'user_reviews' => 'User Reviews',
+  'vehicle_reviews' => 'Vehicle Reviews',
   'pick/drop' => 'Pickup/Dropoff',
   'actualpickupdate' => 'Actual Pickup Date',
   'actualpickuptime' => 'Actual Pickup Time',

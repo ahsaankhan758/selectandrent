@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\Auth\LoginController;
@@ -25,8 +24,10 @@ use App\Http\Controllers\Admin\AnalyticController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\Cars\CarController;
 use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\website\CarRegController;
+use App\Http\Controllers\website\ReviewController;
 use App\Http\Controllers\website\SigninController;
 use App\Http\Controllers\website\SignupController;
 use App\Http\Controllers\Admin\AdminBlogController;
@@ -36,20 +37,21 @@ use App\Http\Controllers\website\ContactController;
 use App\Http\Controllers\Admin\AdminPaymentGateways;
 use App\Http\Controllers\Admin\IP_AddressController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\usersignupController;
 use App\Http\Controllers\website\CategoryController;
 use App\Http\Controllers\website\CheckoutController;
 use App\Http\Controllers\Admin\ActivityLogController;
+use App\Http\Controllers\Admin\adminReviewController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\website\carDetailController;
 use App\Http\Controllers\website\CarSearchController;
 use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\website\CarBookingController;
+
 use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-
 use App\Http\Controllers\website\CarRegisterController;
 use App\Http\Controllers\Website\EditProfileController;
 use App\Http\Controllers\website\JoinProgramController;
@@ -60,7 +62,6 @@ use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
-use App\Http\Controllers\website\ReviewController;
 
 
 Route::middleware('LanguageMiddleware')->group(function(){
@@ -237,9 +238,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/orders-status-data', [FinancialController::class, 'getOrderStatusData'])->name('orders.status.data');
             Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
             Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
-          Route::post('/booking/pickup/{bookingItemId}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
-    Route::post('/booking/dropoff/{bookingItemId}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
+            Route::post('/booking/pickup/{bookingItemId}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
+            Route::post('/booking/dropoff/{bookingItemId}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
 
+            // review
+            Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             // Permissions
             Route::get('permissions/{role}',[PermissionController::class, 'index'])->name('permissions');
             Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
