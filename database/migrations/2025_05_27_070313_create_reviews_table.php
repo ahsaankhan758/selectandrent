@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('vehicle_id')->constrained('cars')->onDelete('cascade');
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
-            $table->unsignedTinyInteger('rating'); // 1 to 5
+            $table->unsignedTinyInteger('rating');
             $table->text('comment')->nullable(); 
             $table->timestamps(); 
         });
