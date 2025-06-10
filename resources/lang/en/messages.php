@@ -2,6 +2,12 @@
 
 return [
 
+  'review' => 'Review',
+  'review_details' => 'Vehicle Review',
+  'user_reviews' => 'User Reviews',
+  'vehicle_reviews' => 'Vehicle Reviews',
+
+
     'vehicle_max_weight' => 'Enter the Maximum Weight This Car Can Carry',
   'pick/drop' => 'Pickup/Dropoff',
   'actualpickupdate' => 'Actual Pickup Date',
