@@ -2,7 +2,30 @@
 @extends('admin.layouts.Master')
 @section('title') {{ __('messages.edit') }} {{ __('messages.car') }} @endsection
 @section('content')
+<style>
+        .tooltip-icon {
+        position: relative;
+        cursor: pointer;
+        }
 
+        .tooltip-icon .tooltip-text {
+        visibility: hidden;
+        background-color: #333;
+        color: #fff;
+        padding: 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        position: absolute;
+        top: -5px;
+        left: 20px;
+        white-space: nowrap;
+        z-index: 1;
+        }
+
+        .tooltip-icon:hover .tooltip-text {
+        visibility: visible;
+        }
+    </style>
     <div class="col-12">
         <div class="card mt-4">
             <div class="card-header">
@@ -94,7 +117,12 @@
                     </div>
                     <div class="row">
                         <div class="col-4 form-group mb-3">
-                            <lable for="weight">{{ __('messages.weight') }}</lable>
+                            <lable for="weight">{{ __('messages.weight') }}
+                                <span class="tooltip-icon">
+                                <i >ℹ️</i>
+                                <span class="tooltip-text">{{ __('messages.vehicle_max_weight') }}</span>
+                            </span>
+                            </lable>
                             <input type="text" name="weight" class="form-control" value="{{ $car->weight }}">
                         </div>
                         <div class="col-4 form-group mb-3">
@@ -183,21 +211,12 @@
                         <div class="col-3 form-group mb-3">
                             <label for="thumbnail">{{ __('messages.thumbnail') }}</label>
                             <input type="file" name="thumbnail" class="form-control" id="thumbnail" onchange="PreviewThumbnail();">
-                            <div class="mt-1">
-                                <img src="{{asset('/')}}storage/{{ $car->thumbnail }}" id="uploadThumbnailPreview" class="thumbnail" />
-                            </div>
                         </div>
                         <div class="col-3 form-group mb-3">
                             <label for="images">{{ __('messages.images') }}</label>
                             <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages();" multiple>
-                            <div class="mt-1" id="currentImagePreview">
-                                @if(isset($car->images))
-                                    @foreach (unserialize($car->images) as $image)
-                                        <img src="{{asset('/')}}storage/{{ $image }}" class="image" />
-                                    @endforeach
-                                @endif
-                            </div>
-                            <div class="mt-1" id="uploadImagePreview"></div>
+                            
+                            
                         </div>
                         <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.status') }}</label>
@@ -216,6 +235,21 @@
                         <div class="col-3 form-group mb-3">
                             <label for="drive">{{ __('messages.date') }} {{ __('messages.added') }}</label>
                             <input type="date" name="date_added" class="form-control" id="date_added" value="{{ date('Y-m-d', strtotime($car->date_added)) }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mt-1 col-3">
+                            <img src="{{asset('/')}}storage/{{ $car->thumbnail }}" id="uploadThumbnailPreview" class="thumbnail" />
+                        </div>
+                        <div class="mt-1 col-6" id="currentImagePreview">
+                            @if(isset($car->images))
+                                @foreach (unserialize($car->images) as $image)
+                                    <img src="{{asset('/')}}storage/{{ $image }}" class="image" />
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="mt-1 col-6" id="uploadImagePreview">
+                            
                         </div>
                     </div>
                         <h4 class="mt-3">{{ __('messages.features') }}</h4>
@@ -279,6 +313,14 @@
                 if (checkbox) {
                     checkbox.checked = true;
                 }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
             });
         });
     </script>

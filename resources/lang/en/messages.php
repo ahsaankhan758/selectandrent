@@ -1,10 +1,14 @@
  <?php
 
 return [
+
   'review' => 'Review',
   'review_details' => 'Vehicle Review',
   'user_reviews' => 'User Reviews',
   'vehicle_reviews' => 'Vehicle Reviews',
+
+
+    'vehicle_max_weight' => 'Enter the Maximum Weight This Car Can Carry',
   'pick/drop' => 'Pickup/Dropoff',
   'actualpickupdate' => 'Actual Pickup Date',
   'actualpickuptime' => 'Actual Pickup Time',
@@ -552,7 +556,7 @@ return [
     'is_default' => 'Is Default',
     'is_active' => 'Is Active',
     'currency' => 'Currency',
-    'Sign-up' => 'Sign up',
+    'Sign-up' => 'User Sign up',
     'usersignup' => 'Users',
     'nouser' => 'No users found',
     'usercontacts' => 'Users Contacts',
