@@ -2,6 +2,8 @@
 
 return [
 
+    'vehicle_max_weight' => 'Voer het maximale gewicht in dat deze auto kan dragen', 
+
     'pick/drop' => 'Ophalen / Afzetten',
 'actualpickupdate' => 'Werkelijke ophaaldatum',
 'actualpickuptime' => 'Werkelijke ophaaltijd',

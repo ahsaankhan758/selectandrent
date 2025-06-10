@@ -2,6 +2,7 @@
 
 return [
 
+  'vehicle_max_weight' => 'أدخل الحد الأقصى للوزن الذي يمكن لهذه السيارة حمله',
   'pick/drop' => 'الاستلام / التسليم',
   'actualpickupdate' => 'تاريخ الاستلام الفعلي',
   'actualpickuptime' => 'وقت الاستلام الفعلي',

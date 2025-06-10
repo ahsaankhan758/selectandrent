@@ -162,6 +162,8 @@ class companyController extends Controller
             $company = company::find($id);
             $company->status = 1;
             $company->update();
+            // Get Company Owner Email
+            $user = User::find($company->user_id);
             // save logs
             $userId = Auth::id();
             $userName = Auth::user()->name;
@@ -170,7 +172,7 @@ class companyController extends Controller
             $module = 'Company';
             activityLog($userId, $desciption,$action,$module);
             // Send Confirmation Email
-            Mail::to($company->email)->send(new CompanyApprovedMail($company));
+            Mail::to($user->email)->send(new CompanyApprovedMail($company));
 
             return redirect()->route('pending')->with('status', 'Company ' . $company->name . ' has been approved and an email has been sent.');
         }

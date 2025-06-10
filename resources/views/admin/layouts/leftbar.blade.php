@@ -3,9 +3,14 @@
         margin-left: 15px;
     }
 </style>
-@if (Auth::check())
-    {{ $role = Auth::user()->role }}
-@endif
+
+<?php
+    if(Auth::check()){
+        $role = Auth::user()->role;
+        $userId = auth()->id();
+    }
+?>
+
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
@@ -85,10 +90,12 @@
                     </div>
                 </li>
 
+
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app', 2) }}</li>
 
                 @if ($role == 'admin' || $role == 'employee')
                     @if (can('users', 'view'))
+
                         <li>
                             <a href="{{ route('users') }}">
                                 <i class="mdi mdi-account-circle-outline"></i>
@@ -96,16 +103,18 @@
                             </a>
                         </li>
                     @endif
+                    @if(can('users','view'))
+                        <li>
+                            <a href="{{ route('employee') }}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span> {{ __('messages.employees') }} </span>
+                            </a>
+                        </li>
+                    @endif
                 @endif
-                @if (can('users', 'view'))
-                    <li>
-                        <a href="{{ route('employee') }}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span> {{ __('messages.employees') }} </span>
-                        </a>
-                    </li>
-                @endif
-                @if ($role == 'admin')
+
+                @if($role == 'admin' || ownerRole($userId) == 'admin')
+
                     <li>
                         <a href="{{ route('usersignup') }}">
                             <i class="mdi mdi-account-plus"></i>
@@ -164,8 +173,10 @@
                                             class="custom-ml-15">{{ __('messages.listings') }}</span></a>
                                 </li>
                             @endif
-                            @if ($role == 'admin')
-                                @if (can('brands', 'view'))
+
+                            @if($role == 'admin' || ownerRole($userId) == 'admin')
+                                @if(can('brands','view'))
+
                                     <li>
                                         <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i><span
                                                 class="custom-ml-15">{{ __('messages.brands') }}</a>
