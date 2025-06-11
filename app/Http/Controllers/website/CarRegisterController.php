@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\website;
 
+use App\Mail\CompanyCreated;
 use Auth;
 use App\Models\User;
 use App\Models\company;
@@ -74,7 +75,7 @@ class CarRegisterController extends Controller
                 saveNotification(4, $user->id, $adminId, $adminId, $message);
             }
 
-            Mail::to($user->email)->queue(new CompanyVerificationMail($user));
+            Mail::to($user->email)->send(new CompanyCreated($company, $user));
             
             $adminId = User::where('role', 'admin')->value('id');
             if ($adminId) {

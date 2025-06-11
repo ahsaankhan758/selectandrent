@@ -20,9 +20,17 @@ class CarController extends Controller
     public function index()
     {
         $query = Car::orderBy('created_at', 'desc');
-    
+        
+        
+
         if (Auth::user()->role === 'company') {
             $query->where('user_id', Auth::id());
+        }
+        else{
+            $owner = owner(auth()->id());
+            if(isset($owner) && $owner->role == 'company'){
+                $query->where('user_id', $owner->id);
+            }
         }
     
         $cars = $query->paginate(20);

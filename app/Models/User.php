@@ -25,6 +25,8 @@ class User extends Authenticatable
         'phone',
         'status',
         'confirmation_token',
+        'language_id',
+        'currency_id'
     ];
 
     /**
@@ -79,13 +81,21 @@ class User extends Authenticatable
     }
 
     public function bookings()
-{
-    return $this->hasMany(Booking::class, 'user_id', 'id');
-}
+    {
+        return $this->hasMany(Booking::class, 'user_id', 'id');
+    }
 
-public function country()
-{
-    return $this->belongsTo(Country::class);
-}
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+    public function langugae()
+    {
+        return $this->belongsTo(Language::class, 'language_id', 'id');
+    }
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class, 'currency_id', 'id');
+    }
 
 }

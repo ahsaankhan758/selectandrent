@@ -143,9 +143,9 @@ class userController extends Controller
 
             $currencyData = [
                 'defaultCurrencyCode' => session('defaultCurrencyCode'),
-                'defaultCurrencyName' => session('defaultCurrencyName'),
+                'defaultCurrencyName' => ('defaultCurrencyName'),
                 'defaultCurrencySymbol' => session('defaultCurrencySymbol'),
-                'defaultCurrencyRate' => session('defaultCurrencyRate'),
+                'defaultCurrencyRate' => ('defaultCurrencyRate'),
             ];
 
             $request->session()->invalidate();

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Mail\CompanyCreated;
+use App\Mail\CompanyVerificationMail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CompanyApprovedMail;
 
@@ -57,19 +59,21 @@ class companyController extends Controller
             'phone' => 'required',
             'website' => 'required',
         ]);
+        
         $user = new User;
         $user->name =  $validatedData['name'];
         $user->email =  $validatedData['email'];
         $user->password =  $validatedData['password'];
         $user->role = 'company';
         $user->save();
-        $compnay = new company;
-        $compnay->user_id = $user->id;
-        $compnay->name = $validatedData['companyName'];
-        $compnay->email = $validatedData['companyEmail'];
-        $compnay->phone = $validatedData['phone'];
-        $compnay->website = $validatedData['website'];
-        $compnay->save();
+        $company = new company;
+        $company->user_id = $user->id;
+        $company->name = $validatedData['companyName'];
+        $company->email = $validatedData['companyEmail'];
+        $company->phone = $validatedData['phone'];
+        $company->website = $validatedData['website'];
+        $company->save();
+        Mail::to($user->email)->send(new CompanyCreated($company, $user));
         // save logs 
        $userId = Auth::id();
        $userName = Auth::user()->name;
@@ -87,7 +91,7 @@ class companyController extends Controller
         $fromUserId = $user->id; // logged in user
         $toUserId = $adminId;
         $userId = $adminId; 
-        $message = 'A new company (' . $compnay->name . ') has registered and is awaiting your approval.';
+        $message = 'A new company (' . $company->name . ') has registered and is awaiting your approval.';
         saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
         return redirect ()->route('companies')->with('status','Company Added Successfully.');
     }
@@ -143,12 +147,21 @@ class companyController extends Controller
     {
         $company = company::find($id);
         $company->delete();
+        $user = User::find($company->user_id);
+        $user->delete();
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
          $desciption = $userName.' Deleted [ Company Name '.$company->name.'] [Company Email '.$company->email.'] Successfully.';
          $action = 'Delete';
          $module = 'Company';
+         activityLog($userId, $desciption,$action,$module);
+         // save logs
+         $userId = Auth::id();
+         $userName = Auth::user()->name;
+         $desciption = $userName.' Deleted [ User Name '.$user->name.'] [Company Email '.$user->email.'] Successfully.';
+         $action = 'Delete';
+         $module = 'User';
          activityLog($userId, $desciption,$action,$module);
         return redirect()->route('companies')-> with('statusDanger','Comapy Data Deleted Successfully.');
     }
