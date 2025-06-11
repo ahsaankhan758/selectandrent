@@ -16,6 +16,7 @@
                         <th scope="col">{{ __('messages.model') }}</th>
                         <th scope="col">{{ __('messages.lisence plate') }}</th>
                         <th scope="col">{{ __('messages.owner') }}</th>
+                        <th scope="col">{{ __('messages.status') }}</th>
                         <th scope="col">{{ __('messages.action') }}</th>
                     </tr>
                     </thead>
@@ -33,7 +34,10 @@
                                     @else
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
                                     @endif
-
+                                    <td>
+                                       {{ ($carData->status == 1)? 'Active' : 'InActive'; }} 
+                                       
+                                    </td>
                                     <td>
                                         @if(can('Vehicle','edit'))
                                             <a href="{{ route('editCar', $carData->id) }}">
