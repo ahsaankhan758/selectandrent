@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Language;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Booking;

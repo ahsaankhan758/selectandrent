@@ -1,13 +1,14 @@
 <?php
 
 
+use App\Http\Controllers\Admin\LanguageController;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\userController;
@@ -65,10 +66,7 @@ use App\Http\Controllers\website\WebsiteDashboardController;
 
 
 Route::middleware('LanguageMiddleware')->group(function(){
-    Route::get('/change-language/{lang}', function ($lang) {
-        Session::put('lang',$lang);
-        return redirect()->back();
-    })->name('change.language');
+    Route::get('/change-language/{lang}',[LanguageController::class, 'setLanguage'])->name('change.language');
     
 
     // Logout
@@ -133,7 +131,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
             Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
             Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
-             
+            // review
+            Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
              //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Financial History
