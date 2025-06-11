@@ -108,16 +108,16 @@ public function getLocations($city_id)
        $car->rent = $validatedData['rent'];
        $car->detail = $validatedData['detail'];
        if($request->hasFile('thumbnail'))
-                {
-                    $car->thumbnail = $request->file('thumbnail')->store('carThumbnail','public');
-                }
+        {
+            $car->thumbnail = $request->file('thumbnail')->store('carThumbnail','public');
+        }
         if($request->hasFile('images'))
-            {
-                foreach ($request->file('images') as $imageFile) {
-                    $imagePaths[] = $imageFile->store('carImages', 'public');
-                }
-                $car->images = serialize($imagePaths) ;   
-            }     
+        {
+            foreach ($request->file('images') as $imageFile) {
+                $imagePaths[] = $imageFile->store('carImages', 'public');
+            }
+            $car->images = serialize($imagePaths) ;   
+        }     
        $car->features = serialize($request['features']); 
        $car->status = $request['status'];
        $car->date_added = $validatedData['date_added'];  
@@ -157,6 +157,7 @@ public function getLocations($city_id)
     */
     public function update(Request $request, string $id)
     {
+        
         $validatedData = $request->validate([
             'model'=> 'required',
             'category' => 'required',
@@ -237,7 +238,8 @@ public function getLocations($city_id)
         if(empty($request['features']))
             $car->features = null;
         else
-            $car->features = serialize($request['features']);        
+            $car->features = serialize($request['features']); 
+        $car->status = $request['status'];       
         $car->update();
         // save logs
         $userId = Auth::id();

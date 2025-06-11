@@ -12,9 +12,9 @@ class CategoryController extends Controller
     public function categoryView()
 {
     $categories = CarCategory::all();
-    $cars = Car::latest()->take(8)->get();
+    $cars = Car::where('status', 1)->latest()->take(8)->get();
 
-    $totalCars = Car::count();
+    $totalCars = Car::where('status', 1)->count();
     return view('website.category.categories', compact('categories', 'cars','totalCars'));
 }
 
@@ -60,10 +60,10 @@ public function loadMoreCars(Request $request)
         $offset = intval($request->query('offset', 0)); 
 
         // Fetch exactly 8 cars (instead of 9)
-        $cars = Car::latest()->skip($offset)->take(8)->get();
+        $cars = Car::where('status', 1)->latest()->skip($offset)->take(8)->get();
 
         // Total count check for Load More condition
-        $totalCars = Car::count();
+        $totalCars = Car::where('status', 1)->count();
         $hasMore = ($offset + 8) < $totalCars;
 
         return response()->json([
@@ -87,7 +87,7 @@ public function carCategorize(Request $request)
         $query->where('car_category_id', $categoryId);
     }
 
-    $cars = $query->latest()->skip($offset)->take(8)->get();
+    $cars = $query->where('status', 1)->latest()->skip($offset)->take(8)->get();
     $totalCars = $query->count(); 
     $hasMore = ($offset + 8) < $totalCars; 
 
