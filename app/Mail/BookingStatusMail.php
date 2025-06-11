@@ -23,6 +23,11 @@ class BookingStatusMail extends Mailable
     public function build()
     {
         return $this->subject('Booking Status Update')
-                    ->view('admin.emails.booking-status');
+                    ->view('admin.emails.booking-status')
+                      ->with([
+                        'booking' => $this->booking,
+                        'messageText' => $this->messageText,
+                        'bookingItems' => $this->booking->booking_items, 
+                    ]);
     }
 }

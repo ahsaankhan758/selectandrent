@@ -718,5 +718,15 @@ return [
 'pending_booking' => 'In afwachting van boekingen',
 'upcoming_booking' => 'Aankomende boekingen',
  'booking_all' => 'Alle boekingen',
+ 'review' => 'Beoordeling',
+    'review_details' => 'Voertuigbeoordeling',
+    'user_reviews' => 'Gebruikersbeoordelingen',
+    'vehicle_reviews' => 'Beoordelingen van voertuigen',
+    'Select_Country' => 'Selecteer land',
+    'company_info' => 'Bedrijfsinformatie',
+    'website' => 'Website',
+    'country' => 'Land',
+    'day_hour' => 'Uur/Dag',
+'print' => 'Afdrukken',
 
 ];
