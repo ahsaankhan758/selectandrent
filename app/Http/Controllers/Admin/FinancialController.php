@@ -126,27 +126,6 @@ class FinancialController extends Controller
         'countryNames' , 'countryId'
     ));
 }
-// public function markPickup($bookingItemId)
-// {
-//     $bookingItem = BookingItem::findOrFail($bookingItemId);
-//     $bookingItem->actual_pickup_datetime = now();
-//     $bookingItem->save();
-
-//     return back()->with('success', 'Pickup time recorded successfully.');
-// }
-
-// public function markDropoff($bookingItemId)
-// {
-//     $bookingItem = BookingItem::findOrFail($bookingItemId);
-//     $bookingItem->actual_dropoff_datetime = now();
-//     $bookingItem->save();
-
-//     $booking = $bookingItem->booking;
-//     $booking->booking_status = 'completed';
-//     $booking->save();
-
-//     return back()->with('success', 'Dropoff time recorded and booking marked as completed.');
-// }
 
 public function markPickup($bookingItemId)
 {
@@ -154,28 +133,63 @@ public function markPickup($bookingItemId)
     $bookingItem->actual_pickup_datetime = now();
     $bookingItem->save();
 
-    $booking = $bookingItem->booking;
+    $booking = Booking::with([
+        'booking_items.vehicle.carModel', 
+        'booking_items.pickupLocation',
+        'booking_items.dropoffLocation',
+        'user', 
+        'car'
+    ])->findOrFail($bookingItem->booking_id);
 
     Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
 
+    $userId = auth()->id();
+    $userName = auth()->user()->name ?? 'System';
+    $description = $userName . ' marked a car as picked up for Booking Reference [' . $booking->booking_reference . '] successfully.';
+    $action = 'Pickup';
+    $module = 'Booking Item';
+
+    activityLog($userId, $description, $action, $module);
+
     return back()->with('success', 'Pickup time recorded successfully.');
 }
-
 public function markDropoff($bookingItemId)
 {
-    $bookingItem = BookingItem::findOrFail($bookingItemId);
+    $bookingItem = BookingItem::with('vehicle')->findOrFail($bookingItemId);
+
     $bookingItem->actual_dropoff_datetime = now();
     $bookingItem->save();
 
-    $booking = $bookingItem->booking;
+    if ($bookingItem->dropoff_location && $bookingItem->vehicle) {
+        $car = $bookingItem->vehicle;
+        $car->car_location_id = $bookingItem->dropoff_location;
+        $car->save();
+    }
+    $booking = Booking::with([
+        'booking_items.vehicle.carModel',
+        'booking_items.pickupLocation',
+        'booking_items.dropoffLocation',
+        'user',
+        'car'
+    ])->findOrFail($bookingItem->booking_id);
+
     $booking->booking_status = 'completed';
     $booking->save();
 
-    Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your car has been dropped off successfully.'));
+    Mail::to($booking->email)->send(
+        new BookingStatusMail($booking, 'Your car has been dropped off successfully.')
+    );
+
+    $userId = auth()->id();
+    $userName = auth()->user()->name ?? 'System';
+    $description = $userName . ' marked a car as dropoff for Booking Reference [' . $booking->booking_reference . '] successfully.';
+    $action = 'Dropoff';
+    $module = 'Booking Item';
+
+    activityLog($userId, $description, $action, $module);
 
     return back()->with('success', 'Dropoff time recorded and booking marked as completed.');
 }
-
 
 public function getOrderStatusData(Request $request)
 {
@@ -401,5 +415,15 @@ public function getEarningsData(Request $request)
         'labels' => $labels,
         'data' => $data,
     ]);
+}
+
+public function invoice($id)
+{
+    $booking = Booking::with([ 'booking_items.vehicle.carModel', 
+        'booking_items.pickupLocation',
+        'booking_items.dropoffLocation',
+        'user', 
+        'car'])->findOrFail($id);
+    return view('admin.financial.include.invoice', compact('booking'));
 }
 }
