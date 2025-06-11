@@ -35,7 +35,7 @@
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
                                     @endif
                                     <td>
-                                       {{ ($carData->status == 1)? 'Active' : 'InActive'; }} 
+                                       {{ ($carData->status == 1)? 'Active' : 'Inactive'; }} 
                                        
                                     </td>
                                     <td>
