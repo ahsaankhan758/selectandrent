@@ -19,4 +19,8 @@ class Currency extends Model
         'is_default',
         'is_active',
     ];
+    public function currencies()
+    {
+        return $this->hasMany(Currency::class, 'currency_id','id');
+    }
 }
