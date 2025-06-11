@@ -1,13 +1,13 @@
 <?php 
 
 return [
-
-  'vehicle_max_weight' => 'أدخل الحد الأقصى للوزن الذي يمكن لهذه السيارة حمله',
-  'pick/drop' => 'الاستلام / التسليم',
-  'actualpickupdate' => 'تاريخ الاستلام الفعلي',
-  'actualpickuptime' => 'وقت الاستلام الفعلي',
-  'actualdropupdate' => 'تاريخ التسليم الفعلي',
-  'actualdropuptime' => 'وقت التسليم الفعلي',
+    'vehicle' => 'مركبة',
+    'vehicle_max_weight' => 'أدخل الحد الأقصى للوزن الذي يمكن لهذه السيارة حمله',
+    'pick/drop' => 'الاستلام / التسليم',
+    'actualpickupdate' => 'تاريخ الاستلام الفعلي',
+    'actualpickuptime' => 'وقت الاستلام الفعلي',
+    'actualdropupdate' => 'تاريخ التسليم الفعلي',
+    'actualdropuptime' => 'وقت التسليم الفعلي',
 
     'featured vehicles' => 'المركبات المميزة',
     'vehicles' => 'المركبات',

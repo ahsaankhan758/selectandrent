@@ -1,6 +1,6 @@
 
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.create') }} {{ __('messages.car') }} @endsection
+@section('title') {{ __('messages.create') }} {{ __('messages.vehicle') }} @endsection
 @section('content')
     <script src="{{ asset('assets/js/admin/locationArea.js') }}"></script>
 
@@ -53,7 +53,7 @@
     <div class="col-12">
         <div class="card mt-4">
             <div class="card-header">
-                <h4>{{ __('messages.create') }} {{ __('messages.car') }}</h4>
+                <h4>{{ __('messages.create') }} {{ __('messages.vehicle') }}</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('storeCar') }}" method="POST" enctype="multipart/form-data">
@@ -133,7 +133,7 @@
                         <div class="col-4 form-group mb-3">
                             <lable for="weight">{{ __('messages.weight') }}
                                 <span class="tooltip-icon">
-                                <i >ℹ️</i>
+                                <i>ℹ️</i>
                                 <span class="tooltip-text">{{ __('messages.vehicle_max_weight') }}</span>
                             </span>
                             </lable>
@@ -351,15 +351,15 @@
             document.getElementById("date_added").value = today;
         });
     </script>
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl);
         });
     });
-    </script>
-    <script>
+    </script> -->
+    <!-- <script>
         function toggleImageTooltip() {
             const tooltip = document.getElementById('imageTooltip');
             tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
@@ -374,8 +374,7 @@
                 tooltip.style.display = 'none';
             }
         });
-    </script>
-
+    </script> -->
     
 @endsection
 
