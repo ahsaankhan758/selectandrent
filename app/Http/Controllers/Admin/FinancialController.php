@@ -54,6 +54,14 @@ class FinancialController extends Controller
         $query->whereDate('created_at', '>=', $startDate)
               ->whereDate('created_at', '<=', $endDate);
     }
+    // Implement Check For Company & Employee
+    $employeeOwner = EmployeeOwner(auth()->id());
+    if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
+        $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
+        $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+            $q->where('user_id', $userId);
+        });
+    }
 };
 
 
