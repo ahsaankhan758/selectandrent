@@ -1,5 +1,5 @@
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.car') }}  {{ __('messages.lisitng') }} @endsection
+@section('title') {{ __('messages.vehicles') }}  {{ __('messages.lisitng') }} @endsection
 @section('content')
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script> --}}
@@ -7,7 +7,7 @@
     <div class="col-10">
         <div class="card mt-4">
             <div class="card-header">
-                <h4>{{ __('messages.cars') }}</h4>
+                <h4>{{ __('messages.vehicles') }}</h4>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="myTable">
@@ -35,7 +35,7 @@
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
                                     @endif
                                     <td>
-                                       {{ ($carData->status == 1)? 'Active' : 'Inactive'; }} 
+                                       {{ ($carData->status == 1)? 'Active' : 'Inactive' }} 
                                        
                                     </td>
                                     <td>

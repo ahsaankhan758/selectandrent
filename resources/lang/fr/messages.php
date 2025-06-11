@@ -3,17 +3,15 @@
 return [
 
     'vehicle_max_weight' => 'Entrez le poids maximal que cette voiture peut transporter',
-
+    'vehicle' => 'véhicule', 
     'pick/drop' => 'Ramassage / Dépôt',
-'actualpickupdate' => 'Date réelle de ramassage',
-'actualpickuptime' => 'Heure réelle de ramassage',
-'actualdropupdate' => 'Date réelle de dépôt',
-'actualdropuptime' => 'Heure réelle de dépôt',
-
+    'actualpickupdate' => 'Date réelle de ramassage',
+    'actualpickuptime' => 'Heure réelle de ramassage',
+    'actualdropupdate' => 'Date réelle de dépôt',
+    'actualdropuptime' => 'Heure réelle de dépôt',
     'featured vehicles' => 'Véhicules en vedette',
     'vehicles' => 'Véhicules',
     'designation' => 'Désignation',
-
     'employee' => 'Employé',
     'employees' => 'Employés',
     'admins' => 'Administrateurs',

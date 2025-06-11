@@ -1,4 +1,9 @@
-  <div class="col-lg-3 justify-content-start">
+    @php
+        $owner = EmployeeOwner(auth()->user()->id);
+    @endphp
+    
+    @if(auth()->user()->role == 'admin' || isset($owner) && $owner->role == 'admin' )    
+        <div class="col-lg-3 justify-content-start">
             <select name="user_id" id="options-dropdown" class="form-control">
                 <option value="">{{ __('messages.company') }}</option>
                 @foreach ($companies as $id => $name)
@@ -18,6 +23,7 @@
                 @endforeach
             </select>
         </div>
+    @endif
 
         <!-- Start Date Picker -->
         <div class="col-lg-3">

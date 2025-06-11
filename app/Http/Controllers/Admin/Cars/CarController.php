@@ -27,7 +27,7 @@ class CarController extends Controller
             $query->where('user_id', Auth::id());
         }
         else{
-            $owner = owner(auth()->id());
+            $owner = EmployeeOwner(auth()->id());
             if(isset($owner) && $owner->role == 'company'){
                 $query->where('user_id', $owner->id);
             }
