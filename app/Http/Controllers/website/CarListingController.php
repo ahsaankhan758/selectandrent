@@ -16,7 +16,7 @@ class CarListingController extends Controller
     public function carListingView(Request $request)
 {
     $query = Car::query();
-
+    $query->where('status', 1);
     // Apply Transmission Filter
     if ($request->has('transmission') && !empty($request->transmission)) {
         $query->where('transmission', $request->transmission);
@@ -40,8 +40,7 @@ class CarListingController extends Controller
 
    // *Apply Address (Search Location Name)*
    if ($request->has('address') && !empty($request->address)) {
-    echo "<pre>";
-    print_r($request->all());die;
+   
     $query->whereHas('car_locations', function ($q) use ($request) {
         $q->where('area_name', 'LIKE', '%' . $request->address . '%'); // Search in car_locations table
     });
@@ -69,10 +68,13 @@ class CarListingController extends Controller
     $filteredCarsCount = $query->count();
 
     // Get total cars
-    $totalCars = Car::count();
+    $totalCars = Car::where('status', 1)->count();
 
     // Get all categories with car count
-    $categories = CarCategory::withCount('cars')->get();
+    $categories = CarCategory::withCount(['cars' => function ($query) {
+        $query->where('status', 1);
+    }])->get();
+
 
     // Get all car models
     $carModel = CarModel::all();

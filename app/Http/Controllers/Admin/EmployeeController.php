@@ -43,13 +43,13 @@ class EmployeeController extends Controller
         $user = new User;
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
-        $user->designation = $validatedData['designation'];
         $user->password = Hash::make($validatedData['password']);
         $user->role = 'employee';
         $user->phone = $validatedData['phone'];
         $user->save();
         $employee = new Employee;
         $employee->owner_user_id = auth()->id();
+        $employee->designation = $validatedData['designation'];
         $employee->e_user_id = $user->id;
         $employee->id_number = $validatedData['id_number'];
         $employee->age = $request['age'];

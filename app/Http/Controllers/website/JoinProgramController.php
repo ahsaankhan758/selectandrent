@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class JoinProgramController extends Controller
 {
     public function joinView(){
-        return view('website.join-our-program');
+        return view('website.Join-our-program');
     }
 }
