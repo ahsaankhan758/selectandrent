@@ -16,7 +16,7 @@ class CarListingController extends Controller
     public function carListingView(Request $request)
 {
     $query = Car::query();
-
+    $query->where('status', 1);
     // Apply Transmission Filter
     if ($request->has('transmission') && !empty($request->transmission)) {
         $query->where('transmission', $request->transmission);
@@ -69,7 +69,7 @@ class CarListingController extends Controller
     $filteredCarsCount = $query->count();
 
     // Get total cars
-    $totalCars = Car::count();
+    $totalCars = Car::where('status', 1)->count();
 
     // Get all categories with car count
     $categories = CarCategory::withCount('cars')->get();
