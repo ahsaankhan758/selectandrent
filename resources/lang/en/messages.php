@@ -6,19 +6,15 @@ return [
   'review_details' => 'Vehicle Review',
   'user_reviews' => 'User Reviews',
   'vehicle_reviews' => 'Vehicle Reviews',
-
-
-    'vehicle_max_weight' => 'Enter the Maximum Weight This Car Can Carry',
+  'vehicle_max_weight' => 'Enter the Maximum Weight This Car Can Carry',
   'pick/drop' => 'Pickup/Dropoff',
   'actualpickupdate' => 'Actual Pickup Date',
   'actualpickuptime' => 'Actual Pickup Time',
   'actualdropupdate' => 'Actual Dropoff Date',
   'actualdropuptime' => 'Actual Dropoff Time',
-
     'featured vehicles' => 'Featured Vehicles',
     'vehicles' => 'Vehicles',
     'designation' => 'Designation',
-
     'employee' => 'Employee',
     'employees' => 'Employees',
     'all' => 'All',
@@ -583,6 +579,7 @@ return [
     'bookingtotal'        => 'Total',
     'bookingsubtotal'     => 'Subtotal',
     'bookingnotes'        => 'Notes',
+    
 
     'bookingcardeatil' => 'Car Detail | Select And Rent',
     'booking_orderdetail'     => 'Order Detail',
@@ -598,25 +595,23 @@ return [
     'booking_dropoffdate'     => 'Dropoff Date',
     'booking_dropofftime'     => 'Dropoff Time',
     'booking_days'            => 'Days',
-    'booking_userinfo'        => 'User Information',
+    'booking_userinfo'        => 'User Info',
     'booking_address'         => 'Address:',
-    'booking_billinginfo'     => 'Billing Information',
-    'booking_subtotal'        => 'Subtotal:',
-    'booking_tax'             => 'Tax:',
-    'booking_total'           => 'Total:',
+    'booking_billinginfo'     => 'Payment Info',
+    'booking_subtotal'        => 'Subtotal',
+    'booking_tax'             => 'Tax',
+    'booking_total'           => 'Total',
     'booking_bookinginfo'     => 'Booking Info',
     'booking_orderid'         => 'Order ID :',
-    'booking_paymentmode'     => 'Payment Mode :',
+    'booking_paymentmode'     => 'Payment Mode',
     'booking_phone' => 'Phone:',
     'booking_orderplaced' => 'Order Placed',
     'bookingpayment' => 'Payment Status',
     'pickup_status' => 'Pickup Status',
     'dropoff_status' => 'Dropoff Status',
     'order_completed' => 'Order Completed',
-
     'terms' => 'Terms & Conditions',
     'privacy' => 'Privacy Policy',
-
     'analytics_title' => 'Analytics Dashboard',
     'breadcrumb_analytics' => 'Analytics',
     'breadcrumb_dashboard' => 'Dashboard',
@@ -665,6 +660,7 @@ return [
 'cc' => 'CC',
 'deposit'=>'Deposit',
 'min'=>'Min Age',
+
 'user_info'=>'User Info',
 'company_info'=>'Compnay Info',
 'company_profile'=>'Company Profile',
@@ -686,17 +682,15 @@ return [
 '4_wheel'       => '4 Wheel',
 'per_day'       => 'Per Day',
 'per_hour'      => 'Per Hour',
+'hour'      => 'Hour',
 'user'=>'User',
 'no_booking'=>'No bookings found.',
-
 'confirm_order'=>'Confirmed Orders',
 'pending_order'=>'Pending Orders',
 'cancel_order' => 'Cancel Orders',
 'confirm_payment' => 'Confirmed Payment',
 'pending_payment' => 'Pending Payment',
 'cancel_payment' => 'Cancelled Payment',
-
-
 'featured_vehicle'=>'Featured Vehicle',
 'newArrival'=>'New Arrival',
 'financial'=>'Financial',
@@ -714,11 +708,9 @@ return [
 'booking_overview'=>'Bookings Overview',
 'reminders'=>'Reminders',
 'earning_summary'=>'Earnings Summary',
-
 'notifications' => 'Notifications',
 'mark_as' => 'Mark all as read',
 'not_found' => 'Not found',
-
 '12_month'=>'Last 12 Months',
 '3_month'=>'Last 3 Months',
 '6_month'=>'Last 6 Months',
@@ -729,6 +721,9 @@ return [
 'upcoming_booking'=>'Upcoming Bookings',
 'booking_all'=>'Booking All',
 'Select_Country' => 'Select Country',
-
-
+'company_info' => 'Company Info',
+'website' => 'Website',
+'country' => 'Country',
+'day_hour'        => 'Hour/Day',
+'print'=>'Print',
 ];

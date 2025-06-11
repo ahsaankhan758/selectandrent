@@ -118,11 +118,11 @@
                     <td>{{ $item->vehicle->carModel->name ?? 'N/A' }}</td>
                    
                     <td>
-                        {{ $item->pickupLocation->name ?? $item->pickup_location }}<br>
+                        {{ $item->pickupLocation->area_name ?? $item->pickup_location }}<br>
                         {{ $item->pickup_datetime }}
                     </td>
                     <td>
-                        {{ $item->dropoffLocation->name ?? $item->dropoff_location }}<br>
+                        {{ $item->dropoffLocation->area_name ?? $item->dropoff_location }}<br>
                         {{ $item->dropoff_datetime }}
                     </td>
                     <td>{{ $item->duration_days }}</td>
@@ -141,7 +141,5 @@
         Regards,<br>
               <strong>{{$booking->car->users->companies->name?? ''}}</strong>
     </div>
-
-
 </body>
 </html>

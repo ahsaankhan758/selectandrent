@@ -42,6 +42,7 @@ public function carBookingDetail($id)
 }
 
 
+
 //     public function carBookingDetail($id)
 // {
 //     $booking = Booking::with(['booking_items.vehicle.carModel', 'user', 'car'])->findOrFail($id);

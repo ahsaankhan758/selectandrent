@@ -723,6 +723,15 @@ return [
 'pending_booking' => 'الحجوزات المعلقة',
 'upcoming_booking' => 'الحجوزات القادمة',
  'booking_all' => 'جميع الحجوزات',
-
+ 'review' => 'مراجعة',
+    'review_details' => 'مراجعة المركبة',
+    'user_reviews' => 'مراجعات المستخدمين',
+    'vehicle_reviews' => 'مراجعات المركبات',
+    'Select_Country' => 'اختر الدولة',
+    'company_info' => 'معلومات الشركة',
+    'website' => 'الموقع الإلكتروني',
+    'country' => 'البلد',
+'day_hour' => 'ساعة/يوم',
+'print' => 'طباعة',
 
 ];

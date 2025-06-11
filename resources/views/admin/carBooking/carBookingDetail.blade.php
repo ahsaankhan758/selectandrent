@@ -59,10 +59,12 @@
                                         </p>
                                         <p>
                                             @if ($item->actual_pickup_datetime)
-                                                {{ \Carbon\Carbon::parse($item->actual_pickup_datetime)->format('F d Y') }}
-                                                <small class="text-muted">
-                                                    {{ \Carbon\Carbon::parse($item->actual_pickup_datetime)->format('h:i A') }}
-                                                </small>
+                                                (<span data-bs-toggle="tooltip" title="Actual Pickup">
+                                                    {{ \Carbon\Carbon::parse($item->actual_pickup_datetime)->format('F d Y') }}
+                                                    <small class="text-muted">
+                                                        {{ \Carbon\Carbon::parse($item->actual_pickup_datetime)->format('h:i A') }}
+                                                    </small>
+                                                </span>)
                                             @endif
                                         </p>
                                     </li>
@@ -76,14 +78,15 @@
                                         </p>
                                         <p>
                                             @if ($item->actual_dropoff_datetime)
-                                                {{ \Carbon\Carbon::parse($item->actual_dropoff_datetime)->format('F d Y') }}
-                                                <small class="text-muted">
-                                                    {{ \Carbon\Carbon::parse($item->actual_dropoff_datetime)->format('h:i A') }}
-                                                </small>
+                                                <span data-bs-toggle="tooltip" title="Actual Dropoff">
+                                                    ({{ \Carbon\Carbon::parse($item->actual_dropoff_datetime)->format('F d Y') }}
+                                                    <small class="text-muted">
+                                                        {{ \Carbon\Carbon::parse($item->actual_dropoff_datetime)->format('h:i A') }}
+                                                    </small>)
+                                                </span>
                                             @endif
                                         </p>
                                     </li>
-
                                     <li class="{{ $booking->booking_status == 'completed' ? 'completed' : '' }}">
                                         <h5 class="mt-0 mb-1">{{ __('messages.order_completed') }}</h5>
                                         <p class="text-muted">{{ ucfirst($booking->booking_status ?? 'N/A') }}</p>
@@ -105,19 +108,12 @@
                                 <thead class="table-light">
                                     <tr class="text-nowrap">
                                         <th>{{ __('messages.booking_image') }}</th>
+                                        <th>{{ __('messages.category') }}</th>
                                         <th>{{ __('messages.company') }}</th>
                                         <th>{{ __('messages.booking_name') }}</th>
                                         <th>{{ __('messages.booking_pickuplocation') }}</th>
                                         <th>{{ __('messages.booking_dropofflocation') }}</th>
-                                        <th>{{ __('messages.booking_pickupdate') }}</th>
-                                        <th>{{ __('messages.actualpickupdate') }}</th>
-                                        <th>{{ __('messages.booking_pickuptime') }}</th>
-                                        <th>{{ __('messages.actualpickuptime') }}</th>
-                                        <th>{{ __('messages.booking_dropoffdate') }}</th>
-                                        <th>{{ __('messages.actualdropupdate') }}</th>
-                                        <th>{{ __('messages.booking_dropofftime') }}</th>
-                                        <th>{{ __('messages.actualdropuptime') }}</th>
-                                        <th>{{ __('messages.booking_days') }}</th>
+                                        <th>{{ __('messages.booking_days') }} / {{ __('messages.hour') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -137,31 +133,13 @@
                                                             alt="Default Vehicle Image" height="32">
                                                     @endif
                                                 </td>
+                                                <td>{{$detail->vehicle->car_categories->name}}</td>
                                                 <td>{{ $detail->vehicle->company->name }}</td>
                                                 <td class="text-nowrap">{{ $detail->vehicle->carModel->name ?? 'N/A' }} -
                                                     {{ $detail->vehicle->year ?? 'N/A' }}</td>
                                                 <td>{{ $detail->pickupLocation->area_name ?? 'N/A' }}</td>
                                                 <td>{{ $detail->dropoffLocation->area_name ?? 'N/A' }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('Y-m-d') }}
-                                                </td>
-                                                <td>{{ $detail->actual_pickup_datetime ? \Carbon\Carbon::parse($detail->actual_pickup_datetime)->format('Y-m-d') : 'N/A' }}
-                                                </td>
-                                                <td>{{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('H:i:s') }}
-                                                </td>
-                                                <td>{{ $detail->actual_pickup_datetime ? \Carbon\Carbon::parse($detail->actual_pickup_datetime)->format('H:i:s') : 'N/A' }}
-                                                </td>
-                                                <td>{{ \Carbon\Carbon::parse($detail->dropoff_datetime)->format('Y-m-d') }}
-                                                </td>
-                                                <td>
-                                                    {{ $detail->actual_dropoff_datetime ? \Carbon\Carbon::parse($detail->actual_dropoff_datetime)->format('Y-m-d') : 'N/A' }}
-                                                </td>
-
-                                                <td>{{ \Carbon\Carbon::parse($detail->dropoff_datetime)->format('H:i:s') }}
-                                                </td>
-                                                <td>
-                                                    {{ $detail->actual_dropoff_datetime ? \Carbon\Carbon::parse($detail->actual_dropoff_datetime)->format('H:i:s') : 'N/A' }}
-                                                </td>
-                                                <td>{{ $detail->duration_days }}</td>
+                                                <td>{{ $detail->duration_days }} / {{ $detail->vehicle->rent_type ?? 'N/A' }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -178,15 +156,16 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="header-title mb-3">{{ __('messages.booking_userinfo') }}</h4>
-                        <h5 class="font-family-primary fw-semibold">
+                        <p class="mb-1">
+                            <span class="fw-semibold me-2">{{ __('messages.name') }}</span>
                             {{ $booking->first_name ?? 'N/A' }} {{ $booking->last_name ?? 'N/A' }}
-                        </h5>
-                        <p class="mb-2">
-                            <span class="fw-semibold me-2">{{ __('messages.booking_address') }}</span>
+                        </p>
+                        <p class="mb-1">
+                            <span class="fw-semibold me-2">{{ __('messages.address') }}</span>
                             {{ $booking->billing_addresss ?? 'N/A' }}
                         </p>
-                        <p class="mb-2">
-                            <span class="fw-semibold me-2">{{ __('messages.booking_phone') }}</span>
+                        <p class="mb-1">
+                            <span class="fw-semibold me-2">{{ __('messages.phone') }}</span>
                             {{ $booking->phonenumber ?? 'N/A' }}
                         </p>
                     </div>
@@ -199,12 +178,15 @@
                         <h4 class="header-title mb-3">{{ __('messages.booking_billinginfo') }}</h4>
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <p class="mb-2"><span
+                                <p class="mb-1"><span
+                                        class="fw-semibold me-2">{{ __('messages.booking_paymentmode') }}</span>
+                                    {{ $booking->payment_method ?? 'N/A' }}</p>
+                                <p class="mb-1"><span
                                         class="fw-semibold me-2">{{ __('messages.booking_subtotal') }}</span>$
                                     {{ number_format($booking->subtotal) }}</p>
-                                <p class="mb-2"><span class="fw-semibold me-2">{{ __('messages.booking_tax') }}</span>$
+                                <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.booking_tax') }}</span>$
                                     {{ number_format($booking->tax_amount) }}</p>
-                                <p class="mb-2"><span class="fw-semibold me-2">{{ __('messages.booking_total') }}</span>$
+                                <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.booking_total') }}</span>$
                                     {{ number_format($booking->total_price) }}</p>
                             </li>
                         </ul>
@@ -215,16 +197,21 @@
             <div class="col-lg-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h4 class="header-title ">{{ __('messages.booking_bookinginfo') }}</h4>
-
-                        <div class="text-left">
-                            <i class="mdi mdi-truck-fast h2 text-muted"></i>
-                            <p class="mb-1"><span class="fw-semibold">{{ __('messages.booking_orderid') }}</span> #
-                                {{ $booking->id }}</p>
-                            <p class="mb-0"><span class="fw-semibold">{{ __('messages.booking_paymentmode') }}</span>
-                                {{ $booking->payment_method ?? 'N/A' }}</p>
-                            <p class="mb-2"><span class="fw-semibold me-2"></span></p>
-                        </div>
+                        @if (isset($booking))
+                            @foreach ($booking->booking_items as $detail)
+                                <h4 class="header-title mb-3">{{ __('messages.company_info') }}</h4>
+                                <div class="text-left">
+                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.name') }}</span>
+                                        {{ $detail->vehicle->company->name }} </p>
+                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.phone') }}</span>
+                                        {{ $detail->vehicle->company->phone }} </p>
+                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.email') }}</span>
+                                        {{ $detail->vehicle->company->email }} </p>
+                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.country') }}</span>
+                                        {{ $detail->vehicle->company->country->name }} </p>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
