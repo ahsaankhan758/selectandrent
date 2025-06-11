@@ -24,6 +24,8 @@
     <script src="{{asset('/')}}frontend-assets/assets/Js/signin.js"></script>
     <script src="{{asset('/')}}frontend-assets/assets/Js/signup.js"></script>
 
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+
     <!-- Include Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
