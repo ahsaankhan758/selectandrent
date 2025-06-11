@@ -15,7 +15,7 @@ class CarSearchController extends Controller
     public function CarSearchView(Request $request)
 {
       $query = Car::query();
-
+      $query->where('status', 1);
     // Apply Transmission Filter
     if ($request->has('transmission') && !empty($request->transmission)) {
         $query->where('transmission', $request->transmission);

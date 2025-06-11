@@ -144,6 +144,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::post('/booking/pickup/{id}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
             Route::post('/booking/dropoff/{id}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
 
+            Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
             //Activity Logs
