@@ -31,6 +31,7 @@ $(document).on('click', '#car-booking-btn', function(e) {
                 timeout: 5000
             }
             Toast.create(toast);
+            // toastr.success('Success','Error Title')
             // 
             if(response.status == 'success'){
             setTimeout(function() {
