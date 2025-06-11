@@ -110,6 +110,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+           
+
             //Employees
             Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
             Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
@@ -174,6 +176,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            Route::get('/booking/invoice/{id}', [FinancialController::class, 'invoice'])->name('booking.invoice');
             //Users Routes
             Route::get('users', [userController::class, 'index'])->name('users');
             Route::get('createuser', [userController::class,'create'])->name('createUser');

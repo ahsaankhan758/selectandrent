@@ -715,5 +715,15 @@ return [
 'pending_booking' => 'Réservations en attente',
 'upcoming_booking' => 'Réservations à venir',
  'booking_all' => 'Toutes les réservations',
+'review' => 'Avis',
+    'review_details' => 'Revue du véhicule',
+    'user_reviews' => 'Avis des utilisateurs',
+    'vehicle_reviews' => 'Avis sur les véhicules',
+    'Select_Country' => 'Sélectionner un pays',
+    'company_info' => 'Informations sur l’entreprise',
+    'website' => 'Site web',
+    'country' => 'Pays',
+    'day_hour' => 'Heure/Jour',
+'print' => 'Imprimer',
 
 ];
