@@ -1,7 +1,7 @@
  <?php
 
 return [
-
+  'vehicle' => 'vehicle',
   'review' => 'Review',
   'review_details' => 'Vehicle Review',
   'user_reviews' => 'User Reviews',

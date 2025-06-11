@@ -1,6 +1,6 @@
 
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.edit') }} {{ __('messages.car') }} @endsection
+@section('title') {{ __('messages.edit') }} {{ __('messages.vehicle') }} @endsection
 @section('content')
 <style>
         .tooltip-icon {
@@ -29,7 +29,7 @@
     <div class="col-12">
         <div class="card mt-4">
             <div class="card-header">
-                <h4>{{ __('messages.update') }}  {{ __('messages.car') }}</h4>
+                <h4>{{ __('messages.update') }}  {{ __('messages.vehicle') }}</h4>
                 <a href=" {{ route('carListings') }}" class="btn btn-primary float-end" >{{ __('messages.back') }}</a>
             </div>
             <div class="card-body">

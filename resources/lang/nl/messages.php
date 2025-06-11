@@ -1,19 +1,16 @@
 <?php
 
 return [
-
     'vehicle_max_weight' => 'Voer het maximale gewicht in dat deze auto kan dragen', 
-
+    'vehicle' => 'voertuig',
     'pick/drop' => 'Ophalen / Afzetten',
-'actualpickupdate' => 'Werkelijke ophaaldatum',
-'actualpickuptime' => 'Werkelijke ophaaltijd',
-'actualdropupdate' => 'Werkelijke afleverdatum',
-'actualdropuptime' => 'Werkelijke aflevertijd',
-
+    'actualpickupdate' => 'Werkelijke ophaaldatum',
+    'actualpickuptime' => 'Werkelijke ophaaltijd',
+    'actualdropupdate' => 'Werkelijke afleverdatum',
+    'actualdropuptime' => 'Werkelijke aflevertijd',
     'featured vehicles' => 'Uitgelichte voertuigen',
     'vehicles' => 'Voertuigen',
     'designation' => 'Functietitel',
-
     'employee' => 'Werknemer',
     'employees' => 'Werknemers',
     'all' => 'Allemaal',
