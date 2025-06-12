@@ -5,10 +5,10 @@
 </style>
 
 <?php
-    if(Auth::check()){
-        $role = Auth::user()->role;
-        $userId = auth()->id();
-    }
+if (Auth::check()) {
+    $role = Auth::user()->role;
+    $userId = auth()->id();
+}
 ?>
 
 <div class="left-side-menu">
@@ -63,7 +63,6 @@
                 <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse">
                         <i class="mdi mdi-view-dashboard-outline"></i>
-                        {{-- <span class="badge bg-success rounded-pill float-end">2</span> --}}
                         <span> {{ __('messages.dashboards') }} </span>
                     </a>
                     <div class="collapse" id="sidebarDashboards">
@@ -95,7 +94,6 @@
 
                 @if ($role == 'admin' || $role == 'employee')
                     @if (can('users', 'view'))
-
                         <li>
                             <a href="{{ route('users') }}">
                                 <i class="mdi mdi-account-circle-outline"></i>
@@ -104,8 +102,7 @@
                         </li>
                     @endif
                 @endif
-                @if($role == 'admin')
-                    @if(can('users','view'))
+                @if (can('users', 'view'))
                         <li>
                             <a href="{{ route('employee') }}">
                                 <i class="mdi mdi-account-circle-outline"></i>
@@ -113,11 +110,13 @@
                             </a>
                         </li>
                     @endif
-                @endif
+                {{-- @if ($role == 'admin')
+                    
+                @endif --}}
                 <?php
-                    $owner = EmployeeOwner($userId);
+                $owner = EmployeeOwner($userId);
                 ?>
-                @if($role == 'admin' || (isset($owner->role) && $owner->role == 'admin'))
+                @if ($role == 'admin' || (isset($owner->role) && $owner->role == 'admin'))
                     <li>
                         <a href="{{ route('usersignup') }}">
                             <i class="mdi mdi-account-plus"></i>
@@ -176,8 +175,8 @@
                                 </li>
                             @endif
 
-                            @if($role == 'admin' || (isset($owner->role) && $owner->role == 'admin'))
-                                @if(can('brands','view'))
+                            @if ($role == 'admin' || (isset($owner->role) && $owner->role == 'admin'))
+                                @if (can('brands', 'view'))
                                     <li>
                                         <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i><span
                                                 class="custom-ml-15">{{ __('messages.brands') }}</a>
@@ -287,7 +286,12 @@
                         </a>
                     </li>
                 @endif
-
+                <li>
+                    <a href="{{ route('reminder') }}">
+                        <i class="mdi mdi-bell-outline"></i>
+                        <span> {{ __('messages.reminder') }} </span>
+                    </a>
+                </li>
                 @if ($role == 'admin')
                     @if (can('User IP', 'view'))
                         <li>
@@ -298,6 +302,9 @@
                         </li>
                     @endif
                     {{-- Added by Farhan  --}}
+
+
+
                     @if (can('Blogs', 'view'))
                         <li>
                             <a href="#sub_menu_blog" data-bs-toggle="collapse">
