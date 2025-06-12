@@ -278,7 +278,7 @@ return [
     'Whether you need a compact car for city drives, a luxury vehicle for a special event, or a spacious SUV for a family trip, our rental service offers a wide range of options tailored to your needs' => 'Whether you need a compact car for city drives, a luxury vehicle for a special event, or a spacious SUV for a family trip, our rental service offers a wide range of options tailored to your needs',
     'CONTACT US' => 'CONTACT US',
     'All Right Reserved' => 'All Right Reserved',
-    'About-us' => 'About-us',
+    'About-us' => 'About us',
     '86 Industry Experts' => '86 Industry Experts',
     'Years in Business' => 'Years in Business',
     'Our Mission' => 'Our Mission',
