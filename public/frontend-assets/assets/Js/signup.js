@@ -17,35 +17,27 @@ $(document).on('submit', '#usersignup', function(e) {
     
     // Optional: Add validation here if needed
     if(!name){
-        Toast.create({
-            title: 'Validation Error',
-            message: 'Name Required.',
-            timeout: 4000
-        });
+        
+        var message = 'Name Required.';
+        showToast(message, "error");
         return;
     }
     if (!email || !password) {
-        Toast.create({
-            title: 'Validation Error',
-            message: 'Both email and password are required.',
-            timeout: 4000
-        });
+        
+        var message = 'Both email and password are required.';
+        showToast(message, "error");
         return;
     }
     if (!phone) {
-        Toast.create({
-            title: 'Validation Error',
-            message: 'Phone Number is required.',
-            timeout: 4000
-        });
+        
+        var message = 'Phone Number is required.';
+        showToast(message, "error");
         return;
     }
     if(password !== confirmPassword){
-        Toast.create({
-            title: 'Validation Error',
-            message: 'Password and Confirm Password are not Same.',
-            timeout: 4000
-        });
+        
+        var message = 'Password and Confirm Password are not Same.';
+        showToast(message, "error");
         return;
     }
     
@@ -61,15 +53,8 @@ $(document).on('submit', '#usersignup', function(e) {
             _token: $('meta[name="csrf-token"]').attr('content')// Laravel CSRF token
         },
         success: function(response) {
-            // console.log(response)
-            //console.log(response.message);
-            let toast = {
-                title: response.status,
-                message: response.message,
-                status: response.status,
-                timeout: 5000
-            }
-            Toast.create(toast);
+            
+            showToast(response.message, response.status);
             
             if (response.status === 'Success') {
                 let modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
@@ -86,18 +71,13 @@ $(document).on('submit', '#usersignup', function(e) {
                 for (let field in errors) {
                     if (errors.hasOwnProperty(field)) {
                         errors[field].forEach(function(message) {
-                            Toast.create({
-                                title: 'Validation Error',
-                                message: message,
-                                status: 'error',
-                                timeout: 4000
-                            });
-                            
+                            showToast(message, "error");
                         });
                     }
                 }
             } else {
-                alert("Something went wrong. Please try again.");
+                var message = "Something went wrong. Please try again.";
+                showToast(message, "error");
             }
         }
     });
