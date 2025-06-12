@@ -12,9 +12,9 @@ class Language extends Model
         'flag_code',
         'is_active',
     ];
-    public function languages()
+    public function users()
     {
-        return $this->hasMany(Language::class, 'language_id','id');
+        return $this->hasMany(User::class, 'language_id','id');
     }
 
 }
