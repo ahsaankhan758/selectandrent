@@ -39,14 +39,7 @@ $(document).on('submit', '#bookingForm', function(e) {
             data: form.serialize(),
             success: function(response) {
                 
-                // toaster alert
-                    let toast = {
-                        title: "Alert",
-                        message: response.message,
-                        status: response.status,
-                        timeout: 5000
-                    }
-                    Toast.create(toast);
+                    showToast(response.message, "success");
                     // 
                     submitBtn.prop('disabled', false).text('Order Confirmation');
                     if(response.status){
@@ -76,13 +69,8 @@ $(document).on('submit', '#bookingForm', function(e) {
         // end ajax
     } else {
 
-        let toast = {
-            title: "Alert",
-            message: 'Please fill all required fields correctly.',
-            status: 'Error',
-            timeout: 5000
-        }
-        Toast.create(toast);
+        var message = 'Please fill all required fields correctly.';
+         showToast(message, "error");
         submitBtn.prop('disabled', false).text('Order Confirmation');
        
     }
