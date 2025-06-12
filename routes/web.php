@@ -1,6 +1,10 @@
 <?php
 
 
+
+use App\Http\Controllers\Admin\CustomerReviewController;
+use App\Http\Controllers\Admin\LanguageController;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
@@ -169,6 +173,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
             Route::put('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
             Route::get('getUserPermissions',[PermissionController::class, 'getUserPermissions'])->name('getUserPermissions');
+
+            //Invoice
+            Route::get('/booking/invoice/{id}', [FinancialController::class, 'invoice'])->name('booking.invoice');
+
         });
     }
 
@@ -288,6 +296,9 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
             Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
+
+            //Customer Review
+            Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
 
         });
     }

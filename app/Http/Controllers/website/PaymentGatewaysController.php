@@ -87,6 +87,7 @@ class PaymentGatewaysController extends Controller
                 'tax_amount' => $bookingData['tax'][0],
                 'payment_status' => 'pending',
                 'booking_status' => 'pending',
+                'payment_method' => $method,
                 'insurance_included' => 0,
             ]);
     
