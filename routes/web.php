@@ -1,15 +1,14 @@
 <?php
 
 
-use App\Http\Controllers\Admin\LanguageController;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\Auth\LoginController;
@@ -26,6 +25,8 @@ use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\Cars\CarController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\ReminderController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\website\CarRegController;
 use App\Http\Controllers\website\ReviewController;
@@ -49,8 +50,8 @@ use App\Http\Controllers\website\CarSearchController;
 use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\website\CarBookingController;
 
+use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\CarRegisterController;
@@ -110,7 +111,14 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
-           
+
+        // reminder
+            Route::get('/reminders', [ReminderController::class, 'show'])->name('reminder');
+            Route::get('/reminders/create', [ReminderController::class, 'create'])->name('reminders.create');
+            Route::post('/reminders', [ReminderController::class, 'store'])->name('reminders.store');
+            Route::get('/reminders/{id}', [ReminderController::class, 'edit'])->name('reminders.edit');
+            Route::put('/reminders/{id}', [ReminderController::class, 'update'])->name('reminders.update');
+            Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
 
             //Employees
             Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
@@ -244,6 +252,15 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::post('/booking/pickup/{bookingItemId}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
             Route::post('/booking/dropoff/{bookingItemId}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
 
+            // reminder
+            Route::get('/reminders', [ReminderController::class, 'show'])->name('reminder');
+            Route::get('/reminders/create', [ReminderController::class, 'create'])->name('reminders.create');
+            Route::post('/reminders', [ReminderController::class, 'store'])->name('reminders.store');
+            Route::get('/reminders/{id}', [ReminderController::class, 'edit'])->name('reminders.edit');
+            Route::put('/reminders/{id}', [ReminderController::class, 'update'])->name('reminders.update');
+            Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
+
+
             // review
             Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             // Permissions
@@ -284,6 +301,15 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Dashborad
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
           
+
+              // reminder
+            Route::get('/reminders', [ReminderController::class, 'show'])->name('reminder');
+            Route::get('/reminders/create', [ReminderController::class, 'create'])->name('reminders.create');
+            Route::post('/reminders', [ReminderController::class, 'store'])->name('reminders.store');
+            Route::get('/reminders/{id}', [ReminderController::class, 'edit'])->name('reminders.edit');
+            Route::put('/reminders/{id}', [ReminderController::class, 'update'])->name('reminders.update');
+            Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
+
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
             Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
