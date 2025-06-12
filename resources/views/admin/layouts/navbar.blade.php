@@ -153,19 +153,19 @@
             </li>
             
             <li class="dropdown notification-list topbar-dropdown">
-                  @php
-                            $profileImage = Auth::user()->profile_image;
-                            @endphp
+                @php
+                    $profileImage = Auth::user()->profile_image;
+                @endphp
 
-                        <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light text-white"
-                        data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" title="">
-                            @if ($profileImage && file_exists(public_path($profileImage)))
-                                <img src="{{ asset($profileImage) }}" alt="Profile" width="30" height="30"
-                                    class="rounded-circle object-fit-cover" style="object-fit: cover;">
-                            @else
-                                <i class="mdi mdi-account-circle-outline theme-color text-white" style="font-size: 25px;"></i>
-                            @endif
-                        </a>
+                <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light text-white"
+                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" title="">
+                    @if ($profileImage && file_exists(public_path($profileImage)))
+                        <img src="{{ asset($profileImage) }}" alt="Profile" width="30" height="30"
+                            class="rounded-circle object-fit-cover" style="object-fit: cover;">
+                    @else
+                        <i class="mdi mdi-account-circle-outline theme-color text-white" style="font-size: 25px;"></i>
+                    @endif
+                </a>
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                     <!-- item-->
                     <a class="dropdown-item notify-item">Welcome! {{ Auth::user()->name }}</a>

@@ -1,4 +1,68 @@
- <div class="col-12">
+<style>
+    :root {
+    --white-color:#ffffff;
+    --black-color:#000000;
+    --grey-color:#eeeeee;
+    --text-white:#ffffff;
+    --text-black:#000000;
+    --scroll-back:#A1A9AD;
+    --text-grey:#000000;
+    --text-orange:#f06115;
+    --text-blue:#07407B;
+    
+    }
+
+    .btn-orange-clr{
+        background-color: var(--text-orange);
+        --bs-btn-hover-bg: var(--text-orange);
+    }
+
+    .btn-dark-blue-clr{
+        background-color: var(--text-blue);
+        --bs-btn-hover-bg: var(--text-blue);
+    }
+    
+    .text-orange{
+        color: var(--text-orange);
+    }
+    .car-count-badge {
+        position: absolute;
+        top: -5px;
+        right: 0;
+        background-color: var(--text-orange);
+        color: var(--text-white);
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .star-rating {
+    direction: rtl;
+    font-size: 1.5rem;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+    justify-content: start;
+    }
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: #ffc107;
+    }
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
+<div class="col-12">
      <div class="card">
          <div class="card-body">
              <div class="table-responsive">
@@ -108,3 +172,4 @@
          </div>
      </div>
  </div>
+<script src="{{ asset('/assets/Js/admin/customerReviews.js') }}"></script>

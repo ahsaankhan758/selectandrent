@@ -3,6 +3,7 @@
 @section('title') {{ __('messages.create') }} {{ __('messages.vehicle') }} @endsection
 @section('content')
     <script src="{{ asset('assets/js/admin/locationArea.js') }}"></script>
+    
 
     <style>
         .tooltip-icon {
@@ -226,16 +227,31 @@
                         <div class="col-3 form-group mb-3">
                             <label for="thumbnail">{{ __('messages.thumbnail') }}</label>
                             <input type="file" name="thumbnail" class="form-control"  id="thumbnail" onchange="PreviewThumbnail();">
-                            
                         </div>
                         <div class="col-3 form-group mb-3">
-                            <label for="images">{{ __('messages.images') }}
-                                <span class="tooltip-icon" onclick="toggleImageTooltip()">
-                                    <i style="cursor: pointer;">ℹ️How To Upload Pictures</i>
-                                </span>
+                            <label for="images">
+                                {{ __('messages.images') }} 
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#uploadTemplate" class="ms-2">
+                                    <i class="bi bi-info-circle"></i> How to Upload Pictures
+                                </a>
                             </label>
-                            <div id="imageTooltip" class="image-tooltip">
-                                <img src="{{ asset('assets/images/How_to_Upload_Pictures.jpg') }}" alt="Weight Info" />
+
+                            <!-- The Modal -->
+                            <div class="modal" id="uploadTemplate">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Template For Pictures</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="{{asset('/')}}assets/images/How_to_Upload_Pictures.jpeg" class="img-fluid w-100">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages()" multiple>
                         </div>
