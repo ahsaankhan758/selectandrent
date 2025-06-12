@@ -23,15 +23,9 @@ $(document).on('click', '#car-booking-btn', function(e) {
             id: carId
         },
         success: function(response) {
-            // console.log(response.message);
-            let toast = {
-                title: "Alert",
-                message: response.message,
-                status: response.status,
-                timeout: 5000
-            }
-            Toast.create(toast);
-            // toastr.success('Success','Error Title')
+            
+            showToast(response.message, response.status);
+            
             // 
             if(response.status == 'success'){
             setTimeout(function() {
@@ -51,5 +45,7 @@ $(document).on('click', '#car-booking-btn', function(e) {
             $button.prop('disabled', false);
         }
     });
+
+    
 });
 });
