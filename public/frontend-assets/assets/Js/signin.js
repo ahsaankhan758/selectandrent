@@ -17,12 +17,8 @@ $(document).on('submit', '#usersignin', function(e) {
     // Optional: Add validation here if needed
     if (!email || !password) {
 
-        Toast.create({
-            title: 'Validation Error',
-            message: 'Both email and password are required.',
-            timeout: 4000
-        });
-
+        var message = 'Both email and password are required.';
+        showToast(message, "error");
         return;
     }
 
@@ -35,17 +31,8 @@ $(document).on('submit', '#usersignin', function(e) {
             _token: $('meta[name="csrf-token"]').attr('content')// Laravel CSRF token
         },
         success: function(response) {
-            // console.log(response)
-
-            //console.log(response.message);
-
-            let toast = {
-                title: response.status,
-                message: response.message,
-                status: response.status,
-                timeout: 5000
-            }
-            Toast.create(toast);
+            
+            showToast(response.message, response.status);
             // 
             if (response.status === 'Success') {
                 let modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
