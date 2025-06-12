@@ -58,13 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(res => res.json())
         .then(data => {
-            const toast = {
-                title: "Alert",
-                message: data.message,
-                status: data.status,
-                timeout: 5000
-            };
-            Toast.create(toast);
+            
+            showToast(data.message, data.status);
             // 
             console.log(data);
             $('.showNewPrice'+data.rowId).html(data.price);

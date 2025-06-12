@@ -32,13 +32,7 @@ $(document).on('submit', '#orderBookingFormSubmit', function(e) {
             success: function(response) {
                 // console.log(response)
                 // toaster alert
-                    let toast = {
-                        title: "Alert",
-                        message: response.message,
-                        status: response.status,
-                        timeout: 5000
-                    }
-                    Toast.create(toast);
+                    showToast(response.message, "success");
                     // 
                     if(response.status == false){
                         submitBtn.prop('disabled', false).html('<i class="fa-solid fa-cart-shopping"></i> Process to Checkout');
@@ -58,9 +52,11 @@ $(document).on('submit', '#orderBookingFormSubmit', function(e) {
                     $.each(errors, function(key, val) {
                         errorMsg += val[0] + '\n';
                     });
-                    alert(errorMsg);
+                    // alert(errorMsg);
+                    showToast(errorMsg, "error");
                 } else {
-                    alert('An unexpected error occurred.');
+                    var message = 'An unexpected error occurred.';
+                    showToast(message, "error");
                 }
             }
         });
