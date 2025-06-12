@@ -726,4 +726,5 @@ return [
 'country' => 'Country',
 'day_hour'        => 'Hour/Day',
 'print'=>'Print',
+'reminder'=>'Reminder',
 ];
