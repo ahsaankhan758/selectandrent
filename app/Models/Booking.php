@@ -49,6 +49,11 @@ class Booking extends Model
         return $this->belongsTo(Car::class);
     }
 
+   public function review()
+    {
+        return $this->hasOne(CustomerReview::class, 'booking_id', 'id');
+    }
+
 
 
 

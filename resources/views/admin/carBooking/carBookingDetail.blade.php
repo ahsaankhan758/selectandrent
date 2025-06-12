@@ -207,8 +207,11 @@
                                         {{ $detail->vehicle->company->phone }} </p>
                                     <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.email') }}</span>
                                         {{ $detail->vehicle->company->email }} </p>
-                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.country') }}</span>
-                                        {{ $detail->vehicle->company->country->name }} </p>
+                                        @if(isset($detail->vehicle->company->country->name))
+                                            <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.country') }}</span>
+                                            {{ $detail->vehicle->company->country->name ?? ' ' }}</p>
+                                        @endif
+                                    
                                 </div>
                             @endforeach
                         @endif
