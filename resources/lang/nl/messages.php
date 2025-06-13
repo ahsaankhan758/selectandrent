@@ -725,5 +725,8 @@ return [
     'country' => 'Land',
     'day_hour' => 'Uur/Dag',
 'print' => 'Afdrukken',
+'reminder' => 'Herinnering',
+'Subject' => 'Onderwerp',
+'invoice' => 'Factuur',
 
 ];
