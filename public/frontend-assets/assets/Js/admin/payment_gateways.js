@@ -30,7 +30,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         if (!selectedId) {
-            toastr.warning('Please select a Payment Gateway first.');
+            showToast('Please select a Payment Gateway first.', "error");
             return;
         }
 
@@ -54,14 +54,16 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
             },
             success: function(response) {
-                toastr.success(response.success);
-
+               
+                showToast(response.success, "success");
                 setTimeout(function() {
                     location.reload();
                 }, 3000); // 1.5 seconds delay
             },
             error: function(xhr) {
-                toastr.error('An error occurred while updating.');
+               
+                var message = 'An error occurred while updating.';
+                showToast(message, "error");
             }
         });
     });
@@ -71,7 +73,8 @@ $(document).ready(function() {
         var gatewayName = $('#newGatewayName').val();
 
         if (gatewayName.trim() === "") {
-            toastr.warning('Gateway name is required.');
+            var message = 'Gateway name is required.';
+            showToast(message, "warning");
             return;
         }
 
@@ -86,13 +89,16 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $('#addGatewayModal').modal('hide');
-                toastr.success('Payment Gateway added successfully!');
+                
+                var message = 'Payment Gateway added successfully!';
+                showToast(message, "success");
                 setTimeout(function() {
                     location.reload();
                 }, 1500);
             },
             error: function(xhr) {
-                toastr.error('An error occurred while adding.');
+                var message = 'An error occurred while adding.';
+                showToast(message, "error");
             }
         });
     });

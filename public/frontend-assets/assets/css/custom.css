@@ -221,7 +221,7 @@ color: var(--black-color);
   .car-image {
       width: 100%;
       max-width: 550px;
-      margin-top: 50px;
+      /* margin-top: 50px; */
       margin-bottom: -42px;
   }
   .height-set {
@@ -911,10 +911,12 @@ margin: 5px 0;
 }
 
 .text-height{
-  height: 200px;
+  height: 180px;
+  /* height: 200px; */
 }
 .join-program{
-  padding-top: 12rem;
+  /* padding-top: 12rem; */
+  padding-top: 8rem;
 }
 @media (min-width: 320px) and (max-width: 480px) {
   .ready-start {

@@ -18,13 +18,8 @@ $(document).on('submit', '#registerForm', function (e) {
         data: form.serialize(),
         success: function (response) {
             submitBtn.prop('disabled', false).text('Submit');
-           let toast = {
-                title: "Alert",
-                message: response.message,
-                status: response.status,
-                timeout: 5000
-            }
-            Toast.create(toast);
+           
+            showToast(response.message, response.status);
             form.trigger('reset');
         },
         error: function (xhr) {
