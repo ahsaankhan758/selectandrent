@@ -728,4 +728,6 @@ return [
 'day_hour'        => 'Hour/Day',
 'print'=>'Print',
 'reminder'=>'Reminder',
+'Subject'=>'Subject',
+'invoice'=>'Invoice',
 ];
