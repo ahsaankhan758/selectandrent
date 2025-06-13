@@ -734,5 +734,8 @@ return [
     'country' => 'البلد',
 'day_hour' => 'ساعة/يوم',
 'print' => 'طباعة',
+'reminder' => 'تذكير',
+'Subject' => 'الموضوع',
+'invoice' => 'فاتورة',
 
 ];

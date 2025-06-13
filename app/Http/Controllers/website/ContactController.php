@@ -53,6 +53,7 @@ class ContactController extends Controller
         'email'      => 'required|email',
         'phone'      => 'required|string|max:20',
         'message'    => 'required|string',
+        'subject' => 'required|string',
     ]);
 
     $contact = new Contact($validated);
