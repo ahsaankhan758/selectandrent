@@ -136,41 +136,39 @@ if (Auth::check()) {
                             @endif
                             @if (can('Vehicle', 'view'))
                                 <li>
-                                    <a href="{{ route('carListings') }}"> <i
-                                            class="mdi mdi-image-filter-none"></i>
-                                            <span
-                                            class="custom-ml-15">{{ __('messages.listings') }}</span>
-                                            <span class="badge ms-2"
-                                style="background-color: #f06115; color: white; font-weight: bold;">
-                                {{ getVehicleCount() }}
-                            </span>
-                                        </a>
+                                    <a href="{{ route('carListings') }}"> <i class="mdi mdi-image-filter-none"></i>
+                                        <span class="custom-ml-15">{{ __('messages.listings') }}</span>
+                                        <span class="badge ms-2"
+                                            style="background-color: #f06115; color: white; font-weight: bold;">
+                                            {{ getVehicleCount() }}
+                                        </span>
+                                    </a>
                                 </li>
                             @endif
 
                             @if ($role == 'admin' || (isset($owner->role) && $owner->role == 'admin'))
                                 @if (can('brands', 'view'))
                                     <li>
-                                        <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i><span
-                                                class="custom-ml-15">{{ __('messages.brands') }}</a>
+                                        <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i>
+                                            <span  class="custom-ml-15">{{ __('messages.brands') }}</span></a>
                                     </li>
                                 @endif
                                 @if (can('categories', 'view'))
                                     <li>
-                                        <a href="{{ route('carCategories') }}"> <i class="mdi mdi-car"></i><span
-                                                class="custom-ml-15">{{ __('messages.categories') }}</a>
+                                        <a href="{{ route('carCategories') }}"> <i class="mdi mdi-car"></i>
+                                        <span class="custom-ml-15">{{ __('messages.categories') }}</span></a>
                                     </li>
                                 @endif
                                 @if (can('features', 'view'))
                                     <li>
                                         <a href="{{ route('carFeatures') }}"> <i class="mdi mdi-car"></i><span
-                                                class="custom-ml-15">{{ __('messages.features') }}</a>
+                                                class="custom-ml-15">{{ __('messages.features') }}</span></a>
                                     </li>
                                 @endif
                                 @if (can('models', 'view'))
                                     <li>
                                         <a href="{{ route('carModels') }}"> <i class="mdi mdi-car-estate"></i><span
-                                                class="custom-ml-15">{{ __('messages.models') }}</a>
+                                                class="custom-ml-15">{{ __('messages.models') }}</span></a>
                                     </li>
                                 @endif
                             @endif
@@ -178,12 +176,12 @@ if (Auth::check()) {
                                 <li>
                                     <a href="{{ route('carLocations') }}"> <i
                                             class="mdi mdi-map-marker-radius"></i><span
-                                            class="custom-ml-15">{{ __('messages.locations') }}</a>
+                                            class="custom-ml-15">{{ __('messages.locations') }}</span></a>
                                 </li>
                             @endif
                             <li>
                                 <a href="{{ route('cities') }}"> <i class="mdi mdi-map-marker-radius"></i><span
-                                        class="custom-ml-15">city</a>
+                                        class="custom-ml-15">city</span></a>
                             </li>
                             @if (can('featured_vehicles', 'view'))
                                 <li>
