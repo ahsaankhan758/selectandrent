@@ -57,7 +57,8 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('Failed to fetch models for selected brand.');
+                var message = 'Failed to fetch models for selected brand.';
+                showToast(message, "error");
             }
         });
     });
@@ -79,7 +80,8 @@ $(document).ready(function () {
                 if (response.status && response.redirect_url) {
                     window.location.href = response.redirect_url;
                 } else {
-                    alert('No cars found or redirect failed.');
+                    var message = 'No cars found or redirect failed.';
+                    showToast(message, "error");
                 }
             },
             error: function (xhr) {
@@ -91,9 +93,10 @@ $(document).ready(function () {
                     $.each(errors, function (key, val) {
                         errorMsg += val[0] + '\n';
                     });
-                    alert(errorMsg);
+                    showToast(errorMsg, "error");
+                    
                 } else if (xhr.responseJSON && xhr.responseJSON.message) {
-                    alert(xhr.responseJSON.message);
+                    showToast(xhr.responseJSON.message, "error");
                 }
             }
         });

@@ -15,21 +15,15 @@ $(document).on('click', '.remove-btn', function() {
         method: 'POST',
         data: { rowId: rowId },
         success: function(response) {
-            // alert('Item removed from cart.');
-            let toast = {
-                title: "Alert",
-                message: response.message,
-                status: response.status,
-                timeout: 5000
-            }
-            Toast.create(toast);
+            showToast(response.message, response.status);
             if (response.status === 'success') {
             setTimeout(function() {
                 location.reload();
             }, 2000);} // 5000 ms = 5 seconds
         },
         error: function(xhr, status, error) {
-            alert('An error occurred while removing the item.');
+            var message = 'An error occurred while removing the item.';
+            showToast(message, "error");
             console.error(xhr.responseText);
         }
     });

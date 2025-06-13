@@ -14,13 +14,8 @@ $.ajaxSetup({
     data: form.serialize(),
     success: function(response) {
         if (response.status) {
-            let toast = {
-                title: "Alert",
-                message: response.message,
-                status: response.status,
-                timeout: 5000
-            }
-            Toast.create(toast);
+            
+            showToast(response.message, "success");
             submitBtn.prop('disabled', false).text('Submit Now');
             form.trigger('reset');
         } else {
@@ -35,9 +30,11 @@ $.ajaxSetup({
     $.each(errors, function(key, val) {
     errorMsg += val[0] + '\n';
     });
-    alert(errorMsg);
+    // alert(errorMsg);
+     showToast(errorMsg, "error");
     } else {
-    alert('An unexpected error occurred.');
+    var message = 'An unexpected error occurred.';
+    showToast(message, "error");
     }
     }
     });
