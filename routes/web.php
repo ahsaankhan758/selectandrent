@@ -3,7 +3,6 @@
 
 
 use App\Http\Controllers\Admin\CustomerReviewController;
-use App\Http\Controllers\Admin\LanguageController;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -72,19 +71,14 @@ use App\Http\Controllers\website\WebsiteDashboardController;
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}',[LanguageController::class, 'setLanguage'])->name('change.language');
-    
-
     // Logout
     Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
-
-    
     // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
 
     Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
-
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
@@ -207,7 +201,6 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
             Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
             Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
-            
             //Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
@@ -259,7 +252,6 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
             Route::post('/booking/pickup/{bookingItemId}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
             Route::post('/booking/dropoff/{bookingItemId}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
-
             // reminder
             Route::get('/reminders', [ReminderController::class, 'show'])->name('reminder');
             Route::get('/reminders/create', [ReminderController::class, 'create'])->name('reminders.create');
@@ -267,8 +259,6 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/reminders/{id}', [ReminderController::class, 'edit'])->name('reminders.edit');
             Route::put('/reminders/{id}', [ReminderController::class, 'update'])->name('reminders.update');
             Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
-
-
             // review
             Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             // Permissions
@@ -276,13 +266,11 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
             Route::put('storePermissions', [PermissionController::class, 'store'])->name('storePermissions');   
             Route::get('getUserPermissions',[PermissionController::class, 'getUserPermissions'])->name('getUserPermissions');
-
             // Admin payment gateways
             Route::get('paymentgateway',[AdminPaymentGateways::class, 'index'])->name('paymentGateway');
             Route::get('payment-gateways/{id}', [AdminPaymentGateways::class, 'getGateway'])->name('admin.payment-gateways.get');
             Route::post('payment-gateways/{id}', [AdminPaymentGateways::class, 'update'])->name('admin.payment-gateways.update');
             Route::post('/admin/payment-gateways/store', [AdminPaymentGateways::class, 'storeGatewayName'])->name('admin.payment-gateways.store');
-
             //Currencies
             Route::get('currencies',[CurrencyController::class, 'index'])->name('currencies');
             Route::get('createCurrency',[CurrencyController::class, 'create'])->name('createCurrency');
@@ -290,16 +278,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('editCurrency/{id}', [CurrencyController::class, 'edit'])->name('editCurrency');
             Route::put('updateCurrency/{id}', [CurrencyController::class, 'update'])->name('updateCurrency');
             Route::get('deleteCurrency/{id}', [CurrencyController::class, 'delete'])->name('deleteCurrency');
-
              // notifications by ak
             Route::get('/notifications/clear', [NotificationController::class, 'clear'])->name('notifications.clear');
             Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
             Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
-
             //Customer Review
             Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
-
         });
     }
 

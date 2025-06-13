@@ -78,7 +78,7 @@
                                      <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                  </div>
                              </th>
-                             <th>Invoice</th>
+                             <th>{{ __('messages.invoice') }}</th>
                              <th>{{ __('messages.pick/drop') }}</th>
                              <th style="width: 125px;">{{ __('messages.action') }}</th>
                              <th>{{ __('messages.name') }}</th>
@@ -106,8 +106,8 @@
                                  </td>
                                  <td>
                                      <a href="{{ route('booking.invoice', ['id' => $booking->id]) }}"
-                                         class="text-primary fw-bold">
-                                         Invoice
+                                         class="text-danger fw-bold" style="font-size: 20px;">
+                                       <i class="fa-solid fa-file-pdf"></i>
                                      </a>
                                  </td>
 
