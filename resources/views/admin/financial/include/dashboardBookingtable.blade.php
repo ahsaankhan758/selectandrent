@@ -1,66 +1,3 @@
-<style>
-    :root {
-    --white-color:#ffffff;
-    --black-color:#000000;
-    --grey-color:#eeeeee;
-    --text-white:#ffffff;
-    --text-black:#000000;
-    --scroll-back:#A1A9AD;
-    --text-grey:#000000;
-    --text-orange:#f06115;
-    --text-blue:#07407B;
-    
-    }
-
-    .btn-orange-clr{
-        background-color: var(--text-orange);
-        --bs-btn-hover-bg: var(--text-orange);
-    }
-
-    .btn-dark-blue-clr{
-        background-color: var(--text-blue);
-        --bs-btn-hover-bg: var(--text-blue);
-    }
-    
-    .text-orange{
-        color: var(--text-orange);
-    }
-    .car-count-badge {
-        position: absolute;
-        top: -5px;
-        right: 0;
-        background-color: var(--text-orange);
-        color: var(--text-white);
-        border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
-        font-weight: bold;
-    }
-    .star-rating {
-    direction: rtl;
-    font-size: 1.5rem;
-    unicode-bidi: bidi-override;
-    display: inline-block;
-    justify-content: start;
-    }
-
-    .star-rating input[type="radio"] {
-        display: none;
-    }
-
-    .star-rating label {
-        color: #ccc;
-        cursor: pointer;
-        transition: color 0.2s;
-    }
-
-    .star-rating input[type="radio"]:checked ~ label,
-    .star-rating label:hover,
-    .star-rating label:hover ~ label {
-        color: #ffc107;
-    }
-
-</style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <div class="col-12">
      <div class="card">
@@ -121,7 +58,7 @@
                                                      <button class="btn btn-success btn-sm">Pickup</button>
                                                  </form>
                                              @elseif (!$item->actual_dropoff_datetime)
-                                                 <form action="{{ route('booking.dropoff', $item->id) }}"
+                                                 <form action="{{ route('booking.dropoff', ['id' => $item->id, 'vehicle_id' => $item->vehicle_id]) }}"
                                                      method="POST" style="display:inline;">
                                                      @csrf
                                                      <button class="btn btn-danger btn-sm">Dropoff</button>
@@ -137,10 +74,17 @@
                                      @endforeach
                                  </td>
 
-                                 <td>
-                                     <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
-                                         class="action-icon">
-                                         <i class="mdi mdi-eye"></i></a>
+                                 <td class="py-4 text-center">
+                                    <div class="d-inline-flex align-items-center"></div>
+                                        <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
+                                            class="action-icon">
+                                            <i class="mdi mdi-eye"></i>
+                                        </a>
+                                        <span class="text-muted mx-2">|</span>
+                                        <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-booking-id="{{ $booking->id }}" data-customer-id="{{ $booking->user_id }}" title="Give Review" class="ms-2">
+                                            <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
+                                        </a>
+                                    </td>
                                  </td>
                                  <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                  <td>{{ $booking->booking_reference }}</td>
@@ -172,4 +116,40 @@
          </div>
      </div>
  </div>
-<script src="{{ asset('/assets/Js/admin/customerReviews.js') }}"></script>
+ <!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="{{route('storeCustomerReview')}}" method="POST" id="reviewForm" class="w-100">
+      @csrf
+      <input type="hidden" name="booking_id" id="modal_booking_id">
+      <input type="hidden" name="customer_id" id="modal_customer_id">
+      <div class="modal-content shadow-lg border-0 rounded-4">
+        <div class="modal-header text-center border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-4 text-center">
+                <label class="form-label d-block fw-semibold">Rating</label>
+                <div class="star-rating">
+                    @for ($i = 5; $i >= 1; $i--)
+                        <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" required />
+                        <label for="star{{ $i }}" title="{{ $i }} star{{ $i > 1 ? 's' : '' }}">&#9733;</label>
+                    @endfor
+                </div>
+          </div>
+
+          <div class="mb-3 text-center">
+            <label for="comment" class="form-label fw-semibold">Comment (Optional)</label>
+            <textarea name="comment" class="form-control" rows="4" placeholder="Share your experience..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer border-0">
+          <button type="submit" class="btn text-white btn-orange-clr w-100" style="background-color: #ff6600 !important;">Submit Review</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="{{ asset('/assets/js/admin/customerReview.js') }}"></script>

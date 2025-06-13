@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Car;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Booking;
@@ -161,12 +162,16 @@ public function markPickup($bookingItemId)
 
     return back()->with('success', 'Pickup time recorded successfully.');
 }
-public function markDropoff($bookingItemId)
+public function markDropoff($bookingItemId,$vehicle_id)
 {
     $bookingItem = BookingItem::with('vehicle')->findOrFail($bookingItemId);
-
+    
     $bookingItem->actual_dropoff_datetime = now();
     $bookingItem->save();
+
+    $vehicle = Car::find($vehicle_id);
+    $vehicle->is_booked = '0';
+    $vehicle->save();
 
     if ($bookingItem->dropoff_location && $bookingItem->vehicle) {
         $car = $bookingItem->vehicle;

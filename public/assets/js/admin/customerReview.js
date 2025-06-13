@@ -1,7 +1,12 @@
+$(document).on('click', '#getVehicleId', function() {
+    const bookingId = $(this).data('booking-id');
+    const customerId = $(this).data('customer-id');
+    $('#modal_booking_id').val(bookingId);
+    $('#modal_customer_id').val(customerId);
+  });
+
 $(document).ready(function () {
-    $('#customer-review-form').on('submit', function (e) {
-        alert('submit');
-        return;
+    $('#reviewForm').on('submit', function (e) {
         e.preventDefault();
        
         let form = $(this);
