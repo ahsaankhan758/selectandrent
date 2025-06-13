@@ -725,5 +725,8 @@ return [
     'country' => 'Pays',
     'day_hour' => 'Heure/Jour',
 'print' => 'Imprimer',
+'reminder' => 'Rappel',
+'Subject' => 'Sujet',
+'invoice' => 'Facture',
 
 ];
