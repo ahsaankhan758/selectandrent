@@ -144,7 +144,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
             Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
             Route::post('/booking/pickup/{id}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
-            Route::post('/booking/dropoff/{id}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
+            Route::post('/booking/dropoff/{id}/{vehicle_id}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
 
             Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             // Client Routes
@@ -165,6 +165,9 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
             //Invoice
             Route::get('/booking/invoice/{id}', [FinancialController::class, 'invoice'])->name('booking.invoice');
+
+            //Customer Review
+            Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
 
         });
     }
@@ -247,7 +250,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/bookings/chart-data', [FinancialController::class, 'getChartData'])->name('bookings.chart-data');
             Route::get('/earnings-data', [FinancialController::class, 'getEarningsData'])->name('earnings.data');
             Route::post('/booking/pickup/{bookingItemId}', [FinancialController::class, 'markPickup'])->name('booking.pickup');
-            Route::post('/booking/dropoff/{bookingItemId}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
+            Route::post('/booking/dropoff/{id}/{vehicle_id}', [FinancialController::class, 'markDropoff'])->name('booking.dropoff');
 
             // review
             Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
@@ -384,6 +387,9 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
             Route::get('/notifications/all', [NotificationController::class, 'notificationView'])->name('notifications.all');
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
+
+            //Customer Review
+            Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
 
         });
     }

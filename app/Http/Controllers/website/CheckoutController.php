@@ -29,6 +29,7 @@ class CheckoutController extends Controller
                 $vehicleId = BookingItem::where('booking_id', $booking->id)->first()->vehicle_id ?? null;
 
                 if ($vehicleId) {
+                   Car::where('id', $vehicleId)->update(['is_booked' => '1']);
                     $car = Car::with('users')->find($vehicleId);
 
                     if ($car) {

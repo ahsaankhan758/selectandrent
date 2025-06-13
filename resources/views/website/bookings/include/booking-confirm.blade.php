@@ -80,7 +80,7 @@
 
     </div>
     <div class="container heading-background py-3 mb-3">
-        <div class="container text-start fw-bold">{{ __('messages.Billing Address') }}</div>
+        <div class="container text-start fw-bold">{{ __('messages.') }}</div>
     </div>
     <div class="container cvv-card py-3">
 

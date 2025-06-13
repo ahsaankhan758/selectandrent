@@ -162,7 +162,7 @@
     <div class="container py-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                @foreach ($featuredVehicle as $car)
+                @forelse($featuredVehicle as $car)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
                             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
@@ -225,7 +225,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
+                    </tr>
+                @endforelse
             </div>
         </div>
 
@@ -262,7 +266,7 @@
     <div class="container py-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                @foreach ($newArrival as $car)
+                @forelse ($newArrival as $car)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
                             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
@@ -325,7 +329,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
+                    </tr>
+                @endforelse
             </div>
         </div>
 
@@ -567,7 +575,7 @@
     <div class="container py-4">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                @foreach ($cars as $car)
+                @forelse ($cars as $car)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
                             <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
@@ -651,7 +659,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
+                    </tr>
+                @endforelse
             </div>
         </div>
 
