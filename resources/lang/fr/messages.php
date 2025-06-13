@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'no_vehicles' => 'Aucun véhicule trouvé', 
     'vehicle_max_weight' => 'Entrez le poids maximal que cette voiture peut transporter',
     'vehicle' => 'véhicule', 
     'pick/drop' => 'Ramassage / Dépôt',

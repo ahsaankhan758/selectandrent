@@ -1,6 +1,7 @@
  <?php
 
 return [
+  'no_vehicles' => 'No Vehicle Found',
   'vehicle' => 'vehicle',
   'review' => 'Review',
   'review_details' => 'Vehicle Review',

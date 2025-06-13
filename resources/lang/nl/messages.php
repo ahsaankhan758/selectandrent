@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'no_vehicles' => 'Geen voertuig gevonden',
     'vehicle_max_weight' => 'Voer het maximale gewicht in dat deze auto kan dragen', 
     'vehicle' => 'voertuig',
     'pick/drop' => 'Ophalen / Afzetten',
