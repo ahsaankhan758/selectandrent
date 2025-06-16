@@ -19,7 +19,7 @@ class SigninController extends Controller
     
         $userRole = $request->user_role; // From middleware
         $userStatus = $request->user_status; // From middleware
-    
+        
         // Block login if user status is 0
         if ($userStatus == 0) {
             return response()->json([
@@ -29,8 +29,8 @@ class SigninController extends Controller
         }
     
         // Proceed with login only if status is active (1)
-        if ($userStatus == 1 && Auth::attempt(['email' => $request->email, 'password' => $request->password]) && $userRole == 'user') {
-    
+        if ($userStatus == 1 && Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role'=>$userRole ]) && $userRole == 'user') {
+            
             $request->session()->regenerate();
     
             $html = view('website.template.include')->render();

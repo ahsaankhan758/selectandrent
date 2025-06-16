@@ -24,11 +24,13 @@ class CarListingController extends Controller
 
     // Apply Sorting (Use 'rent' instead of 'price')
     if ($request->has('sort')) {
+       
         if ($request->sort == 'low_to_high') {
             $query->orderBy('rent', 'asc');
         } elseif ($request->sort == 'high_to_low') {
             $query->orderBy('rent', 'desc');
         }
+        
     } else {
         $query->latest();
     }

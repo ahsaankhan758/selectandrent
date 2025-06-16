@@ -25,7 +25,7 @@ class AdminMiddleware
         }
 
         if (!Auth::check() && $request->has('email')) {
-            $current_user = User::where('email', $request->email)->first();
+            $current_user = User::where('email', $request->email)->where('role', '!=', 'user')->first();
 
             if (!$current_user || $current_user->status != 1) {
                 return redirect()->back()->with('statusDanger', 'Invalid or inactive user.');
