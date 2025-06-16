@@ -4,11 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CustomerReview;
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class CustomerReviewController extends Controller
 {
+    public function index()
+    {
+        $query = CustomerReview::orderBy('created_at', 'desc');
+        $loggedInUser = Auth::user();
+        $owner = EmployeeOwner($loggedInUser->id);
+        if ($loggedInUser->role === 'company') {
+                $employeeUserIds = Employee::where('owner_user_id', $loggedInUser->id)
+                    ->pluck('e_user_id');
+                $allUserIds = $employeeUserIds->push($loggedInUser->id);
+                $query = CustomerReview::whereIn('user_id', $allUserIds)
+                    ->orderBy('created_at', 'desc');
+            }elseif(isset($owner) && $owner->role === 'company' && $loggedInUser->role === 'employee'){
+                $query->where('user_id', $loggedInUser->id);
+            }
+
+        $customerReviews = $query->paginate(20);
+        return view('admin.review.customerReview', compact('customerReviews'));
+    }
     public function store(Request $request)
      {
         $validated = $request->validate([

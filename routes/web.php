@@ -121,7 +121,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Employees
             Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
             Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
-            Route::post('store', [EmployeeController::class,'store'])->name('storeEmployee');
+            Route::post('storeEmployee', [EmployeeController::class,'store'])->name('storeEmployee');
             Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
             Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
             Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
@@ -141,6 +141,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
             // review
             Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
+            
              //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             // Financial History
@@ -173,7 +174,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
             //Customer Review
             Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
-
+            Route::get('/customerReviews', [CustomerReviewController::class, 'index'])->name('customerReview');
         });
     }
 
@@ -200,7 +201,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Employees
             Route::get('employee', [EmployeeController::class, 'index'])->name('employee');
             Route::get('create', [EmployeeController::class,'create'])->name('createEmployee');
-            Route::post('store', [EmployeeController::class,'store'])->name('storeEmployee');
+            Route::post('storeEmployee', [EmployeeController::class,'store'])->name('storeEmployee');
             Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
             Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
             Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
@@ -267,6 +268,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
             // review
             Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
+
+            
             // Permissions
             Route::get('permissions/{role}',[PermissionController::class, 'index'])->name('permissions');
             Route::get('getUsersList',[PermissionController::class, 'selectedUsersList'])->name('getUsersList');
@@ -291,6 +294,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/notifications/getNotifications', [NotificationController::class, 'getNotifications'])->name('notifications.get');
             //Customer Review
             Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
+            Route::get('/customerReviews', [CustomerReviewController::class, 'index'])->name('customerReview');
         });
     }
 
@@ -407,6 +411,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
             //Customer Review
             Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
+            Route::get('/customerReviews', [CustomerReviewController::class, 'index'])->name('customerReview');
 
         });
     }

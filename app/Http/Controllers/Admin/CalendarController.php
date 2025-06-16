@@ -125,7 +125,14 @@ return response()->json($vehicles);
             
             $validated = $validator->validated();
             $vehicle = new Car($validated);
-            $vehicle->user_id = auth()->id();
+            $user = Auth::user();
+            if ($user && ($user->role == 'admin' || $user->role == 'company')) {
+                $vehicle->user_id = $user->id;
+            }
+            else{
+                $owner = EmployeeOwner($user->id);
+                $vehicle->user_id = $owner->id;
+            }
             $vehicle->date_added = $request->start;
             $vehicle->upload_type = 'calendar';
 
