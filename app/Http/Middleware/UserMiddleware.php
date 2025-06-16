@@ -16,8 +16,8 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = User::where('email', $request->input('email'))->first();
-
+        $user = User::where('email', $request->input('email'))->where('role','user')->first();
+        
         if (!empty($user)) {
             if ($user->role === 'user') {
                 $request->merge([
