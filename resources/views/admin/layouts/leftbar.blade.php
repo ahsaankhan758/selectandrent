@@ -313,7 +313,7 @@ if (Auth::check()) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="{{ route('customerReview') }}">
                                         <i class="mdi mdi-account-circle-outline"></i>
                                         <span class="custom-ml-15">{{ __('messages.user_reviews') }}</span>
                                     </a>

@@ -90,9 +90,16 @@ public function getLocations($city_id)
         'advance_deposit' => 'required|numeric',
         'min_age' => 'required|integer',
        ]);
-       $userId = Auth::id();
+       
        $car = new Car;
-       $car->user_id = $userId;
+       $user = Auth::user();
+        if ($user && ($user->role == 'admin' || $user->role == 'company')) {
+            $car->user_id = $user->id;
+        }
+        else{
+            $owner = EmployeeOwner($user->id);
+            $car->user_id = $owner->id;
+        }
        $car->car_model_id = $validatedData['model'];
        $car->car_category_id = $validatedData['category'];
        $car->car_location_id = $validatedData['location'];

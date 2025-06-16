@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'rating' => 'Beoordeling',
+    'ratings' => 'Beoordelingen',
+    'comment' => 'Opmerking',
+    'comments' => 'Opmerkingen',
+    'customer' => 'Klant',
+    'customers' => 'Klanten',
+    'reviews' => 'Beoordelingen',
     'no_vehicles' => 'Geen voertuig gevonden',
     'vehicle_max_weight' => 'Voer het maximale gewicht in dat deze auto kan dragen', 
     'vehicle' => 'voertuig',

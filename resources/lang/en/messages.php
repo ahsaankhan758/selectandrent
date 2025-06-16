@@ -1,6 +1,13 @@
  <?php
 
 return [
+  'rating'=>'Rating',
+  'ratings'=>'Ratings',
+  'comment'=>'Comments',
+  'comments'=>'Comments',
+  'customer' => 'Customer',
+  'customers' => 'Customers',
+  'reviews' => 'Reviews',
   'no_vehicles' => 'No Vehicle Found',
   'vehicle' => 'vehicle',
   'review' => 'Review',
