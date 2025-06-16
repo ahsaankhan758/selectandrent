@@ -37,6 +37,7 @@ class CurrencyController extends Controller
         // $currency->is_default = $validatedData['is_default'];
         $currency->is_active = $validatedData['is_active'];
         $currency->save();
+        // Save Logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
         $desciption = $userName.' Created [ Currency '.$validatedData['name'].'] Successfully.';

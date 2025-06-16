@@ -32,6 +32,13 @@ class LoginController extends Controller
     
         if ($user->role === 'admin') {
             if ($user->status == 1) {
+                // save logs
+                $userId = $user->id;
+                $userName = $user->name;
+                $desciption = $userName.' Logged In. User Role Was'.$user->role;
+                $action = 'Logged In';
+                $module = 'Admin';
+                activityLog($userId, $desciption,$action,$module);
                 return 'admin/dashboard';
             } else {
                 return 'admin/login';
@@ -40,6 +47,13 @@ class LoginController extends Controller
     
         if ($user->role === 'company') {
             if ($user->status == 1) {
+                // save logs
+                $userId = $user->id;
+                $userName = $user->name;
+                $desciption = $userName.' Logged In. User Role Was'.$user->role;
+                $action = 'Logged In';
+                $module = 'Company';
+                activityLog($userId, $desciption,$action,$module);
                 return 'company/dashboard';
             } else {
                 return 'company/login';
@@ -48,6 +62,13 @@ class LoginController extends Controller
 
         if ($user->role === 'employee') {
             if ($user->status == 1) {
+                // save logs
+                $userId = $user->id;
+                $userName = $user->name;
+                $desciption = $userName.' Logged In. User Role Was'.$user->role;
+                $action = 'Logged In';
+                $module = 'Employee';
+                activityLog($userId, $desciption,$action,$module);
                 return 'employee/dashboard';
             } else {
                 return 'employee/login';
