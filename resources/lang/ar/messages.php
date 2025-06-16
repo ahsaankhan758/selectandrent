@@ -1,6 +1,13 @@
 <?php 
 
 return [
+    'rating' => 'التقييم',
+    'ratings' => 'التقييمات',
+    'comment' => 'تعليق',
+    'comments' => 'التعليقات',
+    "customer" => "العميل",
+    "customers" => "العملاء",
+    "reviews" => "المراجعات",
     'no_vehicles' => 'لم يتم العثور على مركبة',
     'vehicle' => 'مركبة',
     'vehicle_max_weight' => 'أدخل الحد الأقصى للوزن الذي يمكن لهذه السيارة حمله',

@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'rating' => 'Note',
+    'ratings' => 'Notes',
+    'comment' => 'Commentaire',
+    'comments' => 'Commentaires',
+    'customer' => 'Client',
+    'customers' => 'Clients',
+    'reviews' => 'Avis',
     'no_vehicles' => 'Aucun véhicule trouvé', 
     'vehicle_max_weight' => 'Entrez le poids maximal que cette voiture peut transporter',
     'vehicle' => 'véhicule', 
