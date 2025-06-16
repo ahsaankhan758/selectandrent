@@ -20,8 +20,15 @@ if (Auth::check()) {
             <ul id="side-menu">
 
                 <li class="menu-title">{{ __('messages.navigation') }}</li>
-
                 <li>
+                    <a href="{{ route('dashboard') }}">
+                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <span>{{ __('messages.dashboards') }}</span>
+                    </a>
+                </li>
+
+
+                {{-- <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse">
                         <i class="mdi mdi-view-dashboard-outline"></i>
                         <span> {{ __('messages.dashboards') }} </span>
@@ -34,21 +41,9 @@ if (Auth::check()) {
                                     {{ __('messages.earnings') }}
                                 </a>
                             </li>
-                            {{-- <li>
-<a href="{{ route('bookingDashboard') }}">
-<i class="mdi mdi-calendar-multiple-check"></i>
-{{ __('messages.bookings') }}
-</a>
-</li> --}}
-                            {{-- <li>
-<a href="dashboard-3.html">Dashboard 3</a>
-</li>
-<li>
-<a href="dashboard-4.html">Dashboard 4</a>
-</li> --}}
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
 
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app', 2) }}</li>
@@ -150,13 +145,13 @@ if (Auth::check()) {
                                 @if (can('brands', 'view'))
                                     <li>
                                         <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i>
-                                            <span  class="custom-ml-15">{{ __('messages.brands') }}</span></a>
+                                            <span class="custom-ml-15">{{ __('messages.brands') }}</span></a>
                                     </li>
                                 @endif
                                 @if (can('categories', 'view'))
                                     <li>
                                         <a href="{{ route('carCategories') }}"> <i class="mdi mdi-car"></i>
-                                        <span class="custom-ml-15">{{ __('messages.categories') }}</span></a>
+                                            <span class="custom-ml-15">{{ __('messages.categories') }}</span></a>
                                     </li>
                                 @endif
                                 @if (can('features', 'view'))
