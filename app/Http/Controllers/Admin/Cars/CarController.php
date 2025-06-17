@@ -17,7 +17,7 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $query = Car::orderBy('created_at', 'desc');
         
@@ -32,6 +32,10 @@ class CarController extends Controller
                 $query->where('user_id', $owner->id);
             }
         }
+
+        if ($request->has('is_booked') && $request->is_booked == 1) {
+                $query->where('is_booked', 1);
+            }
     
         $cars = $query->paginate(20);
     

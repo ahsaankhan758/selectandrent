@@ -12,9 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cars', function (Blueprint $table) {
-            $table->enum('is_booked', ['0', '1'])
-                  ->default('0')
-                  ->comment('1 = Booked, 0 = Not Booked');
+            $table->interger('is_booked')->default('0')->comment('1 = Active Booked, 0 = Not Booked')->after('status');
         });
     }
 
