@@ -108,4 +108,8 @@ class User extends Authenticatable
         return $this->belongsTo(Currency::class, 'currency_id', 'id');
     }
 
+    public function vehicles()
+        {
+            return $this->hasMany(Car::class, 'u_employee_id', 'id');
+        }
 }

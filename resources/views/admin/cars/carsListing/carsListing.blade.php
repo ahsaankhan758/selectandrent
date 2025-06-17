@@ -16,6 +16,7 @@
                         <th scope="col">{{ __('messages.model') }}</th>
                         <th scope="col">{{ __('messages.lisence plate') }}</th>
                         <th scope="col">{{ __('messages.owner') }}</th>
+                        <th scope="col">{{ __('messages.employee') }}</th>
                         <th scope="col">{{ __('messages.status') }}</th>
                         <th scope="col">{{ __('messages.action') }}</th>
                     </tr>
@@ -35,8 +36,10 @@
                                         <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
                                     @endif
                                     <td>
+                                        {{ $carData->u_employees?->name ?? '' }}
+                                    </td>
+                                    <td>
                                        {{ ($carData->status == 1)? 'Active' : 'Inactive' }} 
-                                       
                                     </td>
                                     <td>
                                         @if(can('Vehicle','edit'))
