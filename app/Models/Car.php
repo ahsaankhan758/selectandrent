@@ -8,6 +8,7 @@ class Car extends Model
 {
     protected $fillable = [
         'user_id',
+        'u_employee_id',
         'car_category_id',
         'car_location_id',
         'car_model_id',
@@ -46,6 +47,11 @@ class Car extends Model
         'features' => 'array',
     ];
     
+    public function u_employees()
+    {
+        return $this->belongsTo(User::class, 'u_employee_id', 'id');
+    }
+
     public function car_categories()
     {
         return $this->belongsTo(CarCategory::class, 'car_category_id', 'id');
