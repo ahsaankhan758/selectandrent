@@ -100,6 +100,9 @@ public function getLocations($city_id)
             $owner = EmployeeOwner($user->id);
             $car->user_id = $owner->id;
         }
+       if($user->role == 'employee'){
+            $car->u_employee_id = $user->id;
+       }
        $car->car_model_id = $validatedData['model'];
        $car->car_category_id = $validatedData['category'];
        $car->car_location_id = $validatedData['location'];
