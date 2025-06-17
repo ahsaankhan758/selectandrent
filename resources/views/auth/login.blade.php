@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('loginLayout')
 @section('title') {{ __('messages.admin') }} {{ __('messages.Login') }} @endsection
@@ -9,31 +10,54 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-4">
                         <div class="card bg-pattern">
-
                             <div class="card-body p-4">
                                 <ul class="list-unstyled topnav-menu float-end mb-0">
                                     <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                        @if(!auth()->check())
-                                            <span class="flag-icon flag-icon-{{ session('langFlagCode') }}"></span> {{ session('langName') }}
-                                        @elseif(!empty($userDefaultLang))
-                                            <span class="flag-icon flag-icon-{{ $userDefaultLang->flag_code }}"></span> {{ $userDefaultLang->name }}
-                                        @elseif(empty(session('lang')))
-                                            <span class="flag-icon flag-icon-{{ $defaultLang->flag_code }}"></span> {{ $defaultLang->name }}
-                                        @endif
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        @if(!empty($languages))
-                                            @foreach ($languages as $lang)
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('change.language', $lang) }}">
-                                                        <span class="flag-icon flag-icon-{{ $lang['flag_code'] }}"></span> <span>{{ $lang['name'] }}</span>
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        @endif
-                                    </ul>
-                                </li>
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                        @php
+                                                $isLoggedIn = auth()->check();
+                                                $sessionLangName = session('langName');
+                                                $sessionLangFlag = session('langFlagCode');
+
+                                                $langToShow = null;
+                                                $flagToShow = null;
+
+                                                // If user is not logged in and session lang is set
+                                                if (!$isLoggedIn && !empty($sessionLangName)) {
+                                                    $langToShow = (object)['name' => $sessionLangName, 'flag_code' => $sessionLangFlag];
+                                                    $flagToShow = $sessionLangFlag;
+                                                }
+
+                                                // If user is logged in and userDefaultLang is set
+                                                elseif ($isLoggedIn && !empty($userDefaultLang)) {
+                                                    $langToShow = $userDefaultLang;
+                                                    $flagToShow = $userDefaultLang->flag_code ?? '';
+                                                }
+
+                                                // Fallback to defaultLang if available
+                                                elseif (!empty($defaultLang)) {
+                                                    $langToShow = $defaultLang;
+                                                    $flagToShow = $defaultLang->flag_code ?? '';
+                                                }
+                                            @endphp
+
+                                            @if($langToShow && !empty($langToShow->flag_code))
+                                                <span class="flag-icon flag-icon-{{ $langToShow->flag_code }}"></span> {{ $langToShow->name }}
+                                            @endif
+
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @if(!empty($languages))
+                                                @foreach ($languages as $lang)
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ route('change.language', $lang) }}">
+                                                            <span class="flag-icon flag-icon-{{ $lang['flag_code'] }}"></span> <span>{{ $lang['name'] }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+                                        </ul>
+                                    </li>
                                 </ul>
                                 <div class="text-center w-75 m-auto">
                                     <div class="auth-logo">
