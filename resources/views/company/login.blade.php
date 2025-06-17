@@ -11,13 +11,37 @@
                 <ul class="list-unstyled topnav-menu float-end mb-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            @if(!auth()->check())
-                                <span class="flag-icon flag-icon-{{ session('langFlagCode') }}"></span> {{ session('langName') }}
-                            @elseif(!empty($userDefaultLang))
-                                <span class="flag-icon flag-icon-{{ $userDefaultLang->flag_code }}"></span> {{ $userDefaultLang->name }}
-                            @elseif(empty(session('lang')))
-                                <span class="flag-icon flag-icon-{{ $defaultLang->flag_code }}"></span> {{ $defaultLang->name }}
+                           @php
+                                $isLoggedIn = auth()->check();
+                                $sessionLangName = session('langName');
+                                $sessionLangFlag = session('langFlagCode');
+
+                                $langToShow = null;
+                                $flagToShow = null;
+
+                                // If user is not logged in and session lang is set
+                                if (!$isLoggedIn && !empty($sessionLangName)) {
+                                    $langToShow = (object)['name' => $sessionLangName, 'flag_code' => $sessionLangFlag];
+                                    $flagToShow = $sessionLangFlag;
+                                }
+
+                                // If user is logged in and userDefaultLang is set
+                                elseif ($isLoggedIn && !empty($userDefaultLang)) {
+                                    $langToShow = $userDefaultLang;
+                                    $flagToShow = $userDefaultLang->flag_code ?? '';
+                                }
+
+                                // Fallback to defaultLang if available
+                                elseif (!empty($defaultLang)) {
+                                    $langToShow = $defaultLang;
+                                    $flagToShow = $defaultLang->flag_code ?? '';
+                                }
+                            @endphp
+
+                            @if($langToShow && !empty($langToShow->flag_code))
+                                <span class="flag-icon flag-icon-{{ $langToShow->flag_code }}"></span> {{ $langToShow->name }}
                             @endif
+
                         </a>
                         <ul class="dropdown-menu">
                             @if(!empty($languages))

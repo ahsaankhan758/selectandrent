@@ -9,7 +9,11 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $customers = User::with('bookings')->has('bookings')->get(); 
+        $customers = User::with(['bookings', 'reviewsReceived'])
+                    ->withAvg('reviewsReceived', 'rating') // <- this adds `reviews_received_avg_rating` to each user
+                    ->whereHas('bookings')
+                    ->get();
+
         return view('admin.client.clients', compact('customers'));
     }
     
