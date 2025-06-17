@@ -67,6 +67,7 @@ use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
+use App\Http\Controllers\admin\GeneralModuleController;
 
 
 Route::middleware('LanguageMiddleware')->group(function(){
@@ -179,6 +180,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     if($currentPrefix == 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
+
+
+            // general module
+             Route::get('/general-module/create', [GeneralModuleController::class, 'create'])->name('general-module.create');
+    Route::post('/general-module/store', [GeneralModuleController::class, 'store'])->name('general-module.store');
+
             Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
             Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
             // analytics page

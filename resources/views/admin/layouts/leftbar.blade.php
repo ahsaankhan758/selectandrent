@@ -27,7 +27,6 @@ if (Auth::check()) {
                     </a>
                 </li>
 
-
                 {{-- <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse">
                         <i class="mdi mdi-view-dashboard-outline"></i>
@@ -44,7 +43,6 @@ if (Auth::check()) {
                         </ul>
                     </div>
                 </li> --}}
-
 
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app', 2) }}</li>
 
@@ -353,6 +351,12 @@ if (Auth::check()) {
                         </a>
                         <div class="collapse" id="sub_menu_settings">
                             <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('general-module.create') }}">
+                                        <i class="mdi mdi-tools"></i>
+                                        <span class="custom-ml-15">General Module</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#sub_menu_permissions" data-bs-toggle="collapse">
                                         <i class="mdi mdi-creation"></i>
