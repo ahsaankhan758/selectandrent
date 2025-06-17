@@ -19,6 +19,7 @@
                             <th class="text-center">{{ __('messages.name') }}</th>
                             <th class="text-center">{{ __('messages.contact') }} {{ __('messages.number') }}</th>
                             <th class="text-center">{{ __('messages.email') }}</th>
+                            <th class="text-center">{{ __('messages.rating') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,19 @@
                             <td class="text-center">{{ $customer->name }}</td>
                             <td class="text-center">{{ $customer->bookings->first()->phonenumber ?? 'N/A' }}</td>
                             <td class="text-center">{{ $customer->email }}</td>
+                            <td class="text-center">
+                                <div class="stars text-warning">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= floor($customer->reviews_received_avg_rating))
+                                            <i class="fas fa-star text-warning"></i> <!-- Full star -->
+                                        @elseif ($i == floor($customer->reviews_received_avg_rating) + 1 && fmod($customer->reviews_received_avg_rating, 1) >= 0.5)
+                                            <i class="fas fa-star-half-alt text-warning"></i> <!-- Half star -->
+                                        @else
+                                            <i class="far fa-star text-warning"></i> <!-- Empty star -->
+                                        @endif
+                                    @endfor
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

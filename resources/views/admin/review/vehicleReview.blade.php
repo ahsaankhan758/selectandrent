@@ -31,7 +31,19 @@
                             <td class="text-center">{{ $review->user->name ?? 'N/A' }}</td>
                             <td class="text-center">{{ $review->vehicle->lisence_plate ?? 'N/A' }}</td>
                             <td class="text-center">{{ $review->vehicle->carModel->name ?? 'N/A' }}</td>
-                            <td class="text-center">{{ $review->rating }}</td>
+                            <td class="text-center">
+                                <div class="stars text-warning">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= floor($review->rating))
+                                            <i class="fas fa-star text-warning"></i> <!-- Full star -->
+                                        @elseif ($i == floor($review->rating) + 1 && fmod($review->rating, 1) >= 0.5)
+                                            <i class="fas fa-star-half-alt text-warning"></i> <!-- Half star -->
+                                        @else
+                                            <i class="far fa-star text-warning"></i> <!-- Empty star -->
+                                        @endif
+                                    @endfor
+                                </div>
+                            </td>
                             <td class="text-center">{{ $review->comment }}</td>
                             <td class="text-center">{{ $review->created_at->format('d M Y') }}</td>
                         </tr>
