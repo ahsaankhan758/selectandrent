@@ -68,17 +68,18 @@ use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
 
+Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}',[LanguageController::class, 'setLanguage'])->name('change.language');
     // Logout
-    Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
+    
     // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
 
-    Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
+    
 
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);

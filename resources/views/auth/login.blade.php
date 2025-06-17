@@ -12,33 +12,28 @@
 
                             <div class="card-body p-4">
                                 <ul class="list-unstyled topnav-menu float-end mb-0">
-                                    @php
-                                        $languages = [
-                                            'en' => ['name' => 'English', 'flag' => 'gb'],
-                                            'fr' => ['name' => 'Français', 'flag' => 'fr'],
-                                            'ar' => ['name' => 'عربي', 'flag' => 'sa'],
-                                            'nl' => ['name' => 'Dutch', 'flag' => 'nl'],
-                                        ];
-                                        $currentLocale = Session::get('locale');
-                                        if(!isset($currentLocale))
-                                            {
-                                                $currentLocale = app()->getLocale();
-                                            }
-                                    @endphp
-                                    <div class="dropdown text-end mb-3">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span> {{ $languages[$currentLocale]['name'] }}
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            @foreach ($languages as $langCode => $lang)
+                                    <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                        @if(!auth()->check())
+                                            <span class="flag-icon flag-icon-{{ session('langFlagCode') }}"></span> {{ session('langName') }}
+                                        @elseif(!empty($userDefaultLang))
+                                            <span class="flag-icon flag-icon-{{ $userDefaultLang->flag_code }}"></span> {{ $userDefaultLang->name }}
+                                        @elseif(empty(session('lang')))
+                                            <span class="flag-icon flag-icon-{{ $defaultLang->flag_code }}"></span> {{ $defaultLang->name }}
+                                        @endif
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @if(!empty($languages))
+                                            @foreach ($languages as $lang)
                                                 <li>
-                                                    <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
-                                                        <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> {{ $lang['name'] }}
+                                                    <a class="dropdown-item" href="{{ route('change.language', $lang) }}">
+                                                        <span class="flag-icon flag-icon-{{ $lang['flag_code'] }}"></span> <span>{{ $lang['name'] }}</span>
                                                     </a>
                                                 </li>
                                             @endforeach
-                                        </ul>
-                                    </div>
+                                        @endif
+                                    </ul>
+                                </li>
                                 </ul>
                                 <div class="text-center w-75 m-auto">
                                     <div class="auth-logo">
