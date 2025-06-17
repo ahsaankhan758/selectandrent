@@ -14,9 +14,9 @@ class carDetailController extends Controller
 {
     public function cardetailView($id)
     {
-        $vehicle = Car::findOrFail($id);
+        $vehicle = Car::where('is_booked','0')->findOrFail($id);
 
-        $vehicles = Car::orderBy('created_at', 'desc')->take(7)->get();
+        $vehicles = Car::where('is_booked','0')->orderBy('created_at', 'desc')->take(7)->get();
 
         $reviews = Review::with('user')->orderBy('created_at', 'desc')->where('vehicle_id', $id)->get();
 

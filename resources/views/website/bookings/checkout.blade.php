@@ -77,7 +77,7 @@
                     <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
                 <div class="start-title">{{ __('messages.total') }}</div>
-                <div class="start-text">{{ $booking->total_price}}</div>
+                <div class="start-text">{{$booking->currency}} {{ ($booking->total_price)}}</div>
             </div>
         </div>
     </div>

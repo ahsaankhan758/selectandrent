@@ -133,9 +133,9 @@
                 </div>
             @endif
               <!-- Get Started Button -->
-                
+              
               @if(Auth::check() && Auth::user()->role == 'user')
-
+                           
                 <div class="col-md-2 text-end">
                     <ul class="list-unstyled topnav-menu float-end mb-0">
                         <li class="dropdown notification-list topbar-dropdown">
