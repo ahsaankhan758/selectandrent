@@ -23,137 +23,155 @@
         <div class="row">
             <!-- Card 1 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-primary rounded me-3">
-                            <i class="fe-layers avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">{{ $totalbooking }}</h3>
-                            <p class="text-muted mb-0">Total Booking</p>
+                <a href="{{ route('carBooking') }}" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-primary rounded me-3">
+                                <i class="fe-layers avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">{{ $totalbooking }}</h3>
+                                <p class="text-muted mb-0">Total Booking</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Card 2 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-danger rounded me-3">
-                            <i class="fe-dollar-sign avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">{{$totalrevenue}}</h3>
-                            <p class="text-muted mb-0">Total Revenue</p>
+                <a href="{{ route('carBooking', ['payment_status' => 'paid', 'status' => 'completed']) }}" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-danger rounded me-3">
+                                <i class="fe-dollar-sign avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">{{ $totalrevenue }}</h3>
+                                <p class="text-muted mb-0">Total Revenue</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
-             <!-- Card 9 -->
+            <!-- Card 9 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-dark rounded me-3">
-                            <i class="fe-user-check avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">1234</h3>
-                            <p class="text-muted mb-0">Commission</p>
+                <a href="{{ route('carBooking', ['payment_status' => 'paid']) }}" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-dark rounded me-3">
+                                <i class="fe-user-check avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">{{$commission}}</h3>
+                                <p class="text-muted mb-0">Commission</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Card 3 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-info rounded me-3">
-                            <i class="fe-credit-card avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">256</h3>
-                            <p class="text-muted mb-0">Payouts to Rental Companies</p>
+                <a href="#" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-info rounded me-3">
+                                <i class="fe-credit-card avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">256</h3>
+                                <p class="text-muted mb-0">Payouts to Rental Companies</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Card 4 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-warning rounded me-3">
-                            <i class="fe-briefcase avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">{{$totalpending}}</h3>
-                            <p class="text-muted mb-0">Pending Payments</p>
+                <a href="{{ route('carBooking', ['payment_status' => 'pending', 'status' => 'pending']) }}" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-warning rounded me-3">
+                                <i class="fe-briefcase avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">{{ $totalpending }}</h3>
+                                <p class="text-muted mb-0">Pending Payments</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Card 5 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-secondary rounded me-3">
-                            <i class="fe-calendar avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">{{ $bookedCars }}</h3>
-                            <p class="text-muted mb-0">Active Booked</p>
+                <a href="{{ route('carListings', ['is_booked' => 1]) }}" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-secondary rounded me-3">
+                                <i class="fe-calendar avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">{{ $bookedCars }}</h3>
+                                <p class="text-muted mb-0">Active Booked</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Card 6 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-success rounded me-3">
-                            <i class="fe-check-circle avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">{{$totalcancelled}}</h3>
-                            <p class="text-muted mb-0">Cancellations Today</p>
+                <a href="{{ route('carBooking', ['payment_status' => 'failed', 'date' => 'today']) }}" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-success rounded me-3">
+                                <i class="fe-check-circle avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">{{ $totalcancelled }}</h3>
+                                <p class="text-muted mb-0">Cancellations Today</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Card 7 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-pink rounded me-3">
-                            <i class="fe-users avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">7,410</h3>
-                            <p class="text-muted mb-0">Bookings Requiring Attention</p>
+                <a href="#" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-pink rounded me-3">
+                                <i class="fe-users avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">7,410</h3>
+                                <p class="text-muted mb-0">Bookings Requiring Attention</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Card 8 -->
             <div class="col-md-4 mb-4">
-                <div class="card bg-pattern">
-                    <div class="card-body d-flex">
-                        <div class="avatar-md bg-dark rounded me-3">
-                            <i class="fe-bar-chart avatar-title font-22 text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-dark my-1">{{ $totalCars }}</h3>
-                            <p class="text-muted mb-0">Total Cars</p>
+                <a href="{{ route('carListings') }}" style="text-decoration: none;">
+                    <div class="card bg-pattern card-clickable">
+                        <div class="card-body d-flex">
+                            <div class="avatar-md bg-dark rounded me-3">
+                                <i class="fe-bar-chart avatar-title font-22 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-dark my-1">{{ $totalCars }}</h3>
+                                <p class="text-muted mb-0">Total Cars</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
 
