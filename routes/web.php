@@ -67,7 +67,7 @@ use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
-use App\Http\Controllers\admin\GeneralModuleController;
+use App\Http\Controllers\Admin\GeneralModuleController;
 
 Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
 

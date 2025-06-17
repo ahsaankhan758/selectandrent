@@ -29,10 +29,11 @@ class DashboardController extends Controller
         $bookedCars = Car::where('is_booked', 1)->count();
         $totalrevenue = (int) Booking::where('payment_status', 'paid')->sum('total_price');
         $totalpending = (int) Booking::where('payment_status', 'pending')->sum('total_price');
+        $commission = Booking::sum('commission');
         $totalcancelled = Booking::where('payment_status', 'failed')->whereDate('created_at', Carbon::today())->count();
         $reminder = Reminder::where('user_id', auth()->id())->latest()->take(10)->get();
 
-        return view('admin.dashboard', compact('reminder', 'totalCars', 'bookedCars', 'totalrevenue' ,'totalbooking','totalcancelled','totalpending'));
+        return view('admin.dashboard', compact('reminder', 'totalCars', 'bookedCars','commission', 'totalrevenue' ,'totalbooking','totalcancelled','totalpending'));
     }
         // Booking dashboard
         public function bookingDashboard(Request $request)

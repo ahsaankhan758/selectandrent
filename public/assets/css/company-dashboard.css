@@ -48,6 +48,21 @@
     --car-scroll:#ccc;
     --table-head:#ECF5FA;
 }
+
+  .card-clickable {
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+
+    .card-clickable:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-clickable:active {
+        transform: translateY(0px) scale(0.98);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
    /*  Container  */
 .booking-container {
     background: var(--white-color);
@@ -63,6 +78,8 @@
     gap: 10px;
     margin-bottom: 15px;
   }
+
+
   
   .booking-search-box {
     background: var(--text-light-gray);
