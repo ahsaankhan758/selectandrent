@@ -744,5 +744,7 @@ return [
 'reminder' => 'تذكير',
 'Subject' => 'الموضوع',
 'invoice' => 'فاتورة',
+'commission' => 'العمولات (%)',
+'tax_per' => 'الضريبة (%)',
 
 ];
