@@ -69,17 +69,16 @@ use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
 use App\Http\Controllers\admin\GeneralModuleController;
 
+Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}',[LanguageController::class, 'setLanguage'])->name('change.language');
-    // Logout
-    Route::any('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
+
     // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
     Route::post('admin/login', [LoginController::class, 'login'])->middleware('IsAdmin:admin');
 
-   
     //Company Login
     Route::get('company',[companyController::class, 'redirectToCompanyLogin']);
     Route::get('company/login',[companyController::class, 'showLoginForm'])->name('companyLoginForm')->middleware('IsAdmin:company');

@@ -148,10 +148,17 @@ class userController extends Controller
                 'defaultCurrencyRate' => ('defaultCurrencyRate'),
             ];
 
+            $languageData = [
+                'lang' => session('lang'),
+                'langName' => session('langName'),
+                'langFlagCode' => session('langFlagCode'),
+            ];
+
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
             session($currencyData);
+            session($languageData);
 
             if(isset($role) && $role == 'admin')
             {
