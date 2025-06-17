@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('c_user_id');
             $table->unsignedBigInteger('booking_id');
-            $table->Integer('rating');
+            $table->float('rating', 3, 1);
             $table->text('comment')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('NO ACTION')->onUpdate('cascade');
             $table->foreign('c_user_id')->references('id')->on('users')->onDelete('NO ACTION')->onUpdate('cascade');
