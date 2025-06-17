@@ -22,6 +22,7 @@ class Booking extends Model
         'booking_reference',
         'subtotal',
         'total_price',
+        'commission',
         'currency',
         'transaction_id',
         'payment_status',

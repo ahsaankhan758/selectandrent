@@ -93,7 +93,7 @@
                                         {{ $detail->vehicle->company->name }}<br>
                                         {{ $detail->vehicle->company->email }}<br>
                                         <abbr title="Phone"></abbr>{{ $detail->vehicle->company->phone }}<br>
-                                        {{ $detail->vehicle->company->country->name }}
+                                        {{ optional($detail->vehicle->company->country)->name }}
                                     </address>
                                 @endforeach
                             @endif

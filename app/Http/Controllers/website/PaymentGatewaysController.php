@@ -58,7 +58,12 @@ class PaymentGatewaysController extends Controller
             // Decode and unserialize checkout data
             $decoded_checkoutData = base64_decode($request->checkoutData);
             $bookingData = unserialize($decoded_checkoutData);
-    
+            // comission 10%
+            $commissionPercentage = 10; // 10% commission
+            $commissionRate = $commissionPercentage / 100; // 0.10 commission rate
+            $total_commission = $bookingData['total'][0] * $commissionRate;
+            $currency = session('defaultCurrencyCode');
+
             if (!is_array($bookingData) || empty($bookingData['total'][0])) {
                 throw new \Exception('Invalid booking data.');
             }
@@ -69,7 +74,7 @@ class PaymentGatewaysController extends Controller
             $qty = Cart::instance('cart')->content()->count();
             // print_r($amount);
             DB::beginTransaction();
-    
+            
             // Create main booking
             $booking = Booking::create([
                 'user_id' => $request->user_id,
@@ -84,6 +89,8 @@ class PaymentGatewaysController extends Controller
                 'booking_reference' => $request->reference_number,
                 'subtotal' => $bookingData['subtotal'][0],
                 'total_price' => $bookingData['total'][0],
+                'commission' => $total_commission,
+                'currency' => $currency,
                 'tax_amount' => $bookingData['tax'][0],
                 'payment_status' => 'pending',
                 'booking_status' => 'pending',
