@@ -15,7 +15,7 @@ class CreateGeneralModulesTable extends Migration
             $table->id();
             $table->decimal('commissions', 10, 2);
             $table->decimal('tax', 10, 2);
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->tinyInteger('status')->default(1); 
             $table->timestamps();
         });
