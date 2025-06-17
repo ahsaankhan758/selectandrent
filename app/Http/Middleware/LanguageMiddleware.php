@@ -16,13 +16,21 @@ class LanguageMiddleware
     {
         $languages = Language::all(); 
         $defaultLang = Language::where('is_default', 'yes')->first();
-        $userDefaultLang = auth()->check() ? Language::find(auth()->user()->language_id) : $defaultLang;
+        $userDefaultLang = null;
 
-        if (!auth()->check()) {
-            App::setLocale($request->session()->get('lang'));
-        } elseif ($userDefaultLang) {
-            App::setLocale($userDefaultLang->code); 
+        if (auth()->check() && !empty(auth()->user()->language_id)) {
+            $userDefaultLang = Language::find(auth()->user()->language_id);
         }
+        
+        if (!auth()->check()) {
+            App::setLocale($request->session()->get('lang', $defaultLang->code));
+        } elseif ($userDefaultLang) {
+            App::setLocale($userDefaultLang->code);
+        } else {
+            // Fallback in case user has no language_id
+            App::setLocale($defaultLang->code);
+        }
+       
 
         View::share(compact('languages', 'defaultLang', 'userDefaultLang'));
 
