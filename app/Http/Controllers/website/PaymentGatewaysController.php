@@ -13,6 +13,7 @@ use Stripe\Checkout\Session as StripeSession;
 use App\Models\Booking;
 use App\Models\BookingItem;
 use App\Models\Currency;
+use App\Models\GeneralModule;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -58,12 +59,20 @@ class PaymentGatewaysController extends Controller
             // Decode and unserialize checkout data
             $decoded_checkoutData = base64_decode($request->checkoutData);
             $bookingData = unserialize($decoded_checkoutData);
-            // comission 10%
-            $commissionPercentage = 10; // 10% commission
-            $commissionRate = $commissionPercentage / 100; // 0.10 commission rate
+            // get comission by select and rent
+            $commission = GeneralModule::with(['user' => function ($query) {
+                $query->where('role', 'admin');
+            }])->where('user_id', 2)->first();
+            $commissionPercentage = $commission->commissions;
+            $commissionRate = $commissionPercentage / 100; // commission rate
             $total_commission = $bookingData['total'][0] * $commissionRate;
-            $currency = session('defaultCurrencyCode');
-
+            // 
+            if(session('defaultCurrencyCode')){
+             $currency = session('defaultCurrencyCode');
+            }else{
+             $currency = 'USD';
+            }
+            
             if (!is_array($bookingData) || empty($bookingData['total'][0])) {
                 throw new \Exception('Invalid booking data.');
             }
