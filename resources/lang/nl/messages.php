@@ -729,5 +729,7 @@ return [
 'reminder' => 'Herinnering',
 'Subject' => 'Onderwerp',
 'invoice' => 'Factuur',
+'commission' => 'Commissies (%)',
+'tax_per' => 'Belasting (%)',
 
 ];
