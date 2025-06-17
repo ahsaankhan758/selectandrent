@@ -46,31 +46,26 @@
               <!-- Multi Lingual -->
               <div class="col-md-1 text-end">
                 <ul class="list-unstyled topnav-menu float-end mb-0">
-                    @php
-                        $languages = [
-                            'en' => ['name' => 'English', 'flag' => 'gb'],
-                            'fr' => ['name' => 'Français', 'flag' => 'fr'],
-                            'ar' => ['name' => 'عربي', 'flag' => 'sa'],
-                            'nl' => ['name' => 'Dutch', 'flag' => 'nl'],
-                        ];
-                        $currentLocale = Session::get('locale');
-                        if(!isset($currentLocale))
-                            {
-                                $currentLocale = app()->getLocale();
-                            }
-                    @endphp
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span>  {{ $languages[$currentLocale]['name'] }}
+                            @if(!auth()->check())
+                                <span class="flag-icon flag-icon-{{ session('langFlagCode') }}"></span> {{ session('langName') }}
+                            @elseif(!empty($userDefaultLang))
+                                <span class="flag-icon flag-icon-{{ $userDefaultLang->flag_code }}"></span> {{ $userDefaultLang->name }}
+                            @elseif(empty(session('lang')))
+                                <span class="flag-icon flag-icon-{{ $defaultLang->flag_code }}"></span> {{ $defaultLang->name }}
+                            @endif
                         </a>
                         <ul class="dropdown-menu">
-                            @foreach ($languages as $langCode => $lang)
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
-                                        <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> <span>{{ $lang['name'] }}</span>
-                                    </a>
-                                </li>
-                            @endforeach
+                            @if(!empty($languages))
+                                @foreach ($languages as $lang)
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('change.language', $lang) }}">
+                                            <span class="flag-icon flag-icon-{{ $lang['flag_code'] }}"></span> <span>{{ $lang['name'] }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                 </ul>
@@ -282,35 +277,30 @@
                 <li class="nav-item"><a class="nav-link" href="{{ url('/categories') }}">{{ __('messages.categories') }}</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/join-our-program') }}">{{ __('messages.our') }} {{ __('messages.program') }}</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/blog') }}">{{ __('messages.blogs') }}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">{{ __('messages.about us') }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/about-us') }}">{{ __('messages.about') }}</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">{{ __('messages.contact') }}</a></li>
                 <li class="nav-item">
                     <ul class="list-unstyled topnav-menu mb-0">
-                        @php
-                            $languages = [
-                                'en' => ['name' => 'English', 'flag' => 'gb'],
-                                'fr' => ['name' => 'Français', 'flag' => 'fr'],
-                                'ar' => ['name' => 'عربي', 'flag' => 'sa'],
-                                'nl' => ['name' => 'Dutch', 'flag' => 'nl'],
-                            ];
-                            $currentLocale = Session::get('locale');
-                            if(!isset($currentLocale))
-                                {
-                                    $currentLocale = app()->getLocale();
-                                }
-                        @endphp
-                        <li class="nav-item dropdown text-center">
-                            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                <span class="flag-icon flag-icon-{{ $languages[$currentLocale]['flag'] }}"></span>  {{ $languages[$currentLocale]['name'] }}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                @if(!auth()->check())
+                                    <span class="flag-icon flag-icon-{{ session('langFlagCode') }}"></span> {{ session('langName') }}
+                                @elseif(!empty($userDefaultLang))
+                                    <span class="flag-icon flag-icon-{{ $userDefaultLang->flag_code }}"></span> {{ $userDefaultLang->name }}
+                                @elseif(empty(session('lang')))
+                                    <span class="flag-icon flag-icon-{{ $defaultLang->flag_code }}"></span> {{ $defaultLang->name }}
+                                @endif
                             </a>
                             <ul class="dropdown-menu">
-                                @foreach ($languages as $langCode => $lang)
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('change.language', $langCode) }}">
-                                            <span class="flag-icon flag-icon-{{ $lang['flag'] }}"></span> <span>{{ $lang['name'] }}</span>
-                                        </a>
-                                    </li>
-                                @endforeach
+                                @if(!empty($languages))
+                                    @foreach ($languages as $lang)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('change.language', $lang) }}">
+                                                <span class="flag-icon flag-icon-{{ $lang['flag_code'] }}"></span> <span>{{ $lang['name'] }}</span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </li>
                     </ul>

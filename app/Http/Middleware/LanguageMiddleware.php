@@ -18,7 +18,7 @@ class LanguageMiddleware
         $defaultLang = Language::where('is_default', 'yes')->first();
         $userDefaultLang = auth()->check() ? Language::find(auth()->user()->language_id) : $defaultLang;
 
-        if ($request->session()->has('lang')) {
+        if (!auth()->check()) {
             App::setLocale($request->session()->get('lang'));
         } elseif ($userDefaultLang) {
             App::setLocale($userDefaultLang->code); 

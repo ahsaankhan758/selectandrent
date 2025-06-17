@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Session;
 class LanguageController extends Controller
 {
     public function setLanguage(Language $lang){
-        auth()->user()->update(['language_id' => $lang->id]);
+        if(auth()->check()){
+            auth()->user()->update(['language_id' => $lang->id]);
+        }
         Session::put('lang',$lang->code);
+        Session::put('langName',$lang->name);
+        Session::put('langFlagCode',$lang->flag_code);
         return redirect()->back();
     }
 }

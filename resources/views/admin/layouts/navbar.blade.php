@@ -132,10 +132,12 @@
             @endphp -->
             
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                    @if(!empty($userDefaultLang))
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    @if(!auth()->check())
+                        <span class="flag-icon flag-icon-{{ session('langFlagCode') }}"></span> {{ session('langName') }}
+                    @elseif(!empty($userDefaultLang))
                         <span class="flag-icon flag-icon-{{ $userDefaultLang->flag_code }}"></span> {{ $userDefaultLang->name }}
-                    @elseif(!empty($defaultLang))
+                    @elseif(empty(session('lang')))
                         <span class="flag-icon flag-icon-{{ $defaultLang->flag_code }}"></span> {{ $defaultLang->name }}
                     @endif
                 </a>
