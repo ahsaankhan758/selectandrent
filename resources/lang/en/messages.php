@@ -730,4 +730,6 @@ return [
 'reminder'=>'Reminder',
 'Subject'=>'Subject',
 'invoice'=>'Invoice',
+'commission'=>'Commissions (%)',
+'tax_per'=>'Tax (%)',
 ];

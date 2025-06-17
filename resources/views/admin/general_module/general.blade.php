@@ -19,12 +19,12 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="commissions" class="form-label">Commissions (%)</label>
+                        <label for="commissions" class="form-label">{{ __('messages.commission') }}</label>
                         <input type="number" step="0.01" name="commissions" id="commissions"  value="{{ old('commissions', $module->commissions ?? '') }}" class="form-control" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="tax" class="form-label">Tax (%)</label>
+                        <label for="tax" class="form-label">{{ __('messages.tax_per') }}</label>
                         <input type="number" step="0.01" name="tax" id="tax" value="{{ old('tax', $module->tax ?? '') }}" class="form-control" required>
                     </div>
                 </div>

@@ -728,5 +728,7 @@ return [
 'reminder' => 'Rappel',
 'Subject' => 'Sujet',
 'invoice' => 'Facture',
+'commission' => 'Commissions (%)',
+'tax_per' => 'Taxe (%)',
 
 ];
