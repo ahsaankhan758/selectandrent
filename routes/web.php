@@ -338,7 +338,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('edit/{id}',[EmployeeController::class,'edit'])->name('editEmployee');
             Route::put('update/{id}',[EmployeeController::class,'update'])->name('updateEmployee');
             Route::get('delete/{id}',[EmployeeController::class,'destroy'])->name('deleteEmployee'); 
-            
+            //Invoice
+            Route::get('/booking/invoice/{id}', [FinancialController::class, 'invoice'])->name('booking.invoice');
             //Companies Routes
             Route::get('companies', [companyController::class, 'index'])->name('companies');
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');

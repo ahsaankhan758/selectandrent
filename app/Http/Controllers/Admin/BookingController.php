@@ -42,6 +42,25 @@ class BookingController extends Controller
                 ->whereIn('booking_status', ['pending']);
             }
 
+        // For confirmed on booking dashboard
+        if ($request->booking_status === 'confirmed') {
+            $query->where('booking_status', 'confirmed');
+        }
+
+        // For completed on booking dashboard
+        if ($request->booking_status === 'completed') {
+            $query->where('booking_status', 'completed');
+        }
+
+        // For cancelled on booking dashboard
+        if ($request->booking_status === 'cancelled') {
+            $query->where('booking_status', 'cancelled');
+        }
+
+        // For pending on booking dashboard
+        if ($request->booking_status === 'pending') {
+            $query->where('booking_status', 'pending');
+        }
 
         $bookings = $query->paginate(10);
 
