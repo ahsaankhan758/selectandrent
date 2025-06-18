@@ -40,6 +40,7 @@
                                             <i class="far fa-star text-warning"></i> <!-- Empty star -->
                                         @endif
                                     @endfor
+                                    ({{ $customer->reviews_received_count }} reviews)
                                 </div>
                             </td>
                         </tr>
