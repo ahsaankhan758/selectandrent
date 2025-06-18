@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\FilterHelper;
 
 class DashboardController extends Controller
 {
@@ -21,19 +22,24 @@ class DashboardController extends Controller
         {
             return redirect('admin/login');
         }
-// Earning Dashboard
+    // Earning Dashboard
     public function dashboard()
     {
-        $totalCars = Car::count();
-        $totalbooking = booking::count();
-        $bookedCars = Car::where('is_booked', 1)->count();
-        $totalrevenue = (int) Booking::where('payment_status', 'paid')->sum('total_price');
-        $totalpending = (int) Booking::where('payment_status', 'pending')->sum('total_price');
-        $commission = Booking::sum('commission');
-        $totalcancelled = Booking::where('payment_status', 'failed')->whereDate('created_at', Carbon::today())->count();
-        $reminder = Reminder::where('user_id', auth()->id())->latest()->take(10)->get();
+    $totalCars = Car::where(FilterHelper::carFilter())->count();
+    $totalbooking = Booking::where(FilterHelper::companyFilter())->count();
+    $bookedCars = Car::where('is_booked', 1)->where(FilterHelper::carFilter())->count();
+    $totalrevenue = Booking::where('payment_status', 'paid')->where(FilterHelper::companyFilter())->sum('total_price');
+    $totalpending = Booking::where('payment_status', 'pending')->where(FilterHelper::companyFilter())->sum('total_price');
+    $commission = Booking::where(FilterHelper::companyFilter())->sum('commission');
+    $payoutcompany = $totalrevenue - $commission;
+    $customers = User::whereHas('bookings', FilterHelper::companyFilter())->count();
+    $totalcancelled = Booking::where('payment_status', 'failed')->whereDate('created_at', Carbon::today())->where(FilterHelper::companyFilter())->count();
+    $reminder = Reminder::where('user_id', auth()->id())->latest()->take(10)->get();
 
-        return view('admin.dashboard', compact('reminder', 'totalCars', 'bookedCars','commission', 'totalrevenue' ,'totalbooking','totalcancelled','totalpending'));
+    return view('admin.dashboard', compact(
+        'reminder', 'totalCars', 'payoutcompany', 'customers',
+        'bookedCars', 'commission', 'totalrevenue', 'totalbooking', 'totalcancelled', 'totalpending'
+    ));
     }
         // Booking dashboard
         public function bookingDashboard(Request $request)
@@ -94,7 +100,7 @@ class DashboardController extends Controller
             $applyFilters($cancelledQuery);
             $cancelledCount = $cancelledQuery->count();
 
-            $confirmedQuery = Booking::where('booking_status', 'confirmed');
+            $confirmedQuery = Booking::where('booking_status', 'completed');
             $applyFilters($confirmedQuery);
             $confirmedCount = $confirmedQuery->count();
 

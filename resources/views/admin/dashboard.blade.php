@@ -40,7 +40,8 @@
 
             <!-- Card 2 -->
             <div class="col-md-4 mb-4">
-                <a href="{{ route('carBooking', ['payment_status' => 'paid', 'status' => 'completed']) }}" style="text-decoration: none;">
+                <a href="{{ route('carBooking', ['payment_status' => 'paid', 'status' => 'completed']) }}"
+                    style="text-decoration: none;">
                     <div class="card bg-pattern card-clickable">
                         <div class="card-body d-flex">
                             <div class="avatar-md bg-danger rounded me-3">
@@ -64,7 +65,7 @@
                                 <i class="fe-user-check avatar-title font-22 text-white"></i>
                             </div>
                             <div>
-                                <h3 class="text-dark my-1">{{$commission}}</h3>
+                                <h3 class="text-dark my-1">{{ $commission }}</h3>
                                 <p class="text-muted mb-0">Commission</p>
                             </div>
                         </div>
@@ -81,7 +82,7 @@
                                 <i class="fe-credit-card avatar-title font-22 text-white"></i>
                             </div>
                             <div>
-                                <h3 class="text-dark my-1">256</h3>
+                                <h3 class="text-dark my-1">{{ $payoutcompany }}</h3>
                                 <p class="text-muted mb-0">Payouts to Rental Companies</p>
                             </div>
                         </div>
@@ -91,7 +92,8 @@
 
             <!-- Card 4 -->
             <div class="col-md-4 mb-4">
-                <a href="{{ route('carBooking', ['payment_status' => 'pending', 'status' => 'pending']) }}" style="text-decoration: none;">
+                <a href="{{ route('carBooking', ['payment_status' => 'pending', 'status' => 'pending']) }}"
+                    style="text-decoration: none;">
                     <div class="card bg-pattern card-clickable">
                         <div class="card-body d-flex">
                             <div class="avatar-md bg-warning rounded me-3">
@@ -125,7 +127,8 @@
 
             <!-- Card 6 -->
             <div class="col-md-4 mb-4">
-                <a href="{{ route('carBooking', ['payment_status' => 'failed', 'date' => 'today']) }}" style="text-decoration: none;">
+                <a href="{{ route('carBooking', ['payment_status' => 'failed', 'date' => 'today']) }}"
+                    style="text-decoration: none;">
                     <div class="card bg-pattern card-clickable">
                         <div class="card-body d-flex">
                             <div class="avatar-md bg-success rounded me-3">
@@ -142,15 +145,15 @@
 
             <!-- Card 7 -->
             <div class="col-md-4 mb-4">
-                <a href="#" style="text-decoration: none;">
+                <a href="{{ route('client') }}" style="text-decoration: none;">
                     <div class="card bg-pattern card-clickable">
                         <div class="card-body d-flex">
                             <div class="avatar-md bg-pink rounded me-3">
                                 <i class="fe-users avatar-title font-22 text-white"></i>
                             </div>
                             <div>
-                                <h3 class="text-dark my-1">7,410</h3>
-                                <p class="text-muted mb-0">Bookings Requiring Attention</p>
+                                <h3 class="text-dark my-1">{{ $customers }}</h3>
+                                <p class="text-muted mb-0">Customers</p>
                             </div>
                         </div>
                     </div>
@@ -182,7 +185,10 @@
                     <div class="card-body reminder-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="fw-bold mb-0">Reminders</h5>
-                            <button class="btn btn-light btn-sm rounded-circle"><i class="mdi mdi-plus"></i></button>
+                            <button class="btn btn-light btn-sm rounded-circle"
+                                onclick="window.location='{{ route('reminders.create') }}'">
+                                <i class="mdi mdi-plus"></i>
+                            </button>
                         </div>
                         <div class="mt-3" style="max-height: 358px; overflow-y: auto;">
                             @forelse ($reminder as $item)
