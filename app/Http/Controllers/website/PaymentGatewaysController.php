@@ -131,10 +131,7 @@ class PaymentGatewaysController extends Controller
                 ]],
                 'mode' => 'payment',
                 'customer_email' => $request->email,
-                'success_url' => route('booking.thankyou') . 
-        '?ref=' . $request->reference_number . 
-        '&session_id={CHECKOUT_SESSION_ID}' .
-        '&bookingData=' . urlencode($encodedBooking),
+                'success_url' => route('booking.thankyou') . '?ref=' . $request->reference_number . '&session_id={CHECKOUT_SESSION_ID}' . '&bookingData=' . urlencode($encodedBooking),
                 'cancel_url' => route('booking.cancel', ['ref' => $request->reference_number]),
             ]);
         
