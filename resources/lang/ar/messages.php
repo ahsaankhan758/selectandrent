@@ -1,6 +1,10 @@
 <?php 
 
 return [
+    'reason'  => 'السبب',
+    'reasons' => 'الأسباب',
+    'confirm' => 'تأكيد',
+    'created_by' => 'تم الإنشاء بواسطة',
     'rating' => 'التقييم',
     'ratings' => 'التقييمات',
     'comment' => 'تعليق',

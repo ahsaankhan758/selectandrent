@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'reason'  => 'Raison',
+    'reasons' => 'Raisons',
+    'confirm' => 'Confirmer',
+    'created_by' => 'Créé par',
     'rating' => 'Note',
     'ratings' => 'Notes',
     'comment' => 'Commentaire',

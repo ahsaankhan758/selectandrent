@@ -10,7 +10,8 @@ class ClientController extends Controller
     public function index()
     {
         $customers = User::with(['bookings', 'reviewsReceived'])
-                    ->withAvg('reviewsReceived', 'rating') // <- this adds `reviews_received_avg_rating` to each user
+                    ->withAvg('reviewsReceived', 'rating')
+                    ->withCount('reviewsReceived') // This gives you reviews_received_count
                     ->whereHas('bookings')
                     ->get();
 
