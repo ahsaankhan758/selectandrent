@@ -737,5 +737,18 @@ return [
 'invoice' => 'Facture',
 'commission' => 'Commissions (%)',
 'tax_per' => 'Taxe (%)',
+'perday' => 'Par jour',
+'perhour' => 'Par heure',
+'bookingchart' => 'Graphique des réservations',
+'invoice' => 'Facture',
+'completed' => 'Terminé',
+'no_reminder' => 'Aucun rappel défini.',
+'totalcar' => 'Total des voitures',
+'canceltoday' => 'Annulations aujourd\'hui',
+'activebooked' => 'Réservations actives',
+'pendingpayment' => 'Paiements en attente',
+'payout' => 'Paiements aux sociétés de location',
+'commissiondashboard' => 'Commission',
+'total_booking' => 'Total des réservations',
 
 ];

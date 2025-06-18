@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Booking Confirmation</title>
@@ -11,7 +12,8 @@
             padding: 20px;
         }
 
-        h2, h4 {
+        h2,
+        h4 {
             color: #004085;
         }
 
@@ -19,7 +21,7 @@
             background-color: #ffffff;
             border: 1px solid #ddd;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             padding: 20px;
             margin-bottom: 20px;
         }
@@ -44,7 +46,8 @@
             background-color: #e9ecef;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #dee2e6;
             padding: 10px;
             text-align: left;
@@ -66,6 +69,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <h2>Thank you for your booking!</h2>
@@ -95,7 +99,8 @@
         <ul>
             <li><strong>Subtotal:</strong> {{ $currency }} {{ number_format($booking->subtotal, 2) }}</li>
             <li><strong>Tax:</strong> {{ $currency }} {{ number_format($booking->tax_amount, 2) }}</li>
-            <li><strong>Total:</strong> <strong>{{ $currency }} {{ number_format($booking->total_price, 2) }}</strong></li>
+            <li><strong>Total:</strong> <strong>{{ $currency }}
+                    {{ number_format($booking->total_price, 2) }}</strong></li>
         </ul>
     </div>
 
@@ -103,32 +108,35 @@
         <h4>Vehicle(s) Booked:</h4>
         <table>
             <thead>
+                @foreach ($bookingItems as $item)
+
                 <tr>
                     <th>Vehicle</th>
                     <th>Pickup Location & Time</th>
                     <th>Drop-off Location & Time</th>
-                    <th>Days</th>
-                    <th>Rate/Day</th>
+                    @if ($item->vehicle->rent_type == 'day')
+                        <th class="text-nowrap">Per/Day</th>
+                    @else
+                        <th class="text-nowrap">Per/Hour</th>
+                    @endif
                     <th>Total</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($bookingItems as $item)
-                <tr>
-                    <td>{{ $item->vehicle->carModel->name ?? 'N/A' }}</td>
-                   
-                    <td>
-                        {{ $item->pickupLocation->area_name ?? $item->pickup_location }}<br>
-                        {{ $item->pickup_datetime }}
-                    </td>
-                    <td>
-                        {{ $item->dropoffLocation->area_name ?? $item->dropoff_location }}<br>
-                        {{ $item->dropoff_datetime }}
-                    </td>
-                    <td>{{ $item->duration_days }}</td>
-                    <td>{{ $currency }} {{ number_format($item->price_per_day, 2) }}</td>
-                    <td>{{ $currency }} {{ number_format($item->total_price, 2) }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $item->vehicle->carModel->name ?? 'N/A' }}</td>
+
+                        <td>
+                            {{ $item->pickupLocation->area_name ?? $item->pickup_location }}<br>
+                            {{ $item->pickup_datetime }}
+                        </td>
+                        <td>
+                            {{ $item->dropoffLocation->area_name ?? $item->dropoff_location }}<br>
+                            {{ $item->dropoff_datetime }}
+                        </td>
+                        <td>{{ $currency }} {{ number_format($item->vehicle->rent, 2) }}</td>
+                        <td>{{ $currency }} {{ number_format($item->total_price, 2) }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -139,7 +147,8 @@
 
     <div class="footer">
         Regards,<br>
-              <strong>{{$booking->car->users->companies->name?? ''}}</strong>
+        <strong>{{ $booking->car->users->companies->name ?? '' }}</strong>
     </div>
 </body>
+
 </html>
