@@ -19,9 +19,9 @@ use App\Helpers\FilterHelper;
 class DashboardController extends Controller
 {
     public function index()
-        {
-            return redirect('admin/login');
-        }
+    {
+        return redirect('admin/login');
+    }
     // Earning Dashboard
     public function dashboard()
     {
@@ -35,10 +35,29 @@ class DashboardController extends Controller
     $customers = User::whereHas('bookings', FilterHelper::companyFilter())->count();
     $totalcancelled = Booking::where('payment_status', 'failed')->whereDate('created_at', Carbon::today())->where(FilterHelper::companyFilter())->count();
     $reminder = Reminder::where('user_id', auth()->id())->latest()->take(10)->get();
+    $bookingChartData = Booking::selectRaw('MONTH(created_at) as month, booking_status, COUNT(*) as count')
+    ->whereYear('created_at', now()->year) 
+    ->where(FilterHelper::companyFilter())
+    ->groupBy('month', 'booking_status')
+    ->orderBy('month')
+    ->get()
+    ->groupBy('month');
 
+    $formattedChartData = [];
+
+    for ($i = 1; $i <= 12; $i++) {
+    $record = $bookingChartData[$i] ?? collect();
+
+    $formattedChartData[] = [
+        'month' => date('M', mktime(0, 0, 0, $i, 10)),
+        'Pending' => $record->firstWhere('booking_status', 'pending')->count ?? 0,
+        'Confirmed' => $record->firstWhere('booking_status', 'confirmed')->count ?? 0,
+        'Completed' => $record->firstWhere('booking_status', 'completed')->count ?? 0,
+    ];
+    }
     return view('admin.dashboard', compact(
         'reminder', 'totalCars', 'payoutcompany', 'customers',
-        'bookedCars', 'commission', 'totalrevenue', 'totalbooking', 'totalcancelled', 'totalpending'
+        'bookedCars', 'commission', 'totalrevenue', 'totalbooking', 'totalcancelled', 'totalpending' , 'formattedChartData'
     ));
     }
         // Booking dashboard

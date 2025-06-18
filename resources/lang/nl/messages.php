@@ -738,5 +738,7 @@ return [
 'invoice' => 'Factuur',
 'commission' => 'Commissies (%)',
 'tax_per' => 'Belasting (%)',
+'perday' => 'Per dag',
+'perhour' => 'Per uur',
 
 ];
