@@ -1,6 +1,10 @@
  <?php
 
 return [
+  'reason' => 'Reason',
+  'reasons' => 'Reasons',
+  'confirm' => 'Confirm',
+  'created_by' => 'Created By',
   'rating'=>'Rating',
   'ratings'=>'Ratings',
   'comment'=>'Comments',

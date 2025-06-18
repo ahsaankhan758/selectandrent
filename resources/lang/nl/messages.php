@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'reason'  => 'Reden',
+    'reasons' => 'Redenen',
+    'confirm' => 'Bevestigen',
+    'created_by' => 'Aangemaakt door',
     'rating' => 'Beoordeling',
     'ratings' => 'Beoordelingen',
     'comment' => 'Opmerking',

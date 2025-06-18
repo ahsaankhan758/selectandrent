@@ -489,6 +489,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     // booking page website
     Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
     Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
+    Route::post('/booking-cancel', [WebsiteBookingController::class, 'cancel'])->name('website.booking.cancel');
     // website review save
     Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 

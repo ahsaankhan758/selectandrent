@@ -55,45 +55,61 @@ Booking | Select and Rent
                     <th class="text-nowrap table-clr">{{ __('messages.bookingtotal') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingsubtotal') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingnotes') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.cancel') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($bookings as $booking)
-                <tr>
+                  <tr>
+                    <td class="py-4 text-center text-nowrap">
+                        <div class="d-inline-flex align-items-center">
+                            <a href="{{ route('website.bookingdetail', $booking->id) }}" class="me-2" title="View Booking">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <span class="text-muted mx-2">|</span>
+                            <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" data-booking-id="{{ $booking->id }}" title="Give Review" class="ms-2">
+                                <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
+                            </a>
+                        </div>
+                    </td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->user->name }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->booking_reference }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->booking_items->first()->vehicle->company->name ?? '' }}</td>
 
-                <td class="py-4 text-center">
-                    <div class="d-inline-flex align-items-center">
-                        <a href="{{ route('website.bookingdetail', $booking->id) }}" class="me-2" title="View Booking">
-                            <i class="fa fa-eye"></i>
+                    <td class="py-4 text-center text-nowrap"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
+
+                    <td class="py-4 text-center text-nowrap">
+                      <span id="bookingStatus-{{ $booking->id }}" class="badge bg-secondary text-uppercase">
+                        {{ $booking->booking_status }}
+                      </span>
+                    </td>
+                    <td class="py-4 text-center text-nowrap">{{ ucfirst($booking->payment_method) }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->coupon_code ?: '—' }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->discount_amount, 0) }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->tax_amount, 0) }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->total_price, 0) }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->subtotal, 0) }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->notes }}</td>
+                    <td class="py-4 text-center text-nowrap">
+                      @if($booking->payment_status === 'paid' && $booking->booking_status === 'confirmed')
+                        <a href="javascript:void(0)" 
+                          id="cancelButton-{{ $booking->id }}" 
+                          class="btn btn-danger btn-sm cancelBookingBtn" 
+                          data-bs-toggle="modal" 
+                          data-bs-target="#cancelModal" 
+                          data-booking-id="{{ $booking->id }}">
+                            {{ __('messages.cancel') }}
                         </a>
-                        <span class="text-muted mx-2">|</span>
-                        <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" data-booking-id="{{ $booking->id }}" title="Give Review" class="ms-2">
-                            <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
-                        </a>
-                    </div>
-                </td>
-
-                    <td class="py-4 text-center">{{ $booking->user->name }}</td>
-                    <td class="py-4 text-center">{{ $booking->booking_reference }}</td>
-                    <td class="py-4 text-center">{{ $booking->booking_items->first()->vehicle->company->name ?? '' }}</td>
-
-                    <td class="py-4 text-center"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
-
-                    <td class="py-4 text-center"><span class="badge bg-secondary text-uppercase">{{ $booking->booking_status }}</span></td>
-                    <td class="py-4 text-center">{{ ucfirst($booking->payment_method) }}</td>
-                    <td class="py-4 text-center">{{ $booking->coupon_code ?: '—' }}</td>
-                    <td class="py-4 text-center">{{ convertPrice($booking->discount_amount, 0) }}</td>
-                    <td class="py-4 text-center">{{ convertPrice($booking->tax_amount, 0) }}</td>
-                    <td class="py-4 text-center">{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
-                    <td class="py-4 text-center">{{ convertPrice($booking->total_price, 0) }}</td>
-                    <td class="py-4 text-center">{{ convertPrice($booking->subtotal, 0) }}</td>
-                    <td class="py-4 text-center">{{ $booking->notes }}</td>
-                </tr>
-                              
+                      @else
+                        <span> - </span>
+                      @endif
+                    </td>
+                  </tr>
                 @empty
-                <tr>
-                    <td colspan="16" class="text-center">{{ __('messages.no_booking') }}</td>
-                </tr>
+                  <tr>
+                      <td colspan="16" class="text-center">{{ __('messages.no_booking') }}</td>
+                  </tr>
                 @endforelse
             </tbody>
         </table>
@@ -101,6 +117,31 @@ Booking | Select and Rent
     <div class="mt-4 d-flex justify-content-center">
         {{ $bookings->links() }}
     </div> 
+</div>
+
+<!-- Cancel Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="{{ route('website.booking.cancel')}}" id="cancelForm" method="POST">
+      @csrf
+      <input type="hidden" name="booking_id" id="modal_booking_id">
+      <div class="modal-content">
+        <div class="modal-header position-relative">
+            <h5 class="modal-title w-100 text-center" id="cancelModalLabel">
+                <b>{{ __('messages.cancel') }}</b>
+            </h5>
+            <button type="button" class="btn-close position-absolute end-0 top-50 translate-middle-y" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="cancelReason" class="form-label mt-4 text-start d-block">{{ __('messages.reason') }}</label>
+          <textarea class="form-control" name="cancel_reason" id="cancelReason" rows="3" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-sm" id="cancelBookingBtn">{{ __('messages.confirm') }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- review -->
@@ -142,6 +183,9 @@ Booking | Select and Rent
   </div>
 </div>
 
+
+
 <script src="{{ asset('/frontend-assets/assets/Js/reviews.js') }}"></script>
+<script src="{{ asset('/frontend-assets/assets/Js/cancelBooking.js') }}"></script>
 <!-- end review -->
 @endsection
