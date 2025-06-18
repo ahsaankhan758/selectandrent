@@ -739,4 +739,6 @@ return [
 'invoice'=>'Invoice',
 'commission'=>'Commissions (%)',
 'tax_per'=>'Tax (%)',
+'perday' => 'Per/Day',
+'perhour' => 'Per/Hour',
 ];
