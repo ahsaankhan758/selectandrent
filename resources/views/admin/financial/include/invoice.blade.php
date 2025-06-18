@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="float-end">
-                            <h4 class="m-0 d-print-none">Invoice</h4>
+                            <h4 class="m-0 d-print-none">{{ __('messages.invoice') }}</h4>
                         </div>
                     </div>
 

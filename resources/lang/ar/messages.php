@@ -748,5 +748,16 @@ return [
 'tax_per' => 'الضريبة (%)',
 'perday' => 'لكل يوم',
 'perhour' => 'لكل ساعة',
+'bookingchart' => 'مخطط الحجز',
+'invoice' => 'فاتورة',
+'completed' => 'مكتمل',
+'no_reminder' => 'لا توجد تذكيرات محددة.',
+'totalcar' => 'إجمالي السيارات',
+'canceltoday' => 'الإلغاءات اليوم',
+'activebooked' => 'الحجوزات النشطة',
+'pendingpayment' => 'المدفوعات المعلقة',
+'payout' => 'المدفوعات لشركات الإيجار',
+'commissiondashboard' => 'العمولة',
+'total_booking' => 'إجمالي الحجوزات',
 
 ];
