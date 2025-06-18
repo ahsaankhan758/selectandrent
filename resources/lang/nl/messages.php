@@ -738,5 +738,18 @@ return [
 'invoice' => 'Factuur',
 'commission' => 'Commissies (%)',
 'tax_per' => 'Belasting (%)',
+'perday' => 'Per dag',
+'perhour' => 'Per uur',
+'bookingchart' => 'Boekingsgrafiek',
+'invoice' => 'Factuur',
+'completed' => 'Voltooid',
+'no_reminder' => 'Geen herinneringen ingesteld.',
+'totalcar' => 'Totaal aantal auto’s',
+'canceltoday' => 'Annuleringen vandaag',
+'activebooked' => 'Actieve boekingen',
+'pendingpayment' => 'Openstaande betalingen',
+'payout' => 'Uitbetalingen aan verhuurbedrijven',
+'commissiondashboard' => 'Commissie',
+'total_booking' => 'Totaal aantal boekingen',
 
 ];

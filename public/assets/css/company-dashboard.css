@@ -63,6 +63,20 @@
         transform: translateY(0px) scale(0.98);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
+
+     .reminder-body div[style*="overflow-y: auto;"] {
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
+    }
+
+    .reminder-body div[style*="overflow-y: auto;"]::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .reminder-body div[style*="overflow-y: auto;"]::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 10px;
+    }
    /*  Container  */
 .booking-container {
     background: var(--white-color);

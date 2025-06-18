@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="float-end">
-                            <h4 class="m-0 d-print-none">Invoice</h4>
+                            <h4 class="m-0 d-print-none">{{ __('messages.invoice') }}</h4>
                         </div>
                     </div>
 
@@ -108,24 +108,27 @@
                                     <table class="table mt-4 table-centered">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('messages.booking_platenumber') }}</th>
-                                                <th>{{ __('messages.car') }}</th>
-                                                <th>{{ __('messages.category') }}</th>
-                                                <th>{{ __('messages.location') }}</th>
-                                                <th>{{ __('messages.day_hour') }}</th>
+                                                <th class="text-nowrap">{{ __('messages.booking_platenumber') }}</th>
+                                                <th class="text-nowrap">{{ __('messages.car') }}</th>
+                                                <th class="text-nowrap">{{ __('messages.category') }}</th>
+                                                <th class="text-nowrap">{{ __('messages.location') }}</th>
+                                                @if($detail->vehicle->rent_type == 'day')
+                                                <th class="text-nowrap">{{ __('messages.perday') }}</th>
+                                                @else 
+                                                <th class="text-nowrap">{{ __('messages.perhour') }}</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{ $detail->vehicle->lisence_plate ?? 'N/A' }}</td>
-                                                <td>
+                                                <td class="text-nowrap">{{ $detail->vehicle->lisence_plate ?? 'N/A' }}</td>
+                                                <td class="text-nowrap">
                                                     <b>{{ $detail->vehicle->carModel->name ?? 'N/A' }}</b>
                                                     -{{ $detail->vehicle->year ?? 'N/A' }}
                                                 </td>
-                                                <td>{{ $detail->vehicle->car_categories->name }}</td>
+                                                <td class="text-nowrap">{{ $detail->vehicle->car_categories->name }}</td>
                                                 <td>{{ $detail->pickupLocation->area_name ?? 'N/A' }}</td>
-                                                <td>{{ $detail->duration_days }} /
-                                                    {{ $detail->vehicle->rent_type ?? 'N/A' }}</td>
+                                                <td class="text-nowrap">{{ $detail->vehicle->rent ?? '0' }} </td>
                                             </tr>
                                         </tbody>
                                     </table>
