@@ -21,10 +21,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item active">{{ __('message.dashboard')}}</li>
+                            <li class="breadcrumb-item active">{{ __('messages.dashboard')}}</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">{{ __('message.dashboard')}}</h4>
+                    <h4 class="page-title">{{ __('messages.dashboard')}}</h4>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                             </div>
                             <div>
                                 <h3 class="text-dark my-1">{{ $totalbooking }}</h3>
-                                <p class="text-muted mb-0">{{ __('message.total_booking')}}</p>
+                                <p class="text-muted mb-0">{{ __('messages.total_booking')}}</p>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                             </div>
                             <div>
                                 <h3 class="text-dark my-1">{{ $totalrevenue }}</h3>
-                                <p class="text-muted mb-0">{{ __('message.total_revenue')}}</p>
+                                <p class="text-muted mb-0">{{ __('messages.total_revenue')}}</p>
                             </div>
                         </div>
                     </div>
