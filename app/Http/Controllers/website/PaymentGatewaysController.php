@@ -67,10 +67,10 @@ class PaymentGatewaysController extends Controller
             $commissionRate = $commissionPercentage / 100; // commission rate
             $total_commission = $bookingData['total'][0] * $commissionRate;
             // 
-            if(session('defaultCurrencyCode')){
-             $currency = session('defaultCurrencyCode');
-            }else{
-             $currency = 'USD';
+            // currency code
+            $currencyCode = session('defaultCurrencyCode');
+            if (empty($currencyCode)) {
+                $currencyCode = Currency::where('is_default', 'Yes')->where('is_active','Yes')->value('code');
             }
             
             if (!is_array($bookingData) || empty($bookingData['total'][0])) {
@@ -80,12 +80,11 @@ class PaymentGatewaysController extends Controller
             $method = $request->paymentMethod;
             $gateway = payment($method);
             $amount = (int) round($bookingData['total'][0] * 100);
-            $qty = Cart::instance('cart')->content()->count();
-            // print_r($amount);
+           
             DB::beginTransaction();
             
-            // Create main booking
-            $booking = Booking::create([
+            
+            $bookingTempData = [
                 'user_id' => $request->user_id,
                 'first_name' => $request->firstName,
                 'last_name' => $request->lastName,
@@ -95,71 +94,19 @@ class PaymentGatewaysController extends Controller
                 'country' => $request->country,
                 'postal_code' => $request->postal_code,
                 'billing_addresss' => $request->billing_addresss,
-                'booking_reference' => $request->reference_number,
+                'reference_number' => $request->reference_number,
                 'subtotal' => $bookingData['subtotal'][0],
-                'total_price' => $bookingData['total'][0],
+                'total' => $bookingData['total'][0],
                 'commission' => $total_commission,
-                'currency' => $currency,
+                'currency' => $currencyCode,
                 'tax_amount' => $bookingData['tax'][0],
-                'payment_status' => 'pending',
-                'booking_status' => 'pending',
                 'payment_method' => $method,
+                'vehicles' => $bookingData, // full array with vehicle info
                 'insurance_included' => 0,
-            ]);
-    
-            // Insert booking items
-            foreach ($bookingData['vehicleId'] as $i => $vehicleId) {
-                BookingItem::create([
-                    'booking_id' => $booking->id,
-                    'vehicle_id' => $vehicleId,
-                    'pickup_location' => $bookingData['pickup_location'][$i],
-                    'dropoff_location' => $bookingData['dropoff_location'][$i],
-                    'pickup_datetime' => $bookingData['pickup_datetime'][$i],
-                    'dropoff_datetime' => $bookingData['dropoff_datetime'][$i],
-                    'duration_days' => $bookingData['duration'][$i],
-                    'price_per_day' => $bookingData['price_per_day'][$i],
-                    'total_price' => $bookingData['item_price'][$i],
-                ]);
-            }
-    
+            ];
+
+            $encodedBooking = base64_encode(serialize($bookingTempData));
             DB::commit();
-
-            // Fetch booking items again to include relation
-
-$bookingItems = BookingItem::where('booking_id', $booking->id)->get();
-
-
-// currency code
-$currencyCode = session('defaultCurrencyCode');
-if (empty($currencyCode)) {
-    $currencyCode = Currency::where('is_default', 'Yes')->where('is_active','Yes')->value('code');
-}
-
-// Send email to customer
-Mail::send('website.email.bookingorder', [
-    'booking' => $booking,
-    'bookingItems' => $bookingItems,
-    'currency' => $currencyCode,
-], function ($message) use ($booking) {
-    $message->to($booking->email)
-            ->subject('Your Booking Confirmation - ' . $booking->booking_reference);
-});
-
-
-// Send email to each vehicle's company
-foreach ($bookingItems as $item) {
-    $vehicle = \App\Models\BookingItem::find($item->vehicle_id);
-    if ($vehicle && $vehicle->company_email) {
-        Mail::send('website.email.bookingorder', [
-            'booking' => $booking,
-            'bookingItems' => [$item], // send only related item
-            'currency' => $currencyCode,
-        ], function ($message) use ($vehicle, $booking) {
-            $message->to($vehicle->company_email)
-                    ->subject('New Booking Received - ' . $booking->booking_reference);
-        });
-    }
-}
     
         // Handle Stripe payment
         if ($method === 'stripe') {
@@ -175,7 +122,7 @@ foreach ($bookingItems as $item) {
                     'price_data' => [
                         'currency' => $currencyCode,
                         'product_data' => [
-                            'name' => $booking->booking_reference,
+                            'name' => $request->reference_number,
 
                         ],
                         'unit_amount' => $amount,
@@ -183,8 +130,12 @@ foreach ($bookingItems as $item) {
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => route('booking.thankyou', ['ref' => $booking->booking_reference]),
-                'cancel_url' => route('booking.cancel', ['ref' => $booking->booking_reference]),
+                'customer_email' => $request->email,
+                'success_url' => route('booking.thankyou') . 
+        '?ref=' . $request->reference_number . 
+        '&session_id={CHECKOUT_SESSION_ID}' .
+        '&bookingData=' . urlencode($encodedBooking),
+                'cancel_url' => route('booking.cancel', ['ref' => $request->reference_number]),
             ]);
         
             return response()->json([
