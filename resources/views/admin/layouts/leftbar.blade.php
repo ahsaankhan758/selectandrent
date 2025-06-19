@@ -228,6 +228,14 @@ if (Auth::check()) {
                         </a>
                     </li>
                 @endif
+                <!-- @if (can('Financial', 'view')) -->
+                    <li>
+                        <a href="{{ route('refundableBookings') }}">
+                            <i class="mdi mdi-cash-multiple"></i>
+                            <span>{{ __('messages.refunds') }}</span>
+                        </a>
+                    </li>
+                <!-- @endif -->
                 @if (can('Clients', 'view'))
                     <li>
                         <a href="{{ route('client') }}" class="d-flex align-items-center justify-content-between">

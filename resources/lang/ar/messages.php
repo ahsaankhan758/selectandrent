@@ -1,6 +1,15 @@
 <?php 
 
 return [
+    'issue' => 'المشكلة',
+    'amount' => 'المبلغ',
+    'refunded' => 'تم الاسترداد',
+    'process' => 'المعالجة',
+    'refunds' => 'الاستردادات',
+    'notes(Cancel)' => 'ملاحظات (إلغاء)',
+    'refunded_by' => 'تم الاسترداد بواسطة',
+    'refund_notes' => 'ملاحظات الاسترداد',
+    'refund' => 'استرداد',
     'reason'  => 'السبب',
     'reasons' => 'الأسباب',
     'confirm' => 'تأكيد',
