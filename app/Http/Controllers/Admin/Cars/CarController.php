@@ -8,6 +8,7 @@ use App\Models\CarLocation;
 use App\Models\CarModel;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\company;
 use App\Models\City;
 use Auth;
 use App\Models\CarFeature;
@@ -17,31 +18,75 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index(Request $request)
+    // {
+    //     $query = Car::orderBy('created_at', 'desc');
+        
+        
+
+    //     if (Auth::user()->role === 'company') {
+    //         $query->where('user_id', Auth::id());
+    //     }
+    //     else{
+    //         $owner = EmployeeOwner(auth()->id());
+    //         if(isset($owner) && $owner->role == 'company'){
+    //             $query->where('user_id', $owner->id);
+    //         }
+    //     }
+
+    //     if ($request->has('is_booked') && $request->is_booked == 1) {
+    //         $query->where('is_booked', 1);
+    //     }
+    
+    //     $cars = $query->paginate(20);
+    
+    //     return view('admin.cars.carsListing.carsListing', compact('cars'));
+    // }
     public function index(Request $request)
-    {
-        $query = Car::orderBy('created_at', 'desc');
-        
-        
+{
+    $query = Car::with('booking_items.booking')
+        ->orderBy('created_at', 'desc');
 
-        if (Auth::user()->role === 'company') {
-            $query->where('user_id', Auth::id());
-        }
-        else{
-            $owner = EmployeeOwner(auth()->id());
-            if(isset($owner) && $owner->role == 'company'){
-                $query->where('user_id', $owner->id);
-            }
-        }
+    $companyUserId = $request->user_id ?? null;
+    $countryId     = $request->country_id ?? null;
+    $startDate     = $request->start_date ? date('Y-m-d', strtotime($request->start_date)) : null;
+    $endDate       = $request->end_date ? date('Y-m-d', strtotime($request->end_date)) : null;
 
-        if ($request->has('is_booked') && $request->is_booked == 1) {
-                $query->where('is_booked', 1);
-            }
-    
-        $cars = $query->paginate(20);
-    
-        return view('admin.cars.carsListing.carsListing', compact('cars'));
+    if (Auth::user()->role === 'company') {
+        $query->where('user_id', Auth::id());
+    } else {
+        $owner = EmployeeOwner(auth()->id());
+        if ($owner && $owner->role === 'company') {
+            $query->where('user_id', $owner->id);
+        }
     }
-    
+
+    if ($request->has('is_booked') && $request->is_booked == 1) {
+        $query->where('is_booked', 1);
+    }
+
+    if ($companyUserId) {
+        $query->where('user_id', $companyUserId);
+    }
+
+    if ($countryId) {
+        $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+        $query->whereIn('user_id', $companyUserIds);
+    }
+
+    if ($startDate && $endDate) {
+        $query->whereHas('booking_items.booking', function ($q) use ($startDate, $endDate) {
+            $q->whereDate('created_at', '>=', $startDate)
+              ->whereDate('created_at', '<=', $endDate);
+        });
+    }
+
+    $cars = $query->paginate(20);
+
+    return view('admin.cars.carsListing.carsListing', compact('cars'));
+}
+
+
     /**
      * Show the form for creating a new resource.
      */
