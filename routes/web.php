@@ -73,7 +73,9 @@ Route::post('logout', [userController::class, 'logout'])->name('logout')->middle
 
 Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/change-language/{lang}',[LanguageController::class, 'setLanguage'])->name('change.language');
-
+    // To Get Current Prefix of URL
+    $currentPrefix = request()->segment(1);
+    
     // Admin Login Routes
     Route::get('admin', [DashboardController::class, 'index']);
     Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('IsAdmin:adminForm');
@@ -95,9 +97,6 @@ Route::middleware('LanguageMiddleware')->group(function(){
     // User Register
     Route::post('user/signup', [SignupController::class, 'signup'])->name('user.signup');
     Route::get('/confirm-email/{token}', [SignupController::class, 'confirm'])->name('confirm.email');
-
-    // To Get Current Prefix of URL
-    $currentPrefix = request()->segment(1);
    
     if($currentPrefix == 'company'){
         Route::prefix('company')->middleware(['auth','IsAdmin:company'])->group(function(){
@@ -176,14 +175,14 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/customerReviews', [CustomerReviewController::class, 'index'])->name('customerReview');
         });
     }
-
-    if($currentPrefix == 'admin'){
+       
+    if($currentPrefix === 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
 
 
             // general module
              Route::get('/general-module/create', [GeneralModuleController::class, 'create'])->name('general-module.create');
-    Route::post('/general-module/store', [GeneralModuleController::class, 'store'])->name('general-module.store');
+             Route::post('/general-module/store', [GeneralModuleController::class, 'store'])->name('general-module.store');
 
             Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
             Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
@@ -454,7 +453,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     });
     // 
     Route::any('/confirmation', [ConfirmBookingController::class, 'confirmBookingView'])->name('booking.confirmation');
-    Route::get('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
+    Route::any('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
     Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
     // categories routes
     Route::get('/categories', [CategoryController::class, 'categoryView']);
@@ -491,6 +490,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     // booking page website
     Route::get('/booking', [WebsiteBookingController::class, 'index'])->name('website.booking');
     Route::get('/booking-detail/{id}', [WebsiteBookingController::class, 'show'])->name('website.bookingdetail');
+    Route::post('/booking-cancel', [WebsiteBookingController::class, 'cancel'])->name('website.booking.cancel');
     // website review save
     Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 

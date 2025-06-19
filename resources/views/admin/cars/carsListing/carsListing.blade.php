@@ -16,7 +16,7 @@
                         <th scope="col">{{ __('messages.model') }}</th>
                         <th scope="col">{{ __('messages.lisence plate') }}</th>
                         <th scope="col">{{ __('messages.owner') }}</th>
-                        <th scope="col">{{ __('messages.employee') }}</th>
+                        <th scope="col">{{ __('messages.created_by') }} {{ __('messages.employee') }}</th>
                         <th scope="col">{{ __('messages.status') }}</th>
                         <th scope="col">{{ __('messages.action') }}</th>
                     </tr>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
+
     // public function index()
     // {
     //     $customers = User::with(['bookings', 'reviewsReceived'])
@@ -46,6 +47,7 @@ class ClientController extends Controller
             $q->whereDate('created_at', '>=', $startDate)
               ->whereDate('created_at', '<=', $endDate);
         });
+
     }
 
     $customers = $query->get();
