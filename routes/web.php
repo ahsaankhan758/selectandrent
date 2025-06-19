@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\Admin\CustomerReviewController;
 
+use App\Http\Controllers\Admin\RefundController;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
@@ -173,6 +174,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Customer Review
             Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
             Route::get('/customerReviews', [CustomerReviewController::class, 'index'])->name('customerReview');
+
+            //Refund
+            Route::get('refundableBookings',[RefundController::class, 'index'])->name('refundableBookings');
+            Route::post('refund',[RefundController::class, 'refund'])->name('refund.booking');
         });
     }
        
@@ -298,6 +303,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Customer Review
             Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
             Route::get('/customerReviews', [CustomerReviewController::class, 'index'])->name('customerReview');
+
+            //Refund
+            Route::get('refundableBookings',[RefundController::class, 'index'])->name('refundableBookings');
+            Route::post('refund',[RefundController::class, 'refund'])->name('refund.booking');
         });
     }
 
@@ -418,6 +427,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             //Customer Review
             Route::post('/store', [CustomerReviewController::class, 'store'])->name('storeCustomerReview');
             Route::get('/customerReviews', [CustomerReviewController::class, 'index'])->name('customerReview');
+
+            //Refund
+            Route::get('refundableBookings',[RefundController::class, 'index'])->name('refundableBookings');
+            Route::post('refund',[RefundController::class, 'refund'])->name('refund.booking');
 
         });
     }

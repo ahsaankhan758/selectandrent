@@ -5,6 +5,7 @@ namespace App\Http\Controllers\website;
 use App\Mail\BookingCancelledMail;
 use App\Models\Booking;
 use App\Models\BookingDetail;
+use App\Models\Car;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Mail;
 
 class WebsiteBookingController extends Controller
 {
-
 
     public function index()
     {
@@ -48,6 +48,21 @@ class WebsiteBookingController extends Controller
         $booking->booking_status = 'cancelled';
         $booking->notes = $validated['cancel_reason'];
         $booking->save();
+
+        if($validated['booking_id']){
+            $car = Car::find($booking->booking_items->first()->vehicle->id);
+            $notificationType = 3; // review save against vehicle car
+            $fromUserId = auth()->id(); // logged in user
+            $toUserId = $car->user_id;
+            $userId = $car->user_id; 
+            $message = 'Booking has been Cancelled by ('.auth()->user()->name.') for your Vehicle: ' . $car->lisence_plate. ' With Booking Refernce: '.$booking->booking_reference ;
+            saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
+            if(!empty($car->u_employee_id)){
+                $toUserId = $car->u_employee_id;
+                $userId = $car->u_employee_id; 
+                saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
+            }
+        }
         
 
         Mail::to($booking->user->email)->send(new BookingCancelledMail($booking,  'customer'));

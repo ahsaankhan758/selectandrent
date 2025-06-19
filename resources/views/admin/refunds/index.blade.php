@@ -1,3 +1,11 @@
+@extends('admin.layouts.Master')
+
+@section('title')
+    {{ __('messages.refunds') }} 
+@endsection
+
+@section('content')
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
 <div class="col-12">
      <div class="card">
@@ -5,7 +13,7 @@
              <div class="table-responsive">
                  <table class="table table-centered table-nowrap mb-0" id="myTable">
                      <div class="col-lg-12 mb-2">
-                         <a href="{{ route('carBooking') }}" class="btn btn-success">{{ __('messages.booking_all') }}</a>
+                         <h4>{{ __('messages.refunds') }}</h4>
                      </div>
                      <thead class="table-light">
                          <tr>
@@ -16,8 +24,8 @@
                                  </div>
                              </th>
                              <th style="width: 125px;">{{ __('messages.action') }}</th>
+                             <th>{{ __('messages.refund') }}</th>
                              <th>{{ __('messages.invoice') }}</th>
-                             <th>{{ __('messages.pick/drop') }}</th>
                              <th>{{ __('messages.name') }}</th>
                              <th>{{ __('messages.bookingref') }}</th>
                              <th>{{ __('messages.bookingpayment') }}</th>
@@ -31,6 +39,8 @@
                              <th>{{ __('messages.bookingtotal') }}</th>
                              <th>{{ __('messages.bookingsubtotal') }}</th>
                              <th>{{ __('messages.notes(Cancel)') }}</th>
+                             <th>{{ __('messages.refunded_by') }}</th>
+                             <th>{{ __('messages.refund_notes') }}</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -48,13 +58,16 @@
                                             class="action-icon">
                                             <i class="mdi mdi-eye"></i>
                                         </a>
-                                         @if($booking->booking_status == 'completed')
-                                            <span class="text-muted mx-2">|</span>
-                                            <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-booking-id="{{ $booking->id }}" data-customer-id="{{ $booking->user_id }}" title="Give Review" class="ms-2">
-                                                <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
-                                            </a>
-                                        @endif
                                     </td>
+                                 </td>
+                                 <td>
+                                    @if( $booking->booking_status == 'cancelled' && $booking->payment_status == 'paid')
+                                        <a href="javascript::void(0)" id="refund" data-bs-toggle="modal" data-bs-target="#refundModal" data-booking-id="{{ $booking->id }}" data-user-reason="{{ $booking->notes }}" data-booking-amount="{{ $booking->total_price }}" title="Refund" class="ms-2 btn btn-success">
+                                             {{ __('messages.refund') }}
+                                        </a>
+                                    @else
+                                        —
+                                    @endif
                                  </td>
                                  <td>
                                      <a href="{{ route('booking.invoice', ['id' => $booking->id]) }}"
@@ -62,38 +75,6 @@
                                        <i class="fa-solid fa-file-pdf"></i>
                                      </a>
                                  </td>
-
-                                 <td>
-                                    @if($booking->booking_status == 'cancelled')
-                                        —
-                                    @else
-                                        @foreach ($booking->booking_items as $item)
-                                            @if ($booking->booking_status == 'confirmed')
-                                                @if (!$item->actual_pickup_datetime)
-                                                    <form action="{{ route('booking.pickup', $item->id) }}" method="POST"
-                                                        style="display:inline;">
-                                                        @csrf
-                                                        <button class="btn btn-success btn-sm">Pickup</button>
-                                                    </form>
-                                                @elseif (!$item->actual_dropoff_datetime)
-                                                    <form action="{{ route('booking.dropoff', ['id' => $item->id, 'vehicle_id' => $item->vehicle_id]) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        <button class="btn btn-danger btn-sm">Dropoff</button>
-                                                    </form>
-                                                @else
-                                                    <span class="badge bg-info">Completed</span>
-                                                @endif
-                                            @else
-                                                @if ($item->actual_pickup_datetime && $item->actual_dropoff_datetime)
-                                                    —
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                 </td>
-
-                                 
                                  <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                  <td>{{ $booking->booking_reference }}</td>
                                  <td>
@@ -113,6 +94,8 @@
                                  <td>{{ number_format($booking->total_price, 2) }}</td>
                                  <td>{{ number_format($booking->subtotal, 2) }}</td>
                                  <td>{{ $booking->notes }}</td>
+                                 <td>{{ $booking->refunded_by ?: '—' }}</td>
+                                 <td>{{ $booking->refunded_note ?: '—' }}</td>
                              </tr>
                          @empty
                              <tr>
@@ -125,44 +108,57 @@
          </div>
      </div>
  </div>
- <!-- Review Modal -->
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true" >
-  <div class="modal-dialog modal-dialog-centered">
-    <form action="{{route('storeCustomerReview')}}" method="POST" id="reviewForm" class="w-100">
-      @csrf
-      <input type="hidden" name="booking_id" id="modal_booking_id">
-      <input type="hidden" name="customer_id" id="modal_customer_id">
-      <div class="modal-content shadow-lg border-0 rounded-4">
-        <div class="modal-header text-center border-0">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
 
-        <div class="modal-body">
-          <div class="mb-4 text-center">
-                <label class="form-label d-block fw-semibold">Rating</label>
-                <div class="star-rating">
-                    @for ($i = 5; $i >= 1; $i--)
-                        <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" required />
-                        <label for="star{{ $i }}" title="{{ $i }} star{{ $i > 1 ? 's' : '' }}">&#9733;</label>
-                    @endfor
+<!-- Refund Modal -->
+<div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST" action="{{ route('refund.booking') }}" id="refundForm">
+            @csrf
+            <input type="hidden" name="booking_id" id="refund-booking-id">
+            
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="refundModalLabel">{{ __('messages.issue') }} {{ __('messages.refund') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-          </div>
 
-          <div class="mb-3 text-center">
-            <label for="comment" class="form-label fw-semibold">Comment (Optional)</label>
-            <textarea name="comment" class="form-control" rows="4" placeholder="Share your experience..."></textarea>
-          </div>
-        </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="user_reason" class="form-label">{{ __('messages.customer') }} {{ __('messages.reason') }}</label>
+                        <input type="text" name="user-reason" id="user-reason" class="form-control" rows="3" readonly></input>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="refund_amount" class="form-label">{{ __('messages.refund') }} {{ __('messages.amount') }}</label>
+                        <input type="number" name="refund_amount" id="refund_amount" class="form-control" readonly>
+                    </div>
 
-        <div class="modal-footer border-0">
-          <button type="submit" class="btn text-white btn-orange-clr w-100" style="background-color: #ff6600 !important;">Submit Review</button>
-        </div>
-      </div>
-    </form>
-  </div>
+                    <div class="mb-3">
+                        <label for="refunded_reason" class="form-label">{{ __('messages.refund') }} {{ __('messages.reason') }}</label>
+                        <select name="refunded_reason" id="refunded_reason" class="form-control" required>
+                            <option disabled selected value="">{{ __('messages.select') }} {{ __('messages.reason') }}  </option>
+                            <option value="Duplicate">Duplicate</option>
+                            <option value="Fraudulent">Fraudulent</option>
+                            <option value="Request by Customer">Request by Customer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="refunded_reason_other" id="refunded_reason_other" class="form-control d-none" placeholder="Type Reason Here...."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.cancel') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('messages.process') }} {{ __('messages.refund') }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 
-
-
 <script src="{{ asset('/assets/js/admin/customerReview.js') }}"></script>
+<script src="{{ asset('/assets/js/admin/cancelBooking.js') }}"></script>
+
+@endsection

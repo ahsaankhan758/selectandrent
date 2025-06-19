@@ -1,6 +1,15 @@
  <?php
 
 return [
+  'issue' => 'Issue',
+  'amount' => 'Amount',
+  'refunded' => 'Refunded',
+  'process' => 'Process',
+  'refunds' => 'Refunds',
+  'notes(Cancel)' => 'Notes (Cancel)',
+  'refunded_by' => 'Refunded By',
+  'refund_notes' => 'Refund Notes',
+  'refund' => 'Refund',
   'reason' => 'Reason',
   'reasons' => 'Reasons',
   'confirm' => 'Confirm',

@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'issue' => 'Probleem',
+    'amount' => 'Bedrag',
+    'refunded' => 'Terugbetaald',
+    'process' => 'Verwerken',
+    'refunds' => 'Terugbetalingen',
+    'notes(Cancel)' => 'Notities (Annuleren)',
+    'refunded_by' => 'Terugbetaald door',
+    'refund_notes' => 'Terugbetalingsnotities',
+    'refund' => 'Terugbetaling',
     'reason'  => 'Reden',
     'reasons' => 'Redenen',
     'confirm' => 'Bevestigen',
