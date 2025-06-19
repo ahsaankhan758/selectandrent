@@ -83,5 +83,9 @@ class Car extends Model
         return $this->hasOne(Company::class, 'user_id', 'user_id');
     }
 
+public function booking_items()
+{
+    return $this->hasMany(BookingItem::class, 'vehicle_id');
+}
 
 }
