@@ -54,7 +54,7 @@ class AdminMiddleware
                 ($userRole === 'admin' && in_array($role, ['userForm', 'user', 'company','employeeForm'])) ||
                 ($userRole === 'user' && in_array($role, ['adminForm', 'admin', 'company','employeeForm'])) ||
                 ($userRole === 'company' && in_array($role, ['admin', 'user', 'employeeForm'])) ||
-                ($userRole === 'employee' && in_array($role, ['admin', 'company', 'user']))
+                ($userRole === 'employee' && in_array($userRole, ['admin', 'company', 'user']))
             ) {
                 abort(401);
             }

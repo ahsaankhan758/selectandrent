@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'issue' => 'Problème',
+    'amount' => 'Montant',
+    'refunded' => 'Remboursé',
+    'process' => 'Traitement',
+    'refunds' => 'Remboursements',
+    'notes(Cancel)' => 'Remarques (Annulation)',
+    'refunded_by' => 'Remboursé par',
+    'refund_notes' => 'Remarques sur le remboursement',
+    'refund' => 'Remboursement', 
     'reason'  => 'Raison',
     'reasons' => 'Raisons',
     'confirm' => 'Confirmer',
