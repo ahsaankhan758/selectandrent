@@ -54,17 +54,19 @@
                                  </td>
                                  <td class="py-4 text-center">
                                     <div class="d-inline-flex align-items-center"></div>
-                                        <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
-                                            class="action-icon">
+                                        <a href="{{ route('car.booking.detail', ['id' => $booking->id, 'source' => 'refundSource']) }}"
+                                            class="action-icon" data-source="refund">
                                             <i class="mdi mdi-eye"></i>
                                         </a>
                                     </td>
                                  </td>
                                  <td>
                                     @if( $booking->booking_status == 'cancelled' && $booking->payment_status == 'paid')
-                                        <a href="javascript::void(0)" id="refund" data-bs-toggle="modal" data-bs-target="#refundModal" data-booking-id="{{ $booking->id }}" data-user-reason="{{ $booking->notes }}" data-booking-amount="{{ $booking->total_price }}" title="Refund" class="ms-2 btn btn-success">
-                                             {{ __('messages.refund') }}
-                                        </a>
+                                        <div id="issueRefund">
+                                            <a href="javascript::void(0)" id="refund" data-bs-toggle="modal" data-bs-target="#refundModal" data-booking-id="{{ $booking->id }}" data-user-reason="{{ $booking->notes }}" data-booking-amount="{{ $booking->total_price }}" title="Refund" class="ms-2 btn btn-success">
+                                                {{ __('messages.refund') }}
+                                            </a>
+                                        </div>
                                     @else
                                         —
                                     @endif
@@ -156,9 +158,5 @@
         </form>
     </div>
 </div>
-
-
-<script src="{{ asset('/assets/js/admin/customerReview.js') }}"></script>
 <script src="{{ asset('/assets/js/admin/cancelBooking.js') }}"></script>
-
 @endsection

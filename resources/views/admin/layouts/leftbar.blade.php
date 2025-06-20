@@ -46,7 +46,7 @@ if (Auth::check()) {
 
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app', 2) }}</li>
 
-                @if ($role == 'admin' || $role == 'employee')
+                @if ($role == 'admin')
                     @if (can('users', 'view'))
                         <li>
                             <a href="{{ route('users') }}">
@@ -56,7 +56,7 @@ if (Auth::check()) {
                         </li>
                     @endif
                 @endif
-                @if (can('users', 'view'))
+                @if ($role == 'admin' || $role == 'company')
                     <li>
                         <a href="{{ route('employee') }}">
                             <i class="mdi mdi-account-circle-outline"></i>
@@ -70,7 +70,7 @@ if (Auth::check()) {
                 <?php
                 $owner = EmployeeOwner($userId);
                 ?>
-                @if ($role == 'admin' || (isset($owner->role) && $owner->role == 'admin'))
+                @if ($role == 'admin')
                     <li>
                         <a href="{{ route('usersignup') }}">
                             <i class="mdi mdi-account-plus"></i>

@@ -18,13 +18,7 @@ $(document).ready(function () {
             url: url,
             data: formData,
             success: function (response) {
-                let toast = {
-                        title: "Alert",
-                        message: response.message,
-                        status: response.status,
-                        timeout: 5000
-                    }
-                Toast.create(toast);
+                showToast(response.message,"success");
                 $('#reviewModal').modal('hide');
                 form.trigger('reset');
                 form.find('input[type="radio"]').prop('checked', false);

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
  
-            $table->unsignedTinyInteger('type')->comment('1- feedback to customer, 2- customer placed orders, 3- order cancelled from customer, 4- register company, 5- feedback from customers');
+            $table->unsignedTinyInteger('type')->comment('1- feedback to customer, 2- customer placed orders, 3- order cancelled from customer, 4- register company, 5- feedback from customers, 6- Refund');
             $table->unsignedBigInteger('from_user_id');
             $table->unsignedBigInteger('to_user_id');
             $table->unsignedBigInteger('user_id');
