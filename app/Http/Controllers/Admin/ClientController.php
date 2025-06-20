@@ -21,8 +21,9 @@ class ClientController extends Controller
   public function index(Request $request)
 {
     $query = User::with(['bookings.booking_items.vehicle', 'reviewsReceived'])
-        ->withAvg('reviewsReceived', 'rating')
-        ->whereHas('bookings');
+    ->withAvg('reviewsReceived', 'rating') 
+    ->withCount('reviewsReceived')         
+    ->whereHas('bookings');
 
     $companyUserId = $request->user_id ?? null;
     $countryId = $request->country_id ?? null;

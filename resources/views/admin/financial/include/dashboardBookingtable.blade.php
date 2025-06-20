@@ -44,7 +44,7 @@
                                  </td>
                                  <td class="py-4 text-center">
                                     <div class="d-inline-flex align-items-center"></div>
-                                        <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
+                                        <a href="{{ route('car.booking.detail', ['id' => $booking->id, 'source' => 'detial']) }}"
                                             class="action-icon">
                                             <i class="mdi mdi-eye"></i>
                                         </a>

@@ -112,6 +112,13 @@
             window.baseUrl = "{{ url('/admin') }}";
         </script>
         @endif
+        <!-- Toaster  -->
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <!-- JS -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="{{ asset('/frontend-assets/assets/Js/toaster-alert.js') }}"></script>
+
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
     </body>
