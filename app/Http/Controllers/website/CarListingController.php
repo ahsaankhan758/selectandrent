@@ -75,6 +75,7 @@ class CarListingController extends Controller
     // Get all categories with car count
     $categories = CarCategory::withCount(['cars' => function ($query) {
         $query->where('status', 1);
+        $query->where('is_booked', '0');
     }])->get();
 
 
