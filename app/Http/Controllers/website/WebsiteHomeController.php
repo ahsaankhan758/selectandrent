@@ -18,13 +18,10 @@ class WebsiteHomeController extends Controller
     public function showView()
     {
         $cars = Car::where('status',1)
-        ->where('is_booked', '0')
         ->orderBy('created_at', 'desc')->take(10)->get();
         $featuredVehicle = Car::where('status',1)
-        ->where('is_booked', '0')
         ->where('is_featured', '1')->take(10)->get();
         $newArrival = Car::where('status',1)
-        ->where('is_booked', '0')
         ->orderBy('created_at', 'desc')->take(10)->get();
         return view('website.index', compact('cars','featuredVehicle','newArrival'));
     }
