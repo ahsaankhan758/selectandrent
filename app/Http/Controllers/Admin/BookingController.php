@@ -149,7 +149,7 @@ class BookingController extends Controller
     //     $booking = Booking::with(['booking_items.vehicle.carModel', 'user','car'])->findOrFail($id);
     //     return view('admin.carBooking.carBookingDetail', compact('booking'));
     // }
-public function carBookingDetail($id)
+public function carBookingDetail($id, $source)
 {
     $booking = Booking::with([
         'booking_items.vehicle.carModel', 
@@ -159,7 +159,7 @@ public function carBookingDetail($id)
         'car'
     ])->findOrFail($id);
 
-    return view('admin.carBooking.carBookingDetail', compact('booking'));
+    return view('admin.carBooking.carBookingDetail', compact('booking', 'source'));
 }
 
 

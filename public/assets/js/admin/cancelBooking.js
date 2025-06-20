@@ -31,14 +31,14 @@ $(document).ready(function () {
             url: url,
             data: formData,
             success: function (response) {
-                let toast = {
-                        title: "Alert",
-                        message: response.message,
-                        status: response.status,
-                        timeout: 5000
-                    }
-                Toast.create(toast);
+                showToast(response.message,"success");
                 $('#refundModal').modal('hide');
+                let pagetitle = $('#page-title').text();
+                if(pagetitle == 'Order Detail'){
+                    $('#issueRefund').hide();
+                }else{
+                    $('#issueRefund').html('—');
+                }
                 form.trigger('reset');
             },
             error: function (xhr) {

@@ -107,7 +107,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
-            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            Route::get('/car-booking-detail/{id},{source}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
 
         // reminder
             Route::get('/reminders', [ReminderController::class, 'show'])->name('reminder');
@@ -198,7 +198,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
           
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
-            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            Route::get('/car-booking-detail/{id},{source}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
             Route::get('/booking/invoice/{id}', [FinancialController::class, 'invoice'])->name('booking.invoice');
             //Users Routes
             Route::get('users', [userController::class, 'index'])->name('users');
@@ -330,7 +330,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
             Route::get('bookingDashboard', [DashboardController::class, 'bookingDashboard'])->name('bookingDashboard');
             Route::get('booking-overview', [DashboardController::class, 'BookingsOverview'])->name('bookingOverviewDataRoute');
-            Route::get('/car-booking-detail/{id}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
+            Route::get('/car-booking-detail/{id},{source}', [BookingController::class, 'carBookingDetail'])->name('car.booking.detail');
             //Users Routes
             Route::get('users', [userController::class, 'index'])->name('users');
             Route::get('createuser', [userController::class,'create'])->name('createUser');

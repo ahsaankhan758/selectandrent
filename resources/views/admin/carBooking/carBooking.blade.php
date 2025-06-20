@@ -17,7 +17,7 @@
                                             <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                         </div>
                                     </th>
-                                    <th>{{ __('messages.bookingview') }}</th>
+                                    <th>{{ __('messages.action') }}</th>
                                     <th>{{ __('messages.pick/drop') }}</th>
                                     <th>{{ __('messages.bookingname') }}</th>
                                     <th>{{ __('messages.bookingref') }}</th>
@@ -44,8 +44,15 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="{{ route('car.booking.detail', ['id' => $booking->id]) }}"
-                                                class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                            <a href="{{ route('car.booking.detail', ['id' => $booking->id, 'source' => 'bookingSource']) }}"
+                                                class="action-icon"> <i class="mdi mdi-eye"></i>
+                                            </a>
+                                            @if($booking->booking_status == 'completed')
+                                                <span class="text-muted mx-2">|</span>
+                                                <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-booking-id="{{ $booking->id }}" data-customer-id="{{ $booking->user_id }}" title="Give Review" class="ms-2">
+                                                    <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
+                                                </a>
+                                            @endif
                                         </td>
                                         <td>
                                             @foreach ($booking->booking_items as $item)
@@ -104,4 +111,41 @@
             </div>
         </div>
     </div>
+     <!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="{{route('storeCustomerReview')}}" method="POST" id="reviewForm" class="w-100">
+      @csrf
+      <input type="hidden" name="booking_id" id="modal_booking_id">
+      <input type="hidden" name="customer_id" id="modal_customer_id">
+      <div class="modal-content shadow-lg border-0 rounded-4">
+        <div class="modal-header text-center border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-4 text-center">
+                <label class="form-label d-block fw-semibold">Rating</label>
+                <div class="star-rating">
+                    @for ($i = 5; $i >= 1; $i--)
+                        <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" required />
+                        <label for="star{{ $i }}" title="{{ $i }} star{{ $i > 1 ? 's' : '' }}">&#9733;</label>
+                    @endfor
+                </div>
+          </div>
+
+          <div class="mb-3 text-center">
+            <label for="comment" class="form-label fw-semibold">Comment (Optional)</label>
+            <textarea name="comment" class="form-control" rows="4" placeholder="Share your experience..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer border-0">
+          <button type="submit" class="btn text-white btn-orange-clr w-100" style="background-color: #ff6600 !important;">Submit Review</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="{{ asset('/assets/js/admin/customerReview.js') }}"></script>
 @endsection
