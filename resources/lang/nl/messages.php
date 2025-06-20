@@ -764,5 +764,6 @@ return [
 'payout' => 'Uitbetalingen aan verhuurbedrijven',
 'commissiondashboard' => 'Commissie',
 'total_booking' => 'Totaal aantal boekingen',
+'currently_booked' => 'Momenteel Geboekt',
 
 ];

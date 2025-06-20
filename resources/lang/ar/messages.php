@@ -772,5 +772,6 @@ return [
 'payout' => 'المدفوعات لشركات الإيجار',
 'commissiondashboard' => 'العمولة',
 'total_booking' => 'إجمالي الحجوزات',
+'currently_booked' => 'محجوز حالياً',
 
 ];

@@ -765,7 +765,7 @@ return [
 'payout' => 'Payouts to Rental Companies',
 'commissiondashboard' => 'Commission',
 'total_booking' => 'Total Booking',
-'' => '',
+'currently_booked' => 'Currently Booked',
 '' => '',
 '' => '',
 '' => '',
