@@ -90,10 +90,10 @@
                                 @foreach ($booking->booking_items as $detail)
                                     <h6>{{ __('messages.company_info') }}</h6>
                                     <address>
-                                        {{ $detail->vehicle->company->name }}<br>
-                                        {{ $detail->vehicle->company->email }}<br>
-                                        <abbr title="Phone"></abbr>{{ $detail->vehicle->company->phone }}<br>
-                                        {{ optional($detail->vehicle->company->country)->name }}
+                                        {{ optional($detail->vehicle->company)->name ?? '' }}<br>
+                                        {{ optional($detail->vehicle->company)->email ?? '' }}<br>
+                                        <abbr title="Phone"></abbr>{{ optional($detail->vehicle->company)->phone ?? '' }}<br>
+                                        {{ optional(optional(optional($detail->vehicle)->company)->country)->name ?? '' }}
                                     </address>
                                 @endforeach
                             @endif
