@@ -763,5 +763,6 @@ return [
 'payout' => 'Paiements aux sociétés de location',
 'commissiondashboard' => 'Commission',
 'total_booking' => 'Total des réservations',
+'currently_booked' => 'Actuellement Réservé',
 
 ];
