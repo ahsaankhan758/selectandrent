@@ -14,8 +14,9 @@
            <div class="filter-bar static-display-flex justify-content-between align-items-center my-3 mt-5">
             <div class="static-display-flex align-items-center">
                 <span class="menu-icon">☰</span>
-                <span class="results">
-                    <span id="current-count">{{ $totalCars }}</span> {{ __('messages.of') }} 8 {{ __('messages.results') }} 
+                 <span class="results">
+                        8 {{ __('messages.of') }} <span id="current-count">{{ session('totalCars', 0) }}</span>
+                        {{ __('messages.results') }}
                 </span>
             </div>
             <div class="filter-options static-display-flex align-items-center">

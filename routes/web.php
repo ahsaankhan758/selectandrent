@@ -429,6 +429,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::get('/', [WebsiteHomeController::class, 'showView']);
     Route::post('/car-search', [WebsiteHomeController::class, 'search'])->name('car.search');
     Route::get('/car-brands', [WebsiteHomeController::class, 'getCarBrands'])->name('car.brands');
+    Route::get('/car/locations', [WebsiteHomeController::class, 'getLocations'])->name('car.locations');
     Route::get('/join-our-program', [JoinProgramController::class, 'joinView']);
     Route::get('/faqs', [FaqsController::class, 'faqView']);
     Route::get('/about-us', [AboutController::class, 'aboutView']);
@@ -466,6 +467,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::any('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
     // end car listing routes
     Route::get('/get-locations/{city_id}', [CarController::class, 'getLocations']);
+    
+
     // added by farhan
     Route::get('/blog', [WebsiteBlogController::class, 'blogView']);
     Route::get('/load-more-blogs', [WebsiteBlogController::class, 'loadMoreBlogs'])->name('load.more.blogs');
