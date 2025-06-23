@@ -70,6 +70,22 @@ use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
 use App\Http\Controllers\Admin\GeneralModuleController;
 
+// for live server create storage link for images
+Route::get('/create-storage-link', function () {
+    $target = storage_path('app/public');
+    $link = public_path('storage');
+
+    if (file_exists($link)) {
+        return 'Storage link already exists.';
+    }
+
+    if (symlink($target, $link)) {
+        return 'Storage link created successfully.';
+    } else {
+        return 'Failed to create storage link. Your server may not support symlinks.';
+    }
+});
+
 Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('LanguageMiddleware')->group(function(){

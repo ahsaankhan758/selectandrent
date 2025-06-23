@@ -16,7 +16,6 @@ class CarSearchController extends Controller
 {
       $query = Car::query();
       $query->where('status', 1);
-      $query->where('is_booked','0');
     // Apply Transmission Filter
     if ($request->has('transmission') && !empty($request->transmission)) {
         $query->where('transmission', $request->transmission);
@@ -67,7 +66,7 @@ class CarSearchController extends Controller
     $filteredCarsCount = $query->count();
 
     // Get total cars
-    $totalCars = Car::where('is_booked','0')->count();
+    $totalCars = Car::count();
 
     // Get all categories with car count
     $categories = CarCategory::withCount(['cars' => function ($query) {
