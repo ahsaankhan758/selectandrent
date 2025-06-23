@@ -39,6 +39,14 @@ class CarBookingController extends Controller
         $id = $request->id;
         $vehicle = Car::findOrFail($id);
 
+        // Check if vehicle is already booked
+        if ($vehicle->is_booked == 1) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'This vehicle is currently booked.'
+            ]);
+        }
+
         // Get all cart items
         $cartItems = Cart::instance('cart')->content();
 
