@@ -6,7 +6,7 @@
 @section('content')
 <script src="{{ asset('/frontend-assets/assets/Js/carSearch.js') }}"></script>
 <div class="container">
-    <div class="row mt-5">
+    <div class="row">
             @include('website.car-listing.car-listing-filters.vehiclefilterlist')
         <!-- Main Content -->
         <div class="col-md-9">
