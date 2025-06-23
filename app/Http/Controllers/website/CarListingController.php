@@ -16,7 +16,7 @@ class CarListingController extends Controller
     public function carListingView(Request $request)
 {
     $query = Car::query();
-    $query->where('status', 1)->where('is_booked', '0');
+    $query->where('status', 1);
     // Apply Transmission Filter
     if ($request->has('transmission') && !empty($request->transmission)) {
         $query->where('transmission', $request->transmission);
@@ -70,12 +70,11 @@ class CarListingController extends Controller
     $filteredCarsCount = $query->count();
 
     // Get total cars
-    $totalCars = Car::where('status', 1)->where('is_booked', '0')->count();
+    $totalCars = Car::where('status', 1)->count();
 
     // Get all categories with car count
     $categories = CarCategory::withCount(['cars' => function ($query) {
         $query->where('status', 1);
-        $query->where('is_booked', '0');
     }])->get();
 
 
@@ -83,7 +82,7 @@ class CarListingController extends Controller
     $carModel = CarModel::all();
 
     // Get the first 8 cars for initial load
-    $cars = $query->take(8)->where('is_booked', '0')->get();
+    $cars = $query->take(8)->get();
 
     if ($request->ajax()) {
         return response()->json([
@@ -151,7 +150,7 @@ public function loadMoreCars(Request $request)
 
     // **Ensure Load More Uses the Filtered Data**
     $filteredCount = $query->count();
-    $cars = $query->skip($offset)->take(8)->where('is_booked', '0')->get();
+    $cars = $query->skip($offset)->take(8)->get();
     $hasMore = $filteredCount > ($offset + 8);
 
     return response()->json([
