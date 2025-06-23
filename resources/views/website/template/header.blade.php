@@ -1,12 +1,25 @@
 <link href="{{ asset('/') }}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 <script src="{{ asset('/frontend-assets/assets/Js/carSearch.js') }}"></script>
+{{-- location suggessions link google api --}}
+<script src="{{ asset('/') }}assets/js/locationSuggestion.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
-@if (request()->is('/') || request()->is('carsearch'))
+@if (request()->is('/'))
     <div class="hero-header">
     @elseif(request()->is('cardetail/*'))
         <style>
             .header-container {
                 background-color: #07407B !important;
+            }
+        </style>
+    @elseif(request()->is('carsearch'))
+        <style>
+            .header-container {
+                background-color: #07407B !important;
+            }
+
+            .join-program {
+                /* padding-top: 12rem; */
+                padding-top: 0px;
             }
         </style>
     @else
@@ -403,7 +416,7 @@
                             @else
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown"
                                     role="button" data-bs-toggle="dropdown">
-                                    Currency
+                                    {{ __('messages.currency') }}
                                 </a>
                             @endif
                             @if (isset($activeCurrencies) && isset($defaultCurrency))
@@ -440,41 +453,47 @@
 </header>
 
 <!-- Hero Section Start -->
-@if (request()->is('/') || request()->is('carsearch'))
+@if (request()->is('/'))
     <div class="hero-section text-center text-white">
         <h1 class="display-5 fw-bold">
             <span class="custom-bg-warning">{{ __('messages.rent') }}</span> {{ __('messages.a car') }},
             {{ __('messages.anytime') }},
         </h1>
         <h1 class="display-5 fw-bold">{{ __('messages.anywhere') }}</h1>
-
+        {{-- <select id="locationDropdown" name="location_id" class="form-select"
+            data-url="{{ route('car.locations') }}">
+            <option disabled selected>{{ __('messages.Select Location') }}</option>
+            </select> --}}
         <div class="tabpanel-form mx-auto">
             <form id="carSearchForm" action="{{ route('car.search') }}" method="POST"
                 enctype="multipart/form-data" class="row g-2">
                 @csrf
                 <div class="col-md-12">
                     <div class="row g-2">
-                         <div class="col-md-6 col-12">
-                            <select id="locationDropdown" name="location_id" class="form-select"
-                                data-url="{{ route('car.locations') }}">
-                                <option disabled selected>Select Location</option>
-                            </select>
+                        {{-- <div class="col-md-6 col-12">
+                            <input type="text" id="area_name" name="area_name" class="form-control"
+                                placeholder="Select Location" autocomplete="off">
+                            <ul id="locationSuggestions" class="list-group"></ul>
+                        </div> --}}
+                        <div class="col-md-6 col-12 position-relative">
+                            <input type="text" id="area_name" name="area_name" class="form-control time-input pickup-time"
+                                placeholder="Select Location" autocomplete="off">
+                            <ul id="locationSuggestions" class="list-group position-absolute w-100"
+                                style="z-index: 1000;"></ul>
                         </div>
+
                         <div class="col-md-6 col-12">
                             <input type="datetime-local" name="date" class="form-control time-input pickup-time"
                                 placeholder="Select Date & Time">
                         </div>
-                        
                     </div>
-                   
                     <div class="row g-2 mt-1">
-                       <div class="col-md-3 col-6">
+                        <div class="col-md-3 col-6">
                             <select id="brandDropdown" name="brand" class="form-select"
                                 data-url="{{ route('car.brands') }}">
                                 <option disabled selected>{{ __('messages.brand') }}</option>
                             </select>
                         </div>
-
                         <div class="col-md-3 col-6">
                             <select id="modelDropdown" name="model" class="form-select">
                                 <option disabled selected>{{ __('messages.all') }} {{ __('messages.models') }}
@@ -483,7 +502,7 @@
                         </div>
                         <div class="col-md-3 col-6">
                             <select id="priceDropdown" name="Rent" class="form-select">
-                                <option disabled selected>Rent</option>
+                                <option disabled selected>{{ __('messages.rent') }}</option>
                                 <option value="0-500">0 - 500</option>
                                 <option value="501-1000">501 - 1000</option>
                                 <option value="1001-1500">1001 - 1500</option>
