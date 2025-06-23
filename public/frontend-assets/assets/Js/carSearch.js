@@ -39,7 +39,29 @@ $(document).ready(function () {
         });
     }
 
+    function loadLocations() {
+        let locationDropdown = $('#locationDropdown');
+        let url = locationDropdown.data('url');
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (response) {
+                if (response.status) {
+                    locationDropdown.html('<option disabled selected>Select Location</option>');
+                    $.each(response.locations, function (i, loc) {
+                        locationDropdown.append(`<option value="${loc.id}">${loc.area_name}</option>`);
+                    });
+                }
+            },
+            error: function () {
+                showToast("Failed to load locations.", "error");
+            }
+        });
+    }
+
     fetchData();
+    loadLocations();
 
     brandDropdown.on('change', function () {
         let selectedBrandId = $(this).val();
@@ -57,8 +79,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                var message = 'Failed to fetch models for selected brand.';
-                showToast(message, "error");
+                showToast('Failed to fetch models for selected brand.', "error");
             }
         });
     });
@@ -78,23 +99,20 @@ $(document).ready(function () {
                 submitBtn.prop('disabled', false).html('Search <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>');
 
                 if (response.status && response.redirect_url) {
-                    window.location.href = response.redirect_url;
+                    window.location.href = response.redirect_url; // Redirect where session will be used
                 } else {
-                    var message = 'No cars found or redirect failed.';
-                    showToast(message, "error");
+                    showToast('No cars found or redirect failed.', "error");
                 }
             },
             error: function (xhr) {
                 submitBtn.prop('disabled', false).html('Search <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>');
 
                 if (xhr.status === 422 && xhr.responseJSON.errors) {
-                    let errors = xhr.responseJSON.errors;
                     let errorMsg = '';
-                    $.each(errors, function (key, val) {
+                    $.each(xhr.responseJSON.errors, function (key, val) {
                         errorMsg += val[0] + '\n';
                     });
                     showToast(errorMsg, "error");
-                    
                 } else if (xhr.responseJSON && xhr.responseJSON.message) {
                     showToast(xhr.responseJSON.message, "error");
                 }
