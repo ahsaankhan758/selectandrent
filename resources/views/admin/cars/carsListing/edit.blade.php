@@ -178,20 +178,31 @@
                             <label for="rent">{{ __('messages.rent') }}</label>
                             <input type="text" name="rent" class="form-control" value="{{ $car->rent }}">
                         </div>
-                         <div class="col-4 form-group mb-3">
+                        <div class="col-4 form-group mb-3">
+                            <label for="currency">{{ __('messages.currency') }}</label>
+                            <select name="currency" class="form-control">
+                                <option value="">{{ __('Select') }}</option>
+                                @foreach($currencies as $currency)
+                                    <option value="{{ $currency->code }}"
+                                        @if(isset($car) && $car->currency == $currency->code) selected @endif>
+                                        {{ $currency->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                         
+                    </div>
+                     <div class="row">
+                        <div class="col-4 form-group mb-3">
                             <label for="mileage">{{ __('messages.mileage') }}</label>
                             <input type="text" name="mileage" class="form-control" value="{{ $car->mileage }}">
                         </div>
-                    </div>
-                     <div class="row">
                         <div class="col-4 form-group mb-3">
                             <label for="advance_deposit">{{ __('messages.deposit') }}</label>
                             <input type="number" name="advance_deposit" id="advance_deposit" class="form-control" placeholder="Enter deposit amount" value="{{ $car->advance_deposit }}">
                         </div>
-                        <div class="col-4 form-group mb-3">
-                            <label for="min_age">{{ __('messages.min') }}</label>
-                            <input type="number" name="min_age" id="min_age" class="form-control" min="18" placeholder="Enter minimum age" value="{{ $car->min_age }}">
-                        </div>
+                        
                         <div class="col-4 form-group mb-3">
                             <label for="rent_type">{{ __('messages.rent_type') }}</label>
                             <select name="rent_type" id="rent_type" class="form-control">
@@ -202,7 +213,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group mb-3">
+                        <div class="col-4 form-group mb-3">
+                            <label for="min_age">{{ __('messages.min') }}</label>
+                            <input type="number" name="min_age" id="min_age" class="form-control" min="18" placeholder="Enter minimum age" value="{{ $car->min_age }}">
+                        </div>
+                        <div class="col-8 form-group mb-3">
                             <lable for="detail">{{ __('messages.detail') }}</lable>
                             <textarea name="detail" class="form-control">{{ $car->detail }}</textarea>
                         </div>  

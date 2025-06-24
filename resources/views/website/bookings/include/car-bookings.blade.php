@@ -84,7 +84,7 @@
                     <input type="hidden" name="vehicleId[]" value="{{ $cart->id }}">
                     <input type="hidden" class="get-price-{{ $cart->rowId }}" name="item_price[]"
                         value="{{ $cart->subtotal }}">
-                    <input type="hidden" name="price_per_day[]" value="{{ $cart->price }}">
+                    <input type="hidden" name="price_per_day[]" value="{{ convertPrice($cart->price,0,0) }}">
                     <input type="hidden" class="get-duration-{{ $cart->rowId }}" name="duration[]"
                         value="{{ $cart->qty }}">
                     <!-- end form submit -->

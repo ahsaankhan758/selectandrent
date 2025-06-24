@@ -8,6 +8,7 @@ use App\Models\CarLocation;
 use App\Models\CarModel;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Currency;
 use App\Models\company;
 use App\Models\City;
 use Auth;
@@ -92,12 +93,13 @@ class CarController extends Controller
      */
     public function create()
     {
+        $currencies = Currency::where('is_active', 'Yes')->get();
         $categories = CarCategory::orderBy('name', 'asc')->get();
         $cities = City::orderBy('name', 'asc')->get();
         $locations = CarLocation::orderBy('area_name', 'asc')->get();
         $models = CarModel::orderBy('name', 'asc')->get();
         $features = CarFeature::orderBy('name')->get();
-        return view('admin.cars.carsListing.create',compact('categories','locations','models','features','cities'));
+        return view('admin.cars.carsListing.create',compact('categories','locations','models','features','cities','currencies'));
     }
 
 public function getLocations($city_id)
@@ -133,6 +135,7 @@ public function getLocations($city_id)
         'interior_color' => 'required',
         'lisence_plate' => 'required|unique:cars',
         'rent' => 'required',
+        'currency' => 'required',
         'detail' => 'required',
         'date_added' => 'required',
         'rent_type' => 'required|in:day,hour',
@@ -173,6 +176,7 @@ public function getLocations($city_id)
        $car->interior_color = $validatedData['interior_color'];
        $car->lisence_plate = $validatedData['lisence_plate'];
        $car->rent = $validatedData['rent'];
+       $car->currency = $validatedData['currency'];
        $car->detail = $validatedData['detail'];
        if($request->hasFile('thumbnail'))
         {
@@ -213,11 +217,12 @@ public function getLocations($city_id)
     public function edit(string $id)
     {
         $car = Car::find($id);
+        $currencies = Currency::where('is_active', 'Yes')->get();
         $categories = CarCategory::orderBy('name', 'asc')->get();
         $locations = CarLocation::orderBy('area_name', 'asc')->get();
         $models = CarModel::orderBy('name', 'asc')->get();
         $features = CarFeature::orderBy('name')->get();
-        return view('admin.cars.carsListing.edit',compact('car','categories','locations','models','features'));
+        return view('admin.cars.carsListing.edit',compact('car','categories','locations','models','features','currencies'));
     }
     /**
      * Update the specified resource in storage.
@@ -244,6 +249,7 @@ public function getLocations($city_id)
             'interior_color' => 'required',
             'lisence_plate' => 'required',
             'rent' => 'required',
+            'currency' => 'required',
             'detail' => 'required',
             'rent_type' => 'required|in:day,hour',
             'advance_deposit' => 'required|numeric',
@@ -271,6 +277,7 @@ public function getLocations($city_id)
            $car->interior_color = $validatedData['interior_color'];
            $car->lisence_plate = $validatedData['lisence_plate'];
            $car->rent = $validatedData['rent'];
+           $car->currency = $validatedData['currency'];
            $car->detail = $validatedData['detail'];
            if($request->hasFile('thumbnail'))
                 {
