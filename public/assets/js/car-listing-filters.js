@@ -234,20 +234,9 @@ $("#addressFilter").on("input", function () {
 });
 
 
-    // Select city from dropdown
-    // $(document).on("click", "#addressDropdown .dropdown-item", function () {
-    //     let selectedText = $(this).text();
-    //     let selectedId = $(this).attr("data-id");
-
-    //     if (!$(this).hasClass("text-muted")) {
-    //         $("#addressFilter").val(selectedText); // Set input value
-    //         $("#addressFilter").attr("data-selected", selectedId); // Store ID
-    //         $("#addressDropdown").hide(); // Hide dropdown
-    //         fetchFilteredCars(); // Trigger filtering
-    //     }
-    // });
+  
     $(document).on("click", "#addressDropdown .dropdown-item", function () {
-    const selectedText = $(this).text();
+    const selectedText = $(this).text().trim();
     const lat = $(this).data("lat");
     const lng = $(this).data("lng");
        
@@ -303,3 +292,15 @@ $("#addressFilter").on("input", function () {
     });
     
 });
+  // Select city from dropdown
+    // $(document).on("click", "#addressDropdown .dropdown-item", function () {
+    //     let selectedText = $(this).text();
+    //     let selectedId = $(this).attr("data-id");
+
+    //     if (!$(this).hasClass("text-muted")) {
+    //         $("#addressFilter").val(selectedText); // Set input value
+    //         $("#addressFilter").attr("data-selected", selectedId); // Store ID
+    //         $("#addressDropdown").hide(); // Hide dropdown
+    //         fetchFilteredCars(); // Trigger filtering
+    //     }
+    // });
