@@ -8,8 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
     <div class="container py-4 mt-5">
         <h2 class="text-center mb-3">{{ __('messages.Select a Category') }}</h2>
-        <!-- 🔹 Category Buttons -->
-        <!-- 🔹 Tabs Buttons -->
+       
         <div class="container text-center my-3">
             <div class="d-flex flex-wrap justify-content-center gap-2">
                 <button class="btn btn-primary filter-btn" data-category="All">{{ __('messages.All') }}</button>
@@ -20,14 +19,14 @@
         </div>
 
 
-       <!-- 🔹 Cars List -->
+       <!-- Cars List -->
 
     <div class="container mt-5">
         <div class="row g-4" id="car-category-list">
             @include('website.category.include.car-item', ['cars' => $cars])
         </div>
 
-    <!-- 🔹 Load More for "All" Category -->
+    <!-- Load More for "All" Category -->
     @if($totalCars > 8)
     <div class="text-center mt-4">
         <button id="load-more-btn" class="btn btn-orange-clr text-white" 
