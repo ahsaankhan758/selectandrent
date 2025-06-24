@@ -1,7 +1,22 @@
 {{-- @foreach($cars as $car)
     <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
         <div class="car-listing-card">
-            <img src="{{ asset('storage/' . $car->thumbnail) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}" class="listing-car-image mb-2">
+
+            @php
+                $path = public_path('storage/' . $car->thumbnail);
+                $imageExists = $car->thumbnail && file_exists($path);
+            @endphp
+
+            @if ($imageExists)
+                <img src="{{ asset('storage/' . $car->thumbnail) }}" alt="{{ $car->car_models->name ?? 'Car Image' }}" class="listing-car-image mb-2">
+            @else
+                <img src="{{ asset('images/no-image.png') }}" class="listing-car-image mb-2" alt="No Image Available">
+            @endif
+
+            @if ($car->is_booked == 1)
+                <div style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">{{__('messages.currently_booked')}}</div>
+            @endif
+           
             
             <div class="car-info">
                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
