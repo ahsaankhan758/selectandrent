@@ -195,6 +195,15 @@
                             <input type="text" name="rent" class="form-control" >
                         </div>
                         <div class="col-4 form-group mb-3">
+                            <label for="currency">{{ __('messages.currency') }}</label>
+                            <select name="currency" class="form-control" >
+                                <option selected>{{ __('messages.select') }}</option> 
+                                @foreach($currencies as $currency)
+                                    <option value="{{ $currency->code }}">{{ $currency->name }}</option> 
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-4 form-group mb-3">
                             <label for="mileage">{{ __('messages.mileage') }}</label>
                             <input type="text" name="mileage" class="form-control" >
                         </div>
