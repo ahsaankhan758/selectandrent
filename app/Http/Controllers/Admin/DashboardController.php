@@ -50,7 +50,7 @@ public function dashboard(Request $request)
         }
 
          if ($startDate && $endDate) {
-        $query->whereHas('booking_items.booking', function ($q) use ($startDate, $endDate) {
+            $query->whereHas('booking_items.booking', function ($q) use ($startDate, $endDate) {
             $q->whereDate('created_at', '>=', $startDate)
               ->whereDate('created_at', '<=', $endDate);
         });
@@ -82,10 +82,27 @@ public function dashboard(Request $request)
     // $totalCars    = Car::where(FilterHelper::carFilter())->count();
     // $bookedCars   = Car::where('is_booked', 1)->where(FilterHelper::carFilter())->count();
     $totalbooking = (clone $filteredBookingQuery)->count();
-    $totalrevenue = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('total_price');
-    $totalpending = (clone $filteredBookingQuery)->where('payment_status', 'pending')->sum('total_price');
-    $commission   = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('commission');
-    $payoutcompany= $totalrevenue - $commission;
+    $totalrevenue = 0;
+    $totalpending = 0;
+    $commission = 0;
+    // 1. Convert revenue and commission for PAID bookings
+    $paidBookings = (clone $filteredBookingQuery)->where('payment_status', 'paid')->get();
+    foreach ($paidBookings as $booking) {
+        $totalrevenue += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
+        $commission += administratorConvertCurrency($booking->commission, $booking->currency, 'USD', 2, 0);
+    }
+    // 2. Convert pending total for PENDING bookings
+    $pendingBookings = (clone $filteredBookingQuery)->where('payment_status', 'pending')->get();
+    foreach ($pendingBookings as $booking) {
+        $totalpending += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
+    }
+    // 3. Final payout calculation
+    $payoutcompany = $totalrevenue - $commission;
+    // $totalrevenue = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('total_price');
+    // $totalpending = (clone $filteredBookingQuery)->where('payment_status', 'pending')->sum('total_price');
+    // $commission   = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('commission');
+    // $payoutcompany= $totalrevenue - $commission;
+
 
     $customers = User::whereHas('bookings', function ($q) use ($applyFilters) {
         $applyFilters($q);
