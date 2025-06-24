@@ -131,3 +131,29 @@ function setDefaultCurreny()
         }
     }
 
+    function administratorConvertCurrency($amount, $existCode, $setCode, $round = 2, $symbol_check = 1)
+    {
+        // Get rate of existing currency
+        $existCurrency = Currency::where('code', $existCode)->first();
+        $existRate = $existCurrency && is_numeric($existCurrency->rate) ? (float) $existCurrency->rate : 1;
+
+        // Get rate and symbol of target currency
+        $setCurrency = Currency::where('code', $setCode)->first();
+        $setRate = $setCurrency && is_numeric($setCurrency->rate) ? (float) $setCurrency->rate : 1;
+        $symbol = $setCurrency->symbol ?? $setCurrency->code ?? '';
+        $placement = $setCurrency->symbol_placement ?? 'before';
+
+        // Convert amount
+        $amount = (float) $amount;
+        $round = (int) $round;
+        $price = round(($amount / $existRate) * $setRate, $round);
+        // print_r($price);die;
+        if ($symbol_check == 1) {
+            return ($placement === 'before')? $symbol . ' ' . $price : $price . ' ' . $symbol;
+        } else {
+            return (float) $price; // cast only here when you want number
+        }
+    }
+
+
+
