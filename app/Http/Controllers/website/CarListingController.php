@@ -4,7 +4,6 @@ namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Car;
 use App\Models\CarCategory;
 use App\Models\CarModel;
@@ -40,14 +39,21 @@ class CarListingController extends Controller
         $query->where('car_model_id', $request->car_model_id);
     }
 
-   // *Apply Address (Search Location Name)*
-   if ($request->has('address') && !empty($request->address)) {
+//    // *Apply Address (Search Location Name)*
+//    if ($request->has('address') && !empty($request->address)) {
    
-    $query->whereHas('car_locations', function ($q) use ($request) {
-        $q->where('area_name', 'LIKE', '%' . $request->address . '%'); // Search in car_locations table
-    });
-    }   
-
+//     $query->whereHas('car_locations', function ($q) use ($request) {
+//         $q->where('area_name', 'LIKE', '%' . $request->address . '%'); 
+//     });
+//     }   
+ if ($request->has('address') && !empty($request->address)) {
+        $query->whereHas('car_locations', function ($q) use ($request) {
+            $q->where('area_name', 'LIKE', '%' . $request->address . '%')
+              ->orWhereHas('city', function ($q2) use ($request) {
+                  $q2->where('name', 'LIKE', '%' . $request->address . '%');
+              });
+        });
+    }
     // Apply Date & Time Filter
     if ($request->has('date') && !empty($request->date)) {
         $dateTime = $request->date;

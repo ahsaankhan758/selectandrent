@@ -4,48 +4,7 @@
 @endsection
 
 @section('content')
-    <style>
-        #addressDropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            max-height: 200px;
-            overflow-y: auto;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: none;
-        }
-
-        #addressDropdown.show {
-            display: block;
-        }
-
-        /* Style dropdown items */
-        #addressDropdown .dropdown-item {
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-
-        /* Hover effect for dropdown items */
-        #addressDropdown .dropdown-item:hover {
-            background-color: #f8f9fa;
-        }
-
-        /* Style for muted/no results */
-        #addressDropdown .text-muted {
-            color: #6c757d;
-            pointer-events: none;
-        }
-
-        .position-relative {
-            position: relative;
-        }
-    </style>
+   
 
     <!-- add to cart js -->
     <script src="{{ asset('/frontend-assets/assets/Js/addtocart.js') }}"></script>
