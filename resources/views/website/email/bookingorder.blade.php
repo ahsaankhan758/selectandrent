@@ -134,7 +134,7 @@
                             {{ $item->dropoffLocation->area_name ?? $item->dropoff_location }}<br>
                             {{ $item->dropoff_datetime }}
                         </td>
-                        <td>{{ $currency }} {{ number_format($item->vehicle->rent, 2) }}</td>
+                        <td>{{ $currency }} {{ number_format($item->price_per_day, 2) }}</td>
                         <td>{{ $currency }} {{ number_format($item->total_price, 2) }}</td>
                     </tr>
                 @endforeach

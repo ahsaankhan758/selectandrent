@@ -15,6 +15,7 @@ class Car extends Model
         'year',
         'transmission',
         'rent',
+        'currency',
         'seats',
         'weight',
         'doors',
