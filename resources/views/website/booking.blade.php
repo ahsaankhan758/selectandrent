@@ -52,8 +52,8 @@ Booking | Select and Rent
                     <th class="text-nowrap table-clr">{{ __('messages.bookingdiscount') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingtax') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookinginsurance') }}</th>
-                    <th class="text-nowrap table-clr">{{ __('messages.bookingtotal') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingsubtotal') }}</th>
+                    <th class="text-nowrap table-clr">{{ __('messages.bookingtotal') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingnotes') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.cancel') }}</th>
                 </tr>
@@ -85,11 +85,11 @@ Booking | Select and Rent
                     </td>
                     <td class="py-4 text-center text-nowrap">{{ ucfirst($booking->payment_method) }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->coupon_code ?: '—' }}</td>
-                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->discount_amount, 0) }}</td>
-                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->tax_amount, 0) }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->discount_amount }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->tax_amount }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
-                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->total_price, 0) }}</td>
-                    <td class="py-4 text-center text-nowrap">{{ convertPrice($booking->subtotal, 0) }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->subtotal }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->total_price }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->notes }}</td>
                     <td class="py-4 text-center text-nowrap">
                       @if($booking->payment_status === 'paid' && $booking->booking_status === 'confirmed')
