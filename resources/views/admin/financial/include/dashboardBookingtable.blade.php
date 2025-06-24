@@ -142,7 +142,7 @@
                 <label class="form-label d-block fw-semibold">Rating</label>
                 <div class="star-rating">
                     @for ($i = 5; $i >= 1; $i--)
-                        <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" required />
+                        <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" required/>
                         <label for="star{{ $i }}" title="{{ $i }} star{{ $i > 1 ? 's' : '' }}">&#9733;</label>
                     @endfor
                 </div>
