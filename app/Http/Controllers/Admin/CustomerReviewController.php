@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BookingItem;
+use App\Models\Car;
 use App\Models\CustomerReview;
 use App\Models\Employee;
 use App\Models\User;
@@ -13,18 +15,33 @@ class CustomerReviewController extends Controller
 {
     public function index()
     {
-        $query = CustomerReview::orderBy('created_at', 'desc');
-        $loggedInUser = Auth::user();
-        $owner = EmployeeOwner($loggedInUser->id);
-        if ($loggedInUser->role === 'company') {
-                $employeeUserIds = Employee::where('owner_user_id', $loggedInUser->id)
-                    ->pluck('e_user_id');
-                $allUserIds = $employeeUserIds->push($loggedInUser->id);
-                $query = CustomerReview::whereIn('user_id', $allUserIds)
-                    ->orderBy('created_at', 'desc');
-            }elseif(isset($owner) && $owner->role === 'company' && $loggedInUser->role === 'employee'){
-                $query->where('user_id', $loggedInUser->id);
-            }
+        
+    $loggedInUser = Auth::user();
+    $owner = EmployeeOwner($loggedInUser->id);
+
+    if( $loggedInUser->role === 'admin' || isset($owner) && $owner->role === 'admin'){
+        $query = CustomerReview::query()->orderBy('created_at', 'desc');
+
+    } elseif ($loggedInUser->role === 'company') {
+        $employeeUserIds = Employee::where('owner_user_id', $loggedInUser->id)->pluck('e_user_id');
+        $allUserIds = $employeeUserIds->push($loggedInUser->id);
+
+        $carIds = Car::whereIn('user_id', $allUserIds)->pluck('id');
+
+        $bookingIds = BookingItem::whereIn('vehicle_id', $carIds)->pluck('booking_id');
+
+        $query = CustomerReview::whereIn('booking_id', $bookingIds)
+            ->orderBy('created_at', 'desc');
+
+    } elseif (isset($owner) && $owner->role === 'company' && $loggedInUser->role === 'employee') {
+        $carIds = Car::where('u_employee_id', $loggedInUser->id)->pluck('id');
+
+        $bookingIds = BookingItem::whereIn('vehicle_id', $carIds)->pluck('booking_id');
+
+        $query = CustomerReview::whereIn('booking_id', $bookingIds)
+            ->orderBy('created_at', 'desc');
+    }
+
 
         $customerReviews = $query->paginate(20);
         return view('admin.review.customerReview', compact('customerReviews'));
