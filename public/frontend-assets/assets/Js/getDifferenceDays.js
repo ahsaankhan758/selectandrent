@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const priceDisplay = item.querySelector('.calculated-price');
         const rowId = item.getAttribute('data-row-id');
         const price = item.getAttribute('data-price');
+        const rent_type = item.getAttribute('data-rent-type');
         const pricePerDay = price;
-
+       
         const calculateAndUpdate = () => {
             const pickupDate = new Date(pickupInput.value);
             const dropoffDate = new Date(dropoffInput.value);
@@ -19,19 +20,24 @@ document.addEventListener('DOMContentLoaded', function () {
             if (pickupInput.value && dropoffInput.value && dropoffDate > pickupDate) {
                 const diffMs = dropoffDate - pickupDate;
                 const diffHrs = diffMs / (1000 * 60 * 60);
-                let diffDays = Math.ceil(diffHrs / 24);
+                
+                if(rent_type == 'day'){
+                    var diffPeriod = Math.ceil(diffHrs / 24);
+                }else{
+                    var  diffPeriod = diffHrs;
+                }
                 // 
                 const DatepickupDate = pickupDate.toISOString().slice(0, 10).replace(/-/g, '-');
                 $('.getDatepickupDate').val(DatepickupDate);
                 // Ensure at least 1 day is charged
-                if (diffDays < 1) diffDays = 1;
+                if (diffPeriod < 1) diffPeriod = 1;
         
-                // timeDiffDisplay.innerText = `Duration: ${diffDays} day(s)`;
+                // timeDiffDisplay.innerText = `Duration: ${diffPeriod} day(s)`;
         
-                const totalPrice = diffDays * pricePerDay;
+                const totalPrice = diffPeriod * pricePerDay;
                 // priceDisplay.innerText = `Price: $${totalPrice}`;
         
-                updateCartPrice(rowId, totalPrice, diffDays);
+                updateCartPrice(rowId, totalPrice, diffPeriod);
             } else if (pickupInput.value && dropoffInput.value) {
                 timeDiffDisplay.innerText = `Drop-off must be after Pickup.`;
                 priceDisplay.innerText = '';

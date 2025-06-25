@@ -225,7 +225,7 @@
                                 </a>
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
-                                        {{ convertPrice($car->rent, 0) }}/{{$car->rent_type}}</h6>
+                                        {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
                                     @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
@@ -342,7 +342,7 @@
                                 </a>
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
-                                        {{ convertPrice($car->rent, 0) }}/{{$car->rent_type}}</h6>
+                                        {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
                                     @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
@@ -684,7 +684,7 @@
                                 </a>
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
-                                        {{ convertPrice($car->rent, 0) }}/{{$car->rent_type}}</h6>
+                                        {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
                                     @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
