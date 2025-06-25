@@ -25,6 +25,13 @@ $(document).ready(function () {
                     $('#bookingStatus-' + bookingId)
                     .text('CANCELLED');
                 }
+                if(response.status === 'error'){
+                    let bookingId = $('#modal_booking_id').val();
+                    showToast(response.message, response.status);
+                    $('#cancelModal').modal('hide');
+                    form.trigger('reset');
+                    $('#cancelButton-' + bookingId).replaceWith('<span id="cancelButton-' + bookingId + '"> - </span>');
+                }
             },
             error: function (xhr) {
                 if (xhr.status === 422) {

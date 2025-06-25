@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\RefundedMail;
 use App\Models\Booking;
+use App\Models\BookingItem;
 use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,27 @@ use Illuminate\Support\Facades\Mail;
 class RefundController extends Controller
 {
     public function index(){
-        $bookings = Booking::whereIn('booking_status', ['cancelled', 'refunded'])
-                    ->whereIn('payment_status', ['paid', 'refunded'])
-                   ->paginate(20); 
+        $loggedInUser = Auth::user();
+        $owner = EmployeeOwner($loggedInUser->id);
+
+        if( $loggedInUser->role === 'admin' || isset($owner) && $owner->role === 'admin'){
+            $query = Booking::whereIn('booking_status', ['cancelled', 'refunded'])
+                            ->whereIn('payment_status', ['paid', 'refunded']);
+        } elseif ($loggedInUser->role === 'company') {
+            $carIds = Car::where('user_id', auth()->id())->pluck('id');
+            $bookingIds = BookingItem::whereIn('vehicle_id', $carIds)->pluck('booking_id');
+            $query = Booking::whereIn('id', $bookingIds)
+                            ->whereIn('booking_status', ['cancelled', 'refunded'])
+                            ->whereIn('payment_status', ['paid', 'refunded']);
+        } elseif (isset($owner) && $owner->role === 'company' && $loggedInUser->role === 'employee') {
+            $carIds = Car::where('u_employee_id', $loggedInUser->id)->pluck('id');
+            $bookingIds = BookingItem::whereIn('vehicle_id', $carIds)->pluck('booking_id');
+            $query = Booking::whereIn('id', $bookingIds)
+                            ->whereIn('booking_status', ['cancelled', 'refunded'])
+                            ->whereIn('payment_status', ['paid', 'refunded']);
+        }
+
+        $bookings = $query->orderBy('created_at', 'desc')->paginate(20);
         return view('admin.refunds.index', compact('bookings'));
     }
     public function refund(Request $request){
@@ -49,10 +68,13 @@ class RefundController extends Controller
             $userId = $car->user_id; 
             $message = 'Refund for your booking Reference:'. $booking->booking_reference .' has been successfully Issued By Your Employee: '.auth()->user()->name;
             saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
-            //To Employee
-            $toUserId = auth()->id();
-            $userId = auth()->id(); 
-            $message = 'Refund for your booking Reference:'. $booking->booking_reference .' has been successfully Issued ';
+        }
+
+        if(auth()->user()->role == 'company' && !empty($booking->booking_items->first()?->vehicle?->u_employee_id)){
+             //To Employee
+            $toUserId = $booking->booking_items->first()?->vehicle?->u_employee_id;
+            $userId = $booking->booking_items->first()?->vehicle?->u_employee_id;
+            $message = 'Refund for your booking Reference:'. $booking->booking_reference .' has been successfully Issued by Your Company.';
             saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
         }
 
