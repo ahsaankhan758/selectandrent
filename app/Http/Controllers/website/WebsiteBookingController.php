@@ -6,6 +6,7 @@ use App\Mail\BookingCancelledMail;
 use App\Models\Booking;
 use App\Models\BookingDetail;
 use App\Models\Car;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -43,8 +44,19 @@ class WebsiteBookingController extends Controller
             'booking_id' => 'required|exists:bookings,id',
             'cancel_reason' => 'required|string|max:1000',
         ]);
-        
         $booking = Booking::find($validated['booking_id']);
+        if (
+            $booking->booking_items->isEmpty() ||
+            Carbon::parse($booking->booking_items->first()->pickup_datetime)->lt(Carbon::now())
+        ) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'You cannot cancel this booking because the pickup time has already passed.',
+            ]);
+        }
+           
+
+       
         $booking->booking_status = 'cancelled';
         $booking->notes = $validated['cancel_reason'];
         $booking->save();

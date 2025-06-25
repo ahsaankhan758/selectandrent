@@ -92,19 +92,24 @@ Booking | Select and Rent
                     <td class="py-4 text-center text-nowrap">{{ $booking->total_price }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->notes }}</td>
                     <td class="py-4 text-center text-nowrap">
-                      @if($booking->payment_status === 'paid' && $booking->booking_status === 'confirmed')
-                        <a href="javascript:void(0)" 
-                          id="cancelButton-{{ $booking->id }}" 
-                          class="btn btn-danger btn-sm cancelBookingBtn" 
-                          data-bs-toggle="modal" 
-                          data-bs-target="#cancelModal" 
-                          data-booking-id="{{ $booking->id }}">
-                            {{ __('messages.cancel') }}
-                        </a>
-                      @else
-                        <span> - </span>
-                      @endif
-                    </td>
+                    @if(
+                        $booking->payment_status === 'paid' &&
+                        $booking->booking_status === 'confirmed' &&
+                        $booking->booking_items->isNotEmpty() &&
+                        \Carbon\Carbon::parse($booking->booking_items->first()->pickup_datetime)->gt(\Carbon\Carbon::now())
+                      )
+                      <a href="javascript:void(0)" 
+                        id="cancelButton-{{ $booking->id }}" 
+                        class="btn btn-danger btn-sm cancelBookingBtn" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#cancelModal" 
+                        data-booking-id="{{ $booking->id }}">
+                          {{ __('messages.cancel') }}
+                      </a>
+                    @else
+                      <span> - </span>
+                    @endif
+                  </td>
                   </tr>
                 @empty
                   <tr>
