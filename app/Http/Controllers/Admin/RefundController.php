@@ -56,7 +56,7 @@ class RefundController extends Controller
         // Notification
         // To Customer
         $notificationType = 5; // review save against vehicle car
-        $fromUserId = auth()->id(); // logged in user
+        $fromUserId = auth()->id(); 
         $toUserId = $booking->user_id;
         $userId = $booking->user_id; 
         $message = 'Refund for your booking Reference:'. $booking->booking_reference .' has been successfully processed';
