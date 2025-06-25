@@ -7,7 +7,8 @@ $.ajaxSetup({
 
 // AJAX call to remove cart item
 $(document).on('click', '.remove-btn', function() {
-    $(this).html(`<img src="../frontend-assets/assets/loader.gif" alt="Loading..." width="25">`);
+    var loaderUrl = $(this).data('loader');
+    $(this).html(`<img src="${loaderUrl}" alt="Loading..." width="25">`);
     var rowId = $(this).data('rowid');
 
     $.ajax({
