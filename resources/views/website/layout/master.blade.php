@@ -17,10 +17,14 @@
     <script src="{{asset('/')}}frontend-assets/assets/Js/custom.js"></script>
     {{-- font cdn --}}
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+     @if(auth()->check() && auth()->user()->role == 'user')
+      <script>
+          window.baseUrl = "{{ url('/') }}";
+      </script>
+     @endif
 
-
-    <script src="{{asset('/')}}assets/Js/loadmore.js"></script>
-    <script src="{{asset('/')}}assets/Js/car-listing-filters.js"></script>
+    <script src="{{asset('/')}}assets/js/loadmore.js"></script>
+    <script src="{{asset('/')}}assets/js/car-listing-filters.js"></script>
     <script src="{{asset('/')}}frontend-assets/assets/Js/signin.js"></script>
     <script src="{{asset('/')}}frontend-assets/assets/Js/signup.js"></script>
 
