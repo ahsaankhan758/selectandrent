@@ -11,7 +11,7 @@ $(document).on('click', '.remove-btn', function() {
     var rowId = $(this).data('rowid');
 
     $.ajax({
-        url: 'cart/remove', 
+        url: window.baseUrl+'/cart/remove', 
         method: 'POST',
         data: { rowId: rowId },
         success: function(response) {
