@@ -99,7 +99,9 @@ class CarBookingController extends Controller
                 'images' => $vehicle->images,
                 'features' => $vehicle->features,
                 'created_at' => $vehicle->created_at,
-                'updated_at' => $vehicle->updated_at
+                'updated_at' => $vehicle->updated_at,
+                'rent_type' => $vehicle->rent_type,
+                'currency' => $vehicle->currency,
             ]
         )->associate('App\Models\Car');
 

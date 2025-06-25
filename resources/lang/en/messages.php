@@ -1,6 +1,7 @@
  <?php
 
 return [
+  'hours' => 'Hours',
   'issue' => 'Issue',
   'amount' => 'Amount',
   'refunded' => 'Refunded',

@@ -152,11 +152,22 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.cancel') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ __('messages.process') }} {{ __('messages.refund') }}</button>
+                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center" id="refundSubmitBtn">
+                        <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true" id="refundLoadingSpinner"></span>
+                        <span>{{ __('messages.process') }} {{ __('messages.refund') }}</span>
+                    </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 <script src="{{ asset('/assets/js/admin/cancelBooking.js') }}"></script>
+<script>
+    document.getElementById('refundForm').addEventListener('submit', function(e) {
+        const submitBtn = document.getElementById('refundSubmitBtn');
+        const spinner = document.getElementById('refundLoadingSpinner');
+        spinner.classList.remove('d-none');
+        submitBtn.setAttribute('disabled', true);
+    });
+</script>
 @endsection

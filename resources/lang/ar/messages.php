@@ -1,6 +1,7 @@
 <?php 
 
 return [
+    'hours' => 'ساعات',
     'issue' => 'المشكلة',
     'amount' => 'المبلغ',
     'refunded' => 'تم الاسترداد',
