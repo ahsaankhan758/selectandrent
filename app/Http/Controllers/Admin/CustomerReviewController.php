@@ -42,7 +42,6 @@ class CustomerReviewController extends Controller
             ->orderBy('created_at', 'desc');
     }
 
-
         $customerReviews = $query->paginate(20);
         return view('admin.review.customerReview', compact('customerReviews'));
     }
