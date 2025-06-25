@@ -87,14 +87,6 @@
                     <input type="hidden" name="price_per_day[]" value="{{ convertPrice($cart->price,0,0) }}">
                     <input type="hidden" class="get-duration-{{ $cart->rowId }}" name="duration[]"
                         value="{{ $cart->qty }}">
-                    <!-- end form submit -->
-                    <!-- Display Difference -->
-                    <!-- <div class="col-md-3 mt-3">
-                <p class="time-difference"></p>
-                <p class="calculated-price"></p>
-            </div> -->
-
-
                 </div>
 
             </div>
@@ -110,9 +102,16 @@
             <div class="container">
                 <div class="row d-flex py-2">
                     <div class="col-md-3">
-
-                        <img src="{{ asset(Storage::url($cart->options->thumbnail)) }}" class="car-order-img"
-                            alt="{{ $cart->options->car_model ?? 'thumbnail' }}">
+                        @php
+                            $path = public_path('storage/' . $cart->options->thumbnail);
+                            $imageExists = $cart->options->thumbnail && file_exists($path);
+                        @endphp
+                        @if ($imageExists)
+                            <img src="{{ asset('storage/' . $cart->options->thumbnail) }}" class="car-order-img" alt="{{ $cart->options->car_model ?? 'thumbnail' }}">
+                        @else
+                            <img src="{{ asset('images/no-image.png') }}" class="car-order-img" alt="No Image Available">
+                        @endif
+                       
 
                     </div>
                     <div class="col-md-3 align-items-center">

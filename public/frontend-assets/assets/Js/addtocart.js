@@ -17,7 +17,7 @@ $(document).on('click', '#car-booking-btn', function(e) {
     $(this).html(`<img src="../frontend-assets/assets/loader.gif" alt="Loading..." width="25">`);
  
     $.ajax({
-        url: "/addToCart", // Make sure this route returns correct URL in the rendered page
+        url: window.baseUrl+"/addToCart", // Make sure this route returns correct URL in the rendered page
         method: 'POST',
         data: {
             id: carId
@@ -29,7 +29,7 @@ $(document).on('click', '#car-booking-btn', function(e) {
             // 
             if(response.status == 'success'){
             setTimeout(function() {
-                window.location.href = '/carbooking';
+                window.location.href = window.baseUrl+'/carbooking';
             }, 2000);
             }
             // 5000 ms = 5 seconds
