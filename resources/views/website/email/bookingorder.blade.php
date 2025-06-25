@@ -114,6 +114,7 @@
                     <th>Vehicle</th>
                     <th>Pickup Location & Time</th>
                     <th>Drop-off Location & Time</th>
+                    <th>Duration</th>
                     @if ($item->vehicle->rent_type == 'day')
                         <th class="text-nowrap">Per/Day</th>
                     @else
@@ -134,6 +135,7 @@
                             {{ $item->dropoffLocation->area_name ?? $item->dropoff_location }}<br>
                             {{ $item->dropoff_datetime }}
                         </td>
+                        <td>{{$item->duration_days}}</td>
                         <td>{{ $currency }} {{ number_format($item->price_per_day, 2) }}</td>
                         <td>{{ $currency }} {{ number_format($item->total_price, 2) }}</td>
                     </tr>
