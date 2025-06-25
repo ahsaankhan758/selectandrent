@@ -6,7 +6,7 @@
     <form id="bookingForm" action="{{ route('booking.confirmation') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @foreach ($cartItems as $cart)
-            <div class="container mt-4 row cart-item" data-row-id="{{ $cart->rowId }}" data-price="{{ $cart->price }}">
+            <div class="container mt-4 row cart-item" data-row-id="{{ $cart->rowId }}" data-price="{{ $cart->price }}" data-rent-type="{{ $cart->options->rent_type }}">
 
                 <div class="row g-3">
                     <!-- Pickup Location -->
@@ -103,7 +103,12 @@
                 <div class="vehicle-card d-flex mobile-car">
                     <ul class="col-md-6">{{ __('messages.Vehicle Info') }}</ul>
                     <ul class="col-md-2">{{ __('messages.Price') }}</ul>
-                    <ul class="col-md-2">{{ __('messages.Days') }}</ul>
+                    <ul class="col-md-2">@if($cart->options->rent_type == 'day')
+                                            {{ __('messages.Days') }}
+                                        @else
+                                            {{ __('messages.hours') }}
+                                        @endif
+                                        </ul>
                     <ul class="col-md-2">{{ __('messages.action') }}</ul>
                 </div>
             </div>
@@ -133,7 +138,7 @@
                             {{ $cart->options->car_category }}</p>
 
                         <p class="fw-bold text-capitalize">{{ $cart->options->vehicle_city }}</p>
-                        <p class="fw-bold text-capitalize">{{ convertPrice($cart->price, 0) }} / Day</p>
+                        <p class="fw-bold text-capitalize">{{ convertPrice($cart->price, 0) }} / {{ ucfirst($cart->options->rent_type) }}</p>
 
 
                     </div>
@@ -199,7 +204,13 @@
                         <div class="mb-3 empty-box"> </div>
                         <div class="mb-2 d-flex">
                             <h6 class="showDuration{{ $cart->rowId }}">{{ $cart->qty }}</h6>
-                            <h6>{{ __('messages.Days') }}</h6>
+                            <h6>
+                                @if($cart->options->rent_type == 'day')
+                                    {{ __('messages.Days') }}
+                                @else
+                                    {{ __('messages.hours') }}
+                                @endif
+                            </h6>
                         </div>
                         <div class="mb-2 empty-box"></div>
                         <div class="mb-2 empty-box"> </div>
