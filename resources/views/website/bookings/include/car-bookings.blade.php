@@ -213,7 +213,7 @@
                         <div class="mb-3 empty-box"> </div>
                         <div class="mb-3 empty-box"> </div>
                         <div class="mb-3 empty-box"> </div>
-                        <div class="mb-2"><a href="javascript::void();" class="remove-btn"
+                        <div class="mb-2"><a href="javascript::void();" class="remove-btn" data-loader="{{ asset('frontend-assets/assets/loader.gif') }}"
                                 data-rowid="{{ $cart->rowId }}"><i class="fa fa-trash text-danger"></i></a></div>
                         <div class="mb-2 empty-box"></div>
                         <div class="mb-2 empty-box"> </div>
