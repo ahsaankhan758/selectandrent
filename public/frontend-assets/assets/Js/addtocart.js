@@ -29,7 +29,7 @@ $(document).on('click', '#car-booking-btn', function(e) {
             // 
             if(response.status == 'success'){
             setTimeout(function() {
-                window.location.href = window.baseUrl+'/carbooking';
+                window.location.href = window.baseUrl + '/carbooking';
             }, 2000);
             }
             // 5000 ms = 5 seconds
