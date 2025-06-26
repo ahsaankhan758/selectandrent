@@ -82,7 +82,7 @@ class CarController extends Controller
         });
     }
 
-    $cars = $query->paginate(20);
+    $cars = $query->paginate(10);
 
     return view('admin.cars.carsListing.carsListing', compact('cars'));
 }
