@@ -33,8 +33,15 @@ class Booking extends Model
         'tax_amount',
         'insurance_included',
         'notes',
+        'cancelled_by',
+        'refunded_by',
+        'refunded_note'
     ];
 
+    public function review()
+    {
+        return $this->hasOne(CustomerReview::class, 'booking_id', 'id');
+    }
     public function booking_items()
     {
         return $this->hasMany(BookingItem::class, 'booking_id', 'id');
@@ -42,7 +49,7 @@ class Booking extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 
     public function car()
@@ -50,10 +57,17 @@ class Booking extends Model
         return $this->belongsTo(Car::class);
     }
 
-   public function review()
+    public function cancelledBy()
     {
-        return $this->hasOne(CustomerReview::class, 'booking_id', 'id');
+        return $this->belongsTo(User::class, 'cancelled_by','id');
     }
+
+    public function refundedBy()
+    {
+        return $this->belongsTo(User::class, 'refunded_by','id');
+    }
+
+   
 
 
 

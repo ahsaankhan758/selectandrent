@@ -151,7 +151,7 @@ class EmployeeController extends Controller
         $action = 'Delete';
         $module = 'User[Employee]';
         activityLog($userId, $desciption,$action,$module);
-        return redirect()->route('employee')-> with('statusDanger','Company Data Deleted Successfully.');
+        return redirect()->route('employee')-> with('statusDanger','Employee Deleted Successfully.');
     }
 
 }

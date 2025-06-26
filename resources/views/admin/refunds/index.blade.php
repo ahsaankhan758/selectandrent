@@ -39,7 +39,8 @@
                              <th>{{ __('messages.bookingtotal') }}</th>
                              <th>{{ __('messages.bookingsubtotal') }}</th>
                              <th>{{ __('messages.notes(Cancel)') }}</th>
-                             <th>{{ __('messages.refunded_by') }}</th>
+                             <th>{{ __('messages.cancelled_by') }} ({{  __('messages.role') }})</th>
+                             <th>{{ __('messages.refunded_by') }} ({{  __('messages.role') }})</th>
                              <th>{{ __('messages.refund_notes') }}</th>
                          </tr>
                      </thead>
@@ -80,12 +81,15 @@
                                  <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                  <td>{{ $booking->booking_reference }}</td>
                                  <td>
-                                     <h5><span class="badge bg-soft-success text-success"><i
-                                                 class="mdi mdi-bitcoin"></i>{{ $booking->payment_status }}</span>
+                                     <h5>
+                                        <span class="badge bg-soft-success text-success" id="payment_status">
+                                            <i class="mdi mdi-bitcoin"></i>
+                                            {{ $booking->payment_status }}
+                                        </span>
                                      </h5>
                                  </td>
                                  <td>
-                                     <h5><span class="badge bg-info">{{ $booking->booking_status }}</span></h5>
+                                     <h5><span class="badge bg-info" id="booking_status">{{ $booking->booking_status }}</span></h5>
                                  </td>
                                  <td>{{ ucfirst($booking->payment_method) }}</td>
                                  <td>{{ $booking->coupon_code ?: '—' }}</td>
@@ -96,8 +100,21 @@
                                  <td>{{ number_format($booking->total_price, 2) }}</td>
                                  <td>{{ number_format($booking->subtotal, 2) }}</td>
                                  <td>{{ $booking->notes }}</td>
-                                 <td>{{ $booking->refunded_by ?: '—' }}</td>
-                                 <td>{{ $booking->refunded_note ?: '—' }}</td>
+                                 <td>
+                                    <span id="cancelled_by">
+                                        {{ optional($booking->cancelledBy)?->name 
+                                            ? optional($booking->cancelledBy)->name . ' (' . ucfirst(optional($booking->cancelledBy)->role) . ')'
+                                            : '—' }}
+                                    </span>
+                                </td>
+                                 <td>
+                                    <span id="refunded_by">
+                                        {{ optional($booking->refundedBy)?->name 
+                                            ? optional($booking->refundedBy)->name . ' (' . ucfirst(optional($booking->refundedBy)->role) . ')'
+                                            : '—' }}
+                                    </span>
+                                </td>
+                                 <td><span id="refunded_notes">{{ $booking->refunded_note ?: '—' }}</span></td>
                              </tr>
                          @empty
                              <tr>
@@ -161,7 +178,7 @@
         </form>
     </div>
 </div>
-<script src="{{ asset('/assets/js/admin/cancelBooking.js') }}"></script>
+<script src="{{ asset('/assets/js/admin/refund.js') }}"></script>
 <script>
     document.getElementById('refundForm').addEventListener('submit', function(e) {
         const submitBtn = document.getElementById('refundSubmitBtn');
