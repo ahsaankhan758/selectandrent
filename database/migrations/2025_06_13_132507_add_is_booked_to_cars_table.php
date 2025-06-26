@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cars', function (Blueprint $table) {
-            $table->interger('is_booked')->default('0')->comment('1 = Active Booked, 0 = Not Booked')->after('status');
+            $table->integer('is_booked')->default('0')->comment('1 = Active Booked, 0 = Not Booked')->after('status');
         });
     }
 

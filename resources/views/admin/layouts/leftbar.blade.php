@@ -349,6 +349,16 @@ if (Auth::check()) {
                         </li>
                     @endif
                 @endif
+                <li>
+                <a href="{{ route('countries.index') }}"
+                    class="d-flex align-items-center justify-content-between">
+                    <span>
+                        <i class="mdi mdi-earth"></i>
+                        {{ __('messages.country') }}
+                    </span>
+                </a>
+
+                </li>
 
                 @if ($role == 'admin')
                     <li>
