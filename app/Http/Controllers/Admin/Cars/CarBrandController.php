@@ -15,7 +15,7 @@ class CarBrandController extends Controller
      */
     public function index()
     {
-        $brands = CarBrand::orderBy('created_at', 'desc')->paginate(20);
+        $brands = CarBrand::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.cars.carBrands', compact('brands'));
     }
 

@@ -14,7 +14,7 @@ class CarCategoryController extends Controller
      */
     public function index()
     {
-        $categories = CarCategory::orderBy('created_at', 'desc')->paginate(20);
+        $categories = CarCategory::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.cars.carCategories',compact('categories'));
     }
 

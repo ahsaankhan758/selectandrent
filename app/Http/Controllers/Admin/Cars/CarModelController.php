@@ -15,7 +15,7 @@ class CarModelController extends Controller
      */
     public function index()
     {
-        $models = CarModel::orderBy('created_at', 'desc')->paginate(20);
+        $models = CarModel::orderBy('created_at', 'desc')->paginate(10);
         $brands = CarBrand::orderBy('name', 'asc')->get();
         return view('admin.cars.carModels', compact('models','brands'));
     }
