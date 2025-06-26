@@ -1,6 +1,8 @@
  <?php
 
 return [
+  'cancelled_by' => 'Cancelled By',
+  'cancel_by' => 'Cancel By',
   'hours' => 'Hours',
   'issue' => 'Issue',
   'amount' => 'Amount',
