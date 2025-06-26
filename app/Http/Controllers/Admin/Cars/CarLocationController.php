@@ -15,7 +15,7 @@ class CarLocationController extends Controller
      */
     public function index()
     {
-        $locations = CarLocation::with('city')->orderBy('created_at', 'desc')->paginate(20);
+        $locations = CarLocation::with('city')->orderBy('created_at', 'desc')->paginate(10);
         $city = City::get();
         return view('admin.cars.carLocations', compact('locations', 'city'));
     }

@@ -66,6 +66,7 @@ class CarRegisterController extends Controller
             $company->phone = $validatedData['phone'];
             $company->website = $validatedData['website'];
             $company->country_id = $validatedData['country_id'];
+            $company->status = 1;
             $company->save();
 
             $adminId = User::where('role', 'admin')->value('id');
