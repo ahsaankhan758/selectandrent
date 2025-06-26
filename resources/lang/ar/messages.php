@@ -1,6 +1,8 @@
 <?php 
 
 return [
+    'cancelled_by' => 'أُلغي بواسطة',
+    'cancel_by' => 'تم الإلغاء بواسطة',
     'hours' => 'ساعات',
     'issue' => 'المشكلة',
     'amount' => 'المبلغ',

@@ -112,4 +112,12 @@ class User extends Authenticatable
         {
             return $this->hasMany(Car::class, 'u_employee_id', 'id');
         }
+     public function cancelledBy()
+    {
+        return $this->hasMany(Booking::class, 'cancelled_by', 'id');
+    }
+     public function refundedBy()
+    {
+        return $this->hasMany(Booking::class, 'refunded_by', 'id');
+    }
 }

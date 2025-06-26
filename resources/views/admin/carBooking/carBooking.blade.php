@@ -31,7 +31,9 @@
                                     <th>{{ __('messages.bookinginsurance') }}</th>
                                     <th>{{ __('messages.bookingtotal') }}</th>
                                     <th>{{ __('messages.bookingsubtotal') }}</th>
-                                    <th>{{ __('messages.bookingnotes') }}</th>
+                                    <th>{{ __('messages.notes(Cancel)') }}</th>
+                                    <th>{{ __('messages.cancel') }}</th>
+                                    <th>{{ __('messages.cancelled_by') }} ({{ __('messages.role') }})</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,7 +99,28 @@
                                         <td>{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
                                         <td>{{ number_format($booking->total_price, 2) }}</td>
                                         <td>{{ number_format($booking->subtotal, 2) }}</td>
-                                        <td>{{ $booking->notes }}</td>
+                                        <td><span id="cancel_note">{{ $booking->notes }}</span></td>
+                                        <td>
+                                            @if($booking->booking_status == 'pending' || $booking->booking_status == 'confirmed' && $booking->payment_status != 'refunded')
+                                                <button href="javascript:void(0)" 
+                                                id="cancelButton-{{ $booking->id }}" 
+                                                class="btn btn-danger btn-sm cancelBookingBtn" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#cancelModal" 
+                                                data-booking-id="{{ $booking->id }}">
+                                                    {{ __('messages.cancel') }}
+                                                </button>
+                                            @else
+                                                —
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <span id="cancelled_by">
+                                                {{ optional($booking->cancelledBy)?->name 
+                                                ? optional($booking->cancelledBy)->name . ' (' . ucfirst(optional($booking->cancelledBy)->role) . ')'
+                                                : '—' }}
+                                            </span>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -147,5 +170,43 @@
     </form>
   </div>
 </div>
+
+<!-- Cancel Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="{{ route('cancelBooking')}}" id="cancelForm" method="POST">
+      @csrf
+      <input type="hidden" name="booking_id" id="modal_booking_id_cancel">
+      <div class="modal-content">
+        <div class="modal-header position-relative">
+            <h5 class="modal-title w-100 text-center" id="cancelModalLabel">
+                <b>{{ __('messages.cancel') }}</b>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="cancelReason" class="form-label mt-4 text-start d-block">{{ __('messages.reason') }}</label>
+          <textarea class="form-control" name="cancel_reason" id="cancelReason" rows="3" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-sm" id="cancelBookingBtn">
+            <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true" id="refundLoadingSpinner"></span>
+            <span>{{ __('messages.confirm') }}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script src="{{ asset('/assets/js/admin/customerReview.js') }}"></script>
+<script src="{{ asset('/assets/js/admin/cancelBookingAdmin.js') }}"></script>
+<script>
+    document.getElementById('cancelForm').addEventListener('submit', function(e) {
+        const submitBtn = document.getElementById('cancelBookingBtn');
+        const spinner = document.getElementById('refundLoadingSpinner');
+        spinner.classList.remove('d-none');
+        submitBtn.setAttribute('disabled', true);
+    });
+</script>
 @endsection
