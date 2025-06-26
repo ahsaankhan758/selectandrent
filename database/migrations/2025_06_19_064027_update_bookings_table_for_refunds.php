@@ -22,15 +22,31 @@ return new class extends Migration
         DB::statement("ALTER TABLE bookings MODIFY COLUMN booking_status ENUM('pending', 'confirmed', 'cancelled', 'completed', 'refunded') DEFAULT 'pending'");
     }
 
-    public function down(): void
-    {
-        Schema::table('bookings', function (Blueprint $table) {
-            // Drop refunded_by column
-            $table->dropColumn('refunded_by');
-        });
+    // public function down(): void
+    // {
+    //     Schema::table('bookings', function (Blueprint $table) {
+    //         // Drop refunded_by column
+    //         $table->dropColumn('refunded_by');
+    //     });
 
-        // Revert ENUM changes
-        DB::statement("ALTER TABLE bookings MODIFY COLUMN payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending'");
-        DB::statement("ALTER TABLE bookings MODIFY COLUMN booking_status ENUM('pending', 'confirmed', 'cancelled', 'completed') DEFAULT 'pending'");
-    }
+    //     // Revert ENUM changes
+    //     DB::statement("ALTER TABLE bookings MODIFY COLUMN payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending'");
+    //     DB::statement("ALTER TABLE bookings MODIFY COLUMN booking_status ENUM('pending', 'confirmed', 'cancelled', 'completed') DEFAULT 'pending'");
+    // }
+    // add by farhan
+    public function down(): void
+{
+    Schema::table('bookings', function (Blueprint $table) {
+        // 👇 First drop the foreign key constraint
+        $table->dropForeign(['refunded_by']); // this drops the constraint named 'bookings_refunded_by_foreign'
+
+        // 👇 Then drop the refunded_by and refunded_note columns
+        $table->dropColumn(['refunded_by', 'refunded_note']);
+    });
+
+    // Revert ENUM changes
+    DB::statement("ALTER TABLE bookings MODIFY COLUMN payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending'");
+    DB::statement("ALTER TABLE bookings MODIFY COLUMN booking_status ENUM('pending', 'confirmed', 'cancelled', 'completed') DEFAULT 'pending'");
+}
+
 };

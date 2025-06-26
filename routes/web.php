@@ -2,25 +2,25 @@
 
 
 
-use App\Http\Controllers\Admin\CustomerReviewController;
-
-use App\Http\Controllers\Admin\RefundController;
 use Illuminate\Http\Request;
+
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\userController;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\RefundController;
 use App\Http\Controllers\website\FaqsController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\companyController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\website\AboutController;
@@ -57,18 +57,19 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 
 use App\Http\Controllers\website\CarBookingController;
 use App\Http\Controllers\website\CarListingController;
+use App\Http\Controllers\Admin\GeneralModuleController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\CarRegisterController;
 use App\Http\Controllers\Website\EditProfileController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
+use App\Http\Controllers\Admin\CustomerReviewController;
 use App\Http\Controllers\website\ConfirmBookingController;
 use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
-use App\Http\Controllers\Admin\GeneralModuleController;
 
 // for live server create storage link for images
 Route::get('/create-storage-link', function () {
@@ -199,7 +200,12 @@ Route::middleware('LanguageMiddleware')->group(function(){
        
     if($currentPrefix === 'admin'){
         Route::prefix('admin')->middleware(['auth','IsAdmin:admin'])->group(function(){
-
+            // add country Routes
+            Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
+            Route::post('/countries/store', [CountryController::class, 'store'])->name('countries.store');
+            Route::get('/countries/{id}/edit', [CountryController::class, 'edit'])->name('countries.edit');
+            Route::put('/countries/{id}', [CountryController::class, 'update'])->name('countries.update');
+            Route::delete('/countries/{id}', [CountryController::class, 'destroy'])->name('countries.destroy');
 
             // general module
              Route::get('/general-module/create', [GeneralModuleController::class, 'create'])->name('general-module.create');
@@ -266,7 +272,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
             Route::get('usersignup', [usersignupController::class, 'showSignupForm'])->name('usersignup');
-            // Blogs added by farhan
+            // Blogs 
             Route::get('blog/create', [AdminBlogController::class, 'createBlog'])->name('blogs.createBlog');
             Route::post('blog/store', [AdminBlogController::class, 'store'])->name('blogs.store');   
             Route::get('blog/detail', [AdminBlogController::class, 'getBlogDetail'])->name('blogs.blogDetail');
@@ -399,7 +405,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
             Route::get('usersignup', [usersignupController::class, 'showSignupForm'])->name('usersignup');
-            // Blogs added by farhan
+            // Blogs 
             Route::get('blog/create', [AdminBlogController::class, 'createBlog'])->name('blogs.createBlog');
             Route::post('blog/store', [AdminBlogController::class, 'store'])->name('blogs.store');   
             Route::get('blog/detail', [AdminBlogController::class, 'getBlogDetail'])->name('blogs.blogDetail');
@@ -496,7 +502,6 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::any('/search-locations', [CarListingController::class, 'searchLocations'])->name('search.locations');
     // end car listing routes
     Route::get('/get-locations/{city_id}', [CarController::class, 'getLocations']);
-    
 
     // added by farhan
     Route::get('/blog', [WebsiteBlogController::class, 'blogView']);

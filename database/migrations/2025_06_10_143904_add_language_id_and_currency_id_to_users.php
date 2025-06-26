@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('currency_id')->nullable();
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('NO ACTION')->onUpdate('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('NO ACTION')->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 
