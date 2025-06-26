@@ -59,12 +59,16 @@ class WebsiteBookingController extends Controller
        
         $booking->booking_status = 'cancelled';
         $booking->notes = $validated['cancel_reason'];
+        $booking->cancelled_by = auth()->id();
         $booking->save();
 
         if($validated['booking_id']){
             $car = Car::find($booking->booking_items->first()->vehicle->id);
-            $notificationType = 3; // review save against vehicle car
-            $fromUserId = auth()->id(); // logged in user
+            $car->is_booked = 0;
+            $car->save();
+            //Notifications
+            $notificationType = 3; 
+            $fromUserId = auth()->id(); 
             $toUserId = $car->user_id;
             $userId = $car->user_id; 
             $message = 'Booking has been Cancelled by ('.auth()->user()->name.') for your Vehicle: ' . $car->lisence_plate. ' With Booking Refernce: '.$booking->booking_reference ;

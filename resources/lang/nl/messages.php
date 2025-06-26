@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'cancelled_by' => 'Geannuleerd door',
+    'cancel_by' => 'Geannuleerd door',
     'hours' => 'Uren',   
     'issue' => 'Probleem',
     'amount' => 'Bedrag',
