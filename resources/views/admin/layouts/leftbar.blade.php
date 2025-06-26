@@ -349,6 +349,7 @@ if (Auth::check()) {
                         </li>
                     @endif
                 @endif
+                @if ($role == 'admin')
                 <li>
                 <a href="{{ route('countries.index') }}"
                     class="d-flex align-items-center justify-content-between">
@@ -357,8 +358,8 @@ if (Auth::check()) {
                         {{ __('messages.country') }}
                     </span>
                 </a>
-
                 </li>
+                @endif
 
                 @if ($role == 'admin')
                     <li>
