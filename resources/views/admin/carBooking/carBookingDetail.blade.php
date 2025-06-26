@@ -123,7 +123,7 @@
                                         <th>{{ __('messages.booking_days') }} / {{ __('messages.hour') }}</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-nowrap">
                                     @if (isset($booking))
                                         @foreach ($booking->booking_items as $detail)
                                             <tr>
