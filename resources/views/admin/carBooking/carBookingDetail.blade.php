@@ -8,9 +8,12 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <h4 class="page-title" id="page-title">{{ __('messages.booking_orderdetail') }}</h4>
-                    @if( $booking->booking_status == 'cancelled' && $booking->payment_status == 'paid' && $source == 'refundSource')
+                    @if ($booking->booking_status == 'cancelled' && $booking->payment_status == 'paid' && $source == 'refundSource')
                         <div id="issueRefund">
-                            <a class="ms-2 btn btn-success float-end mb-3" href="javascript::void(0)" id="refund" data-bs-toggle="modal" data-bs-target="#refundModal" data-booking-id="{{ $booking->id }}" data-user-reason="{{ $booking->notes }}" data-booking-amount="{{ $booking->total_price }}" title="Refund" >
+                            <a class="ms-2 btn btn-success float-end mb-3" href="javascript::void(0)" id="refund"
+                                data-bs-toggle="modal" data-bs-target="#refundModal" data-booking-id="{{ $booking->id }}"
+                                data-user-reason="{{ $booking->notes }}" data-booking-amount="{{ $booking->total_price }}"
+                                title="Refund">
                                 {{ __('messages.refund') }}
                             </a>
                         </div>
@@ -140,13 +143,14 @@
                                                             alt="Default Vehicle Image" height="32">
                                                     @endif
                                                 </td>
-                                                <td>{{$detail->vehicle->car_categories->name}}</td>
-                                                <td>{{ $detail->vehicle->company->name }}</td>
+                                                <td>{{ $detail->vehicle->car_categories->name }}</td>
+                                                <td>{{ $detail->vehicle->company->name ?? 'N/A' }}</td>
                                                 <td class="text-nowrap">{{ $detail->vehicle->carModel->name ?? 'N/A' }} -
                                                     {{ $detail->vehicle->year ?? 'N/A' }}</td>
                                                 <td>{{ $detail->pickupLocation->area_name ?? 'N/A' }}</td>
                                                 <td>{{ $detail->dropoffLocation->area_name ?? 'N/A' }}</td>
-                                                <td>{{ $detail->duration_days }} / {{ $detail->vehicle->rent_type ?? 'N/A' }}</td>
+                                                <td>{{ $detail->duration_days }} /
+                                                    {{ $detail->vehicle->rent_type ?? 'N/A' }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -208,71 +212,86 @@
                             @foreach ($booking->booking_items as $detail)
                                 <h4 class="header-title mb-3">{{ __('messages.company_info') }}</h4>
                                 <div class="text-left">
-                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.name') }}</span>
-                                        {{ $detail->vehicle->company->name }} </p>
-                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.phone') }}</span>
-                                        {{ $detail->vehicle->company->phone }} </p>
-                                    <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.email') }}</span>
-                                        {{ $detail->vehicle->company->email }} </p>
-                                        @if(isset($detail->vehicle->company->country->name))
-                                            <p class="mb-1"><span class="fw-semibold me-2">{{ __('messages.country') }}</span>
-                                            {{ $detail->vehicle->company->country->name ?? ' ' }}</p>
-                                        @endif
-                                    
+                                    <p class="mb-1">
+                                        <span class="fw-semibold me-2">{{ __('messages.name') }}</span>
+                                        {{ $detail->vehicle?->company?->name ?? '-' }}
+                                    </p>
+                                    <p class="mb-1">
+                                        <span class="fw-semibold me-2">{{ __('messages.phone') }}</span>
+                                        {{ $detail->vehicle?->company?->phone ?? '-' }}
+                                    </p>
+                                    <p class="mb-1">
+                                        <span class="fw-semibold me-2">{{ __('messages.email') }}</span>
+                                        {{ $detail->vehicle?->company?->email ?? '-' }}
+                                    </p>
+                                    <p class="mb-1">
+                                        <span class="fw-semibold me-2">{{ __('messages.country') }}</span>
+                                        {{ $detail->vehicle?->company?->country?->name ?? '-' }}
+                                    </p>
                                 </div>
                             @endforeach
                         @endif
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
     <!-- Refund Modal -->
-<div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form method="POST" action="{{ route('refund.booking') }}" id="refundForm">
-            @csrf
-            <input type="hidden" name="booking_id" id="refund-booking-id">
-            
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="refundModalLabel">{{ __('messages.issue') }} {{ __('messages.refund') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+    <div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form method="POST" action="{{ route('refund.booking') }}" id="refundForm">
+                @csrf
+                <input type="hidden" name="booking_id" id="refund-booking-id">
 
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="user_reason" class="form-label">{{ __('messages.customer') }} {{ __('messages.reason') }}</label>
-                        <input type="text" name="user-reason" id="user-reason" class="form-control" rows="3" readonly></input>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="refund_amount" class="form-label">{{ __('messages.refund') }} {{ __('messages.amount') }}</label>
-                        <input type="number" name="refund_amount" id="refund_amount" class="form-control" readonly>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="refundModalLabel">{{ __('messages.issue') }}
+                            {{ __('messages.refund') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="refunded_reason" class="form-label">{{ __('messages.refund') }} {{ __('messages.reason') }}</label>
-                        <select name="refunded_reason" id="refunded_reason" class="form-control" required>
-                            <option disabled selected value="">{{ __('messages.select') }} {{ __('messages.reason') }}  </option>
-                            <option value="Duplicate">Duplicate</option>
-                            <option value="Fraudulent">Fraudulent</option>
-                            <option value="Request by Customer">Request by Customer</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <textarea name="refunded_reason_other" id="refunded_reason_other" class="form-control d-none" placeholder="Type Reason Here...."></textarea>
-                    </div>
-                </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="user_reason" class="form-label">{{ __('messages.customer') }}
+                                {{ __('messages.reason') }}</label>
+                            <input type="text" name="user-reason" id="user-reason" class="form-control"
+                                rows="3" readonly></input>
+                        </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.cancel') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ __('messages.process') }} {{ __('messages.refund') }}</button>
+                        <div class="mb-3">
+                            <label for="refund_amount" class="form-label">{{ __('messages.refund') }}
+                                {{ __('messages.amount') }}</label>
+                            <input type="number" name="refund_amount" id="refund_amount" class="form-control" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="refunded_reason" class="form-label">{{ __('messages.refund') }}
+                                {{ __('messages.reason') }}</label>
+                            <select name="refunded_reason" id="refunded_reason" class="form-control" required>
+                                <option disabled selected value="">{{ __('messages.select') }}
+                                    {{ __('messages.reason') }} </option>
+                                <option value="Duplicate">Duplicate</option>
+                                <option value="Fraudulent">Fraudulent</option>
+                                <option value="Request by Customer">Request by Customer</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="refunded_reason_other" id="refunded_reason_other" class="form-control d-none"
+                                placeholder="Type Reason Here...."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">{{ __('messages.cancel') }}</button>
+                        <button type="submit" class="btn btn-danger">{{ __('messages.process') }}
+                            {{ __('messages.refund') }}</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
-<script src="{{ asset('/assets/js/admin/cancelBooking.js') }}"></script>
+    <script src="{{ asset('/assets/js/admin/cancelBooking.js') }}"></script>
 @endsection
