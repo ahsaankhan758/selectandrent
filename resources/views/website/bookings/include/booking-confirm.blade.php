@@ -46,7 +46,7 @@
                                 $gatewayImage = url(
                                     asset('/frontend-assets/assets/Js/payment-gateways/images') .
                                         '/' .
-                                        $gatewayValue .
+                                        ucfirst($gatewayValue) .
                                         '.svg',
                                 );
                             }
