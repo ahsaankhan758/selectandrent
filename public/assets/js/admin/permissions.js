@@ -1,53 +1,35 @@
-$(document).ready(function() {
-
+$(document).ready(function () {
     $('#getUserName').on('change', function () {
         var selectedUserId = $(this).val();
-        console.log('Selected User ID:', selectedUserId);
+
         $.ajax({
-            url: window.baseUrl+ '/getUserPermissions',
+            url: window.baseUrl + '/getUserPermissions',
             type: "GET",
             data: { selectedUserId: selectedUserId },
             success: function (response) {
-                console.log('Response:', response);
                 $('#permissionsTable').removeClass('d-none').html(response.html);
 
                 bindMasterCheckbox();
-                handleFinancialParentAutoCheck();
                 bindVehicleSubmenuEvents();
-                bindFinancialSubmenuEvents();
+                bindSettingsSubmenuEvents();
 
                 // Toggle for Vehicle
                 $('.vehicle-parent-row .toggle-arrow').on('click', function () {
                     const $arrow = $(this);
                     const subRows = $('.vehicle-submodule');
-
                     const isCollapsed = subRows.hasClass('d-none');
-
-                    if (isCollapsed) {
-                        subRows.removeClass('d-none');
-                        $arrow.text('▼');
-                    } else {
-                        subRows.addClass('d-none');
-                        $arrow.text('►');
-                    }
+                    subRows.toggleClass('d-none');
+                    $arrow.text(isCollapsed ? '▼' : '►');
                 });
 
-                // Toggle for Financial
-                $('.financial-parent-row .toggle-arrow').on('click', function () {
+                // Toggle for Settings
+                $('.settings-parent-row .toggle-arrow').on('click', function () {
                     const $arrow = $(this);
-                    const subRows = $('.financial-submodule');
-
+                    const subRows = $('.settings-submodule');
                     const isCollapsed = subRows.hasClass('d-none');
-
-                    if (isCollapsed) {
-                        subRows.removeClass('d-none');
-                        $arrow.text('▼');
-                    } else {
-                        subRows.addClass('d-none');
-                        $arrow.text('►');
-                    }
+                    subRows.toggleClass('d-none');
+                    $arrow.text(isCollapsed ? '▼' : '►');
                 });
-
 
                 $('#savePermissionsBtn').removeClass('d-none');
                 $('#checkAll').removeClass('d-none');
@@ -55,9 +37,6 @@ $(document).ready(function() {
                 updateMasterCheckboxState();
                 updateRowCheckboxes();
                 updateVehicleSubmodulesVisibility();
-                updateFinancialSubmodulesVisibility();
-                handleVehicleParentAutoCheck();
-                handleFinancialParentAutoCheck();
 
                 $(`input[name="permissions[vehicle][view]"],
                    input[name="permissions[vehicle][edit]"],
@@ -65,21 +44,36 @@ $(document).ready(function() {
                     updateVehicleSubmodulesVisibility();
                 });
 
-                $(`input[name="permissions[financial][view]"],
-                   input[name="permissions[financial][edit]"],
-                   .row-checkbox[data-row="financial"]`).on('change', function () {
-                    updateFinancialSubmodulesVisibility();
+                $(`input[name="permissions[settings][view]"],
+                   input[name="permissions[settings][edit]"],
+                   .row-checkbox[data-row="settings"]`).on('change', function () {
+                    $('.settings-submodule').removeClass('d-none');
                 });
             },
-            error: function (xhr, status, error) {
+            error: function (xhr) {
                 console.error('Error:', xhr.responseText);
                 alert('Something went wrong while fetching users.');
             }
         });
     });
 
+    $('#company').on('change', function () {
+        var selectedCompany = $(this).val();
+
+        $.ajax({
+            url: window.baseUrl + '/getUsersList',
+            type: "GET",
+            data: { selectedCompany: selectedCompany },
+            success: function (response) {
+                $('#employeeList').removeClass('d-none').html(response.html);
+            }
+        });
+    });
+
+    // On page load
+    bindVehicleSubmenuEvents();
+    bindSettingsSubmenuEvents();
     updateVehicleSubmodulesVisibility();
-    updateFinancialSubmodulesVisibility();
 
     $(`input[name="permissions[vehicle][view]"],
        input[name="permissions[vehicle][edit]"],
@@ -87,23 +81,10 @@ $(document).ready(function() {
         updateVehicleSubmodulesVisibility();
     });
 
-    $(`input[name="permissions[financial][view]"],
-       input[name="permissions[financial][edit]"],
-       .row-checkbox[data-row="financial"]`).on('change', function () {
-        updateFinancialSubmodulesVisibility();
-    });
-
-    $('#company').on('change', function() {
-        var selectedCompany = $(this).val();
-        console.log('Selected User ID:', selectedCompany);
-        $.ajax({
-            url: window.baseUrl+ '/getUsersList',
-            type: "GET",
-            data: { selectedCompany: selectedCompany },
-            success: function (response){
-                $('#employeeList').removeClass('d-none').html(response.html);
-            },
-        });
+    $(`input[name="permissions[settings][view]"],
+       input[name="permissions[settings][edit]"],
+       .row-checkbox[data-row="settings"]`).on('change', function () {
+        $('.settings-submodule').removeClass('d-none');
     });
 });
 
@@ -125,8 +106,8 @@ function bindMasterCheckbox() {
 
     permissionCheckboxes.forEach(cb => {
         cb.addEventListener('change', function () {
-            updateMasterCheckboxState();
             updateRowCheckboxes();
+            updateMasterCheckboxState();
         });
     });
 
@@ -149,16 +130,8 @@ function updateMasterCheckboxState() {
     const total = checkboxes.length;
     const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
 
-    if (checked === total) {
-        masterCheckbox.checked = true;
-        masterCheckbox.indeterminate = false;
-    } else if (checked === 0) {
-        masterCheckbox.checked = false;
-        masterCheckbox.indeterminate = false;
-    } else {
-        masterCheckbox.checked = false;
-        masterCheckbox.indeterminate = true;
-    }
+    masterCheckbox.checked = checked === total;
+    masterCheckbox.indeterminate = checked > 0 && checked < total;
 }
 
 function updateRowCheckboxes() {
@@ -168,16 +141,8 @@ function updateRowCheckboxes() {
         const total = rowChecks.length;
         const checked = Array.from(rowChecks).filter(cb => cb.checked).length;
 
-        if (checked === total) {
-            rowCb.checked = true;
-            rowCb.indeterminate = false;
-        } else if (checked === 0) {
-            rowCb.checked = false;
-            rowCb.indeterminate = false;
-        } else {
-            rowCb.checked = false;
-            rowCb.indeterminate = true;
-        }
+        rowCb.checked = checked === total;
+        rowCb.indeterminate = checked > 0 && checked < total;
     });
 }
 
@@ -196,67 +161,18 @@ function updateVehicleSubmodulesVisibility() {
     }
 }
 
-function updateFinancialSubmodulesVisibility() {
-    const viewChecked = $(`input[name="permissions[financial][view]"]`).is(':checked');
-
-    // ✅ Always show submenu
-    $('.financial-submodule').removeClass('d-none');
-
-    // ✅ If view is unchecked, uncheck all submodule checkboxes
-    if (!viewChecked) {
-        $('.financial-submodule input[type="checkbox"]').prop('checked', false);
-    }
-
-    updateRowCheckboxes();
-    updateMasterCheckboxState();
-}
-
-
-function handleVehicleParentAutoCheck() {
-    $('.vehicle-submodule input[type="checkbox"]').on('change', function () {
-        const anyChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
-
-        if (anyChecked) {
-            $(`input[name="permissions[vehicle][view]"]`).prop('checked', true);
-        }
-
-        updateRowCheckboxes();
-        updateMasterCheckboxState();
-        updateVehicleSubmodulesVisibility();
-    });
-}
-
-function handleFinancialParentAutoCheck() {
-    $('.financial-submodule input[type="checkbox"]').on('change', function () {
-        const anyChecked = $('.financial-submodule input[type="checkbox"]:checked').length > 0;
-
-        // If any submodule is checked, check financial[view]
-        if (anyChecked) {
-            $(`input[name="permissions[financial][view]"]`).prop('checked', true);
-        }
-
-        updateRowCheckboxes();
-        updateMasterCheckboxState();
-        updateFinancialSubmodulesVisibility();
-    });
-}
-
 function bindVehicleSubmenuEvents() {
-    // Always keep vehicle submenu visible
     $('.vehicle-submodule').removeClass('d-none');
-    $('.vehicle-parent-row .toggle-arrow').text('▼'); // arrow down
+    $('.vehicle-parent-row .toggle-arrow').text('▼');
 
-    // When Vehicle 'view' checkbox is unchecked, uncheck all submodules (but keep visible)
     $(`input[name="permissions[vehicle][view]"]`).off('change').on('change', function () {
-        const isChecked = $(this).is(':checked');
-        if (!isChecked) {
+        if (!$(this).is(':checked')) {
             $('.vehicle-submodule input[type="checkbox"]').prop('checked', false);
             updateRowCheckboxes();
             updateMasterCheckboxState();
         }
     });
 
-    // If any submodule is checked, ensure 'view' is checked
     $('.vehicle-submodule input[type="checkbox"]').off('change').on('change', function () {
         const anyChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
         if (anyChecked) {
@@ -266,72 +182,54 @@ function bindVehicleSubmenuEvents() {
         updateMasterCheckboxState();
     });
 
-    // When Vehicle main row checkbox is unchecked → uncheck all vehicle-related checkboxes
     $('.row-checkbox[data-row="vehicle"]').off('change').on('change', function () {
         const checked = $(this).is(':checked');
-        if (!checked) {
-            $(`input[name^="permissions[vehicle]"]`).prop('checked', false);
-            $('.vehicle-submodule input[type="checkbox"]').prop('checked', false);
-            $('.vehicle-submodule').removeClass('d-none');
+
+        $(`input[name^="permissions[vehicle]"]`).prop('checked', checked);
+        $('.vehicle-submodule input[type="checkbox"]').prop('checked', checked);
+
+        if (checked) {
             $('.vehicle-parent-row .toggle-arrow').text('▼');
-            updateRowCheckboxes();
-            updateMasterCheckboxState();
-        } else {
-            // Optional: when main row is checked, auto-check view?
-            $(`input[name="permissions[vehicle][view]"]`).prop('checked', true);
-            updateRowCheckboxes();
-            updateMasterCheckboxState();
         }
+
+        updateRowCheckboxes();
+        updateMasterCheckboxState();
     });
 }
 
-function bindFinancialSubmenuEvents() {
-    // Always keep financial submenu visible
-    $('.financial-submodule').removeClass('d-none');
+function bindSettingsSubmenuEvents() {
+    $('.settings-submodule').removeClass('d-none');
+    $('.settings-parent-row .toggle-arrow').text('▼');
 
-    // When financial view checkbox changes
-    $(`input[name="permissions[financial][view]"]`).off('change').on('change', function () {
-        const isChecked = $(this).is(':checked');
-        if (!isChecked) {
-            // Uncheck all financial submenu checkboxes, but keep submenu visible
-            $('.financial-submodule input[type="checkbox"]').prop('checked', false);
+    $(`input[name="permissions[settings][view]"]`).off('change').on('change', function () {
+        if (!$(this).is(':checked')) {
+            $('.settings-submodule input[type="checkbox"]').prop('checked', false);
             updateRowCheckboxes();
             updateMasterCheckboxState();
         }
     });
 
-    // When any financial submenu checkbox changes
-    $('.financial-submodule input[type="checkbox"]').off('change').on('change', function () {
-        const anyChecked = $('.financial-submodule input[type="checkbox"]:checked').length > 0;
+    $('.settings-submodule input[type="checkbox"]').off('change').on('change', function () {
+        const anyChecked = $('.settings-submodule input[type="checkbox"]:checked').length > 0;
         if (anyChecked) {
-            $(`input[name="permissions[financial][view]"]`).prop('checked', true);
+            $(`input[name="permissions[settings][view]"]`).prop('checked', true);
         }
         updateRowCheckboxes();
         updateMasterCheckboxState();
     });
 
-    // When financial whole row checkbox changes
-    $('.row-checkbox[data-row="financial"]').off('change').on('change', function () {
+    $('.row-checkbox[data-row="settings"]').off('change').on('change', function () {
         const checked = $(this).is(':checked');
-        if (!checked) {
-            // Uncheck all financial submenu checkboxes AND financial view/edit checkboxes
-            $(`input[name^="permissions[financial]"]`).prop('checked', false);
-            // But keep submenu visible (since you want it always open)
-            $('.financial-submodule').removeClass('d-none');
-            updateRowCheckboxes();
-            updateMasterCheckboxState();
-        } else {
-            // If main row checkbox checked, check financial view by default? (optional)
-            $(`input[name="permissions[financial][view]"]`).prop('checked', true);
-            updateRowCheckboxes();
-            updateMasterCheckboxState();
+
+        $(`input[name^="permissions[settings]"]`).prop('checked', checked);
+        $('.settings-submodule input[type="checkbox"]').prop('checked', checked);
+
+        if (checked) {
+            $('.settings-parent-row .toggle-arrow').text('▼');
         }
+
+        updateRowCheckboxes();
+        updateMasterCheckboxState();
     });
+
 }
-
-
-$(document).ready(function () {
-    bindFinancialSubmenuEvents();
-});
-
-

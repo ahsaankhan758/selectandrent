@@ -160,6 +160,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             
              //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
+            Route::post('cancelBooking',[BookingController::class, 'cancel'])->name('cancelBooking');
             // Financial History
             Route::get('financial',[FinancialController::class, 'earningSummary'])->name('earningSummary');
             Route::get('/orders-status-data', [FinancialController::class, 'getOrderStatusData'])->name('orders.status.data');
@@ -403,6 +404,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
             //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
+            Route::post('cancelBooking',[BookingController::class, 'cancel'])->name('cancelBooking');
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
             Route::get('usersignup', [usersignupController::class, 'showSignupForm'])->name('usersignup');
