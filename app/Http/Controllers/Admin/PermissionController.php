@@ -36,9 +36,14 @@ public function store(Request $request)
     $ownerRole = User::find($ownerUserId)?->role;
     
     if($userRole == 'admin' || $ownerRole == 'admin')
-        $modules = ['users', 'companies', 'vehicle', 'brands', 'categories', 'features', 'models', 'locations', 'featured_vehicles', 'analytics', 'earning_summary', 'transaction_history', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts', 'currencies'];
+        $modules = ['users','employees','user_signup', 'companies', 'vehicle', 'brands', 'categories', 'features', 
+                    'models', 'locations', 'city', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 
+                    'refunds', 'clients', 'reminders', 'user_ip', 'blogs', 'reviews', 'activity_log', 'contacts', 'country',
+                    'settings', 'general_module', 'permissions', 'payment_modules' ,'googel_map_modules', 'currencies'];
     else 
-        $modules = ['vehicle', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'earning_summary', 'transaction_history', 'clients', 'activity_log',];
+        $modules = ['employees', 'user_signup', 'vehicle', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 
+                    'financial', 'refunds', 'clients', 'reminders', 'blogs', 'reviews', 'activity_log', 'contacts', 'country',
+                    'settings', 'general_module', 'permissions', 'payment_modules' ,'googel_map_modules', 'currencies'];
     $actions = ['view', 'edit'];
 
     foreach ($modules as $module) {
