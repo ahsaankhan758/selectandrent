@@ -1,5 +1,4 @@
 @php
-    // Restructure userPermissions to make lookup easier
     $storedPermissions = [];
     foreach ($userPermissions as $perm) {
         $key = strtolower(str_replace(' ', '_', $perm->module));
@@ -7,15 +6,18 @@
     }
 
     if ($user_role == 'admin' || $ownerRole == 'admin') {
-        $modules = ['Users', 'Companies', 'Vehicle', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Earning Summary', 'Transaction History', 'Clients', 'User IP', 'Blogs', 'Activity Log', 'Contacts', 'Currencies'];
-        $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'Featured Vehicles'];
+        $modules = ['Users', 'Employees', 'User Signup', 'Companies', 'Vehicle', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'City', 'Featured Vehicles',
+                    'Analytics', 'Calendar', 'Bookings', 'Financial', 'Refunds', 'Clients', 'Reminders', 'User IP', 'Blogs', 'Reviews', 'Activity Log', 'Contacts', 'Country',
+                    'Settings', 'General Module', 'Permissions', 'Payment Modules' , 'Googel Map Modules', 'Currencies'];
+        $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'City', 'Featured Vehicles'];
     } else {
-        $modules = ['Vehicle', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Earning Summary', 'Transaction History', 'Clients', 'Activity Log'];
+        $modules = ['Vehicle', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Refunds', 'Clients', 'Reminders', 'User IP',
+                    'Blogs', 'Reviews', 'Activity Log', 'Contacts', 'Country', 'Settings', 'General Module', 'Permissions', 'Payment Modules' , 'Googel Map Modules', 'Currencies'];
         $vehicleSubmodules = ['Locations', 'Featured Vehicles'];
     }
 
     $actions = ['view', 'edit'];
-    $financialSubmodules = ['Earning Summary', 'Transaction History'];
+    $settingSubmodules = ['General Module', 'Permissions', 'Payment Modules' , 'Googel Map Modules', 'Currencies'];
 @endphp
 
 <thead class="thead-dark">
@@ -33,44 +35,32 @@
         @php
             $key = strtolower(str_replace(' ', '_', $module));
             $isVehicleSubmodule = in_array($module, $vehicleSubmodules);
-            $isFinancialSubmodule = in_array($module, $financialSubmodules);
+            $isSettingSubmodule = in_array($module, $settingSubmodules);
         @endphp
 
-        {{-- Skip rendering submodules here, we’ll render them after their parent --}}
-        @if ($isVehicleSubmodule || $isFinancialSubmodule)
+        @if ($isVehicleSubmodule || $isSettingSubmodule)
             @continue
         @endif
 
-        {{-- Main module row --}}
-        <tr data-module="{{ $key }}" class="{{ in_array($key, ['vehicle', 'financial']) ? $key . '-parent-row clickable' : '' }}">
+        <tr data-module="{{ $key }}" class="{{ in_array($key, ['vehicle', 'settings']) ? $key . '-parent-row clickable' : '' }}">
             <td>
-                @if (in_array($key, ['vehicle', 'financial']))
+                @if (in_array($key, ['vehicle', 'settings']))
                     <span class="toggle-arrow" style="cursor: pointer;">▼</span>
                 @endif
-                {!! in_array($key, ['vehicle', 'financial']) ? '<strong>' . $module . '</strong>' : e($module) !!}
+                {!! in_array($key, ['vehicle', 'settings']) ? '<strong>' . $module . '</strong>' : e($module) !!}
             </td>
 
             @foreach ($actions as $action)
                 <td>
-                    @php
-                        $showCheckbox = !($key === 'calendar' && $action === 'edit')
-                                        && !($key === 'bookings' && $action === 'edit' && $user_role !== 'admin');
-                    @endphp
-
                     <input type="hidden" name="permissions[{{ $key }}][{{ $action }}]" value="0">
-                    @if ($showCheckbox)
-                        <input type="checkbox"
-                            class="permission-checkbox"
-                            data-row="{{ $key }}"
-                            name="permissions[{{ $key }}][{{ $action }}]"
-                            value="1"
-                            {{ (isset($storedPermissions[$key][$action]) && $storedPermissions[$key][$action] == 1) ? 'checked' : '' }}>
-                    @else
-                        <span class="text-muted"> </span>
-                    @endif
+                    <input type="checkbox"
+                        class="permission-checkbox"
+                        data-row="{{ $key }}"
+                        name="permissions[{{ $key }}][{{ $action }}]"
+                        value="1"
+                        {{ (isset($storedPermissions[$key][$action]) && $storedPermissions[$key][$action] == 1) ? 'checked' : '' }}>
                 </td>
             @endforeach
-
             <td>
                 <input type="checkbox" class="row-checkbox" data-row="{{ $key }}">
             </td>
@@ -93,18 +83,16 @@
                                 {{ (isset($storedPermissions[$subKey][$action]) && $storedPermissions[$subKey][$action] == 1) ? 'checked' : '' }}>
                         </td>
                     @endforeach
-                    <td>
-                        <input type="checkbox" class="row-checkbox" data-row="{{ $subKey }}">
-                    </td>
+                    <td><input type="checkbox" class="row-checkbox" data-row="{{ $subKey }}"></td>
                 </tr>
             @endforeach
         @endif
 
-        {{-- Financial Submodules --}}
-        @if ($key === 'financial')
-            @foreach ($financialSubmodules as $submodule)
+        {{-- Settings Submodules --}}
+        @if ($key === 'settings')
+            @foreach ($settingSubmodules as $submodule)
                 @php $subKey = strtolower(str_replace(' ', '_', $submodule)); @endphp
-                <tr class="financial-submodule ml-4" data-parent="financial" data-submodule="{{ $subKey }}" style="background-color: #f0f0f0;">
+                <tr class="settings-submodule ml-4" data-parent="settings" data-submodule="{{ $subKey }}" style="background-color: #f0f0f0;">
                     <td> ↳ {{ $submodule }}</td>
                     @foreach ($actions as $action)
                         <td>
@@ -117,9 +105,7 @@
                                 {{ (isset($storedPermissions[$subKey][$action]) && $storedPermissions[$subKey][$action] == 1) ? 'checked' : '' }}>
                         </td>
                     @endforeach
-                    <td>
-                        <input type="checkbox" class="row-checkbox" data-row="{{ $subKey }}">
-                    </td>
+                    <td><input type="checkbox" class="row-checkbox" data-row="{{ $subKey }}"></td>
                 </tr>
             @endforeach
         @endif
