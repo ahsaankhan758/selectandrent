@@ -20,7 +20,7 @@ $(document).on('submit', '#orderBookingFormSubmit', function(e) {
         }
     });
     
-    submitBtn.prop('disabled', true).html(`<img src="../frontend-assets/assets/loader.gif" alt="Loading..." width="25">`);
+    submitBtn.prop('disabled', true).text('Processing...');
         
 
     if (isValid) {
