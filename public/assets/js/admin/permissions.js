@@ -147,19 +147,18 @@ function updateRowCheckboxes() {
 }
 
 function updateVehicleSubmodulesVisibility() {
+    console.log('here')
     const viewChecked = $(`input[name="permissions[vehicle][view]"]`).is(':checked');
     const editChecked = $(`input[name="permissions[vehicle][edit]"]`).is(':checked');
     const rowChecked = $(`.row-checkbox[data-row="vehicle"]`).is(':checked');
     const submodulesChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
 
     if (viewChecked || editChecked || rowChecked || submodulesChecked) {
-        $('.vehicle-submodule').removeClass('d-none');
-        $('.vehicle-parent-row .toggle-arrow').text('▼');
-    } else {
-        $('.vehicle-submodule').removeClass('d-none');
-        $('.vehicle-parent-row .toggle-arrow').text('►');
-    }
-}
+            $('.vehicle-submodule').removeClass('d-none');
+        } else {
+            $('.vehicle-submodule').removeClass('d-none');
+        }
+    }       
 
 function bindVehicleSubmenuEvents() {
     $('.vehicle-submodule').removeClass('d-none');
