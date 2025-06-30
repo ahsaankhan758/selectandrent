@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function updateCartPrice(rowId, price, days) {
-        
-        fetch('/update-cart-price', {
+        var url_cart_price = window.baseUrl+'/update-cart-price';
+        fetch(url_cart_price, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
