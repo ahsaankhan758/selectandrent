@@ -43,11 +43,21 @@ class BookingController extends Controller
     }
 
     // Company role filter
-    if (Auth::user()->role === 'company') {
-        $query->whereHas('booking_items.vehicle', function ($q) {
-            $q->where('user_id', Auth::id());
-        });
-    }
+    // if (Auth::user()->role === 'company') {
+    //     $query->whereHas('booking_items.vehicle', function ($q) {
+    //         $q->where('user_id', Auth::id());
+    //     });
+    // }
+    // Company or employee of company filter
+$employeeOwner = EmployeeOwner(auth()->id());
+if (auth()->user()->role === 'company' || (isset($employeeOwner) && $employeeOwner->role === 'company')) {
+    $userId = (auth()->user()->role === 'company') ? auth()->id() : $employeeOwner->id;
+
+    $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+        $q->where('user_id', $userId);
+    });
+}
+
 
     // Specific filters based on clicked card
     switch ($request->filter) {
