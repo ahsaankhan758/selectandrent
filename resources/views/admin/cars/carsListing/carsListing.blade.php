@@ -18,7 +18,9 @@
                         <th scope="col">{{ __('messages.owner') }}</th>
                         <th scope="col">{{ __('messages.created_by') }} {{ __('messages.employee') }}</th>
                         <th scope="col">{{ __('messages.status') }}</th>
-                        <th scope="col">{{ __('messages.action') }}</th>
+                        @if(can('Vehicle','edit'))
+                            <th scope="col">{{ __('messages.action') }}</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -41,18 +43,16 @@
                                     <td>
                                        {{ ($carData->status == 1)? 'Active' : 'Inactive' }} 
                                     </td>
-                                    <td>
-                                        @if(can('Vehicle','edit'))
+                                    @if(can('Vehicle','edit'))
+                                        <td>
                                             <a href="{{ route('editCar', $carData->id) }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                        @endif
-                                        @if(can('Vehicle','edit'))
                                             <a href="{{ route('deleteCar', $carData->id) }}" class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                             </a>
-                                        @endif
-                                    </td>
+                                        </td>
+                                     @endif
                                 </tr>
                                 <div class="modal" id="modal{{ $carData->id }}">
                                     <div class="modal-dialog">
