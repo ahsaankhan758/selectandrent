@@ -66,8 +66,7 @@
                     <div class="col-md-3">
                         <label class="form-label">{{ __('messages.Pickup_Date_time') }}</label>
                         <div class="input-group">
-                            <input type="datetime-local" name="pickup_datetime[]"
-                                class="form-control time-input pickup-time">
+                            <input type="text" name="pickup_datetime[]" class="form-control pickup-time" placeholder="Select">
                         </div>
                     </div>
 
@@ -75,10 +74,10 @@
                     <div class="col-md-3">
                         <label class="form-label">{{ __('messages.Drop-off_Date_time') }}</label>
                         <div class="input-group">
-                            <input type="datetime-local" name="dropoff_datetime[]"
-                                class="form-control time-input dropoff-time">
+                            <input type="text" name="dropoff_datetime[]" class="form-control dropoff-time" placeholder="Select">
                         </div>
                     </div>
+
 
                     <!-- data for submit -->
                     <input type="hidden" name="vehicleId[]" value="{{ $cart->id }}">
@@ -405,3 +404,28 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const now = new Date();
+        // Initialize Pickup DateTime Picker
+        const pickupFlatpickr = flatpickr('.pickup-time', {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            minDate: now,
+            onChange: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length > 0) {
+                    const pickupDate = selectedDates[0];
+                    const dropoffMinDate = new Date(pickupDate.getTime() + 60 * 60 * 1000); // +1 hour
+                    dropoffFlatpickr.set('minDate', dropoffMinDate);
+                }
+            }
+        });
+        // Initialize Dropoff DateTime Picker
+        const dropoffFlatpickr = flatpickr('.dropoff-time', {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            minDate: new Date(now.getTime() + 60 * 60 * 1000) // +1 hour from now by default
+            });
+    });
+</script>
+
