@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (userAgent.indexOf('Trident') !== -1 || userAgent.indexOf('MSIE') !== -1) return 'Internet Explorer';
             return 'Unknown';
         }
-
-        fetch('/track-click', {
+       
+        fetch(window.baseUrl + '/track-click', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
