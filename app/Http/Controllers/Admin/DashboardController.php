@@ -70,9 +70,10 @@ public function dashboard(Request $request)
     $applyFilters($filteredBookingQuery);
 
     // Card Data
-    $totalCars = Car::where(function ($q) use ($applyFilters) {
-        $applyFilters($q);
-    })->count();
+    // $totalCars = Car::where(function ($q) use ($applyFilters) {
+    //     $applyFilters($q);
+    // })->count();
+    $totalCars    = Car::where(FilterHelper::carFilter())->count(); 
 
     $bookedCars = Car::where('is_booked', 1)
         ->where(function ($q) use ($applyFilters) {
@@ -81,7 +82,8 @@ public function dashboard(Request $request)
 
     // $totalCars    = Car::where(FilterHelper::carFilter())->count();
     // $bookedCars   = Car::where('is_booked', 1)->where(FilterHelper::carFilter())->count();
-    $totalbooking = (clone $filteredBookingQuery)->count();
+    // $totalbooking = (clone $filteredBookingQuery)->count();
+    $totalbooking = Booking::where(FilterHelper::companyFilter())->count();
     $totalrevenue = 0;
     $totalpending = 0;
     $commission = 0;
