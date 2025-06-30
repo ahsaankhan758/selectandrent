@@ -75,13 +75,13 @@ public function dashboard(Request $request)
     // })->count();
     $totalCars    = Car::where(FilterHelper::carFilter())->count(); 
 
-    $bookedCars = Car::where('is_booked', 1)
+    $bookedCars = Car::where('is_booked', '1')
         ->where(function ($q) use ($applyFilters) {
             $applyFilters($q);
         })->count();
 
     // $totalCars    = Car::where(FilterHelper::carFilter())->count();
-    // $bookedCars   = Car::where('is_booked', 1)->where(FilterHelper::carFilter())->count();
+    // $bookedCars   = Car::where('is_booked', '1')->where(FilterHelper::carFilter())->count();
     // $totalbooking = (clone $filteredBookingQuery)->count();
     $totalbooking = Booking::where(FilterHelper::companyFilter())->count();
     $totalrevenue = 0;
@@ -179,7 +179,7 @@ public function dashboard(Request $request)
     // {
     // $totalCars = Car::where(FilterHelper::carFilter())->count();
     // $totalbooking = Booking::where(FilterHelper::companyFilter())->count();
-    // $bookedCars = Car::where('is_booked', 1)->where(FilterHelper::carFilter())->count();
+    // $bookedCars = Car::where('is_booked', '1')->where(FilterHelper::carFilter())->count();
     // $totalrevenue = Booking::where('payment_status', 'paid')->where(FilterHelper::companyFilter())->sum('total_price');
     // $totalpending = Booking::where('payment_status', 'pending')->where(FilterHelper::companyFilter())->sum('total_price');
     // $commission = Booking::where(FilterHelper::companyFilter())->sum('commission');
