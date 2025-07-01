@@ -44,7 +44,9 @@
                     <thead>
                     <tr>
                         <th scope="col">{{ __('messages.name') }}</th>
-                        <th scope="col">{{ __('messages.action') }}</th>
+                        @if(can('brands','edit'))
+                            <th scope="col">{{ __('messages.action') }}</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -52,13 +54,13 @@
                             @foreach ($brands as $brandData)
                                 <tr>
                                     <td>{{ ucfirst(strtolower($brandData->name)) }}</td>
-                                    <td>
-                                        @if(can('vehicle_brands','edit'))
+                                     @if(can('brands','edit'))
+                                        <td>
                                             <a href="{{ route('deleteCarBrand',$brandData->id) }}"  class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                             </a>
-                                        @endif
-                                    </td>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @endif

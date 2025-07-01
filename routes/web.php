@@ -402,6 +402,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
             Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
             Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
+            // review
+            Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             Route::post('cancelBooking',[BookingController::class, 'cancel'])->name('cancelBooking');

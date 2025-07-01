@@ -11,6 +11,8 @@ class adminReviewController extends Controller
 {
     public function vehicleReview()
     {
+        $owner = EmployeeOwner(auth()->id());
+
         $reviews = Review::with(['user', 'vehicle'])
         ->when(Auth::user()->role === 'company', function ($query) {
             $query->whereHas('vehicle', function ($q) {
