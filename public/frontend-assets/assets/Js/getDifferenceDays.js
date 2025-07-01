@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if(rent_type == 'day'){
                     var diffPeriod = Math.ceil(diffHrs / 24);
                 }else{
-                    var  diffPeriod = diffHrs;
+                    var  diffPeriod = Math.ceil(diffHrs);
                 }
                 // 
                 const DatepickupDate = pickupDate.toISOString().slice(0, 10).replace(/-/g, '-');
