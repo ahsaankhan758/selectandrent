@@ -22,11 +22,26 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('editCar/{id}',[CarController::class,'edit'])->name('editCar');
             Route::put('updateCar/{id}',[CarController::class,'update'])->name('updateCar');
             Route::get('deleteCar/{id}',[CarController::class,'destroy'])->name('deleteCar');
+             //Car Brand Routes
+            Route::get('carBrands',[CarBrandController::class, 'Index'])->name('carBrands');
+            Route::post('addCarBrand',[CarBrandController::class,'store'])->name('addCarBrand');
+            Route::get('deleteCarBrand/{id}',[CarBrandController::class, 'destroy'])->name('deleteCarBrand');
+            //Car Category Routes
+            Route::get('carCategories',[CarCategoryController::class, 'Index'])->name('carCategories');
+            Route::post('addCarCategory',[CarCategoryController::class,'store'])->name('addCarCategory');
+            Route::get('deleteCarCategory/{id}',[CarCategoryController::class, 'destroy'])->name('deleteCarCategory');
+            //Car Featres Routes
+            Route::get('carFeatures',[CarFeatureController::class, 'index'])->name('carFeatures');
+            Route::post('addCarFeature',[CarFeatureController::class,'store'])->name('addCarFeature');
+            Route::get('deleteCarFeature/{id}',[CarFeatureController::class, 'destroy'])->name('deleteCarFeature');
+            //Car Modle Routes
+            Route::get('carModels',[CarModelController::class, 'Index'])->name('carModels');
+            Route::post('addCarModel',[CarModelController::class,'store'])->name('addCarModel');
+            Route::get('deleteCarModel/{id}',[CarModelController::class, 'destroy'])->name('deleteCarModel');
             //Car Location Routes
             Route::get('carLocations',[CarLocationController::class, 'Index'])->name('carLocations');
             Route::post('addCarLocation',[CarLocationController::class,'store'])->name('addCarLocation');
             Route::get('deleteCarLocation/{id}',[CarLocationController::class, 'destroy'])->name('deleteCarLocation');
-
             // city
             Route::get('cities',[CarLocationController::class, 'showCities'])->name('cities');
             Route::post('City',[CarLocationController::class,'cityStore'])->name('addCity');
@@ -60,8 +75,6 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Route::get('cities',[CarLocationController::class, 'showCities'])->name('cities');
         Route::post('City',[CarLocationController::class,'cityStore'])->name('addCity');
         Route::get('deleteCity/{id}',[CarLocationController::class, 'destroyCity'])->name('deleteCity');
-
-
         //Car Modle Routes
         Route::get('carModels',[CarModelController::class, 'Index'])->name('carModels');
         Route::post('addCarModel',[CarModelController::class,'store'])->name('addCarModel');
@@ -98,8 +111,6 @@ Route::middleware('LanguageMiddleware')->group(function(){
         Route::get('cities',[CarLocationController::class, 'showCities'])->name('cities');
         Route::post('City',[CarLocationController::class,'cityStore'])->name('addCity');
         Route::get('deleteCity/{id}',[CarLocationController::class, 'destroyCity'])->name('deleteCity');
-
-
         //Car Modle Routes
         Route::get('carModels',[CarModelController::class, 'Index'])->name('carModels');
         Route::post('addCarModel',[CarModelController::class,'store'])->name('addCarModel');

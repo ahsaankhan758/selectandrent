@@ -7,7 +7,7 @@
             <div class="card-header">
                 <h4>{{ __('messages.car') }} {{ __('messages.categories') }}</h4>
                 <div class="mt-3 float-end">
-                    @if(can('vehicle_categories','edit'))
+                    @if(can('categories','edit') && auth()->user()->role != 'company' )
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                             {{ __('messages.create') }}
                         </button>
@@ -43,7 +43,7 @@
                     <thead>
                     <tr>
                         <th scope="col">{{ __('messages.name') }}</th>
-                        @if(can('categories','edit'))
+                        @if(can('categories','edit') && auth()->user()->role != 'company' )
                             <th scope="col">{{ __('messages.action') }}</th>
                         @endif
                     </tr>
@@ -53,7 +53,7 @@
                             @foreach ($categories as $categoryData)
                                 <tr>
                                     <td>{{ ucfirst(strtolower($categoryData->name)) }}</td>
-                                    @if(can('categories','edit'))
+                                    @if(can('categories','edit') && auth()->user()->role != 'company' )
                                         <td>
                                             <a href="{{ route('deleteCarCategory',$categoryData->id) }}"  class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>

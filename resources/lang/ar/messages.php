@@ -1,6 +1,7 @@
 <?php 
 
 return [
+    'cities' => 'المدن',
     'cancelled_by' => 'أُلغي بواسطة',
     'cancel_by' => 'تم الإلغاء بواسطة',
     'hours' => 'ساعات',
