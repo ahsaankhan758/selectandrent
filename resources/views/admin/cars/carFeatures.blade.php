@@ -42,7 +42,9 @@
                     <thead>
                     <tr>
                         <th scope="col">{{ __('messages.name') }}</th>
-                        <th scope="col">{{ __('messages.action') }}</th>
+                        @if(can('features','edit'))
+                            <th scope="col">{{ __('messages.action') }}</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -50,13 +52,13 @@
                             @foreach ($features as $featureData)
                                 <tr>
                                     <td>{{ ucfirst(strtolower($featureData->name)) }}</td>
-                                    <td>
-                                        @if(can('vehicle_features','edit'))
+                                    @if(can('features','edit'))
+                                        <td>
                                             <a href="{{ route('deleteCarFeature',$featureData->id) }}"  class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                             </a>
-                                        @endif
-                                    </td>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @endif

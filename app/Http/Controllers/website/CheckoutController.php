@@ -100,8 +100,17 @@ class CheckoutController extends Controller
                     $notificationType = 2; // customer placed order
                     $fromUserId = auth()->id();
                     $toUserId = $car->user_id;
+                    $userId = $car->user_id;
                     $message = 'A new booking has been placed for your Vehicle: ' . $car->lisence_plate;
                     saveNotification($notificationType, $fromUserId, $toUserId, $toUserId, $message);
+                    if(!empty($car->u_employee_id )){
+                        $notificationType = 2; // customer placed order
+                        $fromUserId = auth()->id();
+                        $toUserId = $car->u_employee_id;
+                        $userId = $car->u_employee_id;
+                        $message = 'A new booking has been placed for your Vehicle: ' . $car->lisence_plate;
+                        saveNotification($notificationType, $fromUserId, $toUserId, $toUserId, $message);
+                    }
                 }
 
                 $bookingItems = BookingItem::where('booking_id', $booking->id)->get();

@@ -60,7 +60,7 @@ use App\Http\Controllers\website\CarListingController;
 use App\Http\Controllers\Admin\GeneralModuleController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\website\CarRegisterController;
-use App\Http\Controllers\Website\EditProfileController;
+use App\Http\Controllers\website\EditProfileController;
 use App\Http\Controllers\website\JoinProgramController;
 use App\Http\Controllers\website\WebsiteBlogController;
 use App\Http\Controllers\website\WebsiteHomeController;
@@ -70,6 +70,8 @@ use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
+
+use Illuminate\Support\Facades\Artisan;
 
 // for live server create storage link for images
 Route::get('/create-storage-link', function () {
@@ -85,6 +87,11 @@ Route::get('/create-storage-link', function () {
     } else {
         return 'Failed to create storage link. Your server may not support symlinks.';
     }
+});
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    return 'Application cache and config cache cleared successfully.';
 });
 
 Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
@@ -146,7 +153,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
             Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
             Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
-            Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
+            Route::any('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
             Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
              //Calendar Routes
             Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
@@ -242,7 +249,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
             Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
             Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
-            Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
+            Route::any('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
             Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
             Route::get('pending',[companyController::class , 'pending'])->name('pending');
             Route::get('aprovePendingCompany/{id}',[companyController::class , 'aprovePending'])->name('aprovePendingCompany');
@@ -376,7 +383,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('createCompany', [companyController::class,'create'])->name('createCompany');
             Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
             Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
-            Route::put('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
+            Route::any('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
             Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
             Route::get('pending',[companyController::class , 'pending'])->name('pending');
             Route::get('aprovePendingCompany/{id}',[companyController::class , 'aprovePending'])->name('aprovePendingCompany');
@@ -402,6 +409,8 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::put('/updateVehicle', [CalendarController::class, 'update'])->name('updateVehicle');
             Route::delete('/deleteVehicle', [CalendarController::class, 'delete'])->name('deleteVehicle');
             Route::post('/updateEventDate', [CalendarController::class, 'updateEventDate']);
+            // review
+            Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             //Car Bookings Routes
             Route::get('carBooking',[BookingController::class, 'index'])->name('carBooking');
             Route::post('cancelBooking',[BookingController::class, 'cancel'])->name('cancelBooking');
