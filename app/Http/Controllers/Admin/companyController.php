@@ -91,7 +91,7 @@ class companyController extends Controller
         $fromUserId = $user->id; // logged in user
         $toUserId = $adminId;
         $userId = $adminId; 
-        $message = 'A new company (' . $company->name . ') has registered and is awaiting your approval.';
+        $message = 'A new Company (' . $company->name . ') has registered and is awaiting your approval.';
         saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
         return redirect ()->route('companies')->with('status','Company Added Successfully.');
     }
@@ -163,7 +163,7 @@ class companyController extends Controller
          $action = 'Delete';
          $module = 'User';
          activityLog($userId, $desciption,$action,$module);
-        return redirect()->route('companies')-> with('statusDanger','Comapy Data Deleted Successfully.');
+        return redirect()->route('companies')-> with('statusDanger','Company Data Deleted Successfully.');
     }
     public function pending()
         {
