@@ -152,7 +152,7 @@ class CarBookingController extends Controller
         ]);
 
         $rowId = $validated['rowId'];
-        $newPrice = $validated['price'];
+        $newPrice = number_format($validated['price'], 2);
         $qty = $validated['days'];
         
         $item = Cart::instance('cart')->get($rowId);
@@ -163,9 +163,9 @@ class CarBookingController extends Controller
         }
 
         // extra details for total cart price
-        $subtotal = Cart::subtotal();
-        $tax = Cart::tax();
-        $totalPriceIncludingTax = Cart::total();
+        $subtotal = number_format(Cart::subtotal(), 2);
+        $tax = number_format(Cart::tax(), 2);
+        $totalPriceIncludingTax = number_format(Cart::total(), 2);
         
         return response()->json([
             'status' => 'success',
