@@ -64,7 +64,7 @@ class WebsiteBookingController extends Controller
 
         if($validated['booking_id']){
             $car = Car::find($booking->booking_items->first()->vehicle->id);
-            $car->is_booked = 0;
+            $car->is_booked = '0';
             $car->save();
             //Notifications
             $notificationType = 3; 

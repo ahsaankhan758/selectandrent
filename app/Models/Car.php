@@ -81,7 +81,7 @@ class Car extends Model
     
     public function company()
     {
-        return $this->hasOne(Company::class, 'user_id', 'user_id');
+        return $this->hasOne(company::class, 'user_id', 'user_id');
     }
 
 public function booking_items()
