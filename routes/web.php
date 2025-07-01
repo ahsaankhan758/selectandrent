@@ -71,6 +71,8 @@ use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
 
+use Illuminate\Support\Facades\Artisan;
+
 // for live server create storage link for images
 Route::get('/create-storage-link', function () {
     $target = storage_path('app/public');
@@ -85,6 +87,11 @@ Route::get('/create-storage-link', function () {
     } else {
         return 'Failed to create storage link. Your server may not support symlinks.';
     }
+});
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    return 'Application cache and config cache cleared successfully.';
 });
 
 Route::post('logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
