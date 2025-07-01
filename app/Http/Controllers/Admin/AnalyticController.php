@@ -180,7 +180,7 @@ $uniquePrivacyPolicyClicks = UserActivity::where('url', 'like', '%/privacy-polic
                                          ->count('ip_address');
 
                                    
-    return view('admin.analytics', compact(
+    return view('admin.Analytics', compact(
     'homepageViews', 'uniqueHomepageViews',
     'homepageClicks', 'uniqueHomepageClicks',
     'carDetailViews', 'uniqueCarDetailViews',
