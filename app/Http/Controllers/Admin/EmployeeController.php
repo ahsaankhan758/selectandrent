@@ -132,26 +132,35 @@ class EmployeeController extends Controller
         activityLog($userId, $desciption,$action,$module);
         return redirect()->route('employee')->with('status', 'Employee Record Updated Successfully.');
     }
-    public function destroy($id){
-        $user = User::find($id);
-        $permissions = Permission::where('user_id', $user->id);
-        $permissions->delete();
-        $user->delete();
-        // save logs
-        $userId = Auth::id();
-        $userName = Auth::user()->name;
-        $desciption = $userName.' Deleted [ User Name '.$user->name.'] [User Email '.$user->email.'] Successfully.';
-        $action = 'Delete';
-        $module = 'User[Employee]';
-        activityLog($userId, $desciption,$action,$module);
-        $employee = Employee::where('e_user_id',$id)->first();
+   public function destroy($id){
+    $user = User::find($id);
+
+    // Delete employee first (child row)
+    $employee = Employee::where('e_user_id', $id)->first();
+    if ($employee) {
         $employee->delete();
-        // save logs
-        $desciption = $userName.' Deleted [ Employee Name '.$user->name.'] [Employee Email '.$user->email.'] Successfully.';
-        $action = 'Delete';
-        $module = 'User[Employee]';
-        activityLog($userId, $desciption,$action,$module);
-        return redirect()->route('employee')-> with('statusDanger','Employee Deleted Successfully.');
     }
+
+    // Then delete permissions
+    $permissions = Permission::where('user_id', $user->id);
+    $permissions->delete();
+
+    // Now delete the user (parent row)
+    $user->delete();
+
+    // Log actions
+    $userId = Auth::id();
+    $userName = Auth::user()->name;
+    $desciption = $userName.' Deleted [ User Name '.$user->name.'] [User Email '.$user->email.'] Successfully.';
+    $action = 'Delete';
+    $module = 'User[Employee]';
+    activityLog($userId, $desciption, $action, $module);
+
+    $desciption = $userName.' Deleted [ Employee Name '.$user->name.'] [Employee Email '.$user->email.'] Successfully.';
+    activityLog($userId, $desciption, $action, $module);
+
+    return redirect()->route('employee')->with('statusDanger', 'Employee Deleted Successfully.');
+}
+
 
 }
