@@ -127,14 +127,17 @@
                             
                             if(isset($owner_role)){
                                 if ($owner_role == 'admin') {
-                                    $modules = ['Users', 'Employees', 'User Signup', 'Companies', 'Vehicle', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'City', 'Featured Vehicles', 
-                                                'Analytics', 'Calendar', 'Bookings', 'Financial', 'Refunds', 'Clients', 'Reminders', 'User IP', 'Blogs', 'Reviews', 'Activity Log', 'Contacts', 'Country',
-                                                'Settings', 'General Module', 'Permissions', 'Payment Modules' , 'Googel Map Modules', 'Currencies'];
-                                    $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'City', 'Featured Vehicles'];
+                                    $modules = ['Dashboard', 'Customer Accounts', 'Vehicles', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'Cities', 'Featured Vehicles',
+                                                'Analytics', 'Calendar', 'Bookings', 'Financials', 'Refunds', 'Clients', 'Reminders', 'Reviews', 'Activity Logs', 'Contact', 'Country',];
+                                    $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'Cities', 'Featured Vehicles'];
+                                    $viewOnlyModules = ['dashboard', 'customer_accounts', 'analytics', 'financials', 'clients', 'activity_logs'];
+                                    $viewOnlyVehicleSubModules = [];
                                 } else {
-                                    $modules = ['Vehicle', 'Locations', 'Featured Vehicles', 'Analytics', 'Calendar', 'Bookings', 'Financial', 'Refunds', 'Clients', 'Reminders', 'User IP', 
-                                                'Blogs', 'Reviews', 'Activity Log', 'Contacts', 'Country', 'Settings', 'General Module', 'Permissions', 'Payment Modules' , 'Googel Map Modules', 'Currencies'];
-                                    $vehicleSubmodules = ['Locations', 'Featured Vehicles'];
+                                    $modules = ['Dashboard', 'Customer Accounts', 'Vehicles', 'Brands', 'Categories', 'Features', 'Models', 'Locations', 'Cities', 'Featured Vehicles', 
+                                                'Calendar', 'Bookings', 'Financials', 'Refunds', 'Clients', 'Reminders', 'Reviews', 'Activity Logs',];
+                                    $vehicleSubmodules = ['Brands', 'Categories', 'Features', 'Models', 'Locations', 'Cities', 'Featured Vehicles'];
+                                    $viewOnlyModules = ['dashboard', 'customer_accounts', 'financials', 'clients', 'activity_logs'];
+                                    $viewOnlyVehicleSubModules = ['brands', 'categories', 'features', 'models', 'locations', 'cities', 'featured_vehicles'];
                                 }
                             }
                             $actions = ['view', 'edit'];
@@ -163,46 +166,54 @@
                                     @continue
                                 @endif
 
-                                <tr data-module="{{ $key }}" class="{{ in_array($key, ['vehicle', 'settings']) ? $key . '-parent-row clickable' : '' }}">
+                                <tr data-module="{{ $key }}" class="{{ in_array($key, ['vehicles', 'settings']) ? $key . '-parent-row clickable' : '' }}">
                                     <td>
-                                        @if (in_array($key, ['vehicle', 'settings']))
+                                        @if (in_array($key, ['vehicles', 'settings']))
                                             <span class="toggle-arrow" style="cursor: pointer;">▼</span>
                                         @endif
-                                        {!! in_array($key, ['vehicle', 'settings']) ? '<strong>' . $module . '</strong>' : e($module) !!}
+                                        {!! in_array($key, ['vehicles', 'settings']) ? '<strong>' . $module . '</strong>' : e($module) !!}
                                     </td>
 
                                     @foreach ($actions as $action)
-                                        <td>
-                                            <input type="hidden" name="permissions[{{ $key }}][{{ $action }}]" value="0">
-                                            <input type="checkbox"
-                                                class="permission-checkbox"
-                                                data-row="{{ $key }}"
-                                                name="permissions[{{ $key }}][{{ $action }}]"
-                                                value="1"
-                                                {{ (isset($storedPermissions[$key][$action]) && $storedPermissions[$key][$action] == 1) ? 'checked' : '' }}>
-                                        </td>
+                                        @if ($action === 'edit' && in_array($key, $viewOnlyModules))
+                                            <td></td> {{-- Leave empty cell if edit not allowed --}}
+                                        @else
+                                            <td>
+                                                <input type="hidden" name="permissions[{{ $key }}][{{ $action }}]" value="0">
+                                                <input type="checkbox"
+                                                    class="permission-checkbox"
+                                                    data-row="{{ $key }}"
+                                                    name="permissions[{{ $key }}][{{ $action }}]"
+                                                    value="1"
+                                                    {{ (isset($storedPermissions[$key][$action]) && $storedPermissions[$key][$action] == 1) ? 'checked' : '' }}>
+                                            </td>
+                                        @endif
                                     @endforeach
                                     <td>
                                         <input type="checkbox" class="row-checkbox" data-row="{{ $key }}">
                                     </td>
                                 </tr>
 
-                                {{-- Vehicle Submodules --}}
-                                @if ($key === 'vehicle')
+                                {{-- vehicles Submodules --}}
+                                @if ($key === 'vehicles')
                                     @foreach ($vehicleSubmodules as $submodule)
                                         @php $subKey = strtolower(str_replace(' ', '_', $submodule)); @endphp
-                                        <tr class="vehicle-submodule ml-4" data-parent="vehicle" data-submodule="{{ $subKey }}" style="background-color: #f0f0f0;">
+                                        <tr class="vehicles-submodule ml-4" data-parent="vehicles" data-submodule="{{ $subKey }}" style="background-color: #f0f0f0;">
                                             <td> ↳ {{ $submodule }}</td>
                                             @foreach ($actions as $action)
-                                                <td>
-                                                    <input type="hidden" name="permissions[{{ $subKey }}][{{ $action }}]" value="0">
-                                                    <input type="checkbox"
-                                                        class="permission-checkbox"
-                                                        data-row="{{ $subKey }}"
-                                                        name="permissions[{{ $subKey }}][{{ $action }}]"
-                                                        value="1"
-                                                        {{ (isset($storedPermissions[$subKey][$action]) && $storedPermissions[$subKey][$action] == 1) ? 'checked' : '' }}>
-                                                </td>
+                                                @if ($action === 'edit' && in_array($subKey, $viewOnlyVehicleSubModules))
+                                                    <td></td> {{-- Leave empty cell if edit not allowed --}}
+                                                @else
+                                                    <td>
+                                                        <input type="hidden" name="permissions[{{ $subKey }}][{{ $action }}]" value="0">
+                                                        <input type="checkbox"
+                                                            class="permission-checkbox"
+                                                            data-row="{{ $subKey }}"
+                                                            name="permissions[{{ $subKey }}][{{ $action }}]"
+                                                            value="1"
+                                                            {{ (isset($storedPermissions[$subKey][$action]) && $storedPermissions[$subKey][$action] == 1) ? 'checked' : '' }}>
+                                                    </td>
+                                                @endif
                                             @endforeach
                                             <td><input type="checkbox" class="row-checkbox" data-row="{{ $subKey }}"></td>
                                         </tr>
@@ -257,10 +268,10 @@
             bindVehicleSubmenuEvents();
             bindSettingsSubmenuEvents();
 
-            // Toggle for Vehicle
-            $('.vehicle-parent-row .toggle-arrow').on('click', function () {
+            // Toggle for vehicles
+            $('.vehicles-parent-row .toggle-arrow').on('click', function () {
                 const $arrow = $(this);
-                const subRows = $('.vehicle-submodule');
+                const subRows = $('.vehicles-submodule');
                 const isCollapsed = subRows.hasClass('d-none');
                 subRows.toggleClass('d-none');
                 $arrow.text(isCollapsed ? '▼' : '►');
@@ -282,9 +293,9 @@
             updateRowCheckboxes();
             updateVehicleSubmodulesVisibility();
 
-            $(`input[name="permissions[vehicle][view]"],
-                input[name="permissions[vehicle][edit]"],
-                .row-checkbox[data-row="vehicle"]`).on('change', function () {
+            $(`input[name="permissions[vehicles][view]"],
+                input[name="permissions[vehicles][edit]"],
+                .row-checkbox[data-row="vehicles"]`).on('change', function () {
                 updateVehicleSubmodulesVisibility();
             });
 

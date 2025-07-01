@@ -172,6 +172,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::get('/reviews/vehicle', [adminReviewController::class, 'vehicleReview'])->name('reviews.vehicle');
             // Client Routes
             Route::get('client',[ClientController::class, 'index'])->name('client');
+            Route::get('usersignup', [usersignupController::class, 'showSignupForm'])->name('usersignup');
             //Activity Logs
             Route::get('activityLogs', [ActivityLogController::class, 'index'])->name('activityLogs');
             Route::delete('deleteAcvtivityLogs',[ActivityLogController::class, 'destroy'])->name('deleteAcvtivityLogs');

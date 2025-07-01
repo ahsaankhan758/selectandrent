@@ -14,9 +14,9 @@ $(document).ready(function () {
                 bindSettingsSubmenuEvents();
 
                 // Toggle for Vehicle
-                $('.vehicle-parent-row .toggle-arrow').on('click', function () {
+                $('.vehicles-parent-row .toggle-arrow').on('click', function () {
                     const $arrow = $(this);
-                    const subRows = $('.vehicle-submodule');
+                    const subRows = $('.vehicles-submodule');
                     const isCollapsed = subRows.hasClass('d-none');
                     subRows.toggleClass('d-none');
                     $arrow.text(isCollapsed ? '▼' : '►');
@@ -38,9 +38,9 @@ $(document).ready(function () {
                 updateRowCheckboxes();
                 updateVehicleSubmodulesVisibility();
 
-                $(`input[name="permissions[vehicle][view]"],
-                   input[name="permissions[vehicle][edit]"],
-                   .row-checkbox[data-row="vehicle"]`).on('change', function () {
+                $(`input[name="permissions[vehicles][view]"],
+                   input[name="permissions[vehicles][edit]"],
+                   .row-checkbox[data-row="vehicles"]`).on('change', function () {
                     updateVehicleSubmodulesVisibility();
                 });
 
@@ -75,9 +75,9 @@ $(document).ready(function () {
     bindSettingsSubmenuEvents();
     updateVehicleSubmodulesVisibility();
 
-    $(`input[name="permissions[vehicle][view]"],
-       input[name="permissions[vehicle][edit]"],
-       .row-checkbox[data-row="vehicle"]`).on('change', function () {
+    $(`input[name="permissions[vehicles][view]"],
+       input[name="permissions[vehicles][edit]"],
+       .row-checkbox[data-row="vehicles"]`).on('change', function () {
         updateVehicleSubmodulesVisibility();
     });
 
@@ -148,47 +148,47 @@ function updateRowCheckboxes() {
 
 function updateVehicleSubmodulesVisibility() {
     console.log('here')
-    const viewChecked = $(`input[name="permissions[vehicle][view]"]`).is(':checked');
-    const editChecked = $(`input[name="permissions[vehicle][edit]"]`).is(':checked');
-    const rowChecked = $(`.row-checkbox[data-row="vehicle"]`).is(':checked');
-    const submodulesChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
+    const viewChecked = $(`input[name="permissions[vehicles][view]"]`).is(':checked');
+    const editChecked = $(`input[name="permissions[vehicles][edit]"]`).is(':checked');
+    const rowChecked = $(`.row-checkbox[data-row="vehicles"]`).is(':checked');
+    const submodulesChecked = $('.vehicles-submodule input[type="checkbox"]:checked').length > 0;
 
     if (viewChecked || editChecked || rowChecked || submodulesChecked) {
-            $('.vehicle-submodule').removeClass('d-none');
+            $('.vehicles-submodule').removeClass('d-none');
         } else {
-            $('.vehicle-submodule').removeClass('d-none');
+            $('.vehicles-submodule').removeClass('d-none');
         }
     }       
 
 function bindVehicleSubmenuEvents() {
-    $('.vehicle-submodule').removeClass('d-none');
-    $('.vehicle-parent-row .toggle-arrow').text('▼');
+    $('.vehicles-submodule').removeClass('d-none');
+    $('.vehicles-parent-row .toggle-arrow').text('▼');
 
-    $(`input[name="permissions[vehicle][view]"]`).off('change').on('change', function () {
+    $(`input[name="permissions[vehicles][view]"]`).off('change').on('change', function () {
         if (!$(this).is(':checked')) {
-            $('.vehicle-submodule input[type="checkbox"]').prop('checked', false);
+            $('.vehicles-submodule input[type="checkbox"]').prop('checked', false);
             updateRowCheckboxes();
             updateMasterCheckboxState();
         }
     });
 
-    $('.vehicle-submodule input[type="checkbox"]').off('change').on('change', function () {
-        const anyChecked = $('.vehicle-submodule input[type="checkbox"]:checked').length > 0;
+    $('.vehicles-submodule input[type="checkbox"]').off('change').on('change', function () {
+        const anyChecked = $('.vehicles-submodule input[type="checkbox"]:checked').length > 0;
         if (anyChecked) {
-            $(`input[name="permissions[vehicle][view]"]`).prop('checked', true);
+            $(`input[name="permissions[vehicles][view]"]`).prop('checked', true);
         }
         updateRowCheckboxes();
         updateMasterCheckboxState();
     });
 
-    $('.row-checkbox[data-row="vehicle"]').off('change').on('change', function () {
+    $('.row-checkbox[data-row="vehicles"]').off('change').on('change', function () {
         const checked = $(this).is(':checked');
 
-        $(`input[name^="permissions[vehicle]"]`).prop('checked', checked);
-        $('.vehicle-submodule input[type="checkbox"]').prop('checked', checked);
+        $(`input[name^="permissions[vehicles]"]`).prop('checked', checked);
+        $('.vehicles-submodule input[type="checkbox"]').prop('checked', checked);
 
         if (checked) {
-            $('.vehicle-parent-row .toggle-arrow').text('▼');
+            $('.vehicles-parent-row .toggle-arrow').text('▼');
         }
 
         updateRowCheckboxes();

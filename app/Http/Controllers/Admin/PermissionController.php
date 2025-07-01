@@ -28,7 +28,7 @@ class PermissionController extends Controller
     
 public function store(Request $request)
 {
-    $userId = $request->name;
+    $userId = $request->name; // User Id
     
     $submittedPermissions = $request->input('permissions', []);
     $userRole = User::find($userId)?->role;
@@ -36,14 +36,14 @@ public function store(Request $request)
     $ownerRole = User::find($ownerUserId)?->role;
     
     if($userRole == 'admin' || $ownerRole == 'admin')
-        $modules = ['users','employees','user_signup', 'companies', 'vehicle', 'brands', 'categories', 'features', 
-                    'models', 'locations', 'city', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 
-                    'refunds', 'clients', 'reminders', 'user_ip', 'blogs', 'reviews', 'activity_log', 'contacts', 'country',
-                    'settings', 'general_module', 'permissions', 'payment_modules' ,'googel_map_modules', 'currencies'];
+        $modules = ['dashboard','customer_accounts', 'vehicles', 'brands', 'categories', 'features', 'models', 'locations',
+                     'cities', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financials', 'refunds', 'clients',
+                     'reminders', 'reviews', 'activity_logs', 'contact', 'country',];
+                    //'settings', 'general_module', 'permissions', 'payment_modules' ,'googel_map_modules', 'currencies'];
     else 
-        $modules = ['employees', 'user_signup', 'vehicle', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 
-                    'financial', 'refunds', 'clients', 'reminders', 'blogs', 'reviews', 'activity_log', 'contacts', 'country',
-                    'settings', 'general_module', 'permissions', 'payment_modules' ,'googel_map_modules', 'currencies'];
+        $modules = ['dashboard', 'customer_accounts', 'vehicles', 'brands', 'categories', 'features', 'models', 'locations',
+                    'cities','featured_vehicles', 'calendar', 'bookings', 'financials', 'refunds', 'clients', 'reminders', 'reviews', 'activity_logs',];
+                    //'settings', 'general_module', 'permissions', 'payment_modules' ,'google_map_modules', 'currencies'];
     $actions = ['view', 'edit'];
 
     foreach ($modules as $module) {

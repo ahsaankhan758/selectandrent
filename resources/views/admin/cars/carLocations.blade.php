@@ -7,7 +7,7 @@
             <div class="card-header">
                 <h4>{{ __('messages.car') }} {{ __('messages.location') }}</h4>
                 <div class="mt-3 float-end">
-                    @if(can('vehicle_locations','edit'))
+                    @if(can('locations','edit') && auth()->user()->role != 'company')
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                             {{ __('messages.create') }}
                         </button>
@@ -61,7 +61,7 @@
                     <tr>
                         <th scope="col">City</th>
                         <th scope="col">Area Name</th>
-                        @if(can('locations','edit'))
+                        @if(can('locations','edit') && auth()->user()->role != 'company')
                             <th scope="col">Action</th>
                         @endif
                     </tr>
@@ -73,7 +73,7 @@
 
                                     <td>{{ ucfirst(strtolower(optional($locationData->city)->name)) }}</td>
                                     <td>{{ ucfirst(strtolower($locationData->area_name)) }}</td>
-                                    @if(can('locations','edit'))    
+                                    @if(can('locations','edit') && auth()->user()->role != 'company')    
                                         <td>
                                             <a href="{{ route('deleteCarLocation',$locationData->id) }}"  class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
