@@ -46,7 +46,7 @@
                                 <input type="text" name="phone" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <lable for="website">{{ __('messages.company') }} {{ __('messages.web site') }}</lable>
+                                <lable for="website">{{ __('messages.company') }} {{ __('messages.website') }}</lable>
                                 <input type="text" name="website" class="form-control">
                             </div>
                             <div class="form-group mb-3 float-end">
