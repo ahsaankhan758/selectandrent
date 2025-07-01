@@ -1,5 +1,6 @@
 $(document).on('click', '.cancelBookingBtn', function () {
     const bookingId = $(this).data('booking-id');
+ 
     $('#modal_booking_id').val(bookingId);
 });
 
