@@ -9,6 +9,7 @@ if (Auth::check()) {
     $role = Auth::user()->role;
     $userId = auth()->id();
 }
+$owner = EmployeeOwner($userId);
 ?>
 
 <div class="left-side-menu">
@@ -43,10 +44,10 @@ if (Auth::check()) {
                         </ul>
                     </div>
                 </li> --}}
-
+                
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app', 2) }}</li>
 
-                @if ($role == 'admin')
+                @if ($role == 'admin' || !empty($owner) && $owner->role == 'admin')
                     @if (can('users', 'view'))
                         <li>
                             <a href="{{ route('users') }}">
@@ -64,34 +65,32 @@ if (Auth::check()) {
                         </a>
                     </li>
                 @endif
-                {{-- @if ($role == 'admin')
-
-@endif --}}
-                <?php
-                $owner = EmployeeOwner($userId);
-                ?>
-                @if ($role == 'admin')
-                    <li>
-                        <a href="{{ route('usersignup') }}">
-                            <i class="mdi mdi-account-plus"></i>
-                            <span>{{ __('messages.Sign-up') }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
-                            <i class="mdi mdi-hexagon-multiple"></i>
-                            <span> {{ __('messages.companies') }} </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sub_menu_company_listing">
-                            <ul class="nav-second-level">
-                                @if (can('companies', 'edit'))
-                                    <li>
-                                        <a href="{{ route('createCompany') }}"> <i class="mdi mdi-creation"></i><span
-                                                class="custom-ml-15">{{ __('messages.create') }} </span></a>
-                                    </li>
-                                @endif
-                                @if (can('companies', 'view'))
+               
+                
+                @if ($role == 'admin' || !empty($owner) && $owner->role == 'admin')
+                    @if (can('user_signup', 'view'))
+                        <li>
+                            <a href="{{ route('usersignup') }}">
+                                <i class="mdi mdi-account-plus"></i>
+                                <span>{{ __('messages.Sign-up') }}</span>
+                            </a>
+                        </li>
+                    @endif
+                    @if (can('companies', 'view'))
+                        <li>
+                            <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
+                                <i class="mdi mdi-hexagon-multiple"></i>
+                                <span> {{ __('messages.companies') }} </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sub_menu_company_listing">
+                                <ul class="nav-second-level">
+                                    @if (can('companies', 'edit'))
+                                        <li>
+                                            <a href="{{ route('createCompany') }}"> <i class="mdi mdi-creation"></i><span
+                                                    class="custom-ml-15">{{ __('messages.create') }} </span></a>
+                                        </li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('companies') }}"> <i
                                                 class="mdi mdi-image-filter-none"></i><span
@@ -101,10 +100,10 @@ if (Auth::check()) {
                                         <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span
                                                 class="custom-ml-15">{{ __('messages.pending') }}</a>
                                     </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
                 @endif
                 <li>
                     <a href="#sub_menu_car_listing" data-bs-toggle="collapse"
@@ -198,7 +197,7 @@ if (Auth::check()) {
                         </a>
                     </li>
                 @endif
-                @if (can('Calendar', 'view'))
+                @if (can('calendar', 'view'))
                     <li>
                         <a href="{{ route('calendar') }}">
                             <i class="mdi mdi-calendar-range"></i>
@@ -206,7 +205,7 @@ if (Auth::check()) {
                         </a>
                     </li>
                 @endif
-                @if (can('Bookings', 'view'))
+                @if (can('bookings', 'view'))
                     <li>
                         <a href="{{ route('bookingDashboard') }}"
                             class="d-flex align-items-center justify-content-between">
@@ -220,7 +219,7 @@ if (Auth::check()) {
                         </a>
                     </li>
                 @endif
-                @if (can('Financial', 'view'))
+                @if (can('financial', 'view'))
                     <li>
                         <a href="{{ route('earningSummary') }}">
                             <i class="mdi mdi-cash-multiple"></i>
@@ -228,15 +227,15 @@ if (Auth::check()) {
                         </a>
                     </li>
                 @endif
-                <!-- @if (can('Financial', 'view')) -->
+                @if (can('refunds', 'view'))
                     <li>
                         <a href="{{ route('refundableBookings') }}">
                             <i class="mdi mdi-cash-multiple"></i>
                             <span>{{ __('messages.refunds') }}</span>
                         </a>
                     </li>
-                <!-- @endif -->
-                @if (can('Clients', 'view'))
+                @endif
+                @if (can('clients', 'view'))
                     <li>
                         <a href="{{ route('client') }}" class="d-flex align-items-center justify-content-between">
                             <span>
@@ -249,26 +248,24 @@ if (Auth::check()) {
                         </a>
                     </li>
                 @endif
-                <li>
-                    <a href="{{ route('reminder') }}">
-                        <i class="mdi mdi-bell-outline"></i>
-                        <span> {{ __('messages.reminder') }} </span>
-                    </a>
-                </li>
+                @if (can('reminders', 'view'))
+                    <li>
+                        <a href="{{ route('reminder') }}">
+                            <i class="mdi mdi-bell-outline"></i>
+                            <span> {{ __('messages.reminder') }} </span>
+                        </a>
+                    </li>
+                @endif
                 @if ($role == 'admin')
-                    @if (can('User IP', 'view'))
-                        <li>
-                            <a href="{{ route('ipAddresses') }}">
-                                <i class="mdi mdi-network"></i>
-                                <span> {{ __('messages.users') }} IP </span>
-                            </a>
-                        </li>
-                    @endif
+                    <li>
+                        <a href="{{ route('ipAddresses') }}">
+                            <i class="mdi mdi-network"></i>
+                            <span> {{ __('messages.users') }} IP </span>
+                        </a>
+                    </li>
                     {{-- Added by Farhan  --}}
 
-
-
-                    @if (can('Blogs', 'view'))
+                    @if (can('blogs', 'view'))
                         <li>
                             <a href="#sub_menu_blog" data-bs-toggle="collapse">
                                 <i class="mdi mdi-book-open-page-variant"></i>
@@ -277,7 +274,7 @@ if (Auth::check()) {
                             </a>
                             <div class="collapse" id="sub_menu_blog">
                                 <ul class="nav-second-level">
-                                    @if (can('Blogs', 'edit'))
+                                    @if (can('blogs', 'edit'))
                                         <li>
                                             <a href="{{ route('blogs.createBlog') }}">
                                                 <i class="mdi mdi-format-list-bulleted"></i>
@@ -285,7 +282,7 @@ if (Auth::check()) {
                                             </a>
                                         </li>
                                     @endif
-                                    @if (can('Blogs', 'view'))
+                                    @if (can('blogs', 'view'))
                                         <li>
                                             <a href="{{ route('blogs.blogDetail') }}">
                                                 <i class="mdi mdi-plus-circle"></i>
@@ -298,15 +295,15 @@ if (Auth::check()) {
                         </li>
                     @endif
                 @endif
-                <li>
-                    <a href="#sub_menu_review" data-bs-toggle="collapse">
-                        <i class="mdi mdi-comment-text-multiple-outline"></i>
-                        <span>{{ trans_choice('messages.review', 2) }}</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sub_menu_review">
-                        <ul class="nav-second-level">
-                            @if (can('Reviews', 'view'))
+                @if (can('reviews', 'view'))
+                    <li>
+                        <a href="#sub_menu_review" data-bs-toggle="collapse">
+                            <i class="mdi mdi-comment-text-multiple-outline"></i>
+                            <span>{{ trans_choice('messages.review', 2) }}</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sub_menu_review">
+                            <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('reviews.vehicle') }}">
                                         <i class="mdi mdi-comment-eye-outline"></i>
@@ -319,12 +316,12 @@ if (Auth::check()) {
                                         <span class="custom-ml-15">{{ __('messages.user_reviews') }}</span>
                                     </a>
                                 </li>
-                            @endif
-                        </ul>
-                    </div>
-                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 {{-- end by Farhan  --}}
-                @if (can('Activity_Log', 'view'))
+                @if (can('activity_log', 'view'))
                     <li>
                         <a href="{{ route('activityLogs') }}">
                             <i class="bi bi-journal-text"></i>
@@ -333,32 +330,30 @@ if (Auth::check()) {
                     </li>
                 @endif
                 @if ($role == 'admin')
-                    @if (can('Contacts', 'view'))
-                        <li>
-                            <a href="{{ route('contact.received') }}"
-                                class="d-flex align-items-center justify-content-between">
-                                <span>
-                                    <i class="mdi mdi-email"></i>
-                                    {{ __('messages.contact') }}
-                                </span>
-                                <span class="badge"
-                                    style="color: white; background-color: #f06115; font-weight: bold;">
-                                    {{ getContactCount() }}
-                                </span>
-                            </a>
-                        </li>
-                    @endif
+                    <li>
+                        <a href="{{ route('contact.received') }}"
+                            class="d-flex align-items-center justify-content-between">
+                            <span>
+                                <i class="mdi mdi-email"></i>
+                                {{ __('messages.contact') }}
+                            </span>
+                            <span class="badge"
+                                style="color: white; background-color: #f06115; font-weight: bold;">
+                                {{ getContactCount() }}
+                            </span>
+                        </a>
+                    </li>
                 @endif
                 @if ($role == 'admin')
-                <li>
-                <a href="{{ route('countries.index') }}"
-                    class="d-flex align-items-center justify-content-between">
-                    <span>
-                        <i class="mdi mdi-earth"></i>
-                        {{ __('messages.country') }}
-                    </span>
-                </a>
-                </li>
+                    <li>
+                        <a href="{{ route('countries.index') }}"
+                            class="d-flex align-items-center justify-content-between">
+                            <span>
+                                <i class="mdi mdi-earth"></i>
+                                {{ __('messages.country') }}
+                            </span>
+                        </a>
+                    </li>
                 @endif
 
                 @if ($role == 'admin')

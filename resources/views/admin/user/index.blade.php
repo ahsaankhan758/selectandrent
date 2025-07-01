@@ -20,7 +20,9 @@
                         <th scope="col">{{__('messages.email') }}</th>
                         <th scope="col">{{__('messages.role') }}</th>
                         <th scope="col">{{__('messages.status') }}</th>
-                        <th scope="col">{{__('messages.action') }}</th>
+                        @if(can('users','edit'))
+                            <th scope="col">{{__('messages.action') }}</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -33,27 +35,23 @@
                                     <td> {{ $userdata->role == 'admin' ? 'Admin' : ($userdata->role == 'user' ? 'User' : ($userdata->role == 'company' ? 'Company' : 'Unknown')) }}</td>
                                     <td>{{ $userdata->status == 1 ? 'Active' : 'Deactive' }}</td>   
                                     @if($userdata->id == $current_user)
-                                    <td>
                                         @if(can('users','edit'))
-                                            <a href="{{ route('editUser',$userdata->id) }}" class="disabled-link">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        @endif
+                                            <td>
+                                                <a href="{{ route('editUser',$userdata->id) }}" class="disabled-link">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete disabled-link">
+                                                    <i class="fa-sharp fa-solid fa-trash" style="color: red" disabled></i>
+                                                </a>
+                                            </td>   
+                                        @endif 
+                                    @else
                                         @if(can('users','edit'))
-                                            <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete disabled-link">
-                                                <i class="fa-sharp fa-solid fa-trash" style="color: red" disabled></i>
-                                            </a>
-                                        @endif
-                                    </td>    
-                                @else
-                                    <td>
-                                        @if(can('users','edit'))
-                                            <a href="{{ route('editUser',$userdata->id) }}"><i class="fa-solid fa-pen-to-square "></i></a>
-                                        @endif
-                                        @if(can('users','edit'))
-                                            <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash" style="color: red"></i></a>
-                                        @endif
-                                    </td>    
+                                            <td>
+                                                <a href="{{ route('editUser',$userdata->id) }}"><i class="fa-solid fa-pen-to-square "></i></a>
+                                                <a href="{{ route('deleteUser',$userdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash" style="color: red"></i></a>
+                                            </td> 
+                                        @endif   
                                     @endif        
                                 </tr>
                             @endforeach

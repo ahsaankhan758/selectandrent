@@ -49,7 +49,9 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Brand</th>
-                        <th scope="col">Action</th>
+                        @if(can('models','edit'))
+                            <th scope="col">Action</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -58,13 +60,13 @@
                                 <tr>
                                     <td>{{ ucfirst(strtolower($modelData->name)) }}</td>
                                     <td>{{ ucfirst(strtolower($modelData->car_brands->name)) }}</td>
-                                    <td>
-                                        @if(can('vehicle_models','edit'))
+                                    @if(can('models','edit'))
+                                        <td>
                                             <a href="{{ route('deleteCarModel',$modelData->id) }}"  class="btn-delete">
                                                 <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
                                             </a>
-                                        @endif
-                                    </td>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @endif
