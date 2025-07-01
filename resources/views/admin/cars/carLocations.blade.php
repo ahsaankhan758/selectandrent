@@ -61,7 +61,9 @@
                     <tr>
                         <th scope="col">City</th>
                         <th scope="col">Area Name</th>
-                        <th scope="col">Action</th>
+                        @if(can('locations','edit'))
+                            <th scope="col">Action</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -71,14 +73,13 @@
 
                                     <td>{{ ucfirst(strtolower(optional($locationData->city)->name)) }}</td>
                                     <td>{{ ucfirst(strtolower($locationData->area_name)) }}</td>
-                                    <td>
-                                    @if(can('vehicle_locations','edit'))
-                                    <a href="{{ route('deleteCarLocation',$locationData->id) }}"  class="btn-delete">
-                                        <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
-                                    </a>
+                                    @if(can('locations','edit'))    
+                                        <td>
+                                            <a href="{{ route('deleteCarLocation',$locationData->id) }}"  class="btn-delete">
+                                                <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                            </a>
+                                        </td>
                                     @endif
-                                    </td>
-
                                 </tr>
                             @endforeach
                         @endif

@@ -161,12 +161,12 @@ class CarBookingController extends Controller
         if (!$item) {
             return response()->json(['status' => 'error', 'message' => 'Cart item not found.'], 404);
         }
-
+        
         // extra details for total cart price
         $subtotal = Cart::subtotal();
         $tax = Cart::tax();
         $totalPriceIncludingTax = Cart::total();
-        
+        // print_r($totalPriceIncludingTax);die;
         return response()->json([
             'status' => 'success',
             'message' => 'Item Updated Successfully From Cart',

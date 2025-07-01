@@ -81,12 +81,28 @@
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label">{{ __('messages.password')}}</label>
+
+                                        <!-- <div class="input-group mb-3">
+                                            <input id="password" type="password" class="form-control" placeholder="Enter password">
+                                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                                <i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+                                            </button>
+                                        </div>             -->
+
                                         <div class="input-group input-group-merge">
+                                            <input id="password" type="password" class="form-control" name="password" required>
+                                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                                <i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+                                            </button>
+                                        </div>
+
+                                        <!-- <div class="input-group input-group-merge">
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>
-                                        </div>
+                                        </div>         -->
+
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -159,6 +175,20 @@
         <script src="{{asset('/')}}assets/js/app.min.js"></script>
         
     </body>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.getElementById('togglePassword');
+        const toggleIcon = document.getElementById('togglePasswordIcon');
+
+        toggleButton.addEventListener('click', function () {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            toggleIcon.classList.toggle('bi-eye');
+            toggleIcon.classList.toggle('bi-eye-slash');
+        });
+    });
+</script>
 @endsection
 
 

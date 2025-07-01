@@ -17,7 +17,9 @@
                         <th scope="col">{{ __('messages.phone') }}</th>
                         <th scope="col">{{ __('messages.web site') }}</th>
                         <th scope="col">{{ __('messages.detail') }}</th>
-                        <th scope="col">{{ __('messages.action') }}</th>
+                        @if(can('companies','edit'))
+                            <th scope="col">{{ __('messages.action') }}</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody id="companytable">
@@ -58,14 +60,12 @@
                                         </script>
                                         <?php $counterActiveCompanies++; ?>
                                     </td>
-                                    <td>
-                                        @if(can('companies','edit'))
-                                            <a title="Edit" href="{{ route('updateCompany',$compdata->id) }}"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
-                                        @endif
-                                        @if(can('companies','edit'))
+                                    @if(can('companies','edit'))
+                                        <td>
+                                            <a title="Edit" href="{{ route('editCompany',$compdata->id) }}"><i class="fa-solid fa-pen-to-square read-more-link"></i></a>
                                             <a title="Delete" href="{{ route('deleteCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash delete-btn"></i></a>
-                                        @endif
-                                    </td>    
+                                        </td>  
+                                    @endif  
                                 </tr>
                             @endforeach
                         @endif

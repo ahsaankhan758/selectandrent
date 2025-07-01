@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if(rent_type == 'day'){
                     var diffPeriod = Math.ceil(diffHrs / 24);
                 }else{
-                    var  diffPeriod = diffHrs;
+                    var  diffPeriod = Math.ceil(diffHrs);
                 }
                 // 
                 const DatepickupDate = pickupDate.toISOString().slice(0, 10).replace(/-/g, '-');
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function updateCartPrice(rowId, price, days) {
-        
-        fetch('/update-cart-price', {
+        var url_cart_price = window.baseUrl+'/update-cart-price';
+        fetch(url_cart_price, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
