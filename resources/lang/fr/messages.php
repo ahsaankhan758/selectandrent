@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'cities' => 'Villes',
     'cancelled_by' => 'Annulé par',
     'cancel_by' => 'Annulé par',
     'hours' => 'Heures',

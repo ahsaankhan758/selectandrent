@@ -43,8 +43,8 @@ $(document).ready(function () {
                 $('#refunded_by').text(response.refunded_by + ' (' + response.refunded_by_role + ')');
                 $('#refunded_notes').text(response.refunded_notes);
 
-                $('#payment_status').text('Refunded');
-                $('#booking_status').text('Refunded');
+                $('#payment_status').text('refunded');
+                $('#booking_status').text('refunded');
             },
             error: function (xhr) {
                 if (xhr.status === 422) {

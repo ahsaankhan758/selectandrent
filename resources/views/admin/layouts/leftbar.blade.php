@@ -21,12 +21,14 @@ $owner = EmployeeOwner($userId);
             <ul id="side-menu">
 
                 <li class="menu-title">{{ __('messages.navigation') }}</li>
-                <li>
-                    <a href="{{ route('dashboard') }}">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span>{{ __('messages.dashboards') }}</span>
-                    </a>
-                </li>
+                @if(can('dashboard','view'))
+                    <li>
+                        <a href="{{ route('dashboard') }}">
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <span>{{ __('messages.dashboards') }}</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse">
@@ -47,15 +49,13 @@ $owner = EmployeeOwner($userId);
                 
                 <li class="menu-title mt-2"> {{ trans_choice('messages.app', 2) }}</li>
 
-                @if ($role == 'admin' || !empty($owner) && $owner->role == 'admin')
-                    @if (can('users', 'view'))
-                        <li>
-                            <a href="{{ route('users') }}">
-                                <i class="mdi mdi-account-circle-outline"></i>
-                                <span> {{ __('messages.admins') }} </span>
-                            </a>
-                        </li>
-                    @endif
+                @if ($role == 'admin')
+                    <li>
+                        <a href="{{ route('users') }}">
+                            <i class="mdi mdi-account-circle-outline"></i>
+                            <span> {{ __('messages.admins') }} </span>
+                        </a>
+                    </li>
                 @endif
                 @if ($role == 'admin' || $role == 'company')
                     <li>
@@ -67,66 +67,65 @@ $owner = EmployeeOwner($userId);
                 @endif
                
                 
-                @if ($role == 'admin' || !empty($owner) && $owner->role == 'admin')
-                    @if (can('user_signup', 'view'))
-                        <li>
-                            <a href="{{ route('usersignup') }}">
-                                <i class="mdi mdi-account-plus"></i>
-                                <span>{{ __('messages.Sign-up') }}</span>
-                            </a>
-                        </li>
-                    @endif
-                    @if (can('companies', 'view'))
-                        <li>
-                            <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
-                                <i class="mdi mdi-hexagon-multiple"></i>
-                                <span> {{ __('messages.companies') }} </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <div class="collapse" id="sub_menu_company_listing">
-                                <ul class="nav-second-level">
-                                    @if (can('companies', 'edit'))
-                                        <li>
-                                            <a href="{{ route('createCompany') }}"> <i class="mdi mdi-creation"></i><span
-                                                    class="custom-ml-15">{{ __('messages.create') }} </span></a>
-                                        </li>
-                                    @endif
-                                    <li>
-                                        <a href="{{ route('companies') }}"> <i
-                                                class="mdi mdi-image-filter-none"></i><span
-                                                class="custom-ml-15">{{ __('messages.active') }} </span></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span
-                                                class="custom-ml-15">{{ __('messages.pending') }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    @endif
+                
+                @if (can('customer_accounts', 'view'))
+                    <li>
+                        <a href="{{ route('usersignup') }}">
+                            <i class="mdi mdi-account-plus"></i>
+                            <span>{{ __('messages.Sign-up') }}</span>
+                        </a>
+                    </li>
                 @endif
-                <li>
-                    <a href="#sub_menu_car_listing" data-bs-toggle="collapse"
-                        class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <i class="mdi mdi-car-side"></i>
-                            <span class="ms-2">{{ __('messages.vehicles') }}</span>
-                            <span class="badge ms-2"
-                                style="background-color: #f06115; color: white; font-weight: bold;">
-                                {{ getVehicleCount() }}
-                            </span>
-                        </div>
-                        <span class="menu-arrow ms-2"></span>
-                    </a>
-                    <div class="collapse" id="sub_menu_car_listing">
-                        <ul class="nav-second-level">
-                            @if (can('Vehicle', 'edit'))
+                @if ($role == 'admin')
+                    <li>
+                        <a href="#sub_menu_company_listing" data-bs-toggle="collapse">
+                            <i class="mdi mdi-hexagon-multiple"></i>
+                            <span> {{ __('messages.companies') }} </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sub_menu_company_listing">
+                            <ul class="nav-second-level">
+                                @if (can('companies', 'edit'))
+                                    <li>
+                                        <a href="{{ route('createCompany') }}"> <i class="mdi mdi-creation"></i><span
+                                                class="custom-ml-15">{{ __('messages.create') }} </span></a>
+                                    </li>
+                                @endif
                                 <li>
-                                    <a href="{{ route('createCar') }}"> <i class="mdi mdi-creation"></i><span
-                                            class="custom-ml-15">{{ __('messages.create') }}</span></a>
+                                    <a href="{{ route('companies') }}"> <i
+                                            class="mdi mdi-image-filter-none"></i><span
+                                            class="custom-ml-15">{{ __('messages.active') }} </span></a>
                                 </li>
-                            @endif
-                            @if (can('Vehicle', 'view'))
+                                <li>
+                                    <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span
+                                            class="custom-ml-15">{{ __('messages.pending') }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+                @if(can('vehicles','view'))
+                    <li>
+                        <a href="#sub_menu_car_listing" data-bs-toggle="collapse"
+                            class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <i class="mdi mdi-car-side"></i>
+                                <span class="ms-2">{{ __('messages.vehicles') }}</span>
+                                <span class="badge ms-2"
+                                    style="background-color: #f06115; color: white; font-weight: bold;">
+                                    {{ getVehicleCount() }}
+                                </span>
+                            </div>
+                            <span class="menu-arrow ms-2"></span>
+                        </a>
+                        <div class="collapse" id="sub_menu_car_listing">
+                            <ul class="nav-second-level">
+                                @if (can('vehicles', 'edit'))
+                                    <li>
+                                        <a href="{{ route('createCar') }}"> <i class="mdi mdi-creation"></i><span
+                                                class="custom-ml-15">{{ __('messages.create') }}</span></a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a href="{{ route('carListings') }}"> <i class="mdi mdi-image-filter-none"></i>
                                         <span class="custom-ml-15">{{ __('messages.listings') }}</span>
@@ -136,9 +135,6 @@ $owner = EmployeeOwner($userId);
                                         </span>
                                     </a>
                                 </li>
-                            @endif
-
-                            @if ($role == 'admin' || (isset($owner->role) && $owner->role == 'admin'))
                                 @if (can('brands', 'view'))
                                     <li>
                                         <a href="{{ route('carBrands') }}"> <i class="mdi mdi-car-sports"></i>
@@ -163,39 +159,41 @@ $owner = EmployeeOwner($userId);
                                                 class="custom-ml-15">{{ __('messages.models') }}</span></a>
                                     </li>
                                 @endif
-                            @endif
-                            @if (can('locations', 'view'))
-                                <li>
-                                    <a href="{{ route('carLocations') }}"> <i
-                                            class="mdi mdi-map-marker-radius"></i><span
-                                            class="custom-ml-15">{{ __('messages.locations') }}</span></a>
-                                </li>
-                            @endif
-                            <li>
-                                <a href="{{ route('cities') }}"> <i class="mdi mdi-map-marker-radius"></i><span
-                                        class="custom-ml-15">city</span></a>
-                            </li>
-                            @if (can('featured_vehicles', 'view'))
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-car-side"></i>
-                                        <span> {{ __('messages.featured vehicles') }} </span>
-                                    </a>
-                                </li>
-                            @endif
-
-                        </ul>
-                    </div>
-                </li>
-
-                {{-- @if (can('Analytics', 'view')) --}}
-                @if (Auth::check() && Auth::user()->role === 'admin')
-                    <li>
-                        <a href="{{ route('Analytics') }}">
-                            <i class="mdi mdi-chart-bar"></i>
-                            <span> {{ __('messages.analytics') }} </span>
-                        </a>
+                                @if (can('locations', 'view'))
+                                    <li>
+                                        <a href="{{ route('carLocations') }}"> <i
+                                                class="mdi mdi-map-marker-radius"></i><span
+                                                class="custom-ml-15">{{ __('messages.locations') }}</span></a>
+                                    </li>
+                                @endif
+                                @if (can('cities', 'view'))
+                                    <li>
+                                        <a href="{{ route('cities') }}"> <i class="mdi mdi-map-marker-radius"></i><span
+                                                class="custom-ml-15">{{ __('messages.cities') }}</span></a>
+                                    </li>
+                                @endif
+                                @if (can('featured_vehicles', 'view'))
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-car-side"></i>
+                                            <span> {{ __('messages.featured vehicles') }} </span>
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
                     </li>
+                @endif              
+                {{-- @if (can('Analytics', 'view')) --}}
+                @if ($role == 'admin' || !empty($owner) && $owner->role == 'admin')
+                    @if(can('analytics', 'view'))
+                        <li>
+                            <a href="{{ route('Analytics') }}">
+                                <i class="mdi mdi-chart-bar"></i>
+                                <span> {{ __('messages.analytics') }} </span>
+                            </a>
+                        </li>
+                    @endif
                 @endif
                 @if (can('calendar', 'view'))
                     <li>
