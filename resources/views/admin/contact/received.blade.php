@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="myTable">
-                            <thead class="text-center text-nowrap">
+                            <thead class="text-start text-nowrap">
                                 <tr>
                                     <th><input type="checkbox" id="selectAllLogs"></th>
                                     <th scope="col">{{ __('messages.useremailsent') }}</th>
@@ -34,7 +34,7 @@
                                     <th scope="col">{{ __('messages.userdate') }}</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-start text-nowrap">
                                 @if (isset($contacts))
                                     @foreach ($contacts as $contact)
                                         <tr class="text-nowrap">
