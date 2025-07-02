@@ -66,7 +66,7 @@
                     <div class="col-md-3">
                         <label class="form-label">{{ __('messages.Pickup_Date_time') }}</label>
                         <div class="input-group">
-                            <input type="text" name="pickup_datetime[]" class="form-control pickup-time" placeholder="Select">
+                            <input type="text" name="pickup_datetime[]" class="form-control pickup-time" style="padding: 14px;" placeholder="Select">
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@
                     <div class="col-md-3">
                         <label class="form-label">{{ __('messages.Drop-off_Date_time') }}</label>
                         <div class="input-group">
-                            <input type="text" name="dropoff_datetime[]" class="form-control dropoff-time" placeholder="Select">
+                            <input type="text" name="dropoff_datetime[]" class="form-control dropoff-time" style="padding: 14px;" placeholder="Select">
                         </div>
                     </div>
 

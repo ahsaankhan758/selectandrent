@@ -11,16 +11,17 @@ $(document).on('submit', '#registerForm', function (e) {
     var submitBtn = form.find('button[type="submit"]');
 
     submitBtn.prop('disabled', true).text('Processing...');
-
+    var delay = 4000; 
     $.ajax({
         url: form.attr('action'),
         method: 'POST',
         data: form.serialize(),
         success: function (response) {
-            submitBtn.prop('disabled', false).text('Submit');
-           
-            showToast(response.message, response.status);
-            form.trigger('reset');
+            setTimeout(function () {
+                submitBtn.prop('disabled', false).text('Submit');
+                showToast(response.message, 'success');
+                form.trigger('reset');
+            }, delay);
         },
         error: function (xhr) {
             submitBtn.prop('disabled', false).text('Submit');
@@ -29,15 +30,10 @@ $(document).on('submit', '#registerForm', function (e) {
                 let errors = xhr.responseJSON.errors;
                 let errorMsg = '';
                 $.each(errors, function (key, val) {
-                    errorMsg += val[0] + '<br>';
+                    errorMsg += val[0] ;
                 });
-                let toast = {
-                title: "Alert",
-                message: errorMsg,
-                status: 'error',
-                timeout: 5000
-            }
-            Toast.create(toast);
+               
+            showToast(errorMsg, 'error');
             } else {
                 toastr.error('An unexpected error occurred.');
             }

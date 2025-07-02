@@ -61,9 +61,14 @@ class EmployeeController extends Controller
         $submittedPermissions = $request->input('permissions', []);
 
         if(auth()->user()->role == 'admin')
-            $modules = ['users', 'companies', 'vehicle', 'brands', 'categories', 'features', 'models', 'locations', 'featured_vehicles', 'analytics', 'earning_summary', 'transaction_history', 'calendar', 'bookings', 'financial', 'clients', 'user_ip', 'blogs', 'activity_log', 'contacts', 'currencies'];
+            $modules = ['dashboard','customer_accounts', 'vehicles', 'brands', 'categories', 'features', 'models', 'locations',
+                     'cities', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financials', 'refunds', 'clients',
+                     'reminders', 'reviews', 'activity_logs', 'contact', 'country',];
+                    //'settings', 'general_module', 'permissions', 'payment_modules' ,'googel_map_modules', 'currencies'];
         else 
-            $modules = ['vehicle', 'locations', 'featured_vehicles', 'analytics', 'calendar', 'bookings', 'financial', 'earning_summary', 'transaction_history', 'clients', 'activity_log',];
+            $modules = ['dashboard', 'customer_accounts', 'vehicles', 'brands', 'categories', 'features', 'models', 'locations',
+                    'cities','featured_vehicles', 'calendar', 'bookings', 'financials', 'refunds', 'clients', 'reminders', 'reviews', 'activity_logs',];
+                    //'settings', 'general_module', 'permissions', 'payment_modules' ,'google_map_modules', 'currencies'];
         $actions = ['view', 'edit'];
 
         foreach ($modules as $module) {
