@@ -337,6 +337,13 @@ Route::middleware('LanguageMiddleware')->group(function(){
 
     if($currentPrefix == 'employee'){
         Route::prefix('employee')->middleware(['auth','IsAdmin:employee'])->group(function(){
+            //Countries
+            Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
+            Route::post('/countries/store', [CountryController::class, 'store'])->name('countries.store');
+            Route::get('/countries/{id}/edit', [CountryController::class, 'edit'])->name('countries.edit');
+            Route::put('/countries/{id}', [CountryController::class, 'update'])->name('countries.update');
+            Route::delete('/countries/{id}', [CountryController::class, 'destroy'])->name('countries.destroy');
+            //Profile
             Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('admin.edit_profile');
             Route::post('/edit-profile/{id}', [ProfileController::class, 'updateProfile'])->name('admin.update_profile');
             // analytics page

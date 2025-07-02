@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'transaction_id' => 'Transactie-ID',
+    'user_cannot_cancel_booking' => "Je kunt deze boeking niet annuleren omdat de ophaaldatum van het voertuig al verstreken is",
+    'financials' => 'Financiën',
     'cities' => 'Steden',
     'cancelled_by' => 'Geannuleerd door',
     'cancel_by' => 'Geannuleerd door',

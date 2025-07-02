@@ -85,12 +85,10 @@ $owner = EmployeeOwner($userId);
                         </a>
                         <div class="collapse" id="sub_menu_company_listing">
                             <ul class="nav-second-level">
-                                @if (can('companies', 'edit'))
-                                    <li>
-                                        <a href="{{ route('createCompany') }}"> <i class="mdi mdi-creation"></i><span
-                                                class="custom-ml-15">{{ __('messages.create') }} </span></a>
-                                    </li>
-                                @endif
+                                <li>
+                                    <a href="{{ route('createCompany') }}"> <i class="mdi mdi-creation"></i><span
+                                            class="custom-ml-15">{{ __('messages.create') }} </span></a>
+                                </li>
                                 <li>
                                     <a href="{{ route('companies') }}"> <i
                                             class="mdi mdi-image-filter-none"></i><span
@@ -217,11 +215,11 @@ $owner = EmployeeOwner($userId);
                         </a>
                     </li>
                 @endif
-                @if (can('financial', 'view'))
+                @if (can('financials', 'view'))
                     <li>
                         <a href="{{ route('earningSummary') }}">
                             <i class="mdi mdi-cash-multiple"></i>
-                            <span>{{ __('messages.financial') }}</span>
+                            <span>{{ __('messages.financials') }}</span>
                         </a>
                     </li>
                 @endif
@@ -262,36 +260,29 @@ $owner = EmployeeOwner($userId);
                         </a>
                     </li>
                     {{-- Added by Farhan  --}}
-
-                    @if (can('blogs', 'view'))
-                        <li>
-                            <a href="#sub_menu_blog" data-bs-toggle="collapse">
-                                <i class="mdi mdi-book-open-page-variant"></i>
-                                <span> {{ trans_choice('messages.blog', 2) }} </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <div class="collapse" id="sub_menu_blog">
-                                <ul class="nav-second-level">
-                                    @if (can('blogs', 'edit'))
-                                        <li>
-                                            <a href="{{ route('blogs.createBlog') }}">
-                                                <i class="mdi mdi-format-list-bulleted"></i>
-                                                <span class="custom-ml-15">{{ __('messages.create') }}</span>
-                                            </a>
-                                        </li>
-                                    @endif
-                                    @if (can('blogs', 'view'))
-                                        <li>
-                                            <a href="{{ route('blogs.blogDetail') }}">
-                                                <i class="mdi mdi-plus-circle"></i>
-                                                <span class="custom-ml-15">{{ __('messages.details') }}</span>
-                                            </a>
-                                        </li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </li>
-                    @endif
+                    <li>
+                        <a href="#sub_menu_blog" data-bs-toggle="collapse">
+                            <i class="mdi mdi-book-open-page-variant"></i>
+                            <span> {{ trans_choice('messages.blog', 2) }} </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sub_menu_blog">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('blogs.createBlog') }}">
+                                        <i class="mdi mdi-format-list-bulleted"></i>
+                                        <span class="custom-ml-15">{{ __('messages.create') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('blogs.blogDetail') }}">
+                                        <i class="mdi mdi-plus-circle"></i>
+                                        <span class="custom-ml-15">{{ __('messages.details') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 @endif
                 @if (can('reviews', 'view'))
                     <li>
@@ -319,7 +310,7 @@ $owner = EmployeeOwner($userId);
                     </li>
                 @endif
                 {{-- end by Farhan  --}}
-                @if (can('activity_log', 'view'))
+                @if (can('activity_logs', 'view'))
                     <li>
                         <a href="{{ route('activityLogs') }}">
                             <i class="bi bi-journal-text"></i>
@@ -327,31 +318,33 @@ $owner = EmployeeOwner($userId);
                         </a>
                     </li>
                 @endif
-                @if ($role == 'admin')
-                    <li>
-                        <a href="{{ route('contact.received') }}"
-                            class="d-flex align-items-center justify-content-between">
-                            <span>
-                                <i class="mdi mdi-email"></i>
-                                {{ __('messages.contact') }}
-                            </span>
-                            <span class="badge"
-                                style="color: white; background-color: #f06115; font-weight: bold;">
-                                {{ getContactCount() }}
-                            </span>
-                        </a>
-                    </li>
-                @endif
-                @if ($role == 'admin')
-                    <li>
-                        <a href="{{ route('countries.index') }}"
-                            class="d-flex align-items-center justify-content-between">
-                            <span>
-                                <i class="mdi mdi-earth"></i>
-                                {{ __('messages.country') }}
-                            </span>
-                        </a>
-                    </li>
+                @if ($role == 'admin' || !empty($owner) && $owner->role == 'admin' )
+                    @if(can('contact', 'view'))
+                        <li>
+                            <a href="{{ route('contact.received') }}"
+                                class="d-flex align-items-center justify-content-between">
+                                <span>
+                                    <i class="mdi mdi-email"></i>
+                                    {{ __('messages.contact') }}
+                                </span>
+                                <span class="badge"
+                                    style="color: white; background-color: #f06115; font-weight: bold;">
+                                    {{ getContactCount() }}
+                                </span>
+                            </a>
+                        </li>
+                    @endif
+                    @if(can('country', 'view'))
+                        <li>
+                            <a href="{{ route('countries.index') }}"
+                                class="d-flex align-items-center justify-content-between">
+                                <span>
+                                    <i class="mdi mdi-earth"></i>
+                                    {{ __('messages.country') }}
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                 @endif
 
                 @if ($role == 'admin')
@@ -416,10 +409,21 @@ $owner = EmployeeOwner($userId);
                     </li>
                 @elseif($role == 'company')
                     <li>
-                        <a href="{{ route('permissions', 'selfCompany') }}">
-                            <i class="mdi mdi-creation"></i>
-                            <span class="custom-ml-15">{{ __('messages.permissions') }}</span>
+                        <a href="#sub_menu_settings" data-bs-toggle="collapse">
+                            <i class="mdi mdi-cog"></i>
+                            <span>{{ __('messages.settings') }} </span>
+                            <span class="menu-arrow"></span>
                         </a>
+                        <div class="collapse" id="sub_menu_settings">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('permissions', 'selfCompany') }}">
+                                        <i class="mdi mdi-creation"></i>
+                                        <span class="custom-ml-15">{{ __('messages.permissions') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 @endif
 

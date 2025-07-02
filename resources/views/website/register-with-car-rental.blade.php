@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.Car-Register') }} | {{ __('messages.Select and Rent') }}
+    {{ __('messages.register') }} | {{ __('messages.Select and Rent') }}
 @endsection
 <style>
     .form-control {
@@ -93,7 +93,7 @@
                             <option value="{{ $country->id }}">{{ $country->name }}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-orange-clr rounded-pill text-white">
+                    <button type="submit" class="btn btn-orange-clr rounded-pill text-white">
                         {{ __('messages.Submit') }}
                     </button>
                 </form>

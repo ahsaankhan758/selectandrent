@@ -4,10 +4,14 @@
      <div class="card">
          <div class="card-body">
              <div class="table-responsive">
+                @php
+                    $currentPage = request()->segment(2);
+                @endphp
                  <table class="table table-centered table-nowrap mb-0" id="myTable">
                      <div class="col-lg-12 mb-2">
                          <a href="{{ route('carBooking') }}" class="btn btn-success">{{ __('messages.booking_all') }}</a>
                      </div>
+                     
                      <thead class="table-light">
                          <tr>
                              <th style="width: 20px;">
@@ -18,12 +22,17 @@
                              </th>
                              <th style="width: 125px;">{{ __('messages.action') }}</th>
                              <th>{{ __('messages.invoice') }}</th>
-                             <th>{{ __('messages.pick/drop') }}</th>
+                             @if($currentPage != 'financial')
+                                @if(can('bookings','edit'))
+                                    <th>{{ __('messages.pick/drop') }}</th>
+                                @endif
+                            @endif
                              <th>{{ __('messages.name') }}</th>
                              <th>{{ __('messages.bookingref') }}</th>
                              <th>{{ __('messages.bookingpayment') }}</th>
                              <th>{{ __('messages.bookingstatus') }}</th>
                              <th>{{ __('messages.bookingmethod') }}</th>
+                             <th>{{ __('messages.transaction_id') }}</th>
                              <th>{{ __('messages.bookingcoupon') }}</th>
                              <th>{{ __('messages.bookingdiscount') }}</th>
                              <th>{{ __('messages.bookingtax') }}</th>
@@ -32,7 +41,11 @@
                              <th>{{ __('messages.bookingtotal') }}</th>
                              <th>{{ __('messages.bookingsubtotal') }}</th>
                              <th>{{ __('messages.notes(Cancel)') }}</th>
-                             <th>{{ __('messages.cancel') }}</th>
+                             @if($currentPage != 'financial')
+                                @if(can('bookings','edit'))
+                                    <th>{{ __('messages.cancel') }}</th>
+                                @endif
+                            @endif
                              <th>{{ __('messages.cancelled_by') }} ({{ __('messages.role') }})</th>
                          </tr>
                      </thead>
@@ -51,11 +64,13 @@
                                             class="action-icon">
                                             <i class="mdi mdi-eye"></i>
                                         </a>
-                                         @if($booking->booking_status == 'completed')
-                                            <span class="text-muted mx-2">|</span>
-                                            <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-booking-id="{{ $booking->id }}" data-customer-id="{{ $booking->user_id }}" title="Give Review" class="ms-2">
-                                                <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
-                                            </a>
+                                        @if($currentPage != 'financial')
+                                            @if($booking->booking_status == 'completed' && can('reviews','edit'))
+                                                <span class="text-muted mx-2">|</span>
+                                                <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-booking-id="{{ $booking->id }}" data-customer-id="{{ $booking->user_id }}" title="Give Review" class="ms-2">
+                                                    <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
+                                                </a>
+                                            @endif
                                         @endif
                                     </td>
                                  </td>
@@ -65,39 +80,41 @@
                                        <i class="fa-solid fa-file-pdf"></i>
                                      </a>
                                  </td>
-
-                                 <td>
-                                    <span id="pickup_dropoff">
-                                        @if($booking->booking_status == 'cancelled')
-                                            —
-                                        @else
-                                            @foreach ($booking->booking_items as $item)
-                                                @if ($booking->booking_status == 'confirmed')
-                                                    @if (!$item->actual_pickup_datetime)
-                                                        <form action="{{ route('booking.pickup', $item->id) }}" method="POST"
-                                                            style="display:inline;">
-                                                            @csrf
-                                                            <button class="btn btn-success btn-sm">Pickup</button>
-                                                        </form>
-                                                    @elseif (!$item->actual_dropoff_datetime)
-                                                        <form action="{{ route('booking.dropoff', ['id' => $item->id, 'vehicle_id' => $item->vehicle_id]) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <button class="btn btn-danger btn-sm">Dropoff</button>
-                                                        </form>
-                                                    @else
-                                                        <span class="badge bg-info">Completed</span>
-                                                    @endif
+                                 @if($currentPage != 'financial')
+                                    @if(can('bookings','edit'))
+                                        <td>
+                                            <span id="pickup_dropoff">
+                                                @if($booking->booking_status == 'cancelled')
+                                                    —
                                                 @else
-                                                    @if ($item->actual_pickup_datetime && $item->actual_dropoff_datetime)
-                                                        —
-                                                    @endif
+                                                    @foreach ($booking->booking_items as $item)
+                                                        @if ($booking->booking_status == 'confirmed')
+                                                            @if (!$item->actual_pickup_datetime)
+                                                                <form action="{{ route('booking.pickup', $item->id) }}" method="POST"
+                                                                    style="display:inline;">
+                                                                    @csrf
+                                                                    <button class="btn btn-success btn-sm">Pickup</button>
+                                                                </form>
+                                                            @elseif (!$item->actual_dropoff_datetime)
+                                                                <form action="{{ route('booking.dropoff', ['id' => $item->id, 'vehicle_id' => $item->vehicle_id]) }}"
+                                                                    method="POST" style="display:inline;">
+                                                                    @csrf
+                                                                    <button class="btn btn-danger btn-sm">Dropoff</button>
+                                                                </form>
+                                                            @else
+                                                                <span class="badge bg-info">Completed</span>
+                                                            @endif
+                                                        @else
+                                                            @if ($item->actual_pickup_datetime && $item->actual_dropoff_datetime)
+                                                                —
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
                                                 @endif
-                                            @endforeach
-                                        @endif
-                                    </span>
-                                 </td>
-
+                                            </span>
+                                        </td>
+                                    @endif
+                                @endif
                                  
                                  <td>{{ $booking->user->name ?? 'N/A' }}</td>
                                  <td>{{ $booking->booking_reference }}</td>
@@ -110,6 +127,7 @@
                                      <h5><span class="badge bg-info" id="booking_status">{{ $booking->booking_status }}</span></h5>
                                  </td>
                                  <td>{{ ucfirst($booking->payment_method) }}</td>
+                                 <td>{{ ucfirst($booking->transaction_id) ?: '—' }}</td>
                                  <td>{{ $booking->coupon_code ?: '—' }}</td>
                                  <td>{{ number_format($booking->discount_amount, 2) }}</td>
                                  <td>{{ number_format($booking->tax_amount, 2) }}</td>
@@ -118,20 +136,24 @@
                                  <td>{{ number_format($booking->total_price, 2) }}</td>
                                  <td>{{ number_format($booking->subtotal, 2) }}</td>
                                  <td><span id="cancel_note">{{ $booking->notes }}</span></td>
-                                 <td>
-                                    @if($booking->booking_status == 'pending' || $booking->booking_status == 'confirmed' && $booking->payment_status != 'refunded')
-                                        <button href="javascript:void(0)" 
-                                        id="cancelButton-{{ $booking->id }}" 
-                                        class="btn btn-danger btn-sm cancelBookingBtn" 
-                                        data-bs-toggle="modal" 
-                                        data-bs-target="#cancelModal" 
-                                        data-booking-id="{{ $booking->id }}">
-                                            {{ __('messages.cancel') }}
-                                        </button>
-                                    @else
-                                        —
+                                 @if($currentPage != 'financial')
+                                    @if(can('bookings','edit'))
+                                        <td>
+                                            @if($booking->booking_status == 'pending' || $booking->booking_status == 'confirmed' && $booking->payment_status != 'refunded')
+                                                <button href="javascript:void(0)" 
+                                                id="cancelButton-{{ $booking->id }}" 
+                                                class="btn btn-danger btn-sm cancelBookingBtn" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#cancelModal" 
+                                                data-booking-id="{{ $booking->id }}">
+                                                    {{ __('messages.cancel') }}
+                                                </button>
+                                            @else
+                                                —
+                                            @endif
+                                        </td>
                                     @endif
-                                 </td>
+                                @endif
                                  <td>
                                     <span id="cancelled_by">
                                         {{ optional($booking->cancelledBy)?->name 
