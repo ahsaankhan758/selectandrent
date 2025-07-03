@@ -109,7 +109,9 @@ Bookings | Select and Rent
                                 <i class="fa fa-eye"></i>
                             </a>
                             <span class="text-muted mx-2">|</span>
-                            <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" data-booking-id="{{ $booking->id }}" title="Give Review" class="ms-2">
+
+                            <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" data-review-booking-id="{{ $booking->id }}" title="Give Review" class="ms-2">
+
                                 <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
                             </a>
                         </div>
@@ -203,8 +205,8 @@ Bookings | Select and Rent
   <div class="modal-dialog modal-dialog-centered">
     <form action="{{route('review.store')}}" method="POST" id="reviewForm" class="w-100">
       @csrf
-      <input type="hidden" name="vehicle_id" id="modal_vehicle_id">
-      <input type="hidden" name="booking_id" id="modal_booking_id">
+      <input type="hidden" name="vehicle_id" id="modal_review_vehicle_id">
+      <input type="hidden" name="booking_id" id="modal_review_booking_id">
       <div class="modal-content shadow-lg border-0 rounded-4">
         <div class="modal-header text-center border-0">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -28,7 +28,7 @@ class CountryController extends Controller
             'status'=> '1',
         ]);
 
-        return redirect()->route('countries.index')->with('success', 'Country added successfully.');
+        return redirect()->route('countries.index')->with('status', 'Country added successfully.');
     }
       // Edit country
     public function edit($id)
@@ -51,7 +51,7 @@ class CountryController extends Controller
             'code' => $request->code,
         ]);
 
-        return redirect()->route('countries.index')->with('success', 'Country updated successfully.');
+        return redirect()->route('countries.index')->with('status', 'Country updated successfully.');
     }
 
     // Delete country
@@ -60,7 +60,7 @@ class CountryController extends Controller
         $country = Country::findOrFail($id);
         $country->delete();
 
-        return redirect()->route('countries.index')->with('success', 'Country deleted successfully.');
+        return redirect()->route('countries.index')->with('statusDanger', 'Country deleted successfully.');
     }
 }
 

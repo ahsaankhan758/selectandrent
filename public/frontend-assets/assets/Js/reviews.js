@@ -1,8 +1,9 @@
 $(document).on('click', '#getVehicleId', function() {
     const vehicleId = $(this).data('vehicle-id');
-    const bookingId = $(this).data('booking-id');
-    $('#modal_vehicle_id').val(vehicleId);
-    $('#modal_booking_id').val(bookingId);
+    const bookingId = $(this).data('review-booking-id');
+  
+    $('#modal_review_vehicle_id').val(vehicleId);
+    $('#modal_review_booking_id').val(bookingId);
   });
 
 $(document).ready(function () {
