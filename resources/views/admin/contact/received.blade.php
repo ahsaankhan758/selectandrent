@@ -26,10 +26,55 @@
                                 @endif
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped" id="myTable">
                                     <thead class="text-center text-nowrap">
+=======
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="myTable">
+                                <thead class="text-center text-nowrap">
+
+                                    <tr>
+                                        <th><input type="checkbox" id="selectAllLogs"></th>
+                                        <th scope="col">{{ __('messages.useremailsent') }}</th>
+                                        <th scope="col">{{ __('messages.userfirst') }}</th>
+                                        <th scope="col">{{ __('messages.userlast') }}</th>
+                                        <th scope="col">{{ __('messages.useremail') }}</th>
+                                        <th scope="col">{{ __('messages.userphone') }}</th>
+                                        <th scope="col">{{ __('messages.Subject') }}</th>
+                                        <th scope="col">{{ __('messages.usermessage') }}</th>
+                                        <th scope="col">{{ __('messages.userdate') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (isset($contacts))
+                                        @foreach ($contacts as $contact)
+                                            <tr class="text-nowrap">
+                                                <td><input type="checkbox" name="selected_ids[]" value="{{ $contact->id }}"
+                                                        class="logCheckbox"></td>
+                                                <td>
+                                                    @if ($contact->status == 1)
+                                                        <span class="badge bg-success">Yes</span>
+                                                    @else
+                                                        <span class="badge bg-danger">No</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $contact->first_name }}</td>
+                                                <td>{{ $contact->last_name }}</td>
+                                                <td>{{ $contact->email }}</td>
+                                                <td>{{ $contact->phone }}</td>
+                                                <td><b>{{ $contact->subject }}</b></td>
+                                                <td>{{ Str::limit($contact->message, 50) }}</td>
+                                                <td>{{ $contact->created_at->format('d M Y h:i A') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+>>>>>>> 559551c13686e5efc911c265365b2abeb3725b26
                                         <tr>
                                             <th><input type="checkbox" id="selectAllLogs"></th>
                                             <th scope="col">{{ __('messages.useremailsent') }}</th>

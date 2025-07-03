@@ -258,8 +258,7 @@ public function dashboard(Request $request)
 
             $today = Carbon::today();
 
-            $futureConfirmedQuery = Booking::where('booking_status', 'confirmed')
-                ->whereDate('created_at', '>', $today);
+            $futureConfirmedQuery = Booking::where('booking_status', 'confirmed');
             $applyFilters($futureConfirmedQuery);
             $futureConfirmedCount = $futureConfirmedQuery->count();
 
