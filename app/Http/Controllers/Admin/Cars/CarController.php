@@ -62,7 +62,7 @@ class CarController extends Controller
         }
     }
 
-    if ($request->has('is_booked') && $request->is_booked == 1) {
+    if ($request->has('is_booked') && $request->is_booked == '1') {
         $query->where('is_booked', '1');
     }
 

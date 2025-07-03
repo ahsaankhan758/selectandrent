@@ -88,7 +88,7 @@ public function dashboard(Request $request)
     $totalpending = 0;
     $commission = 0;
     // 1. Convert revenue and commission for PAID bookings
-    $paidBookings = (clone $filteredBookingQuery)->where('payment_status', 'paid')->get();
+    $paidBookings = (clone $filteredBookingQuery)->where('payment_status', 'paid')->whereIn('booking_status', ['completed', 'confirmed'])->get();
     foreach ($paidBookings as $booking) {
         $totalrevenue += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
         $commission += administratorConvertCurrency($booking->commission, $booking->currency, 'USD', 2, 0);

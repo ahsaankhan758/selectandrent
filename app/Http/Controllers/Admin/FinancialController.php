@@ -262,6 +262,14 @@ public function getOrderStatusData(Request $request)
         });
     }
 
+    $employeeOwner = EmployeeOwner(auth()->id());
+    if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
+        $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
+        $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+            $q->where('user_id', $userId);
+        });
+    }
+
     if ($fromDate && $toDate) {
         $query->whereDate('created_at', '>=', $fromDate->format('Y-m-d'))
               ->whereDate('created_at', '<=', $toDate->format('Y-m-d'));
@@ -308,6 +316,14 @@ public function getChartData(Request $request)
 
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
             $q->whereIn('user_id', $companyUserIds);
+        });
+    }
+
+    $employeeOwner = EmployeeOwner(auth()->id());
+    if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
+        $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
+        $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+            $q->where('user_id', $userId);
         });
     }
 
@@ -397,7 +413,7 @@ public function getEarningsData(Request $request)
     $endDate = $endDateInput ? Carbon::parse($endDateInput)->endOfDay() : $now->endOfDay();
 
     $query = Booking::with(['booking_items.vehicle'])
-        ->where('booking_status', 'confirmed')
+        ->whereIn('booking_status', ['confirmed', 'completed'])
         ->whereBetween('created_at', [$startDate, $endDate]);
 
     if ($companyUserId) {
@@ -411,6 +427,16 @@ public function getEarningsData(Request $request)
 
         $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
             $q->whereIn('user_id', $companyUserIds);
+        });
+    }
+
+      // Apply check for logged-in company or employee under company
+    $employeeOwner = EmployeeOwner(auth()->id());
+    if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
+        $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
+
+        $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+            $q->where('user_id', $userId);
         });
     }
 
