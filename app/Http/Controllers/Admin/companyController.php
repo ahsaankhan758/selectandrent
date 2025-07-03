@@ -175,8 +175,11 @@ class companyController extends Controller
             $company = company::find($id);
             $company->status = 1;
             $company->update();
+          
             // Get Company Owner Email
             $user = User::find($company->user_id);
+            $user->status = 1;
+            $user->update();
             // save logs
             $userId = Auth::id();
             $userName = Auth::user()->name;

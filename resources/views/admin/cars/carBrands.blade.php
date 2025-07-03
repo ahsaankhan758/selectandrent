@@ -1,7 +1,7 @@
 @extends('admin.layouts.Master')
 @section('title')  {{ __('messages.car') }}  {{ __('messages.brand') }} @endsection
 @section('content')
-
+@if(can('brands','view'))
     <div class="col-10">
         <div class="card mt-4">
             <div class="card-header">
@@ -70,6 +70,10 @@
             </div> 
         </div> 
     </div>
-    
+@else
+    <div class="alert alert-danger" role="alert">
+    Access Denied
+    </div>
+@endif  
 @endsection
 

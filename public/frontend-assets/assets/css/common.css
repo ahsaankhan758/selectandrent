@@ -36,3 +36,7 @@
     font-size: 12px;
     font-weight: bold;
 }
+.btn.disabled, .btn:disabled, fieldset:disabled .btn{
+  background-color: var(--text-orange)!important;
+  opacity: var(--bs-btn-disabled-opacity)!important;
+}

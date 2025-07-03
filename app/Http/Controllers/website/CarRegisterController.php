@@ -57,6 +57,7 @@ class CarRegisterController extends Controller
             $user->email = $validatedData['email'];
             $user->password = Hash::make($validatedData['password']);
             $user->role = 'company';
+            $user->status = 0;
             $user->save();
 
             $company = new Company;
@@ -66,7 +67,7 @@ class CarRegisterController extends Controller
             $company->phone = $validatedData['phone'];
             $company->website = $validatedData['website'];
             $company->country_id = $validatedData['country_id'];
-            $company->status = 1;
+            $company->status = 0;
             $company->save();
 
             $adminId = User::where('role', 'admin')->value('id');
