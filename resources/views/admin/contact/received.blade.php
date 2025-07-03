@@ -18,10 +18,12 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped" id="myTable">
                                 <thead class="text-center text-nowrap">
+
                                     <tr>
                                         <th><input type="checkbox" id="selectAllLogs"></th>
                                         <th scope="col">{{ __('messages.useremailsent') }}</th>
