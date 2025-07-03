@@ -84,14 +84,17 @@ class FinancialController extends Controller
         ];
     }
 
-    $confirmedQuery = Booking::where('booking_status', 'confirmed');
+    $confirmedQuery = Booking::WhereIn('booking_status', ['confirmed','completed'])
+                         ->Where('payment_status', 'paid');
     $pendingQuery = Booking::where('booking_status', 'pending');
     $applyFilters($confirmedQuery);
     $applyFilters($pendingQuery);
 
     $confirmedTotalPrice = $confirmedQuery->sum('total_price');
+    // echo"<pre>";
+    // print_r($confirmedTotalPrice);die;
     $pendingTotalPrice = $pendingQuery->sum('total_price');
-    $confirmedCount = $confirmedQuery->count();
+    $confirmedCount = Booking::where('booking_status', 'confirmed')->count();
     $pendingCount = $pendingQuery->count();
 
     $cancelCount = Booking::where('booking_status', 'cancelled');
