@@ -17,6 +17,7 @@
                             <th scope="col">{{ __('messages.company') }} {{ __('messages.email') }}</th>
                             <th scope="col">{{ __('messages.phone') }}</th>
                             <th scope="col">{{ __('messages.web site') }}</th>
+                            <th scope="col">{{ __('messages.detail') }}</th>
                             @if(can('companies','edit'))
                                 <th scope="col">{{ __('messages.action') }}</th>
                             @endif
@@ -63,7 +64,7 @@
                                         @if(can('companies','edit'))
                                             <td>
                                                 <a title="Approve" href="{{ route('aprovePendingCompany', $compdata->id) }}" class="btn-aprove-company"> <i class="fa-regular fa-circle-check pending-btn" ></i> </a>
-                                                <a title="Delete" href="{{ route('deleteCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash fa-1x delete-btn"></i></a>
+                                                <a title="Delete" href="{{ route('destroyPendingCompany',$compdata->id) }}"  class="btn-delete"><i class="fa-sharp fa-solid fa-trash fa-1x delete-btn"></i></a>
                                                 
                                             </td>   
                                         @endif 

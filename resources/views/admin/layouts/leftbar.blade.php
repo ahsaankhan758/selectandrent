@@ -98,6 +98,10 @@ $owner = EmployeeOwner($userId);
                                     <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span
                                             class="custom-ml-15">{{ __('messages.pending') }}</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('deactivatedCompanies') }}"> <i class="mdi mdi-account-off"></i><span
+                                            class="custom-ml-15">{{ __('messages.deactivated') }}</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
