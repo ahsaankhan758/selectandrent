@@ -20,11 +20,9 @@
             font-size: 64px;
             font-weight: 700;
             text-transform: uppercase;
-
-            background: url('/frontend-assets/icons/getintouch.png') no-repeat;
+            background: url('{{ asset('frontend-assets/icons/getintouch.png') }}') no-repeat;
             background-size: cover;
             background-position: -106px center;
-
             -webkit-background-clip: text;
             background-clip: text;
             -moz-background-clip: text;

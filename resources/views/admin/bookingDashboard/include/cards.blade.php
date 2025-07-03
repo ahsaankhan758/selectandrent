@@ -3,7 +3,7 @@
         <div class="booking-dashboard">
             {{-- Card 1 --}}
             <div class="card booking-card card-clickable">
-                <a href="{{ route('carBooking', ['booking_status' => 'confirmed']) }}" style="text-decoration: none;">
+                <a href="{{ route('carBooking', ['filter' => 'confirmed']) }}" style="text-decoration: none;">
                 <div class="booking-cards-header">
                     <span class="booking-booking-icon-container">
                         <img src="{{ asset('/') }}assets/images/dollar-icon.png" height="29px">
@@ -21,7 +21,7 @@
 
             {{-- Card 2 --}}
             <div class="card booking-card card-clickable">
-                <a href="{{ route('carBooking', ['booking_status' => 'pending']) }}" style="text-decoration: none;">
+                <a href="{{ route('carBooking', ['filter' => 'pending']) }}" style="text-decoration: none;">
                 <div class="booking-cards-header">
                     <span class="booking-booking-icon-container">
                         <img src="{{ asset('/') }}assets/images/dollar-icon.png" height="29px">
@@ -39,7 +39,7 @@
 
             {{-- Card 3 --}}
             <div class="card booking-card card-clickable">
-                <a href="{{ route('carBooking', ['booking_status' => 'cancelled']) }}" style="text-decoration: none;">
+                <a href="{{ route('carBooking', ['filter' => 'cancelled']) }}" style="text-decoration: none;">
                 <div class="booking-cards-header">
                     <span class="booking-booking-icon-container">
                         <img src="{{ asset('/') }}assets/images/dollar-icon.png" height="29px">
@@ -57,7 +57,7 @@
 
             {{-- Card 4 --}}
             <div class="card booking-card card-clickable">
-                <a href="{{ route('carBooking', ['booking_status' => 'completed']) }}" style="text-decoration: none;">
+                <a href="{{ route('carBooking', ['filter' => 'completed']) }}" style="text-decoration: none;">
                 <div class="booking-cards-header">
                     <span class="booking-booking-icon-container">
                         <img src="{{ asset('/') }}assets/images/dollar-icon.png" height="29px">
