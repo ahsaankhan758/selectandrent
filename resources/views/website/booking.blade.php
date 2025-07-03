@@ -1,7 +1,7 @@
 @extends('website.layout.master')
 
 @section('title')
-Booking | Select and Rent 
+Bookings | Select and Rent 
 @endsection
 
 @section('content')
@@ -33,6 +33,48 @@ Booking | Select and Rent
     color: #ffc107;
   }
 </style>
+<style>
+        .tooltip-icon {
+        position: relative;
+        cursor: pointer;
+        }
+
+        .tooltip-icon .tooltip-text {
+        visibility: hidden;
+        background-color: #f06115;
+        color: #fff;
+        padding: 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        position: absolute;
+        top: -5px;
+        left: 20px;
+        white-space: nowrap;
+        z-index: 1;
+        }
+
+        .tooltip-icon:hover .tooltip-text {
+        visibility: visible;
+        }
+        .image-tooltip {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 8px;
+            z-index: 9999;
+            top: 100px; /* adjust as needed */
+            left: 200px; /* adjust as needed */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+
+        .image-tooltip img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+        }
+    </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
  <!-- end css -->
@@ -109,7 +151,9 @@ Booking | Select and Rent
                             {{ __('messages.cancel') }}
                         </a>
                       @else
-                        <span> - </span>
+                        <span data-bs-toggle="tooltip" title=" {!! __("messages.user_cannot_cancel_booking") !!} ">
+                          ℹ️
+                        </span>
                       @endif
                     </td>
                   </tr>
@@ -193,15 +237,12 @@ Booking | Select and Rent
   </div>
 </div>
 <script>
-    document.getElementById('cancelForm').addEventListener('submit', function(e) {
-        const submitBtn = document.getElementById('cancelBookingBtn');
-        const spinner = document.getElementById('refundLoadingSpinner');
-        spinner.classList.remove('d-none');
-        submitBtn.setAttribute('disabled', true);
-    });
+// Initialize tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 </script>
-
-
 <script src="{{ asset('/frontend-assets/assets/Js/reviews.js') }}"></script>
 <script src="{{ asset('/frontend-assets/assets/Js/cancelBooking.js') }}"></script>
 <!-- end review -->

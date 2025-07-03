@@ -1,6 +1,9 @@
  <?php
 
 return [
+  'transaction_id' => 'Transaction ID',
+  'user_cannot_cancel_booking'=> "You can't cancel this booking because the vehicle's pickup date has already passed",
+  'financials' => 'Financials',
   'cities' => 'Cities',
   'cancelled_by' => 'Cancelled By',
   'cancel_by' => 'Cancel By',

@@ -1,6 +1,9 @@
 <?php 
 
 return [
+    'transaction_id' => 'معرّف المعاملة',
+    'user_cannot_cancel_booking' => 'لا يمكنك إلغاء هذا الحجز لأن تاريخ استلام السيارة قد مضى',
+    'financials' => 'المالية',
     'cities' => 'المدن',
     'cancelled_by' => 'أُلغي بواسطة',
     'cancel_by' => 'تم الإلغاء بواسطة',

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('loginLayout')
-@section('title')Company Login @endsection
+@section('title'){{ __('messages.company') }} {{ __('messages.login') }}@endsection
 @section('content')
     <body class="auth-fluid-pages pb-0">
 
