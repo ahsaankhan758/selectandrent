@@ -88,12 +88,12 @@ class EmployeeController extends Controller
      
         // save logs 
         $userId = Auth::id();
-        $userName = Auth::user()->name;
-        $desciption = $userName.' Created [ User Name '.$validatedData['name'].'] [User Email '.$validatedData['email'].'] Successfully.';
+        $userName = Auth::user()->name; 
+        $desciption = $userName.' Created [ User Name: '.$validatedData['name'].' ] [ User Email: '.$validatedData['email'].' ] Successfully.';
         $action = 'Create';
         $module = 'User [Employee]';
         activityLog($userId, $desciption,$action,$module);
-        $desciption = $userName.' Created [ Employee Name '.$validatedData['name'].'] [Employee Email '.$validatedData['email'].'] Successfully.';
+        $desciption = $userName.' Created [ Employee Name: '.$validatedData['name'].' ] [ Employee Email: '.$validatedData['email'].' ] Successfully.';
         $action = 'Create';
         $module = 'Employee';
         activityLog($userId, $desciption,$action,$module);
@@ -127,11 +127,11 @@ class EmployeeController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Updated [ User Name '.$validatedData['name'].'] [User Email '.$validatedData['email'].'] Successfully.';
+        $desciption = $userName.' Updated [ User Name: '.$validatedData['name'].' ] [ User Email: '.$validatedData['email'].' ] Successfully.';
         $action = 'Update';
         $module = 'User [Employee]';
         activityLog($userId, $desciption,$action,$module);
-        $desciption = $userName.' Updated [ Employee Name '.$validatedData['name'].'] [Employee Email '.$validatedData['email'].'] Successfully.';
+        $desciption = $userName.' Updated [ Employee Name: '.$validatedData['name'].' ] [ Employee Email: '.$validatedData['email'].' ] Successfully.';
         $action = 'Updated';
         $module = 'Employee';
         activityLog($userId, $desciption,$action,$module);
@@ -156,12 +156,12 @@ class EmployeeController extends Controller
     // Log actions
     $userId = Auth::id();
     $userName = Auth::user()->name;
-    $desciption = $userName.' Deleted [ User Name '.$user->name.'] [User Email '.$user->email.'] Successfully.';
+    $desciption = $userName.' Deleted [ User Name: '.$user->name.' ] [ User Email: '.$user->email.' ] Successfully.';
     $action = 'Delete';
     $module = 'User[Employee]';
     activityLog($userId, $desciption, $action, $module);
 
-    $desciption = $userName.' Deleted [ Employee Name '.$user->name.'] [Employee Email '.$user->email.'] Successfully.';
+    $desciption = $userName.' Deleted [ Employee Name: '.$user->name.' ] [ Employee Email: '.$user->email.' ] Successfully.';
     activityLog($userId, $desciption, $action, $module);
 
     return redirect()->route('employee')->with('statusDanger', 'Employee Deleted Successfully.');
