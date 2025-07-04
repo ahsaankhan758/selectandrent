@@ -59,13 +59,10 @@
                                 </tr>
                             @endif
                         </tbody>
-
                         @if (isset($reminders))
                             {{ $reminders->links() }}
                         @endif
                     </table>
-
-
                 </div>
             </div>
         </div>
@@ -78,5 +75,5 @@
         <div class="alert alert-danger" role="alert">
             Access Denied
         </div>
-    @endif  
+    @endif
 @endsection
