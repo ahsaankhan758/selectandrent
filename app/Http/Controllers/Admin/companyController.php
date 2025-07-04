@@ -77,11 +77,11 @@ class companyController extends Controller
         // save logs 
        $userId = Auth::id();
        $userName = Auth::user()->name;
-       $desciption = $userName.' Created [ User Name '.$validatedData['name'].'] [User Email '.$validatedData['email'].'] Successfully.';
+       $desciption = $userName.' Created [ User Name: '.$validatedData['name'].' ] [ User Email: '.$validatedData['email'].' ] Successfully.';
        $action = 'Create';
        $module = 'User';
        activityLog($userId, $desciption,$action,$module);
-       $desciption = $userName.' Created [ Company Name '.$validatedData['companyName'].'] [Company Email '.$validatedData['companyEmail'].'] Successfully.';
+       $desciption = $userName.' Created [ Company Name: '.$validatedData['companyName'].' ] [ Company Email: '.$validatedData['companyEmail'].' ] Successfully.';
        $action = 'Create';
        $module = 'Company';
        activityLog($userId, $desciption,$action,$module);
@@ -133,42 +133,95 @@ class companyController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Updated [ Company Name '.$validatedData['name'].'] [Company Email '.$validatedData['email'].'] Successfully.';
+        $desciption = $userName.' Updated [ Company Name: '.$validatedData['name'].' ] [ Company Email: '.$validatedData['email'].' ] Successfully.';
         $action = 'Update';
         $module = 'Company';
         activityLog($userId, $desciption,$action,$module);
         return redirect()->route('companies')->with('status', 'Company Record Updated Successfully.');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function deactivatedCompanies()
+        {
+            $companies = company::where('status','2')->orderBy('created_at', 'desc')->paginate(20);
+            return view('admin.company.deactivated', compact('companies'));
+        }
+    public function deactivate(string $id)
     {
         $company = company::find($id);
-        $company->delete();
+        $company->status = '2';
+        $company->save();
         $user = User::find($company->user_id);
-        $user->delete();
+        $user->status = '2';
+        $user->save();
+        
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Deleted [ Company Name '.$company->name.'] [Company Email '.$company->email.'] Successfully.';
-         $action = 'Delete';
+         $desciption = $userName.' Deactivated  [ Company Name: '.$company->name.' ] [ Company Email: '.$company->email.' ] Successfully.';
+         $action = 'Deactivated';
          $module = 'Company';
          activityLog($userId, $desciption,$action,$module);
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Deleted [ User Name '.$user->name.'] [Company Email '.$user->email.'] Successfully.';
-         $action = 'Delete';
+         $desciption = $userName.' Deactivated [ User Name: '.$user->name.' ] [ Company Email: '.$user->email.' ] Successfully.';
+         $action = 'Deactivated';
          $module = 'User';
          activityLog($userId, $desciption,$action,$module);
-        return redirect()->route('companies')-> with('statusDanger','Company Data Deleted Successfully.');
+        return redirect()->route('companies')-> with('statusDanger','Company Deactivated Successfully.');
+    }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function activateCompany($id){
+        $company = company::find($id);
+        $company->status = '1';
+        $company->save();
+        $user = User::find($company->user_id);
+        $user->status = '1';
+        $user->save();
+        
+         // save logs
+         $userId = Auth::id();
+         $userName = Auth::user()->name;
+         $desciption = $userName.' Activated  [ Company Name: '.$company->name.' ] [ Company Email: '.$company->email.' ] Successfully.';
+         $action = 'Activated';
+         $module = 'Company';
+         activityLog($userId, $desciption,$action,$module);
+         // save logs
+         $userId = Auth::id();
+         $userName = Auth::user()->name;
+         $desciption = $userName.' Activated [ User Name: '.$user->name.' ] [ Company Email: '.$user->email.' ] Successfully.';
+         $action = 'Activated';
+         $module = 'User';
+         activityLog($userId, $desciption,$action,$module);
+        return redirect()->route('deactivatedCompanies')-> with('status','Company Activated Successfully.');
     }
     public function pending()
         {
             $companies = company::where('status','0')->orderBy('created_at', 'desc')->paginate(20);
             return view('admin.company.pending', compact('companies'));
+        }
+    public function destroyPending(string $id)
+        {
+            $company = company::find($id);
+            $company->delete();
+            $user = User::find($company->user_id);
+            $user->delete();
+            // save logs
+            $userId = Auth::id();
+            $userName = Auth::user()->name;
+            $desciption = $userName.' Deleted [ Company Name: '.$company->name.' ] [ Company Email: '.$company->email.' ] Successfully.';
+            $action = 'Delete';
+            $module = 'Company';
+            activityLog($userId, $desciption,$action,$module);
+            // save logs
+            $userId = Auth::id();
+            $userName = Auth::user()->name;
+            $desciption = $userName.' Deleted [ User Name: '.$user->name.' ] [ Company Email: '.$user->email.' ] Successfully.';
+            $action = 'Delete';
+            $module = 'User';
+            activityLog($userId, $desciption,$action,$module);
+            return redirect()->route('pending')-> with('statusDanger','Company Data Deleted Successfully.');
         }
     public function aprovePending($id)
         {

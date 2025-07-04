@@ -56,7 +56,7 @@ class userController extends Controller
         // save logs
        $userId = Auth::id();
        $userName = Auth::user()->name;
-       $desciption = $userName.' Created [ User Name '.$validatedData['name'].'] [User Email '.$validatedData['email'].'] Successfully.';
+       $desciption = $userName.' Created [ User Name: '.$validatedData['name'].' ] [ User Email: '.$validatedData['email'].' ] Successfully.';
        $action = 'Create';
        $module = 'User';
        activityLog($userId, $desciption,$action,$module);
@@ -103,7 +103,7 @@ class userController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Updated [ User Name '.$validatedData['name'].'] [User Email '.$validatedData['email'].'] Successfully.';
+        $desciption = $userName.' Updated [ User Name '.$validatedData['name'].' ] [ User Email '.$validatedData['email'].' ] Successfully.';
         $action = 'Update';
         $module = 'User';
         activityLog($userId, $desciption,$action,$module);
@@ -128,7 +128,7 @@ class userController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Deleted [ User Name '.$user['name'].'] [User Email '.$user['email'].'] Successfully.';
+        $desciption = $userName.' Deleted [ User Name '.$user['name'].' ] [ User Email '.$user['email'].' ] Successfully.';
         $action = 'Delete';
         $module = 'User';
         activityLog($userId, $desciption,$action,$module);

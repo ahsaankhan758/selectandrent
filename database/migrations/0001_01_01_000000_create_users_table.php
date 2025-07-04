@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->string('phone')->nullable();
-            $table->tinyInteger('status')->default('1')->nullable();
+            $table->tinyInteger('status')->default('1')->comment('1 = Active, 2 = Inactive, 0 = Pending	');;
             $table->rememberToken();
             $table->timestamps();
         });

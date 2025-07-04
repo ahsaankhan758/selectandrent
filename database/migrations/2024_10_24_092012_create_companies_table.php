@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->bigInteger('phone');
             $table->string('website')->default('0')->nullable();
-            $table->tinyInteger('status')->default('0')->nullable();
+            $table->tinyInteger('status')->default('0')->comment('1 = Active, 2 = Inactive, 0 = Pending	');
             $table->longText('detail')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('NO ACTION')->onUpdate('cascade');
