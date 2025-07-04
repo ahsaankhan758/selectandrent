@@ -1,6 +1,8 @@
 <?php 
 
 return [
+    'deactivated' => 'تم التعطيل',
+    'deactivate' => 'تعطيل',
     'transaction_id' => 'معرّف المعاملة',
     'user_cannot_cancel_booking' => 'لا يمكنك إلغاء هذا الحجز لأن تاريخ استلام السيارة قد مضى',
     'financials' => 'المالية',

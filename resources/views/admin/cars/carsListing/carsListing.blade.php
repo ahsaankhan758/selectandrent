@@ -19,7 +19,7 @@
                             <th scope="col">{{ __('messages.owner') }}</th>
                             <th scope="col">{{ __('messages.created_by') }} {{ __('messages.employee') }}</th>
                             <th scope="col">{{ __('messages.status') }}</th>
-                            @if(can('Vehicle','edit'))
+                            @if(can('vehicles','edit'))
                                 <th scope="col">{{ __('messages.action') }}</th>
                             @endif
                         </tr>
@@ -44,7 +44,7 @@
                                         <td>
                                         {{ ($carData->status == 1)? 'Active' : 'Inactive' }} 
                                         </td>
-                                        @if(can('Vehicle','edit'))
+                                        @if(can('vehicles','edit'))
                                             <td>
                                                 <a href="{{ route('editCar', $carData->id) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>

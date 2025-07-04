@@ -251,7 +251,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
             Route::post('storeCompany', [companyController::class,'store'])->name('storeCompany');
             Route::get('editCompany/{id}',[companyController::class,'edit'])->name('editCompany');
             Route::any('updateCompany/{id}',[companyController::class,'update'])->name('updateCompany');
-            Route::get('deleteCompany/{id}',[companyController::class,'destroy'])->name('deleteCompany');
+            Route::any('deactivatedCompanies',[companyController::class,'deactivatedCompanies'])->name('deactivatedCompanies');
+            Route::any('deactivate/{id}',[companyController::class,'deactivate'])->name('deactivateCompany');
+            Route::any('activateCompany/{id}',[companyController::class,'activateCompany'])->name('activateCompany');
+            Route::get('destroyPending/{id}',[companyController::class,'destroyPending'])->name('destroyPendingCompany');
             Route::get('pending',[companyController::class , 'pending'])->name('pending');
             Route::get('aprovePendingCompany/{id}',[companyController::class , 'aprovePending'])->name('aprovePendingCompany');
             //IP Routes
