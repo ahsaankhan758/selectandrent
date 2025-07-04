@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Employee;
 use App\Models\Reminder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,15 +10,42 @@ use App\Http\Controllers\Controller;
 
 class ReminderController extends Controller
 {
+    // public function show()
+    // {
+    //     $user = auth()->user();
+    //     $owner = EmployeeOwner(auth()->id());
+    //     $query = Reminder::orderby('created_at','desc');
+    //     if ($user->role === 'company' || ($owner && isset($owner->role) && $owner->role === 'company')) {
+    //         $query->where('user_id', $owner?->id ?? $user->id);
+    //     }
+    //     $reminders = $query->paginate(10);
+    //     return view('admin.reminder.reminder', compact('reminders'));
+    // }
     public function show()
     {
         $user = auth()->user();
         $owner = EmployeeOwner(auth()->id());
-        $query = Reminder::orderby('created_at','desc');
-        if ($user->role === 'company' || ($owner && isset($owner->role) && $owner->role === 'company')) {
-            $query->where('user_id', $owner?->id ?? $user->id);
+        $query = Reminder::orderBy('created_at', 'desc');
+
+        if ($user->role === 'admin' || ($owner && $owner->role === 'admin')) {
+            $reminders = $query->paginate(10);
         }
-        $reminders = $query->paginate(10);
+
+        elseif ($user->role === 'company') {
+            $employeeIds = Employee::where('owner_user_id', $user->id)->pluck('e_user_id')->toArray();
+            $query->whereIn('user_id', array_merge([$user->id], $employeeIds));
+            $reminders = $query->paginate(10);
+        }
+
+        elseif ($owner && $owner->role === 'company') {
+            $query->whereIn('user_id', [$user->id, $owner->id]);
+            $reminders = $query->paginate(10);
+        }
+
+        else {
+            $query->where('user_id', $user->id);
+            $reminders = $query->paginate(10);
+        }
         return view('admin.reminder.reminder', compact('reminders'));
     }
 
