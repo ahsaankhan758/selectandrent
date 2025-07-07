@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\BookingItem;
 use App\Models\Car;
 use App\Models\CustomerReview;
@@ -71,17 +72,23 @@ class CustomerReviewController extends Controller
             'comment' => $validated['comment'],
         ]);
 
-        // Step 3: Send notification to vehicle company 
-         $notificationType = 1; // review save against vehicle car
+        // Send notification 
+         $notificationType = 1; 
          $fromUserId = auth()->id(); // logged in user
          $toUserId = $validated['customer_id'];
          $userId = $validated['customer_id']; 
          $message = 'A new review from ('.auth()->user()->name.') has been submitted for You.';
          saveNotification($notificationType, $fromUserId, $toUserId, $userId, $message);
-
         
-
-
+        $customer  = User::find($validated['customer_id']);
+        $booking = Booking::find($validated['booking_id']); 
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Gave Review To [ Customer Name : '.$customer['name'].' ] For [ Booking Ref: '.$booking['booking_reference'].' ] Successfully.';
+        $action = 'Review';
+        $module = 'Booking';
+        activityLog($userId, $desciption,$action,$module);
         return response()->json([
             'status' => 'success',
             'message' => 'Review submitted successfully.',

@@ -41,7 +41,7 @@ class CarBrandController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Created [Brand Name '.$validatedData['name'].'] Successfully.';
+        $desciption = $userName.' Created [ Brand Name: '.$validatedData['name'].' ] Successfully.';
         $action = 'Create';
         $module = 'Brand';
         activityLog($userId, $desciption,$action,$module);
@@ -86,7 +86,7 @@ class CarBrandController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Deleted [Brand Name '.$brand['name'].'] Successfully.';
+        $desciption = $userName.' Deleted [ Brand Name: '.$brand['name'].' ] Successfully.';
         $action = 'Delete';
         $module = 'Brand';
         activityLog($userId, $desciption,$action,$module);

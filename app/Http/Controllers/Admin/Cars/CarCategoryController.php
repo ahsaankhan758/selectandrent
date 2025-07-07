@@ -40,7 +40,7 @@ class CarCategoryController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Created [Category Name '.$validatedData['name'].'] Successfully.';
+        $desciption = $userName.' Created [ Category Name: '.$validatedData['name'].' ] Successfully.';
         $action = 'Create';
         $module = 'Category';
         activityLog($userId, $desciption,$action,$module);
@@ -85,7 +85,7 @@ class CarCategoryController extends Controller
        // save logs
        $userId = Auth::id();
        $userName = Auth::user()->name;
-       $desciption = $userName.' Deleted [Category Name '.$category['name'].'] Successfully.';
+       $desciption = $userName.' Deleted [ Category Name: '.$category['name'].' ] Successfully.';
        $action = 'Delete';
        $module = 'Category';
        activityLog($userId, $desciption,$action,$module);

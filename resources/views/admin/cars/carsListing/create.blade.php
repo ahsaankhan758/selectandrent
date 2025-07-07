@@ -195,7 +195,7 @@
                             <div class="col-4 form-group mb-3">
                                 <label for="currency">{{ __('messages.currency') }}</label>
                                 <select name="currency" class="form-control" >
-                                    <option selected>{{ __('messages.select') }}</option> 
+                                    <option selected disabled>{{ __('messages.select') }}</option> 
                                     @foreach($currencies as $currency)
                                         <option value="{{ $currency->code }}">{{ $currency->name }}</option> 
                                     @endforeach

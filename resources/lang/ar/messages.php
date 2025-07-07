@@ -1,9 +1,11 @@
 <?php 
 
 return [
+    'cancellation' => 'إلغاء',
     'deactivated' => 'تم التعطيل',
     'deactivate' => 'تعطيل',
     'transaction_id' => 'معرّف المعاملة',
+    'user_cannot_cancel_booking_already' => "لا يمكنك إلغاء هذا الحجز لأنه قد تم إلغاؤه بالفعل.",
     'user_cannot_cancel_booking' => 'لا يمكنك إلغاء هذا الحجز لأن تاريخ استلام السيارة قد مضى',
     'financials' => 'المالية',
     'cities' => 'المدن',

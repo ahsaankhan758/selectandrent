@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
+use Auth;
 
 class CountryController extends Controller
 {
@@ -27,7 +28,13 @@ class CountryController extends Controller
             'code' => $request->code,
             'status'=> '1',
         ]);
-
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Created Country [ Country Name : '.$request->name.' ] Successfully.';
+        $action = 'Create';
+        $module = 'Country';
+        activityLog($userId, $desciption,$action,$module);
         return redirect()->route('countries.index')->with('status', 'Country added successfully.');
     }
       // Edit country
@@ -50,6 +57,13 @@ class CountryController extends Controller
             'name' => $request->name,
             'code' => $request->code,
         ]);
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Updated Country [ Country Name : '.$request->name.' ] Successfully.';
+        $action = 'Update';
+        $module = 'Country';
+        activityLog($userId, $desciption,$action,$module);
 
         return redirect()->route('countries.index')->with('status', 'Country updated successfully.');
     }
@@ -59,7 +73,13 @@ class CountryController extends Controller
     {
         $country = Country::findOrFail($id);
         $country->delete();
-
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Deleted Country [ Country Name : '.$country->name.' ] Successfully.';
+        $action = 'Delete';
+        $module = 'Country';
+        activityLog($userId, $desciption,$action,$module);
         return redirect()->route('countries.index')->with('statusDanger', 'Country deleted successfully.');
     }
 }
