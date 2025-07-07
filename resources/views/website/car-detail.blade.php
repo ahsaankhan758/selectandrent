@@ -4,57 +4,62 @@
 @endsection
 
 @section('content')
-<!-- add to cart js -->
-<script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
-<!-- Fancybox CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
-<!-- Fancybox JS -->
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+    <!-- add to cart js -->
+    <script src="{{ asset('/frontend-assets/assets/Js/addtocart.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+    <!-- Fancybox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
-<div class="container">
-<h2 class="fw-bold bmw-text-color text-capitalize">{{ $vehicle->car_models->car_brands->name ?? ' ' }} {{ $vehicle->car_models->name ?? ' ' }} {{ $vehicle->year ?? ' ' }}</h2>
-<p>{{ $vehicle->engine_size }} cc | {{ $vehicle->drive }} | {{ ucfirst($vehicle->transmission) }} | {{$vehicle->lisence_plate}}</p>
-<div class="d-flex flex-wrap gap-2 mt-3">
-    <div class="custom-badge-2">
-        <i class="fa-solid fa-user me-2"></i> {{ $vehicle->min_age }} {{ __('Min. age') }}
-    </div>
-    <div class="custom-badge-2">
-        <i class="fa-solid fa-gauge-high me-2"></i> {{ $vehicle->mileage }} {{ __('km by the day') }}
-    </div>
-    <div class="custom-badge-2">
-         {{ convertPrice($vehicle->advance_deposit, 0) }} {{ __('Deposit') }}
-    </div>
-    <div class="custom-badge-2">
-       <i class="fa-solid fa-location-dot me-2"></i> {{ $vehicle->car_locations->area_name }} {{ ucfirst(optional(optional($vehicle->car_locations)->city)->name) }}
-    </div>
-</div>
-</div>
-@php
-    $images = unserialize($vehicle->images);
-@endphp
-
-<div class="container mt-5">
-    <div class="car-gallery">
-        <!-- Main Image (clickable, opens carousel at index 0) -->
-        <div class="main-image">
-            <a data-fancybox="gallery" href="{{ asset(Storage::url($vehicle->thumbnail)) }}" data-caption="Main Car Image" data-index="0">
-                <img src="{{ asset(Storage::url($vehicle->thumbnail)) }}" alt="Main Car Image">
-            </a>
-        </div>
-
-        <!-- Side Images -->
-        <div class="side-images">
-            @foreach ($images ?? [] as $key => $image)
-                <div class="image-wrapper">
-                    <a data-fancybox="gallery" href="{{ asset(Storage::url($image)) }}" data-caption="Car Image {{ $key + 1 }}" data-index="{{ $key + 1 }}">
-                        <img src="{{ asset(Storage::url($image)) }}" alt="Car Image {{ $key + 1 }}">
-                    </a>
-                </div>
-            @endforeach
+    <div class="container">
+        <h2 class="fw-bold bmw-text-color text-capitalize">{{ $vehicle->car_models->car_brands->name ?? ' ' }}
+            {{ $vehicle->car_models->name ?? ' ' }} {{ $vehicle->year ?? ' ' }}</h2>
+        <p>{{ $vehicle->engine_size }} cc | {{ $vehicle->drive }} | {{ ucfirst($vehicle->transmission) }} |
+            {{ $vehicle->lisence_plate }}</p>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+            <div class="custom-badge-2">
+                <i class="fa-solid fa-user me-2"></i> {{ $vehicle->min_age }} {{ __('Min. age') }}
+            </div>
+            <div class="custom-badge-2">
+                <i class="fa-solid fa-gauge-high me-2"></i> {{ $vehicle->mileage }} {{ __('km by the day') }}
+            </div>
+            <div class="custom-badge-2">
+                {{ convertPrice($vehicle->advance_deposit, 0) }} {{ __('Deposit') }}
+            </div>
+            <div class="custom-badge-2">
+                <i class="fa-solid fa-location-dot me-2"></i> {{ $vehicle->car_locations->area_name }}
+                {{ ucfirst(optional(optional($vehicle->car_locations)->city)->name) }}
+            </div>
         </div>
     </div>
-</div>
+    @php
+        $images = unserialize($vehicle->images);
+    @endphp
+
+    <div class="container mt-5">
+        <div class="car-gallery">
+            <!-- Main Image (clickable, opens carousel at index 0) -->
+            <div class="main-image">
+                <a data-fancybox="gallery" href="{{ asset(Storage::url($vehicle->thumbnail)) }}"
+                    data-caption="Main Car Image" data-index="0">
+                    <img src="{{ asset(Storage::url($vehicle->thumbnail)) }}" alt="Main Car Image">
+                </a>
+            </div>
+
+            <!-- Side Images -->
+            <div class="side-images">
+                @foreach ($images ?? [] as $key => $image)
+                    <div class="image-wrapper">
+                        <a data-fancybox="gallery" href="{{ asset(Storage::url($image)) }}"
+                            data-caption="Car Image {{ $key + 1 }}" data-index="{{ $key + 1 }}">
+                            <img src="{{ asset(Storage::url($image)) }}" alt="Car Image {{ $key + 1 }}">
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 
 
     <!-- Car Details Section -->
@@ -63,7 +68,7 @@
             <!-- Left Column: Car Info -->
             <div class="col-lg-8 col-md-8 col-sm-8">
                 <div>
-                    
+
                     <p class="bmw-text">{{ $vehicle->detail }}</p>
 
                     <h4 class="mt-4">{{ __('messages.features') }}</h4>
@@ -94,36 +99,49 @@
                 <div class="rental-card p-4 shadow rounded">
                     <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
                         <h5 class="mb-0 py-3">{{ __('messages.Rental Price') }}</h5>
-                        <h3 class="fw-bold py-3 mb-0">{{ convertPrice($vehicle->rent, 0) }} <span class="fs-6">/ Day</span>
+                        <h3 class="fw-bold py-3 mb-0">{{ convertPrice($vehicle->rent, 0) }} <span class="fs-6">/
+                                Day</span>
                         </h3>
                     </div>
                     <ul class="list-unstyled px-3 py-2">
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Seats') }}</strong>
-                            <span>{{ $vehicle->seats }} </span></li>
+                            <span>{{ $vehicle->seats }} </span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Doors') }}</strong>
-                            <span>{{ $vehicle->doors }} </span></li>
+                            <span>{{ $vehicle->doors }} </span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Luggage') }}</strong>
-                            <span>{{ $vehicle->luggage }}</span></li>
+                            <span>{{ $vehicle->luggage }}</span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Drive') }}</strong>
-                            <span>{{ $vehicle->drive }}</span></li>
+                            <span>{{ $vehicle->drive }}</span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Economy') }}</strong>
-                            <span>{{ $vehicle->fuel_economy }}</span></li>
+                            <span>{{ $vehicle->fuel_economy }}</span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Type') }}</strong>
-                            <span>{{ $vehicle->fuel_type }}</span></li>
+                            <span>{{ $vehicle->fuel_type }}</span>
+                        </li>
 
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.engine') }}</strong>
-                            <span>{{ $vehicle->engine_size }} cc</span></li>
+                            <span>{{ $vehicle->engine_size }} cc</span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.year') }}</strong>
-                            <span>{{ $vehicle->year }}</span></li>
+                            <span>{{ $vehicle->year }}</span>
+                        </li>
 
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Mileage') }}</strong>
-                            <span>{{ $vehicle->mileage }}</span></li>
+                            <span>{{ $vehicle->mileage }}</span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Transmission') }}</strong>
-                            <span>{{ ucfirst($vehicle->transmission) }}</span></li>
+                            <span>{{ ucfirst($vehicle->transmission) }}</span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Exterior Color') }}</strong>
-                            <span>{{ ucfirst($vehicle->exterior_color) }}</span></li>
+                            <span>{{ ucfirst($vehicle->exterior_color) }}</span>
+                        </li>
                         <li class="d-flex justify-content-between"><strong>{{ __('messages.Interior Color') }}</strong>
-                            <span>{{ ucfirst($vehicle->interior_color) }}</span></li>
+                            <span>{{ ucfirst($vehicle->interior_color) }}</span>
+                        </li>
                         <li class="d-flex justify-content-between">
                             <strong>{{ __('messages.location') }}</strong>
                             <span>{{ ucfirst(optional(optional($vehicle->car_locations)->city)->name) }}</span>
@@ -237,27 +255,34 @@
                             document.getElementById('mapIframe').src = mapSrc;
                         </script>
                     </div>
-                    <div class="help-box mt-3">
-                        <div class="help-content">
-                            <div class="help-text-1">{{ optional(optional($vehicle->users)->companies)->name }}</div>
-                            <p class="help-number">{{ optional(optional($vehicle->users)->companies)->email }}</p>
+                    {{-- First Card: Show only if name and email exist --}}
+                    @if (optional(optional($vehicle->users)->companies)->name && optional(optional($vehicle->users)->companies)->email)
+                        <div class="help-box mt-3">
+                            <div class="help-content">
+                                <div class="help-text-1">{{ optional(optional($vehicle->users)->companies)->name }}</div>
+                                <p class="help-number">{{ optional(optional($vehicle->users)->companies)->email }}</p>
+                            </div>
+                            <i class="fa-solid fa-building"
+                                style="font-size: 36px; color: #f06115; width: 45px; margin-left: 15px;"></i>
+                        </div>
+                    @endif
 
+                    {{-- Second Card: Show only if phone exists --}}
+                    @if (optional(optional($vehicle->users)->companies)->phone)
+                        <div class="help-box mt-3">
+                            <div class="help-content">
+                                <div class="help-text">{{ __('messages.Need Any Help') }}?</div>
+                                <p class="help-number">{{ optional(optional($vehicle->users)->companies)->phone }}</p>
+                            </div>
+                            <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="24-hour support">
                         </div>
-                        <img src="http://127.0.0.1:8000/frontend-assets/icons/phone.png" alt="24-hour support">
-                    </div>
-                    <div class="help-box mt-3">
-                        <div class="help-content">
-                            <div class="help-text">{{ __('messages.Need Any Help') }}?</div>
-                            <p class="help-number">{{ optional(optional($vehicle->users)->companies)->phone }}</p>
-                        </div>
-                        <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="24-hour support">
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <!-- end map -->
-   <section class="container py-4 mt-5">
+    <section class="container py-4 mt-5">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -272,10 +297,8 @@
                         width="20" height="20" alt="">
                 </button>
             </div>
-
         </div>
     </section>
-
     <!-- cars view -->
     <div class="container py-4">
         <div class="swiper mySwiper">
@@ -283,20 +306,25 @@
                 @foreach ($vehicles as $vehicle)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
-                            <a href="{{ route('car.detail', $vehicle->id) }}" class="link position-relative" style="display: inline-block;">
+                            <a href="{{ route('car.detail', $vehicle->id) }}" class="link position-relative"
+                                style="display: inline-block;">
                                 @php
                                     $path = public_path('storage/' . $vehicle->thumbnail);
                                     $imageExists = $vehicle->thumbnail && file_exists($path);
                                 @endphp
 
                                 @if ($imageExists)
-                                    <img src="{{ asset('storage/' . $vehicle->thumbnail) }}" class="custom-card-img" alt="Car Image">
+                                    <img src="{{ asset('storage/' . $vehicle->thumbnail) }}" class="custom-card-img"
+                                        alt="Car Image">
                                 @else
-                                    <img src="{{ asset('images/no-image.png') }}" class="custom-card-img" alt="No Image Available">
+                                    <img src="{{ asset('images/no-image.png') }}" class="custom-card-img"
+                                        alt="No Image Available">
                                 @endif
 
-                                @if ($vehicle->is_booked == 1)
-                                    <div style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">{{__('messages.currently_booked')}}</div>
+                                @if ($vehicle->is_booked == '1')
+                                    <div
+                                        style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">
+                                        {{ __('messages.currently_booked') }}</div>
                                 @endif
                             </a>
                             <div class="card-content">
@@ -308,20 +336,26 @@
                                                 {{ $vehicle->car_models->name ?? ' ' }}
                                                 {{ $vehicle->year ?? ' ' }}
                                             </h5>
-                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }} {{ $vehicle->engine_size }}
-                                                {{ __('messages.cc') }} | {{ ucfirst($vehicle->transmission) }} | {{$vehicle->fuel_type}}</h6>
+                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }}
+                                                {{ $vehicle->engine_size }}
+                                                {{ __('messages.cc') }} | {{ ucfirst($vehicle->transmission) }} |
+                                                {{ $vehicle->fuel_type }}</h6>
                                         </div>
                                         <div>
-                                        @php
-                                            $companyProfile = $vehicle->users->companies->company_profile ?? null;
-                                        @endphp
+                                            @php
+                                                $companyProfile = $vehicle->users->companies->company_profile ?? null;
+                                            @endphp
 
-                                        @if($companyProfile)
-                                            <img src="{{ asset($companyProfile) }}" alt="Company Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
-                                        @else
-                                            <img src="{{ asset('frontend-assets/assets/customeruser.png') }}" alt="Default Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
-                                        @endif
-                                    </div>
+                                            @if ($companyProfile)
+                                                <img src="{{ asset($companyProfile) }}" alt="Company Logo"
+                                                    width="40" height="40"
+                                                    style="object-fit: cover; border-radius: 50%;">
+                                            @else
+                                                <img src="{{ asset('frontend-assets/assets/customeruser.png') }}"
+                                                    alt="Default Logo" width="40" height="40"
+                                                    style="object-fit: cover; border-radius: 50%;">
+                                            @endif
+                                        </div>
                                     </div>
 
                                     <hr>
@@ -332,11 +366,11 @@
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.deposit') }}</h6>
-                                            <p>{{convertPrice($vehicle->advance_deposit,0)}}</p>
+                                            <p>{{ convertPrice($vehicle->advance_deposit, 0) }}</p>
                                         </div>
                                         <div class="flex-fill text-center mx-2">
                                             <h6>{{ __('messages.min') }}</h6>
-                                            <p><i class="fa-solid fa-user"></i> {{$vehicle->min_age}}</p>
+                                            <p><i class="fa-solid fa-user"></i> {{ $vehicle->min_age }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -393,226 +427,226 @@
 
 
     <!-- end -->
-     @if($reviews->count() > 0)
-    <div class="container-fluid bg-white">
-        <div class="review-container mb-3">
-            <h2>{{ __('messages.Rate_and_Reviews') }}</h2>
-            <div class="container">
-                <div class="row d-flex align-items-start">
-                    <!-- Rating Summary Box -->
-                    <div class="col-md-4 col-12 text-left p-4 ">
-                        <h3 class="mt-4">{{$averageRating}} / 5</h3>
-                        <p class="text-muted">{{$reviews->count()}} {{ __('messages.reviews') }}</p>
-                        <div class="stars text-warning">
-                             @for ($i = 1; $i <= 5; $i++)
-                                @if ($i <= floor($averageRating))
-                                    <i class="fas fa-star text-warning"></i> 
-                                @elseif ($i == ceil($averageRating) && fmod($averageRating, 1) != 0)
-                                    <i class="fas fa-star-half-alt text-warning"></i> 
-                                @else
-                                    <i class="far fa-star text-warning"></i> 
-                                @endif
-                             @endfor
+    @if ($reviews->count() > 0)
+        <div class="container-fluid bg-white">
+            <div class="review-container mb-3">
+                <h2>{{ __('messages.Rate_and_Reviews') }}</h2>
+                <div class="container">
+                    <div class="row d-flex align-items-start">
+                        <!-- Rating Summary Box -->
+                        <div class="col-md-4 col-12 text-left p-4 ">
+                            <h3 class="mt-4">{{ $averageRating }} / 5</h3>
+                            <p class="text-muted">{{ $reviews->count() }} {{ __('messages.reviews') }}</p>
+                            <div class="stars text-warning">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= floor($averageRating))
+                                        <i class="fas fa-star text-warning"></i>
+                                    @elseif ($i == ceil($averageRating) && fmod($averageRating, 1) != 0)
+                                        <i class="fas fa-star-half-alt text-warning"></i>
+                                    @else
+                                        <i class="far fa-star text-warning"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                        </div>
+
+                        <!-- Rating Details -->
+                        <!-- <div class="col-md-7 col-12">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">{{ __('messages.Price') }}</span>
+                                    <span>4.8/5</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 80%;"></div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="fw-bold">{{ __('messages.Services') }}</span>
+                                    <span>4.3/5</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 60%;"></div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="fw-bold">{{ __('messages.Safety') }}</span>
+                                    <span>4.5/5</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 90%;"></div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="fw-bold">{{ __('messages.Entertainment') }}</span>
+                                    <span>4.7/5</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%;"></div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="fw-bold">{{ __('messages.Accessibility') }}</span>
+                                    <span>5/5</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%;"></div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="fw-bold">{{ __('messages.Support') }}</span>
+                                    <span>4.8/5</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- User Reviews -->
+                <div class="mt-4">
+                    @foreach ($reviews as $review)
+                        <div class="review-card">
+                            <div class="review-header d-flex align-items-center">
+                                <img src="{{ asset($review->user->profile_image) }}" alt="User">
+                                <div>
+                                    <h5>{{ ucfirst($review->user->name) }}</h5>
+                                    <p class="text-muted">{{ $review->created_at->diffForHumans() }}</p>
+                                </div>
+                                <div class="stars destop-star ms-auto">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $review->rating)
+                                            <i class="fas fa-star text-warning"></i>
+                                        @else
+                                            <i class="far fa-star text-warning"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+
+                            </div>
+                            @if (!empty($review->comment))
+                                <hr class="Reviews-hr">
+                            @endif
+                            <p>{{ ucfirst($review->comment) }}</p>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Review Form -->
+                <!-- <div class="mt-4">
+                    <h4>{{ __('messages.Rate & Reviews') }}</h4>
+                    <div class="row">
+                        <div class="col-md-4 col-12 d-flex align-items-center mb-2">
+                            <div class="col-md-5">
+                                <span>{{ __('messages.Price') }}</span>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="stars ms-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 d-flex align-items-center mb-2">
+                            <div class="col-md-5">
+                                <span>{{ __('messages.Services') }}</span>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="stars ms-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 d-flex align-items-center mb-2">
+                            <div class="col-md-5">
+                                <span>{{ __('messages.Safety') }}</span>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="stars ms-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Rating Details -->
-                    <!-- <div class="col-md-7 col-12">
-                        <div class="flex-grow-1">
-                            <div class="d-flex justify-content-between">
-                                <span class="fw-bold">{{ __('messages.Price') }}</span>
-                                <span>4.8/5</span>
+                    <div class="row mt-2">
+                        <div class="col-md-4 col-12 d-flex align-items-center mb-2">
+                            <div class="col-md-5">
+                                <span>{{ __('messages.Entertainment') }}</span>
                             </div>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 80%;"></div>
-                            </div>
-
-                            <div class="d-flex justify-content-between mt-2">
-                                <span class="fw-bold">{{ __('messages.Services') }}</span>
-                                <span>4.3/5</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 60%;"></div>
-                            </div>
-
-                            <div class="d-flex justify-content-between mt-2">
-                                <span class="fw-bold">{{ __('messages.Safety') }}</span>
-                                <span>4.5/5</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 90%;"></div>
-                            </div>
-
-                            <div class="d-flex justify-content-between mt-2">
-                                <span class="fw-bold">{{ __('messages.Entertainment') }}</span>
-                                <span>4.7/5</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 75%;"></div>
-                            </div>
-
-                            <div class="d-flex justify-content-between mt-2">
-                                <span class="fw-bold">{{ __('messages.Accessibility') }}</span>
-                                <span>5/5</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 100%;"></div>
-                            </div>
-
-                            <div class="d-flex justify-content-between mt-2">
-                                <span class="fw-bold">{{ __('messages.Support') }}</span>
-                                <span>4.8/5</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 85%;"></div>
+                            <div class="col-md-5">
+                                <div class="stars ms-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
                             </div>
                         </div>
-                    </div> -->
-                </div>
+                        <div class="col-md-4 col-12 d-flex align-items-center mb-2">
+                            <div class="col-md-5">
+                                <span>{{ __('messages.Accessibility') }}</span>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="stars ms-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 d-flex align-items-center mb-2">
+                            <div class="col-md-5">
+                                <span>{{ __('messages.Support') }}</span>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="stars ms-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <input type="text" class="form-control form-control-border"
+                                placeholder="{{ __('messages.Email') }}">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <input type="text" class="form-control form-control-border"
+                                placeholder="{{ __('messages.Phone') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <textarea class="form-control form-control-border" rows="4" placeholder="{{ __('messages.Your Comment') }}"></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button class="btn btn-warning btn-orange-clr rounded-pill text-white px-4 py-2">
+                            {{ __('messages.Submit') }}
+                        </button>
+                    </div>
+                </div> -->
             </div>
-
-            <!-- User Reviews -->
-            <div class="mt-4">
-                @foreach($reviews as $review)
-                <div class="review-card">
-                    <div class="review-header d-flex align-items-center">
-                        <img src="{{ asset($review->user->profile_image) }}" alt="User">
-                        <div>
-                            <h5>{{ucfirst($review->user->name)}}</h5>
-                            <p class="text-muted">{{ $review->created_at->diffForHumans() }}</p>
-                        </div>
-                        <div class="stars destop-star ms-auto">
-                            @for ($i = 1; $i <= 5; $i++)
-                                @if ($i <= $review->rating)
-                                    <i class="fas fa-star text-warning"></i> 
-                                @else
-                                    <i class="far fa-star text-warning"></i> 
-                                @endif
-                            @endfor
-                        </div>
-
-                    </div>
-                    @if(!empty($review->comment))
-                    <hr class="Reviews-hr">
-                    @endif
-                    <p>{{ucfirst($review->comment)}}</p>
-                </div>
-                @endforeach
-            </div>
-
-            <!-- Review Form -->
-            <!-- <div class="mt-4">
-                <h4>{{ __('messages.Rate & Reviews') }}</h4>
-                <div class="row">
-                    <div class="col-md-4 col-12 d-flex align-items-center mb-2">
-                        <div class="col-md-5">
-                            <span>{{ __('messages.Price') }}</span>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="stars ms-3">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 d-flex align-items-center mb-2">
-                        <div class="col-md-5">
-                            <span>{{ __('messages.Services') }}</span>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="stars ms-3">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 d-flex align-items-center mb-2">
-                        <div class="col-md-5">
-                            <span>{{ __('messages.Safety') }}</span>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="stars ms-3">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-4 col-12 d-flex align-items-center mb-2">
-                        <div class="col-md-5">
-                            <span>{{ __('messages.Entertainment') }}</span>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="stars ms-3">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 d-flex align-items-center mb-2">
-                        <div class="col-md-5">
-                            <span>{{ __('messages.Accessibility') }}</span>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="stars ms-3">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 d-flex align-items-center mb-2">
-                        <div class="col-md-5">
-                            <span>{{ __('messages.Support') }}</span>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="stars ms-3">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-2">
-                        <input type="text" class="form-control form-control-border"
-                            placeholder="{{ __('messages.Email') }}">
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <input type="text" class="form-control form-control-border"
-                            placeholder="{{ __('messages.Phone') }}">
-                    </div>
-                </div>
-                <div class="col-md-12 mb-2">
-                    <textarea class="form-control form-control-border" rows="4" placeholder="{{ __('messages.Your Comment') }}"></textarea>
-                </div>
-                <div class="text-end">
-                    <button class="btn btn-warning btn-orange-clr rounded-pill text-white px-4 py-2">
-                        {{ __('messages.Submit') }}
-                    </button>
-                </div>
-            </div> -->
         </div>
-    </div>
     @endif
     <!-- Include Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
