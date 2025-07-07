@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.About-us') }} | {{ __('messages.Select and Rent') }}
+    {{ __('messages.CONTACT US') }} | {{ __('messages.Select and Rent') }}
 @endsection
 
 @section('content')
@@ -100,7 +100,7 @@
 
                             <div class="form-group mb-3">
                                 <select class="form-control" name="subject" required>
-                                    <option value="" disabled selected hidden>{{ __('messages.Subject') }}</option>
+                                    <option value="" disabled selected hidden>{{ __('messages.Query Type') }}</option>
                                     <option value="General">General</option>
                                     <option value="Refund">Refund</option>
                                     <option value="Complaint">Complaint</option>
