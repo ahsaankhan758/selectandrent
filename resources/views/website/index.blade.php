@@ -271,7 +271,6 @@
                         width="20" height="20" alt="">
                 </button>
             </div>
-
         </div>
     </section>
       <!-- cars view -->
@@ -373,48 +372,45 @@
         </div>
     </div>
 
-    <!-- chose section -->
+        <!-- chose section -->
     <div class="container-fluid bg-white chose-bg-img mt-4">
+
         <!-- Mobile Section -->
         <div class="container mobile text-center py-5 d-block d-md-none">
-            <h4 class="text-chose fw-bold"{{ __('messages.Why we choose us') }}></h4>
-            <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br>
-                {{ __('messages.Customer Experience') }}</h3>
+            <h4 class="text-warning fw-bold">{{ __('messages.Why we choose us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br> {{ __('messages.Customer Experience') }} </h3>
 
             <div class="mt-4">
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2"
-                        alt="">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
                     <h5 class="fw-bold">{{ __('messages.Affordable Pricing') }}</h5>
                     <p class="text-muted">{{ __('messages.Enjoy low daily rates without compromising on quality') }}.</p>
                 </div>
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
                         alt="">
-                    <h5 class="fw-bold">{{ __('messages.Perfect for Short Trips') }}</h5>
-                    <p class="text-muted">{{ __('messages.Ideal for city drives, quick errands, or budget travel') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.Perfect for Short Trips') }}</h5>
+                        <p class="text-muted">{{ __('messages.Ideal for city drives, quick errands, or budget travel') }}.</p>
                 </div>
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
                         alt="">
-                    <h5 class="fw-bold">{{ __('messages.Fuel Efficiency') }}</h5>
-                    <p class="text-muted">{{ __('messages.Save on gas with cars designed for maximum mileage') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.Fuel Efficiency') }}</h5>
+                        <p class="text-muted">{{ __('messages.Save on gas with cars designed for maximum mileage') }}.</p>
                 </div>
                 <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
                         alt="">
-                    <h5 class="fw-bold">{{ __('messages.Wide Selection') }}</h5>
-                    <p class="text-muted">{{ __('messages.Choose from compact, mid-sized, and family-friendly models') }}.
-                    </p>
+                        <h5 class="fw-bold">{{ __('messages.Wide Selection') }}</h5>
+                        <p class="text-muted">{{ __('messages.Choose from compact, mid-sized, and family-friendly models') }}.</p>
                 </div>
             </div>
         </div>
 
         <!-- Desktop Section -->
         <div class="container Desktop  text-center py-5 d-none d-md-block">
-            <h4 class="text-chose fw-bold">{{ __('messages.Why we choose us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br>
-                {{ __('messages.Customer Experience') }}</h3>
+            <h4 class="text-warning fw-bold">{{ __('messages.Why we choose us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }}  <br> {{ __('messages.Customer Experience') }} </h3>
 
             <div class="row align-items-center mt-4">
                 <!-- Left Side (Icons Last) -->
@@ -422,160 +418,144 @@
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.Most Flexible Payment') }}</h5>
-                            <p class="text-muted">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
+                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                                .</p>
                         </div>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
                             alt="">
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.Valuable Insights') }}</h5>
-                            <p class="text-muted">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
+                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                                .</p>
                         </div>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
                             alt="">
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.Non-Stop Innovation') }}</h5>
-                            <p class="text-muted">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
+                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                                .</p>
                         </div>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
                             alt="">
                     </div>
                 </div>
 
                 <!-- Center Image -->
                 <div class="col-lg-4 text-center">
-                    <img src="{{ asset('/') }}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
+                    <img src="{{asset('/')}}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
                 </div>
 
                 <!-- Right Side (Icons First) -->
                 <div class="col-lg-4 text-start">
                     <div class="mb-4 d-flex align-items-center">
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed"
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.Online Car Appraisal') }}</h5>
-                            <p class="text-muted">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
+                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                                .</p>
                         </div>
                     </div>
                     <div class="mb-4 d-flex align-items-center">
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed"
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.Personalized Search') }}</h5>
-                            <p class="text-muted">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
+                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                                .</p>
                         </div>
                     </div>
                     <div class="mb-4 d-flex align-items-center">
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed"
+                        <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed"
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.Consumer–First Mentality') }}</h5>
-                            <p class="text-muted">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- </div> -->
-        <!-- tab -->
-        <div class="container tab text-center py-5 d-none d-sm-block d-md-none">
-            <h4 class="text-chose fw-bold">{{ __('messages.Why we choose us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br>
-                {{ __('messages.Customer Experience') }}</h3>
-
-            <div class="row align-items-center mt-4">
-                <!-- Left Side (First Three Icons) -->
-                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-                    <div class="d-flex align-items-center justify-content-center mb-4">
-                        <div>
-                            <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Online Car Appraisal') }}</h5>
-                            <p class="text-muted text-start">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
-                        </div>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="ml-3 img-fixed"
-                            alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-4">
-                        <div>
-                            <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Personalized Search') }}</h5>
-                            <p class="text-muted text-start">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
-                        </div>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="ml-3 img-fixed"
-                            alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-4">
-                        <div>
-                            <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Consumer-First Mentality') }}
-                            </h5>
-                            <p class="text-muted text-start">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
-                        </div>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="ml-3 img-fixed"
-                            alt="">
-                    </div>
-                </div>
-
-                <!-- Center Image -->
-                <div class="col-md-4 text-center mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
-                </div>
-
-                <!-- Right Side (Last Three Icons) -->
-                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-                    <div class="d-flex align-items-center justify-content-center mb-4">
-                        <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="me-3 img-fixed"
-                            alt="">
-                        <div>
-                            <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Most Flexible Payment') }}</h5>
-                            <p class="text-muted text-start">
-                                {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-4">
-                            <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="me-3 img-fixed"
-                                alt="">
-                            <div>
-                                <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Valuable Insights') }}</h5>
-                                <p class="text-muted text-start">
-                                    {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-4">
-                            <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="me-3 img-fixed"
-                                alt="">
-                            <div>
-                                <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Non-Stop Innovation') }}
-                                </h5>
-                                <p class="text-muted text-start">
-                                    {{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}.
-                                </p>
-                            </div>
+                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                               .</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- tab -->
+    <div class="container tab text-center py-5 d-none d-sm-block d-md-none">
+        <h4 class="text-warning fw-bold">{{ __('messages.Why we choose us') }}</h4>
+        <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br> {{ __('messages.Customer Experience') }}</h3>
+
+        <div class="row align-items-center mt-4">
+            <!-- Left Side (First Three Icons) -->
+            <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    <div>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Online Car Appraisal') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive
+                            customer service') }}.</p>
+                    </div>
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="ml-3 img-fixed"
+                        alt="">
+                </div>
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    <div>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Personalized Search') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                        .</p>
+                    </div>
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="ml-3 img-fixed"
+                        alt="">
+                </div>
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    <div>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Consumer-First Mentality') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            .</p>
+                    </div>
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="ml-3 img-fixed"
+                        alt="">
+                </div>
+            </div>
+
+            <!-- Center Image -->
+            <div class="col-md-4 text-center mb-4">
+                <img src="{{asset('/')}}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
+            </div>
+
+            <!-- Right Side (Last Three Icons) -->
+            <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="me-3 img-fixed" alt="">
+                    <div>
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Most Flexible Payment') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            .</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="me-3 img-fixed"
+                        alt="">
+                    <div>
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Valuable Insights') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            .</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="me-3 img-fixed"
+                        alt="">
+                    <div>
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Non-Stop Innovation') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            .</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Choose Section End-->
 
     <section class="container py-4 mt-5">
         <div class="row align-items-center">
