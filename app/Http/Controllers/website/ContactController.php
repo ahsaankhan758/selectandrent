@@ -49,11 +49,12 @@ class ContactController extends Controller
 {
     $validated = $request->validate([
         'first_name' => 'required|string|max:255',
-        'last_name'  => 'required|string|max:255',
+        'last_name'  => 'string|max:255',
         'email'      => 'required|email',
         'phone'      => 'required|string|max:20',
         'message'    => 'required|string',
         'subject' => 'required|string',
+        'existing_customer' => 'nullable',
     ]);
 
     $contact = new Contact($validated);

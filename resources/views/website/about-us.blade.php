@@ -4,6 +4,9 @@
 @endsection
 
 @section('content')
+<!-- contact js -->
+    <script src="{{ asset('/frontend-assets/assets/Js/contact.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
         <div class="container py-4 mt-4">
             <div class="row g-3">
                 <div class="col-lg-4 col-md-4 position-relative">
@@ -436,54 +439,64 @@
         <!-- Right Side -->
         <div class="col-md-8">
             <div class="contact-right">
-                <form>
+                <form method="POST" id="sendEmailContact" action="{{ route('website.contact') }}">
+                            @csrf
                     <div class="row g-3">
                         <!-- Query Type -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.Query Type') }}</label>
-                            <select class="form-select">
+                            <select class="form-select" name="subject">
                                 <option selected>{{ __('messages.Car Rental') }}</option>
-                                <option>{{ __('messages.General Inquiry') }}</option>
-                                <option>{{ __('messages.Support') }}</option>
+                                <option value="General">General</option>
+                                    <option value="Refund">Refund</option>
+                                    <option value="Complaint">Complaint</option>
+                                    <option value="Issues about company">Issues about company</option>
+                                    <option value="Hire me">Hire me</option>
                             </select>
                         </div>
 
                         <!-- Existing Customer -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.Are you an existing customer') }}?</label>
-                            <select class="form-select">
+                            <select class="form-select" name="existing_customer">
                                 <option selected>{{ __('messages.Yes') }}</option>
                                 <option>{{ __('messages.No') }}</option>
                             </select>
                         </div>
 
                         <!-- Name -->
-                        <div class="col-md-4">
-                            <label class="form-label">{{ __('messages.Your Name') }}</label>
-                            <input type="text" class="form-control form-control-border" placeholder="John Doe">
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.First Name') }}</label>
+                            <input type="text" name="first_name" class="form-control form-control-border" placeholder="John Doe">
+                        </div>
+
+                        <!-- Name -->
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.Last Name') }}</label>
+                            <input type="text" name="last_name" class="form-control form-control-border" placeholder="John Doe">
                         </div>
 
                         <!-- Email -->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label">{{ __('messages.Email Address') }}</label>
-                            <input type="email" class="form-control form-control-border" placeholder="hello@example.com">
+                            <input type="email" name="email" class="form-control form-control-border" placeholder="hello@example.com">
                         </div>
 
                         <!-- Phone Number -->
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label">{{ __('messages.Phone Number') }}</label>
-                            <input type="tel" class="form-control form-control-border" placeholder="+92 324 4469929">
+                            <input type="tel"  name="phone" class="form-control form-control-border" placeholder="+92 324 4469929">
                         </div>
 
                         <!-- Message -->
                         <div class="col-12">
                             <label class="form-label">{{ __('messages.Message') }}</label>
-                            <textarea class="form-control form-control-border" rows="2" placeholder="Write here..."></textarea>
+                            <textarea class="form-control form-control-border" name="message" rows="2" placeholder="Write here..."></textarea>
                         </div>
 
                         <!-- Submit Button -->
                         <div class="col-12 text-end">
-                            <button class="btn btn-orange-clr rounded-pill text-white px-4">
+                            <button id="submitBtn" class="btn btn-orange-clr rounded-pill text-white px-4">
                                 {{ __('messages.Submit') }}
                             </button>
                         </div>
