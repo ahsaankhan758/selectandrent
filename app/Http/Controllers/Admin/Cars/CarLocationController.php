@@ -49,7 +49,7 @@ class CarLocationController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Created [Location Name '.$validatedData['city'].'] Successfully.';
+        $desciption = $userName.' Created [ Location Name: '.$location['area_name'].' ] Successfully.';
         $action = 'Create';
         $module = 'Location';
         activityLog($userId, $desciption,$action,$module);
@@ -94,11 +94,11 @@ class CarLocationController extends Controller
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Deleted [Location Name '.$location['city'].'] Successfully.';
+         $desciption = $userName.' Deleted [ Location Name: '.$location['area_name'].' ] Successfully.';
          $action = 'Delete';
          $module = 'Location';
          activityLog($userId, $desciption,$action,$module);
-        return redirect()->route('carLocations')->with('status','Car Location Deleted Successfully.');
+        return redirect()->route('carLocations')->with('statusDanger','Car Location Deleted Successfully.');
     }
 
     public function cityStore(Request $request){
@@ -110,6 +110,13 @@ class CarLocationController extends Controller
         $city = new City;
         $city->name = $validatedData['name'];
         $city->save();
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Created [ City Name: '.$city['name'].' ] Successfully.';
+        $action = 'Create';
+        $module = 'City';
+        activityLog($userId, $desciption,$action,$module);
         return redirect()->route('cities')->with('status','City Ceated Successfully.');
 
 
@@ -124,6 +131,13 @@ class CarLocationController extends Controller
     {
         $city = City::find($id);
         $city->delete();
+        // save logs
+         $userId = Auth::id();
+         $userName = Auth::user()->name;
+         $desciption = $userName.' Deleted [ City Name: '.$city['name'].' ] Successfully.';
+         $action = 'Delete';
+         $module = 'City';
+         activityLog($userId, $desciption,$action,$module);
         return redirect()->route('cities')->with('status','City deleted Successfully.');
         
         
