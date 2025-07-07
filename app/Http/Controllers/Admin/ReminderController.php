@@ -7,6 +7,7 @@ use App\Models\Reminder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ReminderController extends Controller
 {
@@ -68,6 +69,14 @@ class ReminderController extends Controller
         'user_id' => auth()->id(),
         ]);
 
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Created Reminder [ Name: '.$request->name.' ] Successfully.';
+        $action = 'Create';
+        $module = 'Reminder';
+        activityLog($userId, $desciption,$action,$module);
+
         return redirect()->route('reminder')->with('success', 'Reminder created successfully.');
      }
 
@@ -89,6 +98,14 @@ class ReminderController extends Controller
         $reminder->description = $request->description;
         $reminder->save();
 
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Updated Reminder [ Name: '.$request->name.' ] Successfully.';
+        $action = 'Update';
+        $module = 'Reminder';
+        activityLog($userId, $desciption,$action,$module);
+
         return redirect()->route('reminder')->with('success', 'Reminder updated successfully!');
     }
 
@@ -96,6 +113,14 @@ class ReminderController extends Controller
     {
         $reminder = Reminder::findOrFail($id);
         $reminder->delete();
+
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Deleted Reminder [ Name: '.$reminder->name.' ] Successfully.';
+        $action = 'Delete';
+        $module = 'Reminder';
+        activityLog($userId, $desciption,$action,$module);
 
         return redirect()->route('reminder')->with('success', 'Reminder deleted successfully!');
     }

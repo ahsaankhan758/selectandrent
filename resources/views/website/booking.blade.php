@@ -150,6 +150,10 @@ Bookings | Select and Rent
                           data-booking-id="{{ $booking->id }}">
                             {{ __('messages.cancel') }}
                         </a>
+                      @elseif(!empty($booking->cancelled_by))
+                        <span data-bs-toggle="tooltip" title=" {!! __("messages.user_cannot_cancel_booking_already") !!} ">
+                          ℹ️
+                        </span>
                       @else
                         <span data-bs-toggle="tooltip" title=" {!! __("messages.user_cannot_cancel_booking") !!} ">
                           ℹ️

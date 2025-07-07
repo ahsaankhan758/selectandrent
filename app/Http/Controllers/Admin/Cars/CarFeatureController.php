@@ -25,7 +25,7 @@ class CarFeatureController extends Controller
             // save logs
             $userId = Auth::id();
             $userName = Auth::user()->name;
-            $desciption = $userName.' Created [Feature Name '.$validatedData['name'].'] Successfully.';
+            $desciption = $userName.' Created [ Feature Name: '.$validatedData['name'].' ] Successfully.';
             $action = 'Create';
             $module = 'Feature';
             activityLog($userId, $desciption,$action,$module);
@@ -38,7 +38,7 @@ class CarFeatureController extends Controller
                 // save logs
                 $userId = Auth::id();
                 $userName = Auth::user()->name;
-                $desciption = $userName.' Deleted [Feature Name '.$features['name'].'] Successfully.';
+                $desciption = $userName.' Deleted [ Feature Name: '.$features['name'].' ] Successfully.';
                 $action = 'Delete';
                 $module = 'Feature';
                 activityLog($userId, $desciption,$action,$module);

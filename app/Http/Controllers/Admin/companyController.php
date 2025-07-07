@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\CompanyCreated;
+use App\Mail\CompanyStatusMail;
 use App\Mail\CompanyVerificationMail;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CompanyApprovedMail;
 
@@ -152,7 +154,9 @@ class companyController extends Controller
         $user = User::find($company->user_id);
         $user->status = '2';
         $user->save();
-        
+        $eUserIds = Employee::where('owner_user_id', $company->user_id)->pluck('e_user_id');
+        Employee::where('owner_user_id', $company->user_id)->update(['status' => '2']);
+        User::whereIn('id', $eUserIds)->update(['status' => '2']);
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
@@ -163,10 +167,11 @@ class companyController extends Controller
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Deactivated [ User Name: '.$user->name.' ] [ Company Email: '.$user->email.' ] Successfully.';
+         $desciption = $userName.' Deactivated [ User Name: '.$user->name.' ] [ User Email: '.$user->email.' ] Successfully.';
          $action = 'Deactivated';
          $module = 'User';
          activityLog($userId, $desciption,$action,$module);
+         Mail::to($company->user->email)->send(new CompanyStatusMail($company, 'inactive'));
         return redirect()->route('companies')-> with('statusDanger','Company Deactivated Successfully.');
     }
     /**
@@ -179,6 +184,9 @@ class companyController extends Controller
         $user = User::find($company->user_id);
         $user->status = '1';
         $user->save();
+        $eUserIds = Employee::where('owner_user_id', $company->user_id)->pluck('e_user_id');
+        Employee::where('owner_user_id', $company->user_id)->update(['status' => '1']);
+        User::whereIn('id', $eUserIds)->update(['status' => '1']);
         
          // save logs
          $userId = Auth::id();
@@ -190,10 +198,11 @@ class companyController extends Controller
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Activated [ User Name: '.$user->name.' ] [ Company Email: '.$user->email.' ] Successfully.';
+         $desciption = $userName.' Activated [ User Name: '.$user->name.' ] [ User Email: '.$user->email.' ] Successfully.';
          $action = 'Activated';
          $module = 'User';
          activityLog($userId, $desciption,$action,$module);
+         Mail::to($company->user->email)->send(new CompanyStatusMail($company, 'active'));
         return redirect()->route('deactivatedCompanies')-> with('status','Company Activated Successfully.');
     }
     public function pending()
@@ -217,7 +226,7 @@ class companyController extends Controller
             // save logs
             $userId = Auth::id();
             $userName = Auth::user()->name;
-            $desciption = $userName.' Deleted [ User Name: '.$user->name.' ] [ Company Email: '.$user->email.' ] Successfully.';
+            $desciption = $userName.' Deleted [ User Name: '.$user->name.' ] [ User Email: '.$user->email.' ] Successfully.';
             $action = 'Delete';
             $module = 'User';
             activityLog($userId, $desciption,$action,$module);
@@ -236,7 +245,7 @@ class companyController extends Controller
             // save logs
             $userId = Auth::id();
             $userName = Auth::user()->name;
-            $desciption = $userName.' Approved [ Company Name '.$company->name.'] Successfully.';
+            $desciption = $userName.' Approved [ Company Name: '.$company->name.' ] Successfully.';
             $action = 'Approve';
             $module = 'Company';
             activityLog($userId, $desciption,$action,$module);

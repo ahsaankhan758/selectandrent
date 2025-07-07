@@ -44,7 +44,7 @@ class CarModelController extends Controller
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Created [Model Name '.$validatedData['name'].'] Successfully.';
+         $desciption = $userName.' Created [ Model Name: '.$validatedData['name'].' ] Successfully.';
          $action = 'Create';
          $module = 'Model';
          activityLog($userId, $desciption,$action,$module);
@@ -89,7 +89,7 @@ class CarModelController extends Controller
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Deleted [Model Name '.$model['name'].'] Successfully.';
+        $desciption = $userName.' Deleted [ Model Name: '.$model['name'].' ] Successfully.';
         $action = 'Delete';
         $module = 'Model';
         activityLog($userId, $desciption,$action,$module);

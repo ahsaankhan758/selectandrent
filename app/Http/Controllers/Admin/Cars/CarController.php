@@ -196,7 +196,7 @@ public function getLocations($city_id)
        // save logs
        $userId = Auth::id();
        $userName = Auth::user()->name;
-       $desciption = $userName.' Created [ Car Lisence Plate: '.$car->lisence_plate.'] [Car Name '.$car->car_models->name.'] Successfully.';
+       $desciption = $userName.' Created [ Car Lisence Plate: '.$car->lisence_plate.' ] [ Car Name '.$car->car_models->name.' ] Successfully.';
        $action = 'Create';
        $module = 'Car';
        activityLog($userId, $desciption,$action,$module);
@@ -318,7 +318,7 @@ public function getLocations($city_id)
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Updated [ Car Lisence Plate '.$car->lisence_plate.'] [Car Name '.$car->car_models->name.'] Successfully.';
+        $desciption = $userName.' Updated [ Car Lisence Plate: '.$car->lisence_plate.' ] [ Car Name: '.$car->car_models->name.' ] Successfully.';
         $action = 'Update';
         $module = 'Car';
         activityLog($userId, $desciption,$action,$module);
@@ -363,7 +363,7 @@ public function getLocations($city_id)
          // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Deleted [ Car Lisence Plate '.$car->lisence_plate.'] [Car Name '.$car->car_models->name.'] Successfully.';
+         $desciption = $userName.' Deleted [ Car Lisence Plate: '.$car->lisence_plate.' ] [ Car Name: '.$car->car_models->name.' ] Successfully.';
          $action = 'Delete';
          $module = 'Car';
          activityLog($userId, $desciption,$action,$module);
