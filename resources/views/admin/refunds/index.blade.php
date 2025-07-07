@@ -145,7 +145,7 @@
 
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="user_reason" class="form-label">{{ __('messages.customer') }} {{ __('messages.reason') }}</label>
+                                <label for="user_reason" class="form-label">{{ __('messages.cancellation') }} {{ __('messages.reason') }}</label>
                                 <input type="text" name="user-reason" id="user-reason" class="form-control" rows="3" readonly></input>
                             </div>
                             

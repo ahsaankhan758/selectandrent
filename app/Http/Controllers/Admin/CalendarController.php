@@ -154,7 +154,7 @@ return response()->json($vehicles);
             // save logs
             $userId = Auth::id();
             $userName = Auth::user()->name;
-            $desciption = $userName.' Created [ Vehicle License Plate: '.$validated['lisence_plate'].'] [Vehicle Name: '.$vehicle->car_models->name.'] Successfully.';
+            $desciption = $userName.' Created [ Vehicle License Plate: '.$validated['lisence_plate'].' ] [ Vehicle Name: '.$vehicle->car_models->name.' ] Successfully.';
             $action = 'Create';
             $module = 'Vehicle [Calendar]';
             activityLog($userId, $desciption,$action,$module);
@@ -239,7 +239,7 @@ return response()->json($vehicles);
         // save logs
         $userId = Auth::id();
         $userName = Auth::user()->name;
-        $desciption = $userName.' Updated [ Vehicle License Plate: '.$selectedVehicle->lisence_plate.'] [Vehicle Name: '.$selectedVehicle->car_models->name.'] Successfully.';
+        $desciption = $userName.' Updated [ Vehicle License Plate: '.$selectedVehicle->lisence_plate.' ] [ Vehicle Name: '.$selectedVehicle->car_models->name.' ] Successfully.';
         $action = 'Update';
         $module = 'Vehicle [Calendar]';
         activityLog($userId, $desciption,$action,$module);
@@ -277,7 +277,7 @@ return response()->json($vehicles);
         // save logs
          $userId = Auth::id();
          $userName = Auth::user()->name;
-         $desciption = $userName.' Deleted [ Vehicle License Plate: '.$vehical->lisence_plate.'] [Vehicle Name: '.$vehical->car_models->name.'] Successfully.';
+         $desciption = $userName.' Deleted [ Vehicle License Plate: '.$vehical->lisence_plate.' ] [ Vehicle Name: '.$vehical->car_models->name.' ] Successfully.';
          $action = 'Delete';
          $module = 'Vehicle [Calendar]';
          activityLog($userId, $desciption,$action,$module);

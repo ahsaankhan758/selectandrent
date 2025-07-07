@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('id_number');
             $table->string('age')->nullable();
             $table->string('address')->nullable();
-            $table->tinyInteger('status')->default('1')->nullable();
+            $table->tinyInteger('status')->default('1')->comment('	1 = Active, 2 = Inactive, 0 = Pending	');
             $table->timestamps();
             $table->foreign('owner_user_id')->references('id')->on('users')->onDelete('NO ACTION')->onUpdate('cascade');
             $table->foreign('e_user_id')->references('id')->on('users')->onDelete('NO ACTION')->onUpdate('cascade');

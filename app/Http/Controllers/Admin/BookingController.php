@@ -239,6 +239,13 @@ public function carBookingDetail($id, $source)
             Mail::to($booking->user->email)->send(new BookingCancelledMail($booking,  'customer'));
             Mail::to($booking->booking_items->first()?->vehicle?->users->email)->send(new BookingCancelledMail($booking,  'owner'));
 
+            // save logs
+            $userId = Auth::id();
+            $userName = Auth::user()->name;
+            $desciption = $userName.' Cancelled Booking [ Booking Ref: '.$booking['booking_reference'].' ] Successfully.';
+            $action = 'Cancel';
+            $module = 'Booking';
+            activityLog($userId, $desciption,$action,$module);
             return response()->json([
                 'note' => $validated['cancel_reason'],
                 'cancelled_by' => auth()->user()->name,

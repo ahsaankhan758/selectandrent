@@ -1,9 +1,11 @@
  <?php
 
 return [
+  'cancellation' => 'Cancallation',
   'deactivated' => 'Deactivated',
   'deactivate' => 'Deactivate',
   'transaction_id' => 'Transaction ID',
+  'user_cannot_cancel_booking_already' => "You can't cancel this booking because it's has already Cancelled.",
   'user_cannot_cancel_booking'=> "You can't cancel this booking because the vehicle's pickup date has already passed",
   'financials' => 'Financials',
   'cities' => 'Cities',

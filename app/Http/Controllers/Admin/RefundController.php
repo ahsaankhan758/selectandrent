@@ -81,6 +81,14 @@ class RefundController extends Controller
         Mail::to($booking->user->email)->send(new RefundedMail($booking,  'customer'));
         Mail::to($booking->booking_items->first()?->vehicle?->users->email)->send(new RefundedMail($booking,  'company'));
 
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Refunded Booking [ Booking Ref: '.$booking['booking_reference'].' ] Successfully.';
+        $action = 'Refund';
+        $module = 'Booking';
+        activityLog($userId, $desciption,$action,$module);
+
         return response()->json([
             'refunded_by' => auth()->user()->name,
             'refunded_by_role' => auth()->user()->role,

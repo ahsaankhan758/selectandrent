@@ -1,9 +1,11 @@
 <?php
 
 return [
+    'cancellation' => 'Annulation',
     'deactivated' => 'Désactivé',
     'deactivate' => 'Désactiver',
     'transaction_id' => 'Identifiant de la transaction',
+    'user_cannot_cancel_booking_already' => "Vous ne pouvez pas annuler cette réservation car elle a déjà été annulée.",
     'user_cannot_cancel_booking' => "Vous ne pouvez pas annuler cette réservation car la date de prise en charge du véhicule est déjà passée",
     'financials' => 'Finances',
     'cities' => 'Villes',
