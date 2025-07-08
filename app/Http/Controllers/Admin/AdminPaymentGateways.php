@@ -5,6 +5,7 @@ use App\Models\PaymentGateways;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminPaymentGateways extends Controller
 {
@@ -40,7 +41,13 @@ class AdminPaymentGateways extends Controller
                 'dev_endpoint' => $request->dev_endpoint,
                 'pro_endpoint' => $request->pro_endpoint,
             ]);
-
+            // save logs
+            $userId = Auth::id();
+            $userName = Auth::user()->name;
+            $desciption = $userName.' Updated [ Payment Gateway Name: '.$gateway->name.' ] Successfully.';
+            $action = 'Update';
+            $module = 'Payment Gateway';
+            activityLog($userId, $desciption,$action,$module);
             return response()->json(['success' => 'Payment gateway updated successfully!']);
         }
 
@@ -64,6 +71,14 @@ class AdminPaymentGateways extends Controller
         'dev_endpoint' => null,
         'pro_endpoint' => null,
     ]);
+
+    // save logs
+    $userId = Auth::id();
+    $userName = Auth::user()->name;
+    $desciption = $userName.' Created [ Payment Gateway Name: '.$request->name.' ] Successfully.';
+    $action = 'Create';
+    $module = 'Payment Gateway';
+    activityLog($userId, $desciption,$action,$module);
 
     return response()->json(['success' => 'Payment Gateway created successfully.']);
 }

@@ -6,10 +6,10 @@
         <script src="{{asset('/')}}frontend-assets/assets/Js/admin/payment_gateways.js"></script>
 
         <div class="container mt-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <!-- <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4>{{ __('messages.payment-gateway') }}</h4>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGatewayModal">+ {{ __('messages.add-new') }}</button>
-            </div>    
+            </div>     -->
             <form id="gatewayForm" method="POST">
                 @csrf
                 <div class="mb-3">
