@@ -23,7 +23,7 @@ class DashboardController extends Controller
         return redirect('admin/login');
     }
 
-public function dashboard(Request $request)
+    public function dashboard(Request $request)
 {
     $companyUserId = $request->user_id ?? null;
     $countryId = $request->country_id ?? null;
@@ -32,9 +32,8 @@ public function dashboard(Request $request)
     $role = Auth::user()->role;
 
     $companies = Company::where('status', 1)->pluck('name', 'user_id');
-    $countryNames = Country::with('companies')->where('status', 1)->pluck('name','id');
+    $countryNames = Country::with('companies')->where('status', 1)->pluck('name', 'id');
 
-    // Apply filter closure
     $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate, $countryId) {
         if ($companyUserId) {
             $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
@@ -49,12 +48,12 @@ public function dashboard(Request $request)
             });
         }
 
-         if ($startDate && $endDate) {
+        if ($startDate && $endDate) {
             $query->whereHas('booking_items.booking', function ($q) use ($startDate, $endDate) {
-            $q->whereDate('created_at', '>=', $startDate)
-              ->whereDate('created_at', '<=', $endDate);
-        });
-    }
+                $q->whereDate('created_at', '>=', $startDate)
+                  ->whereDate('created_at', '<=', $endDate);
+            });
+        }
 
         $employeeOwner = EmployeeOwner(auth()->id());
         if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
@@ -65,54 +64,58 @@ public function dashboard(Request $request)
         }
     };
 
-    // Create filtered Booking query once
     $filteredBookingQuery = Booking::query();
     $applyFilters($filteredBookingQuery);
 
-    // Card Data
-    // $totalCars = Car::where(function ($q) use ($applyFilters) {
-    //     $applyFilters($q);
-    // })->count();
-    $totalCars = Car::where(FilterHelper::carFilter())->count(); 
+    $totalCars = Car::where(FilterHelper::carFilter())->count();
 
     $bookedCars = Car::where('is_booked', '1')
         ->where(function ($q) use ($applyFilters) {
             $applyFilters($q);
         })->count();
 
-    // $totalCars    = Car::where(FilterHelper::carFilter())->count();
-    // $bookedCars   = Car::where('is_booked', '1')->where(FilterHelper::carFilter())->count();
     $totalbooking = (clone $filteredBookingQuery)->count();
-    // $totalbooking = Booking::where(FilterHelper::companyFilter())->count();
-    // print_r($totalbooking);die;
+
     $totalrevenue = 0;
     $totalpending = 0;
     $commission = 0;
-    // 1. Convert revenue and commission for PAID bookings
-    $paidBookings = (clone $filteredBookingQuery)->where('payment_status', 'paid')->whereIn('booking_status', ['completed', 'confirmed'])->get();
+
+    $paidBookings = (clone $filteredBookingQuery)
+        ->where('payment_status', 'paid')
+        ->whereIn('booking_status', ['completed', 'confirmed'])
+        ->get();
+
     foreach ($paidBookings as $booking) {
         $totalrevenue += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
         $commission += administratorConvertCurrency($booking->commission, $booking->currency, 'USD', 2, 0);
     }
-    // 2. Convert pending total for PENDING bookings
+
     $pendingBookings = (clone $filteredBookingQuery)->where('payment_status', 'pending')->get();
+
     foreach ($pendingBookings as $booking) {
         $totalpending += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
     }
-    // 3. Final payout calculation
-    $payoutcompany = $totalrevenue - $commission;
-    // $totalrevenue = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('total_price');
-    // $totalpending = (clone $filteredBookingQuery)->where('payment_status', 'pending')->sum('total_price');
-    // $commission   = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('commission');
-    // $payoutcompany= $totalrevenue - $commission;
 
+    $payoutcompany = $totalrevenue - $commission;
+
+    $cancelledCar = (clone $filteredBookingQuery)
+        ->where('payment_status', 'paid')
+        ->where('booking_status', 'cancelled')
+        ->count();
+
+    $refundedamount = (clone $filteredBookingQuery)
+        ->where('payment_status', 'refunded')
+        ->where('booking_status', 'refunded')
+        ->sum('total_price');
 
     $customers = User::whereHas('bookings', function ($q) use ($applyFilters) {
         $applyFilters($q);
     })->count();
 
-    $totalcancelled = (clone $filteredBookingQuery)->where('payment_status', 'failed')
-        ->whereDate('created_at', Carbon::today())->count();
+    $totalcancelled = (clone $filteredBookingQuery)
+        ->where('payment_status', 'failed')
+        ->whereDate('created_at', Carbon::today())
+        ->count();
 
     $reminder = Reminder::where('user_id', auth()->id())->latest()->take(10)->get();
 
@@ -127,17 +130,19 @@ public function dashboard(Request $request)
     $formattedChartData = [];
     for ($i = 1; $i <= 12; $i++) {
         $record = $bookingChartData[$i] ?? collect();
-        $formattedChartData[] = [
+       $formattedChartData[] = [
             'month'     => date('M', mktime(0, 0, 0, $i, 10)),
             'Pending'   => $record->firstWhere('booking_status', 'pending')->count ?? 0,
             'Confirmed' => $record->firstWhere('booking_status', 'confirmed')->count ?? 0,
             'Completed' => $record->firstWhere('booking_status', 'completed')->count ?? 0,
+            'Cancelled' => $record->firstWhere('booking_status', 'cancelled')->count ?? 0,
+            'Refunded'  => $record->firstWhere('booking_status', 'refunded')->count ?? 0,
         ];
     }
 
     if ($request->ajax()) {
         $html = view('admin.dashboard', compact(
-            'reminder', 'totalCars', 'payoutcompany', 'customers',
+            'reminder', 'totalCars', 'payoutcompany', 'cancelledCar', 'refundedamount', 'customers',
             'bookedCars', 'commission', 'totalrevenue', 'totalbooking',
             'totalcancelled', 'totalpending', 'formattedChartData',
             'companies', 'companyUserId', 'countryNames', 'countryId'
@@ -167,14 +172,171 @@ public function dashboard(Request $request)
     }
 
     return view('admin.dashboard', compact(
-        'reminder', 'totalCars', 'payoutcompany', 'customers',
+        'reminder', 'totalCars', 'payoutcompany', 'cancelledCar', 'refundedamount', 'customers',
         'bookedCars', 'commission', 'totalrevenue', 'totalbooking',
         'totalcancelled', 'totalpending', 'formattedChartData',
         'companies', 'companyUserId', 'countryNames', 'countryId'
     ));
 }
 
+// public function dashboard(Request $request)
+// {
+//     $companyUserId = $request->user_id ?? null;
+//     $countryId = $request->country_id ?? null;
+//     $startDate = $request->start_date ? date('Y-m-d', strtotime($request->start_date)) : null;
+//     $endDate = $request->end_date ? date('Y-m-d', strtotime($request->end_date)) : null;
+//     $role = Auth::user()->role;
 
+//     $companies = Company::where('status', 1)->pluck('name', 'user_id');
+//     $countryNames = Country::with('companies')->where('status', 1)->pluck('name','id');
+
+//     // Apply filter closure
+//     $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate, $countryId) {
+//         if ($companyUserId) {
+//             $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+//                 $q->where('user_id', $companyUserId);
+//             });
+//         }
+
+//         if ($countryId) {
+//             $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+//             $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
+//                 $q->whereIn('user_id', $companyUserIds);
+//             });
+//         }
+
+//          if ($startDate && $endDate) {
+//             $query->whereHas('booking_items.booking', function ($q) use ($startDate, $endDate) {
+//             $q->whereDate('created_at', '>=', $startDate)
+//               ->whereDate('created_at', '<=', $endDate);
+//         });
+//     }
+
+//         $employeeOwner = EmployeeOwner(auth()->id());
+//         if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
+//             $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
+//             $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+//                 $q->where('user_id', $userId);
+//             });
+//         }
+//     };
+
+//     // Create filtered Booking query once
+//     $filteredBookingQuery = Booking::query();
+//     $applyFilters($filteredBookingQuery);
+
+//     // Card Data
+//     // $totalCars = Car::where(function ($q) use ($applyFilters) {
+//     //     $applyFilters($q);
+//     // })->count();
+//     $totalCars = Car::where(FilterHelper::carFilter())->count(); 
+
+//     $bookedCars = Car::where('is_booked', '1')
+//         ->where(function ($q) use ($applyFilters) {
+//             $applyFilters($q);
+//         })->count();
+
+//     // $totalCars    = Car::where(FilterHelper::carFilter())->count();
+//     // $bookedCars   = Car::where('is_booked', '1')->where(FilterHelper::carFilter())->count();
+//     $totalbooking = (clone $filteredBookingQuery)->count();
+//     // $totalbooking = Booking::where(FilterHelper::companyFilter())->count();
+//     // print_r($totalbooking);die;
+//     $totalrevenue = 0;
+//     $totalpending = 0;
+//     $commission = 0;
+//     // 1. Convert revenue and commission for PAID bookings
+//     $paidBookings = (clone $filteredBookingQuery)->where('payment_status', 'paid')->whereIn('booking_status', ['completed', 'confirmed'])->get();
+//     foreach ($paidBookings as $booking) {
+//         $totalrevenue += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
+//         $commission += administratorConvertCurrency($booking->commission, $booking->currency, 'USD', 2, 0);
+//     }
+//     // 2. Convert pending total for PENDING bookings
+//     $pendingBookings = (clone $filteredBookingQuery)->where('payment_status', 'pending')->get();
+//     foreach ($pendingBookings as $booking) {
+//         $totalpending += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
+//     }
+//     // 3. Final payout calculation
+//     $payoutcompany = $totalrevenue - $commission;
+//     // $totalrevenue = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('total_price');
+//     // $totalpending = (clone $filteredBookingQuery)->where('payment_status', 'pending')->sum('total_price');
+//     // $commission   = (clone $filteredBookingQuery)->where('payment_status', 'paid')->sum('commission');
+//     // $payoutcompany= $totalrevenue - $commission;
+//    $cancelledCar = (clone $filteredBookingQuery)
+//     ->where('payment_status', 'paid')
+//     ->where('booking_status', 'refunded')
+//     ->count();
+//     $refundedamount = (clone $filteredBookingQuery)
+//     ->where('payment_status', 'paid')
+//     ->where('booking_status', 'refunded')
+//     ->count();
+
+
+//     $customers = User::whereHas('bookings', function ($q) use ($applyFilters) {
+//         $applyFilters($q);
+//     })->count();
+
+//     $totalcancelled = (clone $filteredBookingQuery)->where('payment_status', 'failed')
+//         ->whereDate('created_at', Carbon::today())->count();
+
+//     $reminder = Reminder::where('user_id', auth()->id())->latest()->take(10)->get();
+
+//     $bookingChartData = (clone $filteredBookingQuery)
+//         ->selectRaw('MONTH(created_at) as month, booking_status, COUNT(*) as count')
+//         ->whereYear('created_at', now()->year)
+//         ->groupBy('month', 'booking_status')
+//         ->orderBy('month')
+//         ->get()
+//         ->groupBy('month');
+
+//     $formattedChartData = [];
+//     for ($i = 1; $i <= 12; $i++) {
+//         $record = $bookingChartData[$i] ?? collect();
+//         $formattedChartData[] = [
+//             'month'     => date('M', mktime(0, 0, 0, $i, 10)),
+//             'Pending'   => $record->firstWhere('booking_status', 'pending')->count ?? 0,
+//             'Confirmed' => $record->firstWhere('booking_status', 'confirmed')->count ?? 0,
+//             'Completed' => $record->firstWhere('booking_status', 'completed')->count ?? 0,
+//         ];
+//     }
+
+//     if ($request->ajax()) {
+//         $html = view('admin.dashboard', compact(
+//             'reminder', 'totalCars', 'payoutcompany','cancelledCar','refundedamount', 'customers',
+//             'bookedCars', 'commission', 'totalrevenue', 'totalbooking',
+//             'totalcancelled', 'totalpending', 'formattedChartData',
+//             'companies', 'companyUserId', 'countryNames', 'countryId'
+//         ))->render();
+
+//         $dom = new \DOMDocument();
+//         libxml_use_internal_errors(true);
+//         $dom->loadHTML($html);
+//         libxml_clear_errors();
+
+//         $xpath = new \DOMXPath($dom);
+//         $cardsHtml = '';
+//         $tableHtml = '';
+
+//         if ($cardsNode = $xpath->query('//*[@id="cards-container"]')->item(0)) {
+//             $cardsHtml = $dom->saveHTML($cardsNode);
+//         }
+//         if ($tableNode = $xpath->query('//*[@id="dashboardtable"]')->item(0)) {
+//             $tableHtml = $dom->saveHTML($tableNode);
+//         }
+
+//         return response()->json([
+//             'cards'     => $cardsHtml,
+//             'table'     => $tableHtml,
+//             'chartData' => $formattedChartData,
+//         ]);
+//     }
+
+//     return view('admin.dashboard', compact(
+//         'reminder', 'totalCars', 'payoutcompany', 'customers',
+//         'bookedCars', 'commission', 'totalrevenue', 'totalbooking',
+//         'totalcancelled', 'totalpending', 'formattedChartData',
+//         'companies', 'companyUserId', 'countryNames', 'countryId','cancelledCar','refundedamount'
+//     ));
+// }
     // Earning Dashboard
     // public function dashboard()
     // {
