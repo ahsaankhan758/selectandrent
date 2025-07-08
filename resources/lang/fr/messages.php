@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'assign' => 'Attribuer',
+    'general_module' => 'Module Général',
     'cancellation' => 'Annulation',
     'deactivated' => 'Désactivé',
     'deactivate' => 'Désactiver',
