@@ -1,6 +1,8 @@
 <?php 
 
 return [
+    'assign' => 'تعيين',
+    'general_module' => 'الوحدة العامة',
     'cancellation' => 'إلغاء',
     'deactivated' => 'تم التعطيل',
     'deactivate' => 'تعطيل',

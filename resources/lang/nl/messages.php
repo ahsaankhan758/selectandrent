@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'assign' => 'Toewijzen',
+    'general_module' => 'Algemene Module',
     'cancellation' => 'Annulering',
     'deactivated' => 'Gedeactiveerd',
     'deactivate' => 'Deactiveren',
