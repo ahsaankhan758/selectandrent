@@ -48,16 +48,16 @@ class BookingController extends Controller
     //         $q->where('user_id', Auth::id());
     //     });
     // }
+
     // Company or employee of company filter
-$employeeOwner = EmployeeOwner(auth()->id());
-if (auth()->user()->role === 'company' || (isset($employeeOwner) && $employeeOwner->role === 'company')) {
-    $userId = (auth()->user()->role === 'company') ? auth()->id() : $employeeOwner->id;
+    $employeeOwner = EmployeeOwner(auth()->id());
+    if (auth()->user()->role === 'company' || (isset($employeeOwner) && $employeeOwner->role === 'company')) {
+        $userId = (auth()->user()->role === 'company') ? auth()->id() : $employeeOwner->id;
 
-    $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
-        $q->where('user_id', $userId);
-    });
-}
-
+        $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+            $q->where('user_id', $userId);
+        });
+    }
 
     // Specific filters based on clicked card
     switch ($request->filter) {
@@ -91,6 +91,16 @@ if (auth()->user()->role === 'company' || (isset($employeeOwner) && $employeeOwn
         case 'cancelled':
             $query->where('booking_status', 'cancelled');
             break;
+
+        case 'cancelledCar':
+        $query->where('payment_status', 'paid')
+              ->where('booking_status', 'cancelled');
+        break;
+
+        case 'refunded':
+        $query->where('payment_status', 'refunded')
+              ->where('booking_status', 'refunded');
+        break;    
 
         default:
             break;
