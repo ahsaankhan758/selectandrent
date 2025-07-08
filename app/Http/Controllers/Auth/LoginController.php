@@ -35,7 +35,7 @@ class LoginController extends Controller
                 // save logs
                 $userId = $user->id;
                 $userName = $user->name;
-                $desciption = $userName.' Logged In. User Role Was'.$user->role;
+                $desciption = $userName.' Logged In. User Role Was '.$user->role;
                 $action = 'Logged In';
                 $module = 'Admin';
                 activityLog($userId, $desciption,$action,$module);
@@ -50,7 +50,7 @@ class LoginController extends Controller
                 // save logs
                 $userId = $user->id;
                 $userName = $user->name;
-                $desciption = $userName.' Logged In. User Role Was'.$user->role;
+                $desciption = $userName.' Logged In. User Role Was '.$user->role;
                 $action = 'Logged In';
                 $module = 'Company';
                 activityLog($userId, $desciption,$action,$module);
@@ -65,7 +65,7 @@ class LoginController extends Controller
                 // save logs
                 $userId = $user->id;
                 $userName = $user->name;
-                $desciption = $userName.' Logged In. User Role Was'.$user->role;
+                $desciption = $userName.' Logged In. User Role Was '.$user->role;
                 $action = 'Logged In';
                 $module = 'Employee';
                 activityLog($userId, $desciption,$action,$module);

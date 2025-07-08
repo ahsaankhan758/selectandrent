@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Auth;
 
 class AdminContactController extends Controller
 {
@@ -27,8 +28,21 @@ public function received()
             'selected_ids.*' => 'exists:contacts,id', 
         ]);
     
+        $contacts = Contact::whereIn('id', $request->selected_ids)->get(); // fetch first
+
+        foreach ($contacts as $contact) {
+            // save logs for each contact
+            $userId = Auth::id();
+            $userName = Auth::user()->name;
+            $description = $userName . ' Deleted [ Contact Email: ' . $contact->email . ' ] Successfully.';
+            $action = 'Deleted';
+            $module = 'Contact';
+            activityLog($userId, $description, $action, $module);
+        }
+
+        // now delete them
         Contact::whereIn('id', $request->selected_ids)->delete();
-    
+
         return redirect()->route('contact.received')->with('status', 'Selected contacts deleted successfully.');
     }
 
