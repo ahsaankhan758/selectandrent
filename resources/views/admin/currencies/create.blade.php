@@ -15,13 +15,13 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="name">{{ __('messages.name') }}</lable>
+                                    <label for="name">{{ __('messages.name') }}</label>
                                     <input type="text" name="name" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-6">    
                                 <div class="form-group mb-3">
-                                    <lable for="symbol">{{ __('messages.symbol') }} </lable>
+                                    <label for="symbol">{{ __('messages.symbol') }} </label>
                                     <input type="text" name="symbol" class="form-control">
                                 </div>
                             </div>
@@ -29,27 +29,27 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="code">{{ __('messages.code') }}</lable>
+                                    <label for="code">{{ __('messages.code') }}</label>
                                     <input type="text" name="code" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-6">    
                                 <div class="form-group mb-3">
-                                    <lable for="rate">{{ __('messages.rate') }} </lable>
-                                    <input type="text" name="rate" class="form-control">
+                                    <label for="rate">{{ __('messages.rate') }} </label>
+                                    <input type="number" name="rate" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="decimals">{{ __('messages.decimals') }}</lable>
-                                    <input type="text" name="decimals" class="form-control" >
+                                    <label for="decimals">{{ __('messages.decimals') }}</label>
+                                    <input type="number" name="decimals" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="primary_order">{{ __('messages.primary_order') }}</lable>
+                                    <label for="primary_order">{{ __('messages.primary_order') }}</label>
                                     <input type="text" name="primary_order" class="form-control" >
                                 </div>
                             </div>  
@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="symbol_placement">{{ __('messages.symbol_placement') }}</lable>
+                                    <label for="symbol_placement">{{ __('messages.symbol_placement') }}</label>
                                     <select name="symbol_placement" class="form-control">
                                         <option disabled selected>Select</option>
                                         <option value="before">Before</option>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="is_active">{{ __('messages.is_active') }}</lable>
+                                    <label for="is_active">{{ __('messages.is_active') }}</label>
                                     <select name="is_active" class="form-control">
                                         <option disabled selected>Select</option>
                                         <option value="Yes">Yes</option>

@@ -37,9 +37,26 @@ class GeneralModuleController extends Controller
     if ($module) {
         $module->update($data);
         $message = 'General Module updated successfully!';
+
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Updated General Module Successfully.';
+        $action = 'Update';
+        $module = 'General Module';
+        activityLog($userId, $desciption,$action,$module);
     } else {
         GeneralModule::create($data);
         $message = 'General Module created successfully!';
+
+        // save logs
+        $userId = Auth::id();
+        $userName = Auth::user()->name;
+        $desciption = $userName.' Created General Module Successfully.';
+        $action = 'Create';
+        $module = 'General Module';
+        activityLog($userId, $desciption,$action,$module);
+
     }
 
     return redirect()->back()->with('success', $message);
