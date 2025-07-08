@@ -63,7 +63,10 @@ class PaymentGatewaysController extends Controller
             $commission = GeneralModule::with(['user' => function ($query) {
                 $query->where('role', 'admin');
             }])->where('user_id', 1)->first();
-            $commissionPercentage = $commission->commissions;
+
+            $commission = $commission->commissions ?? 10;
+            $commissionPercentage = $commission;
+
             $commissionRate = $commissionPercentage / 100; 
             $total_commission = $bookingData['total'][0] * $commissionRate;
             // 
@@ -145,7 +148,7 @@ class PaymentGatewaysController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => 'working..',
+                'message' => 'We are working on Paypal..',
                 'redirect_url' => '',
             ]);
 
