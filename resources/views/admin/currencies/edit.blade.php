@@ -16,13 +16,13 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="name">{{ __('messages.name') }}</lable>
+                                    <label for="name">{{ __('messages.name') }}</label>
                                     <input type="text" name="name" class="form-control" value="{{ $currency->name ?? '' }}">
                                 </div>
                             </div>
                             <div class="col-6">    
                                 <div class="form-group mb-3">
-                                    <lable for="symbol">{{ __('messages.symbol') }} </lable>
+                                    <label for="symbol">{{ __('messages.symbol') }} </label>
                                     <input type="text" name="symbol" class="form-control" value="{{ $currency->symbol ?? '' }}">
                                 </div>
                             </div>
@@ -30,27 +30,27 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="code">{{ __('messages.code') }}</lable>
+                                    <label for="code">{{ __('messages.code') }}</label>
                                     <input type="text" name="code" class="form-control" value="{{ $currency->code ?? '' }}">
                                 </div>
                             </div>
                             <div class="col-6">    
                                 <div class="form-group mb-3">
-                                    <lable for="rate">{{ __('messages.rate') }} </lable>
-                                    <input type="text" name="rate" class="form-control" value="{{ $currency->rate ?? '' }}">
+                                    <label for="rate">{{ __('messages.rate') }} </label>
+                                    <input type="number" name="rate" class="form-control" value="{{ $currency->rate ?? '' }}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="decimals">{{ __('messages.decimals') }}</lable>
-                                    <input type="text" name="decimals" class="form-control" value="{{ $currency->decimals ?? '' }}">
+                                    <label for="decimals">{{ __('messages.decimals') }}</label>
+                                    <input type="number" name="decimals" class="form-control" value="{{ $currency->decimals ?? '' }}">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="primary_order">{{ __('messages.primary_order') }}</lable>
+                                    <label for="primary_order">{{ __('messages.primary_order') }}</label>
                                     <input type="text" name="primary_order" class="form-control" value="{{ $currency->primary_order ?? '' }}">
                                 </div>
                             </div>  
@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="symbol_placement">{{ __('messages.symbol_placement') }}</lable>
+                                    <label for="symbol_placement">{{ __('messages.symbol_placement') }}</label>
                                     <select name="symbol_placement" class="form-control">
                                         <option disabled {{ empty($currency->symbol_placement) ? 'selected' : '' }}>Select</option>
                                         <option value="before" {{ $currency->symbol_placement == 'before' ? 'selected' : '' }}>Before</option>
@@ -68,7 +68,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group mb-3">
-                                    <lable for="is_active">{{ __('messages.is_active') }}</lable>
+                                    <label for="is_active">{{ __('messages.is_active') }}</label>
                                     <select name="is_active" class="form-control">
                                         <option disabled {{ empty($currency->is_active) ? 'selected' : '' }}>Select</option>
                                         <option value="Yes" {{ $currency->is_active == 'Yes' ? 'selected' : '' }}>Yes</option>
