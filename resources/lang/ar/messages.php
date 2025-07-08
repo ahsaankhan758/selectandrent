@@ -1,6 +1,13 @@
 <?php 
 
 return [
+    'reference' => 'المرجع',
+    'items' => 'العناصر',
+    'price' => 'السعر',
+    'required' => 'مطلوب',
+    'subtotal' => 'المجموع الفرعي',
+    'pickup' => 'استلام',
+    'dropoff' => 'توصيل',
     'cancellation' => 'إلغاء',
     'deactivated' => 'تم التعطيل',
     'deactivate' => 'تعطيل',
@@ -235,7 +242,7 @@ return [
 'Register with car rental' => 'سجل مع تأجير السيارات',
 'Login with car rental' => 'تسجيل الدخول باستخدام تأجير السيارات',
 'Blog' => 'مدونة',
-'Select and Rent' => 'اختر واستأجر',
+'select_and_rent' => 'اختر واستأجر',
 'From the Blog' => 'من المدونة',
 'Car And Bike Rental News' => 'أخبار تأجير السيارات والدراجات',
 'by' => 'بواسطة',
