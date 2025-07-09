@@ -1,6 +1,10 @@
 <?php 
 
 return [
+
+    'assign' => 'تعيين',
+    'general_module' => 'الوحدة العامة',
+
     'reference' => 'المرجع',
     'items' => 'العناصر',
     'price' => 'السعر',
@@ -8,6 +12,7 @@ return [
     'subtotal' => 'المجموع الفرعي',
     'pickup' => 'استلام',
     'dropoff' => 'توصيل',
+
     'cancellation' => 'إلغاء',
     'deactivated' => 'تم التعطيل',
     'deactivate' => 'تعطيل',

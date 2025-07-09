@@ -1,6 +1,10 @@
 <?php
 
 return [
+
+    'assign' => 'Attribuer',
+    'general_module' => 'Module Général',
+
     'reference' => 'Référence',
     'items' => 'Articles',
     'price' => 'Prix',
@@ -8,6 +12,7 @@ return [
     'subtotal' => 'Sous-total',
     'pickup' => 'Ramassage',
     'dropoff' => 'Dépose',
+
     'cancellation' => 'Annulation',
     'deactivated' => 'Désactivé',
     'deactivate' => 'Désactiver',

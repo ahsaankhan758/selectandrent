@@ -1,6 +1,10 @@
 <?php
 
 return [
+
+    'assign' => 'Toewijzen',
+    'general_module' => 'Algemene Module',
+
     'reference' => 'Referentie',
     'items' => 'Artikelen',
     'price' => 'Prijs',
@@ -8,6 +12,7 @@ return [
     'subtotal' => 'Subtotaal',
     'pickup' => 'Ophalen',
     'dropoff' => 'Afzetten',
+
     'cancellation' => 'Annulering',
     'deactivated' => 'Gedeactiveerd',
     'deactivate' => 'Deactiveren',
