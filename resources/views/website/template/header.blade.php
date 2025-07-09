@@ -470,14 +470,9 @@
                 @csrf
                 <div class="col-md-12">
                     <div class="row g-2">
-                        {{-- <div class="col-md-6 col-12">
-                            <input type="text" id="area_name" name="area_name" class="form-control"
-                                placeholder="Select Location" autocomplete="off">
-                            <ul id="locationSuggestions" class="list-group"></ul>
-                        </div> --}}
                         <div class="col-md-6 col-12 position-relative">
                             <input type="text" id="area_name" name="area_name" class="form-control time-input pickup-time"
-                                placeholder="Select Location" autocomplete="off">
+                             data-label="{{ __('messages.Select Location') }}" autocomplete="off">
                             <ul id="locationSuggestions" class="list-group position-absolute w-100"
                                 style="z-index: 1000;"></ul>
                         </div>
@@ -489,14 +484,14 @@
                     </div>
                     <div class="row g-2 mt-1">
                         <div class="col-md-3 col-6">
-                            <select id="brandDropdown" name="brand" class="form-select"
+                            <select id="brandDropdown" data-label="{{ __('messages.brand') }}" name="brand" class="form-select"
                                 data-url="{{ route('car.brands') }}">
                                 <option disabled selected>{{ __('messages.brand') }}</option>
                             </select>
                         </div>
                         <div class="col-md-3 col-6">
-                            <select id="modelDropdown" name="model" class="form-select">
-                                <option disabled selected>{{ __('messages.all') }} {{ __('messages.models') }}
+                            <select id="modelDropdown" data-label="{{ __('messages.models') }}" name="model" class="form-select">
+                                <option disabled selected>{{ __('messages.models') }}
                                 </option>
                             </select>
                         </div>
@@ -509,7 +504,7 @@
                             </select>
                         </div>
                         <div class="col-md-3 col-6">
-                            <select id="transmissionDropdown" name="transmission" class="form-select">
+                            <select id="transmissionDropdown" data-label="{{ __('messages.transmission') }}" name="transmission" class="form-select">
                                 <option disabled selected>{{ __('messages.transmission') }}</option>
                             </select>
                         </div>
