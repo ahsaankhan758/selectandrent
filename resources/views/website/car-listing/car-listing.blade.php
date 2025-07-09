@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.Car Listing') }} | {{ __('messages.Select and Rent') }}
+    {{ __('messages.Car Listing') }} 
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
                 <div class="text-center mb-5">
                     @if ($totalCars > 8)
                         <button class="load-more-btn btn btn-orange-clr text-white" data-target="car-list"
-                            data-url="{{ route('load.more.cars') }}" data-offset="8" data-total="{{ $totalCars }}"
+                            data-url="{{ route('load.more.cars') }}" data-offset="8" data-total="{{ $totalCars }}" 
                             data-model="Car">
                             {{ __('messages.Load More') }}
                         </button>

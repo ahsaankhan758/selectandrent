@@ -45,9 +45,9 @@
                         <thead>
                         <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">{{ __('messages.name') }}</th>
                             @if(can('cities','edit') && auth()->user()->role != 'company' )
-                                <th scope="col">Action</th>
+                                <th scope="col">{{ __('messages.action') }}</th>
                             @endif
                         </tr>
                         </thead>

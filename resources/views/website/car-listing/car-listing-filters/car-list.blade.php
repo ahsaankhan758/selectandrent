@@ -34,7 +34,7 @@
                     @php
                         $companyProfile = $car->users->companies->company_profile ?? null;
                     @endphp
-                    <img src="{{ asset($companyProfile ?? 'frontend-assets/assets/customeruser.png') }}" alt="Company Logo"
+                    <img src="{{ asset($companyProfile ?? 'frontend-assets/assets/customeruser.png') }}" alt="Company Logo" title="{{ optional($car->users->companies)->name ?? optional($car->users)->name }}"
                          width="40" height="40" class="rounded-circle" style="object-fit: cover;">
                 </div>
             </div>

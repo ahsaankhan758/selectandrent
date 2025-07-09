@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.Home Page') }} | {{ __('messages.Select and Rent') }}
+    {{ __('messages.Home Page') }} 
 @endsection
 
 @section('content')
@@ -317,7 +317,7 @@
                                         @if($companyProfile)
                                             <img src="{{ asset($companyProfile) }}" alt="Company Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
                                         @else
-                                            <img src="{{ asset('frontend-assets/assets/customeruser.png') }}" alt="Default Logo" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
+                                            <img src="{{ asset('frontend-assets/assets/customeruser.png') }}" alt="Default Logo" title="{{ optional($car->users->companies)->name ?? optional($car->users)->name }}" width="40" height="40" style="object-fit: cover; border-radius: 50%;">
                                         @endif
                                     </div>
                                     </div>
