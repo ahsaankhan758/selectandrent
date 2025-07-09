@@ -7,7 +7,7 @@
   <div class="col-12">
     <div class="card mt-4">
         <div class="card-header">
-            <h4>Add General Module</h4>
+            <h4>{{ __('messages.general_module') }}</h4>
         </div>
         <div class="card-body">
             @if (session('success'))
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>
                 </div>
             </form>
         </div>

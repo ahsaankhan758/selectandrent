@@ -1,6 +1,9 @@
  <?php
 
 return [
+
+  'general_module' => 'General Module',
+
   'reference' => 'Reference',
   'items' => 'Items',
   'price' => 'Price',
@@ -8,6 +11,7 @@ return [
   'subtotal' => 'Subtotal',
   'pickup' => 'PickUp',
   'dropoff' => 'DropOff',
+
   'cancellation' => 'Cancallation',
   'deactivated' => 'Deactivated',
   'deactivate' => 'Deactivate',
@@ -108,7 +112,7 @@ return [
     'personal' =>'Personal',
     'information' => 'Information',
     'listings' => 'Listings',
-    'lisence plate' => 'Lisnece Plate',
+    'lisence plate' => 'License Plate',
     'city' => 'City',
     'fuel type' => 'Fuel Type',
     'transmission' => 'Transmission',
@@ -546,17 +550,14 @@ return [
     'Password'=>'Password',
     'profile'=>'Profile',
     'of'=>'Of',
-
     'engine'=>'Engine',
     'permissions'=>'Permissions',
     // payment gateway
     'payment-gateway'=>'Payment Gateways',
-
     'assign'=>'Assign',
     'set'=>'Set',
     'view'=>'View',
-  
-    
+
     'app' => 'APP | APPS',
     'title' => 'Title',
     'titles' => 'Titles',
