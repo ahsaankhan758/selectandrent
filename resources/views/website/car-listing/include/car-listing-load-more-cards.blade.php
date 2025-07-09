@@ -56,7 +56,7 @@
 <div class="col-sm-6 col-md-6 col-lg-6 mb-4">
     <div class="custom-card2 p-3 shadow-sm rounded">
         <a href="{{ url('/cardetail/' . $car->id) }}" class="link text-decoration-none">
-            <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img img-fluid mb-2 rounded" alt="Car Image">
+            <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img-2 img-fluid mb-2 rounded" alt="Car Image">
         </a>
         <div class="card-content">
             <div class="d-flex justify-content-between align-items-start mb-2">

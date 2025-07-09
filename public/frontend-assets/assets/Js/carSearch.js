@@ -92,7 +92,8 @@ $(document).ready(function () {
         e.preventDefault();
         let form = $(this);
         let submitBtn = form.find('button[type="submit"]');
-        submitBtn.prop('disabled', true).html(`<img src="../frontend-assets/assets/loader.gif" alt="Loading..." width="25">`);
+
+        submitBtn.prop('disabled', true).text('Processing...');
 
         $.ajax({
             url: form.attr('action'),
@@ -100,16 +101,17 @@ $(document).ready(function () {
             data: form.serialize(),
             dataType: 'json',
             success: function (response) {
-                submitBtn.prop('disabled', false).html('Search <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>');
-
                 if (response.status && response.redirect_url) {
-                    window.location.href = response.redirect_url; // Redirect where session will be used
+                    setTimeout(function () {
+                        window.location.href = response.redirect_url;
+                    }, 300);
                 } else {
                     showToast('No cars found or redirect failed.', "error");
+                    submitBtn.prop('disabled', false).text('Search');
                 }
             },
             error: function (xhr) {
-                submitBtn.prop('disabled', false).html('Search <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>');
+                submitBtn.prop('disabled', false).text('Search');
 
                 if (xhr.status === 422 && xhr.responseJSON.errors) {
                     let errorMsg = '';
@@ -119,6 +121,8 @@ $(document).ready(function () {
                     showToast(errorMsg, "error");
                 } else if (xhr.responseJSON && xhr.responseJSON.message) {
                     showToast(xhr.responseJSON.message, "error");
+                } else {
+                    showToast('Something went wrong.', "error");
                 }
             }
         });
