@@ -1,17 +1,7 @@
  <?php
 
 return [
-
   'general_module' => 'General Module',
-
-  'reference' => 'Reference',
-  'items' => 'Items',
-  'price' => 'Price',
-  'required' => 'Required',
-  'subtotal' => 'Subtotal',
-  'pickup' => 'PickUp',
-  'dropoff' => 'DropOff',
-
   'cancellation' => 'Cancallation',
   'deactivated' => 'Deactivated',
   'deactivate' => 'Deactivate',
@@ -242,7 +232,7 @@ return [
     'Login with car rental' => 'Login with car rental',
     'Round-the-clock' => 'Round-the-clock',
     'Blog' => 'Blog',
-    'select_and_rent' => 'Select and Rent',
+    'Select and Rent' => 'Select and Rent',
     'From the Blog' => 'From the Blog',
     'Car And Bike Rental News' => 'Car And Bike Rental News',
     'by' => 'by',
@@ -381,7 +371,7 @@ return [
     'Select Location' => 'Select Location',
     'Dropoff Location' => 'Dropoff Location',
     'Pickup Date' => 'Pickup Date',
-    'Drop-off Date' => 'DropOff Date',
+    'Drop-off Date' => 'Drop-off Date',
     'Vehicle Info' => 'Vehicle Info',
     'Price' => 'Price',
     'Days' => 'Days',
@@ -563,7 +553,7 @@ return [
     'titles' => 'Titles',
     'client' => 'Client | Clients',
     'plan' => 'Plan | Plans',
-    'driver' => 'Driver',
+    'driver' => 'Driver | Drivers',
     'payment' => 'Payment | Payments',
 
     'payment-module' => 'Payment Modules',
