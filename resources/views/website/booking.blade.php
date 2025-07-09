@@ -1,7 +1,7 @@
 @extends('website.layout.master')
 
 @section('title')
-Bookings | Select and Rent 
+{{ __('messages.bookings') }} 
 @endsection
 
 @section('content')
@@ -74,6 +74,7 @@ Bookings | Select and Rent
             height: auto;
             display: block;
         }
+
     </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
@@ -108,12 +109,17 @@ Bookings | Select and Rent
                             <a href="{{ route('website.bookingdetail', $booking->id) }}" class="me-2" title="View Booking">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <span class="text-muted mx-2">|</span>
-
-                            <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" data-review-booking-id="{{ $booking->id }}" title="Give Review" class="ms-2">
-
-                                <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
-                            </a>
+                            @if(!empty($booking->booking_items->first()->actual_dropoff_datetime))
+                              <span class="text-muted mx-2">|</span>
+                              <a href="javascript::void(0)" id="getVehicleId" data-bs-toggle="modal" data-bs-target="#reviewModal" data-vehicle-id="{{ optional($booking->booking_items->first())->vehicle_id }}" data-review-booking-id="{{ $booking->id }}" title="Give Review" class="ms-2">
+                                  <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="Give Review" alt="Give Review">
+                              </a>
+                            @else
+                              <span class="text-muted mx-2">|</span>
+                              <a class="ms-2">
+                                  <img src="{{asset('/')}}frontend-assets/icons/review.webp" width="20px" height="20px" data-bs-toggle="tooltip" title="You can leave a review once the order is completed">
+                              </a>
+                            @endif
                         </div>
                     </td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->user->name }}</td>

@@ -1,8 +1,18 @@
 <?php
 
 return [
+
     'assign' => 'Attribuer',
     'general_module' => 'Module Général',
+
+    'reference' => 'Référence',
+    'items' => 'Articles',
+    'price' => 'Prix',
+    'required' => 'Obligatoire',
+    'subtotal' => 'Sous-total',
+    'pickup' => 'Ramassage',
+    'dropoff' => 'Dépose',
+
     'cancellation' => 'Annulation',
     'deactivated' => 'Désactivé',
     'deactivate' => 'Désactiver',
@@ -231,7 +241,7 @@ return [
 'Register with car rental' => 'S’inscrire avec location de voiture',
 'Login with car rental' => 'Connexion via location de voiture',
 'Blog' => 'Blog',
-'Select and Rent' => 'Sélectionner et Louer',
+'select_and_rent' => 'Sélectionner et Louer',
 'From the Blog' => 'Du Blog',
 'Car And Bike Rental News' => 'Actualités de location de voitures et motos',
 'by' => 'par',
