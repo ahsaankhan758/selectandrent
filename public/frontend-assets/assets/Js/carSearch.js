@@ -12,22 +12,25 @@ $(document).ready(function () {
     });
 
     function fetchData() {
+        const brandLabel = $('#brandDropdown').data('label');
+        const transmissionLabel = $('#transmissionDropdown').data('label');
+        const modelLabel = $('#modelDropdown').data('label');
         $.ajax({
             url: brandDropdown.data('url'),
             method: 'GET',
             success: function (response) {
                 if (response.status) {
-                    brandDropdown.html('<option disabled selected>Brand</option>');
+                    brandDropdown.html('<option disabled selected>'+brandLabel+'</option>');
                     $.each(response.brands, function (i, brand) {
                         brandDropdown.append(`<option value="${brand.id}">${brand.name}</option>`);
                     });
 
-                    transmissionDropdown.html('<option disabled selected>Transmission</option>');
+                    transmissionDropdown.html('<option disabled selected>'+transmissionLabel+'</option>');
                     $.each(response.transmissions, function (i, trans) {
                         transmissionDropdown.append(`<option value="${trans}">${trans}</option>`);
                     });
 
-                    modelDropdown.html('<option disabled selected>Model</option>');
+                    modelDropdown.html('<option disabled selected>'+modelLabel+'</option>');
                     $.each(response.models, function (i, model) {
                         modelDropdown.append(`<option value="${model.id}">${model.name}</option>`);
                     });
@@ -42,13 +45,14 @@ $(document).ready(function () {
     function loadLocations() {
         let locationDropdown = $('#locationDropdown');
         let url = locationDropdown.data('url');
-
+        const locationLabel = $('#area_name').data('label');
+        $('#area_name').attr('placeholder', locationLabel);
         $.ajax({
             url: url,
             method: 'GET',
             success: function (response) {
                 if (response.status) {
-                    locationDropdown.html('<option disabled selected>Select Location</option>');
+                    locationDropdown.html('<option disabled selected>'+locationLabel+'</option>');
                     $.each(response.locations, function (i, loc) {
                         locationDropdown.append(`<option value="${loc.id}">${loc.area_name}</option>`);
                     });
