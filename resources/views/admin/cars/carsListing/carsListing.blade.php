@@ -76,6 +76,7 @@
                                                                 <div class="detail-item"><strong>{{ __('messages.category') }}:</strong> <span>{{ $carData->car_categories->name }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.city') }}:</strong> <span>{{ isset($carData->car_locations->city->name) ? $carData->car_locations->city->name : '' }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.area_name') }}:</strong> <span>{{ isset($carData->car_locations->area_name) ? $carData->car_locations->area_name : 'Area name not available' }}</span></div>
+                                                                <div class="detail-item"><strong>{{ __('messages.year') }}:</strong> <span>{{ $carData->year }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.beam') }}:</strong> <span>{{ $carData->beam }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.transmission') }}:</strong> <span>{{ $carData->transmission }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.rent') }}:</strong> <span>{{ $carData->rent }}</span></div>

@@ -59,10 +59,10 @@
                     <table class="table table-striped" id="myTable">
                         <thead>
                         <tr>
-                            <th scope="col">City</th>
-                            <th scope="col">Area Name</th>
+                            <th scope="col">{{ __('messages.city') }}</th>
+                            <th scope="col">{{ __('messages.area') }} {{ __('messages.name') }}</th>
                             @if(can('locations','edit') && auth()->user()->role != 'company')
-                                <th scope="col">Action</th>
+                                <th scope="col">{{ __('messages.action') }}</th>
                             @endif
                         </tr>
                         </thead>

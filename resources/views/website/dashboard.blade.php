@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-{{ __('messages.dashboard')}} | Select and Rent 
+{{ __('messages.dashboard')}}
 @endsection
 
 @section('content')

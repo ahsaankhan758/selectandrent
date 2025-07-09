@@ -22,7 +22,7 @@
                 <div class="col">
                     <div class="page-title-box">
                         <div id="success-message" class="alert alert-success d-none" role="alert"></div>
-                        <h4 class="page-title">Calendar</h4>
+                        <h4 class="page-title">{{ __('messages.calendar') }}</h4>
                     </div>
                 </div>
             </div>     
@@ -44,7 +44,7 @@
                             <div class="modal-content">
                                 <div class="modal-header py-3 px-4 border-bottom-0 d-block">
                                     <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    <h5 class="modal-title" id="modal-title">Add Vehicle</h5>
+                                    <h5>{{ __('messages.create') }} </h5>
                                     <div id="error-message" class="alert alert-danger d-none"></div>
                                 </div>
                                 <div class="modal-body px-4 pb-4 pt-0">
@@ -279,12 +279,12 @@
                                         </div>
                                     <div class="row mt-2">
                                         <div class="col-md-6 col-4">
-                                            <button type="button" class="btn btn-danger" id="btn-delete-event" >Delete</button>
+                                            <button type="button" class="btn btn-danger" id="btn-delete-event" >{{ __('messages.delete') }}</button>
                                         </div>
                                         <div class="col-md-6 col-8 text-end">
-                                            <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success" id="btn-save-event">Save</button>
-                                            <button type="submit" class="btn btn-success" id="btn-edit-event">Edit</button>
+                                            <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
+                                            <button type="submit" class="btn btn-success" id="btn-save-event">{{ __('messages.save') }}</button>
+                                            <button type="submit" class="btn btn-success" id="btn-edit-event">{{ __('messages.edit') }}</button>
                                         </div>
                                     </div>
                                     </form>

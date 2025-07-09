@@ -85,7 +85,6 @@
             <thead class="table-dark">
                 <tr>
                     <th class="text-nowrap table-clr">{{ __('messages.action') }}</th>
-                    <th class="text-nowrap table-clr">{{ __('messages.user') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingref') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.company_name') }}</th>
                     <th class="text-nowrap table-clr">{{ __('messages.bookingpayment') }}</th>
@@ -122,9 +121,8 @@
                             @endif
                         </div>
                     </td>
-                    <td class="py-4 text-center text-nowrap">{{ $booking->user->name }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->booking_reference }}</td>
-                    <td class="py-4 text-center text-nowrap">{{ $booking->booking_items->first()->vehicle->company->name ?? '' }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->booking_items->first()->vehicle->company->name ?? $booking->booking_items->first()?->vehicle?->users?->name }}</td>
 
                     <td class="py-4 text-center text-nowrap"><span class="badge btn-orange-clr text-dark text-uppercase">{{ $booking->payment_status }}</span></td>
 
@@ -135,12 +133,12 @@
                     </td>
                     <td class="py-4 text-center text-nowrap">{{ ucfirst($booking->payment_method) }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->coupon_code ?: '—' }}</td>
-                    <td class="py-4 text-center text-nowrap">{{ $booking->discount_amount }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->discount_amount ?: '—' }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->tax_amount }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->subtotal }}</td>
                     <td class="py-4 text-center text-nowrap">{{ $booking->total_price }}</td>
-                    <td class="py-4 text-center text-nowrap">{{ $booking->notes }}</td>
+                    <td class="py-4 text-center text-nowrap">{{ $booking->notes ?: '—' }}</td>
                     <td class="py-4 text-center text-nowrap">
                       @if(
                           $booking->payment_status === 'paid' &&
