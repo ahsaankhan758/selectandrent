@@ -1,8 +1,18 @@
 <?php
 
 return [
+
     'assign' => 'Toewijzen',
     'general_module' => 'Algemene Module',
+
+    'reference' => 'Referentie',
+    'items' => 'Artikelen',
+    'price' => 'Prijs',
+    'required' => 'Verplicht',
+    'subtotal' => 'Subtotaal',
+    'pickup' => 'Ophalen',
+    'dropoff' => 'Afzetten',
+
     'cancellation' => 'Annulering',
     'deactivated' => 'Gedeactiveerd',
     'deactivate' => 'Deactiveren',
@@ -230,7 +240,7 @@ return [
 'Register with car rental' => 'Registreren bij autoverhuur',
 'Login with car rental' => 'Inloggen via autoverhuur',
 'Blog' => 'Blog',
-'Select and Rent' => 'Selecteer en Huur',
+'select_and_rent' => 'Selecteer en Huur',
 'From the Blog' => 'Uit de Blog',
 'Car And Bike Rental News' => 'Nieuws over auto- en motorverhuur',
 'by' => 'door',
