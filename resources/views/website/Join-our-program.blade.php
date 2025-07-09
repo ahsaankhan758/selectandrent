@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-{{ __('messages.Join') }}  | {{ __('messages.Select and Rent') }} 
+{{ __('messages.Join') }}   
 @endsection
 
 @section('content')

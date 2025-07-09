@@ -1,61 +1,60 @@
   @if (request()->is('carbooking') || request()->is('checkout') || request()->is('confirmation'))
       {{-- footer 2 for booking , confirm booking and checkout opages --}}
-
-      <div class="container-fluid inner-footer py-5">
-          <div class="container">
-              <div class="col-md-12 d-flex flex-column flex-md-row text-center text-md-start">
-                  <div class="col-md-6 col-12 text-white  ">
-                      <h5>{{ __('messages.Want to know about our offers first') }}?</h5>
-                      <h4>{{ __('messages.Subscribe our newsletter') }}</h4>
-                  </div>
-                  <div class="col-md-6 col-12 mt-3 mt-md-0 d-flex justify-content-center justify-content-md-end">
-                      <div class="subscribe-box rounded-pill">
-                          <input type="email" placeholder="Your Email...">
-                          <button>{{ __('messages.Subscribe') }}</button>
-                      </div>
-                  </div>
-              </div>
-              <div class="text-center">
-                  <a href="">
-                      <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
-                          class="logo-inner-footer">
-                  </a>
-              </div>
-              <div class="container py-4">
-                  <div class="row text-center text-white align-items-center">
-                      <div class="col-md-2">
-                          <img src="{{ asset('/') }}frontend-assets/icons/call 1.png" class="mb-2 icons-inner-footer"
-                              alt="call">
-                          <p class="mb-0 text-inner-footer">0 (550) 680-34-12</p>
-                          <small class="text-inner-footer">{{ __('messages.Round-the-clock') }}</small>
-                      </div>
-                      <div class="col-md-1 d-none d-md-block border-custom"></div>
-                      <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
-                      <div class="col-md-2">
-                          <img src="{{ asset('/') }}frontend-assets/icons/maps-and-flags 1.png"
-                              class="mb-2 icons-inner-footer" alt="call">
-                          <p class="mb-0 text-inner-footer">1353 Locust St, Kansas City,</p>
-                          <small class="text-inner-footer">MO 64106</small>
-                      </div>
-                      <div class="col-md-1 d-none d-md-block border-custom"></div>
-                      <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
-                      <div class="col-md-2">
-                          <img src="{{ asset('/') }}frontend-assets/icons/mail (1) 1.png"
-                              class="mb-2 icons-inner-footer" alt="call">
-                          <p class="mb-0 text-inner-footer">hello@sparkodic.com</p>
-                      </div>
-                      <div class="col-md-1 d-none d-md-block border-custom"></div>
-                      <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
-                      <div class="col-md-2">
-                          <img src="{{ asset('/') }}frontend-assets/icons/clock (5) 1.png"
-                              class="mb-2 icons-inner-footer" alt="call">
-                          <p class="mb-0 text-inner-footer">Mo-Sa: 07:00 - 22:00</p>
-                          <small class="text-inner-footer">Su: 07:00 - 16:00</small>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+    <div class="container-fluid inner-footer py-5">
+        <div class="container">
+            <div class="col-md-12 d-flex flex-column flex-md-row text-center text-md-start">
+                <div class="col-md-6 col-12 text-white  ">
+                    <h5>{{ __('messages.Want to know about our offers first') }}?</h5>
+                    <h4>{{ __('messages.Subscribe our newsletter') }}</h4>
+                </div>
+                <div class="col-md-6 col-12 mt-3 mt-md-0 d-flex justify-content-center justify-content-md-end">
+                    <div class="subscribe-box rounded-pill">
+                        <input type="email" placeholder="Your Email...">
+                        <button>{{ __('messages.Subscribe') }}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="">
+                    <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
+                        class="logo-inner-footer">
+                </a>
+            </div>
+            <div class="container py-4">
+                <div class="row text-center text-white align-items-center">
+                    <div class="col-md-2">
+                        <img src="{{ asset('/') }}frontend-assets/icons/call 1.png" class="mb-2 icons-inner-footer"
+                            alt="call">
+                        <p class="mb-0 text-inner-footer">0 (550) 680-34-12</p>
+                        <small class="text-inner-footer">{{ __('messages.Round-the-clock') }}</small>
+                    </div>
+                    <div class="col-md-1 d-none d-md-block border-custom"></div>
+                    <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
+                    <div class="col-md-2">
+                        <img src="{{ asset('/') }}frontend-assets/icons/maps-and-flags 1.png"
+                            class="mb-2 icons-inner-footer" alt="call">
+                        <p class="mb-0 text-inner-footer">1353 Locust St, Kansas City,</p>
+                        <small class="text-inner-footer">MO 64106</small>
+                    </div>
+                    <div class="col-md-1 d-none d-md-block border-custom"></div>
+                    <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
+                    <div class="col-md-2">
+                        <img src="{{ asset('/') }}frontend-assets/icons/mail (1) 1.png"
+                            class="mb-2 icons-inner-footer" alt="call">
+                        <p class="mb-0 text-inner-footer">hello@sparkodic.com</p>
+                    </div>
+                    <div class="col-md-1 d-none d-md-block border-custom"></div>
+                    <div class="d-block d-md-none border-custom mt-2 mb-2"></div>
+                    <div class="col-md-2">
+                        <img src="{{ asset('/') }}frontend-assets/icons/clock (5) 1.png"
+                            class="mb-2 icons-inner-footer" alt="call">
+                        <p class="mb-0 text-inner-footer">Mo-Sa: 07:00 - 22:00</p>
+                        <small class="text-inner-footer">Su: 07:00 - 16:00</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   @else
       {{-- end footer 2 --}}
       <div class="container">
@@ -98,7 +97,7 @@
                       </ul>
                   </div>
                   <div class="col-md-3 col-6">
-                      <h5>Vehicle Type</h5>
+                      <h5>{{ __('messages.vehicle') }} {{ __('messages.type') }} </h5>
                       <div class="d-flex gap-2">
                           <hr class="hr-yellow">
                           <hr class="hr-white">

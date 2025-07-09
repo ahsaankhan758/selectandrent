@@ -1,15 +1,15 @@
 @extends('admin.layouts.Master')
-@section('title') Car Models @endsection
+@section('title') {{ __('messages.models') }} @endsection
 @section('content')
     @if (can('models', 'view'))
         <div class="col-10">
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4>Car Models</h4>
+                    <h4>{{ __('messages.models') }}</h4>
                     <div class="mt-3 float-end">
                         @if(can('models','edit') && auth()->user()->role != 'company')
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                                Create
+                                {{ __('messages.create') }}
                             </button>
                         @endif
                     </div>
@@ -17,15 +17,15 @@
                         <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h4 class="modal-title">Create Car Model</h4>
+                            <h4 class="modal-title">{{ __('messages.create') }}</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div class="modal-body">
                                 <form action="{{ route('addCarModel') }}" method="POST" id="addBrandForm">
                                     @csrf
-                                    <label for="name">Modal Name</label>
+                                    <label for="name">{{ __('messages.model') }} {{ __('messages.name') }}</label>
                                     <input type="text" name="name" class="form-control" placeholder="Enter Model Name">
-                                    <label for="car_brand_id" class="mt-3">Brand</label>
+                                    <label for="car_brand_id" class="mt-3">{{ __('messages.brand') }}</label>
                                     <select name="car_brand_id" class="form-control" >
                                         @if(isset($brands))    
                                             @foreach ($brands as $brandData)
@@ -35,9 +35,9 @@
                                     </select>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">{{ __('messages.create') }}</button>
                                 </form>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
                             </div>
                         </div>
                         </div>
@@ -47,10 +47,10 @@
                     <table class="table table-striped" id="myTable">
                         <thead class="align-text-center">
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Brand</th>
+                            <th scope="col">{{ __('messages.name') }}</th>
+                            <th scope="col">{{ __('messages.brand') }}</th>
                             @if(can('models','edit') && auth()->user()->role != 'company')
-                                <th scope="col">Action</th>
+                                <th scope="col">{{ __('messages.action') }}</th>
                             @endif
                         </tr>
                         </thead>
