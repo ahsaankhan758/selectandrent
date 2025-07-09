@@ -1,4 +1,5 @@
 <?php 
+
     return [
         'area' => 'منطقة',
         'view' => 'عرض',
@@ -760,3 +761,4 @@
         'total_booking' => 'إجمالي الحجوزات',
         'currently_booked' => 'محجوز حالياً',
     ];
+

@@ -1,4 +1,5 @@
 <?php
+
     return [
         'area' => 'Gebied',
         'view' => 'Bekijken',

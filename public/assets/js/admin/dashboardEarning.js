@@ -1,19 +1,3 @@
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     new Morris.Bar({
-//         element: 'morris-bar-example',
-//         data: formattedChartData,
-//         xkey: 'month',
-//         ykeys: ['Pending', 'Confirmed', 'Completed'],
-//         labels: ['Pending', 'Confirmed', 'Completed'],
-//         barColors: ['#4fc6e1', '#98a6ad', '#1abc9c'],
-//         hideHover: 'auto',
-//         resize: true,
-//         barSizeRatio: 0.75,
-//         gridTextSize: 10,
-//         xLabelAngle: 45
-//     });
-// });
 function renderBookingChart(data) {
     $('#morris-bar-example').empty();
 
@@ -21,9 +5,9 @@ function renderBookingChart(data) {
         element: 'morris-bar-example',
         data: data,
         xkey: 'month',
-        ykeys: ['Pending', 'Confirmed', 'Completed'],
-        labels: ['Pending', 'Confirmed', 'Completed'],
-        barColors: ['#4fc6e1', '#98a6ad', '#1abc9c'],
+        ykeys: ['Pending', 'Confirmed', 'Completed', 'Cancelled', 'Refunded'],
+        labels: ['Pending', 'Confirmed', 'Completed', 'Cancelled', 'Refunded'],
+        barColors: ['#4fc6e1', '#98a6ad', '#1abc9c', '#e74c3c', '#E67E22'],
         hideHover: 'auto',
         resize: true,
         barSizeRatio: 0.75,
@@ -31,6 +15,7 @@ function renderBookingChart(data) {
         xLabelAngle: 45
     });
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     renderBookingChart(window.formattedChartData);
