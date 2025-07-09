@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-{{ __('messages.Car_Search') }} | {{ __('messages.Select and Rent') }}
+{{ __('messages.Car_Search') }} 
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('website.layout.master')
 
 @section('title')
- {{ __('messages.booking') }} {{ __('messages.detail') }} 
+ {{ __('messages.booking') }} 
 @endsection
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 

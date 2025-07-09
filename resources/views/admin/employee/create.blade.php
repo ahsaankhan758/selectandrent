@@ -52,8 +52,8 @@
                 </div>
                 <div class="card-body">
                     <div class="tab">
-                        <button class="tablinks active" onclick="openForm(event, 'information')">Information</button>
-                        <button class="tablinks" onclick="openForm(event, 'permissions'); loadPermissions()">Permissions</button>
+                        <button class="tablinks active" onclick="openForm(event, 'information')">{{ __('messages.information') }}</button>
+                        <button class="tablinks" onclick="openForm(event, 'permissions'); loadPermissions()">{{ __('messages.permissions') }}</button>
                     </div>
                     <form action="{{ route('storeEmployee') }}" method="POST">
                         @csrf
@@ -110,7 +110,7 @@
                             <div id="checkAll" class="mb-2 d-flex justify-content-end">
                             <div>
                                 <input type="checkbox" id="masterCheckbox">
-                                <label for="masterCheckbox">Check/Uncheck All</label>
+                                <label for="masterCheckbox">{{ __('messages.check') }}/{{ __('messages.uncheck') }} {{ __('messages.all') }} </label>
                             </div>
                         </div>
                         <table class="table table-bordered text-center " id="permissionsTable">
@@ -149,9 +149,9 @@
                                 <tr>
                                     <th>{{ __('messages.module') }}</th>
                                     @foreach ($actions as $action)
-                                        <th>{{ ucfirst($action) }}</th>
+                                        <th>{{ __('messages.' . $action) }}</th>
                                     @endforeach
-                                    <th>Check/Uncheck Module</th>
+                                    <th>{{ __('messages.check') }}/{{ __('messages.uncheck') }} {{ __('messages.module') }}</th>
                                 </tr>
                             </thead>
 

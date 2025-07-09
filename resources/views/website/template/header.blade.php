@@ -206,7 +206,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                            <a class="dropdown-item notify-item">Welcome {{ Auth::user()->name }}</a>
+                            <a class="dropdown-item notify-item">{{ __('messages.welcome') }} {{ Auth::user()->name }}</a>
                             <!-- item-->
                             <a href="{{ route('website.dashboard') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-view-dashboard-outline theme-color"></i>
@@ -477,7 +477,7 @@
                         </div> --}}
                         <div class="col-md-6 col-12 position-relative">
                             <input type="text" id="area_name" name="area_name" class="form-control time-input pickup-time"
-                                placeholder="Select Location" autocomplete="off">
+                                placeholder="{{ __('messages.select') }} {{ __('messages.location') }} " autocomplete="off">
                             <ul id="locationSuggestions" class="list-group position-absolute w-100"
                                 style="z-index: 1000;"></ul>
                         </div>
@@ -491,7 +491,7 @@
                         <div class="col-md-3 col-6">
                             <select id="brandDropdown" name="brand" class="form-select"
                                 data-url="{{ route('car.brands') }}">
-                                <option disabled selected>{{ __('messages.brand') }}</option>
+                                <option disabled selected>{{ __('messages.brands') }}</option>
                             </select>
                         </div>
                         <div class="col-md-3 col-6">

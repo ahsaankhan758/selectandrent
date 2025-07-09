@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.register') }} | {{ __('messages.Select and Rent') }}
+    {{ __('messages.register') }} 
 @endsection
 <style>
     .form-control {

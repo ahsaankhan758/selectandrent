@@ -6,7 +6,7 @@
         <div class="col-6">
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4>{{__('messages.update') }} {{__('messages.Admin') }}</h4>
+                    <h4>{{__('messages.update') }} {{__('messages.admin') }}</h4>
                     <a href=" {{ route('users') }}" class="btn btn-primary float-end" >{{__('messages.back') }}</a>
                 </div>
                 <div class="card-body">

@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.category') }} | {{ __('messages.Select and Rent') }}
+    {{ __('messages.category') }} 
 @endsection
 @section('content')
 <!-- add to cart js -->
