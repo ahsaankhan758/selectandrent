@@ -177,7 +177,7 @@
                                     <img src="{{ asset('images/no-image.png') }}" class="custom-card-img" alt="No Image Available">
                                 @endif
 
-                                @if ($car->is_booked == 1)
+                                @if ($car->is_booked == '1')
                                     <div style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">{{__('messages.currently_booked')}}</div>
                                 @endif
                             </a>
@@ -292,7 +292,7 @@
                                     <img src="{{ asset('images/no-image.png') }}" class="custom-card-img" alt="No Image Available">
                                 @endif
 
-                                @if ($car->is_booked == 1)
+                                @if ($car->is_booked == '1')
                                     <div style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">{{__('messages.currently_booked')}}</div>
                                 @endif
                             </a>
@@ -595,7 +595,7 @@
                                     <img src="{{ asset('images/no-image.png') }}" class="custom-card-img" alt="No Image Available">
                                 @endif
 
-                                @if ($car->is_booked == 1)
+                                @if ($car->is_booked == '1')
                                     <div style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">{{__('messages.currently_booked')}}</div>
                                 @endif
                             </a>

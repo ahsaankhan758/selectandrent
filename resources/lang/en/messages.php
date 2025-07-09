@@ -672,7 +672,6 @@
       'terms_page_views'       => 'Terms & Condition Views',
       'privacy_page_clicks'    => 'Privacy Policy Clicks',
       'privacy_page_views'     => 'Privacy Policy Views',
-
       'edit_title' => 'Edit Profile | Select and Rent',
       'update_profile' => 'Update Profile',
       'profile_image' => 'Profile Image',
@@ -767,3 +766,4 @@
       'total_booking' => 'Total Booking',
       'currently_booked' => 'Currently Booked',
     ];
+

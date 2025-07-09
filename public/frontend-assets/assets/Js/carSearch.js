@@ -12,22 +12,25 @@ $(document).ready(function () {
     });
 
     function fetchData() {
+        const brandLabel = $('#brandDropdown').data('label');
+        const transmissionLabel = $('#transmissionDropdown').data('label');
+        const modelLabel = $('#modelDropdown').data('label');
         $.ajax({
             url: brandDropdown.data('url'),
             method: 'GET',
             success: function (response) {
                 if (response.status) {
-                    brandDropdown.html('<option disabled selected>Brand</option>');
+                    brandDropdown.html('<option disabled selected>'+brandLabel+'</option>');
                     $.each(response.brands, function (i, brand) {
                         brandDropdown.append(`<option value="${brand.id}">${brand.name}</option>`);
                     });
 
-                    transmissionDropdown.html('<option disabled selected>Transmission</option>');
+                    transmissionDropdown.html('<option disabled selected>'+transmissionLabel+'</option>');
                     $.each(response.transmissions, function (i, trans) {
                         transmissionDropdown.append(`<option value="${trans}">${trans}</option>`);
                     });
 
-                    modelDropdown.html('<option disabled selected>Model</option>');
+                    modelDropdown.html('<option disabled selected>'+modelLabel+'</option>');
                     $.each(response.models, function (i, model) {
                         modelDropdown.append(`<option value="${model.id}">${model.name}</option>`);
                     });
@@ -42,13 +45,14 @@ $(document).ready(function () {
     function loadLocations() {
         let locationDropdown = $('#locationDropdown');
         let url = locationDropdown.data('url');
-
+        const locationLabel = $('#area_name').data('label');
+        $('#area_name').attr('placeholder', locationLabel);
         $.ajax({
             url: url,
             method: 'GET',
             success: function (response) {
                 if (response.status) {
-                    locationDropdown.html('<option disabled selected>Select Location</option>');
+                    locationDropdown.html('<option disabled selected>'+locationLabel+'</option>');
                     $.each(response.locations, function (i, loc) {
                         locationDropdown.append(`<option value="${loc.id}">${loc.area_name}</option>`);
                     });
@@ -88,7 +92,8 @@ $(document).ready(function () {
         e.preventDefault();
         let form = $(this);
         let submitBtn = form.find('button[type="submit"]');
-        submitBtn.prop('disabled', true).html(`<img src="../frontend-assets/assets/loader.gif" alt="Loading..." width="25">`);
+
+        submitBtn.prop('disabled', true).text('Processing...');
 
         $.ajax({
             url: form.attr('action'),
@@ -96,16 +101,17 @@ $(document).ready(function () {
             data: form.serialize(),
             dataType: 'json',
             success: function (response) {
-                submitBtn.prop('disabled', false).html('Search <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>');
-
                 if (response.status && response.redirect_url) {
-                    window.location.href = response.redirect_url; // Redirect where session will be used
+                    setTimeout(function () {
+                        window.location.href = response.redirect_url;
+                    }, 300);
                 } else {
                     showToast('No cars found or redirect failed.', "error");
+                    submitBtn.prop('disabled', false).text('Search');
                 }
             },
             error: function (xhr) {
-                submitBtn.prop('disabled', false).html('Search <i class="fa-solid fa-magnifying-glass text-white ms-3"></i>');
+                submitBtn.prop('disabled', false).text('Search');
 
                 if (xhr.status === 422 && xhr.responseJSON.errors) {
                     let errorMsg = '';
@@ -115,6 +121,8 @@ $(document).ready(function () {
                     showToast(errorMsg, "error");
                 } else if (xhr.responseJSON && xhr.responseJSON.message) {
                     showToast(xhr.responseJSON.message, "error");
+                } else {
+                    showToast('Something went wrong.', "error");
                 }
             }
         });

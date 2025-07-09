@@ -1,4 +1,5 @@
 <?php
+
     return [
         'area' => 'Zone',
         'view' => 'Voir',
@@ -760,3 +761,4 @@
         'total_booking' => 'Total des réservations',
         'currently_booked' => 'Actuellement Réservé',
     ];
+

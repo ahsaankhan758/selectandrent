@@ -363,7 +363,7 @@ $owner = EmployeeOwner($userId);
                                 <li>
                                     <a href="{{ route('general-module.create') }}">
                                         <i class="mdi mdi-tools"></i>
-                                        <span class="custom-ml-15">General Module</span>
+                                        <span class="custom-ml-15">{{ __('messages.general_module') }}</span>
                                     </a>
                                 </li>
                                 <li>
