@@ -1,7 +1,7 @@
 @extends('website.layout.master')
 
 @section('title')
-Booking Detail | Select and Rent
+ {{ __('messages.booking') }} {{ __('messages.detail') }} 
 @endsection
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -9,13 +9,13 @@ Booking Detail | Select and Rent
 
 <div class="container py-4">
     <div class="bg-white p-4 rounded shadow-sm mb-4">
-        <h4 class="mb-3 text-primary">Booking Summary</h4>
-        <p><strong>Order Reference:</strong> {{ $booking->booking_reference }}</p>
-        <p><strong>Customer Name:</strong> {{ $booking->user->name ?? 'N/A' }}</p>
+        <h4 class="mb-3 text-primary">{{ __('messages.booking') }} {{ __('messages.summary') }} </h4>
+        <p><strong>{{ __('messages.order') }} {{ __('messages.reference') }} :</strong> {{ $booking->booking_reference }}</p>
+        <p><strong>{{ __('messages.customer') }} {{ __('messages.name') }} :</strong> {{ $booking->user->name ?? 'N/A' }}</p>
     </div>
 
     <div class="bg-light p-3 rounded mb-3">
-        <h5 class="mb-0 text-secondary"><i class="bi bi-list-check me-2"></i>Booking Items</h5>
+        <h5 class="mb-0 text-secondary"><i class="bi bi-list-check me-2"></i>{{ __('messages.booking') }} {{ __('messages.items') }} </h5>
     </div>
     {{-- @php
     echo"<pre>";
@@ -49,45 +49,45 @@ Booking Detail | Select and Rent
                     
                     <div class="row gy-3">
                         <div class="col-md-6">
-                            <strong><i class="bi bi-geo-alt-fill text-danger me-1"></i> Pickup:</strong>
+                            <strong><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ __('messages.pickup') }}:</strong>
                             {{ $detail->pickupLocation->area_name ?? 'N/A' }}
                         </div>
                         <div class="col-md-6">
-                            <strong><i class="bi bi-geo-fill text-success me-1"></i> Dropoff:</strong>
+                            <strong><i class="bi bi-geo-fill text-success me-1"></i> {{ __('messages.dropoff') }}:</strong>
                             {{ $detail->dropoffLocation->area_name ?? 'N/A' }}
                         </div>
                         
 
                         <div class="col-md-6">
-                            <strong><i class="bi bi-calendar-event text-warning me-1"></i> Pickup Date:</strong>
+                            <strong><i class="bi bi-calendar-event text-warning me-1"></i> {{ __('messages.Pickup Date') }}:</strong>
                             {{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('d M Y, h:i A') }}
                         </div>
                         <div class="col-md-6">
-                            <strong><i class="bi bi-calendar-check text-success me-1"></i> Dropoff Date:</strong>
+                            <strong><i class="bi bi-calendar-check text-success me-1"></i> {{ __('messages.Drop-off Date') }}:</strong>
                             {{ \Carbon\Carbon::parse($detail->dropoff_datetime)->format('d M Y, h:i A') }}
                         </div>
 
                         <div class="col-md-6">
-                            <strong><i class="bi bi-clock-fill text-info me-1"></i> Duration:</strong> {{ $detail->duration_days }} day(s)
+                            <strong><i class="bi bi-clock-fill text-info me-1"></i> {{ __('messages.duration') }}:</strong> {{ $detail->duration_days }} {{ ucfirst($detail->vehicle->rent_type) }}(s)
                         </div>
                         <div class="col-md-6">
-                            <strong><i class="bi bi-currency-dollar text-success me-1"></i> Price/Day:</strong> $ {{ $detail->price_per_day }}
+                            <strong><i class="bi bi-currency-dollar text-success me-1"></i> {{ __('messages.price') }}/ {{ ucfirst($detail->vehicle->rent_type) }}:</strong> $ {{ $detail->price_per_day }}
                         </div>
 
                         <div class="col-md-6">
-                            <strong><i class="bi bi-person-fill-check text-secondary me-1"></i> Driver Required:</strong>
+                            <strong><i class="bi bi-person-fill-check text-secondary me-1"></i> {{ __('messages.driver') }} {{ __('messages.required') }}:</strong>
                             <span class="badge bg-{{ $detail->driver_required ? 'success' : 'secondary' }}">
                                 {{ $detail->driver_required ? 'Yes' : 'No' }}
                             </span>
                         </div>
                         
                         <div class="col-md-6">
-                            <strong><i class="bi bi-cash-coin text-primary me-1"></i> Total:</strong> $ {{ $detail->total_price }}
+                            <strong><i class="bi bi-cash-coin text-primary me-1"></i> {{ __('messages.subtotal') }}:</strong> $ {{ $detail->total_price }}
                         </div>
 
                         @if($detail->notes)
                         <div class="col-md-12">
-                            <strong><i class="bi bi-card-text me-1"></i> Notes:</strong>
+                            <strong><i class="bi bi-card-text me-1"></i> {{ __('messages.notes') }}:</strong>
                             <div class="bg-light border rounded p-2 mt-1">{{ $detail->notes }}</div>
                         </div>
                         @endif
@@ -100,16 +100,16 @@ Booking Detail | Select and Rent
     <div class="row justify-content-end">
         <div class="col-md-4">
             <div class="bg-white shadow-sm p-3 rounded mb-2 d-flex justify-content-between">
-                <strong class="text-muted">Subtotal</strong>
+                <strong class="text-muted">{{ __('messages.subtotal') }}</strong>
                 <span class="text-primary fw-bold">$ {{ number_format($booking->subtotal) }}</span>
             </div>
             <div class="bg-white shadow-sm p-3 rounded mb-2 d-flex justify-content-between">
-                <strong class="text-muted">Tax</strong>
+                <strong class="text-muted">{{ __('messages.tax') }}</strong>
                 <span class="text-primary fw-bold">$ {{ number_format($booking->tax_amount) }}</span>
             </div>
             
             <div class="bg-white shadow-sm p-3 rounded d-flex justify-content-between">
-                <strong class="text-muted">Total</strong>
+                <strong class="text-muted">{{ __('messages.total') }}</strong>
                 <span class="text-success fw-bold">$ {{ number_format($booking->total_price) }}</span>
             </div>
         </div>
