@@ -44,7 +44,7 @@
                             <div class="modal-content">
                                 <div class="modal-header py-3 px-4 border-bottom-0 d-block">
                                     <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    <h5>{{ __('messages.create') }} </h5>
+                                    <h5>{{ __('messages.add') }} {{ __('messages.vehicle') }} </h5>
                                     <div id="error-message" class="alert alert-danger d-none"></div>
                                 </div>
                                 <div class="modal-body px-4 pb-4 pt-0">
