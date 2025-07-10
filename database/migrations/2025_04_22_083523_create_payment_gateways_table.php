@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('pro_endpoint')->nullable(); 
             $table->boolean('status')->default(1); 
             $table->integer('order')->nullable(); 
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 
