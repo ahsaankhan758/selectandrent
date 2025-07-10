@@ -1,6 +1,6 @@
 
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.create') }} {{ __('messages.vehicle') }} @endsection
+@section('title') {{ __('messages.add') }} {{ __('messages.vehicle') }} @endsection
 @section('content')
     @if (can('vehicles', 'edit'))
         <script src="{{ asset('assets/js/admin/locationArea.js') }}"></script>
@@ -52,7 +52,7 @@
         <div class="col-12">
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4>{{ __('messages.create') }} {{ __('messages.vehicle') }}</h4>
+                    <h4>{{ __('messages.add') }} {{ __('messages.vehicle') }}</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('storeCar') }}" method="POST" enctype="multipart/form-data">

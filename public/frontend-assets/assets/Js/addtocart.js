@@ -14,7 +14,7 @@ $(document).on('click', '#car-booking-btn', function(e) {
     var originalBtnText = $button.html();
     console.log(carId)
     // Show loader on button
-    $(this).html(`<img src="../frontend-assets/assets/loader.gif" alt="Loading..." width="25">`);
+    $button.prop('disabled', false).text('Processing...');
  
     $.ajax({
         url: window.baseUrl+"/addToCart", // Make sure this route returns correct URL in the rendered page

@@ -42,11 +42,11 @@
                                     {{ __('messages.employees') }}
                                     <span class="tooltip-icon">
                                         <i>ℹ️</i>
-                                        <span class="tooltip-text">Current Loggedin Admin Can See Their Own Employees In Dropdown</span>
+                                        <span class="tooltip-text">{{ __('messages.admin_permissions_tooltip') }}</span>
                                     </span>
                                 </label>
                                 <select id="getUserName" name="name" class="form-control">
-                                    <option value="" disabled selected>Select</option>
+                                    <option value="" disabled selected>{{ __('messages.select') }}</option>
                                     @foreach ($usersList as $user)
                                         <option value="{{ $user->e_user_id }}">{{ $user->employee->name }}</option>
                                     @endforeach
@@ -54,7 +54,7 @@
                             @elseif($role == 'company') 
                                 <label for="name">{{ __('messages.companies') }}</label>
                                 <select id="company" name="company" class="form-control">
-                                    <option value="" disabled selected>Select</option>
+                                    <option value="" disabled selected>{{ __('messages.select') }}</option>
                                     @foreach ($usersList as $company)
                                         <option value="{{ $company->user_id }}">{{ $company->name }}</option>
                                     @endforeach
@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <label for="name">{{ __('messages.employees') }}</label>
                                     <select id="getUserName" name="name" class="form-control">
-                                        <option value="" disabled selected>Select</option>
+                                        <option value="" disabled selected>{{ __('messages.select') }}</option>
                                         @foreach ($usersList as $user)
                                             <option value={{ $user->e_user_id }}>{{ $user->employee->name }}</option>
                                         @endforeach
@@ -86,7 +86,7 @@
                 <div id="checkAll" class="mb-2 d-none d-flex justify-content-end">
                     <div>
                         <input type="checkbox" id="masterCheckbox">
-                        <label for="masterCheckbox">Check/Uncheck All</label>
+                        <label for="masterCheckbox">{{ __('messages.check') }}/{{ __('messages.uncheck') }} {{ __('messages.all') }}</label>
                     </div>
                 </div>
                 <!-- Permissions Table -->

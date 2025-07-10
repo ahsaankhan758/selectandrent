@@ -26,7 +26,7 @@ class EmployeeConformation extends Mailable
 
     public function build()
         {
-            $confirmationLink = route('companyLoginForm');
+            $confirmationLink = route('employeeLoginForm');
 
             return $this->subject('Employee Login Details')
                         ->view('admin.emails.employeeConformation')
