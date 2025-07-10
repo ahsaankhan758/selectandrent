@@ -152,18 +152,22 @@ public function markPickup($bookingItemId)
         'user', 
         'car'
     ])->findOrFail($bookingItem->booking_id);
-
-    Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
-
-    $userId = auth()->id();
-    $userName = auth()->user()->name ?? 'System';
-    $description = $userName . ' marked a car as picked up for Booking Reference [' . $booking->booking_reference . '] successfully.';
-    $action = 'Pickup';
-    $module = 'Booking Item';
-
-    activityLog($userId, $description, $action, $module);
-
-    return back()->with('success', 'Pickup time recorded successfully.');
+        if(empty($bookingItem->actual_pickup_datetime)){
+            Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
+            Mail::to($booking->booking_items->first()?->vehicle?->users->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
+            if($booking->booking_items->first()?->vehicle?->u_employee_id){
+                Mail::to($booking->booking_items->first()?->vehicle?->u_employees->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
+            }
+            $userId = auth()->id();
+            $userName = auth()->user()->name ?? 'System';
+            $description = $userName . ' marked a car as picked up for Booking Reference [' . $booking->booking_reference . '] successfully.';
+            $action = 'Pickup';
+            $module = 'Booking Item';
+            activityLog($userId, $description, $action, $module);
+            return back()->with('success', 'Vehicle has been picked up.');
+        }else{
+            return back()->with('error', 'This vehicle has already been picked up.');
+        }
 }
 
 public function markDropoff($bookingItemId)

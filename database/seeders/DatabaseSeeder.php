@@ -25,6 +25,18 @@ class DatabaseSeeder extends Seeder
             'status' => 1,
             'role' => 'admin',
         ]);
+         DB::table('payment_gateways')->insert([
+            [
+                'name' => 'Paypal',
+                'status' => 1,
+                'order' => 1
+            ],
+            [
+                'name' => 'Stripe',
+                'status' => 1,
+                'order' => 2
+            ]
+        ]);
         $this->call(LanguageSeeder::class);
         $this->call(CurrencySeeder::class);
     }

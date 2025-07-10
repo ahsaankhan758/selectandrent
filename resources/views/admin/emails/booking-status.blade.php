@@ -68,6 +68,7 @@
 <body>
 <p>Hello {{ $booking->first_name }},</p>
 <p>{{ $messageText }}</p>
+<p>Picked Up From: {{ auth()->user()->name }}</p>
 <p>Booking Reference: {{ $booking->booking_reference }}</p>
 
  <div class="card">
