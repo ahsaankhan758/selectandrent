@@ -45,7 +45,6 @@ class CarRegisterController extends Controller
             'password' => 'required|min:6',
             'phone' => 'required',
             'website' => 'required',
-
             'country_id' => 'required|exists:countries,id',
         ]);
 
