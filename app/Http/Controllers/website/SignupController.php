@@ -38,7 +38,7 @@ class SignupController extends Controller
             Mail::to($user->email)->send(new UserRegister($user));
             return response()->json([
                 'status' => 'Success',
-                'message' => 'Registration successful!',
+                'message' => 'Registration successful. Check Your Email.',
             ]);
 
         }

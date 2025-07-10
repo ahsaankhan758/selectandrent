@@ -28,9 +28,9 @@
     <tr>
         <th>{{ __('messages.module') }}</th>
         @foreach ($actions as $action)
-            <th>{{ ucfirst($action) }}</th>
+            <th>{{ __('messages.' . $action) }}</th>
         @endforeach
-        <th>Check/Uncheck Module</th>
+        <th>{{ __('messages.check') }}/{{ __('messages.uncheck') }} {{ __('messages.module') }}</th>
     </tr>
 </thead>
 

@@ -1,13 +1,13 @@
 @extends('admin.layouts.Master')
 @section('title')
-    Reviews
+    {{ __('messages.reviews') }}
 @endsection
 @section('content')
     @if (can('reviews', 'view'))
         <div class="content-body">
             <div class="booking-container mt-4">
                 <div class="booking-header-section">
-                    <h2 class="mb-0">Reviews</h2>
+                    <h2 class="mb-0">{{ __('messages.reviews') }}</h2>
                 </div>
             </div>
 
@@ -15,12 +15,12 @@
                 <table id="myTable" class="table table-striped booking-table">
                     <thead class="text-nowrap">
                         <tr>
-                            <th class="text-center">User</th>
-                            <th class="text-center">Plate No.</th>
-                            <th class="text-center">Vehicle</th>
-                            <th class="text-center">Rating</th>
-                            <th class="text-center">Comment</th>
-                            <th class="text-center">Date</th>
+                            <th class="text-center">{{ __('messages.user') }}</th>
+                            <th class="text-center">{{ __('messages.lisence plate') }}</th>
+                            <th class="text-center">{{ __('messages.vehicle') }}</th>
+                            <th class="text-center">{{ __('messages.rating') }}</th>
+                            <th class="text-center">{{ __('messages.comment') }}</th>
+                            <th class="text-center">{{ __('messages.date') }}</th>
                         </tr>
                     </thead>
                     <tbody>

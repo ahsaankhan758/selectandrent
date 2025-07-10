@@ -1,6 +1,10 @@
 <?php
 
     return [
+        'is_booked' => 'Réservé',
+        'admin_permissions_tooltip' => "L'administrateur actuellement connecté peut voir uniquement ses propres employés dans la liste déroulante",
+        'assign' => 'Assigner',
+        'general_module' => 'Module Général',
         'area' => 'Zone',
         'view' => 'Voir',
         'check' => 'Vérifier',
@@ -549,7 +553,8 @@
         'admin' => 'Administrateur',
         'engine' => 'Moteur',  
         'permissions' => 'Autorisations',
-        'client' => 'Client | Clients',
+        'client' => 'Client',
+        'clients' => 'Clients',
         'plan' => 'Plan | Plans',
         'driver' => 'Chauffeur | Chauffeurs',
         'payment' => 'Paiement | Paiements',

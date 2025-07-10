@@ -1,6 +1,10 @@
 <?php
 
     return [
+        'is_booked' => 'Geboekt',
+        'admin_permissions_tooltip' => 'De momenteel ingelogde beheerder kan alleen zijn eigen werknemers in de vervolgkeuzelijst zien',
+        'assign' => 'Toewijzen',
+        'general_module' => 'Algemene Module',
         'area' => 'Gebied',
         'view' => 'Bekijken',
         'check' => 'Controleren',
@@ -549,7 +553,8 @@
         'engine' => 'Motor', 
         'permissions' => 'Machtigingen',
         'currencies' => 'Valuta\'s',
-        'client' => 'Klant | Klanten',
+        'client' => 'Klant',
+        'clients' => 'Klanten',
         'plan' => 'Plan | Plannen',
         'driver' => 'Chauffeur | Chauffeurs',
         'payment' => 'Betaling | Betalingen',
