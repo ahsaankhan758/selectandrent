@@ -8,9 +8,9 @@
             @endphp
 
             @if ($imageExists)
-                <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img" alt="Car Image">
+                <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img-2" alt="Car Image">
             @else
-                <img src="{{ asset('images/no-image.png') }}" class="custom-card-img" alt="No Image Available">
+                <img src="{{ asset('images/no-image.png') }}" class="custom-card-img-2" alt="No Image Available">
             @endif
 
             @if ($car->is_booked == 1)

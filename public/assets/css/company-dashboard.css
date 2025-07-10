@@ -1056,7 +1056,8 @@
         padding: 0px 15px;
     }
     .summary2 {
-        margin-top: -80px !important;
+        /* margin-top: -80px !important; */
+        margin-top: 5px !important;
         padding: 0px 15px;
     }
 }
