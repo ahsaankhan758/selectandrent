@@ -18,6 +18,7 @@
                             <th scope="col">{{ __('messages.lisence plate') }}</th>
                             <th scope="col">{{ __('messages.owner') }}</th>
                             <th scope="col">{{ __('messages.created_by') }} {{ __('messages.employee') }}</th>
+                            <th scope="col">{{ __('messages.is_booked') }}</th>
                             <th scope="col">{{ __('messages.status') }}</th>
                             @if(can('vehicles','edit'))
                                 <th scope="col">{{ __('messages.action') }}</th>
@@ -40,6 +41,9 @@
                                         @endif
                                         <td>
                                             {{ $carData->u_employees?->name ?? '' }}
+                                        </td>
+                                        <td class="text-black">
+                                            {{ ($carData->is_booked == 1)? 'Yes' : 'No' }}
                                         </td>
                                         <td>
                                         {{ ($carData->status == 1)? 'Active' : 'Inactive' }} 

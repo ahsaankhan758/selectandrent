@@ -125,7 +125,7 @@ $owner = EmployeeOwner($userId);
                                 @if (can('vehicles', 'edit'))
                                     <li>
                                         <a href="{{ route('createCar') }}"> <i class="mdi mdi-creation"></i><span
-                                                class="custom-ml-15">{{ __('messages.create') }}</span></a>
+                                                class="custom-ml-15">{{ __('messages.add') }}</span></a>
                                     </li>
                                 @endif
                                 <li>

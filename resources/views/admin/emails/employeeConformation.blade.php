@@ -21,7 +21,7 @@
                 <table cellpadding="8" cellspacing="0" width="100%" style="border: 1px solid #ddd; border-radius: 6px; background-color: #f9f9f9;">
                     <tr>
                         <td><strong>Login URL:</strong></td>
-                        <td><a href="{{ route('companyLoginForm') ?? 'https://example.com/login' }}" target="_blank">{{ $confirmationLink ?? 'https://example.com/login' }}</a></td>
+                        <td><a href="{{ route('employeeLoginForm') ?? 'https://example.com/login' }}" target="_blank">{{ $confirmationLink ?? 'https://example.com/login' }}</a></td>
                     </tr>
                     <tr>
                         <td><strong>Email:</strong></td>
