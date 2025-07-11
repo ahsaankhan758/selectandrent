@@ -173,16 +173,13 @@ public function markPickup($bookingItemId)
 {
     $bookingItem = BookingItem::findOrFail($bookingItemId);
 
-    // ✅ Check first if already picked up
     if (!empty($bookingItem->actual_pickup_datetime)) {
         return back()->with('error', 'This vehicle has already been picked up.');
     }
 
-    // ✅ Mark pickup time
     $bookingItem->actual_pickup_datetime = now();
     $bookingItem->save();
 
-    // ✅ Load related booking data
     $booking = Booking::with([
         'booking_items.vehicle.carModel',
         'booking_items.pickupLocation',
@@ -191,17 +188,17 @@ public function markPickup($bookingItemId)
         'car'
     ])->findOrFail($bookingItem->booking_id);
 
-    Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.'));
+    Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.', 'pickup'));
 
     $vehicleOwnerEmail = $booking->booking_items->first()?->vehicle?->users?->email;
     if ($vehicleOwnerEmail) {
-        Mail::to($vehicleOwnerEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.'));
+        Mail::to($vehicleOwnerEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.', 'pickup'));
     }
 
     if ($booking->booking_items->first()?->vehicle?->u_employee_id) {
         $employeeEmail = $booking->booking_items->first()?->vehicle?->u_employees?->email;
         if ($employeeEmail) {
-            Mail::to($employeeEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.'));
+            Mail::to($employeeEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.', 'pickup'));
         }
     }
 
@@ -216,14 +213,63 @@ public function markPickup($bookingItemId)
 }
 
 
+// public function markDropoff($bookingItemId)
+// {
+//     $bookingItem = BookingItem::with('vehicle')->findOrFail($bookingItemId);
+
+//     $bookingItem->actual_dropoff_datetime = now();
+//     $bookingItem->save();
+
+//     if ($bookingItem->vehicle) {
+//         $vehicle = $bookingItem->vehicle;
+//         $vehicle->is_booked = '0';
+
+//         if ($bookingItem->dropoff_location) {
+//             $vehicle->car_location_id = $bookingItem->dropoff_location;
+//         }
+
+//         $vehicle->save();
+//     }
+
+//     // Update booking status to completed
+//     $booking = Booking::with([
+//         'booking_items.vehicle.carModel',
+//         'booking_items.pickupLocation',
+//         'booking_items.dropoffLocation',
+//         'user',
+//         'car'
+//     ])->findOrFail($bookingItem->booking_id);
+
+//     $booking->booking_status = 'completed';
+//     $booking->save();
+
+//     // Send notification email
+//     Mail::to($booking->email)->send(
+//         new BookingStatusMail($booking, 'Your car has been dropped off successfully.')
+//     );
+
+//     // Log activity
+//     $userId = auth()->id();
+//     $userName = auth()->user()->name ?? 'System';
+//     $description = $userName . ' marked a car as dropoff for Booking Reference [' . $booking->booking_reference . '] successfully.';
+//     $action = 'Dropoff';
+//     $module = 'Booking Item';
+
+//     activityLog($userId, $description, $action, $module);
+
+//     return back()->with('success', 'Dropoff time recorded and booking marked as completed.');
+// }
 public function markDropoff($bookingItemId)
 {
     $bookingItem = BookingItem::with('vehicle')->findOrFail($bookingItemId);
 
+    if (!empty($bookingItem->actual_dropoff_datetime)) {
+        return back()->with('error', 'This vehicle has already been dropped off.');
+    }
+
     $bookingItem->actual_dropoff_datetime = now();
     $bookingItem->save();
 
-    // Update vehicle booking status and location
     if ($bookingItem->vehicle) {
         $vehicle = $bookingItem->vehicle;
         $vehicle->is_booked = '0';
@@ -235,7 +281,6 @@ public function markDropoff($bookingItemId)
         $vehicle->save();
     }
 
-    // Update booking status to completed
     $booking = Booking::with([
         'booking_items.vehicle.carModel',
         'booking_items.pickupLocation',
@@ -247,15 +292,25 @@ public function markDropoff($bookingItemId)
     $booking->booking_status = 'completed';
     $booking->save();
 
-    // Send notification email
     Mail::to($booking->email)->send(
-        new BookingStatusMail($booking, 'Your car has been dropped off successfully.')
+        new BookingStatusMail($booking, 'Your Vehicle has been dropped off successfully.', 'dropoff')
     );
 
-    // Log activity
+    $vehicleOwnerEmail = $booking->booking_items->first()?->vehicle?->users?->email;
+    if ($vehicleOwnerEmail) {
+        Mail::to($vehicleOwnerEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been dropped off successfully.', 'dropoff'));
+    }
+
+    if ($booking->booking_items->first()?->vehicle?->u_employee_id) {
+        $employeeEmail = $booking->booking_items->first()?->vehicle?->u_employees?->email;
+        if ($employeeEmail) {
+            Mail::to($employeeEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been dropped off successfully.', 'dropoff'));
+        }
+    }
+
     $userId = auth()->id();
     $userName = auth()->user()->name ?? 'System';
-    $description = $userName . ' marked a car as dropoff for Booking Reference [' . $booking->booking_reference . '] successfully.';
+    $description = $userName . ' Marked a Vehicle as dropoff for Booking Reference [' . $booking->booking_reference . '] successfully.';
     $action = 'Dropoff';
     $module = 'Booking Item';
 
