@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     let chart;
 
-    function initChart(labels, data) {
+    function initChart(labels, data, currencySymbol = '$') {
         const options = {
             chart: {
                 type: 'line',
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 enabled: true,
                 x: { show: true },
                 y: {
-                    formatter: val => `$${parseFloat(val).toLocaleString()}`
+                    formatter: val => `${currencySymbol} ${parseFloat(val).toLocaleString()}`
                 }
             }
         };
@@ -339,13 +339,20 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(`${window.earningsdata}?${params.toString()}`)
             .then(response => response.json())
             .then(data => {
+                const currencySymbol = data.defaultCurrencySymbol || '$';
+
                 if (chart) {
                     chart.updateOptions({
                         series: [{ data: data.data }],
-                        xaxis: { categories: data.labels }
+                        xaxis: { categories: data.labels },
+                        tooltip: {
+                            y: {
+                                formatter: val => `${currencySymbol} ${parseFloat(val).toLocaleString()}`
+                            }
+                        }
                     });
                 } else {
-                    initChart(data.labels, data.data);
+                    initChart(data.labels, data.data, currencySymbol);
                 }
 
                 document.getElementById("dropdownBtn").innerText = label;
