@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\Car;
 use App\Models\User;
+use App\Models\Currency;
 use App\Models\Booking;
 use App\Models\company;
 use App\Models\Country;
@@ -30,6 +31,9 @@ class DashboardController extends Controller
     $startDate = $request->start_date ? date('Y-m-d', strtotime($request->start_date)) : null;
     $endDate = $request->end_date ? date('Y-m-d', strtotime($request->end_date)) : null;
     $role = Auth::user()->role;
+    $defaultCurrency = Currency::where('is_default', 'Yes')->first();
+    $defaultCurrencyCode = $defaultCurrency->code ?? 'USD';
+    $defaultCurrencySymbol = $defaultCurrency->symbol ?: $defaultCurrency->code;
 
     $companies = Company::where('status', 1)->pluck('name', 'user_id');
     $countryNames = Country::with('companies')->where('status', 1)->pluck('name', 'id');
@@ -86,14 +90,14 @@ class DashboardController extends Controller
         ->get();
 
     foreach ($paidBookings as $booking) {
-        $totalrevenue += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
-        $commission += administratorConvertCurrency($booking->commission, $booking->currency, 'USD', 2, 0);
+        $totalrevenue += administratorConvertCurrency($booking->total_price, $booking->currency, $defaultCurrencyCode, 2, 0);
+        $commission += administratorConvertCurrency($booking->commission, $booking->currency, $defaultCurrencyCode, 2, 0);
     }
 
     $pendingBookings = (clone $filteredBookingQuery)->where('payment_status', 'pending')->get();
 
     foreach ($pendingBookings as $booking) {
-        $totalpending += administratorConvertCurrency($booking->total_price, $booking->currency, 'USD', 2, 0);
+        $totalpending += administratorConvertCurrency($booking->total_price, $booking->currency, $defaultCurrencyCode, 2, 0);
     }
 
     $payoutcompany = $totalrevenue - $commission;
@@ -145,7 +149,7 @@ class DashboardController extends Controller
             'reminder', 'totalCars', 'payoutcompany', 'cancelledCar', 'refundedamount', 'customers',
             'bookedCars', 'commission', 'totalrevenue', 'totalbooking',
             'totalcancelled', 'totalpending', 'formattedChartData',
-            'companies', 'companyUserId', 'countryNames', 'countryId'
+            'companies', 'companyUserId', 'countryNames', 'countryId','defaultCurrencySymbol'
         ))->render();
 
         $dom = new \DOMDocument();
@@ -175,7 +179,7 @@ class DashboardController extends Controller
         'reminder', 'totalCars', 'payoutcompany', 'cancelledCar', 'refundedamount', 'customers',
         'bookedCars', 'commission', 'totalrevenue', 'totalbooking',
         'totalcancelled', 'totalpending', 'formattedChartData',
-        'companies', 'companyUserId', 'countryNames', 'countryId'
+        'companies', 'companyUserId', 'countryNames', 'countryId','defaultCurrencySymbol'
     ));
 }
 
