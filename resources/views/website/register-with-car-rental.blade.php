@@ -64,7 +64,7 @@
     <div class="container">
         <div class="text-center mb-4 mt-4">
             <img src="{{ asset('/') }}frontend-assets/icons/select-and-rent-logo-3.png" alt="Logo" width="100">
-            <h2 class="fw-bold mb-5">{{ __('messages.Register_With_Car_Rental') }}</h2>
+            <h2 class="fw-bold mb-5">{{ __('messages.register_with_select_and_rent') }}</h2>
         </div>
 
         <div class="row">
@@ -73,39 +73,39 @@
                     @csrf
                     {{-- user detail --}}
                     <input type="text" class="form-control mb-3 form-control-border static-width"
-                        placeholder="{{ __('messages.Full_Name') }}" name="name">
+                        placeholder="{{ __('messages.full_name') }}" name="name">
                     <input type="email" class="form-control mb-3 form-control-border static-width"
-                        placeholder="{{ __('messages.Email_Address') }}" name="email">
+                        placeholder="{{ __('messages.email_address') }}" name="email">
                     <input type="password" class="form-control mb-3 form-control-border static-width"
-                        placeholder="{{ __('messages.Password') }}" name="password">
+                        placeholder="{{ __('messages.password') }}" name="password">
                     {{-- company detail --}}
                     <input type="text" class="form-control mb-3 form-control-border static-width"
-                        placeholder="{{ __('messages.Company_Name') }}" name="companyName">
+                        placeholder="{{ __('messages.company_name') }}" name="companyName">
                     <input type="email" class="form-control mb-3 form-control-border static-width"
-                        placeholder="{{ __('messages.Company_Email') }}" name="companyEmail">
+                        placeholder="{{ __('messages.company_email') }}" name="companyEmail">
                     <input type="text" class="form-control mb-3 form-control-border static-width"
-                        placeholder="{{ __('messages.Company_Phone') }}" name="phone">
+                        placeholder="{{ __('messages.company_phone') }}" name="phone">
                     <input type="text" class="form-control mb-3 form-control-border static-width"
-                        placeholder="{{ __('messages.Company_Website') }}" name="website">
+                        placeholder="{{ __('messages.company_website') }}" name="website">
                     <select class="form-control mb-3 p-3 form-control-border static-width" name="country_id" required>
-                        <option value="" disabled selected>{{ __('messages.Select_Country') }}</option>
+                        <option value="" disabled selected>{{ __('messages.select_country') }}</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->id }}">{{ $country->name }}</option>
                         @endforeach
                     </select>
                     <button type="submit" class="btn btn-orange-clr rounded-pill text-white">
-                        {{ __('messages.Submit') }}
+                        {{ __('messages.submit') }}
                     </button>
                 </form>
             </div>
             <div class="col-md-6">
                 <div class="contact-info">
-                    <h3>{{ __('messages.Contact_Info') }}</h3>
+                    <h3>{{ __('messages.contact_info') }}</h3>
 
                     <div class="info-item">
                         <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="Phone Icon">
                         <div class="info-text">
-                            <span>{{ __('messages.Phone') }}</span>
+                            <span>{{ __('messages.phone') }}</span>
                             <p>+92 324 4469929</p>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                     <div class="info-item">
                         <img src="{{ asset('/') }}frontend-assets/icons/mail.png" alt="Email Icon">
                         <div class="info-text">
-                            <span>{{ __('messages.Email') }}</span>
+                            <span>{{ __('messages.email') }}</span>
                             <p>hello@sparkodic.com</p>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                     <div class="info-item mb-4">
                         <img src="{{ asset('/') }}frontend-assets/icons/home.png" alt="Home Icon">
                         <div class="info-text">
-                            <span>{{ __('messages.Address') }}</span>
+                            <span>{{ __('messages.address') }}</span>
                             <p>Kington, United Kingdom</p>
                         </div>
                     </div>

@@ -140,7 +140,7 @@
                     <!-- item-->
                     <button class="dropdown-item notify-item" id="lock-screen">
                         <i class="fe-lock theme-color"></i>
-                        {{ __('messages.lock screen') }} 
+                        {{ __('messages.lock_screen') }} 
                     </button>
 
                     <div class="dropdown-divider"></div>

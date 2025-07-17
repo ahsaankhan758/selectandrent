@@ -1,5 +1,5 @@
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.user IP') }} @endsection
+@section('title') {{ __('messages.user_IP') }} @endsection
 @section('content')
     @if(auth()->user()->role == 'admin')
         <style>
@@ -10,13 +10,13 @@
         </style>
         
         <div class="col-8 mt-4">
-            <label>{{ __('messages.user IP') }}</label>
+            <label>{{ __('messages.user_IP') }}</label>
             {{$current_user_ip}}
-            <label>Internet {{ __('messages.user IP') }}</label>
+            <label>Internet {{ __('messages.user_IP') }}</label>
             {{$internet_ip}}
             <div class="card">
                 <div class="card-header">
-                    <h4>{{ __('messages.user IP') }}</h4>
+                    <h4>{{ __('messages.user_IP') }}</h4>
                     @if(can('User IP','edit'))
                         <a href=" {{ route('createIpAddress') }}" class="btn btn-primary float-end" >{{ __('messages.create') }}</a>
                     @endif

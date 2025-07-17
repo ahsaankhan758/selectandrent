@@ -27,7 +27,7 @@
                                     <input id="password" type="password" class="form-control" name="password" autocomplete="new-password">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="password-confirm" >{{ __('messages.confirm password') }}</label>
+                                    <label for="password-confirm" >{{ __('messages.confirm_password') }}</label>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                                 </div>
                             </div>

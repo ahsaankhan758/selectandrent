@@ -26,7 +26,7 @@
                             <input type="text" name="phone" class="form-control" value="{{ $company->phone }}">
                         </div>
                         <div class="form-group mb-3">
-                            <lable for="website">{{ __('messages.web site') }}</lable>
+                            <lable for="website">{{ __('messages.website') }}</lable>
                             <input type="text" name="website" class="form-control" value="{{ $company->website }}">
                         </div>
                         <div class="form-group mb-3">

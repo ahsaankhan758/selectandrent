@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-{{ __('messages.Checkout') }} 
+{{ __('messages.checkout') }} 
 @endsection
 
 @section('content')

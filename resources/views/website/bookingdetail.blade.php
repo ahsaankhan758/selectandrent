@@ -59,11 +59,11 @@
                         
 
                         <div class="col-md-6">
-                            <strong><i class="bi bi-calendar-event text-warning me-1"></i> {{ __('messages.Pickup Date') }}:</strong>
+                            <strong><i class="bi bi-calendar-event text-warning me-1"></i> {{ __('messages.pickup_date') }}:</strong>
                             {{ \Carbon\Carbon::parse($detail->pickup_datetime)->format('d M Y, h:i A') }}
                         </div>
                         <div class="col-md-6">
-                            <strong><i class="bi bi-calendar-check text-success me-1"></i> {{ __('messages.Drop-off Date') }}:</strong>
+                            <strong><i class="bi bi-calendar-check text-success me-1"></i> {{ __('messages.dropoff_date') }}:</strong>
                             {{ \Carbon\Carbon::parse($detail->dropoff_datetime)->format('d M Y, h:i A') }}
                         </div>
 

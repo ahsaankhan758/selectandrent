@@ -20,7 +20,7 @@
             
             <div class="car-info">
                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                     <h6 class="car-price">{{ convertPrice($car->rent, 0)  }}/{{ __('messages.Day') }}</h6>
+                     <h6 class="car-price">{{ convertPrice($car->rent, 0)  }}/{{ __('messages.day') }}</h6>
                     @if(auth()->check())
                     <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
                     @else
@@ -37,7 +37,7 @@
                     </div>
                     <div class="detail-item">
                         <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car Image" width="20px">
-                        {{ $car->seats }} {{ __('messages.Seats') }} 
+                        {{ $car->seats }} {{ __('messages.seats') }} 
                     </div>
                     <div class="detail-item">
                         <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car Image" width="20px">
