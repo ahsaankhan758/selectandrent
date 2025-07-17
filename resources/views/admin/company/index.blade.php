@@ -2,6 +2,30 @@
 @section('title') {{ __('messages.company') }} @endsection
 @section('content')
     @if(auth()->user()->role == 'admin')
+        <style>
+            .tooltip-icon {
+            position: relative;
+            cursor: pointer;
+            }
+
+            .tooltip-icon .tooltip-text {
+            visibility: hidden;
+            background-color: #f06115;
+            color: #fff;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            left: 20px;
+            white-space: nowrap;
+            z-index: 1;
+            }
+
+            .tooltip-icon:hover .tooltip-text {
+            visibility: visible;
+            }
+        </style>
         <div class="col-12">
             <div class="card mt-4">
                 <div class="card-header">
@@ -14,6 +38,12 @@
                             <th scope="col">{{ __('messages.name') }}</th>
                             <th scope="col">{{ __('messages.company') }} {{ __('messages.name') }}</th>
                             <th scope="col">{{ __('messages.company') }} {{ __('messages.email') }}</th>
+                            <th scope="col">{{ __('messages.personal') }} {{ __('messages.email') }}
+                                <span class="tooltip-icon">
+                                    <i>ℹ️</i>
+                                    <span class="tooltip-text">{{ __('messages.login_email') }}</span>
+                                </span>
+                            </th>
                             <th scope="col">{{ __('messages.phone') }}</th>
                             <th scope="col">{{ __('messages.website') }}</th>
                             <th scope="col">{{ __('messages.detail') }}</th>
@@ -30,6 +60,7 @@
                                         <td>{{ $compdata->user->name }}</td>
                                         <td>{{ $compdata->name }}</td>
                                         <td>{{ $compdata->email }}</td>
+                                        <td>{{ $compdata->user->email }}</td>
                                         <td>{{ $compdata->phone }}</td>
                                         <td>{{ $compdata->website }}</td>
                                         <td>

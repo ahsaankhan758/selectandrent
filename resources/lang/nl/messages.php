@@ -1,6 +1,7 @@
 <?php
 
     return [
+        'login_email' => 'Inlog e-mailadres',  
         'is_booked' => 'Geboekt',
         'admin_permissions_tooltip' => 'De momenteel ingelogde beheerder kan alleen zijn eigen werknemers in de vervolgkeuzelijst zien',
         'assign' => 'Toewijzen',
