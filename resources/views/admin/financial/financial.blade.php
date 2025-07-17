@@ -30,7 +30,6 @@
         <div class="col-lg-12 my-3 row" >
             @include('admin.financial.include.filter')
         </div>
-
         <div class="row">
             <!-- 8 Column Section -->
             <div class="col-xl-8 col-md-8" id="cards-container">

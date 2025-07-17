@@ -60,7 +60,6 @@ class FinancialController extends Controller
                   ->whereDate('created_at', '<=', $endDate);
         }
 
-        // Implement Check For Company & Employee
         $employeeOwner = EmployeeOwner(auth()->id());
         if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
             $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
@@ -88,7 +87,6 @@ class FinancialController extends Controller
         ];
     }
 
-    // Confirmed & Pending Queries
     $confirmedQuery = Booking::WhereIn('booking_status', ['confirmed','completed'])
                              ->Where('payment_status', 'paid');
     $pendingQuery = Booking::where('booking_status', 'pending');
@@ -96,7 +94,6 @@ class FinancialController extends Controller
     $applyFilters($confirmedQuery);
     $applyFilters($pendingQuery);
 
-    // Convert each confirmed booking to default currency
     $confirmedTotalPrice = 0;
     foreach ($confirmedQuery->get(['total_price', 'currency']) as $booking) {
         $confirmedTotalPrice += administratorConvertCurrency(
@@ -108,7 +105,6 @@ class FinancialController extends Controller
         );
     }
 
-    // Convert each pending booking to default currency
     $pendingTotalPrice = 0;
     foreach ($pendingQuery->get(['total_price', 'currency']) as $booking) {
         $pendingTotalPrice += administratorConvertCurrency(
@@ -319,12 +315,12 @@ public function getOrderStatusData(Request $request)
     }
 
     $employeeOwner = EmployeeOwner(auth()->id());
-    if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
-        $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
-        $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
-            $q->where('user_id', $userId);
-        });
-    }
+        if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
+            $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
+            $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+                $q->where('user_id', $userId);
+            });
+        }
 
     if ($fromDate && $toDate) {
         $query->whereDate('created_at', '>=', $fromDate->format('Y-m-d'))
@@ -332,16 +328,15 @@ public function getOrderStatusData(Request $request)
     }
 
     $total = $query->count();
-    $statuses = ['confirmed', 'pending', 'cancelled', 'completed'];
+    $statuses = ['confirmed', 'pending', 'cancelled', 'completed', 'refunded'];
     $data = [];
 
     foreach ($statuses as $status) {
-        $count = (clone $query)->where('booking_status', $status)->count();
-        $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
+    $count = (clone $query)->where('booking_status', $status)->count();
+    $percentage = $total > 0 ? round(($count / $total) * 100) : 0;
 
-        $data[$status] = ['percentage' => $percentage];
+    $data[$status] = ['percentage' => $percentage];
     }
-
     return response()->json($data);
 }
 

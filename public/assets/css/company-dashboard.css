@@ -50,7 +50,7 @@
 }
 
 .bg-orange-clr{
-    background-color: var(--text-orange);
+    background-color: #f06115 !important;
 }
 
   .card-clickable {
