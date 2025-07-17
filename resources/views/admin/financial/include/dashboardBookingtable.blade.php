@@ -9,7 +9,7 @@
                 @endphp
                  <table class="table table-centered table-nowrap mb-0" id="myTable">
                      <div class="col-lg-12 mb-2">
-                         <a href="{{ route('carBooking') }}" class="btn btn-success">{{ __('messages.booking_all') }}</a>
+                         <a href="{{ route('carBooking') }}" class="btn bg-orange-clr" style="color:white;">{{ __('messages.booking_all') }}</a>
                      </div>
                      
                      <thead class="table-light">

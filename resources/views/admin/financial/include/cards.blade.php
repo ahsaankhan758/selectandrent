@@ -3,7 +3,7 @@
             <div class="card p-3">
                 <div class="d-flex align-items-center">
                     <div class="icon-box">
-                        <i class="fa fa-car-side"></i>
+                        <i class="fa fa-car"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted mb-2">{{ __('messages.order_confirm') }}</h6>
@@ -17,7 +17,7 @@
             <div class="card p-3">
                 <div class="d-flex align-items-center">
                     <div class="icon-box">
-                        <i class="fa-solid fa-money-bill"></i>
+                        <i class="fa-solid fa-wallet"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted mb-2">{{ __('messages.total_revenue') }}</h6>
@@ -45,7 +45,7 @@
             <div class="card p-3">
                 <div class="d-flex align-items-center">
                     <div class="icon-box">
-                        <i class="fa fa-dollar-sign"></i>
+                        <i class="fa fa-car"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted mb-2">{{ __('messages.order_cancel') }}</h6>
@@ -73,7 +73,7 @@
             <div class="card p-3">
                 <div class="d-flex align-items-center">
                     <div class="icon-box">
-                        <i class="fa-solid fa-money-bill"></i>
+                        <i class="fa-solid fa-wallet"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted mb-2">{{ __('messages.pending_revenue') }}</h6>
