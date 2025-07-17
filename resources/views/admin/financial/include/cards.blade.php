@@ -17,11 +17,11 @@
             <div class="card p-3">
                 <div class="d-flex align-items-center">
                     <div class="icon-box">
-                        <i class="fa fa-dollar-sign"></i>
+                        <i class="fa-solid fa-money-bill"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted mb-2">{{ __('messages.total_revenue') }}</h6>
-                        <h2 class="text-dark" id="confirmed_total_price">${{ intval($confirmedTotalPrice) }}</h2>
+                        <h2 class="text-dark" id="confirmed_total_price">{{ $defaultCurrencySymbol }} {{ $confirmedTotalPrice }}</h2>
                     </div>
                 </div>
             </div>
@@ -73,11 +73,11 @@
             <div class="card p-3">
                 <div class="d-flex align-items-center">
                     <div class="icon-box">
-                        <i class="fa fa-dollar-sign"></i>
+                        <i class="fa-solid fa-money-bill"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted mb-2">{{ __('messages.pending_revenue') }}</h6>
-                        <h2 class="text-dark" id="pending_total_price">${{ intval($pendingTotalPrice) }}</h2>
+                        <h2 class="text-dark" id="pending_total_price">{{ $defaultCurrencySymbol }} {{ $pendingTotalPrice }}</h2>
                     </div>
                 </div>
             </div>

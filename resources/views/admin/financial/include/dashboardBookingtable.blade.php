@@ -38,6 +38,7 @@
                              <th>{{ __('messages.bookingtax') }}</th>
                              <th>{{ __('messages.commission') }}</th>
                              <th>{{ __('messages.bookinginsurance') }}</th>
+                             <th>{{ __('messages.currency') }}</th>
                              <th>{{ __('messages.bookingtotal') }}</th>
                              <th>{{ __('messages.bookingsubtotal') }}</th>
                              <th>{{ __('messages.notes(Cancel)') }}</th>
@@ -133,6 +134,7 @@
                                  <td>{{ number_format($booking->tax_amount, 2) }}</td>
                                  <td>{{ number_format($booking->commission, 2) }}</td>
                                  <td>{{ $booking->insurance_included ? 'Yes' : 'No' }}</td>
+                                 <td>{{$booking->currency}}</td>
                                  <td>{{ number_format($booking->total_price, 2) }}</td>
                                  <td>{{ number_format($booking->subtotal, 2) }}</td>
                                  <td><span id="cancel_note">{{ $booking->notes }}</span></td>
