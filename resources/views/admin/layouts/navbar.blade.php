@@ -106,7 +106,9 @@
                     @endif
                 </ul>
             </li>
-            
+              <!-- notification start -->
+           <li class="notification_list"></li>  
+             <!-- end notifications -->
             <li class="dropdown notification-list topbar-dropdown">
                 @php
                     $profileImage = Auth::user()->profile_image;
@@ -156,14 +158,11 @@
 
                 </div>
             </li>
-            <!-- notification start -->
-           <li class="notification_list"></li>  
-             <!-- end notifications -->
-            <li class="dropdown notification-list">
+            {{-- <li class="dropdown notification-list">
                 <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
                     <i class="fe-settings noti-icon theme-color"></i>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
 
@@ -207,12 +206,7 @@
                 </a>
                 <!-- End mobile menu toggle-->
             </li>   
-
-            
-
-            
         </ul>
-        
         <div class="clearfix"></div>
     </div>
 </div>

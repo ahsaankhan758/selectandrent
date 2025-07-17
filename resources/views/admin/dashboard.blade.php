@@ -44,7 +44,7 @@
 
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-primary rounded me-3">
+                                <div class="avatar-md bg-orange-clr rounded me-3">
                                     <i class="fe-layers avatar-title font-22 text-white"></i>
                                 </div>
                                 <div>
@@ -68,8 +68,9 @@
                         ]) }}">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-danger rounded me-3">
-                                    <i class="fa-solid fa-money-bill avatar-title font-22 text-white" style="text-align: center; margin-top: 15px;"></i>
+                                <div class="avatar-md bg-orange-clr rounded me-3">
+                                    <i class="fa-solid fa-wallet avatar-title font-22 text-white"
+                                        style="text-align: center; margin-top: 15px;"></i>
                                 </div>
                                 <div>
                                     <h3 class="text-dark my-1">{{ $defaultCurrencySymbol }} {{ $totalrevenue }}</h3>
@@ -92,8 +93,9 @@
                         ]) }}">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-dark rounded me-3">
-                                    <i class="fe-user-check avatar-title font-22 text-white"></i>
+                                <div class="avatar-md bg-orange-clr rounded me-3">
+                                    <i class="fa-solid fa-wallet avatar-title font-22 text-white"
+                                    style="text-align: center; margin-top: 15px;"></i>
                                 </div>
                                 <div>
                                     <h3 class="text-dark my-1">{{ $defaultCurrencySymbol }} {{ $commission }}</h3>
@@ -109,8 +111,9 @@
                     <a href="#" style="text-decoration: none;">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-info rounded me-3">
-                                    <i class="fe-credit-card avatar-title font-22 text-white"></i>
+                                <div class="avatar-md bg-orange-clr rounded me-3">
+                                    <i class="fa-solid fa-wallet avatar-title font-22 text-white"
+                                    style="text-align: center; margin-top: 15px;"></i>
                                 </div>
                                 <div>
                                     <h3 class="text-dark my-1">{{ $defaultCurrencySymbol }} {{ $payoutcompany }}</h3>
@@ -133,8 +136,9 @@
                         ]) }}">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-warning rounded me-3">
-                                    <i class="fe-briefcase avatar-title font-22 text-white"></i>
+                                <div class="avatar-md bg-orange-clr rounded me-3">
+                                    <i class="fa-solid fa-wallet avatar-title font-22 text-white"
+                                    style="text-align: center; margin-top: 15px;"></i>
                                 </div>
                                 <div>
                                     <h3 class="text-dark my-1">{{ $defaultCurrencySymbol }} {{ $totalpending }}</h3>
@@ -154,7 +158,7 @@
                         style="text-decoration: none;">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-secondary rounded me-3">
+                                <div class="avatar-md bg-orange-clr rounded me-3">
                                     <i class="fe-calendar avatar-title font-22 text-white"></i>
                                 </div>
                                 <div>
@@ -178,7 +182,7 @@
                         ]) }}">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-success rounded me-3">
+                                <div class="avatar-md bg-orange-clr rounded me-3">
                                     <i class="fe-check-circle avatar-title font-22 text-white"></i>
                                 </div>
                                 <div>
@@ -197,7 +201,7 @@
 
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-pink rounded me-3">
+                                <div class="avatar-md bg-orange-clr rounded me-3">
                                     <i class="fe-users avatar-title font-22 text-white"></i>
                                 </div>
                                 <div>
@@ -215,7 +219,7 @@
                         style="text-decoration: none;">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-dark rounded me-3">
+                                <div class="avatar-md bg-orange-clr rounded me-3">
                                     <i class="fe-bar-chart avatar-title font-22 text-white"></i>
                                 </div>
                                 <div>
@@ -238,7 +242,7 @@
                         style="text-decoration: none;">
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
-                                <div class="avatar-md bg-dark rounded me-3">
+                                <div class="avatar-md bg-orange-clr rounded me-3">
                                     <i class="fe-x-circle avatar-title font-22 text-white"></i>
                                 </div>
                                 <div>
@@ -262,7 +266,8 @@
                         <div class="card bg-pattern card-clickable">
                             <div class="card-body d-flex">
                                 <div class="avatar-md bg-orange-clr rounded me-3">
-                                    <i class="fe-rotate-ccw avatar-title font-22 text-white"></i>
+                                    <i class="fa-solid fa-wallet avatar-title font-22 text-white"
+                                    style="text-align: center; margin-top: 15px;"></i>
                                 </div>
                                 <div>
                                     <h3 class="text-dark my-1">{{ $defaultCurrencySymbol }} {{ $refundedamount }}</h3>
@@ -281,16 +286,26 @@
                         <h4 class="header-title mb-3">{{ __('messages.bookingchart') }}</h4>
                         <div class="text-center">
                             <p class="text-muted font-15 font-family-secondary mb-0">
-                                <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-info"></i>
-                                    {{ __('messages.pending') }}</span>
-                                <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-success"></i>
-                                    {{ __('messages.confirmed') }}</span>
-                                <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-muted"></i>
-                                    {{ __('messages.completed') }}</span><br>
-                                <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-danger"></i>
-                                    {{ __('messages.cancelled') }}</span>
-                                <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle" style="color: #f06115"></i>
-                                    {{ __('messages.refunded') }}</span>
+                                <span class="mx-2">
+                                    <i class="mdi mdi-checkbox-blank-circle" style="color: #07407B"></i>
+                                    {{ __('messages.confirmed') }}
+                                </span>
+                                <span class="mx-2">
+                                    <i class="mdi mdi-checkbox-blank-circle" style="color: #f06115"></i>
+                                    {{ __('messages.pending') }}
+                                </span>
+                                <span class="mx-2">
+                                    <i class="mdi mdi-checkbox-blank-circle" style="color: #495057"></i>
+                                    {{ __('messages.cancelled') }}
+                                </span><br>
+                                <span class="mx-2">
+                                    <i class="mdi mdi-checkbox-blank-circle" style="color: #28a745"></i>
+                                    {{ __('messages.completed') }}
+                                </span>
+                                <span class="mx-2">
+                                    <i class="mdi mdi-checkbox-blank-circle" style="color: #8e44ad"></i>
+                                    {{ __('messages.refunded') }}
+                                </span>
                             </p>
                         </div>
                         <div id="morris-bar-example" style="height: 350px;" class="morris-chart"></div>

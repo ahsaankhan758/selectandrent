@@ -1,4 +1,4 @@
-<div class="right-bar">
+{{-- <div class="right-bar">
     <div data-simplebar class="h-100">
 
         <!-- Nav tabs -->
@@ -388,4 +388,4 @@
         </div>
 
     </div> <!-- end slimscroll-menu-->
-</div>
+</div> --}}

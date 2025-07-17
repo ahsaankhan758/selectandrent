@@ -15,8 +15,8 @@
                             @endif
                         </div>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-striped" id="myTable">
+                    <div class="card-body table-responsive">
+                        <table class="table table-striped text-nowrap" id="myTable">
                             <thead class="align-text-center">
                             <tr>
                                 <th scope="col">{{__('messages.user') }}</th>
