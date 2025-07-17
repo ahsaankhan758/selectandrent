@@ -1,5 +1,6 @@
 <?php
     return [
+      'login_email' => 'LogIn Email',
       'is_booked' => 'Is Booked',
       'admin_permissions_tooltip' => 'Current Loggedin Admin Can See Their Own Employees In Dropdown',
       'general_module' => 'General Module',
