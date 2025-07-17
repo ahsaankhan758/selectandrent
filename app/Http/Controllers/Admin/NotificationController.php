@@ -28,19 +28,15 @@ class NotificationController extends Controller
     {
         $user = auth()->user();
 
-        $query = Notification::orderBy('created_at', 'desc');
+        $query = Notification::query(); 
 
-        
-        $query->where('to_user_id', $user->id);
-        
+        $query->where('to_user_id', $user->id)
+            ->orderBy('created_at', 'desc');
 
-        $notifications_data = $query->paginate(10);
+        $notifications_data = $query->paginate(10); 
 
         return view('admin.notifications.notification_view', compact('notifications_data'));
     }
-
-
-
 
     public function getNotifications()
     {

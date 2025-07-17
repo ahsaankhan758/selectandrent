@@ -7,7 +7,7 @@ function renderBookingChart(data) {
         xkey: 'month',
         ykeys: ['Pending', 'Confirmed', 'Completed', 'Cancelled', 'Refunded'],
         labels: ['Pending', 'Confirmed', 'Completed', 'Cancelled', 'Refunded'],
-        barColors: ['#4fc6e1', '#98a6ad', '#1abc9c', '#e74c3c', '#E67E22'],
+        barColors: ['#f06115', '#07407B', '#28a745', '#495057', '#8e44ad'],
         hideHover: 'auto',
         resize: true,
         barSizeRatio: 0.75,

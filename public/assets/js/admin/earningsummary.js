@@ -39,7 +39,8 @@ $(document).ready(function () {
 // donut chart
 $(document).ready(function () {
     let donutChart;
-    const legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745'];
+    const legendColors = ['#07407B', '#f06115', '#ebeff2', '#28a745', '#8e44ad'];
+
 
     function getSelectedCompanyId() {
         return $('#options-dropdown').val();
@@ -78,7 +79,7 @@ $(document).ready(function () {
         const legendContainer = document.querySelector('#lifetime-sales').parentElement;
         legendContainer.querySelectorAll('.d-flex.px-3').forEach(e => e.remove());
 
-        const labels = ['confirmed', 'pending', 'cancelled', 'completed'];
+        const labels = ['confirmed', 'pending', 'cancelled', 'completed', 'refunded'];
         labels.forEach((label, i) => {
             const percentage = data.find(d => d.label.toLowerCase() === label)?.value ?? 0;
             const legend = `
@@ -115,12 +116,13 @@ $(document).ready(function () {
             type: 'GET',
             data: ajaxParams,
             success: function (response) {
-                const chartData = [
-                    { label: "Confirmed", value: response.confirmed.percentage },
-                    { label: "Pending", value: response.pending.percentage },
-                    { label: "Cancelled", value: response.cancelled.percentage },
-                    { label: "Completed", value: response.completed.percentage }
-                ];
+             const chartData = [
+                { label: "Confirmed", value: response.confirmed.percentage },
+                { label: "Pending", value: response.pending.percentage },
+                { label: "Cancelled", value: response.cancelled.percentage },
+                { label: "Completed", value: response.completed.percentage },
+                { label: "Refunded", value: response.refunded.percentage } 
+            ];
                 renderChart(chartData);
             },
             error: function () {

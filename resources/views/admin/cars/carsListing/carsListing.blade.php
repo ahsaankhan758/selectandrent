@@ -31,18 +31,18 @@
                             @if(isset($cars))
                                 @foreach ($cars as $carData)
                                     <tr>
-                                        <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ ucfirst(strtolower($carData->car_models->name )) }}</a></td>
-                                        <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->lisence_plate }}</a></td>
+                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ ucfirst(strtolower($carData->car_models->name )) }}</a></td>
+                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->lisence_plate }}</a></td>
                                         
                                         @if(isset($carData->users) && $carData->users->role == 'admin' || empty($carData->users->companies))
-                                            <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->name ?? 'N/A' }}</a></td>
+                                            <td><a href="#" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->name ?? 'N/A' }}</a></td>
                                         @else
-                                            <td><a href="" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
+                                            <td><a href="#" data-bs-toggle="modal" data-bs-target="#modal{{ $carData->id }}">{{ $carData->users->companies->name }}</a></td>
                                         @endif
                                         <td>
                                             {{ $carData->u_employees?->name ?? '' }}
                                         </td>
-                                        <td class="text-black">
+                                        <td>
                                             {{ ($carData->is_booked == 1)? 'Yes' : 'No' }}
                                         </td>
                                         <td>
@@ -54,7 +54,7 @@
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                                 <a href="{{ route('deleteCar', $carData->id) }}" class="btn-delete">
-                                                    <i class="fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                                    <i class="fa-sharp fa-solid fa-trash text-danger"></i>
                                                 </a>
                                             </td>
                                         @endif

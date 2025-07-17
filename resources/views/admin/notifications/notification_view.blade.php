@@ -25,7 +25,7 @@
                         <div class="inbox-item">
                             <div class="inbox-item-img">
                                 <img src="{{ $notification->from_user && $notification->from_user->profile_image 
-                                    ? asset('frontend-assets/assets/profile/' . $notification->from_user->profile_image)
+                                    ? asset($notification->from_user->profile_image)
                                     : asset('assets/images/profile/user.png') }}" 
                                     class="rounded-circle" alt="">
                             </div>
