@@ -336,19 +336,7 @@
                         @endif
                     </div>
 
-                @empty
-                    <div class="text-muted text-center">
-                        {{ __('messages.no_reminder') }}
-                    </div>
-                @endforelse
-            </div>
-            @if ($reminder->count() > 5)
-                <div class="text-end mt-3">
-                    <a href="#" class="btn btn-sm text-white" style="background-color: #f06115;">
-                        {{ __('messages.view_all') }}
-                    </a>
-
-                </div>
+               
             </div>
 
             <!-- end row-->
