@@ -1,29 +1,34 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Models\Car;
 use Carbon\Carbon;
+use App\Models\Car;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\company;
 use App\Models\Country;
+use App\Models\Currency;
 use App\Models\IP_Address;
 use App\Models\BookingItem;
 use Illuminate\Http\Request;
+use App\Mail\BookingStatusMail;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\BookingStatusMail;
 use Illuminate\Support\Facades\Mail;
 
 class FinancialController extends Controller
 {
-    public function earningSummary(Request $request)
+   public function earningSummary(Request $request)
 {
     $companyUserId = $request->user_id ?? null;
     $countryId = $request->country_id ?? null;
     $startDate = $request->start_date ?? null;
     $endDate = $request->end_date ?? null;
+
+    $defaultCurrency = Currency::where('is_default', 'Yes')->first();
+    $defaultCurrencyCode = $defaultCurrency->code ?? 'USD';
+    $defaultCurrencySymbol = $defaultCurrency->symbol ?: $defaultCurrency->code;
 
     $role = Auth::user()->role;
     $companies = Company::where('status', 1)->pluck('name', 'user_id');
@@ -36,35 +41,34 @@ class FinancialController extends Controller
         $endDate = date('Y-m-d', strtotime($endDate));
     }
 
-   $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate , $countryId) {
-    if ($companyUserId) {
-        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
-            $q->where('user_id', $companyUserId);
-        });
-    }
+    $applyFilters = function ($query) use ($companyUserId, $startDate, $endDate , $countryId) {
+        if ($companyUserId) {
+            $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserId) {
+                $q->where('user_id', $companyUserId);
+            });
+        }
 
-    if ($countryId) {
-        $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+        if ($countryId) {
+            $companyUserIds = Company::where('country_id', $countryId)->pluck('user_id')->toArray();
+            $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
+                $q->whereIn('user_id', $companyUserIds);
+            });
+        }
 
-        $query->whereHas('booking_items.vehicle', function ($q) use ($companyUserIds) {
-            $q->whereIn('user_id', $companyUserIds);
-        });
-    }
+        if ($startDate && $endDate) {
+            $query->whereDate('created_at', '>=', $startDate)
+                  ->whereDate('created_at', '<=', $endDate);
+        }
 
-    if ($startDate && $endDate) {
-        $query->whereDate('created_at', '>=', $startDate)
-              ->whereDate('created_at', '<=', $endDate);
-    }
-    // Implement Check For Company & Employee
-    $employeeOwner = EmployeeOwner(auth()->id());
-    if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
-        $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
-        $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
-            $q->where('user_id', $userId);
-        });
-    }
-};
-
+        // Implement Check For Company & Employee
+        $employeeOwner = EmployeeOwner(auth()->id());
+        if (auth()->user()->role == 'company' || (isset($employeeOwner) && $employeeOwner->role == 'company')) {
+            $userId = (auth()->user()->role == 'company') ? auth()->id() : $employeeOwner->id;
+            $query->whereHas('booking_items.vehicle', function ($q) use ($userId) {
+                $q->where('user_id', $userId);
+            });
+        }
+    };
 
     $totalBookingsQuery = Booking::query();
     $applyFilters($totalBookingsQuery);
@@ -84,16 +88,38 @@ class FinancialController extends Controller
         ];
     }
 
+    // Confirmed & Pending Queries
     $confirmedQuery = Booking::WhereIn('booking_status', ['confirmed','completed'])
-                         ->Where('payment_status', 'paid');
+                             ->Where('payment_status', 'paid');
     $pendingQuery = Booking::where('booking_status', 'pending');
+
     $applyFilters($confirmedQuery);
     $applyFilters($pendingQuery);
 
-    $confirmedTotalPrice = $confirmedQuery->sum('total_price');
-    // echo"<pre>";
-    // print_r($confirmedTotalPrice);die;
-    $pendingTotalPrice = $pendingQuery->sum('total_price');
+    // Convert each confirmed booking to default currency
+    $confirmedTotalPrice = 0;
+    foreach ($confirmedQuery->get(['total_price', 'currency']) as $booking) {
+        $confirmedTotalPrice += administratorConvertCurrency(
+            $booking->total_price,
+            $booking->currency,
+            $defaultCurrencyCode,
+            2,
+            0
+        );
+    }
+
+    // Convert each pending booking to default currency
+    $pendingTotalPrice = 0;
+    foreach ($pendingQuery->get(['total_price', 'currency']) as $booking) {
+        $pendingTotalPrice += administratorConvertCurrency(
+            $booking->total_price,
+            $booking->currency,
+            $defaultCurrencyCode,
+            2,
+            0
+        );
+    }
+
     $confirmedCount = Booking::where('booking_status', 'confirmed')->count();
     $pendingCount = $pendingQuery->count();
 
@@ -117,7 +143,8 @@ class FinancialController extends Controller
             'confirmedCount',
             'pendingCount',
             'cancelCount',
-            'completedCount'
+            'completedCount',
+            'defaultCurrencySymbol'
         ))->render();
 
         $bookingTableView = view('admin.financial.include.dashboardBookingtable', compact('bookings'))->render();
@@ -135,49 +162,65 @@ class FinancialController extends Controller
         'confirmedCount', 'pendingCount',
         'cancelCount', 'completedCount',
         'companies', 'companyUserId',
-        'countryNames' , 'countryId'
+        'countryNames', 'countryId',
+        'defaultCurrencySymbol'
     ));
 }
 
 public function markPickup($bookingItemId)
 {
     $bookingItem = BookingItem::findOrFail($bookingItemId);
+
+    if (!empty($bookingItem->actual_pickup_datetime)) {
+        return back()->with('error', 'This vehicle has already been picked up.');
+    }
+
     $bookingItem->actual_pickup_datetime = now();
     $bookingItem->save();
 
     $booking = Booking::with([
-        'booking_items.vehicle.carModel', 
+        'booking_items.vehicle.carModel',
         'booking_items.pickupLocation',
         'booking_items.dropoffLocation',
-        'user', 
+        'user',
         'car'
     ])->findOrFail($bookingItem->booking_id);
-        if(empty($bookingItem->actual_pickup_datetime)){
-            Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
-            Mail::to($booking->booking_items->first()?->vehicle?->users->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
-            if($booking->booking_items->first()?->vehicle?->u_employee_id){
-                Mail::to($booking->booking_items->first()?->vehicle?->u_employees->email)->send(new BookingStatusMail($booking, 'Your car has been picked up successfully.'));
-            }
-            $userId = auth()->id();
-            $userName = auth()->user()->name ?? 'System';
-            $description = $userName . ' marked a car as picked up for Booking Reference [' . $booking->booking_reference . '] successfully.';
-            $action = 'Pickup';
-            $module = 'Booking Item';
-            activityLog($userId, $description, $action, $module);
-            return back()->with('success', 'Vehicle has been picked up.');
-        }else{
-            return back()->with('error', 'This vehicle has already been picked up.');
+
+    Mail::to($booking->email)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.', 'pickup'));
+
+    $vehicleOwnerEmail = $booking->booking_items->first()?->vehicle?->users?->email;
+    if ($vehicleOwnerEmail) {
+        Mail::to($vehicleOwnerEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.', 'pickup'));
+    }
+
+    if ($booking->booking_items->first()?->vehicle?->u_employee_id) {
+        $employeeEmail = $booking->booking_items->first()?->vehicle?->u_employees?->email;
+        if ($employeeEmail) {
+            Mail::to($employeeEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been picked up successfully.', 'pickup'));
         }
+    }
+
+    $userId = auth()->id();
+    $userName = auth()->user()->name ?? 'System';
+    $description = $userName . ' marked a Vehicle as picked up for Booking Reference [' . $booking->booking_reference . '] successfully.';
+    $action = 'Pickup';
+    $module = 'Booking Item';
+    activityLog($userId, $description, $action, $module);
+
+    return back()->with('success', 'Vehicle has been picked up.');
 }
 
 public function markDropoff($bookingItemId)
 {
     $bookingItem = BookingItem::with('vehicle')->findOrFail($bookingItemId);
 
+    if (!empty($bookingItem->actual_dropoff_datetime)) {
+        return back()->with('error', 'This vehicle has already been dropped off.');
+    }
+
     $bookingItem->actual_dropoff_datetime = now();
     $bookingItem->save();
 
-    // Update vehicle booking status and location
     if ($bookingItem->vehicle) {
         $vehicle = $bookingItem->vehicle;
         $vehicle->is_booked = '0';
@@ -189,7 +232,6 @@ public function markDropoff($bookingItemId)
         $vehicle->save();
     }
 
-    // Update booking status to completed
     $booking = Booking::with([
         'booking_items.vehicle.carModel',
         'booking_items.pickupLocation',
@@ -201,15 +243,25 @@ public function markDropoff($bookingItemId)
     $booking->booking_status = 'completed';
     $booking->save();
 
-    // Send notification email
     Mail::to($booking->email)->send(
-        new BookingStatusMail($booking, 'Your car has been dropped off successfully.')
+        new BookingStatusMail($booking, 'Your Vehicle has been dropped off successfully.', 'dropoff')
     );
 
-    // Log activity
+    $vehicleOwnerEmail = $booking->booking_items->first()?->vehicle?->users?->email;
+    if ($vehicleOwnerEmail) {
+        Mail::to($vehicleOwnerEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been dropped off successfully.', 'dropoff'));
+    }
+
+    if ($booking->booking_items->first()?->vehicle?->u_employee_id) {
+        $employeeEmail = $booking->booking_items->first()?->vehicle?->u_employees?->email;
+        if ($employeeEmail) {
+            Mail::to($employeeEmail)->send(new BookingStatusMail($booking, 'Your Vehicle has been dropped off successfully.', 'dropoff'));
+        }
+    }
+
     $userId = auth()->id();
     $userName = auth()->user()->name ?? 'System';
-    $description = $userName . ' marked a car as dropoff for Booking Reference [' . $booking->booking_reference . '] successfully.';
+    $description = $userName . ' Marked a Vehicle as dropoff for Booking Reference [' . $booking->booking_reference . '] successfully.';
     $action = 'Dropoff';
     $module = 'Booking Item';
 
@@ -412,6 +464,9 @@ public function getEarningsData(Request $request)
     $endDateInput = $request->query('end_date');
     $months = $request->query('months', 12);
     $now = Carbon::now();
+    $defaultCurrency = Currency::where('is_default', 'Yes')->first();
+    $defaultCurrencyCode = $defaultCurrency->code ?? 'USD';
+
 
     $startDate = $startDateInput ? Carbon::parse($startDateInput)->startOfDay() : $now->copy()->subMonths($months - 1)->startOfMonth();
     $endDate = $endDateInput ? Carbon::parse($endDateInput)->endOfDay() : $now->endOfDay();
@@ -447,9 +502,17 @@ public function getEarningsData(Request $request)
     $bookings = $query->get();
 
     $earnings = $bookings->groupBy(function ($booking) {
-        return Carbon::parse($booking->created_at)->format('M Y');
-    })->map(function ($group) {
-        return $group->sum('total_price');
+    return Carbon::parse($booking->created_at)->format('M Y');
+    })->map(function ($group) use ($defaultCurrencyCode) {
+        return $group->sum(function ($booking) use ($defaultCurrencyCode) {
+            return administratorConvertCurrency(
+                $booking->total_price,
+                $booking->currency,
+                $defaultCurrencyCode,
+                2,
+                0
+            );
+        });
     });
 
     $labels = [];
@@ -465,9 +528,12 @@ public function getEarningsData(Request $request)
         $period->addMonth();
     }
 
+   $defaultCurrencySymbol = $defaultCurrency->symbol ?: $defaultCurrency->code;
+
     return response()->json([
         'labels' => $labels,
         'data' => $data,
+        'defaultCurrencySymbol' => $defaultCurrencySymbol,
     ]);
 }
 
