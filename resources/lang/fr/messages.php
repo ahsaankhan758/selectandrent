@@ -1,6 +1,7 @@
 <?php
 
     return [
+        'login_email' => 'E-mail de connexion',
         'is_booked' => 'Réservé',
         'admin_permissions_tooltip' => "L'administrateur actuellement connecté peut voir uniquement ses propres employés dans la liste déroulante",
         'assign' => 'Assigner',

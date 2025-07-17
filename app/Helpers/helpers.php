@@ -2,20 +2,22 @@
 
 use App\Models\Car;
 use App\Models\Booking;
+use App\Models\company;
 use App\Models\Contact;
+use App\Models\Employee;
 use App\Models\User;
 use App\Models\ActivityLog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
     function activityLog($user_id = 0,$description = '',$action = '',$module = '')
-        {
-            ActivityLog::create([
-                'user_id' => $user_id,
-                'action' => $action,
-                'module' => $module,
-                'description' => serialize($description),
-            ]);
-        }
+    {
+        ActivityLog::create([
+            'user_id' => $user_id,
+            'action' => $action,
+            'module' => $module,
+            'description' => serialize($description),
+        ]);
+    }
 
     function getBookingCount()
     {
@@ -59,32 +61,42 @@ use Illuminate\Support\Facades\File;
     }
 
     function getVehicleCount()
-{
-    $user = auth()->user();
+    {
+        $user = auth()->user();
 
-    if ($user->role === 'admin') {
-        return Car::count();
-    }
+        if ($user->role === 'admin') {
+            return Car::count();
+        }
 
-    $owner = null;
+        $owner = null;
 
-    if ($user->role === 'employee') {
-        $employee = DB::table('employees')->where('e_user_id', $user->id)->first();
-        if ($employee) {
-            $owner = User::find($employee->owner_user_id);
-            if ($owner && $owner->role === 'admin') {
-                return Car::count(); 
+        if ($user->role === 'employee') {
+            $employee = DB::table('employees')->where('e_user_id', $user->id)->first();
+            if ($employee) {
+                $owner = User::find($employee->owner_user_id);
+                if ($owner && $owner->role === 'admin') {
+                    return Car::count(); 
+                }
             }
         }
+
+        if ($user->role === 'company' || ($owner && $owner->role === 'company')) {
+            $companyId = $owner?->id ?? $user->id;
+
+            return Car::where('user_id', $companyId)->count();
+        }
+
+        return 0;
     }
 
-    if ($user->role === 'company' || ($owner && $owner->role === 'company')) {
-        $companyId = $owner?->id ?? $user->id;
-
-        return Car::where('user_id', $companyId)->count();
+    function getEmployeeCount()
+    {
+        return Employee::where('owner_user_id',auth()->id())->count();
     }
 
-    return 0;
-}
+    function getCompaniesCount($status)
+    {
+        return company::where('status',$status)->count();    
+    }
 
 
