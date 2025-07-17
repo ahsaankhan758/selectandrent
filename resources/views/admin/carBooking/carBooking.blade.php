@@ -1,6 +1,6 @@
 @extends('admin.layouts.Master')
 @section('title')
-    {{ __('messages.car') }} {{ trans_choice('messages.booking', 2) }}
+    {{ __('messages.vehicle') }} {{ trans_choice('messages.booking', 2) }}
 @endsection
 @section('content')
     @if (can('bookings', 'view'))

@@ -21,12 +21,12 @@
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label class="form-label">{{ __('messages.Country') }}</label>
+                                <label class="form-label">{{ __('messages.country') }}</label>
                                 <input type="text" name="name" class="form-control" value="{{ $country->name }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">{{ __('messages.Country') }} {{ __('messages.code') }}</label>
+                                <label class="form-label">{{ __('messages.country') }} {{ __('messages.code') }}</label>
                                 <input type="text" name="code" class="form-control" value="{{ $country->code }}" required>
                             </div>
 

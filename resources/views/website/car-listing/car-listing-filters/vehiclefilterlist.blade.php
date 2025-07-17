@@ -45,19 +45,19 @@
     <div class="filters p-3">
         <div class="filter-section">
             <div class="position-relative">
-                <input type="text" id="addressFilter" class="form-control car-input-box" placeholder="{{ __('messages.Address') }}">
+                <input type="text" id="addressFilter" class="form-control car-input-box" placeholder="{{ __('messages.address') }}">
                 <ul id="addressDropdown" class="dropdown-menu w-100" style="display: none;"></ul>
             </div>
             
             <div class="car-listing-dropdown-container mb-2">
                 <div id="carModelDropdownBtn" class="dropdown-btn">
-                    <span>{{ __('messages.Select a Car Model') }} </span>
+                    <span>{{ __('messages.select_a_vehicle_model') }} </span>
                     <i class="dropdown-arrow fas fa-chevron-down"></i>
                 </div>
                 <div id="carModelDropdownMenu" class="dropdown-menu-custom">
-                    <input type="text" id="carModelSearch" class="search-box" placeholder="{{ __('messages.Search Car Model') }}...">
+                    <input type="text" id="carModelSearch" class="search-box" placeholder="{{ __('messages.search_vehicle_model') }}...">
                     <ul id="carModelList" class="list-unstyled mb-0">
-                        <li class="dropdown-item-custom text-muted">{{ __('messages.Loading') }}...</li>
+                        <li class="dropdown-item-custom text-muted">{{ __('messages.loading') }}...</li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +70,7 @@
        
         
         <div class="brand-section">
-            <h5 class="brand-title">{{ __('messages.All Brands') }} ({{ $totalCars }})</h5>
+            <h5 class="brand-title">{{ __('messages.all_brands') }} ({{ $totalCars }})</h5>
             
             <div class="brand-list">
                 @foreach($categories->take(6) as $category)
@@ -89,9 +89,9 @@
                         </button>
                     @endforeach
                 </div>
-                <button id="viewMoreCategories" class="brand-btn">{{ __('messages.View More') }}</button>
+                <button id="viewMoreCategories" class="brand-btn">{{ __('messages.view_more') }}</button>
             @endif
-            <!-- <button class="btn find-car-btn btn-dark-blue-clr">{{ __('messages.Find Car') }}</button> -->
+            <!-- <button class="btn find-car-btn btn-dark-blue-clr">{{ __('messages.find_vehicle') }}</button> -->
         </div>
     </div>
 </div>

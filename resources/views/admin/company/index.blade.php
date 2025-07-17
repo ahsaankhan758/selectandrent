@@ -15,7 +15,7 @@
                             <th scope="col">{{ __('messages.company') }} {{ __('messages.name') }}</th>
                             <th scope="col">{{ __('messages.company') }} {{ __('messages.email') }}</th>
                             <th scope="col">{{ __('messages.phone') }}</th>
-                            <th scope="col">{{ __('messages.web site') }}</th>
+                            <th scope="col">{{ __('messages.website') }}</th>
                             <th scope="col">{{ __('messages.detail') }}</th>
                             @if(can('companies','edit'))
                                 <th scope="col">{{ __('messages.action') }}</th>

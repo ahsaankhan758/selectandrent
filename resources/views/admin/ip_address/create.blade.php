@@ -1,11 +1,11 @@
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.create') }} {{ __('messages.user IP') }} @endsection
+@section('title') {{ __('messages.create') }} {{ __('messages.user_IP') }} @endsection
 @section('content')
     @if(auth()->user()->role == 'admin')
         <div class="col-6">
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4>{{ __('messages.create') }} {{ __('messages.user IP') }}</h4>
+                    <h4>{{ __('messages.create') }} {{ __('messages.user_IP') }}</h4>
                     <a href=" {{ route('ipAddresses') }}" class="btn btn-primary float-end" >{{ __('messages.back') }}</a>
                 </div>
                 <div class="card-body">

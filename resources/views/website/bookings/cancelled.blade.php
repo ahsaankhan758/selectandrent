@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-{{ __('messages.Checkout') }}
+{{ __('messages.checkout') }}
 @endsection
 
 @section('content')
@@ -13,19 +13,19 @@
         <!-- Step 1 -->
         <div class="progress-step active">
             <span class="step-number">1</span>
-            <span class="step-text">{{ __('messages.Ride info') }}</span>
+            <span class="step-text">{{ __('messages.ride_info') }}</span>
         </div>
 
         <!-- Step 2 -->
         <div class="progress-step active">
             <span class="step-number">2</span>
-            <span class="step-text">{{ __('messages.Payment info') }}</span>
+            <span class="step-text">{{ __('messages.payment_info') }}</span>
         </div>
 
         <!-- Step 3 -->
         <div class="progress-step active">
             <span class="step-number">3</span>
-            <span class="step-text">{{ __('messages.Checkout') }}</span>
+            <span class="step-text">{{ __('messages.checkout') }}</span>
         </div>
     </div>
 </div>
@@ -33,8 +33,8 @@
 <!-- thankyou -->
 <div class="container-fluid py-5">
 <div class="container">
-<h2 class="text-center">{{ __('messages.Thank you') }}.</h2>
-<p class="text-center text-check-out-clr">{{ __('messages.Your order has been received') }}.</p>
+<h2 class="text-center">{{ __('messages.thank_you') }}.</h2>
+<p class="text-center text-check-out-clr">{{ __('messages.your_order_received') }}.</p>
 </div>
  </div> 
 <!-- end thankyou -->
@@ -46,7 +46,7 @@
                 <div>
                     <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
-                <div class="start-title">{{ __('messages.Order Number') }}</div>
+                <div class="start-title">{{ __('messages.order_number') }}</div>
                 <div class="start-text">{{ $booking->booking_reference }}</div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                 <div>
                     <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
-                <div class="start-title">{{ __('messages.Date') }}</div>
+                <div class="start-title">{{ __('messages.date') }}</div>
                 <div class="start-text">{{ $booking->created_at }}</div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 <div>
                     <img src="{{asset('/')}}frontend-assets/icons/send.png" class="order-icon-img" alt="Icon">
                 </div>
-                <div class="start-title">{{ __('messages.Email') }}</div>
+                <div class="start-title">{{ __('messages.email') }}</div>
                 <div class="start-text">{{ $booking->email }}</div>
             </div>
         </div>

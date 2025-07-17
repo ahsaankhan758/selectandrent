@@ -178,7 +178,7 @@ $owner = EmployeeOwner($userId);
                                     <li>
                                         <a href="#">
                                             <i class="mdi mdi-car-side"></i>
-                                            <span> {{ __('messages.featured vehicles') }} </span>
+                                            <span> {{ __('messages.featured_vehicles') }} </span>
                                         </a>
                                     </li>
                                 @endif
@@ -318,7 +318,7 @@ $owner = EmployeeOwner($userId);
                     <li>
                         <a href="{{ route('activityLogs') }}">
                             <i class="bi bi-journal-text"></i>
-                            <span>{{ __('messages.activity logs') }} </span>
+                            <span>{{ __('messages.activity_logs') }} </span>
                         </a>
                     </li>
                 @endif

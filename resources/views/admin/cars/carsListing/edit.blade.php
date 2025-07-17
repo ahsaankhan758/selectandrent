@@ -96,7 +96,7 @@
                             </div>
 
                             <div class="col-3 form-group mb-3">
-                                <lable for="fuel_type">{{ __('messages.fuel type') }}</lable>
+                                <lable for="fuel_type">{{ __('messages.fuel_type') }}</lable>
                                 <input type="text" name="fuel_type" class="form-control" value="{{ $car->fuel_type }}">
                             </div>
                             <div class="col-3 form-group mb-3">
@@ -142,7 +142,7 @@
                         </div> 
                         <div class="row">
                             <div class="col-4 form-group mb-3">
-                                <lable for="engine_size">{{ __('messages.engine size') }}</lable>
+                                <lable for="engine_size">{{ __('messages.engine_size') }}</lable>
                                 <input type="text" name="engine_size" class="form-control" value="{{ $car->engine_size }}">
                             </div>
                             <div class="col-4 form-group mb-3">
@@ -156,23 +156,23 @@
                         </div>
                         <div class="row">
                             <div class="col-4 form-group mb-3">
-                                <lable for="fuel_economy">{{ __('messages.fuel economy') }}</lable>
+                                <lable for="fuel_economy">{{ __('messages.fuel_economy') }}</lable>
                                 <input type="text" name="fuel_economy" class="form-control" value="{{ $car->fuel_economy }}">
                             </div>
                             
                             <div class="col-4 form-group mb-3">
-                                <label for="exterior_color">{{ __('messages.exterior color') }}</label>
+                                <label for="exterior_color">{{ __('messages.exterior_color') }}</label>
                                 <input type="text" name="exterior_color" class="form-control" value="{{ $car->exterior_color }}">
                             </div>
                             <div class="col-4 form-group mb-3">
-                                <lable for="interior_color">{{ __('messages.interior color') }}</lable>
+                                <lable for="interior_color">{{ __('messages.interior_color') }}</lable>
                                 <input type="text" name="interior_color" class="form-control" value="{{ $car->interior_color }}">
                             </div>
                         </div>
                         <div class="row">
                             
                             <div class="col-4 form-group mb-3">
-                                <lable for="lisence_plate">{{ __('messages.lisence plate') }}</lable>
+                                <lable for="lisence_plate">{{ __('messages.license_plate') }}</lable>
                                 <input type="text" name="lisence_plate" class="form-control" value="{{ $car->lisence_plate }}">
                             </div>
                             <div class="col-4 form-group mb-3">

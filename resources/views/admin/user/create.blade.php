@@ -20,7 +20,7 @@
                             <input type="email" name="email" class="form-control">
                         </div>    
                         {{-- <div class="form-group mb-3">
-                            <label for="role">{{__('messages.choose role') }}</label>
+                            <label for="role">{{__('messages.choose_role') }}</label>
                             <select id="role" class="form-control" name="role">
                                 <option value="user">{{__('messages.user') }}</option>
                                 <option value="admin">Admin</option>
@@ -31,7 +31,7 @@
                             <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
                         </div>
                         <div class="form-group mb-3">
-                                <label for="password-confirm" >{{__('messages.confirm password') }}</label>
+                                <label for="password-confirm" >{{__('messages.confirm_password') }}</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                             <div class="row mb-0">

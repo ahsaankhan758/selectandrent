@@ -109,7 +109,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-nowrap">{{ __('messages.booking_platenumber') }}</th>
-                                                <th class="text-nowrap">{{ __('messages.car') }}</th>
+                                                <th class="text-nowrap">{{ __('messages.vehicle') }}</th>
                                                 <th class="text-nowrap">{{ __('messages.category') }}</th>
                                                 <th class="text-nowrap">{{ __('messages.location') }}</th>
                                                 @if($detail->vehicle->rent_type == 'day')
@@ -151,11 +151,11 @@
                         </div> <!-- end col -->
                         <div class="col-sm-6">
                             <div class="float-end">
-                                <p><b>{{ __('messages.Subtotal') }}</b> <span class="float-end">
+                                <p><b>{{ __('messages.subtotal') }}</b> <span class="float-end">
                                         {{ convertPrice($booking->subtotal,2) }}</span></p>
                                 <p><b>{{ __('messages.tax') }}</b> <span class="float-end"> &nbsp;&nbsp;&nbsp;
                                         {{ convertPrice($booking->tax_amount) }}</span></p>
-                                <h3>{{ __('messages.Total') }} {{ convertPrice($booking->total_price) }}</h3>
+                                <h3>{{ __('messages.total') }} {{ convertPrice($booking->total_price) }}</h3>
                             </div>
                             <div class="clearfix"></div>
                         </div> <!-- end col -->

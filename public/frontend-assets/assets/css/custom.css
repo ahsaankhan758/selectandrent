@@ -2327,7 +2327,7 @@ margin: 5px 0;
     display: none !important;
   }
 }
-@media (min-width: 1025px) and (max-width: 1440px) {
+@media (min-width: 1025px) and (max-width: 2160px) {
   .get-desktop {
     display: block !important;
   }

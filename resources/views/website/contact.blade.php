@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.CONTACT US') }} 
+    {{ __('messages.contact_us') }} 
 @endsection
 
 @section('content')
@@ -35,34 +35,34 @@
             <div class="row align-items-center">
                 <!-- Left Side: Contact Info -->
                 <div class="col-lg-5 col-md-5 custom-contact-info">
-                    <h3 class="get-desktop masked-text">{{ __('messages.Get In') }} <br> {{ __('messages.Touch') }}</h3>
-                    <h2 class="get-mobile  text-center masked-text ">{{ __('messages.Get In Touch') }}</h2>
+                    <h3 class="get-desktop masked-text">{{ __('messages.get_in') }} <br> {{ __('messages.touch') }}</h3>
+                    <h2 class="get-mobile  text-center masked-text ">{{ __('messages.get_in_touch') }}</h2>
 
                     <ul class="list-unstyled custom-contact-list">
                         <li>
                             <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="Phone Icon">
                             <div>
-                                <h6>{{ __('messages.Phone') }}</h6>
+                                <h6>{{ __('messages.phone') }}</h6>
                                 <div class="fw-bold">+92 3244469929</div>
                             </div>
                         </li>
                         <li>
                             <img src="{{ asset('/') }}frontend-assets/icons/mail.png" alt="Email Icon">
                             <div>
-                                <h6>{{ __('messages.Email') }}</h6>
+                                <h6>{{ __('messages.email') }}</h6>
                                 <div class="fw-bold">hello@sparkodic.com</div>
                             </div>
                         </li>
                         <li>
                             <img src="{{ asset('/') }}frontend-assets/icons/home.png" alt="Home Icon">
                             <div>
-                                <h6>{{ __('messages.Address') }}</h6>
+                                <h6>{{ __('messages.address') }}</h6>
                                 <div class="fw-bold">United Kingdom</div>
                             </div>
                         </li>
                     </ul>
 
-                    <p class="custom-follow-us">{{ __('messages.Follow Us') }}</p>
+                    <p class="custom-follow-us">{{ __('messages.follow_us') }}</p>
                     <div class="custom-social-icons">
                         <a href="#"><img src="{{ asset('/') }}frontend-assets/icons/socials(3).png"
                                 alt=""></a>
@@ -77,8 +77,8 @@
                 <!-- Right Side: Contact Form -->
                 <div class="col-lg-7 col-md-7">
                     <div class="custom-contact-form mt-2">
-                        <h3>{{ __('messages.Contact Form') }}</h3>
-                        <p>{{ __('messages.Enter your details. And you can feel free to contact us for any kind of information') }}.
+                        <h3>{{ __('messages.contact_form') }}</h3>
+                        <p>{{ __('messages.enter_your_detail') }}.
                         </p>
                         @if (session('success'))
                             <div class="alert alert-success mt-3">
@@ -90,17 +90,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="text" class="form-control mb-3" name="first_name"
-                                        placeholder="{{ __('messages.First Name') }}">
+                                        placeholder="{{ __('messages.first_name') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control mb-3" name="last_name"
-                                        placeholder="{{ __('messages.Last Name') }}">
+                                        placeholder="{{ __('messages.last_name') }}">
                                 </div>
                             </div>
 
                             <div class="form-group mb-3">
                                 <select class="form-control" name="subject" required>
-                                    <option value="" disabled selected hidden>{{ __('messages.Query Type') }}</option>
+                                    <option value="" disabled selected hidden>{{ __('messages.query_type') }}</option>
                                     <option value="General">General</option>
                                     <option value="Refund">Refund</option>
                                     <option value="Complaint">Complaint</option>
@@ -110,13 +110,13 @@
                             </div>
 
                             <input type="email" class="form-control mb-3" name="email"
-                                placeholder="{{ __('messages.Email') }}">
+                                placeholder="{{ __('messages.email') }}">
                             <input type="tel" class="form-control mb-3" name="phone"
-                                placeholder="{{ __('messages.Phone') }}">
-                            <textarea class="form-control mb-3" name="message" placeholder="{{ __('messages.Messages') }}" rows="4"></textarea>
+                                placeholder="{{ __('messages.phone') }}">
+                            <textarea class="form-control mb-3" name="message" placeholder="{{ __('messages.messages') }}" rows="4"></textarea>
                             <div class="text-end">
                                 <button id="submitBtn" class="btn btn-orange-clr rounded-pill text-white px-4 py-2">
-                                    {{ __('messages.Submit Now') }}
+                                    {{ __('messages.submit_now') }}
                                 </button>
                             </div>
                         </form>

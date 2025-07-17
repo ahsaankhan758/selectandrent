@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.Car Detail') }} 
+    {{ __('messages.vehicle_detail') }} 
 @endsection
 
 @section('content')
@@ -105,28 +105,28 @@
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="rental-card p-4 shadow rounded">
                     <div class="price-box d-flex justify-content-between align-items-center p-3 text-white rounded-top">
-                        <h5 class="mb-0 py-3">{{ __('messages.Rental Price') }}</h5>
+                        <h5 class="mb-0 py-3">{{ __('messages.rental_price') }}</h5>
                         <h3 class="fw-bold py-3 mb-0">{{ convertPrice($vehicle->rent, 0) }} <span class="fs-6">/
                                 Day</span>
                         </h3>
                     </div>
                     <ul class="list-unstyled px-3 py-2">
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Seats') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.seats') }}</strong>
                             <span>{{ $vehicle->seats }} </span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Doors') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.doors') }}</strong>
                             <span>{{ $vehicle->doors }} </span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Luggage') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.luggage') }}</strong>
                             <span>{{ $vehicle->luggage }}</span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Drive') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.drive') }}</strong>
                             <span>{{ $vehicle->drive }}</span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Economy') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.fuel_economy') }}</strong>
                             <span>{{ $vehicle->fuel_economy }}</span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Fuel Type') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.fuel_type') }}</strong>
                             <span>{{ $vehicle->fuel_type }}</span>
                         </li>
 
@@ -137,16 +137,16 @@
                             <span>{{ $vehicle->year }}</span>
                         </li>
 
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Mileage') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.mileage') }}</strong>
                             <span>{{ $vehicle->mileage }}</span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Transmission') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.transmission') }}</strong>
                             <span>{{ ucfirst($vehicle->transmission) }}</span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Exterior Color') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.exterior_color') }}</strong>
                             <span>{{ ucfirst($vehicle->exterior_color) }}</span>
                         </li>
-                        <li class="d-flex justify-content-between"><strong>{{ __('messages.Interior Color') }}</strong>
+                        <li class="d-flex justify-content-between"><strong>{{ __('messages.interior_color') }}</strong>
                             <span>{{ ucfirst($vehicle->interior_color) }}</span>
                         </li>
                         <li class="d-flex justify-content-between">
@@ -159,10 +159,10 @@
                     <!-- for add to cart  -->
                     @if (auth()->check())
                         <button data-carid="{{ $vehicle->id }}" id="car-booking-btn"
-                            class="btn btn-purchase w-100 rounded-pill mt-3">{{ __('messages.Book Now') }}</button>
+                            class="btn btn-purchase w-100 rounded-pill mt-3">{{ __('messages.book_now') }}</button>
                     @else
                         <button class="btn btn-purchase w-100 rounded-pill mt-3" data-bs-toggle="modal"
-                            data-bs-target="#loginModal">{{ __('messages.Book Now') }}</button>
+                            data-bs-target="#loginModal">{{ __('messages.book_now') }}</button>
                     @endif
                     <!-- end add to cart -->
                 </div>
@@ -175,7 +175,7 @@
     <!-- start accordian and map -->
     <div class="container">
         <div class="col-md-12 col-lg-12 col-12">
-            <h5 class="fw-bold question-heading">{{ __('messages.General Question') }}</h5>
+            <h5 class="fw-bold question-heading">{{ __('messages.general_question') }}</h5>
         </div>
         <div class="row g-4">
             <!-- FAQ Section -->
@@ -186,7 +186,7 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    {{ __('messages.How to Search and Book a Car') }}
+                                    {{ __('messages.how_to_search') }}
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
@@ -202,7 +202,7 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    {{ __('messages.Payment Methods and Security') }}
+                                    {{ __('messages.payment_methods_and_security') }}
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -216,7 +216,7 @@
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    {{ __('messages.Refund and Cancellation Policy') }}
+                                    {{ __('messages.refund_and_cancellation') }}
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
@@ -230,7 +230,7 @@
                             <h2 class="accordion-header" id="headingfour">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-                                    {{ __('messages.Refund and Cancellation Policy') }}
+                                    {{ __('messages.refund_and_cancellation') }}
                                 </button>
                             </h2>
                             <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour"
@@ -247,7 +247,7 @@
             <!-- Location Section -->
             <div class="col-lg-5 col-md-5 col-sm-5 location-card-clr">
                 <div class="location-box flex-fill d-flex flex-column">
-                    <h5 class="fw-bold">{{ __('messages.Location') }}</h5>
+                    <h5 class="fw-bold">{{ __('messages.location') }}</h5>
                     <div class="map-container flex-grow-1">
                         <!-- map -->
                         <iframe id="mapIframe" width="600" height="450" style="border:0;" loading="lazy"
@@ -278,7 +278,7 @@
                     @if (optional(optional($vehicle->users)->companies)->phone)
                         <div class="help-box mt-3">
                             <div class="help-content">
-                                <div class="help-text">{{ __('messages.Need Any Help') }}?</div>
+                                <div class="help-text">{{ __('messages.need_any_help') }}?</div>
                                 <p class="help-number">{{ optional(optional($vehicle->users)->companies)->phone }}</p>
                             </div>
                             <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="24-hour support">
@@ -293,13 +293,13 @@
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
-                <h2 class="fw-bold">{{ __('messages.Choose The Car You Need') }}</h2>
+                <h2 class="fw-bold">{{ __('messages.choose_the_vehicle') }}</h2>
             </div>
             <!-- Button (Center on Mobile, End on Larger Screens) -->
             <div class="col-12 col-md-6 text-center text-md-end mt-3 mt-md-0">
                 <button class="btn rounded-pill text-white btn-orange-clr"
                     onclick="window.location.href='{{ url('/carlisting') }}'">
-                    {{ __('messages.View All') }}
+                    {{ __('messages.view_all') }}
                     <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png" class="ms-2"
                         width="20" height="20" alt="">
                 </button>
@@ -395,7 +395,7 @@
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car" width="20px">
-                                    {{ $vehicle->seats }} {{ __('messages.Seater') }}
+                                    {{ $vehicle->seats }} {{ __('messages.seater') }}
                                 </div>
                                 <div class="icon-text">
                                     <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car" width="20px">
@@ -405,7 +405,7 @@
                                 </a>
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
-                                        {{ convertPrice($vehicle->rent, 0) }}/{{ __('messages.Day') }}</h6>
+                                        {{ convertPrice($vehicle->rent, 0) }}/{{ __('messages.day') }}</h6>
                                     @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $vehicle->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
@@ -461,7 +461,7 @@
                         <!-- <div class="col-md-7 col-12">
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between">
-                                    <span class="fw-bold">{{ __('messages.Price') }}</span>
+                                    <span class="fw-bold">{{ __('messages.price') }}</span>
                                     <span>4.8/5</span>
                                 </div>
                                 <div class="progress">
@@ -469,7 +469,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-2">
-                                    <span class="fw-bold">{{ __('messages.Services') }}</span>
+                                    <span class="fw-bold">{{ __('messages.services') }}</span>
                                     <span>4.3/5</span>
                                 </div>
                                 <div class="progress">
@@ -477,7 +477,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-2">
-                                    <span class="fw-bold">{{ __('messages.Safety') }}</span>
+                                    <span class="fw-bold">{{ __('messages.safety') }}</span>
                                     <span>4.5/5</span>
                                 </div>
                                 <div class="progress">
@@ -485,7 +485,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-2">
-                                    <span class="fw-bold">{{ __('messages.Entertainment') }}</span>
+                                    <span class="fw-bold">{{ __('messages.entertainment') }}</span>
                                     <span>4.7/5</span>
                                 </div>
                                 <div class="progress">
@@ -493,7 +493,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-2">
-                                    <span class="fw-bold">{{ __('messages.Accessibility') }}</span>
+                                    <span class="fw-bold">{{ __('messages.accessibility') }}</span>
                                     <span>5/5</span>
                                 </div>
                                 <div class="progress">
@@ -501,7 +501,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-2">
-                                    <span class="fw-bold">{{ __('messages.Support') }}</span>
+                                    <span class="fw-bold">{{ __('messages.support') }}</span>
                                     <span>4.8/5</span>
                                 </div>
                                 <div class="progress">
@@ -547,7 +547,7 @@
                     <div class="row">
                         <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                             <div class="col-md-5">
-                                <span>{{ __('messages.Price') }}</span>
+                                <span>{{ __('messages.price') }}</span>
                             </div>
                             <div class="col-md-5">
                                 <div class="stars ms-3">
@@ -561,7 +561,7 @@
                         </div>
                         <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                             <div class="col-md-5">
-                                <span>{{ __('messages.Services') }}</span>
+                                <span>{{ __('messages.services') }}</span>
                             </div>
                             <div class="col-md-5">
                                 <div class="stars ms-3">
@@ -575,7 +575,7 @@
                         </div>
                         <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                             <div class="col-md-5">
-                                <span>{{ __('messages.Safety') }}</span>
+                                <span>{{ __('messages.safety') }}</span>
                             </div>
                             <div class="col-md-5">
                                 <div class="stars ms-3">
@@ -592,7 +592,7 @@
                     <div class="row mt-2">
                         <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                             <div class="col-md-5">
-                                <span>{{ __('messages.Entertainment') }}</span>
+                                <span>{{ __('messages.entertainment') }}</span>
                             </div>
                             <div class="col-md-5">
                                 <div class="stars ms-3">
@@ -606,7 +606,7 @@
                         </div>
                         <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                             <div class="col-md-5">
-                                <span>{{ __('messages.Accessibility') }}</span>
+                                <span>{{ __('messages.accessibility') }}</span>
                             </div>
                             <div class="col-md-5">
                                 <div class="stars ms-3">
@@ -620,7 +620,7 @@
                         </div>
                         <div class="col-md-4 col-12 d-flex align-items-center mb-2">
                             <div class="col-md-5">
-                                <span>{{ __('messages.Support') }}</span>
+                                <span>{{ __('messages.support') }}</span>
                             </div>
                             <div class="col-md-5">
                                 <div class="stars ms-3">
@@ -636,19 +636,19 @@
                     <div class="row">
                         <div class="col-md-6 mb-2">
                             <input type="text" class="form-control form-control-border"
-                                placeholder="{{ __('messages.Email') }}">
+                                placeholder="{{ __('messages.email') }}">
                         </div>
                         <div class="col-md-6 mb-2">
                             <input type="text" class="form-control form-control-border"
-                                placeholder="{{ __('messages.Phone') }}">
+                                placeholder="{{ __('messages.phone') }}">
                         </div>
                     </div>
                     <div class="col-md-12 mb-2">
-                        <textarea class="form-control form-control-border" rows="4" placeholder="{{ __('messages.Your Comment') }}"></textarea>
+                        <textarea class="form-control form-control-border" rows="4" placeholder="{{ __('messages.your_comment') }}"></textarea>
                     </div>
                     <div class="text-end">
                         <button class="btn btn-warning btn-orange-clr rounded-pill text-white px-4 py-2">
-                            {{ __('messages.Submit') }}
+                            {{ __('messages.submit') }}
                         </button>
                     </div>
                 </div> -->
