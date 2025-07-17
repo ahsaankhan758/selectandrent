@@ -335,10 +335,9 @@
                             </div>
                         @endif
                     </div>
-
+                 </div>           
                
             </div>
-
             <!-- end row-->
         </div> <!-- container -->
     @else
