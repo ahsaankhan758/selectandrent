@@ -26,7 +26,7 @@
                         <input type="text" name="password" class="form-control" value="Password Can be Change in Change Password Option">
                     </div>
                     <div class="form-group mb-3">
-                        <lable for="role">{{__('messages.choose role') }}</lable>
+                        <lable for="role">{{__('messages.choose_role') }}</lable>
                         <select name="role" class="form-control">
                             @if ($user->role == 'admin')
                                 {

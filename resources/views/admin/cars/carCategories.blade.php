@@ -1,11 +1,11 @@
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.car') }} {{ __('messages.category') }}@endsection
+@section('title') {{ __('messages.vehicle') }} {{ __('messages.category') }}@endsection
 @section('content')
     @if (can('categories', 'view'))
         <div class="col-10">
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4>{{ __('messages.car') }} {{ __('messages.categories') }}</h4>
+                    <h4>{{ __('messages.vehicle') }} {{ __('messages.categories') }}</h4>
                     <div class="mt-3 float-end">
                         @if(can('categories','edit') && auth()->user()->role != 'company' )
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">

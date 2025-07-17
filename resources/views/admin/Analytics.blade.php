@@ -64,14 +64,14 @@
                             <div class="col-8 bg-light p-3">
                                 {{-- Booking Clicks --}}
                                 <div class="mb-3 border-bottom pb-2">
-                                    <h6 class="text-muted mb-1">{{ __('messages.car_detail_clicks') }}</h6>
+                                    <h6 class="text-muted mb-1">{{ __('messages.vehicle_detail_clicks') }}</h6>
                                     <p class="mb-0 text-dark fs-5 fw-bold">{{ $carDetailClicks }}</p>
                                     <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueCarDetailClicks }}</small>
                                 </div>
 
                                 {{-- Booking Views --}}
                                 <div>
-                                    <h6 class="text-muted mb-1">{{ __('messages.car_detail_views') }}</h6>
+                                    <h6 class="text-muted mb-1">{{ __('messages.vehicle_detail_views') }}</h6>
                                     <p class="mb-0 text-dark fs-5 fw-bold">{{ $carDetailViews }}</p>
                                     <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueCarDetailViews }}</small>
                                 </div>
@@ -93,14 +93,14 @@
                             <div class="col-8 bg-light p-3">
                                 {{-- Booking Clicks --}}
                                 <div class="mb-3 border-bottom pb-2">
-                                    <h6 class="text-muted mb-1">{{ __('messages.car_booking_clicks') }}</h6>
+                                    <h6 class="text-muted mb-1">{{ __('messages.vehicle_booking_clicks') }}</h6>
                                     <p class="mb-0 text-dark fs-5 fw-bold">{{ $bookingClicks }}</p>
                                     <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueBookingClicks }}</small>
                                 </div>
 
                                 {{-- Booking Views --}}
                                 <div>
-                                    <h6 class="text-muted mb-1">{{ __('messages.car_booking_views') }}</h6>
+                                    <h6 class="text-muted mb-1">{{ __('messages.vehicle_booking_views') }}</h6>
                                     <p class="mb-0 text-dark fs-5 fw-bold">{{ $carBookingViews }}</p>
                                     <small class="text-muted">{{ __('messages.unique') }} {{ $uniqueCarBookingViews }}</small>
                                 </div>

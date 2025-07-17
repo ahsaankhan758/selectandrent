@@ -7,11 +7,11 @@
 <script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
     <div class="container py-4 mt-5">
-        <h2 class="text-center mb-3">{{ __('messages.Select a Category') }}</h2>
+        <h2 class="text-center mb-3">{{ __('messages.select_a_categoty') }}</h2>
        
         <div class="container text-center my-3">
             <div class="d-flex flex-wrap justify-content-center gap-2">
-                <button class="btn btn-primary filter-btn" data-category="All">{{ __('messages.All') }}</button>
+                <button class="btn btn-primary filter-btn" data-category="All">{{ __('messages.all') }}</button>
                 @foreach ($categories as $category)
                     <button class="btn btn-dark filter-btn" data-category="{{ $category->id }}">{{ $category->name }}</button>
                 @endforeach
@@ -34,7 +34,7 @@
                 data-target="car-category-list" 
                 data-offset="8" 
                 data-model="Car">
-                {{ __('messages.Load More') }}
+                {{ __('messages.load_more') }}
         </button>
     </div>
     @endif
@@ -58,15 +58,15 @@
 
     <!-- Work -->
     <div class="container py-5">
-        <h2 class="text-center work-text-clr mb-4">{{ __('messages.How It Works') }}</h2>
-        <p class="text-center work-subtitle">{{ __('messages.Booking an economical car with SelectandRent is simple') }}</p>
+        <h2 class="text-center work-text-clr mb-4">{{ __('messages.how_it_works') }}</h2>
+        <p class="text-center work-subtitle">{{ __('messages.booking_an_economical') }}</p>
         <div class="steps">
             <div class="step-item reverse">
                 <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
-                    <h4>{{ __('messages.Browse') }}</h4>
-                    <p>{{ __('messages.Explore our selection of economical cars') }}.</p>
+                    <h4>{{ __('messages.browse') }}</h4>
+                    <p>{{ __('messages.explore_our_selection') }}.</p>
                 </div>
             </div>
 
@@ -74,8 +74,8 @@
                 <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
-                    <h4>{{ __('messages.Filter & Select') }}</h4>
-                    <p>{{ __('messages.Use our filters to narrow down your choices and select your preferred car') }} .</p>
+                    <h4>{{ __('messages.filter_&_select') }}</h4>
+                    <p>{{ __('messages.use_our_filters') }} .</p>
                 </div>
             </div>
             <div class="step-item reverse">
@@ -83,7 +83,7 @@
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>{{ __('messages.Book') }}</h4>
-                    <p>{{ __('messages.Use our intuitive calendar to update car availability and pricing') }}.</p>
+                    <p>{{ __('messages.use_our_intuitive') }}.</p>
                 </div>
             </div>
 
@@ -91,8 +91,8 @@
                 <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
-                    <h4>{{ __('messages.Pick Up & Drive') }}</h4>
-                    <p>{{ __('messages.Collect your car and start your journey') }}.</p>
+                    <h4>{{ __('messages.pick_up_drive') }}</h4>
+                    <p>{{ __('messages.collect_your_vehicle') }}.</p>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
 
     <!-- tip section -->
     <div class="container text-center my-5">
-        <h2 class="mb-4">{{ __('messages.Tips for Renting') }}</h2>
+        <h2 class="mb-4">{{ __('messages.tips_for_renting') }}</h2>
 
         <div class="row justify-content-center">
             <!-- Plan Ahead -->
@@ -110,9 +110,9 @@
                     <div class="icon-container mb-2">
                         <img src="{{asset('/')}}frontend-assets/icons/tip-img-1.png" alt="Plan Ahead" class="img-fluid">
                     </div>
-                    <h5 class="tip-title">{{ __('messages.Plan Ahead') }}</h5>
+                    <h5 class="tip-title">{{ __('messages.plan_ahead') }}</h5>
                     <p class="tip-description">
-                        {{ __('messages.Economical cars are in high demand; book early for better availability') }}.
+                        {{ __('messages.economical_vehicles') }}.
                     </p>
                 </div>
             </div>
@@ -124,9 +124,9 @@
                         <img src="{{asset('/')}}frontend-assets/icons/tip-img-2.png" alt="Verify Features"
                             class="img-fluid">
                     </div>
-                    <h5 class="tip-title">{{ __('messages.Verify Features') }}</h5>
+                    <h5 class="tip-title">{{ __('messages.verify_features') }}</h5>
                     <p class="tip-description">
-                        {{ __('messages.Double-check fuel efficiency and included features before booking') }}.
+                        {{ __('messages.double_check_fuel') }}.
                     </p>
                 </div>
             </div>
@@ -138,9 +138,9 @@
                         <img src="{{asset('/')}}frontend-assets/icons/tip-img-3.png" alt="Longer Rentals"
                             class="img-fluid">
                     </div>
-                    <h5 class="tip-title">{{ __('messages.Longer Rentals') }}</h5>
+                    <h5 class="tip-title">{{ __('messages.longer_rental') }}</h5>
                     <p class="tip-description">
-                        {{ __('messages.Consider weekly or monthly rentals for additional savings') }}.
+                        {{ __('messages.consider_weekly') }}.
                     </p>
                 </div>
             </div>
@@ -153,48 +153,48 @@
 
         <!-- Mobile Section -->
         <div class="container mobile text-center py-5 d-block d-md-none">
-            <h4 class="text-warning fw-bold">{{ __('messages.Why we choose us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br> {{ __('messages.Customer Experience') }} </h3>
+            <h4 class="text-warning fw-bold">{{ __('messages.why_we_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we_are_ensuring') }} <br> {{ __('messages.customer_experience') }} </h3>
 
             <div class="mt-4">
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
-                    <h5 class="fw-bold">{{ __('messages.Affordable Pricing') }}</h5>
-                    <p class="text-muted">{{ __('messages.Enjoy low daily rates without compromising on quality') }}.</p>
+                    <h5 class="fw-bold">{{ __('messages.affordable_pricing') }}</h5>
+                    <p class="text-muted">{{ __('messages.enjoy_low_daily') }}.</p>
                 </div>
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
                         alt="">
-                        <h5 class="fw-bold">{{ __('messages.Perfect for Short Trips') }}</h5>
-                        <p class="text-muted">{{ __('messages.Ideal for city drives, quick errands, or budget travel') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.perfect_for_short') }}</h5>
+                        <p class="text-muted">{{ __('messages.Ideal_for_city') }}.</p>
                 </div>
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
                         alt="">
-                        <h5 class="fw-bold">{{ __('messages.Fuel Efficiency') }}</h5>
-                        <p class="text-muted">{{ __('messages.Save on gas with cars designed for maximum mileage') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.fuel_efficiency') }}</h5>
+                        <p class="text-muted">{{ __('messages.save_on_gas') }}.</p>
                 </div>
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
                         alt="">
-                        <h5 class="fw-bold">{{ __('messages.Wide Selection') }}</h5>
-                        <p class="text-muted">{{ __('messages.Choose from compact, mid-sized, and family-friendly models') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.wide_selection') }}</h5>
+                        <p class="text-muted">{{ __('messages.choose_from') }}.</p>
                 </div>
             </div>
         </div>
 
         <!-- Desktop Section -->
         <div class="container Desktop  text-center py-5 d-none d-md-block">
-            <h4 class="text-warning fw-bold">{{ __('messages.Why we choose us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }}  <br> {{ __('messages.Customer Experience') }} </h3>
+            <h4 class="text-warning fw-bold">{{ __('messages.why_we_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we_are_ensuring') }}  <br> {{ __('messages.customer_experience') }} </h3>
 
             <div class="row align-items-center mt-4">
                 <!-- Left Side (Icons Last) -->
                 <div class="col-lg-4 text-end">
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.Most Flexible Payment') }}</h5>
-                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.most_flexible_payment') }}</h5>
+                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
                                 .</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
@@ -202,8 +202,8 @@
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.Valuable Insights') }}</h5>
-                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.valuable_insights') }}</h5>
+                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
                                 .</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
@@ -211,8 +211,8 @@
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.Non-Stop Innovation') }}</h5>
-                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.non_stop_Innovation') }}</h5>
+                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
                                 .</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
@@ -231,8 +231,8 @@
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed"
                             alt="">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.Online Car Appraisal') }}</h5>
-                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.online_vehicle_appraisal') }}</h5>
+                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
                                 .</p>
                         </div>
                     </div>
@@ -240,8 +240,8 @@
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed"
                             alt="">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.Personalized Search') }}</h5>
-                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.personalized_search') }}</h5>
+                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
                                 .</p>
                         </div>
                     </div>
@@ -249,8 +249,8 @@
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed"
                             alt="">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.Consumer–First Mentality') }}</h5>
-                            <p class="text-muted">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.consumer_first_mentality') }}</h5>
+                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
                                .</p>
                         </div>
                     </div>
@@ -260,15 +260,15 @@
     </div>
     <!-- tab -->
     <div class="container tab text-center py-5 d-none d-sm-block d-md-none">
-        <h4 class="text-warning fw-bold">{{ __('messages.Why we choose us') }}</h4>
-        <h3 class="fw-bold">{{ __('messages.We Are Ensuring the Best') }} <br> {{ __('messages.Customer Experience') }}</h3>
+        <h4 class="text-warning fw-bold">{{ __('messages.why_we_choose_us') }}</h4>
+        <h3 class="fw-bold">{{ __('messages.we_are_ensuring') }} <br> {{ __('messages.customer_experience') }}</h3>
 
         <div class="row align-items-center mt-4">
             <!-- Left Side (First Three Icons) -->
             <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Online Car Appraisal') }}</h5>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.online_vehicle_appraisal') }}</h5>
                         <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive
                             customer service') }}.</p>
                     </div>
@@ -277,8 +277,8 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Personalized Search') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.personalized_search') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
                         .</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="ml-3 img-fixed"
@@ -287,7 +287,7 @@
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
                         <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Consumer-First Mentality') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
                             .</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="ml-3 img-fixed"
@@ -305,8 +305,8 @@
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Most Flexible Payment') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.most_flexible_payment') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
                             .</p>
                     </div>
                 </div>
@@ -314,8 +314,8 @@
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="me-3 img-fixed"
                         alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Valuable Insights') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.valuable_insights') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
                             .</p>
                     </div>
                 </div>
@@ -323,8 +323,8 @@
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="me-3 img-fixed"
                         alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.Non-Stop Innovation') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive customer service') }}
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.non_stop_Innovation') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
                             .</p>
                     </div>
                 </div>
@@ -341,7 +341,7 @@
                 <div class="col-md-6 ml-1 accordion-text">
                     <h5 class="faq">{{ __('messages.FAQ') }}</h5>
                     <div>
-                        <h1 class="fw-bold">{{ __('messages.Here are some common questions about renting economical cars') }}:"</h1>
+                        <h1 class="fw-bold">{{ __('messages.here_are_some') }}:"</h1>
                     </div>
                 </div>
                 <!-- Right Side Accordion -->
@@ -354,13 +354,13 @@
                                 <button class="accordion-button fw-bold shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
                                     aria-controls="collapseOne">
-                                    {{ __('messages.What is considered an economical car') }}?
+                                    {{ __('messages.what_is_considered') }}?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body text-muted">
-                                    {{ __('messages.Economical cars are typically compact or mid-sized vehicles with low rental and fuel costs') }}
+                                    {{ __('messages.economical_vehicle_are') }}
                                     .
                                 </div>
                             </div>
@@ -372,13 +372,13 @@
                                 <button class="accordion-button fw-bold collapsed shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                                     aria-controls="collapseTwo">
-                                    {{ __('messages.Are economical cars suitable for long drives') }}?
+                                    {{ __('messages.are_economical_vehicles') }}?
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body text-muted">
-                                    {{ __('messages.Economical cars are typically compact or mid-sized vehicles with low rental and fuel costs') }}.
+                                    {{ __('messages.economical_vehicle_are') }}.
                                 </div>
                             </div>
                         </div>
@@ -389,13 +389,13 @@
                                 <button class="accordion-button fw-bold collapsed shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                                     aria-controls="collapseThree">
-                                    {{ __('messages.Can I add insurance to my rental') }}?
+                                    {{ __('messages.can_I_add_insurance') }}?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body text-muted">
-                                    {{ __('messages.Economical cars are typically compact or mid-sized vehicles with low rental and fuel costs') }}.
+                                    {{ __('messages.economical_vehicle_are') }}.
                                 </div>
                             </div>
                         </div>

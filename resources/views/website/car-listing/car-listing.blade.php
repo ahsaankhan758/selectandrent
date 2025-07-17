@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.Car Listing') }} 
+    {{ __('messages.vehicle_listing') }} 
 @endsection
 
 @section('content')
@@ -28,17 +28,17 @@
                         <div class="car-listing-dropdown">
                             <span class="filter-icon">⇅</span>
                             <select id="transmission-filter" class="car-listing-form-select">
-                                <option value="">{{ __('messages.All Cars') }}</option>
-                                <option value="auto">{{ __('messages.Auto') }}</option>
-                                <option value="manual">{{ __('messages.Manual') }}</option>
+                                <option value="">{{ __('messages.all_vehicles') }}</option>
+                                <option value="auto">{{ __('messages.auto') }}</option>
+                                <option value="manual">{{ __('messages.manual') }}</option>
                             </select>
                         </div>
                         <div class="car-listing-dropdown">
                             <span class="sort-icon">≡</span>
                             <select id="sort-filter" class="car-listing-form-select">
-                                <option value="">{{ __('messages.Sort By') }}</option>
-                                <option value="low_to_high">{{ __('messages.Price (Low to High)') }}</option>
-                                <option value="high_to_low">{{ __('messages.Price (High to Low)') }}</option>
+                                <option value="">{{ __('messages.sort_by') }}</option>
+                                <option value="low_to_high">{{ __('messages.price_(low_to_high)') }}</option>
+                                <option value="high_to_low">{{ __('messages.price_(high_to_low)') }}</option>
                             </select>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <button class="load-more-btn btn btn-orange-clr text-white" data-target="car-list"
                             data-url="{{ route('load.more.cars') }}" data-offset="8" data-total="{{ $totalCars }}" 
                             data-model="Car">
-                            {{ __('messages.Load More') }}
+                            {{ __('messages.load_more') }}
                         </button>
                     @endif
                 </div>

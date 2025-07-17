@@ -52,7 +52,7 @@
                                             data-filter="week">{{ __('messages.week') }}</a>
                                     </li>
                                     <li><a class="dropdown-item filter-option" href="#"
-                                            data-filter="month">{{ __('messages.month') }}</a>
+                                            data-filter="month">{{ __('messages.this_month') }}</a>
                                     </li>
                                     <li><a class="dropdown-item filter-option" href="#"
                                             data-filter="last_month">{{ __('messages.last_month') }}</a></li>
@@ -91,7 +91,7 @@
                                         onclick="updateChart('this_year')">{{ __('messages.this_year') }}</a>
                                 </li>
                                 <li><a class="dropdown-item" href="#"
-                                        onclick="updateChart('month')">{{ __('messages.month') }}</a>
+                                        onclick="updateChart('month')">{{ __('messages.this_month') }}</a>
                                 </li>
                                 <li><a class="dropdown-item" href="#"
                                         onclick="updateChart('last_month')">{{ __('messages.last_month') }}</a></li>
