@@ -92,7 +92,7 @@
                 </a>
                 <div class="card-content">
                     <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                        <h6 class="car-price">{{ convertPrice($car->rent, 0) }}/{{ __('messages.Day') }}</h6>
+                        <h6 class="car-price">{{ convertPrice($car->rent, 0) }}/{{ __('messages.day') }}</h6>
                         @if (auth()->check())
                         <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
                         @else
@@ -115,7 +115,7 @@
                         <div class="d-flex justify-content-between mt-2">
                             <div class="icon-text" style="font-size: 12px;">
                                 <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car" width="20px">
-                                {{ $car->seats ?? 'N/A' }} {{ __('messages.Seater') }}
+                                {{ $car->seats ?? 'N/A' }} {{ __('messages.seater') }}
                             </div>
                             <div class="icon-text" style="font-size: 12px;">
                                 <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car" width="20px">

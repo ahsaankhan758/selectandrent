@@ -1,5 +1,5 @@
 @extends('admin.layouts.Master')
-@section('title'){{__('messages.activity logs') }} @endsection
+@section('title'){{__('messages.activity_logs') }} @endsection
 @section('content')
     @if (can('activity_logs', 'view'))
         <div class="col">
@@ -8,7 +8,7 @@
                 @method('DELETE')
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h4>{{__('messages.activity logs') }}</h4>
+                        <h4>{{__('messages.activity_logs') }}</h4>
                         <div class="float-end">
                             @if(can('Activity Log','edit'))
                                 <button type="submit" class="btn btn-delete-logs btn-danger" id="delete-btn-activity">{{__('messages.delete') }}</button>

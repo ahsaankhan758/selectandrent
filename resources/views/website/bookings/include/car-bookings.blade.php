@@ -1,6 +1,6 @@
 @if ($cartItems->count() > 0)
     <div class="container">
-        <a class="text-right" href="{{ route('clear.cart') }}">{{ __('messages.Clear_Cart') }} ({{ $cartItemsCount }})</a>
+        <a class="text-right" href="{{ route('clear.cart') }}">{{ __('messages.clear_cart') }} ({{ $cartItemsCount }})</a>
     </div>
     <!-- Order Confirmation form -->
     <form id="bookingForm" action="{{ route('booking.confirmation') }}" method="POST" enctype="multipart/form-data">
@@ -11,7 +11,7 @@
                 <div class="row g-3">
                     <!-- Pickup Location -->
                     <div class="col-md-3">
-                        <label class="form-label">{{ __('messages.Pickup Location') }}</label>
+                        <label class="form-label">{{ __('messages.pickup_location') }}</label>
 
                         @php
                             $selectedPickup = $cart->options->vehicle_pickup_location ?? null;
@@ -30,7 +30,7 @@
                         <select name="pickup_location[]" class="form-select validate-pickup"
                             @if ($selectedPickup) disabled @endif>
                             <option disabled {{ !$selectedPickup ? 'selected' : '' }}>
-                                {{ __('messages.Select Location') }}
+                                {{ __('messages.select_location') }}
                             </option>
 
                             @foreach ($vehicleLocation ?? [] as $location)
@@ -50,9 +50,9 @@
 
                     <!-- Dropoff Location -->
                     <div class="col-md-3">
-                        <label class="form-label">{{ __('messages.Dropoff Location') }}</label>
+                        <label class="form-label">{{ __('messages.dropoff_location') }}</label>
                         <select name="dropoff_location[]" class="form-select">
-                            <option selected disabled>{{ __('messages.Select Location') }}</option>
+                            <option selected disabled>{{ __('messages.select_location') }}</option>
                             @if (isset($vehicleLocation) && !empty($vehicleLocation))
                                 @foreach ($vehicleLocation as $location)
                                     <option value="{{ $location->id }}">{{ $location->area_name }}</option>
@@ -64,7 +64,7 @@
 
                     <!-- Pickup Date & Time -->
                     <div class="col-md-3">
-                        <label class="form-label">{{ __('messages.Pickup_Date_time') }}</label>
+                        <label class="form-label">{{ __('messages.pickup_date_time') }}</label>
                         <div class="input-group">
                             <input type="text" name="pickup_datetime[]" class="form-control pickup-time" style="padding: 14px;" placeholder="Select">
                         </div>
@@ -72,7 +72,7 @@
 
                     <!-- Drop-off Date & Time -->
                     <div class="col-md-3">
-                        <label class="form-label">{{ __('messages.Drop-off_Date_time') }}</label>
+                        <label class="form-label">{{ __('messages.drop-off_date_time') }}</label>
                         <div class="input-group">
                             <input type="text" name="dropoff_datetime[]" class="form-control dropoff-time" style="padding: 14px;" placeholder="Select">
                         </div>
@@ -92,10 +92,10 @@
             <!-- CAR DETAIL -->
             <div class="container py-3">
                 <div class="vehicle-card d-flex mobile-car">
-                    <ul class="col-md-6">{{ __('messages.Vehicle Info') }}</ul>
-                    <ul class="col-md-2">{{ __('messages.Price') }}</ul>
+                    <ul class="col-md-6">{{ __('messages.vehicle_info') }}</ul>
+                    <ul class="col-md-2">{{ __('messages.price') }}</ul>
                     <ul class="col-md-2">@if($cart->options->rent_type == 'day')
-                                            {{ __('messages.Days') }}
+                                            {{ __('messages.days') }}
                                         @else
                                             {{ __('messages.hours') }}
                                         @endif
@@ -148,25 +148,25 @@
             <div class="container py-2">
                 <div class="row d-flex">
                     <div class="col-md-6">
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.Seats') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.seats') }}:</strong>
                             {{ $cart->options->seats }}</div>
                         <div class="mb-2 text-capitalize"><strong>{{ __('messages.weight') }}:</strong>
                             {{ $cart->options->weight }}</div>
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.Doors') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.doors') }}:</strong>
                             {{ $cart->options->doors }}</div>
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.Mileage') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.mileage') }}:</strong>
                             {{ $cart->options->mileage }}</div>
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.Vehicle Id') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.vehicle_id') }}:</strong>
                             {{ $cart->options->lisence_plate }}</div>
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.Postal Code') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.postal_code') }}:</strong>
                             {{ $cart->options->postal_code }}</div>
                         <div class="mb-2 text-capitalize"><strong>{{ __('messages.transmission') }}:</strong>
                             {{ $cart->options->transmission }}</div>
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.engine size') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.engine_size') }}:</strong>
                             {{ $cart->options->engine_size }}</div>
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.Exterior Color') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.exterior_color') }}:</strong>
                             {{ $cart->options->exterior_color }}</div>
-                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.Interior Color') }}:</strong>
+                        <div class="mb-2 text-capitalize"><strong>{{ __('messages.interior_color') }}:</strong>
                             {{ $cart->options->interior_color }}</div>
                         <div class="mb-2 text-capitalize"><strong>{{ __('messages.radius') }}:</strong><span
                                 id="getRadius{{ $cart->rowId }}">0M</span></div>
@@ -204,7 +204,7 @@
                             <h6 class="showDuration{{ $cart->rowId }}">{{ $cart->qty }}</h6>
                             <h6>
                                 @if($cart->options->rent_type == 'day')
-                                    {{ __('messages.Days') }}
+                                    {{ __('messages.days') }}
                                 @else
                                     {{ __('messages.hours') }}
                                 @endif
@@ -245,7 +245,7 @@
                 <!-- Subtotal Box -->
                 <div class="col-md-3 col-6">
                     <div class="box">
-                        <div><strong>{{ __('messages.Subtotal') }}</strong></div>
+                        <div><strong>{{ __('messages.subtotal') }}</strong></div>
                         <div class="price-car calculate-subtotal">{{ convertPrice($subtotal, 0) }}</div>
                     </div>
                 </div>
@@ -258,7 +258,7 @@
                 <!-- Total Box -->
                 <div class="col-md-3 col-6">
                     <div class="box">
-                        <div><strong>{{ __('messages.Total') }}</strong></div>
+                        <div><strong>{{ __('messages.total') }}</strong></div>
                         <div class="price-car calculate-total">{{ convertPrice($totalPriceIncludingTax, 0) }}</div>
                     </div>
                 </div>
@@ -266,23 +266,23 @@
                 <div class="col-md-3 col-12">
                     {{-- @if (auth()->check())
             <button id="submitBtn" class="btn-order btn-orange-clr">
-                {{ __('messages.Order Confirmation') }}
+                {{ __('messages.order_confirmation') }}
             </button>
         @else
         <a href="javascript::void(0)" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn-order btn-orange-clr">
-                {{ __('messages.Order Confirmation') }}
+                {{ __('messages.order_confirmation') }}
         </a>
         @endif --}}
                     <!-- Order Confirmation Button -->
                     @if (auth()->check())
                         <button id="submitBtn" class="btn-order btn-orange-clr opacity-50" disabled>
-                            {{ __('messages.Order Confirmation') }}
+                            {{ __('messages.order_confirmation') }}
                         </button>
                     @else
                         <a href="javascript:void(0);" id="submitBtn"
                             class="btn-order btn-orange-clr mt-3 opacity-50 disabled-link" data-bs-toggle="modal"
                             data-bs-target="#loginModal" style="text-decoration: none; pointer-events: none;">
-                            {{ __('messages.Order Confirmation') }}
+                            {{ __('messages.order_confirmation') }}
                         </a>
                     @endif
                 </div>
@@ -293,9 +293,9 @@
 @else
     <div class="row">
         <div class="col-md-12 text-center pt-5 bp-5">
-            <p>{{ __('messages.No_car_found_in_your_cart') }}</p>
+            <p>{{ __('messages.no_vehicle_found_in_your_cart') }}</p>
             <a href="{{ route('car.listing') }}"
-                class="btn btn-orange-clr text-white">{{ __('messages.Car_Listing') }}</a>
+                class="btn btn-orange-clr text-white">{{ __('messages.vehicle_listing') }}</a>
         </div>
     </div>
 
@@ -305,10 +305,10 @@
     <div class="row">
         <!--book Section -->
         <div class="col-md-12 mb-4">
-            <h4 class="section-title"><span></span>{{ __('messages.A Special Note to Our Car Rental Partners') }}</h4>
+            <h4 class="section-title"><span></span>{{ __('messages.a_special_note') }}</h4>
             <p class="text-size">
-                {{ __('messages.At SelectandRent, we value our partnership with car rental companies like yours. Together, we aim to redefine the car rental experience for customers worldwide. Our platform is built to support your growth, offering tools to showcase your fleet, connect with a broader audience, and streamline your operations') }}.<br>
-                {{ __('messages.Your success is our priority, and we’re here to help you reach new heights with innovative technology, insightful analytics, and dedicated support. Thank you for trusting us to be a part of your journey. Let’s drive forward, together') }}
+                {{ __('messages.at_selectandrent_we') }}.<br>
+                {{ __('messages.your_success') }}
                 !</p>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 @extends('loginLayout')
-@section('title') {{ __('messages.admin') }} {{ __('messages.Login') }} @endsection
+@section('title') {{ __('messages.admin') }} {{ __('messages.login') }} @endsection
 @section('content')
     <body class="authentication-bg authentication-bg-pattern">
 
@@ -115,7 +115,7 @@
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
-                                                {{ __('messages.remember me') }}
+                                                {{ __('messages.remember_me') }}
                                             </label>
                                         </div>
                                     </div>
@@ -127,7 +127,7 @@
     
                                         <!-- @if (Route::has('password.request'))
                                             <a class="btn-link mt-3" href="{{ route('password.request') }}">
-                                                {{ __('messages.forgot your password?') }}
+                                                {{ __('messages.forgot_your_password?') }}
                                             </a>
                                         @endif -->
                                     </div>
@@ -135,7 +135,7 @@
                                 </form>
 
                                 <!-- <div class="text-center">
-                                    <h5 class="mt-3 text-muted">{{ __('messages.sign in with')}}</h5>
+                                    <h5 class="mt-3 text-muted">{{ __('messages.sign_in_with')}}</h5>
                                     <ul class="social-list list-inline mt-3 mb-0">
                                         <li class="list-inline-item">
                                             <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>

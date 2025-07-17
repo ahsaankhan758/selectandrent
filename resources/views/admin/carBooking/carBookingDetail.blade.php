@@ -1,6 +1,6 @@
 @extends('admin.layouts.Master')
 @section('title')
-    {{ __('messages.bookingcardeatil') }}
+    {{ __('messages.bookingvehicledeatil') }}
 @endsection
 @section('content')
     @if (can('bookings', 'view'))

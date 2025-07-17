@@ -109,7 +109,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('messages.remember me') }}
+                                        {{ __('messages.remember_me') }}
                                     </label>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
 
                                 <!-- @if (Route::has('password.request'))
                                     <a class="btn-link mt-3" href="{{ route('password.request') }}">
-                                        {{ __('messages.forgot your password?') }}
+                                        {{ __('messages.forgot_your_password?') }}
                                     </a>
                                 @endif -->
                             </div>

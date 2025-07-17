@@ -1,5 +1,5 @@
 @extends('admin.layouts.Master')
-@section('title') {{ __('messages.car') }} {{ __('messages.location') }}@endsection
+@section('title') {{ __('messages.vehicle') }} {{ __('messages.location') }}@endsection
 @section('content')
     @if (can('cities', 'view'))
         <div class="col-10">

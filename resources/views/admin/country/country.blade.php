@@ -34,13 +34,13 @@
                                         <form action="{{ route('countries.store') }}" method="POST">
                                             @csrf
                                             <div class="mb-3">
-                                                <label for="country_name" class="form-label">{{ __('messages.Country') }}</label>
+                                                <label for="country_name" class="form-label">{{ __('messages.country') }}</label>
                                                 <input type="text" name="name" class="form-control" placeholder="Country Name"
                                                     required>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="country_code" class="form-label">{{ __('messages.Country') }} {{ __('messages.code') }}</label>
+                                                <label for="country_code" class="form-label">{{ __('messages.country') }} {{ __('messages.code') }}</label>
                                                 <input type="text" name="code" class="form-control"
                                                     placeholder="Country Code (e.g., PK, US)" required>
                                             </div>

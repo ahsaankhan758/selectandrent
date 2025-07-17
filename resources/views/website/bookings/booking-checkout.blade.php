@@ -1,6 +1,6 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.Car Booking') }} 
+    {{ __('messages.vehicle_booking') }} 
 @endsection
 
 @section('content')
@@ -19,19 +19,19 @@
             <!-- Step 1 -->
             <div class="progress-step active">
                 <span class="step-number">1</span>
-                <span class="step-text">{{ __('messages.Booking') }}</span>
+                <span class="step-text">{{ __('messages.booking') }}</span>
             </div>
 
             <!-- Step 2 -->
             <div class="progress-step progress_step_active">
                 <span class="step-number">2</span>
-                <span class="step-text">{{ __('messages.Confirmation') }}</span>
+                <span class="step-text">{{ __('messages.confirmation') }}</span>
             </div>
 
             <!-- Step 3 -->
             <div class="progress-step">
                 <span class="step-number">3</span>
-                <span class="step-text">{{ __('messages.Checkout') }}</span>
+                <span class="step-text">{{ __('messages.checkout') }}</span>
             </div>
         </div>
         @if (session('success'))

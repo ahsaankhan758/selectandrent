@@ -220,7 +220,7 @@
                                 </div>
                                 <div>
                                     <h3 class="text-dark my-1">{{ $totalCars }}</h3>
-                                    <p class="text-muted mb-0">{{ __('messages.totalcar') }}</p>
+                                    <p class="text-muted mb-0">{{ __('messages.totalvehicle') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +330,7 @@
             @if ($reminder->count() > 5)
                 <div class="text-end mt-3">
                     <a href="#" class="btn btn-sm text-white" style="background-color: #f06115;">
-                        {{ __('messages.View All') }}
+                        {{ __('messages.view_all') }}
                     </a>
                 </div>
             @endif

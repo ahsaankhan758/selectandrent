@@ -456,13 +456,13 @@
 @if (request()->is('/'))
     <div class="hero-section text-center text-white">
         <h1 class="display-5 fw-bold">
-            <span class="custom-bg-warning">{{ __('messages.rent') }}</span> {{ __('messages.a car') }},
+            <span class="custom-bg-warning">{{ __('messages.rent') }}</span> {{ __('messages.a_vehicle') }},
             {{ __('messages.anytime') }},
         </h1>
         <h1 class="display-5 fw-bold">{{ __('messages.anywhere') }}</h1>
         {{-- <select id="locationDropdown" name="location_id" class="form-select"
             data-url="{{ route('car.locations') }}">
-            <option disabled selected>{{ __('messages.Select Location') }}</option>
+            <option disabled selected>{{ __('messages.select_location') }}</option>
             </select> --}}
         <div class="tabpanel-form mx-auto">
             <form id="carSearchForm" action="{{ route('car.search') }}" method="POST"
@@ -535,30 +535,30 @@
         ?>
         <div class="container {{ $clsHeight }}">
             @if (request()->is('carlisting'))
-                <h2 class="fw-bold">{{ __('messages.Search Result Page') }}</h2>
+                <h2 class="fw-bold">{{ __('messages.search_result_page') }}</h2>
             @elseif(request()->is('carbooking') || request()->is('confirmation'))
-                <h2 class="fw-bold">{{ __('messages.Booking') }}</h2>
+                <h2 class="fw-bold">{{ __('messages.booking') }}</h2>
             @elseif(request()->is('checkout'))
-                <h2 class="fw-bold">{{ __('messages.Your Trusted Partner for 24/7 Taxi Services') }}</h2>
-                <p>{{ __('messages.Reliable and Round-the-Clock Taxi Services in the Heart of New York') }}</p>
+                <h2 class="fw-bold">{{ __('messages.your_trusted_partner') }}</h2>
+                <p>{{ __('messages.reliable_and_round') }}</p>
             @elseif(request()->is('categories'))
                 <h2 class="fw-bold">{{ __('messages.categories') }}</h2>
-                <p>{{ __('messages.Find the Perfect Ride: Explore Our Wide Range of Car Categories') }}</p>
+                <p>{{ __('messages.find_the_perfect_ride:') }}</p>
             @elseif(request()->is('join-our-program'))
                 <h2 class="fw-bold">{{ __('messages.join') }} {{ __('messages.our') }} {{ __('messages.program') }}
                 </h2>
-                <p>"{{ __('messages.An easy way to rent out your cars quickly and efficiently') }}"</p>
+                <p>"{{ __('messages.an_easy_way') }}"</p>
             @elseif(request()->is('about-us'))
-                <h2 class="fw-bold">{{ __('messages.About-us') }}</h2>
-                <p>{{ __('messages.Your Friendly Car Rental Provider') }}</p>
+                <h2 class="fw-bold">{{ __('messages.about_us') }}</h2>
+                <p>{{ __('messages.your_friendly_vehicle') }}</p>
             @elseif(request()->is('cardetail'))
-                <h2 class="fw-bold">{{ __('messages.Car Details') }}</h2>
-                <p>{{ __('messages.Find the Perfect Ride for Your Journey') }} –
-                    {{ __('messages.Explore, Compare, and Book Effortlessly!') }}</p>
+                <h2 class="fw-bold">{{ __('messages.vehicle_details') }}</h2>
+                <p>{{ __('messages.find_the_perfect') }} –
+                    {{ __('messages.explore_compare') }}</p>
             @elseif(request()->is('blog'))
                 <h2 class="fw-bold">{{ __('messages.blog') }}</h2>
             @elseif(request()->is('blog-detail/*'))
-                <h2 class="fw-bold">{{ __('messages.Blog') }}</h2>
+                <h2 class="fw-bold">{{ __('messages.blog') }}</h2>
             @elseif(request()->is('booking'))
                 <h2 class="fw-bold">{{ __('messages.header_booking') }}</h2>
             @elseif(request()->is('terms&conditions'))
@@ -575,9 +575,9 @@
                 <h2 class="fw-bold">{{ __('messages.FAQ') }}</h2>
                 <p>{{ __('messages.Got Questions? We’ve Got Answers') }}</p>
             @elseif(request()->is('contact'))
-                <h2 class="fw-bold">{{ __('messages.contact us') }}</h2>
+                <h2 class="fw-bold">{{ __('messages.contact_us') }}</h2>
             @elseif(request()->is('register-car-rental'))
-                <h2 class="fw-bold">{{ __('messages.Company Register') }}</h2>
+                <h2 class="fw-bold">{{ __('messages.company_register') }}</h2>
             @endif
         </div>
         <!-- Background Curve -->
@@ -602,7 +602,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="text-center">{{ __('messages.Already have an account?') }} <a href="#"
+                <p class="text-center">{{ __('messages.already_have_an_account') }} <a href="#"
                         class="login-link-text" data-bs-toggle="modal"
                         data-bs-target="#loginModal">{{ __('messages.login') }}</a></p>
 
@@ -614,7 +614,7 @@
                             <span class="input-group-text"><i class="fa fa-user icon-size"></i></span>
 
                             <input id="name" type="text" class="form-control"
-                                placeholder="{{ __('messages.Enter name') }}">
+                                placeholder="{{ __('messages.enter_name') }}">
 
                         </div>
                     </div>
@@ -623,7 +623,7 @@
                             <span class="input-group-text"><i class="fa fa-envelope icon-size"></i></span>
 
                             <input id="email" type="email" class="form-control"
-                                placeholder="{{ __('messages.Enter email') }}">
+                                placeholder="{{ __('messages.enter_email') }}">
 
                         </div>
                     </div>
@@ -640,7 +640,7 @@
                             <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
 
                             <input id="password" type="password" class="form-control"
-                                placeholder="{{ __('messages.Enter password') }}">
+                                placeholder="{{ __('messages.enter_password') }}">
 
                         </div>
                     </div>
@@ -649,11 +649,11 @@
                             <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
 
                             <input id="password_confirmation" type="password" class="form-control"
-                                placeholder="{{ __('messages.Confirm password') }}">
+                                placeholder="{{ __('messages.confirm_password') }}">
 
                         </div>
                     </div>
-                    <button type="submit" class="btn w-100 btn-color">{{ __('messages.SIGN UP NOW') }}</button>
+                    <button type="submit" class="btn w-100 btn-color">{{ __('messages.sign_up_now') }}</button>
                 </form>
             </div>
         </div>
@@ -665,11 +665,11 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-4">
             <div class="modal-header border-0 text-center">
-                <h2 class="modal-title w-100" id="loginModalLabel">{{ __('messages.log In') }}</h2>
+                <h2 class="modal-title w-100" id="loginModalLabel">{{ __('messages.log_in') }}</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="text-center">{{ __("messages.Don't have an account?") }} <a href="#"
+                <p class="text-center">{{ __("messages.don't_have_account") }} <a href="#"
                         class="login-link-text" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
                 </p>
                 <form action="{{ route('user.signin') }}" id="usersignin" method="post">
@@ -678,17 +678,17 @@
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-envelope icon-size"></i></span>
                             <input type="email" id="get-email" class="form-control"
-                                placeholder="{{ __('messages.Enter email') }}">
+                                placeholder="{{ __('messages.enter_email') }}">
                         </div>
                     </div>
                     <div class="mb-4">
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-lock icon-size"></i></span>
                             <input type="password" id="get-password" class="form-control"
-                                placeholder="{{ __('messages.Enter password') }}">
+                                placeholder="{{ __('messages.enter_password') }}">
                         </div>
                     </div>
-                    <button type="submit" class="btn w-100 btn-color">{{ __('messages.Login') }}</button>
+                    <button type="submit" class="btn w-100 btn-color">{{ __('messages.login') }}</button>
                 </form>
             </div>
         </div>
@@ -715,13 +715,13 @@
                     onclick="window.location.href='{{ url('/register-with-car-rental') }}'">
                     <img src="{{ asset('/') }}frontend-assets/icons/car-rental-register-btn-icon.png"
                         class="rental-btn-icon" alt="Register">
-                    {{ __('messages.Register with car rental') }}
+                    {{ __('messages.register_with_select_and_rental') }}
                 </button>
 
                 <button class="rental-login-btn" onclick="window.location.href='{{ url('/company/login') }}'">
                     <img src="{{ asset('/') }}frontend-assets/icons/car-rental-login-btn-icon.png"
                         class="rental-btn-icon" alt="Login">
-                    {{ __('messages.Login with car rental') }}
+                    {{ __('messages.login_with_select_and_rental') }}
                 </button>
             </div>
         </div>

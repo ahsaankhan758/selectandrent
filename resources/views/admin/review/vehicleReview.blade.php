@@ -16,7 +16,7 @@
                     <thead class="text-nowrap">
                         <tr>
                             <th class="text-center">{{ __('messages.user') }}</th>
-                            <th class="text-center">{{ __('messages.lisence plate') }}</th>
+                            <th class="text-center">{{ __('messages.license_plate') }}</th>
                             <th class="text-center">{{ __('messages.vehicle') }}</th>
                             <th class="text-center">{{ __('messages.rating') }}</th>
                             <th class="text-center">{{ __('messages.comment') }}</th>

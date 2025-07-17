@@ -40,7 +40,7 @@
                                             <th scope="col">{{ __('messages.userlast') }}</th>
                                             <th scope="col">{{ __('messages.useremail') }}</th>
                                             <th scope="col">{{ __('messages.userphone') }}</th>
-                                            <th scope="col">{{ __('messages.Subject') }}</th>
+                                            <th scope="col">{{ __('messages.subject') }}</th>
                                             <th scope="col">{{ __('messages.usermessage') }}</th>
                                             <th scope="col">{{ __('messages.userdate') }}</th>
                                         </tr>

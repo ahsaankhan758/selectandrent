@@ -102,7 +102,7 @@
                                             <div class="col-4 form-group mb-3">
                                                 <label for="model">{{ __('messages.model') }}</label>
                                                 <select name="model" id="model" class="form-control " data-live-search = "true">
-                                                    <option disabled selected>{{ __('messages.select a model') }}</option>
+                                                    <option disabled selected>{{ __('messages.select_a_model') }}</option>
                                                     @if(isset($models))
                                                         @foreach ( $models as $modelData)
                                                             <option value="{{ $modelData->id }}">{{ ucfirst(strtolower($modelData->name)) }}</option>
@@ -141,7 +141,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-3 form-group mb-3">
-                                                <lable for="fuel_type">{{ __('messages.fuel type') }}</lable>
+                                                <lable for="fuel_type">{{ __('messages.fuel_type') }}</lable>
                                                 <select name="fuel_type" id="fuel_type" class="form-control">
                                                     <option disabled selected>{{ __('messages.select') }}</option>
                                                     <option value="electric">Electric</option>
@@ -190,7 +190,7 @@
                                         </div> 
                                         <div class="row">
                                             <div class="col-4 form-group mb-3">
-                                                <lable for="engine_size">{{ __('messages.engine size') }}</lable>
+                                                <lable for="engine_size">{{ __('messages.engine_size') }}</lable>
                                                 <input type="text" name="engine_size" id="engine_size" class="form-control">
                                             </div>
                                             <div class="col-4 form-group mb-3">
@@ -204,23 +204,23 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4 form-group mb-3">
-                                                <lable for="fuel_economy">{{ __('messages.fuel economy') }}</lable>
+                                                <lable for="fuel_economy">{{ __('messages.fuel_economy') }}</lable>
                                                 <input type="text" name="fuel_economy" id="fuel_economy" class="form-control">
                                             </div>
                                             
                                             <div class="col-4 form-group mb-3">
-                                                <label for="exterior_color">{{ __('messages.exterior color') }}</label>
+                                                <label for="exterior_color">{{ __('messages.exterior_color') }}</label>
                                                 <input type="text" name="exterior_color" id="exterior_color" class="form-control" >
                                             </div>
                                             <div class="col-4 form-group mb-3">
-                                                <lable for="interior_color">{{ __('messages.interior color') }}</lable>
+                                                <lable for="interior_color">{{ __('messages.interior_color') }}</lable>
                                                 <input type="text" name="interior_color" id="interior_color" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row">
                                         
                                             <div class="col-4 form-group mb-3">
-                                                <lable for="lisence_plate">{{ __('messages.lisence plate') }}</lable>
+                                                <lable for="lisence_plate">{{ __('messages.license_plate') }}</lable>
                                                 <input type="text" name="lisence_plate" id="lisence_plate" class="form-control">
                                             </div>
                                             <div class="col-4 form-group mb-3">

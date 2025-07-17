@@ -15,7 +15,7 @@
                         <thead class="align-text-center">
                         <tr>
                             <th scope="col">{{ __('messages.model') }}</th>
-                            <th scope="col">{{ __('messages.lisence plate') }}</th>
+                            <th scope="col">{{ __('messages.license_plate') }}</th>
                             <th scope="col">{{ __('messages.owner') }}</th>
                             <th scope="col">{{ __('messages.created_by') }} {{ __('messages.employee') }}</th>
                             <th scope="col">{{ __('messages.is_booked') }}</th>
@@ -75,7 +75,7 @@
                                                         
                                                         <div class="row">
                                                             <div class="col">
-                                                                <div class="detail-item"><strong>{{ __('messages.lisence plate') }}:</strong> <span>{{ $carData->lisence_plate }}</span></div>
+                                                                <div class="detail-item"><strong>{{ __('messages.license_plate') }}:</strong> <span>{{ $carData->lisence_plate }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.brand') }}:</strong> <span>{{ $carData->car_models->car_brands->name }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.category') }}:</strong> <span>{{ $carData->car_categories->name }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.city') }}:</strong> <span>{{ isset($carData->car_locations->city->name) ? $carData->car_locations->city->name : '' }}</span></div>
@@ -88,13 +88,13 @@
                                                                 <div class="detail-item"><strong>{{ __('messages.weight') }}:</strong> <span>{{ $carData->weight }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.doors') }}:</strong> <span>{{ $carData->doors }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.mileage') }}:</strong> <span>{{ $carData->mileage }}</span></div>
-                                                                <div class="detail-item"><strong>{{ __('messages.engine size') }}:</strong> <span>{{ $carData->engine_size }}</span></div>
+                                                                <div class="detail-item"><strong>{{ __('messages.engine_size') }}:</strong> <span>{{ $carData->engine_size }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.luggage') }}:</strong> <span>{{ $carData->luggage }}</span></div>
                                                                 <div class="detail-item"><strong>{{ __('messages.drive') }}:</strong> <span>{{ $carData->drive }}</span></div>
-                                                                <div class="detail-item"><strong>{{ __('messages.fuel economy') }}:</strong> <span>{{ $carData->fuel_economy }}</span></div>
-                                                                <div class="detail-item"><strong>{{ __('messages.fuel type') }}:</strong> <span>{{ $carData->fuel_type }}</span></div>
-                                                                <div class="detail-item"><strong>{{ __('messages.exterior color') }}:</strong> <span>{{ $carData->exterior_color }}</span></div>
-                                                                <div class="detail-item"><strong>{{ __('messages.interior color') }}:</strong> <span>{{ $carData->interior_color }}</span></div>
+                                                                <div class="detail-item"><strong>{{ __('messages.fuel_economy') }}:</strong> <span>{{ $carData->fuel_economy }}</span></div>
+                                                                <div class="detail-item"><strong>{{ __('messages.fuel_type') }}:</strong> <span>{{ $carData->fuel_type }}</span></div>
+                                                                <div class="detail-item"><strong>{{ __('messages.exterior_color') }}:</strong> <span>{{ $carData->exterior_color }}</span></div>
+                                                                <div class="detail-item"><strong>{{ __('messages.interior_color') }}:</strong> <span>{{ $carData->interior_color }}</span></div>
                                                                 @if($carData->is_featured == '1')
                                                                     <div class="detail-item"><strong>{{ __('messages.featured') }}:</strong> <span>{{ __('messages.yes') }}</span></div>
                                                                 @else
