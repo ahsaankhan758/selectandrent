@@ -17,7 +17,7 @@
                                 <th scope="col">{{ __('messages.thumbnail') }}</th>
                                 <th scope="col">{{ __('messages.images') }}</th>
                                 <th scope="col">{{ __('messages.detail') }}</th>
-                                <th scope="col">{{ __('messages.action') }}</th>
+                                <th scope="col">{{ __('messages.action') }}</th> 
                             </tr>
                         </thead>
                         <tbody>
