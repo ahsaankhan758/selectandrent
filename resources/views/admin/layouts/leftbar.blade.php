@@ -62,6 +62,10 @@ $owner = EmployeeOwner($userId);
                         <a href="{{ route('employee') }}">
                             <i class="mdi mdi-account-circle-outline"></i>
                             <span> {{ __('messages.employees') }} </span>
+                            <span class="badge ms-2"
+                                style="background-color: #f06115; color: white; font-weight: bold;">
+                                {{ getEmployeeCount() }}
+                            </span>
                         </a>
                     </li>
                 @endif
@@ -86,21 +90,40 @@ $owner = EmployeeOwner($userId);
                         <div class="collapse" id="sub_menu_company_listing">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('createCompany') }}"> <i class="mdi mdi-creation"></i><span
-                                            class="custom-ml-15">{{ __('messages.create') }} </span></a>
+                                    <a href="{{ route('createCompany') }}">
+                                        <i class="mdi mdi-creation"></i>
+                                        <span class="custom-ml-15">{{ __('messages.create') }}</span>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('companies') }}"> <i
-                                            class="mdi mdi-image-filter-none"></i><span
-                                            class="custom-ml-15">{{ __('messages.active') }} </span></a>
+                                    <a href="{{ route('companies') }}"> 
+                                        <i class="mdi mdi-image-filter-none"></i>
+                                        <span class="custom-ml-15">{{ __('messages.active') }}</span>
+                                        <span class="badge ms-2"
+                                            style="background-color: #f06115; color: white; font-weight: bold;">
+                                            {{ getCompaniesCount('1') }}
+                                        </span>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('pending') }}"> <i class="mdi mdi-clock"></i><span
-                                            class="custom-ml-15">{{ __('messages.pending') }}</a>
+                                    <a href="{{ route('pending') }}"> 
+                                        <i class="mdi mdi-clock"></i>
+                                        <span class="custom-ml-15">{{ __('messages.pending') }}</span>
+                                        <span class="badge ms-2"
+                                            style="background-color: #f06115; color: white; font-weight: bold;">
+                                            {{ getCompaniesCount('0') }}
+                                        </span>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('deactivatedCompanies') }}"> <i class="mdi mdi-account-off"></i><span
-                                            class="custom-ml-15">{{ __('messages.deactivated') }}</a>
+                                    <a href="{{ route('deactivatedCompanies') }}">
+                                        <i class="mdi mdi-account-off"></i>
+                                        <span class="custom-ml-15">{{ __('messages.deactivated') }}</span>
+                                        <span class="badge ms-2"
+                                            style="background-color: #f06115; color: white; font-weight: bold;">
+                                            {{ getCompaniesCount('2') }}
+                                        </span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
