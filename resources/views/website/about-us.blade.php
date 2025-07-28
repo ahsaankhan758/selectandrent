@@ -440,9 +440,9 @@
         <div class="col-md-4">
                 <h3 class="faq">{{ __('messages.can’t_find_answer') }}?</h3>
                 <h1 class="fw-bold"><span class="faq">{{ __('messages.submit') }}</span>{{ __('messages.your_queries') }} </h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Still have questions about our Select and Rent service? Whether you're unsure about booking a vehicle, rental policies, pricing, or available options, we’re here to help. Simply submit your query, and our support team will respond as soon as possible to guide you through every step.</p>
                 <button class="btn btn-orange-clr rounded-pill text-white">
-                    <i class="fa-solid fa-phone"></i>   (012) 245-6789
+                    <i class="fa-solid fa-phone"></i>   0300-XXXXX90
                 </button>
         </div>
 
