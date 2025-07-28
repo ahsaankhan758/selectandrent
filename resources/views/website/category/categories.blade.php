@@ -7,7 +7,7 @@
 <script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
     <div class="container py-4 mt-5">
-        <h2 class="text-center mb-3">{{ __('messages.select_a_categoty') }}</h2>
+        <h2 class="text-center mb-3">{{ __('messages.select_a_category') }}</h2>
        
         <div class="container text-center my-3">
             <div class="d-flex flex-wrap justify-content-center gap-2">
@@ -149,52 +149,64 @@
     <!-- end tip section -->
 
     <!-- chose section -->
-    <div class="container-fluid bg-white chose-bg-img mt-4">
+    <div class="container-fluid chose-bg-img mt-4">
 
         <!-- Mobile Section -->
         <div class="container mobile text-center py-5 d-block d-md-none">
-            <h4 class="text-warning fw-bold">{{ __('messages.why_we_choose_us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we_are_ensuring') }} <br> {{ __('messages.customer_experience') }} </h3>
+            <h4 class="text-warning fw-bold">{{ __('messages.why_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br> {{ __('messages.the_best_experience') }} </h3>
 
             <div class="mt-4">
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
-                    <h5 class="fw-bold">{{ __('messages.affordable_pricing') }}</h5>
-                    <p class="text-muted">{{ __('messages.enjoy_low_daily') }}.</p>
+                    <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
+                    <p class="text-muted">{{ __('messages.choose_from_a_variety') }}.</p>
                 </div>
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
                         alt="">
-                        <h5 class="fw-bold">{{ __('messages.perfect_for_short') }}</h5>
-                        <p class="text-muted">{{ __('messages.Ideal_for_city') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.valuable_insights') }}</h5>
+                        <p class="text-muted">{{ __('messages.access_personalized') }}.</p>
                 </div>
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
                         alt="">
-                        <h5 class="fw-bold">{{ __('messages.fuel_efficiency') }}</h5>
-                        <p class="text-muted">{{ __('messages.save_on_gas') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.continuous_innovation') }}</h5>
+                        <p class="text-muted">{{ __('messages.we’re_always_evolving') }}.</p>
                 </div>
                 <div class="mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
                         alt="">
-                        <h5 class="fw-bold">{{ __('messages.wide_selection') }}</h5>
-                        <p class="text-muted">{{ __('messages.choose_from') }}.</p>
+                        <h5 class="fw-bold">{{ __('messages.instant_online') }}</h5>
+                        <p class="text-muted">{{ __('messages.quickly_assess') }}.</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="img-fluid mb-2"
+                        alt="">
+                        <h5 class="fw-bold">{{ __('messages.tailored_search') }}</h5>
+                        <p class="text-muted">{{ __('messages.effortlessly_find') }}.</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="img-fluid mb-2"
+                        alt="">
+                        <h5 class="fw-bold">{{ __('messages.customer_first_approach') }}</h5>
+                        <p class="text-muted">{{ __('messages.your_satisfaction') }}.</p>
                 </div>
             </div>
         </div>
 
         <!-- Desktop Section -->
         <div class="container Desktop  text-center py-5 d-none d-md-block">
-            <h4 class="text-warning fw-bold">{{ __('messages.why_we_choose_us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we_are_ensuring') }}  <br> {{ __('messages.customer_experience') }} </h3>
+            <h4 class="text-warning fw-bold">{{ __('messages.why_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }}  <br> {{ __('messages.the_best_experience') }} </h3>
 
             <div class="row align-items-center mt-4">
                 <!-- Left Side (Icons Last) -->
                 <div class="col-lg-4 text-end">
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.most_flexible_payment') }}</h5>
-                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.flexible_payment_options') }}</h5>
+                            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}
                                 .</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
@@ -203,7 +215,7 @@
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.valuable_insights') }}</h5>
-                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
+                            <p class="text-muted">{{ __('messages.access_personalized') }}
                                 .</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
@@ -211,8 +223,8 @@
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.non_stop_Innovation') }}</h5>
-                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.continuous_innovation') }}</h5>
+                            <p class="text-muted">{{ __('messages.we’re_always_evolving') }}
                                 .</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
@@ -231,8 +243,8 @@
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed"
                             alt="">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.online_vehicle_appraisal') }}</h5>
-                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.instant_online') }}</h5>
+                            <p class="text-muted">{{ __('messages.quickly_assess') }}
                                 .</p>
                         </div>
                     </div>
@@ -240,8 +252,8 @@
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed"
                             alt="">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.personalized_search') }}</h5>
-                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.tailored_search') }}</h5>
+                            <p class="text-muted">{{ __('messages.effortlessly_find') }}
                                 .</p>
                         </div>
                     </div>
@@ -249,8 +261,8 @@
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed"
                             alt="">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.consumer_first_mentality') }}</h5>
-                            <p class="text-muted">{{ __('messages.uniquely_revolutionize') }}
+                            <h5 class="fw-bold mb-1">{{ __('messages.customer_first_approach') }}</h5>
+                            <p class="text-muted">{{ __('messages.your_satisfaction') }}
                                .</p>
                         </div>
                     </div>
@@ -260,25 +272,24 @@
     </div>
     <!-- tab -->
     <div class="container tab text-center py-5 d-none d-sm-block d-md-none">
-        <h4 class="text-warning fw-bold">{{ __('messages.why_we_choose_us') }}</h4>
-        <h3 class="fw-bold">{{ __('messages.we_are_ensuring') }} <br> {{ __('messages.customer_experience') }}</h3>
+        <h4 class="text-warning fw-bold">{{ __('messages.why_choose_us') }}</h4>
+        <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br> {{ __('messages.the_best_experience') }}</h3>
 
         <div class="row align-items-center mt-4">
             <!-- Left Side (First Three Icons) -->
             <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.online_vehicle_appraisal') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.Uniquely revolutionize manufactured products for interactive
-                            customer service') }}.</p>
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.instant_online') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.quickly_assess') }}.</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="ml-3 img-fixed"
                         alt="">
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.personalized_search') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.tailored_search') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.effortlessly_find') }}
                         .</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="ml-3 img-fixed"
@@ -286,8 +297,8 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.Consumer-First Mentality') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
+                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.customer_first_approach') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.your_satisfaction') }}
                             .</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="ml-3 img-fixed"
@@ -305,8 +316,8 @@
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="me-3 img-fixed" alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.most_flexible_payment') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.flexible_payment_options') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.choose_from_a_variety') }}
                             .</p>
                     </div>
                 </div>
@@ -315,7 +326,7 @@
                         alt="">
                     <div>
                         <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.valuable_insights') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
+                        <p class="text-muted text-start">{{ __('messages.access_personalized') }}
                             .</p>
                     </div>
                 </div>
@@ -323,8 +334,8 @@
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="me-3 img-fixed"
                         alt="">
                     <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.non_stop_Innovation') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.uniquely_revolutionize') }}
+                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.continuous_innovation') }}</h5>
+                        <p class="text-muted text-start">{{ __('messages.we’re_always_evolving') }}
                             .</p>
                     </div>
                 </div>
