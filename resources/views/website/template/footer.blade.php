@@ -79,6 +79,17 @@
       <div class="footer-container text-white">
           <div class="container">
               <div class="row">
+                  <div class="col-md-6 col-12 text-start">
+                      <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
+                          width="120px" height="120px">
+                      <p>{{ __('messages.whether_you_need') }}.
+                      </p>
+                      <div class="social-icons-footer mt-2 mb-5">
+                          <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+                          <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+                          <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
+                      </div>
+                  </div>
                   <div class="col-md-3 col-6">
                       <h5>{{ __('messages.quick_links') }}</h5>
                       <div class="d-flex gap-2">
@@ -103,32 +114,20 @@
                           <hr class="hr-white">
                       </div>
                       <ul class="list-unstyled footer-links">
-                          <li><a href="#">{{ __('messages.pickup') }}</a></li>
-                          <li><a href="#">{{ __('messages.coup') }}</a></li>
-                          <li><a href="#">{{ __('messages.family_mpv') }}</a></li>
                           <li><a href="#">{{ __('messages.sedan') }}</a></li>
-                          <li><a href="#">{{ __('messages.sport_coupe') }}</a></li>
+                          <li><a href="#">{{ __('messages.hatchback') }}</a></li>
+                          <li><a href="#">{{ __('messages.suv') }}</a></li>
+                          <li><a href="#">{{ __('messages.crossover') }}</a></li>
+                          <li><a href="#">{{ __('messages.coupe') }}</a></li>
+                          <li><a href="#">{{ __('messages.convertible') }}</a></li>
+                          <li><a href="#">{{ __('messages.minivan') }}</a></li>
+                          <li><a href="#">{{ __('messages.station_wagon') }}</a></li>
                       </ul>
                   </div>
-                  <div class="col-md-6 col-12 text-start">
-                      <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
-                          width="60px" height="60px">
-                      <p>{{ __('messages.whether_you_need') }}.
-                      </p>
-                      <div class="social-icons-footer mt-2 mb-5">
-                          <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
-                          <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
-                          <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
-                      </div>
-                      <div class="buttons">
-                          <a href="{{ url('/contact') }}" class="contact-btn-ctn">{{ __('messages.contact_us') }}</a>
-                          <a href="{{ url('/contact') }}" class="arrow-btn"><img
-                                  src="{{ asset('/') }}frontend-assets/icons/arrow.png"
-                                  class="img-icon rounded-pill p-1" alt=""></a>
-                      </div>
-                  </div>
+                  
               </div>
-              <div class="footer-bottom">©<?= date('Y') ?> Select And Rent. {{ __('messages.all_right_reserved') }}
+              <div class="footer-bottom py-3">
+                ©<?= date('Y') ?> Select And Rent. {{ __('messages.all_right_reserved') }}
               </div>
           </div>
       </div>
