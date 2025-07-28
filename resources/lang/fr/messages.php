@@ -460,7 +460,6 @@
         'join_our_partner' => 'Rejoignez notre programme partenaire',
         'any_questions' => 'Des questions',
         'we_got_you' => 'Nous vous soutenons',
-        'our_cutting-edge' => 'Notre suite de financement d\'affaires de pointe vous offre une expérience personnalisée pour obtenir un crédit et un financement pour votre entreprise',
         'frequently_asked' => 'Questions fréquemment posées',
         'our_cutting-edge_business' => 'Notre suite de financement d\'affaires de pointe vous offre une expérience personnalisée pour obtenir un crédit et un financement pour votre entreprise. Vous recevrez également des conseils de notre équipe de conseillers commerciaux, qui vous aideront dans tous les aspects de la construction de votre crédit d\'entreprise',
         'satisfaction' => 'Satisfaction',
@@ -708,5 +707,19 @@
         'commissiondashboard' => 'Commission',
         'total_booking' => 'Total des réservations',
         'currently_booked' => 'Actuellement Réservé',
+        'our_cutting-edge' => 'Notre service Sélectionner et Louer vous permet de parcourir, comparer et louer des voitures adaptées à vos besoins de voyage ou professionnels — en seulement quelques clics.',
+        'Faq1' => 'Que faut-il pour louer une voiture ?',
+        'Faq1_answer' => 'Pour louer une voiture, vous devez disposer d’un permis de conduire valide, d’une carte de crédit ou de débit, et d’une pièce d’identité. Les locataires internationaux peuvent également avoir besoin d’un passeport et d’un permis de conduire international.',
+        'Faq2' => 'Quels moyens de paiement acceptez-vous ?',
+        'Faq2_answer' => 'Nous acceptons les principales cartes de crédit, cartes de débit et certaines plateformes de paiement numériques. Les options de paiement peuvent varier selon votre localisation et le prestataire de location.',
+        'Faq3' => 'Puis-je modifier ou annuler ma réservation ?',
+        'Faq3_answer' => 'Absolument. Vous pouvez facilement modifier ou annuler votre réservation via le tableau de bord de votre compte. Les politiques d’annulation varient selon le prestataire de location — veuillez consulter les conditions lors du paiement.',
+        'Faq4' => 'Comment savoir avec quelle entreprise je réserve ?',
+        'Faq4_answer' => 'Chaque fiche véhicule affiche clairement l’entreprise de location, son emplacement, ses politiques, ainsi que les avis des clients.',
+        'Faq5' => 'Puis-je proposer mes propres voitures sur votre plateforme ?',
+        'Faq5_answer' => 'Oui ! Nous accueillons les entreprises de location de toutes tailles. Visitez notre page Partenariat pour savoir comment inscrire vos véhicules et toucher un public plus large.',
+        'Faq6' => 'Que se passe-t-il si je rends la voiture en retard ?',
+        'Faq6_answer' => 'Des frais supplémentaires peuvent s’appliquer en cas de retour tardif. Nous vous recommandons de contacter le prestataire de location dès que possible si vous pensez être en retard.',
+
     ];
 

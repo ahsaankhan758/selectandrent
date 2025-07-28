@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('email');
-            $table->bigInteger('phone');
+            $table->bigInteger('phone')->nullable();
             $table->string('website')->default('0')->nullable();
             $table->tinyInteger('status')->default('0')->comment('1 = Active, 2 = Inactive, 0 = Pending	');
             $table->longText('detail')->nullable();

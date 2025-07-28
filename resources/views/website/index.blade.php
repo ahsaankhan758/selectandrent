@@ -640,27 +640,6 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    {{-- <div class="d-flex justify-content-between mt-4">
-                                <div class="icon-text">
-                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly.png" alt="Car" width="20px">
-                                    {{ $car->weight }} {{ __('messages.kg') }}
-                                </div>
-                                <div class="icon-text">
-                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car" width="20px">
-                                    {{ $car->mileage }} {{ __('messages.km') }}
-                                </div>
-                            </div>
-        
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="icon-text">
-                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car" width="20px">
-                                    {{ $car->seats }} {{ __('messages.seater') }}
-                                </div>
-                                <div class="icon-text">
-                                    <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car" width="20px">
-                                    {{ ucfirst($car->transmission) }}
-                                </div>
-                            </div> --}}
                                 </a>
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
@@ -816,76 +795,133 @@
     </section>
 
     <!-- Accordion Section -->
-    <section class="container-fluid bg-white py-5">
-        <div class="container">
-            <div class="row">
-                <!-- Left Side Text -->
-                <div class="col-md-6 ml-1 accordion-text">
-                    <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
-                    <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
-                    <p class="text-muted questions">
-                        {{ __('messages.our_cutting-edge') }}.
-                    </p>
-                </div>
-                <!-- Right Side Accordion -->
-                <div class="col-md-6">
-                    <div class="accordion" id="faqAccordion">
+<section class="container-fluid py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Left Side Text (4 columns) -->
+            <div class="col-md-4 accordion-text">
+                <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
+                <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
+                <p class="text-muted questions">
+                    {{ __('messages.our_cutting-edge') }}.
+                </p>
+            </div>
 
-                        <!-- First Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button fw-bold shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
-                                    {{ __('messages.frequently_asked') }}
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.our_cutting-edge_business') }}.
-                                </div>
+            <!-- Middle Accordion (3 items) -->
+            <div class="col-md-4">
+                <div class="accordion" id="faqAccordion1">
+                    <!-- First Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingOne1">
+                            <button class="accordion-button fw-bold shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true"
+                                aria-controls="collapseOne1">
+                                {{ __('messages.Faq1') }}
+                            </button>
+                        </h2>
+                        <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1"
+                            data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq1_answer') }}
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Second Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                    aria-controls="collapseTwo">
-                                    {{ __('messages.frequently_asked') }}
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.our_cutting-edge_business') }}.
-                                </div>
+                    <!-- Second Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingTwo1">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="false"
+                                aria-controls="collapseTwo1">
+                                {{ __('messages.Faq2') }}
+                            </button>
+                        </h2>
+                        <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
+                            data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq2_answer') }}
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Third Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                                    aria-controls="collapseThree">
-                                    {{ __('messages.frequently_asked') }}
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.our_cutting-edge_business') }}.
-                                </div>
+                    <!-- Third Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingThree1">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false"
+                                aria-controls="collapseThree1">
+                                {{ __('messages.Faq3') }}
+                            </button>
+                        </h2>
+                        <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1"
+                            data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq3_answer') }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Right Accordion (3 more items) -->
+            <div class="col-md-4">
+                <div class="accordion" id="faqAccordion2">
+                    <!-- Fourth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button fw-bold shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true"
+                                aria-controls="collapseFour">
+                                {{ __('messages.Faq4') }}
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq4_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fifth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                                aria-controls="collapseFive">
+                                {{ __('messages.Faq5') }}
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq5_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sixth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
+                                aria-controls="collapseSix">
+                                {{ __('messages.Faq6') }}
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq6_answer') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End of Right Accordion -->
         </div>
-    </section>
+    </div>
+</section>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>

@@ -66,7 +66,7 @@
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>{{ __('messages.browse') }}</h4>
-                    <p>{{ __('messages.explore_our_selection') }}.</p>
+                    <p>{{ __('messages.explore_our_selection') }}</p>
                 </div>
             </div>
 
@@ -75,7 +75,7 @@
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>{{ __('messages.filter_&_select') }}</h4>
-                    <p>{{ __('messages.use_our_filters') }} .</p>
+                    <p>{{ __('messages.use_our_filters') }}</p>
                 </div>
             </div>
             <div class="step-item reverse">
