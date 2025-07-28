@@ -64,7 +64,7 @@
 
               <div class="d-flex justify-content-center text-white flex-wrap">
                   <div class="text-center">
-                      <a href="tel:0123456789" class="contact-btn"><i class="fas fa-phone"></i> (012) 345 - 6789</a>
+                      <a href="tel:0123456789" class="contact-btn"><i class="fas fa-phone"></i> 0300-XXXXX90</a>
                       <p><i class="fas fa-phone"></i> {{ __('messages.24/7_service') }}</p>
                   </div>
                   <div class="text-center">
