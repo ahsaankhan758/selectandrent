@@ -31,7 +31,7 @@
         <div class="row align-items-center">
             <!-- Logo -->
             <div class="col-6 col-md-2">
-                <a href="">
+                <a href="{{ url('/') }}">
                     <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
                         width="150">
                 </a>
