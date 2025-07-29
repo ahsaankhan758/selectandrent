@@ -8,7 +8,6 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-2 d-none d-lg-block"></div>
-
             <div class="col-lg-8 col-12">
                 <h2 class="mb-4">{{ __('messages.terms_title') }}</h2>
 
