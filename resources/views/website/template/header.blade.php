@@ -573,7 +573,7 @@
                 <h2 class="fw-bold">{{ __('messages.update_profile') }}</h2>
             @elseif(request()->is('faqs'))
                 <h2 class="fw-bold">{{ __('messages.FAQ') }}</h2>
-                <p>{{ __('messages.Got Questions? We’ve Got Answers') }}</p>
+                <p>{{ __('messages.got_questions') }}</p>
             @elseif(request()->is('contact'))
                 <h2 class="fw-bold">{{ __('messages.contact_us') }}</h2>
             @elseif(request()->is('register-car-rental'))

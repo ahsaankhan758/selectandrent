@@ -1,66 +1,49 @@
 @extends('website.layout.master')
 @section('title')
-{{ __('messages.privacy') }}
+    {{ __('messages.privacy') }}
 @endsection
 
 @section('content')
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-2 d-none d-lg-block"></div> 
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-2 d-none d-lg-block"></div>
 
-        <div class="col-lg-8 col-12"> <!-- Main content area -->
-            <h2 class="mb-4">Select And Rent Privacy Policy</h2>
+            <div class="col-lg-8 col-12">
+                <h2 class="mb-4">{{ __('messages.privacy_title') }}</h2>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>{{ __('messages.privacy_intro1') }}</p>
+                <p>{{ __('messages.privacy_intro2') }}</p>
 
-            <h4>1. Personal Information We Collect</h4>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</li>
-                <li>Excepteur sint occaecat cupidatat non proident.</li>
-                <li>Sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-            </ul>
+                <h4>{{ __('messages.privacy_section_collect') }}</h4>
+                <p>{{ __('messages.privacy_section_collect_desc') }}</p>
 
-            <h4>2. How We Use Your Information</h4>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse.</li>
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</li>
-                <li>Mollit anim id est laborum sed ut perspiciatis unde omnis iste natus.</li>
-            </ul>
+                <h4>{{ __('messages.privacy_section_use') }}</h4>
+                <p>{{ __('messages.privacy_section_use_desc') }}</p>
 
-            <h4>3. Data Protection</h4>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</li>
-                <li>Ut labore et dolore magna aliqua. Ut enim ad minim veniam.</li>
-            </ul>
+                <h4>{{ __('messages.privacy_section_share') }}</h4>
+                <p>{{ __('messages.privacy_section_share_desc') }}</p>
 
-            <h4>4. Sharing of Data</h4>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</li>
-            </ul>
+                <h4>{{ __('messages.privacy_section_security') }}</h4>
+                <p>{{ __('messages.privacy_section_security_desc') }}</p>
 
-            <h4>5. Cookies</h4>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget felis eget nunc.</li>
-            </ul>
+                <h4>{{ __('messages.privacy_section_cookies') }}</h4>
+                <p>{{ __('messages.privacy_section_cookies_desc') }}</p>
 
-            <h4>6. Your Rights</h4>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</li>
-            </ul>
+                <h4>{{ __('messages.privacy_section_retention') }}</h4>
+                <p>{{ __('messages.privacy_section_retention_desc') }}</p>
 
-            <h4>7. Changes to This Policy</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                <h4>{{ __('messages.privacy_section_rights') }}</h4>
+                <p>{{ __('messages.privacy_section_rights_desc') }}</p>
 
-            <h4>8. Contact Us</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Email us at <strong>support@yourwebsite.com</strong>.</p>
+                <h4>{{ __('messages.privacy_section_changes') }}</h4>
+                <p>{{ __('messages.privacy_section_changes_desc') }}</p>
+
+                <h4>{{ __('messages.privacy_section_contact') }}</h4>
+                <p>{{ __('messages.privacy_section_contact_desc') }}</p>
+
+            </div>
+
+            <div class="col-lg-2 d-none d-lg-block"></div>
         </div>
-
-        <div class="col-lg-2 d-none d-lg-block"></div> <!-- Right space -->
     </div>
-</div>
 @endsection

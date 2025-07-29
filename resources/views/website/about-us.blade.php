@@ -273,7 +273,6 @@
                             <span class="badge bg-dark">{{ __('messages.in') }}</span>
                             <h6 class="m-0">Wade Warren</h6>
                             <p class="m-0">{{ __('messages.marketing') }}</p>
-
                         </div>
                     </div>
                 </div>
