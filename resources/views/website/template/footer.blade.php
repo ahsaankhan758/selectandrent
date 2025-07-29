@@ -68,8 +68,8 @@
                       <p><i class="fas fa-phone"></i> {{ __('messages.24/7_service') }}</p>
                   </div>
                   <div class="text-center">
-                      <a href="mailto:joseh@contact.com" class="contact-btn"><i class="fas fa-envelope"></i>
-                          joseh@contact.com</a>
+                      <a href="mailto:hello@sparkodic.com" class="contact-btn"><i class="fas fa-envelope"></i>
+                          hello@sparkodic.com</a>
                       <p><i class="fas fa-clock"></i> {{ __('messages.monday_saturday') }}
                           <br>{{ __('messages.sunday') }}</p>
                   </div>
