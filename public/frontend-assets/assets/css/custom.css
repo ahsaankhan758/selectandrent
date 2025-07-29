@@ -576,7 +576,7 @@ background-size: cover;
   font-size: 15px;
 }
 }
-@media (min-width: 1025px) and (max-width: 1440px) {
+@media (min-width: 1025px) and (max-width: 1602px) {
   .header-container.scrolled {
     background: #07407B !important;
   }

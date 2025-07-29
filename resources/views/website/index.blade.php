@@ -30,21 +30,21 @@
             </div>
             <div class="col-md-3 col-sm-4 col-6">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/pickup-red.svg.png" alt="Pickup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/hatchback.png" alt="Pickup"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Hatchback</h6>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/compas.png" alt="Compact"
+                    <img src="{{ asset('/') }}frontend-assets/icons/SUV.png" alt="Compact"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">SUV</h6>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/coup-red.svg.png" alt="Coup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Crossover.png" alt="Coup"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Crossover</h6>
                 </div>
@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-3 col-sm-4 col-6">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/pickup-red.svg.png" alt="Pickup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Convertible.png" alt="Pickup"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Convertible</h6>
                 </div>
