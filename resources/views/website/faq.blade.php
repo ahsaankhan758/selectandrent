@@ -14,48 +14,48 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                            {{ __('messages.how_to_search') }}  
+                            What documents do I need to rent a car?  
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            To rent a car with Select and Rent, you'll need a valid driving license, your national ID or passport, and a debit or credit card for the security deposit.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                            {{ __('messages.payment_methods_and_security') }} 
+                            Can I book a car in advance? 
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Yes, Select and Rent allows you to book your preferred vehicle in advance through our website or app. Advance bookings ensure availability and better pricing.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                            {{ __('messages.insurance_and_coverage') }}  
+                            Are there any mileage limits on rented vehicles?  
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Some vehicles may have mileage restrictions depending on the rental plan. Be sure to check the terms when selecting a car, or ask our support team for clarification.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                            {{ __('messages.cancellation_and_refunds') }} 
+                            What happens if I return the car late? 
                         </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Late returns may incur additional charges based on hourly or daily rates. We recommend informing us ahead of time if you're expecting delays to avoid penalties.
                         </div>
                     </div>
                 </div>
@@ -69,48 +69,48 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
-                            {{ __('messages.how_to_join') }} 
+                           How can I list my vehicles on Select and Rent? 
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse show">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            To list your vehicles, simply register as a partner on our platform, provide your company details, and upload your vehicle information along with photos and pricing. Our team will verify and approve your listings.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
-                            {{ __('messages.listing_and_managing') }}  
+                            Is there any fee to join as a rental partner?  
                         </button>
                     </h2>
                     <div id="collapseSix" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Joining Select and Rent is completely free. We only charge a small commission on each successful booking, so you only pay when you earn.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven">
-                            {{ __('messages.pricing_and_commission') }} 
+                            How do I manage bookings and availability? 
                         </button>
                     </h2>
                     <div id="collapseSeven" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            You’ll get access to a dedicated partner dashboard where you can update vehicle availability, confirm or decline bookings, and track your earnings in real-time.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight">
-                            {{ __('messages.featured_listings') }} 
+                            When do I receive payments for bookings? 
                         </button>
                     </h2>
                     <div id="collapseEight" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Payments are processed after the rental is completed. You’ll receive your earnings (minus commission) directly to your registered bank account within 3–5 business days.
                         </div>
                     </div>
                 </div>
@@ -126,12 +126,12 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question1">
-                    {{ __('messages.how_to_search') }} 
+                    What is Select and Rent? 
                 </button>
             </h2>
             <div id="question1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Select and Rent is an online platform that allows users to browse, compare, and rent vehicles from verified rental companies across different cities — all in one place.
                 </div>
             </div>
         </div>
@@ -139,12 +139,12 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question2">
-                    {{ __('messages.supported_languages') }}  
+                    How do I contact customer support? 
                 </button>
             </h2>
             <div id="question2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    You can reach our support team via the "Contact Us" section on our website or app. We’re available via email, phone, and live chat to assist with your queries.
                 </div>
             </div>
         </div>
@@ -152,12 +152,12 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question3">
-                    {{ __('messages.account_management') }} 
+                    Is my information safe on Select and Rent? 
                 </button>
             </h2>
             <div id="question3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Yes, we use secure encryption and follow strict privacy policies to ensure your personal and payment information remains protected at all times.
                 </div>
             </div>
         </div>
@@ -165,12 +165,12 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question4">
-                    {{ __('messages.privacy_and_data') }} 
+                    How does the booking process work on Select and Rent? 
                 </button>
             </h2>
             <div id="question4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Booking a vehicle is simple: choose your location, select a vehicle that fits your needs, pick your rental dates, and submit your booking request. Once confirmed by the rental company, you'll receive a booking confirmation with all the details.
                 </div>
             </div>
         </div>
@@ -210,7 +210,7 @@
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.are_you_an_existing') }} ?</label>
                             <select class="form-select">
-                                <option selected>{{ __('messages.Yes') }} </option>
+                                <option selected>{{ __('messages.yes') }} </option>
                                 <option>{{ __('messages.no') }} </option>
                             </select>
                         </div>
