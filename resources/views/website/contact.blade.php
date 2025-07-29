@@ -43,7 +43,7 @@
                             <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="Phone Icon">
                             <div>
                                 <h6>{{ __('messages.phone') }}</h6>
-                                <div class="fw-bold">+92 3244469929</div>
+                                <div class="fw-bold">0300-XXXXX90</div>
                             </div>
                         </li>
                         <li>
