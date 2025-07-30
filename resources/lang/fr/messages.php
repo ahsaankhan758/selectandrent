@@ -244,7 +244,7 @@
         'search_result_page' => 'Liste',
         'your_trusted_partner' => 'Votre partenaire de confiance pour les services de taxi 24h/24 et 7j/7',
         'reliable_and_round' => 'services de taxi fiables 24h/24 au cœur de New York',
-        'find_the_perfect_ride:' => 'Trouvez le véhicule parfait : explorez notre large gamme de catégories',
+        'find_the_perfect_ride:' => 'Choisissez le véhicule adapté à votre voyage — sélection simple, location facile et réservation instantanée',
         'an_easy_way' => 'Une façon simple de louer vos voitures rapidement et efficacement',
         'your_friendly_vehicle' => 'Votre fournisseur de location de voitures convivial',
         'vehicle_details' => 'Détails de la voiture',
@@ -735,6 +735,16 @@
         'Faq5_answer' => 'Oui ! Nous accueillons les entreprises de location de toutes tailles. Visitez notre page Partenariat pour savoir comment inscrire vos véhicules et toucher un public plus large.',
         'Faq6' => 'Que se passe-t-il si je rends la voiture en retard ?',
         'Faq6_answer' => 'Des frais supplémentaires peuvent s’appliquer en cas de retour tardif. Nous vous recommandons de contacter le prestataire de location dès que possible si vous pensez être en retard.',
+        // join our program
+        'In_a_free_hour' => 'Commencez en quelques clics seulement — sans paperasse compliquée ni frais cachés.',
+        'flexible_terms_text' => 'Louez à temps plein ou à temps partiel. Vous contrôlez entièrement quand et comment votre véhicule est loué.',
+        'high_earning_text' => 'Profitez d’un marché à forte demande avec des outils de tarification compétitifs et une visibilité optimale.',
+        'support_text' => 'Notre équipe d’experts est disponible 24h/24 pour répondre à vos questions et vous assister.',
+        'create_account' => 'Créez votre compte gratuit et partagez vos informations personnelles ou celles de votre entreprise.',
+        'list_text' => 'Ajoutez facilement vos véhicules grâce à nos outils intelligents, y compris le scan de plaque d’immatriculation.',
+        'price_text' => 'Utilisez notre calendrier interactif pour fixer vos tarifs et gérer la disponibilité de vos véhicules.',
+        'chat_text' => 'Discutez directement avec les locataires, répondez à leurs questions et confirmez les réservations en toute sécurité.',
+        'how_work_text' => 'Présentez vos véhicules facilement et connectez-vous avec des locataires fiables. Gérez tout à partir d’un seul endroit — rapide, clair et sécurisé.',
 
     ];
 
