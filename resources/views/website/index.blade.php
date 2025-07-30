@@ -927,5 +927,6 @@
                 }
             });
         });
+
     </script>
 @endsection

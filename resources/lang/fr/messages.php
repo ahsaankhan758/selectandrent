@@ -1,6 +1,20 @@
 <?php
 
     return [
+        'get_expert_guidance' => 'Obtenez des conseils d’experts à chaque étape. Notre équipe de support dédiée vous aide à optimiser vos annonces, vos prix et votre communication pour réussir.',
+        'earn_money' => 'Gagnez de l’argent sans gérer les opérations quotidiennes.',
+        'our_platform' => 'Notre plateforme garantit des locataires vérifiés et des transactions sécurisées.',
+        'set_your_own' => 'Définissez votre propre emploi du temps et contrôlez votre disponibilité en toute simplicité',
+        'earn_extra_income' => 'Générez un revenu supplémentaire, réduisez les coûts et profitez d’un accompagnement professionnel',
+        'collaborate_with_other' => 'Collaborez avec d’autres entrepreneurs de la location et rejoignez une plateforme qui promeut une mobilité partagée et durable.',
+        'earn_extra_collaborate' => 'Générez un revenu supplémentaire, réduisez les coûts et profitez d’un accompagnement professionnel. Collaborez avec d’autres entrepreneurs de la location et rejoignez une plateforme qui promeut une mobilité partagée et durable.',
+        'join_the_circle' => 'Rejoignez le cercle',
+        'connect_with' => 'Connectez-vous à une communauté dynamique et partageant les mêmes idées',
+        'flexible_scheduling' => 'Planification flexible',
+        'customize_your' => 'Personnalisez votre planning de location selon votre mode de vie',
+        'effortless_income' => 'Revenu sans effort',
+        'enjoy_reliable' => 'Profitez d’un revenu fiable et d’une gestion sans souci',
+        'your_personal' => 'Votre coach personnel',
         'hatchback' => 'Hayon',
         'suv' => 'VUS (SUV)',
         'crossover' => 'Crossover',

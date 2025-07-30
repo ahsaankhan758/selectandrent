@@ -1,6 +1,20 @@
 <?php
 
     return [
+        'get_expert_guidance' => 'Krijg deskundige begeleiding bij elke stap. Ons toegewijde supportteam helpt je bij het optimaliseren van je aanbiedingen, prijzen en communicatie voor succes.',
+        'earn_money' => 'Verdien geld zonder dagelijkse operaties te beheren.',
+        'our_platform' => 'Ons platform zorgt voor geverifieerde huurders en veilige transacties.',
+        'set_your_own' => 'Stel je eigen schema in en beheer je beschikbaarheid eenvoudig',
+        'earn_extra_income' => 'Verdien extra inkomen, verlaag overheadkosten en profiteer van professionele ondersteuning',
+        'collaborate_with_other' => 'Werk samen met andere verhuurondernemers en maak deel uit van een platform dat duurzame gedeelde mobiliteit stimuleert.',
+        'earn_extra_collaborate' => 'Verdien extra inkomen, verlaag overheadkosten en profiteer van professionele ondersteuning. Werk samen met andere verhuurondernemers en maak deel uit van een platform dat duurzame gedeelde mobiliteit stimuleert.',
+        'join_the_circle' => 'Word lid van de Circle',
+        'connect_with' => 'Verbind je met een bruisende, gelijkgestemde community',
+        'flexible_scheduling' => 'Flexibele planning',
+        'customize_your' => 'Pas je verhuurschema aan op je levensstijl',
+        'effortless_income' => 'Moeiteloos inkomen',
+        'enjoy_reliable' => 'Geniet van betrouwbaar inkomen en zorgeloos beheer',
+        'your_personal' => 'Jouw persoonlijke coach',
         'hatchback' => 'Hatchback',
         'suv' => 'SUV',
         'crossover' => 'Crossover',
