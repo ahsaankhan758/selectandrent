@@ -1548,9 +1548,21 @@ margin: 5px 0;
 }
 .custom-join-img2{
   margin-left: 127px;
-  margin-top: -122px;
+
   height: 300px;
   width: 250px;
+}
+.custom-program-left-list{
+  margin-bottom:-150px;
+}
+.custom-program-become-partner{
+  margin-top: -120px;
+}
+.custom-program-become-partner2{
+  margin-top: -80px;
+}
+.custom-program-list {
+  top: 40px;
 }
 .custom-text-heading{
   color: #227CAA !important;
