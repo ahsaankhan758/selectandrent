@@ -4,147 +4,129 @@
 @endsection
 
 @section('content')
-    <!-- parther -->
-    <div class="container desktop-view my-5">
-        <h2 class="text-center mb-5">{{ __('messages.why_partner') }}</h2>
-        <!-- Part 1 -->
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-md-3">
-                <h4 class="fw-bold">{{ __('messages.our_personal') }} </h4>
-                <p class="text-muted text-font">{{ __('messages.uniquely_revolutionize') }} .</p>
-                <ul class="list-unstyled">
-                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png"
-                            alt="security">{{ __('messages.passive_income') }} </li>
-                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        {{ __('messages.reduced_costs') }} </li>
-                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png"
-                            alt="security">{{ __('messages.peace_of_mind') }} </li>
-                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png"
-                            alt="security">{{ __('messages.flexibility') }} </li>
-                </ul>
-            </div>
+
+ <!-- parther -->
+ <div class="container desktop-view my-5">
+    <h2 class="text-center mb-5">{{ __('messages.why_partner') }}</h2>
+    <!-- Part 1 -->
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-3 custom-program-left-list">
+            <h4 class="fw-bold">{{ __('messages.your_personal') }} </h4>
+            <p class="text-muted text-font">{{ __('messages.get_expert_guidance') }} </p>
+            <ul class="list-unstyled">
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>{{ __('messages.passive_income') }}</strong>  </li>
+                <p class="text-muted ">{{ __('messages.earn_money') }}</p>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>{{ __('messages.peace_of_mind') }} </strong> </li>
+                <p class="text-muted ">{{ __('messages.our_platform') }}</p>
+                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>{{ __('messages.flexibility') }} </strong> </li>
+                <p class="text-muted ">{{ __('messages.set_your_own') }}</p>
+            </ul>
+        </div>
+
 
             <div class="col-lg-4 col-md-4 text-center">
                 <img src="{{ asset('/') }}frontend-assets/assets/jointeam.png" class="img-fluid custom-join-img rounded"
                     alt="Join Our Team">
             </div>
 
-            <div class="col-lg-5 col-md-5">
-                <p class="custom-text-heading fw-bold">{{ __('messages.become_a_partner') }} </p>
-                <h3 class="fw-bold heading-text-font">{{ __('messages.earn_extra') }} </h3>
-                <p class="text-muted text-font">{{ __('messages.connect_with_like') }} .</p>
-            </div>
+
+        <div class="col-lg-5 col-md-5 custom-program-become-partner">
+            <p class="custom-text-heading fw-bold">{{ __('messages.become_a_partner') }} </p>
+            <h3 class="fw-bold heading-text-font">{{ __('messages.earn_extra_income') }} </h3>
+            <p class="text-muted text-font">{{ __('messages.collaborate_with_other') }} </p>
+
         </div>
 
-        <!-- Part 2 -->
-        <div class="row mt-3 align-items-center">
-            <div class="col-lg-4 col-md-4">
-                <div class="custom-col">
-                    <p class="custom-title">{{ __('messages.speaking_good') }} <span class="custom-success">99%</span></p>
-                    <div class="custom-progress">
-                        <div class="custom-progress-bar custom-progress-success" style="width: 99%;"></div>
-                    </div>
 
-                    <p class="custom-title mt-3">{{ __('messages.skills_have') }} <span class="custom-danger">97%</span>
-                    </p>
-                    <div class="custom-progress">
-                        <div class="custom-progress-bar custom-progress-danger" style="width: 97%;"></div>
-                    </div>
-                </div>
-            </div>
+    <!-- Part 2 -->
+     <div class="row custom-program-become-partner2">
+        <div class="col-lg-4 col-md-4 ps-lg-4">
+        
+        </div>
+        <div class="col-lg-4 col-md-4 d-flex justify-content-center align-items-center">
+            <img src="{{ asset('/') }}frontend-assets/assets/jointeam2.png" class="img-fluid custom-join-img2 rounded" alt="Car Image">
 
-            <div class="col-lg-4 col-md-4 text-center">
-                <img src="{{ asset('/') }}frontend-assets/assets/jointeam2.png"
-                    class="img-fluid custom-join-img2 rounded" alt="Car Image">
-            </div>
-
-            <div class="col-lg-4 col-md-4 ps-lg-4 mb-3">
+        </div>
+        <div class="col-lg-4 col-md-4 ps-lg-4">
+            <div class="position-relative custom-program-list">
                 <ul class="list-unstyled">
-                    <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.best_choicing') }}</strong></li>
-                    <p class="text-muted ">{{ __('messages.uniquely_revolutionize') }}</p>
+                    <li>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                        <strong>{{ __('messages.join_the_circle') }}</strong>
+                    </li>
+                    <p class="text-muted">{{ __('messages.connect_with') }}</p>
+    
+                    <li>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                        <strong>{{ __('messages.flexible_scheduling') }}</strong>
+                    </li>
+                    <p class="text-muted">{{ __('messages.customize_your') }}</p>
 
-                    <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.good_people') }}</strong></li>
-                    <p class="text-muted ">{{ __('messages.uniquely_revolutionize') }}</p>
+
+                    <li>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                        <strong>{{ __('messages.effortless_income') }}</strong>
+                    </li>
+                    <p class="text-muted">{{ __('messages.enjoy_reliable') }}</p>
                 </ul>
-                <button class="btn btn-orange-clr rounded-pill text-white">
-                    {{ __('messages.view_all') }} <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png"
-                        class="ms-2" width="20" height="20" alt="">
-                </button>
+    
             </div>
         </div>
-    </div>
-    <!-- mobile view -->
-    <div class="mobile-container">
-        <h2 class="mobile-heading">{{ __('messages.why_partner') }} </h2>
-        <p class="mobile-subheading">{{ __('messages.become_a_partner') }} </p>
-        <p class="mobile-text">
-            {{ __('messages.Earn extra income, reduce costs, enjoy peace of mind. Connect with like-minded individuals and contribute to sustainable mobility') }}
-            .
-        </p>
+</div>
+</div>
+<!-- mobile view -->
+<div class="mobile-container">
+    <h2 class="mobile-heading">{{ __('messages.why_partner') }} </h2>
+    <p class="mobile-subheading">{{ __('messages.become_a_partner') }} </p>
+    <p class="mobile-text">
+        {{ __('messages.earn_extra_collaborate') }}  
+    </p>
 
 
-        <div class="mobile-image">
-            <img src="{{ asset('/') }}frontend-assets/assets/jointeam.png" alt="Join Our Team">
-        </div>
-
-        <div class="mobile-box">
-            <p class="mobile-check"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                {{ __('messages.best_choicing') }}</p>
-            <p class="mobile-text">{{ __('messages.uniquely_revolutionize') }}</p>
-        </div>
-
-        <div class="mobile-box">
-            <p class="mobile-check"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                {{ __('messages.good_people') }}</p>
-            <p class="mobile-text">{{ __('messages.uniquely_revolutionize') }}.</p>
-        </div>
-
-        <button class="btn btn-orange-clr rounded-pill text-white">
-            {{ __('messages.view_all') }} <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png"
-                class="ms-2" width="20" height="20" alt="">
-        </button>
-
-        <div class="mobile-image mt-2">
-            <img src="{{ asset('/') }}frontend-assets/assets/jointeam2.png" alt="Car Image">
-        </div>
-
-        <h3 class="mobile-title">{{ __('messages.our_personal') }}</h3>
-        <ul class="mobile-list">
-            <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                {{ __('messages.passive_income') }}</li>
-            <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                {{ __('messages.reduced_costs') }}</li>
-            <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                {{ __('messages.peace_of_mind') }}</li>
-            <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                {{ __('messages.flexibility') }}</li>
-        </ul>
-
-        <p class="mobile-progress-title">{{ __('messages.speaking_good') }} <span class="progress-success">99%</span></p>
-        <div class="mobile-progress">
-            <div class="mobile-progress-bar success" style="width: 99%;"></div>
-        </div>
-
-        <p class="mobile-progress-title">{{ __('messages.skills_have') }} <span class="progress-danger">97%</span></p>
-        <div class="mobile-progress">
-            <div class="mobile-progress-bar danger" style="width: 97%;"></div>
-        </div>
+    <div class="mobile-image">
+        <img src="{{asset('/')}}frontend-assets/assets/jointeam.png" alt="Join Our Team">
     </div>
 
-    <!-- parther -->
-    <!-- benefits -->
-    <div class="container desktop-benefits">
-        <h2 class="text-center mb-5">{{ __('messages.key_benefits') }}</h2>
-        <div class="row custom-benefit-container">
-            <div class="col-md-3 text-center custom-benefit-step">
-                <div>
-                    <img src="{{ asset('/') }}frontend-assets/icons/1.png" class="custom-icon-circle"
-                        alt="Easy Signup">
-                </div>
-                <h5 class="mt-3">{{ __('messages.easy_signup') }}</h5>
-                <p>{{ __('messages.In_a_free_hour') }}</p>
+    <div class="mobile-box">
+        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.join_the_circle') }}</p>
+        <p class="mobile-text">{{ __('messages.connect_with') }}</p>
+    </div>
+
+    <div class="mobile-box">
+        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.flexible_scheduling') }}</p>
+        <p class="mobile-text">{{ __('messages.customize_your') }}.</p>
+    </div>
+
+    <div class="mobile-box">
+        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.effortless_income') }}</p>
+        <p class="mobile-text">{{ __('messages.enjoy_reliable') }}.</p>
+    </div>
+
+    <div class="mobile-image mt-2">
+        <img src="{{asset('/')}}frontend-assets/assets/jointeam2.png" alt="Car Image">
+    </div>  
+
+    <h3 class="mobile-title mt-3">{{ __('messages.your_personal') }}</h3>
+    <ul class="mobile-list">
+        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.passive_income') }}</li>
+        <p class="text-muted ">{{ __('messages.earn_money') }}</p>
+        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.peace_of_mind') }}</li>
+        <p class="text-muted ">{{ __('messages.our_platform') }}</p>
+        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.flexibility') }}</li>
+        <p class="text-muted ">{{ __('messages.set_your_own') }}</p>
+    </ul>
+
+</div>
+
+  <!-- parther -->
+ <!-- benefits -->
+ <div class="container desktop-benefits">
+    <h2 class="text-center mb-5">{{ __('messages.key_benefits') }}</h2>
+    <div class="row custom-benefit-container">
+        <div class="col-md-3 text-center custom-benefit-step">
+            <div>
+                <img src="{{asset('/')}}frontend-assets/icons/1.png" class="custom-icon-circle" alt="Easy Signup">
+
             </div>
             <div class="col-md-3 text-center custom-benefit-step">
                 <h5 class="mt-3">{{ __('messages.flexible_terms') }}</h5>

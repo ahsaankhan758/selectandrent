@@ -547,7 +547,7 @@
             @elseif(request()->is('join-our-program'))
                 <h2 class="fw-bold">{{ __('messages.join') }} {{ __('messages.our') }} {{ __('messages.program') }}
                 </h2>
-                <p>"{{ __('messages.an_easy_way') }}"</p>
+                <p>{{ __('messages.an_easy_way') }}</p>
             @elseif(request()->is('about-us'))
                 <h2 class="fw-bold">{{ __('messages.about_us') }}</h2>
                 <p>{{ __('messages.your_friendly_vehicle') }}</p>
