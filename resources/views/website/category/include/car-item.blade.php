@@ -4,23 +4,23 @@
     <div class="row">
         @foreach ($cars as $car)
             <div class="col-sm-6 col-md-6 col-lg-4 mb-4">
-                <div class="custom-card2 p-3 shadow-sm rounded">
-                    <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
-                        @php
-                            $path = public_path('storage/' . $car->thumbnail);
-                            $imageExists = $car->thumbnail && file_exists($path);
-                        @endphp
-
-                        @if ($imageExists)
-                            <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img" alt="Car Image">
-                        @else
-                            <img src="{{ asset('images/no-image.png') }}" class="custom-card-img" alt="No Image Available">
-                        @endif
-
+                <div class="custom-card2 p-3 shadow-sm rounded position-relative">
+                    <a href="{{ route('car.detail', $car->id) }}" class="stretched-link"></a>
+                    @php
+                        $path = public_path('storage/' . $car->thumbnail);
+                        $imageExists = $car->thumbnail && file_exists($path);
+                    @endphp
+                    <div class="position-relative">
+                        <img src="{{ $imageExists ? asset('storage/' . $car->thumbnail) : asset('images/no-image.png') }}"
+                            class="custom-card-img" alt="Car Image">
                         @if ($car->is_booked == 1)
-                            <div style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">{{__('messages.currently_booked')}}</div>
+                            <div
+                                style="position: absolute; top: 0; left: 0; background: var(--text-orange); color: white; padding: 5px 10px; font-weight: bold; font-size: 14px; z-index: 10;">
+                                {{ __('messages.currently_booked') }}
+                            </div>
                         @endif
-                    </a>
+                    </div>
+
                     <div class="card-content">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <div>
@@ -34,13 +34,14 @@
                                     {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} | {{ $car->fuel_type }}
                                 </h6>
                             </div>
-                            <div class="ms-2">
+
+                            <div class="ms-2 position-relative" style="z-index: 10;">
                                 @php
                                     $companyProfile = $car->users->companies->company_profile ?? null;
                                 @endphp
                                 <img src="{{ asset($companyProfile ?? 'frontend-assets/assets/customeruser.png') }}"
                                     alt="Company Logo" width="40" height="40" class="rounded-circle"
-                                    style="object-fit: cover;">
+                                    style="object-fit: cover; cursor: default;">
                             </div>
                         </div>
 
@@ -66,15 +67,19 @@
 
                         <hr class="my-2">
 
-                        <div class="d-flex justify-content-between align-items-center bg-light rounded px-2 py-1">
+                        <div class="d-flex justify-content-between align-items-center bg-light rounded px-2 py-1 position-relative"
+                            style="z-index: 10;">
                             <h6 class="card_orange_clr mb-0">
-                                {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
+                                {{ convertPrice($car->rent, 0) }}/{{ ucfirst($car->rent_type) }}
+                            </h6>
                             @if (auth()->check())
-                                <button class="book-btn" data-carid="{{ $car->id }}"
-                                    id="car-booking-btn">{{ __('messages.Book') }}</button>
+                                <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">
+                                    {{ __('messages.Book') }}
+                                </button>
                             @else
-                                <button class="book-btn" data-bs-toggle="modal"
-                                    data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
+                                <button class="book-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    {{ __('messages.Book') }}
+                                </button>
                             @endif
                         </div>
                     </div>
@@ -83,46 +88,3 @@
         @endforeach
     </div>
 @endif
-
-{{-- old code --}}
-{{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 car-card-item" data-category="{{ $car->car_category_id }}">
-            <div class="custom-card2">
-                <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
-                    <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img" alt="Car Image">
-                </a>
-                <div class="card-content">
-                    <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                        <h6 class="car-price">{{ convertPrice($car->rent, 0) }}/{{ __('messages.day') }}</h6>
-                        @if (auth()->check())
-                        <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">{{ __('messages.Book') }}</button>
-                        @else
-                        <button class="book-btn" data-bs-toggle="modal" data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
-                        @endif
-                    </div>
-                    <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
-                        <h6 class="text-dark mt-2">{{ $car->car_categories->name ?? 'Unknown Category' }}</h6>
-                        <h5 class="text-muted mt-1">{{ $car->car_models->name ?? 'Unknown Model' }}</h5>
-                        <div class="d-flex justify-content-between mt-4">
-                            <div class="icon-text" style="font-size: 12px;">
-                                <img src="{{ asset('/') }}frontend-assets/icons/Iconly.png" alt="Car" width="20px">
-                                {{ $car->weight ?? 'N/A' }} {{ __('messages.kg') }}
-                            </div>
-                            <div class="icon-text" style="font-size: 12px;">
-                                <img src="{{ asset('/') }}frontend-assets/icons/Iconly-v.png" alt="Car" width="20px">
-                                {{ $car->mileage ?? 'N/A' }} {{ __('messages.km') }}
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <div class="icon-text" style="font-size: 12px;">
-                                <img src="{{ asset('/') }}frontend-assets/icons/Iconly-u.png" alt="Car" width="20px">
-                                {{ $car->seats ?? 'N/A' }} {{ __('messages.seater') }}
-                            </div>
-                            <div class="icon-text" style="font-size: 12px;">
-                                <img src="{{ asset('/') }}frontend-assets/icons/Iconly-s.png" alt="Car" width="20px">
-                                {{ ucfirst($car->transmission ?? 'N/A') }}
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div> --}}

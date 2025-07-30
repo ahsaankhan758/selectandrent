@@ -254,7 +254,7 @@
       'search_result_page' => 'Listing',
       'your_trusted_partner' => 'Your Trusted Partner for 24/7 Taxi Services',
       'reliable_and_round' => 'Reliable and Round-the-Clock Taxi Services in the Heart of New York',
-      'find_the_perfect_ride:' => 'Find the Perfect Ride: Explore Our Wide Range of Vehicle Categories',
+      'find_the_perfect_ride:' => 'Choose the ride that fits your journey — simple selection, easy rental, and instant booking',
       'an_easy_way' => 'An easy way to rent out your vehicles quickly and efficiently',
       'your_friendly_vehicle' => 'Your Friendly Vehicle Rental Provider',
       'vehicle_details' => 'Vehicle Details',
@@ -296,7 +296,7 @@
       'pick_up_drive' => 'Pick Up & Drive',
       'tips_for_renting' => 'Tips for Renting',
       'plan_ahead' => 'Plan Ahead',
-      'economical_vehicles' => 'Economical vehicles are in high demand; book early for better availability',
+      'economical_vehicles' => 'Economical vehicles are in high demand book early for better availability',
       'verify_features' => 'Verify Features',
       'double_check_fuel' => 'Double-check fuel efficiency and included features before booking',
       'longer_rental' => 'Longer Rentals',
@@ -457,7 +457,6 @@
       'good_people' => 'Good People',
       'key_benefits' => 'Key Benefits of Partnering',
       'easy_signup' => 'Easy signup process',
-      'In_a_free_hour' => 'In a free hour, when our power of choice is untrammeled and...',
       'flexible_terms' => 'Flexible terms',
       'high_earning' => 'High earning potential',
       '24/7_support' => '24/7 support',
@@ -752,5 +751,15 @@
        'Faq5_answer' => 'Yes! We welcome rental companies of all sizes. Visit our Partner With Us page to learn how to list your vehicles and reach a wider audience.',
        'Faq6' => 'What happens if I return the car late?',
        'Faq6_answer' => 'Late returns may incur additional charges. We recommend contacting the rental provider as soon as possible if you are running behind schedule.',
-    ];
+       // join our program new text
+       'In_a_free_hour' => 'Get started in just a few clicks—no complicated paperwork or hidden fees.',
+       'flexible_terms_text' => 'Rent full-time or part-time. You are in full control of when and how your vehicle is rented.',
+       'high_earning_text' => 'Tap into a high-demand market with competitive pricing tools and strong platform visibility.',
+       'support_text' => 'Our expert team is available around the clock to answer your questions and assist with any issues.',
+       'create_account' => 'Create your free account and share your basic company or personal info.',
+       'list_text' => 'Easily add your vehicles with our smart tools, including license plate scanning for faster uploads.',
+       'price_text' => 'Use our interactive calendar to set pricing and control when your cars are available.',
+       'chat_text' => 'Chat with renters directly, respond to queries, and confirm bookings through our secure system.',
+       'how_work_text' => 'Easily showcase your vehicles and connect with trusted renters. Manage everything from one place — quick, clear, and secure.',
+      ];
 
