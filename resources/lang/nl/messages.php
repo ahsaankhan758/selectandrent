@@ -243,7 +243,7 @@
         'search_result_page' => 'Lijst',
         'your_trusted_partner' => 'Uw betrouwbare partner voor 24/7 taxiservices',
         'reliable_and_round' => 'Betrouwbare taxiservices in het hart van New York, dag en nacht',
-        'find_the_perfect_ride:' => 'Vind de perfecte rit: bekijk ons brede aanbod',
+        'find_the_perfect_ride:' => 'Kies de rit die bij jouw reis past — eenvoudig kiezen, makkelijk huren en direct boeken',
         'an_easy_way' => 'Een gemakkelijke manier om uw auto’s snel en efficiënt te verhuren',
         'your_friendly_vehicle' => 'Uw vriendelijke autoverhuurder',
         'vehicle_details' => 'Autogegevens',
@@ -735,4 +735,15 @@
         'Faq5_answer' => 'Ja! Wij verwelkomen verhuurbedrijven van alle groottes. Bezoek onze Partnerpagina om te zien hoe u uw voertuigen kunt aanbieden en een breder publiek kunt bereiken.',
         'Faq6' => 'Wat gebeurt er als ik de auto te laat terugbreng?',
         'Faq6_answer' => 'Bij te late teruggave kunnen extra kosten in rekening worden gebracht. Neem zo snel mogelijk contact op met de verhuurder als u vertraging heeft.',
+         // join our program
+        'In_a_free_hour' => 'Begin in slechts een paar klikken — geen ingewikkeld papierwerk of verborgen kosten.',
+        'flexible_terms_text' => 'Verhuur fulltime of parttime. Jij bepaalt wanneer en hoe je voertuig wordt verhuurd.',
+        'high_earning_text' => 'Profiteer van een markt met hoge vraag dankzij concurrerende prijsinstrumenten en goede zichtbaarheid.',
+        'support_text' => 'Ons deskundige team staat dag en nacht voor je klaar om vragen te beantwoorden en te helpen.',
+        'create_account' => 'Maak een gratis account aan en deel je basisgegevens of bedrijfsinformatie.',
+        'list_text' => 'Voeg je voertuigen eenvoudig toe met onze slimme tools, inclusief kentekenscanner voor snellere uploads.',
+        'price_text' => 'Gebruik onze interactieve kalender om prijzen in te stellen en beschikbaarheid te beheren.',
+        'chat_text' => 'Chat rechtstreeks met huurders, beantwoord vragen en bevestig boekingen via ons beveiligde systeem.',
+        'how_work_text' => 'Toon je voertuigen eenvoudig en kom in contact met betrouwbare huurders. Beheer alles vanuit één plek — snel, duidelijk en veilig.',
+
     ];

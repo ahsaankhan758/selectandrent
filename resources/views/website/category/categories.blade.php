@@ -1,14 +1,14 @@
 @extends('website.layout.master')
 @section('title')
-    {{ __('messages.category') }} 
+    {{ __('messages.category') }}
 @endsection
 @section('content')
-<!-- add to cart js -->
-<script src="{{asset('/frontend-assets/assets/Js/addtocart.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
+    <!-- add to cart js -->
+    <script src="{{ asset('/frontend-assets/assets/Js/addtocart.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
     <div class="container py-4 mt-5">
         <h2 class="text-center mb-3">{{ __('messages.select_a_category') }}</h2>
-       
+
         <div class="container text-center my-3">
             <div class="d-flex flex-wrap justify-content-center gap-2">
                 <button class="btn btn-primary filter-btn" data-category="All">{{ __('messages.all') }}</button>
@@ -19,28 +19,26 @@
         </div>
 
 
-       <!-- Cars List -->
+        <!-- Cars List -->
 
-    <div class="container mt-5">
-        <div class="row g-4" id="car-category-list">
-            @include('website.category.include.car-item', ['cars' => $cars])
+        <div class="container mt-5">
+            <div class="row g-4" id="car-category-list">
+                @include('website.category.include.car-item', ['cars' => $cars])
+            </div>
+
+            <!-- Load More for "All" Category -->
+            @if ($totalCars > 8)
+                <div class="text-center mt-4">
+                    <button id="load-more-btn" class="btn btn-orange-clr text-white"
+                        data-url="{{ route('load.more.category.cars') }}" data-target="car-category-list" data-offset="8"
+                        data-model="Car">
+                        {{ __('messages.load_more') }}
+                    </button>
+                </div>
+            @endif
         </div>
 
-    <!-- Load More for "All" Category -->
-    @if($totalCars > 8)
-    <div class="text-center mt-4">
-        <button id="load-more-btn" class="btn btn-orange-clr text-white" 
-                data-url="{{ route('load.more.category.cars') }}" 
-                data-target="car-category-list" 
-                data-offset="8" 
-                data-model="Car">
-                {{ __('messages.load_more') }}
-        </button>
-    </div>
-    @endif
-</div>
 
-        
 
         <!-- View All Button -->
         {{-- <div class="d-flex justify-content-center mt-4">
@@ -62,7 +60,7 @@
         <p class="text-center work-subtitle">{{ __('messages.booking_an_economical') }}</p>
         <div class="steps">
             <div class="step-item reverse">
-                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>{{ __('messages.browse') }}</h4>
@@ -71,7 +69,7 @@
             </div>
 
             <div class="step-item ">
-                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>{{ __('messages.filter_&_select') }}</h4>
@@ -79,7 +77,7 @@
                 </div>
             </div>
             <div class="step-item reverse">
-                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>{{ __('messages.Book') }}</h4>
@@ -88,7 +86,7 @@
             </div>
 
             <div class="step-item">
-                <div class="icon-wrap"><img src="{{asset('/')}}frontend-assets/icons/work-handshake.png"
+                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
                         alt="Step Icon"></div>
                 <div class="step-content">
                     <h4>{{ __('messages.pick_up_drive') }}</h4>
@@ -108,7 +106,8 @@
             <div class="col-md-4">
                 <div class="tip-card text-center p-3">
                     <div class="icon-container mb-2">
-                        <img src="{{asset('/')}}frontend-assets/icons/tip-img-1.png" alt="Plan Ahead" class="img-fluid">
+                        <img src="{{ asset('/') }}frontend-assets/icons/tip-img-1.png" alt="Plan Ahead"
+                            class="img-fluid">
                     </div>
                     <h5 class="tip-title">{{ __('messages.plan_ahead') }}</h5>
                     <p class="tip-description">
@@ -121,7 +120,7 @@
             <div class="col-md-4">
                 <div class="tip-card active text-center p-3">
                     <div class="icon-container mb-2">
-                        <img src="{{asset('/')}}frontend-assets/icons/tip-img-2.png" alt="Verify Features"
+                        <img src="{{ asset('/') }}frontend-assets/icons/tip-img-2.png" alt="Verify Features"
                             class="img-fluid">
                     </div>
                     <h5 class="tip-title">{{ __('messages.verify_features') }}</h5>
@@ -135,7 +134,7 @@
             <div class="col-md-4">
                 <div class="tip-card text-center p-3">
                     <div class="icon-container mb-2">
-                        <img src="{{asset('/')}}frontend-assets/icons/tip-img-3.png" alt="Longer Rentals"
+                        <img src="{{ asset('/') }}frontend-assets/icons/tip-img-3.png" alt="Longer Rentals"
                             class="img-fluid">
                     </div>
                     <h5 class="tip-title">{{ __('messages.longer_rental') }}</h5>
@@ -206,8 +205,7 @@
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.flexible_payment_options') }}</h5>
-                            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}
-                                .</p>
+                            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
                             alt="">
@@ -215,8 +213,7 @@
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.valuable_insights') }}</h5>
-                            <p class="text-muted">{{ __('messages.access_personalized') }}
-                                .</p>
+                            <p class="text-muted">{{ __('messages.access_personalized') }}</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
                             alt="">
@@ -224,8 +221,7 @@
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.continuous_innovation') }}</h5>
-                            <p class="text-muted">{{ __('messages.we’re_always_evolving') }}
-                                .</p>
+                            <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
                         </div>
                         <img src="{{asset('/')}}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
                             alt="">
@@ -244,8 +240,7 @@
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.instant_online') }}</h5>
-                            <p class="text-muted">{{ __('messages.quickly_assess') }}
-                                .</p>
+                            <p class="text-muted">{{ __('messages.quickly_assess') }}</p>
                         </div>
                     </div>
                     <div class="mb-4 d-flex align-items-center">
@@ -253,8 +248,7 @@
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.tailored_search') }}</h5>
-                            <p class="text-muted">{{ __('messages.effortlessly_find') }}
-                                .</p>
+                            <p class="text-muted">{{ __('messages.effortlessly_find') }}</p>
                         </div>
                     </div>
                     <div class="mb-4 d-flex align-items-center">
@@ -262,8 +256,7 @@
                             alt="">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.customer_first_approach') }}</h5>
-                            <p class="text-muted">{{ __('messages.your_satisfaction') }}
-                               .</p>
+                            <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
                         </div>
                     </div>
                 </div>
@@ -281,7 +274,7 @@
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
                         <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.instant_online') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.quickly_assess') }}.</p>
+                        <p class="text-muted text-start">{{ __('messages.quickly_assess') }}</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (3).png" class="ml-3 img-fixed"
                         alt="">
@@ -289,8 +282,7 @@
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
                         <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.tailored_search') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.effortlessly_find') }}
-                        .</p>
+                        <p class="text-muted text-start">{{ __('messages.effortlessly_find') }}</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (4).png" class="ml-3 img-fixed"
                         alt="">
@@ -298,8 +290,7 @@
                 <div class="d-flex align-items-center justify-content-center mb-4">
                     <div>
                         <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.customer_first_approach') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.your_satisfaction') }}
-                            .</p>
+                        <p class="text-muted text-start">{{ __('messages.your_satisfaction') }}</p>
                     </div>
                     <img src="{{asset('/')}}frontend-assets/icons/Vector (5).png" class="ml-3 img-fixed"
                         alt="">
@@ -317,8 +308,7 @@
                     <img src="{{asset('/')}}frontend-assets/icons/Vector.png" class="me-3 img-fixed" alt="">
                     <div>
                         <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.flexible_payment_options') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.choose_from_a_variety') }}
-                            .</p>
+                        <p class="text-muted text-start">{{ __('messages.choose_from_a_variety') }}</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
@@ -326,8 +316,7 @@
                         alt="">
                     <div>
                         <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.valuable_insights') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.access_personalized') }}
-                            .</p>
+                        <p class="text-muted text-start">{{ __('messages.access_personalized') }}</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center mb-4">
@@ -335,8 +324,7 @@
                         alt="">
                     <div>
                         <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.continuous_innovation') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.we’re_always_evolving') }}
-                            .</p>
+                        <p class="text-muted text-start">{{ __('messages.we’re_always_evolving') }}</p>
                     </div>
                 </div>
             </div>
@@ -345,165 +333,219 @@
     <!--Choose Section End-->
 
     <!-- Accordion Section -->
-    <section class="container-fluid bg-white py-5">
-        <div class="container">
-            <div class="row">
-                <!-- Left Side Text -->
-                <div class="col-md-6 ml-1 accordion-text">
-                    <h5 class="faq">{{ __('messages.FAQ') }}</h5>
-                    <div>
-                        <h1 class="fw-bold">{{ __('messages.here_are_some') }}:"</h1>
+<section class="container-fluid py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Left Side Text (4 columns) -->
+            <div class="col-md-4 accordion-text">
+                <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
+                <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
+                <p class="text-muted questions">
+                    {{ __('messages.our_cutting-edge') }}.
+                </p>
+            </div>
+
+            <!-- Middle Accordion (3 items) -->
+            <div class="col-md-4">
+                <div class="accordion" id="faqAccordion1">
+                    <!-- First Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingOne1">
+                            <button class="accordion-button fw-bold shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true"
+                                aria-controls="collapseOne1">
+                                {{ __('messages.Faq1') }}
+                            </button>
+                        </h2>
+                        <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1"
+                            data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq1_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingTwo1">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="false"
+                                aria-controls="collapseTwo1">
+                                {{ __('messages.Faq2') }}
+                            </button>
+                        </h2>
+                        <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
+                            data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq2_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Third Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingThree1">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false"
+                                aria-controls="collapseThree1">
+                                {{ __('messages.Faq3') }}
+                            </button>
+                        </h2>
+                        <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1"
+                            data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq3_answer') }}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Right Side Accordion -->
-                <div class="col-md-6">
-                    <div class="accordion" id="faqAccordion">
+            </div>
 
-                        <!-- First Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button fw-bold shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
-                                    {{ __('messages.what_is_considered') }}?
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.economical_vehicle_are') }}
-                                    .
-                                </div>
+            <!-- Right Accordion (3 more items) -->
+            <div class="col-md-4">
+                <div class="accordion" id="faqAccordion2">
+                    <!-- Fourth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button fw-bold shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true"
+                                aria-controls="collapseFour">
+                                {{ __('messages.Faq4') }}
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq4_answer') }}
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Second Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                    aria-controls="collapseTwo">
-                                    {{ __('messages.are_economical_vehicles') }}?
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.economical_vehicle_are') }}.
-                                </div>
+                    <!-- Fifth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                                aria-controls="collapseFive">
+                                {{ __('messages.Faq5') }}
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq5_answer') }}
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Third Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                                    aria-controls="collapseThree">
-                                    {{ __('messages.can_I_add_insurance') }}?
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.economical_vehicle_are') }}.
-                                </div>
+                    <!-- Sixth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
+                                aria-controls="collapseSix">
+                                {{ __('messages.Faq6') }}
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq6_answer') }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     <!-- end accordian -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        $(document).ready(function() {
+            let categoryLastCarId = {}; // Store last car ID for each category
+            let currentCategory = "All";
+            let isLoading = false;
 
-$(document).ready(function () {
-    let categoryLastCarId = {}; // Store last car ID for each category
-    let currentCategory = "All";
-    let isLoading = false;
+            function loadCars(categoryId, append = false) {
+                if (isLoading) return;
+                isLoading = true;
 
-    function loadCars(categoryId, append = false) {
-        if (isLoading) return;
-        isLoading = true;
+                let offset = categoryLastCarId[categoryId] || 0;
+                let model = "Car";
 
-        let offset = categoryLastCarId[categoryId] || 0;
-        let model = "Car";
+                $.ajax({
+                    url: "{{ route('load.more.category.cars') }}",
+                    method: "GET",
+                    data: {
+                        model: model,
+                        car_category_id: categoryId,
+                        offset: offset
+                    },
+                    success: function(response) {
+                        if (!append) {
+                            $("#car-category-list").html(response.cars);
+                        } else {
+                            $("#car-category-list").append(response.cars);
+                        }
 
-        $.ajax({
-            url: "{{ route('load.more.category.cars') }}",
-            method: "GET",
-            data: {
-                model: model,
-                car_category_id: categoryId,
-                offset: offset
-            },
-            success: function (response) {
-                if (!append) {
-                    $("#car-category-list").html(response.cars);
-                } else {
-                    $("#car-category-list").append(response.cars);
-                }
+                        // Check if there are no records
+                        if ($.trim(response.cars) === "") {
+                            $("#car-category-list").html(
+                                '<div class="text-center text-orange fw-bold mt-4">{{ __('messages.This category has no records') }}</div>'
+                                );
+                            $("#load-more-btn").hide(); // Hide Load More button
+                        } else {
+                            // Update offset for the category
+                            categoryLastCarId[categoryId] = offset + 8;
 
-                // Check if there are no records
-                if ($.trim(response.cars) === "") {
-                    $("#car-category-list").html('<div class="text-center text-orange fw-bold mt-4">{{ __('messages.This category has no records') }}</div>');
-                    $("#load-more-btn").hide(); // Hide Load More button
-                } else {
-                    // Update offset for the category
-                    categoryLastCarId[categoryId] = offset + 8;
+                            // Show Load More button for "All" category
+                            if (categoryId === "All") {
+                                $("#load-more-btn").show();
+                            }
 
-                    // Show Load More button for "All" category
-                    if (categoryId === "All") {
-                        $("#load-more-btn").show();
+                            // Show/hide Load More button
+                            if (!response.hasMore) {
+                                $("#load-more-btn").hide();
+                            } else {
+                                $("#load-more-btn").show();
+                            }
+                        }
+
+                        isLoading = false;
+                    },
+                    error: function() {
+                        isLoading = false;
                     }
-
-                    // Show/hide Load More button
-                    if (!response.hasMore) {
-                        $("#load-more-btn").hide();
-                    } else {
-                        $("#load-more-btn").show();
-                    }
-                }
-
-                isLoading = false;
-            },
-            error: function () {
-                isLoading = false;
+                });
             }
+
+            // Default Load
+            categoryLastCarId["All"] = 0;
+            loadCars("All", false);
+
+            // Category Change
+            $(document).on("click", ".filter-btn", function() {
+
+                $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
+                $(this).removeClass("btn-dark").addClass("btn-primary");
+
+                let selectedCategory = $(this).data("category");
+
+                if (selectedCategory !== currentCategory) {
+                    currentCategory = selectedCategory;
+                    categoryLastCarId[currentCategory] = 0; // Reset offset for new category
+                }
+
+                $("#load-more-btn").hide(); // Hide Load More initially
+                loadCars(currentCategory, false);
+            });
+
+            // Load More Button Click
+            $(document).on("click", "#load-more-btn", function() {
+                loadCars(currentCategory, true);
+            });
         });
-    }
-
-    // Default Load
-    categoryLastCarId["All"] = 0;
-    loadCars("All", false);
-
-    // Category Change
-    $(document).on("click", ".filter-btn", function () {
-
-        $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
-        $(this).removeClass("btn-dark").addClass("btn-primary");
-
-        let selectedCategory = $(this).data("category");
-
-        if (selectedCategory !== currentCategory) {
-            currentCategory = selectedCategory;
-            categoryLastCarId[currentCategory] = 0; // Reset offset for new category
-        }
-
-        $("#load-more-btn").hide(); // Hide Load More initially
-        loadCars(currentCategory, false);
-    });
-
-    // Load More Button Click
-    $(document).on("click", "#load-more-btn", function () {
-        loadCars(currentCategory, true);
-    });
-});
-
-
-
     </script>
 @endsection
