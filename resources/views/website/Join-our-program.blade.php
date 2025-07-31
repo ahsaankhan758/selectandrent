@@ -4,24 +4,27 @@
 @endsection
 
 @section('content')
-
- <!-- parther -->
- <div class="container desktop-view my-5">
-    <h2 class="text-center mb-5">{{ __('messages.why_partner') }}</h2>
-    <!-- Part 1 -->
-    <div class="row align-items-center">
-        <div class="col-lg-3 col-md-3 custom-program-left-list">
-            <h4 class="fw-bold">{{ __('messages.your_personal') }} </h4>
-            <p class="text-muted text-font">{{ __('messages.get_expert_guidance') }} </p>
-            <ul class="list-unstyled">
-                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>{{ __('messages.passive_income') }}</strong>  </li>
-                <p class="text-muted ">{{ __('messages.earn_money') }}</p>
-                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>{{ __('messages.peace_of_mind') }} </strong> </li>
-                <p class="text-muted ">{{ __('messages.our_platform') }}</p>
-                <li class="mb-1"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> <strong>{{ __('messages.flexibility') }} </strong> </li>
-                <p class="text-muted ">{{ __('messages.set_your_own') }}</p>
-            </ul>
-        </div>
+    <!-- parther -->
+    <div class="container desktop-view my-5">
+        <h2 class="text-center mb-5">{{ __('messages.why_partner') }}</h2>
+        <p class="text-center mb-5 text-justify custom-width">{{ __('messages.maximize_your_vehicle') }}</p>
+        <!-- Part 1 -->
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-3 custom-program-left-list">
+                <h4 class="fw-bold">{{ __('messages.your_personal') }} </h4>
+                <p class="text-muted text-font">{{ __('messages.get_expert_guidance') }} </p>
+                <ul class="list-unstyled">
+                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                        <strong>{{ __('messages.passive_income') }}</strong> </li>
+                    <p class="text-muted ">{{ __('messages.earn_money') }}</p>
+                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                        <strong>{{ __('messages.peace_of_mind') }} </strong> </li>
+                    <p class="text-muted ">{{ __('messages.our_platform') }}</p>
+                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                        <strong>{{ __('messages.flexibility') }} </strong> </li>
+                    <p class="text-muted ">{{ __('messages.set_your_own') }}</p>
+                </ul>
+            </div>
 
 
             <div class="col-lg-4 col-md-4 text-center">
@@ -30,103 +33,116 @@
             </div>
 
 
-        <div class="col-lg-5 col-md-5 custom-program-become-partner">
-            <p class="custom-text-heading fw-bold">{{ __('messages.become_a_partner') }} </p>
-            <h3 class="fw-bold heading-text-font">{{ __('messages.earn_extra_income') }} </h3>
-            <p class="text-muted text-font">{{ __('messages.collaborate_with_other') }} </p>
+            <div class="col-lg-5 col-md-5 custom-program-become-partner">
+                <p class="custom-text-heading fw-bold">{{ __('messages.become_a_partner') }} </p>
+                <h3 class="fw-bold heading-text-font">{{ __('messages.earn_extra_income') }} </h3>
+                <p class="text-muted text-font">{{ __('messages.collaborate_with_other') }} </p>
 
-        </div>
-
-
-    <!-- Part 2 -->
-     <div class="row custom-program-become-partner2">
-        <div class="col-lg-4 col-md-4 ps-lg-4">
-        
-        </div>
-        <div class="col-lg-4 col-md-4 d-flex justify-content-center align-items-center">
-            <img src="{{ asset('/') }}frontend-assets/assets/jointeam2.png" class="img-fluid custom-join-img2 rounded" alt="Car Image">
-
-        </div>
-        <div class="col-lg-4 col-md-4 ps-lg-4">
-            <div class="position-relative custom-program-list">
-                <ul class="list-unstyled">
-                    <li>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.join_the_circle') }}</strong>
-                    </li>
-                    <p class="text-muted">{{ __('messages.connect_with') }}</p>
-    
-                    <li>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.flexible_scheduling') }}</strong>
-                    </li>
-                    <p class="text-muted">{{ __('messages.customize_your') }}</p>
+            </div>
 
 
-                    <li>
-                        <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.effortless_income') }}</strong>
-                    </li>
-                    <p class="text-muted">{{ __('messages.enjoy_reliable') }}</p>
-                </ul>
-    
+            <!-- Part 2 -->
+            <div class="row custom-program-become-partner2">
+                <div class="col-lg-4 col-md-4 ps-lg-4">
+
+                </div>
+                <div class="col-lg-4 col-md-4 d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('/') }}frontend-assets/assets/jointeam2.png"
+                        class="img-fluid custom-join-img2 rounded" alt="Car Image">
+
+                </div>
+                <div class="col-lg-4 col-md-4 ps-lg-4">
+                    <div class="position-relative custom-program-list">
+                        <ul class="list-unstyled">
+                            <li>
+                                <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                                <strong>{{ __('messages.join_the_circle') }}</strong>
+                            </li>
+                            <p class="text-muted">{{ __('messages.connect_with') }}</p>
+
+                            <li>
+                                <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                                <strong>{{ __('messages.flexible_scheduling') }}</strong>
+                            </li>
+                            <p class="text-muted">{{ __('messages.customize_your') }}</p>
+
+
+                            <li>
+                                <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                                <strong>{{ __('messages.effortless_income') }}</strong>
+                            </li>
+                            <p class="text-muted">{{ __('messages.enjoy_reliable') }}</p>
+                        </ul>
+
+                    </div>
+                </div>
             </div>
         </div>
-</div>
-</div>
-<!-- mobile view -->
-<div class="mobile-container">
-    <h2 class="mobile-heading">{{ __('messages.why_partner') }} </h2>
-    <p class="mobile-subheading">{{ __('messages.become_a_partner') }} </p>
-    <p class="mobile-text">
-        {{ __('messages.earn_extra_collaborate') }}  
-    </p>
+    </div>
+    <!-- mobile view -->
+    <div class="mobile-container">
+        <h2 class="mobile-heading">{{ __('messages.why_partner') }} </h2>
+        <p class="mobile-text">
+        {{ __('messages.maximize_your_vehicle') }}  
+        </p>
+        <p class="mobile-subheading">{{ __('messages.become_a_partner') }} </p>
+        <p class="mobile-text">
+            {{ __('messages.earn_extra_collaborate') }}
+        </p>
 
 
-    <div class="mobile-image">
-        <img src="{{asset('/')}}frontend-assets/assets/jointeam.png" alt="Join Our Team">
+        <div class="mobile-image">
+            <img src="{{ asset('/') }}frontend-assets/assets/jointeam.png" alt="Join Our Team">
+        </div>
+
+        <div class="mobile-box">
+            <p class="mobile-check"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                {{ __('messages.join_the_circle') }}</p>
+            <p class="mobile-text">{{ __('messages.connect_with') }}</p>
+        </div>
+
+        <div class="mobile-box">
+            <p class="mobile-check"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                {{ __('messages.flexible_scheduling') }}</p>
+            <p class="mobile-text">{{ __('messages.customize_your') }}.</p>
+        </div>
+
+        <div class="mobile-box">
+            <p class="mobile-check"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                {{ __('messages.effortless_income') }}</p>
+            <p class="mobile-text">{{ __('messages.enjoy_reliable') }}.</p>
+        </div>
+
+        <div class="mobile-image mt-2">
+            <img src="{{ asset('/') }}frontend-assets/assets/jointeam2.png" alt="Car Image">
+        </div>
+
+        <h3 class="mobile-title mt-3">{{ __('messages.your_personal') }}</h3>
+        <ul class="mobile-list">
+            <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                {{ __('messages.passive_income') }}</li>
+            <p class="text-muted ">{{ __('messages.earn_money') }}</p>
+            <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                {{ __('messages.peace_of_mind') }}</li>
+            <p class="text-muted ">{{ __('messages.our_platform') }}</p>
+            <li><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
+                {{ __('messages.flexibility') }}</li>
+            <p class="text-muted ">{{ __('messages.set_your_own') }}</p>
+        </ul>
+
     </div>
 
-    <div class="mobile-box">
-        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.join_the_circle') }}</p>
-        <p class="mobile-text">{{ __('messages.connect_with') }}</p>
-    </div>
-
-    <div class="mobile-box">
-        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.flexible_scheduling') }}</p>
-        <p class="mobile-text">{{ __('messages.customize_your') }}.</p>
-    </div>
-
-    <div class="mobile-box">
-        <p class="mobile-check"><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.effortless_income') }}</p>
-        <p class="mobile-text">{{ __('messages.enjoy_reliable') }}.</p>
-    </div>
-
-    <div class="mobile-image mt-2">
-        <img src="{{asset('/')}}frontend-assets/assets/jointeam2.png" alt="Car Image">
-    </div>  
-
-    <h3 class="mobile-title mt-3">{{ __('messages.your_personal') }}</h3>
-    <ul class="mobile-list">
-        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.passive_income') }}</li>
-        <p class="text-muted ">{{ __('messages.earn_money') }}</p>
-        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.peace_of_mind') }}</li>
-        <p class="text-muted ">{{ __('messages.our_platform') }}</p>
-        <li><img src="{{asset('/')}}frontend-assets/icons/Security2.png" alt="security"> {{ __('messages.flexibility') }}</li>
-        <p class="text-muted ">{{ __('messages.set_your_own') }}</p>
-    </ul>
-
-</div>
-
-  <!-- parther -->
- <!-- benefits -->
- <div class="container desktop-benefits">
-    <h2 class="text-center mb-5">{{ __('messages.key_benefits') }}</h2>
-    <div class="row custom-benefit-container">
-        <div class="col-md-3 text-center custom-benefit-step">
-            <div>
-                <img src="{{asset('/')}}frontend-assets/icons/1.png" class="custom-icon-circle" alt="Easy Signup">
-
+    <!-- parther -->
+    <!-- benefits -->
+    <div class="container desktop-benefits mt-5">
+        <h2 class="text-center mb-5">{{ __('messages.key_benefits') }}</h2>
+        <div class="row custom-benefit-container">
+            <div class="col-md-3 text-center custom-benefit-step">
+                <div>
+                    <img src="{{ asset('/') }}frontend-assets/icons/1.png" class="custom-icon-circle" alt="Easy Signup">
+                </div>
+                <h5 class="mt-3">{{ __('messages.easy_signup') }}</h5>
+                <p>{{ __('messages.In_a_free_hour') }}</p>
             </div>
             <div class="col-md-3 text-center custom-benefit-step">
                 <h5 class="mt-3">{{ __('messages.flexible_terms') }}</h5>
@@ -337,7 +353,10 @@
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★1</span> <span class="text-primary">4.8</span> --}}
                                     <strong class="testimonial-text">“Smooth, Simple, and Profitable”</strong>
-                                    <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and within the first week, I had bookings lined up. The platform is user-friendly, and the team helped me set everything up. I now earn passive income without worrying about management.”</p>
+                                    <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and
+                                        within the first week, I had bookings lined up. The platform is user-friendly, and
+                                        the team helped me set everything up. I now earn passive income without worrying
+                                        about management.”</p>
                                     <strong class="testimonial-text">– Sarah M., Small Business Owner</strong>
                                 </div>
                             </div>
@@ -360,7 +379,9 @@
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★2</span> <span class="text-primary">4.8</span> --}}
                                     <strong class="testimonial-text">“Great Support, Every Step of the Way”</strong>
-                                    <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team walked me through the process. They handled the insurance and gave me full control over my rental schedule. It’s a win-win!”</p>
+                                    <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team
+                                        walked me through the process. They handled the insurance and gave me full control
+                                        over my rental schedule. It’s a win-win!”</p>
                                     <strong class="testimonial-text">– Jason T., Independent Car Owner</strong>
                                 </div>
                             </div>
@@ -378,12 +399,14 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
+                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★3</span> <span class="text-primary">4.8</span> --}}
                                     <strong class="testimonial-text">“Reliable Income Stream”</strong>
-                                    <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most of my car when I wasn’t using it. Select and Rent helped me earn extra income during my off-hours. It's flexible, safe, and efficient.”</p>
+                                    <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most
+                                        of my car when I wasn’t using it. Select and Rent helped me earn extra income during
+                                        my off-hours. It's flexible, safe, and efficient.”</p>
                                     <strong class="testimonial-text">– Ayesha R., Ride-Share Driver</strong>
                                 </div>
                             </div>
@@ -400,12 +423,14 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                   <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
+                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★4</span> <span class="text-primary">4.9</span> --}}
                                     <strong class="testimonial-text">“Fleet Management Made Easy”</strong>
-                                    <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with Select and Rent, I can monitor everything from a single dashboard. Their pricing tools and calendar features are especially helpful.”</p>
+                                    <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with
+                                        Select and Rent, I can monitor everything from a single dashboard. Their pricing
+                                        tools and calendar features are especially helpful.”</p>
                                     <strong class="testimonial-text">– Luis D., Rental Fleet Manager</strong>
                                 </div>
                             </div>
@@ -423,12 +448,14 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                  <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
+                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★5</span> <span class="text-primary">5.0</span> --}}
                                     <strong class="testimonial-text">“Hassle-Free Experience”</strong>
-                                    <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment, the process was seamless. The renters were verified, the car was returned in perfect condition, and the payout was on time.”</p>
+                                    <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment,
+                                        the process was seamless. The renters were verified, the car was returned in perfect
+                                        condition, and the payout was on time.”</p>
                                     <strong class="testimonial-text">– Michelle K., First-Time Host</strong>
                                 </div>
                             </div>
