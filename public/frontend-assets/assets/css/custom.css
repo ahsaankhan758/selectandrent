@@ -1546,6 +1546,12 @@ margin: 5px 0;
   height: 300px;
   width: 250px;
 }
+.custom-width {
+  max-width: 500px; 
+  margin: 0 auto;
+  text-align: justify;
+}
+
 .custom-join-img2{
   margin-left: 127px;
 
