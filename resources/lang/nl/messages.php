@@ -1,6 +1,7 @@
 <?php
 
     return [
+        'maximize_your_vehicle' => "Maximaliseer het potentieel van je voertuig en begin met het verdienen van passief inkomen met minimale inspanning. Of je nu een enkele auto bezit of een wagenpark beheert, ons programma biedt je de tools, flexibiliteit en ondersteuning om je verhuurbedrijf te laten groeien.",
         'get_expert_guidance' => 'Krijg deskundige begeleiding bij elke stap. Ons toegewijde supportteam helpt je bij het optimaliseren van je aanbiedingen, prijzen en communicatie voor succes.',
         'earn_money' => 'Verdien geld zonder dagelijkse operaties te beheren.',
         'our_platform' => 'Ons platform zorgt voor geverifieerde huurders en veilige transacties.',
