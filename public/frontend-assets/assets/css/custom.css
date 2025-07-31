@@ -1509,7 +1509,7 @@ margin: 5px 0;
   .testimonial-bg {
     background: url('../../icons/test.png') no-repeat center / cover;
       height: 230px;
-      margin-top: 54px;
+      margin-top: 72px;
       width: 280px;
       position: absolute;
       top: 50%;
@@ -1520,7 +1520,7 @@ margin: 5px 0;
   }
   .testimonial-img {
     width: 100%;
-    max-width: 273px;
+    max-width: 250px;
     position: relative;
     z-index: 2;
   }
@@ -1565,6 +1565,20 @@ margin: 5px 0;
 .custom-program-list {
   top: 40px;
 }
+ @media (min-width: 481px) and (max-width: 768px) {
+.custom-program-left-list{
+  margin-bottom:-400px;
+}
+.custom-program-become-partner{
+  margin-top: 0px;
+}
+.custom-program-become-partner2{
+  margin-top: 80px;
+}
+.custom-program-list {
+  top: 40px;
+}
+ }
 .custom-text-heading{
   color: #227CAA !important;
 }
