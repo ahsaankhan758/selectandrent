@@ -1,5 +1,6 @@
 <?php
     return [
+      'maximize_your_vehicle' => "Maximize your vehicle's potential and start earning passive income with minimal effort. Whether you're a single-car owner or managing a fleet, our program gives you the tools, flexibility, and support to grow your rental business.",
       'get_expert_guidance' => 'Get expert guidance at every step. Our dedicated support team ensures you understand how to optimize your listings, pricing, and communication for success.',
       'earn_money' => 'Earn money without managing day-to-day operations.',
       'our_platform' => 'Our platform ensures verified renters and secure transactions.',

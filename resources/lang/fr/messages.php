@@ -1,6 +1,7 @@
 <?php
 
     return [
+        'maximize_your_vehicle' => "Maximisez le potentiel de votre véhicule et commencez à générer des revenus passifs avec un minimum d'efforts. Que vous soyez propriétaire d'une seule voiture ou gestionnaire d'une flotte, notre programme vous offre les outils, la flexibilité et le soutien nécessaires pour développer votre activité de location.",
         'get_expert_guidance' => 'Obtenez des conseils d’experts à chaque étape. Notre équipe de support dédiée vous aide à optimiser vos annonces, vos prix et votre communication pour réussir.',
         'earn_money' => 'Gagnez de l’argent sans gérer les opérations quotidiennes.',
         'our_platform' => 'Notre plateforme garantit des locataires vérifiés et des transactions sécurisées.',

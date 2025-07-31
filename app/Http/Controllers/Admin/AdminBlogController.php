@@ -20,7 +20,7 @@ class AdminBlogController extends Controller
             'date' => 'required|date',
             'authorName' => 'required|string|max:255',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'detail' => 'required|string',
         ]);
     
