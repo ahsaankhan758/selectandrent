@@ -2,6 +2,20 @@
 @section('title') {{ __('messages.create') }} @endsection
 @section('content')
     @if(auth()->user()->role == 'admin')
+        <script src="{{asset('/')}}assets/js/admin/tinymce7.9.1/tinymce.min.js"></script>
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                base_url: '{{asset('/')}}assets/js/admin/tinymce7.9.1', // where tinymce.min.js is
+                suffix: '.min',
+                plugins: [
+                    'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image',
+                    'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | bold italic underline | link image media table | bullist numlist | removeformat',
+                height: 300
+            });
+        </script>
         <div class="col-12">
             <div class="card mt-4">
                 <div class="card-header">
@@ -37,7 +51,7 @@
                         
                             <div class="col-md-12 mb-3">
                                 <label for="images">{{ trans_choice('messages.blog',1) }} {{ __('messages.images') }}</label>
-                                <input type="file" name="images[]" class="form-control" id="images" multiple onchange="PreviewImages();" required>
+                                <input type="file" name="images[]" class="form-control" id="images" multiple onchange="PreviewImages();">
                         
                                 <div class="mt-2 row" id="uploadImagesPreview">
                                     <!-- Previews of selected images will show here -->
@@ -46,7 +60,7 @@
 
                             <div class="col-md-12 mb-3">
                                 <label for="detail">{{ __('messages.description') }}</label>
-                                <textarea name="detail" class="form-control" rows="4" required></textarea>
+                                <textarea name="detail" class="form-control" rows="4" id="description"></textarea>
                             </div>
                         </div>
 

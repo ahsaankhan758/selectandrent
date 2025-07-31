@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <p class="text-muted text-start">{{ $blog->detail }}</p>
+            <p class="text-muted text-start">{!! $blog->detail !!}</p>
         </div>
     </div>
 </section>
