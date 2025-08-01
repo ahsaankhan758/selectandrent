@@ -2,6 +2,20 @@
 @section('title') {{ __('messages.edit') }} {{ trans_choice('messages.date',1) }} @endsection
 @section('content')
     @if(auth()->user()->role == 'admin')
+        <script src="{{asset('/')}}assets/js/admin/tinymce7.9.1/tinymce.min.js"></script>
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                base_url: '{{asset('/')}}assets/js/admin/tinymce7.9.1', // where tinymce.min.js is
+                suffix: '.min',
+                plugins: [
+                    'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image',
+                    'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | bold italic underline | link image media table | bullist numlist | removeformat',
+                height: 300
+            });
+        </script>
         <div class="col-10">
             <div class="card mt-4">
                 <div class="card-header">

@@ -17,11 +17,20 @@
                 <div id="blogCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <!-- Slides -->
                     <div class="carousel-inner mb-4">
-                        @php $images = json_decode($blog->images, true); @endphp
+                        @php 
+                            $images = json_decode($blog->images, true); 
+                            $path = public_path('storage/' . $blog->thumbnail);
+                            $imageExists = $blog->thumbnail && file_exists($path);
+                        @endphp
 
                         <!-- Thumbnail Image (Initially Active) -->
                         <div class="carousel-item active">
-                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 400px; object-fit: cover;">
+                             @if ($imageExists)
+                                <img src="{{ asset('storage/' . $blog->thumbnail) }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 400px; object-fit: cover;">
+                            @else
+                                <img src="{{ asset('images/no-image-blog.avif') }}" class="d-block w-100 rounded shadow" style="max-height: 100%; height: 400px; object-fit: cover;">
+                            @endif
+                            
                         </div>
 
                         @if(is_array($images) && count($images) > 0)
