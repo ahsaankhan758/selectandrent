@@ -64,7 +64,7 @@
 
         <!-- Multi Lingual -->
         <div class="col-md-1 text-end">
-            <ul class="list-unstyled topnav-menu float-end mb-0">
+            <ul class="list-unstyled topnav-menu float-end mb-0 lang-tab">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown">
@@ -123,7 +123,7 @@
         $activeCurrencies = $data['activeCurrencies'];
         ?>
         <div class="col-md-1">
-            <ul class="list-unstyled topnav-menu float-end mb-0">
+            <ul class="list-unstyled topnav-menu float-end mb-0 lang-tab">
                 <li class="nav-item dropdown">
                     @if (session('defaultCurrencyCode'))
                         <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown"
@@ -245,7 +245,7 @@
             </div>
         @else
             <div class="col-md-2 text-end" id="getStartedButton">
-                <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr" data-bs-toggle="modal"
+                <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr button-font-tab" data-bs-toggle="modal"
                     data-bs-target="#registerModal">
                     {{ __('messages.get') }} {{ __('messages.started') }}<i class="fa-solid fa-arrow-right"></i>
                 </a>

@@ -1766,6 +1766,15 @@ margin: 5px 0;
     padding-left: 1.5rem !important; 
      padding-bottom: 2rem;
   }
+  .button-font-tab{
+    font-size: 8px;
+  }
+  .btn .fa-arrow-right {
+        display: none;
+    }
+    .lang-tab{
+      font-size: 10px;
+    }
 }
 @media (min-width: 1441px) and (max-width: 3840px) {
   .mobile-container {
@@ -1789,6 +1798,15 @@ margin: 5px 0;
   .desktop-view {
     display: block !important;
   }
+   .button-font-tab{
+    font-size: 8px;
+  }
+  .btn .fa-arrow-right {
+        display: none;
+    }
+    .lang-tab{
+      font-size: 10px;
+    }
 }
 @media (min-width: 1025px) and (max-width: 1440px) {
   .mobile-container {
