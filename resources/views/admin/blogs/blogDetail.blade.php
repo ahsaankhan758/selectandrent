@@ -49,7 +49,7 @@
                                         <span>No Images</span>
                                     @endif
                                 </td>
-                                <td>{{ Str::limit($blog->detail, 10) }}</td>
+                                <td>{!! Str::words(strip_tags($blog->detail), 5, '...') !!}</td>
                                 <td style="white-space: nowrap; width: 100px;">
                                     @if(can('Blogs','edit'))
                                         <a href="{{ route('blogs.edit', $blog->id) }}">
@@ -76,7 +76,7 @@
                                             <p><strong>Date:</strong> {{ $blog->date }}</p>
                                             <p><strong>Author:</strong> {{ $blog->authorName }}</p>
                                             <div class="col mt-2">
-                                                <p><strong>Blog Detail:</strong> {{ $blog->detail }}</p>
+                                                <p><strong>Blog Detail:</strong> {!! $blog->detail !!}</p>
                                             </div>
 
                                             <h4 class="mt-3">Thumbnail</h4>
