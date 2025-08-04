@@ -6,6 +6,7 @@ use App\Models\Car;
 use Auth;
 use Carbon\Carbon;
 use App\Models\Booking;
+use App\Models\Company;
 use App\Models\BookingItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
