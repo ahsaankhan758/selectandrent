@@ -30,7 +30,7 @@
             display: inline-block;
         }
     </style>
-    <section class="custom-contact-section py-4">
+    <section class="custom-contact-section py-5">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Left Side: Contact Info -->
@@ -76,7 +76,7 @@
                 </div>
                 <!-- Right Side: Contact Form -->
                 <div class="col-lg-7 col-md-7">
-                    <div class="custom-contact-form mt-2">
+                    {{-- <div class="custom-contact-form mt-2">
                         <h3>{{ __('messages.contact_form') }}</h3>
                         <p>{{ __('messages.enter_your_detail') }}.
                         </p>
@@ -120,20 +120,85 @@
                                 </button>
                             </div>
                         </form>
+                    </div> --}}
+                    <div class="contact-right">
+                <form method="POST" id="sendEmailContact" action="{{ route('website.contact') }}">
+                            @csrf
+                    <div class="row g-3">
+                        <!-- Query Type -->
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.query_type') }}</label>
+                            <select class="form-select" name="subject">
+                                <option selected>{{ __('messages.vehicle_rental') }}</option>
+                                <option value="General">General</option>
+                                    <option value="Refund">Refund</option>
+                                    <option value="Complaint">Complaint</option>
+                                    <option value="Issues about company">Issues about company</option>
+                                    <option value="Hire me">Hire me</option>
+                            </select>
+                        </div>
+
+                        <!-- Existing Customer -->
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.are_you_an_existing') }}?</label>
+                            <select class="form-select" name="existing_customer">
+                                <option selected>{{ __('messages.yes') }}</option>
+                                <option>{{ __('messages.no') }}</option>
+                            </select>
+                        </div>
+
+                        <!-- Name -->
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.first_name') }}</label>
+                            <input type="text" name="first_name" class="form-control form-control-border" placeholder="John Doe">
+                        </div>
+
+                        <!-- Name -->
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.last_name') }}</label>
+                            <input type="text" name="last_name" class="form-control form-control-border" placeholder="John Doe">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.email_address') }}</label>
+                            <input type="email" name="email" class="form-control form-control-border" placeholder="hello@example.com">
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="col-md-6">
+                            <label class="form-label">{{ __('messages.phone_number') }}</label>
+                            <input type="tel"  name="phone" class="form-control form-control-border" placeholder="+92 324 4469929">
+                        </div>
+
+                        <!-- Message -->
+                        <div class="col-12">
+                            <label class="form-label">{{ __('messages.message') }}</label>
+                            <textarea class="form-control form-control-border" name="message" rows="2" placeholder="Write here..."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col-12 text-end">
+                            <button id="submitBtn" class="btn btn-orange-clr rounded-pill text-white px-4">
+                                {{ __('messages.submit') }}
+                            </button>
+                        </div>
                     </div>
+                </form>
+            </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- contact end -->
     <!-- contact map -->
-    <div class="container py-4 mb-4">
+    {{-- <div class="container py-4 mb-4">
         <div class="map-container">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0256397597124!2d-122.43129778468144!3d37.75970377975939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7e21dbf32c1d%3A0x1f9c0e9f5e4bcb60!2sNoe%20Valley%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1638461972851!5m2!1sen!2sus"
                 allowfullscreen="" loading="lazy">
             </iframe>
         </div>
-    </div>
+    </div> --}}
     <!-- end contact map -->
 @endsection

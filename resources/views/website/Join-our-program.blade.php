@@ -14,15 +14,36 @@
                 <h4 class="fw-bold">{{ __('messages.your_personal') }} </h4>
                 <p class="text-muted text-font">{{ __('messages.get_expert_guidance') }} </p>
                 <ul class="list-unstyled">
-                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.passive_income') }}</strong> </li>
-                    <p class="text-muted ">{{ __('messages.earn_money') }}</p>
-                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.peace_of_mind') }} </strong> </li>
-                    <p class="text-muted ">{{ __('messages.our_platform') }}</p>
-                    <li class="mb-1"><img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                        <strong>{{ __('messages.flexibility') }} </strong> </li>
-                    <p class="text-muted ">{{ __('messages.set_your_own') }}</p>
+                    <li class="d-flex align-items-start custom-check-item">
+                        <div class="custom-check-icon me-2">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <strong>{{ __('messages.passive_income') }}</strong>
+                            <p class="text-muted m-0">{{ __('messages.earn_money') }}</p>
+                        </div>
+                    </li>
+
+                    <li class="d-flex align-items-start mb-3">
+                        <div class="custom-check-icon me-2">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <strong>{{ __('messages.peace_of_mind') }}</strong>
+                            <p class="text-muted m-0">{{ __('messages.our_platform') }}</p>
+                        </div>
+                    </li>
+
+                    <li class="d-flex align-items-start mb-3">
+                        <div class="custom-check-icon me-2">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <strong>{{ __('messages.flexibility') }}</strong>
+                            <p class="text-muted m-0">{{ __('messages.set_your_own') }}</p>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
 
@@ -49,31 +70,41 @@
                 <div class="col-lg-4 col-md-4 d-flex justify-content-center align-items-center">
                     <img src="{{ asset('/') }}frontend-assets/assets/jointeam2.png"
                         class="img-fluid custom-join-img2 rounded" alt="Car Image">
-
                 </div>
                 <div class="col-lg-4 col-md-4 ps-lg-4">
                     <div class="position-relative custom-program-list">
                         <ul class="list-unstyled">
-                            <li>
-                                <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                                <strong>{{ __('messages.join_the_circle') }}</strong>
+                            <li class="d-flex align-items-start mb-3">
+                                <div class="custom-check-icon me-2">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <strong>{{ __('messages.join_the_circle') }}</strong>
+                                    <p class="text-muted m-0">{{ __('messages.connect_with') }}</p>
+                                </div>
                             </li>
-                            <p class="text-muted">{{ __('messages.connect_with') }}</p>
 
-                            <li>
-                                <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                                <strong>{{ __('messages.flexible_scheduling') }}</strong>
+                            <li class="d-flex align-items-start mb-3">
+                                <div class="custom-check-icon me-2">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <strong>{{ __('messages.flexible_scheduling') }}</strong>
+                                    <p class="text-muted m-0">{{ __('messages.customize_your') }}</p>
+                                </div>
                             </li>
-                            <p class="text-muted">{{ __('messages.customize_your') }}</p>
 
-
-                            <li>
-                                <img src="{{ asset('/') }}frontend-assets/icons/Security2.png" alt="security">
-                                <strong>{{ __('messages.effortless_income') }}</strong>
+                            <li class="d-flex align-items-start mb-3">
+                                <div class="custom-check-icon me-2">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <strong>{{ __('messages.effortless_income') }}</strong>
+                                    <p class="text-muted m-0">{{ __('messages.enjoy_reliable') }}</p>
+                                </div>
                             </li>
-                            <p class="text-muted">{{ __('messages.enjoy_reliable') }}</p>
+
                         </ul>
-
                     </div>
                 </div>
             </div>
@@ -83,7 +114,7 @@
     <div class="mobile-container">
         <h2 class="mobile-heading">{{ __('messages.why_partner') }} </h2>
         <p class="mobile-text">
-        {{ __('messages.maximize_your_vehicle') }}  
+            {{ __('messages.maximize_your_vehicle') }}
         </p>
         <p class="mobile-subheading">{{ __('messages.become_a_partner') }} </p>
         <p class="mobile-text">
