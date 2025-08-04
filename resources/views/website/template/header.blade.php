@@ -22,6 +22,7 @@
                 padding-top: 0px;
             }
         </style>
+   
     @else
         <div class="hero-header-2">
 @endif
@@ -575,6 +576,11 @@
                 <h2 class="fw-bold">{{ __('messages.FAQ') }}</h2>
                 <p>{{ __('messages.got_questions') }}</p>
             @elseif(request()->is('contact'))
+                <style>
+                    .text-height{
+                    height: 165px!important;
+                    }
+                </style>
                 <h2 class="fw-bold">{{ __('messages.contact_us') }}</h2>
             @elseif(request()->is('register-car-rental'))
                 <h2 class="fw-bold">{{ __('messages.company_register') }}</h2>

@@ -775,7 +775,7 @@
                 <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
                 <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
                 <p class="text-muted questions">
-                    {{ __('messages.our_cutting-edge') }}.
+                    {{ __('messages.our_cutting-edge') }}
                 </p>
             </div>
 

@@ -257,7 +257,7 @@
       'reliable_and_round' => 'Reliable and Round-the-Clock Taxi Services in the Heart of New York',
       'find_the_perfect_ride:' => 'Choose the ride that fits your journey — simple selection, easy rental, and instant booking',
       'an_easy_way' => 'An easy way to rent out your vehicles quickly and efficiently',
-      'your_friendly_vehicle' => 'Your Friendly Vehicle Rental Provider',
+      'your_friendly_vehicle' => 'Trusted & Reliable Car Rental Provider',
       'vehicle_details' => 'Vehicle Details',
       'find_the_perfect' => 'Find the Perfect Ride for Your Journey',
       'explore_compare' => 'Explore, Compare, and Book Effortlessly!',
@@ -478,6 +478,7 @@
       'free_book_no' => 'Free Book NO Advance',
       'purchase_now' => 'Purchase Now',
       'medical_package' => 'MEDICAL PACKAGE',
+      'business_package' => 'BUSINESS PACKAGE',
       'business_package' => 'BUSINESS PACKAGE',
       'simplifying_rentals' => 'Simplifying rentals with digital contracts, real-time availability, and secure payments',
       'browse_by_categories'=>'Browse By Categories',
@@ -762,5 +763,12 @@
        'price_text' => 'Use our interactive calendar to set pricing and control when your cars are available.',
        'chat_text' => 'Chat with renters directly, respond to queries, and confirm bookings through our secure system.',
        'how_work_text' => 'Easily showcase your vehicles and connect with trusted renters. Manage everything from one place — quick, clear, and secure.',
+      'support_every_step' => 'Providing support at every step of the rental process',
+'transparent_pricing' => 'Building trust through transparent pricing and no hidden fees',
+'empowering_freedom' => 'Empowering You with Freedom to Move',
+'convenience_commitment' => 'Where Convenience Meets Commitment',
+'contect_text'=>'At Select and Rent, were always here to help you find the perfect vehicle for any occasion.
+Whether its a quick query or detailed support, our team is just a message away.
+Reach out today your smooth journey starts here.'
       ];
 

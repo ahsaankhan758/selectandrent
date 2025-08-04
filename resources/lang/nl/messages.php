@@ -260,7 +260,7 @@
         'reliable_and_round' => 'Betrouwbare taxiservices in het hart van New York, dag en nacht',
         'find_the_perfect_ride:' => 'Kies de rit die bij jouw reis past — eenvoudig kiezen, makkelijk huren en direct boeken',
         'an_easy_way' => 'Een gemakkelijke manier om uw auto’s snel en efficiënt te verhuren',
-        'your_friendly_vehicle' => 'Uw vriendelijke autoverhuurder',
+        'your_friendly_vehicle' => 'Betrouwbare en vertrouwde autoverhuurder',
         'vehicle_details' => 'Autogegevens',
         'find_the_perfect' => 'Vind de perfecte rit voor uw reis',
         'explore_compare' => 'Ontdek, vergelijk en boek moeiteloos!',
