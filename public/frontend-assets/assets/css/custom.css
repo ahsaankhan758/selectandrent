@@ -3635,7 +3635,6 @@ margin: 5px 0;
   display: flex;
   align-items: center;
   gap: 15px; /* Space between icon and text */
-  padding: 10px 0; /* Space between list items */
 }
 
 .custom-list img {
@@ -3808,17 +3807,17 @@ margin: 5px 0;
   position: relative;
   display: inline-block;
 }
-.custom_main-image {
+/* .custom_main-image {
   width: 80%;
   max-width: 400px;
   border-radius: 10px;
 }
 .custom_overlay-image {
   width: 218px;
-  bottom: -50px;
-  right: 20px;
+  bottom: 50px;
+  right: 140px;
   height: 250px;
-}
+} */
 .custom_play-btn {
   top: 50%;
   left: 50%;
@@ -3855,9 +3854,9 @@ margin: 5px 0;
   margin-left: 10px;
 }
 @media (max-width: 480px) { 
-.custom_overlay-image{
+/* .custom_overlay-image{
   display: none !important;
-}
+} */
 .mobile-m{
   margin: 0px 10px 0px 5px;
 }
@@ -3887,9 +3886,9 @@ margin: 5px 0;
     width: 233px;
     height: 170px;
 }
-  .custom_overlay-image{
+  /* .custom_overlay-image{
     display: none !important;
-  }
+  } */
   .mobile-m{
     margin: 0px 0px 0px 14px;
   }
@@ -4181,3 +4180,134 @@ margin: 5px 0;
             height: 180px;
         }
     }
+
+    /* after changes apply css */
+    /* about page */
+.custom_about_main-image {
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin-left: 150px;
+}
+
+.custom_about_overlay-image {
+  width: 218px;
+  height: 250px;
+  bottom: 0;
+  right: 288px;
+  position: absolute; /* Make sure positioning works correctly */
+}
+
+/* Tablet (768px to 991.98px) */
+@media (max-width: 991.98px) {
+  .custom_about_main-image {
+    margin-left: 100px;
+    max-width: 350px;
+  }
+
+  .custom_about_overlay-image {
+    width: 180px;
+    height: 200px;
+    right: 380px;
+    bottom: 0px;
+  }
+  .new-design {
+  text-align: center;
+}
+
+}
+
+/* Mobile (less than 768px) */
+@media (max-width: 767.98px) {
+  .custom_about_main-image {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 15px;
+  }
+
+  .custom_about_overlay-image {
+    width: 150px;
+    height: 180px;
+    right: 158px;
+    bottom: 0px;
+  }
+
+  .custom_badge {
+    margin-top: 15px;
+    background: #dbeafe;
+    color: #000;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-left: 40px;
+}
+}
+
+.custom-check-icon {
+    background-color: #28a745;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+}
+.custom-check-item {
+    margin-bottom: 3px; 
+}
+
+.custom_main-image {
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.custom_overlay-image {
+  width: 218px;
+  height: 250px;
+  bottom: 50px;
+  right: 140px;
+  position: absolute; /* Ensure positioning works */
+}
+
+/* Tablet (768px to 991.98px) */
+@media (max-width: 991.98px) {
+  .custom_main-image {
+   width: 100%;
+    max-width: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .custom_overlay-image {
+    width: 180px;
+    height: 200px;
+    right: 116px;
+    bottom: 0px;
+  }
+}
+
+/* Mobile (less than 768px) */
+@media (max-width: 767.98px) {
+  .custom_main-image {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .custom_overlay-image {
+    width: 140px;
+    height: 180px;
+    right: 12px;
+    bottom: 0px;
+  }
+}

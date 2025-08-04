@@ -261,7 +261,7 @@
         'reliable_and_round' => 'services de taxi fiables 24h/24 au cœur de New York',
         'find_the_perfect_ride:' => 'Choisissez le véhicule adapté à votre voyage — sélection simple, location facile et réservation instantanée',
         'an_easy_way' => 'Une façon simple de louer vos voitures rapidement et efficacement',
-        'your_friendly_vehicle' => 'Votre fournisseur de location de voitures convivial',
+        'your_friendly_vehicle' => 'Fournisseur de location de voitures fiable et digne de confiance',
         'vehicle_details' => 'Détails de la voiture',
         'find_the_perfect' => 'Trouvez le véhicule parfait pour votre voyage',
         'explore_compare' => 'Explorez, comparez et réservez facilement !',
