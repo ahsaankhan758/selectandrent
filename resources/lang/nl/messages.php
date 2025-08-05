@@ -760,5 +760,17 @@
         'price_text' => 'Gebruik onze interactieve kalender om prijzen in te stellen en beschikbaarheid te beheren.',
         'chat_text' => 'Chat rechtstreeks met huurders, beantwoord vragen en bevestig boekingen via ons beveiligde systeem.',
         'how_work_text' => 'Toon je voertuigen eenvoudig en kom in contact met betrouwbare huurders. Beheer alles vanuit één plek — snel, duidelijk en veilig.',
+        'support_every_step' => 'Ondersteuning bij elke stap van het huurproces',
+        'transparent_pricing' => 'Vertrouwen opbouwen met transparante prijzen zonder verborgen kosten',
+        'empowering_freedom' => 'Vrijheid om te bewegen, op jouw manier',
+        'convenience_commitment' => 'Waar gemak en toewijding samenkomen',
+        'contect_text' => 'Bij Select and Rent staan we altijd klaar om je te helpen de perfecte auto te vinden voor elke gelegenheid.
+        Of het nu gaat om een snelle vraag of uitgebreide ondersteuning, ons team is slechts één bericht van je verwijderd.
+        Neem vandaag nog contact met ons op – jouw zorgeloze reis begint hier.',
+        'general' => 'Algemeen',
+        'refund' => 'Terugbetaling',
+        'complaint' => 'Klacht',
+        'issues_about_company' => 'Problemen met het bedrijf',
+        'hire_me' => 'Neem me aan',
 
     ];

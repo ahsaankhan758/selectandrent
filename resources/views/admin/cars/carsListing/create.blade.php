@@ -203,7 +203,7 @@
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="mileage">{{ __('messages.mileage') }}</label>
-                                <input type="text" name="mileage" class="form-control" >
+                                <input type="text" name="mileage" class="form-control" oninput="formatMileage(this)">
                             </div>
                         </div>
                         <div class="row">
@@ -371,6 +371,16 @@
                 document.getElementById("date_added").value = today;
             });
         </script>
+        <script>
+    function formatMileage(input) {
+        // Remove all non-digit characters
+        let value = input.value.replace(/,/g, '').replace(/\D/g, '');
+        
+        // Format with commas
+        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+</script>
+
         <!-- <script>
             document.addEventListener('DOMContentLoaded', function () {
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
