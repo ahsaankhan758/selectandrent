@@ -760,6 +760,18 @@
         'price_text' => 'Utilisez notre calendrier interactif pour fixer vos tarifs et gérer la disponibilité de vos véhicules.',
         'chat_text' => 'Discutez directement avec les locataires, répondez à leurs questions et confirmez les réservations en toute sécurité.',
         'how_work_text' => 'Présentez vos véhicules facilement et connectez-vous avec des locataires fiables. Gérez tout à partir d’un seul endroit — rapide, clair et sécurisé.',
+        'support_every_step' => 'Soutien à chaque étape du processus de location',
+        'transparent_pricing' => 'Construire la confiance grâce à une tarification transparente sans frais cachés',
+        'empowering_freedom' => 'Vous donner la liberté de bouger',
+        'convenience_commitment' => 'Là où la commodité rencontre l’engagement',
+        'contect_text' => 'Chez Select and Rent, nous sommes toujours là pour vous aider à trouver le véhicule parfait pour chaque occasion.
+        Qu’il s’agisse d’une simple question ou d’un support approfondi, notre équipe est à un message de vous.
+        Contactez-nous dès aujourd’hui – votre voyage en toute tranquillité commence ici.',
+        'general' => 'Général',
+        'refund' => 'Remboursement',
+        'complaint' => 'Plainte',
+        'issues_about_company' => 'Problèmes concernant l’entreprise',
+        'hire_me' => 'Embauchez-moi',
 
     ];
 

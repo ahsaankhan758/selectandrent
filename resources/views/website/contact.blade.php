@@ -130,11 +130,12 @@
                             <label class="form-label">{{ __('messages.query_type') }}</label>
                             <select class="form-select" name="subject">
                                 <option selected>{{ __('messages.vehicle_rental') }}</option>
-                                <option value="General">General</option>
-                                    <option value="Refund">Refund</option>
-                                    <option value="Complaint">Complaint</option>
-                                    <option value="Issues about company">Issues about company</option>
-                                    <option value="Hire me">Hire me</option>
+                                    <option value="General">{{ __('messages.general') }}</option>
+                                    <option value="Refund">{{ __('messages.refund') }}</option>
+                                    <option value="Complaint">{{ __('messages.complaint') }}</option>
+                                    <option value="Issues about company">{{ __('messages.issues_about_company') }}
+                                    </option>
+                                    <option value="Hire me">{{ __('messages.hire_me') }}</option>
                             </select>
                         </div>
 
@@ -150,31 +151,31 @@
                         <!-- Name -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.first_name') }}</label>
-                            <input type="text" name="first_name" class="form-control form-control-border" placeholder="John Doe">
+                            <input type="text" name="first_name" class="form-control form-control-border">
                         </div>
 
                         <!-- Name -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.last_name') }}</label>
-                            <input type="text" name="last_name" class="form-control form-control-border" placeholder="John Doe">
+                            <input type="text" name="last_name" class="form-control form-control-border">
                         </div>
 
                         <!-- Email -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.email_address') }}</label>
-                            <input type="email" name="email" class="form-control form-control-border" placeholder="hello@example.com">
+                            <input type="email" name="email" class="form-control form-control-border" >
                         </div>
 
                         <!-- Phone Number -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.phone_number') }}</label>
-                            <input type="tel"  name="phone" class="form-control form-control-border" placeholder="+92 324 4469929">
+                            <input type="tel"  name="phone" class="form-control form-control-border">
                         </div>
 
                         <!-- Message -->
                         <div class="col-12">
                             <label class="form-label">{{ __('messages.message') }}</label>
-                            <textarea class="form-control form-control-border" name="message" rows="2" placeholder="Write here..."></textarea>
+                            <textarea class="form-control form-control-border" name="message" rows="2" ></textarea>
                         </div>
 
                         <!-- Submit Button -->

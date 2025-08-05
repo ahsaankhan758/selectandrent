@@ -166,7 +166,7 @@
       'exterior_color' => 'Exterior Color',
       'interior_color' => 'Interior Color',
       'rent' => 'Rent',
-      'mileage' => 'Milage (KM)',
+      'mileage' => 'Mileage (KM)',
       'detail' => 'Detail',
       'details' => 'Details',
       'thumbnail' => 'Thumbnail',
@@ -344,7 +344,7 @@
       'our_commitment' => 'Our Commitment',
       'our_promise' => 'Our Promise to You: Excellence and Trust in Every Journey',
 
-      'at_selectandrent' => 'At Select and Rent, we are committed to creating a vehicle rental experience that’s as smooth, reliable, and transparent as possible',
+      'at_selectandrent' => 'From the moment you land on our platform to the moment you return your rental, our team is committed to transparency, reliability, and top-notch service.',
 
       "whether_you're_renting" => "Whether you're renting for business, leisure, or life’s special moments, we’re here to ensure every step of the process is effortless and enjoyable",
       'dedicated_to_excellence' => 'Dedicated to Excellence, Driven by Trust',
@@ -764,11 +764,19 @@
        'chat_text' => 'Chat with renters directly, respond to queries, and confirm bookings through our secure system.',
        'how_work_text' => 'Easily showcase your vehicles and connect with trusted renters. Manage everything from one place — quick, clear, and secure.',
       'support_every_step' => 'Providing support at every step of the rental process',
-'transparent_pricing' => 'Building trust through transparent pricing and no hidden fees',
-'empowering_freedom' => 'Empowering You with Freedom to Move',
-'convenience_commitment' => 'Where Convenience Meets Commitment',
-'contect_text'=>'At Select and Rent, were always here to help you find the perfect vehicle for any occasion.
-Whether its a quick query or detailed support, our team is just a message away.
-Reach out today your smooth journey starts here.'
+      'transparent_pricing' => 'Building trust through transparent pricing and no hidden fees',
+      'empowering_freedom' => 'Empowering You with Freedom to Move',
+      'convenience_commitment' => 'Where Convenience Meets Commitment',
+      'contect_text'=>'At Select and Rent, were always here to help you find the perfect vehicle for any occasion.
+      Whether its a quick query or detailed support, our team is just a message away.
+      Reach out today your smooth journey starts here.',
+      'general' => 'General',
+      'refund' => 'Refund',
+      'complaint' => 'Complaint',
+      'issues_about_company' => 'Issues about company',
+      'hire_me' => 'Hire me',
+      'km_liter' => 'km/l',
+      'rate_per_day' => 'Rate Per Day',
+      'rate_per_hour' => 'Rate Per Hour',
       ];
 
