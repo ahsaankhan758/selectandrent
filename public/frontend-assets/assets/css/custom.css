@@ -5,7 +5,7 @@
   --text-white:#ffffff;
   --text-black:#000000;
   --scroll-back:#A1A9AD;
-  --text-grey:#000000;
+  --text-grey:#5f5e5e;
   --text-orange:#f06115;
   --text-blue:#07407B;
   --text-danger:#e74c3c;
@@ -94,6 +94,9 @@ color: var(--black-color);
 
 .text-primary{
   color: var(--text-blue) !important;
+}
+.text-black{
+  color: var(--black-color) !important;
 }
 .text-warning{
   color: var(--text-orange) !important;
@@ -4271,7 +4274,7 @@ margin: 5px 0;
 .custom_overlay-image {
   width: 218px;
   height: 250px;
-  bottom: 50px;
+  bottom: 15px;
   right: 140px;
   position: absolute; /* Ensure positioning works */
 }

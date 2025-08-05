@@ -94,10 +94,9 @@
                 <span class="badge custom_badge">
                     <h2>{{ __('messages.our_commitment') }}</h2>
                 </span>
-                <h1 class="mt-3 custom_heading">{{ __('messages.our_promise') }}"</h1>
+                <h1 class="mt-3 custom_heading">{{ __('messages.our_promise') }}</h1>
                 <p class="mt-3 custom_paragraph">
                     {{ __('messages.at_selectandrent') }}.
-                    {{ __("messages.whether_you're_renting") }}.
                 </p>
                 <ul class="custom-list">
                     <li class="d-flex align-items-start custom-check-item">
@@ -329,7 +328,7 @@
 
     <!-- end team -->
 
-   <!-- testimonals -->
+    <!-- testimonals -->
     <div class="container py-3">
         <h2 class="text-center fw-bold">{{ __('messages.testimonials') }}</h2>
 
@@ -477,132 +476,132 @@
     <!-- end testimonials -->
 
     <!-- Accordion Section -->
-<section class="container-fluid py-3">
-    <div class="container">
-        <div class="row">
-            <!-- Left Side Text (4 columns) -->
-            <div class="col-md-4 accordion-text">
-                <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
-                <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
-                <p class="text-muted questions">
-                    {{ __('messages.our_cutting-edge') }}
-                </p>
-            </div>
+    <section class="container-fluid py-3">
+        <div class="container">
+            <div class="row">
+                <!-- Left Side Text (4 columns) -->
+                <div class="col-md-4 accordion-text">
+                    <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
+                    <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
+                    <p class="text-muted questions">
+                        {{ __('messages.our_cutting-edge') }}
+                    </p>
+                </div>
 
-            <!-- Middle Accordion (3 items) -->
-            <div class="col-md-4">
-                <div class="accordion" id="faqAccordion1">
-                    <!-- First Item -->
-                    <div class="accordion-item border-0 border-bottom">
-                        <h2 class="accordion-header" id="headingOne1">
-                            <button class="accordion-button fw-bold shadow-none" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true"
-                                aria-controls="collapseOne1">
-                                {{ __('messages.Faq1') }}
-                            </button>
-                        </h2>
-                        <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1"
-                            data-bs-parent="#faqAccordion1">
-                            <div class="accordion-body text-muted">
-                                {{ __('messages.Faq1_answer') }}
+                <!-- Middle Accordion (3 items) -->
+                <div class="col-md-4">
+                    <div class="accordion" id="faqAccordion1">
+                        <!-- First Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header" id="headingOne1">
+                                <button class="accordion-button fw-bold shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true"
+                                    aria-controls="collapseOne1">
+                                    {{ __('messages.Faq1') }}
+                                </button>
+                            </h2>
+                            <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1"
+                                data-bs-parent="#faqAccordion1">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq1_answer') }}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Second Item -->
-                    <div class="accordion-item border-0 border-bottom">
-                        <h2 class="accordion-header" id="headingTwo1">
-                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="false"
-                                aria-controls="collapseTwo1">
-                                {{ __('messages.Faq2') }}
-                            </button>
-                        </h2>
-                        <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
-                            data-bs-parent="#faqAccordion1">
-                            <div class="accordion-body text-muted">
-                                {{ __('messages.Faq2_answer') }}
+                        <!-- Second Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header" id="headingTwo1">
+                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="false"
+                                    aria-controls="collapseTwo1">
+                                    {{ __('messages.Faq2') }}
+                                </button>
+                            </h2>
+                            <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
+                                data-bs-parent="#faqAccordion1">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq2_answer') }}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Third Item -->
-                    <div class="accordion-item border-0 border-bottom">
-                        <h2 class="accordion-header" id="headingThree1">
-                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false"
-                                aria-controls="collapseThree1">
-                                {{ __('messages.Faq3') }}
-                            </button>
-                        </h2>
-                        <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1"
-                            data-bs-parent="#faqAccordion1">
-                            <div class="accordion-body text-muted">
-                                {{ __('messages.Faq3_answer') }}
+                        <!-- Third Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header" id="headingThree1">
+                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false"
+                                    aria-controls="collapseThree1">
+                                    {{ __('messages.Faq3') }}
+                                </button>
+                            </h2>
+                            <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1"
+                                data-bs-parent="#faqAccordion1">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq3_answer') }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Right Accordion (3 more items) -->
+                <div class="col-md-4">
+                    <div class="accordion" id="faqAccordion2">
+                        <!-- Fourth Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button fw-bold shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true"
+                                    aria-controls="collapseFour">
+                                    {{ __('messages.Faq4') }}
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
+                                data-bs-parent="#faqAccordion2">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq4_answer') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fifth Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                                    aria-controls="collapseFive">
+                                    {{ __('messages.Faq5') }}
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#faqAccordion2">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq5_answer') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sixth Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
+                                    aria-controls="collapseSix">
+                                    {{ __('messages.Faq6') }}
+                                </button>
+                            </h2>
+                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                                data-bs-parent="#faqAccordion2">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq6_answer') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End of Right Accordion -->
             </div>
-
-            <!-- Right Accordion (3 more items) -->
-            <div class="col-md-4">
-                <div class="accordion" id="faqAccordion2">
-                    <!-- Fourth Item -->
-                    <div class="accordion-item border-0 border-bottom">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button fw-bold shadow-none" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true"
-                                aria-controls="collapseFour">
-                                {{ __('messages.Faq4') }}
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
-                            data-bs-parent="#faqAccordion2">
-                            <div class="accordion-body text-muted">
-                                {{ __('messages.Faq4_answer') }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fifth Item -->
-                    <div class="accordion-item border-0 border-bottom">
-                        <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
-                                aria-controls="collapseFive">
-                                {{ __('messages.Faq5') }}
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                            data-bs-parent="#faqAccordion2">
-                            <div class="accordion-body text-muted">
-                                {{ __('messages.Faq5_answer') }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sixth Item -->
-                    <div class="accordion-item border-0 border-bottom">
-                        <h2 class="accordion-header" id="headingSix">
-                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
-                                aria-controls="collapseSix">
-                                {{ __('messages.Faq6') }}
-                            </button>
-                        </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                            data-bs-parent="#faqAccordion2">
-                            <div class="accordion-body text-muted">
-                                {{ __('messages.Faq6_answer') }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- End of Right Accordion -->
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- contact sections -->
     <div class="container contact-container">
@@ -628,11 +627,12 @@
                                 <label class="form-label">{{ __('messages.query_type') }}</label>
                                 <select class="form-select" name="subject">
                                     <option selected>{{ __('messages.vehicle_rental') }}</option>
-                                    <option value="General">General</option>
-                                    <option value="Refund">Refund</option>
-                                    <option value="Complaint">Complaint</option>
-                                    <option value="Issues about company">Issues about company</option>
-                                    <option value="Hire me">Hire me</option>
+                                    <option value="General">{{ __('messages.general') }}</option>
+                                    <option value="Refund">{{ __('messages.refund') }}</option>
+                                    <option value="Complaint">{{ __('messages.complaint') }}</option>
+                                    <option value="Issues about company">{{ __('messages.issues_about_company') }}
+                                    </option>
+                                    <option value="Hire me">{{ __('messages.hire_me') }}</option>
                                 </select>
                             </div>
 
@@ -648,35 +648,31 @@
                             <!-- Name -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.first_name') }}</label>
-                                <input type="text" name="first_name" class="form-control form-control-border"
-                                    placeholder="John Doe">
+                                <input type="text" name="first_name" class="form-control form-control-border">
                             </div>
 
                             <!-- Name -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.last_name') }}</label>
-                                <input type="text" name="last_name" class="form-control form-control-border"
-                                    placeholder="John Doe">
+                                <input type="text" name="last_name" class="form-control form-control-border">
                             </div>
 
                             <!-- Email -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.email_address') }}</label>
-                                <input type="email" name="email" class="form-control form-control-border"
-                                    placeholder="hello@example.com">
+                                <input type="email" name="email" class="form-control form-control-border">
                             </div>
 
                             <!-- Phone Number -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.phone_number') }}</label>
-                                <input type="tel" name="phone" class="form-control form-control-border"
-                                    placeholder="+92 324 4469929">
+                                <input type="tel" name="phone" class="form-control form-control-border">
                             </div>
 
                             <!-- Message -->
                             <div class="col-12">
                                 <label class="form-label">{{ __('messages.message') }}</label>
-                                <textarea class="form-control form-control-border" name="message" rows="2" placeholder="Write here..."></textarea>
+                                <textarea class="form-control form-control-border" name="message" rows="2"></textarea>
                             </div>
 
                             <!-- Submit Button -->
