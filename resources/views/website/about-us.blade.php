@@ -96,7 +96,7 @@
                 </span>
                 <h1 class="mt-3 custom_heading">{{ __('messages.our_promise') }}</h1>
                 <p class="mt-3 custom_paragraph">
-                    {{ __('messages.at_selectandrent') }}.
+                    {{ __('messages.at_selectandrent') }}
                 </p>
                 <ul class="custom-list">
                     <li class="d-flex align-items-start custom-check-item">
