@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
     <div class="container mt-5">
-        <h2 class="fw-bold bmw-text-color text-capitalize">{{ $vehicle->car_models->car_brands->name ?? ' ' }}
+        <h2 class="fw-bold bmw-text-color text-capitalize mt-3">{{ $vehicle->car_models->car_brands->name ?? ' ' }}
             {{ $vehicle->car_models->name ?? ' ' }} {{ $vehicle->year ?? ' ' }}</h2>
         <p>{{ $vehicle->engine_size }} cc | {{ $vehicle->drive }} | {{ ucfirst($vehicle->transmission) }} |
             {{ $vehicle->lisence_plate }}</p>
@@ -21,9 +21,9 @@
             <div class="custom-badge-2">
                 <i class="fa-solid fa-user me-2"></i> <span class="text-black">{{ $vehicle->min_age }} {{ __('messages.min') }}</span>
             </div>
-            <div class="custom-badge-2">
+            {{-- <div class="custom-badge-2">
                 <i class="fa-solid fa-gauge-high me-2"></i> <span class="text-black">{{ $vehicle->mileage }} {{ __('messages.mileage') }}</span>
-            </div>
+            </div> --}}
             <div class="custom-badge-2">
                 <span class="text-black">{{ convertPrice($vehicle->advance_deposit, 0) }} {{ __('messages.deposit') }}</span>
             </div>
@@ -37,7 +37,7 @@
         $images = unserialize($vehicle->images);
     @endphp
 
-    <div class="container mt-5">
+    <div class="container mt-3">
         <div class="car-gallery">
             <!-- Main Image (clickable, opens carousel at index 0) -->
             <div class="main-image">
