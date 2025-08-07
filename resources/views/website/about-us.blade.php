@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-lg-6 col-md-12 text-center custom_image-wrapper position-relative">
-                <img src="{{ asset('/') }}frontend-assets/icons/about1.png"
+                <img src="{{ asset('/') }}frontend-assets/icons/big.webp"
                     class="img-fluid rounded custom_about_main-image" alt="Businessman near car">
                 <img src="{{ asset('/') }}frontend-assets/icons/car-commitment.png"
                     class="img-fluid rounded custom_about_overlay-image position-absolute" alt="Happy customer in car">
@@ -85,14 +85,14 @@
     <div class="container custom_commitment-section py-2">
         <div class="row">
             <div class="col-lg-6 col-md-12 custom_image-wrapper position-relative">
-                <img src="{{ asset('/') }}frontend-assets/icons/about1.png" class="img-fluid rounded custom_main-image"
+                <img src="{{ asset('/') }}frontend-assets/icons/big-2.webp" class="img-fluid rounded custom_main-image"
                     alt="Businessman near car">
                 <img src="{{ asset('/') }}frontend-assets/icons/car-commitment.png"
                     class="img-fluid rounded custom_overlay-image position-absolute" alt="Happy customer in car">
             </div>
             <div class="col-lg-6 col-md-12 custom_commitment-text">
                 <span class="badge custom_badge">
-                    <h2>{{ __('messages.our_commitment') }}</h2>
+                    <h1 class="custom_heading" style="margin-bottom: 0px;">{{ __('messages.our_commitment') }}</h1>
                 </span>
                 <h1 class="mt-3 custom_heading">{{ __('messages.our_promise') }}</h1>
                 <p class="mt-3 custom_paragraph">
