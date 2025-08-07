@@ -772,6 +772,7 @@
         'complaint' => 'شكوى',
         'issues_about_company' => 'مشاكل تتعلق بالشركة',
         'hire_me' => 'وظفني',
+        'cron_job' => 'مهمة مجدولة',
 
     ];
 
