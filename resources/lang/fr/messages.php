@@ -772,6 +772,7 @@
         'complaint' => 'Plainte',
         'issues_about_company' => 'Problèmes concernant l’entreprise',
         'hire_me' => 'Embauchez-moi',
+        'cron_job' => 'Tâche cron',
 
     ];
 

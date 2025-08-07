@@ -772,5 +772,6 @@
         'complaint' => 'Klacht',
         'issues_about_company' => 'Problemen met het bedrijf',
         'hire_me' => 'Neem me aan',
+        'cron_job' => 'Cron-taak',
 
     ];
