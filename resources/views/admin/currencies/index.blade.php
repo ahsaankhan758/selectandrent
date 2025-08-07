@@ -6,6 +6,7 @@
             <div class="card mt-4">
                 <div class="card-header">
                     <h4> {{ __('messages.currencies') }} </h4>
+                    <a href=" {{ route('cronjob') }}" class="btn float-start" style="background-color: #f06115; color: white">{{__('messages.cron_job') }}</a>
                     @if(can('currencies','edit'))
                             <a href=" {{ route('createCurrency') }}" class="btn float-end" style="background-color: #f06115; color: white " >{{__('messages.create') }} {{__('messages.currency') }}</a>
                     @endif

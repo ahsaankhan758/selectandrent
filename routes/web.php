@@ -72,6 +72,8 @@ use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
 
 use Illuminate\Support\Facades\Artisan;
+// for currency update
+Route::get('/update-currency-rates', [CurrencyController::class, 'updateCurrencyRates'])->name('cronjob');
 
 // for live server create storage link for images
 Route::get('/create-storage-link', function () {
