@@ -778,5 +778,6 @@
       'km_liter' => 'km/l',
       'rate_per_day' => 'Rate Per Day',
       'rate_per_hour' => 'Rate Per Hour',
+      'cron_job' => 'Cronjob',
       ];
 
