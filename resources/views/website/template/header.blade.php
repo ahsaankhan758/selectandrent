@@ -62,13 +62,21 @@
                 </div>
             </nav>
         </div>
+        <style>
+            .lang-tab .dropdown:hover > .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
 
+            .lang-tab .dropdown-menu {
+                margin-top: 0; 
+            }
+        </style>
         <!-- Multi Lingual -->
         <div class="col-md-1 text-end">
             <ul class="list-unstyled topnav-menu float-end mb-0 lang-tab">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button">
                         @php
                             $isLoggedIn = auth()->check();
                             $sessionLangName = session('langName');
