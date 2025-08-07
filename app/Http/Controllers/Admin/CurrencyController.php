@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+
 
 class CurrencyController extends Controller
 {
@@ -94,4 +96,40 @@ class CurrencyController extends Controller
          activityLog($userId, $desciption,$action,$module);
         return redirect()->route('currencies')-> with('statusDanger','Currency Data Deleted Successfully.');
     }
+
+  public function updateCurrencyRates()
+{
+    $response = Http::get('https://api.currencyapi.com/v3/latest', [
+        'apikey' => 'cur_live_XJ6W5KthZYyYfcGMZkU7SA9ZWfLL0rUWc9Z4lbm7',
+        'base_currency' => 'USD',
+    ]);
+
+    if ($response->successful()) {
+        $data = $response->json();
+
+        if (isset($data['data'])) {
+            $apiCurrencies = $data['data'];
+            $currencies = Currency::all();
+
+            foreach ($currencies as $currency) {
+                $name = strtoupper($currency->name);
+
+                if (isset($apiCurrencies[$name])) {
+                    $currency->rate = $apiCurrencies[$name]['value'];
+                    $currency->save();
+                }
+            }
+
+            // ✅ Redirect to /admin/currencies with success message
+            return redirect('/admin/currencies')->with('status', 'Currency rates updated successfully.');
+        }
+
+
+        return redirect('/admin/currencies')->with('statusDanger', 'Invalid API response structure.');
+    }
+
+    return redirect('/admin/currencies')->with('statusDanger', 'Failed to fetch currency data from API.');
+}
+
+
 }
