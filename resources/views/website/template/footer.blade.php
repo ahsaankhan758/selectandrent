@@ -132,3 +132,36 @@
           </div>
       </div>
   @endif
+
+{{-- Back to Top Button --}}
+<a href="#" class="btn custom-btn btn-square rounded-circle back-to-top" style="display: none;">
+    <i class="fa-solid fa-chevron-up text-white"></i>
+</a>
+
+<style>
+.back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 70px;
+    z-index: 9999;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let backToTop = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > window.innerHeight / 2) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+
+    backToTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+</script>
