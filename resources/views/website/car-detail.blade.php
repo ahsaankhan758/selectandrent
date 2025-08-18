@@ -38,34 +38,36 @@
     @endphp
 
     <div class="container mt-3">
-        <div class="car-gallery">
-            <!-- Main Image (clickable, opens carousel at index 0) -->
-            <div class="main-image">
-                <a data-fancybox="gallery" href="{{ asset(Storage::url($vehicle->thumbnail)) }}"
-                    data-caption="Main Car Image" data-index="0">
-                    @if (!empty($vehicle->thumbnail))
-                        <img src="{{ asset(Storage::url($vehicle->thumbnail)) }}" alt="Main Car Image">
-                    @else
-                        <img src="{{ asset('images/no-image.png') }}" alt="No Car Image Available">
-                    @endif
-                </a>
-            </div>
-
-            <!-- Side Images -->
-            <div class="side-images">
-                @if (is_array($images))
-                    @foreach ($images ?? [] as $key => $image)
-                        <div class="image-wrapper">
-                            <a data-fancybox="gallery" href="{{ asset(Storage::url($image)) }}"
-                                data-caption="Car Image {{ $key + 1 }}" data-index="{{ $key + 1 }}">
-                                <img src="{{ asset(Storage::url($image)) }}" alt="Car Image {{ $key + 1 }}">
-                            </a>
-                        </div>
-                    @endforeach
+    <div class="car-gallery">
+        <!-- Main Image -->
+        <div class="main-image">
+            <a data-fancybox="gallery" href="{{ asset(Storage::url($vehicle->thumbnail)) }}"
+                data-caption="Main Car Image" data-index="0">
+                @if (!empty($vehicle->thumbnail))
+                    <img src="{{ asset(Storage::url($vehicle->thumbnail)) }}" alt="Main Car Image">
+                @else
+                    <img src="{{ asset('images/no-image.png') }}" alt="No Car Image Available">
                 @endif
-            </div>
+            </a>
+        </div>
+
+        <!-- Side Images -->
+        <div class="side-images">
+            @if (is_array($images))
+                @foreach ($images as $key => $image)
+                    <div class="image-wrapper {{ $key >= 4 ? 'd-none' : '' }}">
+                        <a data-fancybox="gallery" href="{{ asset(Storage::url($image)) }}"
+                            data-caption="Car Image {{ $key + 1 }}" data-index="{{ $key + 1 }}">
+                            <img src="{{ asset(Storage::url($image)) }}" alt="Car Image {{ $key + 1 }}">
+                        </a>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
+</div>
+
+
 
 
     <!-- Car Details Section -->
