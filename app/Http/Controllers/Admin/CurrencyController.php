@@ -101,7 +101,7 @@ class CurrencyController extends Controller
 {
     $response = Http::get('https://api.currencyapi.com/v3/latest', [
         'apikey' => 'cur_live_XJ6W5KthZYyYfcGMZkU7SA9ZWfLL0rUWc9Z4lbm7',
-        'base_currency' => 'USD',
+        'base_currency' => 'EUR',
     ]);
 
     if ($response->successful()) {
@@ -115,19 +115,14 @@ class CurrencyController extends Controller
                 $name = strtoupper($currency->name);
 
                 if (isset($apiCurrencies[$name])) {
-                    $currency->rate = $apiCurrencies[$name]['value'];
+                    $currency->rate = round($apiCurrencies[$name]['value'], 2);
                     $currency->save();
                 }
             }
-
-            // ✅ Redirect to /admin/currencies with success message
             return redirect('/admin/currencies')->with('status', 'Currency rates updated successfully.');
         }
-
-
         return redirect('/admin/currencies')->with('statusDanger', 'Invalid API response structure.');
     }
-
     return redirect('/admin/currencies')->with('statusDanger', 'Failed to fetch currency data from API.');
 }
 
