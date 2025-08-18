@@ -43,7 +43,8 @@
                     <h5 class="mb-3 text-dark">
                         <i class="bi bi-car-front-fill me-2 text-primary"></i>
                         <span class="text-secondary"> 
-                           11 {{ $detail->vehicle->carModel->name ?? 'N/A' }} - {{ $detail->vehicle->year ?? 'N/A' }}
+                            
+                        {{ $detail->vehicle->carModel->name ?? 'N/A' }} - {{ $detail->vehicle->year ?? 'N/A' }}
                         </span>
                     </h5>
                     
