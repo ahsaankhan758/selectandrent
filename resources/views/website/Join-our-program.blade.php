@@ -5,8 +5,8 @@
 
 @section('content')
     <!-- parther -->
-    <div class="container desktop-view my-5">
-        <h2 class="text-center mb-5">{{ __('messages.why_partner') }}</h2>
+    <div class="container desktop-view py-5">
+        <h2 class="text-center mb-5 mt-3">{{ __('messages.why_partner') }}</h2>
         <p class="text-center mb-5 text-justify custom-width">{{ __('messages.maximize_your_vehicle') }}</p>
         <!-- Part 1 -->
         <div class="row align-items-center">
@@ -165,7 +165,7 @@
 
     <!-- parther -->
     <!-- benefits -->
-    <div class="container desktop-benefits mt-5">
+    <div class="container desktop-benefits py-5">
         <h2 class="text-center mb-5">{{ __('messages.key_benefits') }}</h2>
         <div class="row custom-benefit-container">
             <div class="col-md-3 text-center custom-benefit-step">
@@ -242,9 +242,9 @@
     </div>
     <!-- end benefits -->
     <!-- Work -->
-    <div class="container">
+    <div class="container py-5">
         <h2 class="text-center text-warning mb-4">
-            <h2 class="text-center text-warning mb-4">{{ __('messages.how_it_works') }}</h2>
+            {{ __('messages.how_it_works') }}
         </h2>
         <p class="text-center">{{ __('messages.how_work_text') }}</p>
         <div class="steps">
@@ -369,8 +369,7 @@
     <!-- end price -->
     <!-- testimonals -->
     <div class="container py-5">
-        <h2 class="text-center fw-bold">{{ __('messages.testimonials') }}</h2>
-
+        {{-- <h2 class="text-center fw-bold">{{ __('messages.testimonials') }}</h2> --}}
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
@@ -380,10 +379,10 @@
                         <div class="col-md-6">
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
+                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★1</span> <span class="text-primary">4.8</span> --}}
-                                    <strong class="testimonial-text">“Smooth, Simple, and Profitable”</strong>
+                                    <h4 class="testimonial-text">“Smooth, Simple, and Profitable”</h4>
                                     <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and
                                         within the first week, I had bookings lined up. The platform is user-friendly, and
                                         the team helped me set everything up. I now earn passive income without worrying
@@ -406,10 +405,10 @@
                         <div class="col-md-6">
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
+                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★2</span> <span class="text-primary">4.8</span> --}}
-                                    <strong class="testimonial-text">“Great Support, Every Step of the Way”</strong>
+                                    <h4 class="testimonial-text">“Great Support, Every Step of the Way”</h4>
                                     <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team
                                         walked me through the process. They handled the insurance and gave me full control
                                         over my rental schedule. It’s a win-win!”</p>
@@ -431,10 +430,10 @@
                         <div class="col-md-6">
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
+                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★3</span> <span class="text-primary">4.8</span> --}}
-                                    <strong class="testimonial-text">“Reliable Income Stream”</strong>
+                                    <h4 class="testimonial-text">“Reliable Income Stream”</h4>
                                     <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most
                                         of my car when I wasn’t using it. Select and Rent helped me earn extra income during
                                         my off-hours. It's flexible, safe, and efficient.”</p>
@@ -455,10 +454,10 @@
                         <div class="col-md-6">
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
+                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★4</span> <span class="text-primary">4.9</span> --}}
-                                    <strong class="testimonial-text">“Fleet Management Made Easy”</strong>
+                                    <h4 class="testimonial-text">“Fleet Management Made Easy”</h4>
                                     <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with
                                         Select and Rent, I can monitor everything from a single dashboard. Their pricing
                                         tools and calendar features are especially helpful.”</p>
@@ -480,10 +479,10 @@
                         <div class="col-md-6">
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p>
+                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
                                 <div class="bg-light p-4 testimonial-box rounded shadow">
                                     {{-- <span class="text-warning">★★★★★5</span> <span class="text-primary">5.0</span> --}}
-                                    <strong class="testimonial-text">“Hassle-Free Experience”</strong>
+                                    <h4 class="testimonial-text">“Hassle-Free Experience”</h4>
                                     <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment,
                                         the process was seamless. The renters were verified, the car was returned in perfect
                                         condition, and the payout was on time.”</p>
@@ -502,7 +501,7 @@
             </div>
         </div>
         <!-- Carousel Controls -->
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center mt-5">
             <a class="carousel-control-prev-custom me-3" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
@@ -515,7 +514,7 @@
     <!-- end testimonials -->
 
     <!-- Accordion Section -->
-    <section class="container-fluid py-5">
+    <section class="container-fluid py-5 mb-5">
         <div class="container">
             <div class="row">
                 <!-- Left Side Text (4 columns) -->

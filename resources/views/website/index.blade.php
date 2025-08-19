@@ -81,7 +81,7 @@
             </div>
         </div>
     </div>
-    <div class="container py-3">
+    <div class="container py-5">
         <div class="container bg-white p-4 mt-3 border border-1 mb-3 rounded-3">
             <div class="row g-2 justify-content-center hyundai">
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
@@ -112,7 +112,7 @@
         </div>
     </div>
     @if(count($featuredVehicle)>0)
-    <section class="container py-4 mt-5">
+    <section class="container py-5 mt-5">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -130,7 +130,7 @@
         </div>
     </section>
   <!--featured cars view -->
-    <div class="container py-4">
+    <div class="container py-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @forelse($featuredVehicle as $car)
@@ -198,13 +198,16 @@
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
                                         {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
-                                    @if (auth()->check())
+                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
+                                        <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
+                                    {{-- @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
                                     @else
                                         <button class="book-btn" data-bs-toggle="modal"
                                             data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -228,7 +231,7 @@
         </div>
     </div>
     @endif
-    <section class="container py-4 mt-5">
+    <section class="container py-5">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -246,7 +249,7 @@
         </div>
     </section>
       <!-- cars view -->
-    <div class="container py-4">
+    <div class="container py-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @forelse ($newArrival as $car)
@@ -314,13 +317,16 @@
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
                                         {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
-                                    @if (auth()->check())
+                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
+                                        <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
+                                    {{-- @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
                                     @else
                                         <button class="book-btn" data-bs-toggle="modal"
                                             data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -334,7 +340,7 @@
         </div>
 
         <!-- Swiper Navigation -->
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center mt-5">
             <a class="carousel-control-prev-custom me-3">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
@@ -345,7 +351,7 @@
     </div>
 
         <!-- chose section -->
-    <div class="container-fluid chose-bg-img mt-4">
+    <div class="container-fluid chose-bg-img">
 
         <!-- Mobile Section -->
         <div class="container mobile text-center py-5 d-block d-md-none">
@@ -528,7 +534,6 @@
         </div>
     </div>
     <!--Choose Section End-->
-
     <section class="container py-4 mt-5">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
@@ -549,7 +554,7 @@
     </section>
 
     <!-- cars view -->
-    <div class="container py-4">
+    <div class="container py-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @forelse ($cars as $car)
@@ -616,13 +621,16 @@
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
                                         {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
-                                    @if (auth()->check())
+                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
+                                        <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
+                                    {{-- @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
                                     @else
                                         <button class="book-btn" data-bs-toggle="modal"
                                             data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -636,7 +644,7 @@
         </div>
 
         <!-- Swiper Navigation -->
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center mt-5">
             <a class="carousel-control-prev-custom me-3">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
@@ -767,7 +775,7 @@
     </section>
 
     <!-- Accordion Section -->
-<section class="container-fluid py-5">
+<section class="container-fluid py-5 mt-5">
     <div class="container">
         <div class="row">
             <!-- Left Side Text (4 columns) -->
