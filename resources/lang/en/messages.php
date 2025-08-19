@@ -356,7 +356,7 @@
       'in' => 'in',
       'marketing' => 'Marketing',
       'testimonials' => 'Testimonials',
-      'our_most_satisfied' => 'Our Most Satisfied Customer says about us',
+      'our_most_satisfied' => 'Our Most Satisfied Customer say about us',
       'most_of_our_user' => 'Most of our users give us feedback regarding our services. You can see their comments below',
       'can’t_find_answer' => 'Can’t Find Answer',
       'your_queries' => 'Your Queries',
