@@ -21,63 +21,83 @@
     <div class="container py-3">
         <div class="row g-3 justify-content-center">
             <!-- Cards - First Row -->
+<div class="col-md-3 col-sm-4 col-6">
+    <a href="{{ route('category') }}?category={{ urlencode('Sedan') }}" class="text-decoration-none">
+        <div class="card text-center p-3 border-0 shadow-sm">
+            <img src="{{ asset('/') }}frontend-assets/icons/sedan-red.svg.png" alt="Sedan"
+                 class="img-fluid mx-auto d-block" width="75px">
+            <h6 class="mt-2">Sedan</h6>
+        </div>
+    </a>
+</div>
+
+
+
+
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('Hatchback') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/sedan-red.svg.png" alt="Sedan"
-                        class="img-fluid mx-auto d-block" width="75px">
-                    <h6 class="mt-2">Sedan</h6>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-6">
-                <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/hatchback.png" alt="Pickup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/hatchback.png" alt="Hatchback"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Hatchback</h6>
                 </div>
+                </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('SUV') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/SUV.png" alt="Compact"
+                    <img src="{{ asset('/') }}frontend-assets/icons/SUV.png" alt="SUV"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">SUV</h6>
                 </div>
+                </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('Crossover') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Crossover.png" alt="Coup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Crossover.png" alt="Crossover"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Crossover</h6>
                 </div>
+                </a>
             </div>
 
             <!-- Cards - Second Row -->
             <div class="col-md-3 col-sm-4 col-6">
+                 <a href="{{ route('category') }}?category={{ urlencode('Coupe') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/coup-red.svg.png" alt="Sedan"
+                    <img src="{{ asset('/') }}frontend-assets/icons/coup-red.svg.png" alt="Coupe"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Coupe</h6>
                 </div>
+                 </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                 <a href="{{ route('category') }}?category={{ urlencode('Convertible') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Convertible.png" alt="Pickup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Convertible.png" alt="Convertible"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Convertible</h6>
                 </div>
+                 </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+            <a href="{{ route('category') }}?category={{ urlencode('Minivan') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Minivan.png" alt="Compact"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Minivan.png" alt="Minivan"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Minivan</h6>
                 </div>
+            </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('Station Wagon') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/station-wagon.png" alt="Family-MPV"
+                    <img src="{{ asset('/') }}frontend-assets/icons/station-wagon.png" alt="Station Wagon"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Station Wagon</h6>
                 </div>
+                </a>
             </div>
         </div>
     </div>

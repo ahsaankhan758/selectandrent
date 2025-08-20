@@ -462,9 +462,9 @@
     <!-- end accordian -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
-            let categoryLastCarId = {}; // Store last car ID for each category
+            let categoryLastCarId = {}; 
             let currentCategory = "All";
             let isLoading = false;
 
@@ -490,22 +490,18 @@
                             $("#car-category-list").append(response.cars);
                         }
 
-                        // Check if there are no records
                         if ($.trim(response.cars) === "") {
                             $("#car-category-list").html(
                                 '<div class="text-center text-orange fw-bold mt-4">{{ __('messages.This category has no records') }}</div>'
                                 );
-                            $("#load-more-btn").hide(); // Hide Load More button
+                            $("#load-more-btn").hide(); 
                         } else {
-                            // Update offset for the category
                             categoryLastCarId[categoryId] = offset + 8;
 
-                            // Show Load More button for "All" category
                             if (categoryId === "All") {
                                 $("#load-more-btn").show();
                             }
 
-                            // Show/hide Load More button
                             if (!response.hasMore) {
                                 $("#load-more-btn").hide();
                             } else {
@@ -521,11 +517,9 @@
                 });
             }
 
-            // Default Load
             categoryLastCarId["All"] = 0;
             loadCars("All", false);
 
-            // Category Change
             $(document).on("click", ".filter-btn", function() {
 
                 $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
@@ -535,17 +529,193 @@
 
                 if (selectedCategory !== currentCategory) {
                     currentCategory = selectedCategory;
-                    categoryLastCarId[currentCategory] = 0; // Reset offset for new category
+                    categoryLastCarId[currentCategory] = 0; 
                 }
 
-                $("#load-more-btn").hide(); // Hide Load More initially
+                $("#load-more-btn").hide();
                 loadCars(currentCategory, false);
             });
 
-            // Load More Button Click
+          
             $(document).on("click", "#load-more-btn", function() {
                 loadCars(currentCategory, true);
             });
         });
     </script>
+<script>
+$(document).ready(function() {
+    let categoryLastCarId = {};
+    let currentCategory = "All";
+    let isLoading = false;
+
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    function loadCars(categoryName, append = false) {
+        if (isLoading) return;
+        isLoading = true;
+
+        let offset = categoryLastCarId[categoryName] || 0;
+        let model = "Car";
+
+        // alert("Loading category: " + categoryName);
+
+        $.ajax({
+            url: "{{ route('load.more.category.cars') }}",
+            method: "GET",
+            data: {
+                model: model,
+                category_name: categoryName,
+                offset: offset
+            },
+            success: function(response) {
+                if (!append) {
+                    $("#car-category-list").html(response.cars);
+                } else {
+                    $("#car-category-list").append(response.cars);
+                }
+
+                if ($.trim(response.cars) === "") {
+                    $("#car-category-list").html('<div class="text-center text-orange fw-bold mt-4">{{ __("messages.This category has no records") }}</div>');
+                    $("#load-more-btn").hide();
+                } else {
+                    categoryLastCarId[categoryName] = offset + 8;
+
+                    if (!response.hasMore) {
+                        $("#load-more-btn").hide();
+                    } else {
+                        $("#load-more-btn").show();
+                    }
+                }
+
+                isLoading = false;
+            },
+            error: function() {
+                isLoading = false;
+            }
+        });
+    }
+
+    let selectedCategoryFromURL = getQueryParam("category") || "All";
+    currentCategory = selectedCategoryFromURL;
+    categoryLastCarId[currentCategory] = 0;
+
+    $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
+    $(".filter-btn").each(function() {
+    if ($(this).text().trim() === currentCategory) {
+        $(this).removeClass("btn-dark").addClass("btn-primary");
+    }
+    });
+
+    loadCars(currentCategory, false);
+
+    $(document).on("click", ".filter-btn", function() {
+        let selectedCategory = $(this).data("category");
+
+        if (selectedCategory !== currentCategory) {
+            currentCategory = selectedCategory;
+            categoryLastCarId[currentCategory] = 0;
+        }
+
+        $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
+        $(this).removeClass("btn-dark").addClass("btn-primary");
+
+        $("#load-more-btn").hide();
+        loadCars(currentCategory, false);
+    });
+
+    $(document).on("click", "#load-more-btn", function() {
+        loadCars(currentCategory, true);
+    });
+});
+</script> --}}
+
+<script>
+   $(document).ready(function() {
+    let categoryLastCarId = {};
+    let currentCategory = "All"; // this will be ID
+    let isLoading = false;
+
+    function loadCars(categoryId, append = false) {
+        if (isLoading) return;
+        isLoading = true;
+        let offset = categoryLastCarId[categoryId] || 0;
+
+        $.ajax({
+            url: "{{ route('load.more.category.cars') }}",
+            method: "GET",
+            data: {
+                model: "Car",
+                car_category_id: categoryId,
+                offset: offset
+            },
+            success: function(response) {
+                if (!append) {
+                    $("#car-category-list").html(response.cars);
+                } else {
+                    $("#car-category-list").append(response.cars);
+                }
+
+                if ($.trim(response.cars) === "") {
+                    $("#car-category-list").html('<div class="text-center text-orange fw-bold mt-4">{{ __("messages.This category has no records") }}</div>');
+                    $("#load-more-btn").hide();
+                } else {
+                    categoryLastCarId[categoryId] = offset + 8;
+                    $("#load-more-btn").toggle(response.hasMore);
+                }
+
+                isLoading = false;
+            },
+            error: function() {
+                isLoading = false;
+            }
+        });
+    }
+
+    function getCategoryIdByName(name) {
+        let id = null;
+        $(".filter-btn").each(function() {
+            if ($(this).text().trim() === name) {
+                id = $(this).data("category");
+            }
+        });
+        return id;
+    }
+
+    let categoryNameFromURL = new URLSearchParams(window.location.search).get("category") || "All";
+    let initialCategoryId = categoryNameFromURL === "All" ? "All" : getCategoryIdByName(categoryNameFromURL);
+    currentCategory = initialCategoryId;
+    categoryLastCarId[currentCategory] = 0;
+
+    $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
+    $(".filter-btn").each(function() {
+        if ($(this).data("category") == currentCategory) {
+            $(this).removeClass("btn-dark").addClass("btn-primary");
+        }
+    });
+
+    loadCars(currentCategory, false);
+
+    $(document).on("click", ".filter-btn", function() {
+        let selectedCategoryId = $(this).data("category");
+        if (selectedCategoryId !== currentCategory) {
+            currentCategory = selectedCategoryId;
+            categoryLastCarId[currentCategory] = 0;
+        }
+
+        $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
+        $(this).removeClass("btn-dark").addClass("btn-primary");
+
+        $("#load-more-btn").hide();
+        loadCars(currentCategory, false);
+    });
+
+    $(document).on("click", "#load-more-btn", function() {
+        loadCars(currentCategory, true);
+    });
+});
+</script>
+
 @endsection
