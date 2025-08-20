@@ -6,9 +6,9 @@
 @section('content')
 <section class="blog-section">
     <div class="container">
-        <div class="text-center mb-4">
+        <div class="text-center py-5">
             <p class="blog-subtitle">{{ __('messages.from_the_blog') }}</p>
-            <h2 class="blog-title">{{ __('messages.vehicle_and_bike') }}</h2>
+            <h2 class="blog-title py-3">{{ __('messages.vehicle_and_bike') }}</h2>
         </div>
 
         <div class="row" id="blog-list">
