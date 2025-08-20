@@ -779,5 +779,6 @@
       'rate_per_day' => 'Rate Per Day',
       'rate_per_hour' => 'Rate Per Hour',
       'cron_job' => 'Cronjob',
+      'no_blogs_available' => 'No Blogs Available.',
       ];
 
