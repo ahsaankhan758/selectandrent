@@ -9,7 +9,7 @@
     <div class="container py-4 mt-5">
         <h2 class="text-center mb-3">{{ __('messages.select_a_category') }}</h2>
 
-        <div class="container text-center my-3">
+        <div class="container text-center my-5">
             <div class="d-flex flex-wrap justify-content-center gap-2">
                 <button class="btn btn-primary filter-btn" data-category="All">{{ __('messages.all') }}</button>
                 @foreach ($categories as $category)
@@ -18,15 +18,10 @@
             </div>
         </div>
 
-
-        <!-- Cars List -->
-
-        <div class="container mt-5">
+        <div class="container py-5">
             <div class="row g-4" id="car-category-list">
                 @include('website.category.include.car-item', ['cars' => $cars])
             </div>
-
-            <!-- Load More for "All" Category -->
             @if ($totalCars > 8)
                 <div class="text-center mt-4">
                     <button id="load-more-btn" class="btn btn-orange-clr text-white"
@@ -98,7 +93,7 @@
     <!-- work end -->
 
     <!-- tip section -->
-    <div class="container text-center my-5">
+    <div class="container text-center py-5">
         <h2 class="mb-4">{{ __('messages.tips_for_renting') }}</h2>
 
         <div class="row justify-content-center">
@@ -148,7 +143,7 @@
     <!-- end tip section -->
 
     <!-- chose section -->
-    <div class="container-fluid chose-bg-img mt-4">
+    <div class="container-fluid chose-bg-img py-5">
 
         <!-- Mobile Section -->
         <div class="container mobile text-center py-5 d-block d-md-none">
@@ -331,7 +326,6 @@
         </div>
     </div>
     <!--Choose Section End-->
-
     <!-- Accordion Section -->
 <section class="container-fluid py-5">
     <div class="container">

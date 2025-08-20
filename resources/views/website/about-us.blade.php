@@ -341,7 +341,7 @@
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow">
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
                                     {{-- <span class="text-warning">★★★★★1</span> <span class="text-primary">4.8</span> --}}
                                     <h4 class="testimonial-text">“Smooth, Simple, and Profitable”</h4>
                                     <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and
@@ -367,7 +367,7 @@
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow">
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
                                     {{-- <span class="text-warning">★★★★★2</span> <span class="text-primary">4.8</span> --}}
                                     <h4 class="testimonial-text">“Great Support, Every Step of the Way”</h4>
                                     <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team
@@ -392,7 +392,7 @@
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow">
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
                                     {{-- <span class="text-warning">★★★★★3</span> <span class="text-primary">4.8</span> --}}
                                     <h4 class="testimonial-text">“Reliable Income Stream”</h4>
                                     <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most
@@ -416,7 +416,7 @@
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow">
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
                                     {{-- <span class="text-warning">★★★★★4</span> <span class="text-primary">4.9</span> --}}
                                     <h4 class="testimonial-text">“Fleet Management Made Easy”</h4>
                                     <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with
@@ -441,7 +441,7 @@
                             <div class="p-4">
                                 <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
                                 {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow">
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
                                     {{-- <span class="text-warning">★★★★★5</span> <span class="text-primary">5.0</span> --}}
                                     <h4 class="testimonial-text">“Hassle-Free Experience”</h4>
                                     <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment,
@@ -481,7 +481,7 @@
                 <!-- Left Side Text (4 columns) -->
                 <div class="col-md-4 accordion-text">
                     <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
-                    <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
+                    <h2 class="fw-bold">{{ __('messages.we_got_you') }}</h2>
                     <p class="text-muted questions">
                         {{ __('messages.our_cutting-edge') }}
                     </p>
