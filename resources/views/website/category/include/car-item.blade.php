@@ -12,7 +12,7 @@
                     @endphp
                     <div class="position-relative">
                         <img src="{{ $imageExists ? asset('storage/' . $car->thumbnail) : asset('images/no-image.png') }}"
-                            class="custom-card-img" alt="Car Image">
+                            class="custom-card-img-2" alt="Car Image">
                         @if ($car->is_booked == 1)
                             <div
                                 style="position: absolute; top: 0; left: 0; background: var(--text-orange); color: white; padding: 5px 10px; font-weight: bold; font-size: 14px; z-index: 10;">
@@ -72,7 +72,10 @@
                             <h6 class="card_orange_clr mb-0">
                                 {{ convertPrice($car->rent, 0) }}/{{ ucfirst($car->rent_type) }}
                             </h6>
-                            @if (auth()->check())
+                            <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
+                                        <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
+                            {{-- @if (auth()->check())
                                 <button class="book-btn" data-carid="{{ $car->id }}" id="car-booking-btn">
                                     {{ __('messages.Book') }}
                                 </button>
@@ -80,7 +83,7 @@
                                 <button class="book-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
                                     {{ __('messages.Book') }}
                                 </button>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>

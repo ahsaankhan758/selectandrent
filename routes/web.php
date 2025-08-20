@@ -518,7 +518,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::any('/payment/thankyou', [CheckoutController::class, 'checkoutView'])->name('booking.thankyou');
     Route::get('/cardetail/{id}', [CarDetailController::class, 'cardetailView'])->name('car.detail');
     // categories routes
-    Route::get('/categories', [CategoryController::class, 'categoryView']);
+    Route::get('/categories', [CategoryController::class, 'categoryView'])->name('category');
     Route::get('/load-more-category-cars', [CategoryController::class, 'loadMoreCategoryCars'])->name('load.more.category.cars');
     // end categories
     // car listing routes

@@ -21,67 +21,87 @@
     <div class="container py-3">
         <div class="row g-3 justify-content-center">
             <!-- Cards - First Row -->
+<div class="col-md-3 col-sm-4 col-6">
+    <a href="{{ route('category') }}?category={{ urlencode('Sedan') }}" class="text-decoration-none">
+        <div class="card text-center p-3 border-0 shadow-sm">
+            <img src="{{ asset('/') }}frontend-assets/icons/sedan-red.svg.png" alt="Sedan"
+                 class="img-fluid mx-auto d-block" width="75px">
+            <h6 class="mt-2">Sedan</h6>
+        </div>
+    </a>
+</div>
+
+
+
+
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('Hatchback') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/sedan-red.svg.png" alt="Sedan"
-                        class="img-fluid mx-auto d-block" width="75px">
-                    <h6 class="mt-2">Sedan</h6>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-6">
-                <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/hatchback.png" alt="Pickup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/hatchback.png" alt="Hatchback"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Hatchback</h6>
                 </div>
+                </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('SUV') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/SUV.png" alt="Compact"
+                    <img src="{{ asset('/') }}frontend-assets/icons/SUV.png" alt="SUV"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">SUV</h6>
                 </div>
+                </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('Crossover') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Crossover.png" alt="Coup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Crossover.png" alt="Crossover"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Crossover</h6>
                 </div>
+                </a>
             </div>
 
             <!-- Cards - Second Row -->
             <div class="col-md-3 col-sm-4 col-6">
+                 <a href="{{ route('category') }}?category={{ urlencode('Coupe') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/coup-red.svg.png" alt="Sedan"
+                    <img src="{{ asset('/') }}frontend-assets/icons/coup-red.svg.png" alt="Coupe"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Coupe</h6>
                 </div>
+                 </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                 <a href="{{ route('category') }}?category={{ urlencode('Convertible') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Convertible.png" alt="Pickup"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Convertible.png" alt="Convertible"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Convertible</h6>
                 </div>
+                 </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+            <a href="{{ route('category') }}?category={{ urlencode('Minivan') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Minivan.png" alt="Compact"
+                    <img src="{{ asset('/') }}frontend-assets/icons/Minivan.png" alt="Minivan"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Minivan</h6>
                 </div>
+            </a>
             </div>
             <div class="col-md-3 col-sm-4 col-6">
+                <a href="{{ route('category') }}?category={{ urlencode('Station Wagon') }}" class="text-decoration-none">
                 <div class="card text-center p-3 border-0 shadow-sm">
-                    <img src="{{ asset('/') }}frontend-assets/icons/station-wagon.png" alt="Family-MPV"
+                    <img src="{{ asset('/') }}frontend-assets/icons/station-wagon.png" alt="Station Wagon"
                         class="img-fluid mx-auto d-block" width="75px">
                     <h6 class="mt-2">Station Wagon</h6>
                 </div>
+                </a>
             </div>
         </div>
     </div>
-    <div class="container py-3">
+    <div class="container py-5">
         <div class="container bg-white p-4 mt-3 border border-1 mb-3 rounded-3">
             <div class="row g-2 justify-content-center hyundai">
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
@@ -112,7 +132,7 @@
         </div>
     </div>
     @if(count($featuredVehicle)>0)
-    <section class="container py-4 mt-5">
+    <section class="container py-5 mt-5">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -130,7 +150,7 @@
         </div>
     </section>
   <!--featured cars view -->
-    <div class="container py-4">
+    <div class="container py-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @forelse($featuredVehicle as $car)
@@ -198,13 +218,16 @@
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
                                         {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
-                                    @if (auth()->check())
+                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
+                                        <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
+                                    {{-- @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
                                     @else
                                         <button class="book-btn" data-bs-toggle="modal"
                                             data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -228,7 +251,7 @@
         </div>
     </div>
     @endif
-    <section class="container py-4 mt-5">
+    <section class="container py-5">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -246,7 +269,7 @@
         </div>
     </section>
       <!-- cars view -->
-    <div class="container py-4">
+    <div class="container py-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @forelse ($newArrival as $car)
@@ -314,13 +337,16 @@
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
                                         {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
-                                    @if (auth()->check())
+                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
+                                        <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
+                                    {{-- @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
                                     @else
                                         <button class="book-btn" data-bs-toggle="modal"
                                             data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -334,7 +360,7 @@
         </div>
 
         <!-- Swiper Navigation -->
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center mt-5">
             <a class="carousel-control-prev-custom me-3">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
@@ -345,7 +371,7 @@
     </div>
 
         <!-- chose section -->
-    <div class="container-fluid chose-bg-img mt-4">
+    <div class="container-fluid chose-bg-img">
 
         <!-- Mobile Section -->
         <div class="container mobile text-center py-5 d-block d-md-none">
@@ -528,7 +554,6 @@
         </div>
     </div>
     <!--Choose Section End-->
-
     <section class="container py-4 mt-5">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
@@ -549,7 +574,7 @@
     </section>
 
     <!-- cars view -->
-    <div class="container py-4">
+    <div class="container py-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @forelse ($cars as $car)
@@ -616,13 +641,16 @@
                                 <div class="d-flex justify-content-between bg-light align-items-center rounded">
                                     <h6 class="card_orange_clr ms-2">
                                         {{ convertPrice($car->rent, 0) }}/{{ucfirst($car->rent_type)}}</h6>
-                                    @if (auth()->check())
+                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative" style="display: inline-block;">
+                                        <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
+                                    {{-- @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
                                     @else
                                         <button class="book-btn" data-bs-toggle="modal"
                                             data-bs-target="#loginModal">{{ __('messages.Book') }}</button>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -636,7 +664,7 @@
         </div>
 
         <!-- Swiper Navigation -->
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center mt-5">
             <a class="carousel-control-prev-custom me-3">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
@@ -767,7 +795,7 @@
     </section>
 
     <!-- Accordion Section -->
-<section class="container-fluid py-5">
+<section class="container-fluid py-5 mt-5">
     <div class="container">
         <div class="row">
             <!-- Left Side Text (4 columns) -->
