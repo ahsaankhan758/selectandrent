@@ -281,7 +281,7 @@
         'login_with_select_and_rental' => 'تسجيل الدخول باستخدام تأجير السيارات',
         'select_and_rent' => 'اختر واستأجر',
         'from_the_blog' => 'من المدونة',
-        'vehicle_and_bike' => 'أخبار تأجير السيارات والدراجات',
+        'vehicle_and_bike' => 'أخبار تأجير المركبات والدراجات',
         'by' => 'بواسطة',
         'blog_detail' => 'تفاصيل المدونة',
         'previous' => 'السابق',
