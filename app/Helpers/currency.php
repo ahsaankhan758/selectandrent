@@ -13,9 +13,12 @@ function getActiveDefaultCurrency(){
     ];
 }
 
+
 function convertPrice($amount, $round = 2, $symbol_check = 1)
 {
-    // Get session values
+
+    $amount = str_replace(',', '', $amount);
+
     $code = session('defaultCurrencyCode');
     $name = session('defaultCurrencyName');
 
@@ -31,7 +34,6 @@ function convertPrice($amount, $round = 2, $symbol_check = 1)
 
     $defaultCurrency = $query->first();
 
-    // Fallback in case no currency is found
     if (!$defaultCurrency) {
         $rate = 1;
         $symbol = '';

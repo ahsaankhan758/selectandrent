@@ -277,7 +277,7 @@
         'login_with_select_and_rental' => 'Inloggen via autoverhuur',
         'select_and_rent' => 'Selecteer en Huur',
         'from_the_blog' => 'Uit de Blog',
-        'vehicle_and_bike' => 'Nieuws over auto- en motorverhuur',
+        'vehicle_and_bike' => 'Nieuws over voertuig- en fietsverhuur',
         'by' => 'door',
         'blog_detail' => 'Blogdetails',
         'previous' => 'Vorige',

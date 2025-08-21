@@ -278,7 +278,7 @@
         'login_with_select_and_rental' => 'Connexion via location de voiture',
         'select_and_rent' => 'Sélectionner et Louer',
         'from_the_blog' => 'Du Blog',
-        'vehicle_and_bike' => 'Actualités de location de voitures et motos',
+        'vehicle_and_bike' => 'Actualités sur la location de véhicules et de vélos',
         'by' => 'par',
         'blog_detail' => 'Détail du Blog',
         'previous' => 'Précédent',
