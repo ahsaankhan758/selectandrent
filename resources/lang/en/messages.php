@@ -275,7 +275,7 @@
       'round_the_clock' => 'Round-the-clock',
       'select_and_rent' => 'Select and Rent',
       'from_the_blog' => 'From the Blog',
-      'vehicle_and_bike' => 'Vehicle And Bike Rental News',
+      'vehicle_and_bike' => 'Vehicle Rental News',
       'by' => 'by',
       'blog_detail' => 'Blog-Detail',
       'previous' => 'Previous',
