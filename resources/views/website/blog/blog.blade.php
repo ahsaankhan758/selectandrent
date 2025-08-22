@@ -16,7 +16,6 @@
             @include('website.blog.include.blogcard', ['blogs' => $blogs])      
         </div>
         <div class="text-center mb-5">
-
             @if($totalBlogs > 8)
             <button class="load-more-btn btn btn-orange-clr text-white" 
             data-target="blog-list" 
