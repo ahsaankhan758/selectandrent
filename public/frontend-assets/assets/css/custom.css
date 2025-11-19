@@ -273,11 +273,11 @@ color: var(--black-color);
     padding: 10px;
 }
 
-/* Desktop pe cards ko wide dikhane ke liye */
+/* Desktop Card Size*/
 @media (min-width: 1024px) {
   .swiper-slide {
     width: 100% !important;
-    max-width: 350px; /* Bada size */
+    max-width: 350px; 
   }
 }
 .carousel-control-prev-custom,
@@ -4317,3 +4317,9 @@ margin: 5px 0;
     bottom: 0px;
   }
 }
+
+/* Added by AJ */
+
+.display-6 {
+        font-size: 2rem !important;
+    }
