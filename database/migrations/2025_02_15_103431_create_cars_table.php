@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('seats')->nullable();
             $table->string('weight')->nullable();
             $table->string('doors')->nullable();
-            $table->string('mileage')->nullable();
+            $table->string('mileage')->nullable()->comment('Max KM Per Day');
             $table->string('engine_size')->nullable();
             $table->longText('detail')->nullable();
             $table->string('luggage')->nullable();

@@ -24,8 +24,8 @@
                 <a href="{{ route('category') }}?category={{ urlencode('Sedan') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/sedan-red.svg.png" alt="Sedan"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">Sedan</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.sedan') }}</h6>
                     </div>
                 </a>
             </div>
@@ -34,8 +34,8 @@
                 <a href="{{ route('category') }}?category={{ urlencode('Hatchback') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/hatchback.png" alt="Hatchback"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">Hatchback</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.hatchback') }}</h6>
                     </div>
                 </a>
             </div>
@@ -43,8 +43,8 @@
                 <a href="{{ route('category') }}?category={{ urlencode('SUV') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/SUV.png" alt="SUV"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">SUV</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.suv') }}</h6>
                     </div>
                 </a>
             </div>
@@ -52,8 +52,8 @@
                 <a href="{{ route('category') }}?category={{ urlencode('Crossover') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/Crossover.png" alt="Crossover"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">Crossover</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.crossover') }}</h6>
                     </div>
                 </a>
             </div>
@@ -63,8 +63,8 @@
                 <a href="{{ route('category') }}?category={{ urlencode('Coupe') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/coup-red.svg.png" alt="Coupe"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">Coupe</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.coupe') }}</h6>
                     </div>
                 </a>
             </div>
@@ -72,8 +72,8 @@
                 <a href="{{ route('category') }}?category={{ urlencode('Convertible') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/Convertible.png" alt="Convertible"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">Convertible</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.convertible') }}</h6>
                     </div>
                 </a>
             </div>
@@ -81,8 +81,8 @@
                 <a href="{{ route('category') }}?category={{ urlencode('Minivan') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/Minivan.png" alt="Minivan"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">Minivan</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.minivan') }}</h6>
                     </div>
                 </a>
             </div>
@@ -90,14 +90,14 @@
                 <a href="{{ route('category') }}?category={{ urlencode('Station Wagon') }}" class="text-decoration-none">
                     <div class="card text-center p-3 border-0 shadow-sm">
                         <img src="{{ asset('/') }}frontend-assets/icons/station-wagon.png" alt="Station Wagon"
-                            class="img-fluid mx-auto d-block" width="75px">
-                        <h6 class="mt-2">Station Wagon</h6>
+                            class="img-fluid mx-auto d-block mt-3" width="75px">
+                        <h6 class="mt-2">{{ __('messages.station_wagon') }}</h6>
                     </div>
                 </a>
             </div>
         </div>
     </div>
-    <div class="container py-5">
+    <div class="container py-4">
         <div class="container bg-white p-4 mt-3 border border-1 mb-3 rounded-3">
             <div class="row g-2 justify-content-center hyundai">
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
@@ -128,7 +128,7 @@
         </div>
     </div>
     @if (count($featuredVehicle) > 0)
-        <section class="container py-5">
+        <section class="container py-4">
             <div class="row align-items-center">
                 <!-- Heading (Always on Left) -->
                 <div class="col-12 col-md-6 text-center text-md-start">
@@ -183,9 +183,10 @@
                                                     {{ $car->year ?? ' ' }}
                                                 </h5>
                                                 <h6 class="text-muted" style="font-size: 12px;">
-                                                    {{ __('messages.engine') }} {{ $car->engine_size }}
-                                                    {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} |
-                                                    {{ $car->fuel_type }}</h6>
+                                                    {{ ucfirst($car->transmission) }}
+                                                    | {{ ucfirst($car->fuel_type) }}
+                                                    | {{ __('messages.engine') }} {{ $car->engine_size }}{{ __('messages.cc') }}
+                                                </h6>
                                             </div>
                                             <div>
                                                 @php
@@ -313,10 +314,11 @@
                                                 {{ $car->car_models->name ?? ' ' }}
                                                 {{ $car->year ?? ' ' }}
                                             </h5>
-                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }}
-                                                {{ $car->engine_size }}
-                                                {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} |
-                                                {{ $car->fuel_type }}</h6>
+                                            <h6 class="text-muted" style="font-size: 12px;">
+                                                {{ ucfirst($car->transmission) }}
+                                                | {{ ucfirst($car->fuel_type) }}
+                                                | {{ __('messages.engine') }} {{ $car->engine_size }}{{ __('messages.cc') }}
+                                            </h6>
                                         </div>
                                         <div>
                                             @php
@@ -638,9 +640,10 @@
                                                 {{ $car->year ?? ' ' }}
                                             </h5>
                                             <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }}
-                                                {{ $car->engine_size }}
-                                                {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} |
-                                                {{ $car->fuel_type }}</h6>
+                                                {{ ucfirst($car->transmission) }}
+                                                | {{ ucfirst($car->fuel_type) }}
+                                                | {{ __('messages.engine') }} {{ $car->engine_size }}{{ __('messages.cc') }}
+                                            </h6>
                                         </div>
                                         <div>
                                             @php
@@ -764,14 +767,14 @@
                     class="rounded book">
                 <button onclick="window.location.href='{{ url('/join-our-program') }}'"
                     class="btn btn-orange-clr rounded-pill laptop-book-button  text-white d-flex align-items-center px-2 py-2 position-absolute bottom-0 end-0 mt-2 me-4">
-                    {{ __('messages.book_now') }}
+                    {{ __('messages.become_partner') }} 
                     <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png" class="ms-3"
                         width="30" height="30" alt="">
                 </button>
                 <!-- <div class="text-end"> -->
                 <button onclick="window.location.href='{{ url('/join-our-program') }}'"
                     class="btn btn-orange-clr rounded-pill tab-book-button text-white px-1 py-1">
-                    {{ __('messages.book_now') }}
+                    {{ __('messages.become_partner') }}
                     <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png" class="ms-2"
                         width="25" height="25" alt="">
                 </button>
@@ -811,7 +814,7 @@
             <div class="text-end">
                 <button onclick="window.location.href='{{ url('/join-our-program') }}'"
                     class="btn btn-orange-clr rounded-pill text-white px-2 py-2">
-                    {{ __('messages.book_now') }}
+                    {{ __('messages.become_partner') }}
                     <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png" class="ms-2"
                         width="25" height="25" alt="">
                 </button>
