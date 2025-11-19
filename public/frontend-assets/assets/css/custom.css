@@ -364,8 +364,8 @@ margin-right: 8px;
 
 /*Choose Section Start */           
 .img-fixed {
-width: 30px;
-height: 30px; 
+width: 40px;
+height: 40px; 
 }
 /* end choose */
 
@@ -814,6 +814,25 @@ border: none;
 .social-icons-footer {
 display: flex;
 gap: 15px;
+}
+
+.icon-contact {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 40px;
+height: 40px;
+border: 2px solid black;
+border-radius: 50%;
+color: black;
+text-decoration: none;
+font-size: 20px;
+transition: 0.3s;
+}
+.icon-contact:hover {
+    background-color: black;
+    color: white;          
+    border-color: black;  
 }
 
 .icon {
@@ -2405,7 +2424,7 @@ margin: 5px 0;
 
 .form-control {
     border: 1px solid #ddd;
-    padding: 18px;
+    /* padding: 18px; */
     font-size: 14px;
 }
 
@@ -2785,7 +2804,7 @@ margin: 5px 0;
   box-shadow: none;
 }
 .form-control-border{
-  border: 1px solid #ccc !important;
+  border: 1.5px solid #ccc !important;
   border-radius: 5px; 
   background: white;
 }
@@ -4236,13 +4255,14 @@ margin: 5px 0;
     background-color: #28a745;
     color: white;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    width: 15px;
+    height: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 12px;
+    font-size: 8px;
+    margin-top: 5px;
 }
 .custom-check-item {
     margin-bottom: 3px; 
@@ -4257,9 +4277,9 @@ margin: 5px 0;
 .custom_overlay-image {
   width: 218px;
   height: 250px;
-  bottom: -40px;
+  bottom: 0px;
   right: 50px;
-  position: absolute; /* Ensure positioning works */
+  position: absolute;
 }
 
 /* Tablet (768px to 991.98px) */
