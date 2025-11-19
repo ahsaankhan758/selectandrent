@@ -256,7 +256,7 @@
             <div class="col-md-2 text-end" id="getStartedButton">
                 <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr button-font-tab" data-bs-toggle="modal"
                     data-bs-target="#registerModal">
-                    {{ __('messages.get') }} {{ __('messages.started') }}<i class="fa-solid fa-arrow-right"></i>
+                    {{ __('messages.get_started') }} <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
         @endif
@@ -335,7 +335,7 @@
                 <div class="col-md-2 text-end" id="getStartedButtonMobile">
                     <a href="#" class="btn rounded-pill px-2 py-1 text-white btn-orange-clr"
                         data-bs-toggle="modal" data-bs-target="#registerModal"
-                        style="font-size: 10px;">{{ __('messages.get') }} {{ __('messages.started') }} </a>
+                        style="font-size: 10px;">{{ __('messages.get_started') }} </a>
                 </div>
             @endif
 
@@ -464,11 +464,11 @@
 <!-- Hero Section Start -->
 @if (request()->is('/'))
     <div class="hero-section text-center text-white">
-        <h1 class="display-5 fw-bold">
-            <span class="custom-bg-warning">{{ __('messages.rent') }}</span> {{ __('messages.a_vehicle') }},
-            {{ __('messages.anytime') }},
+        <h1 class="display-6 fw-bold">
+            <span class="custom-bg-warning">{{ __('messages.rent') }}</span> {{ __('messages.vehicle_anytime_anywhere') }}
+            
         </h1>
-        <h1 class="display-5 fw-bold">{{ __('messages.anywhere') }}</h1>
+        {{-- <h1 class="display-5 fw-bold">{{ __('messages.anywhere') }}</h1> --}}
         {{-- <select id="locationDropdown" name="location_id" class="form-select"
             data-url="{{ route('car.locations') }}">
             <option disabled selected>{{ __('messages.select_location') }}</option>
@@ -482,7 +482,7 @@
                         <div class="col-md-6 col-12 position-relative">
                             <input type="text" id="area_name" name="area_name" class="form-control time-input pickup-time"
 
-                                placeholder="{{ __('messages.select') }} {{ __('messages.location') }} " autocomplete="off">
+                                placeholder="{{ __('messages.select_location') }}" autocomplete="off">
 
                             <ul id="locationSuggestions" class="list-group position-absolute w-100"
                                 style="z-index: 1000;"></ul>
@@ -508,7 +508,7 @@
                         </div>
                         <div class="col-md-3 col-6">
                             <select id="priceDropdown" name="Rent" class="form-select">
-                                <option disabled selected>{{ __('messages.rent') }}</option>
+                                <option disabled selected>{{ __('messages.rent_search') }}</option>
                                 <option value="0-500">0 - 500</option>
                                 <option value="501-1000">501 - 1000</option>
                                 <option value="1001-1500">1001 - 1500</option>
