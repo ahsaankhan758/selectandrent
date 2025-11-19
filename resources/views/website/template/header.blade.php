@@ -222,7 +222,6 @@
                                 <span> {{ __('messages.dashboard') }} </span>
                             </a>
 
-
                             <!-- item-->
                             <a href="{{ route('website.edit_profile', Auth::id()) }}"
                                 class="dropdown-item notify-item">
@@ -282,7 +281,6 @@
                         width="100">
                 </a>
             </div>
-
 
             @if (Auth::check() && Auth::user()->role == 'user')
                 <div class="col-md-2 text-end">
@@ -590,11 +588,11 @@
                     }
                 </style>
                 <h2 class="fw-bold">{{ __('messages.contact_us') }}</h2>
+                <p>{{__('messages.contact_text')}}</p>
             @elseif(request()->is('register-car-rental'))
                 <h2 class="fw-bold">{{ __('messages.company_register') }}</h2>
             @endif
         </div>
-        <!-- Background Curve -->
         <div class="curve-bg"></div>
     </section>
 @endif
