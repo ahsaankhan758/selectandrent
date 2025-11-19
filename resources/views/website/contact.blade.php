@@ -17,7 +17,7 @@
         }
 
         .masked-text {
-            font-size: 64px;
+            font-size: 50px;
             font-weight: 700;
             text-transform: uppercase;
             background: url('{{ asset('frontend-assets/icons/getintouch.png') }}') no-repeat;
@@ -43,7 +43,7 @@
                             <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="Phone Icon">
                             <div>
                                 <h6>{{ __('messages.phone') }}</h6>
-                                <div class="fw-bold">0300-XXXXX90</div>
+                                <div class="fw-bold">+44 xxxx xxxxxx</div>
                             </div>
                         </li>
                         <li>
@@ -63,7 +63,7 @@
                     </ul>
 
                     <p class="custom-follow-us">{{ __('messages.follow_us') }}</p>
-                    <div class="custom-social-icons">
+                    {{-- <div class="custom-social-icons mt-3">
                         <a href="#"><img src="{{ asset('/') }}frontend-assets/icons/socials(3).png"
                                 alt=""></a>
                         <a href="#"><img src="{{ asset('/') }}frontend-assets/icons/socials.png"
@@ -72,7 +72,13 @@
                                 alt=""></a>
                         <a href="#"><img src="{{ asset('/') }}frontend-assets/icons/socials(2).png"
                                 alt=""></a>
-                    </div>
+                    </div> --}}
+                     <div class="social-icons-footer mt-4">
+                          <a href="#" class="icon-contact"><i class="fab fa-facebook-f"></i></a>
+                          <a href="#" class="icon-contact"><i class="fab fa-twitter"></i></a>
+                          <a href="#" class="icon-contact"><i class="fab fa-youtube"></i></a>
+                          <a href="#" class="icon-contact"><i class="fab fa-instagram"></i></a>
+                      </div>
                 </div>
                 <!-- Right Side: Contact Form -->
                 <div class="col-lg-7 col-md-7">
@@ -151,31 +157,31 @@
                         <!-- Name -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.first_name') }}</label>
-                            <input type="text" name="first_name" class="form-control form-control-border">
+                            <input type="text" name="first_name" class="form-control form-control-border" placeholder="{{ __('messages.first_name') }}">
                         </div>
 
-                        <!-- Name -->
+                        <!-- Last Name -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.last_name') }}</label>
-                            <input type="text" name="last_name" class="form-control form-control-border">
+                            <input type="text" name="last_name" class="form-control form-control-border" placeholder="{{ __('messages.last_name') }}">
                         </div>
 
                         <!-- Email -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.email_address') }}</label>
-                            <input type="email" name="email" class="form-control form-control-border" >
+                            <input type="email" name="email" class="form-control form-control-border" placeholder="{{ __('messages.email') }}">
                         </div>
 
                         <!-- Phone Number -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.phone_number') }}</label>
-                            <input type="tel"  name="phone" class="form-control form-control-border">
+                            <input type="tel"  name="phone" class="form-control form-control-border" placeholder="{{ __('messages.phone') }}">
                         </div>
 
                         <!-- Message -->
                         <div class="col-12">
                             <label class="form-label">{{ __('messages.message') }}</label>
-                            <textarea class="form-control form-control-border" name="message" rows="2" ></textarea>
+                            <textarea class="form-control form-control-border" name="message" placeholder="{{ __('messages.messages') }}" rows="3" ></textarea>
                         </div>
 
                         <!-- Submit Button -->

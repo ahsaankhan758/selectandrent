@@ -225,6 +225,7 @@
         'type' => 'Type',
         'add' => 'Ajouter',
         'contact' => 'Contact',
+        'contact_text' => 'Service client rapide et convivial',
         'number' => 'Numéro',
         'rental' => 'Location',
         'duration' => 'Durée',
