@@ -222,6 +222,7 @@
       'type' => 'Type',
       'add' => 'Add',
       'contact' => 'Contact',
+      'contact_text' => 'Quick & Friendly Customer Support',
       'number' => 'Number',
       'rental' => 'Rental',
       'duration' => 'Duration',

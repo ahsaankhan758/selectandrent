@@ -25,7 +25,7 @@
                     <div class="col-md-2">
                         <img src="{{ asset('/') }}frontend-assets/icons/call 1.png" class="mb-2 icons-inner-footer"
                             alt="call">
-                        <p class="mb-0 text-inner-footer">0 (550) 680-34-12</p>
+                        <p class="mb-0 text-inner-footer">+44 xxxx xxxxxx</p>
                         <small class="text-inner-footer">{{ __('messages.round_the_clock') }}</small>
                     </div>
                     <div class="col-md-1 d-none d-md-block border-custom"></div>
@@ -64,7 +64,7 @@
 
               <div class="d-flex justify-content-center text-white flex-wrap">
                   <div class="text-center">
-                      <a href="tel:0123456789" class="contact-btn"><i class="fas fa-phone"></i> 0300-XXXXX90</a>
+                      <a href="tel:0123456789" class="contact-btn"><i class="fas fa-phone"></i> +44 xxxx xxxxxx</a>
                       <p><i class="fas fa-phone"></i> {{ __('messages.24/7_service') }}</p>
                   </div>
                   <div class="text-center">
