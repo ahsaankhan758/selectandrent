@@ -485,6 +485,142 @@
             </div>
         </div>
     </div>
+    {{-- end chose section --}}
+
+       <!-- testimonals -->
+    <div class="container py-5">
+        <h3 class="fw-bold text-center">{{ __('messages.customer_reviews') }}</h3>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="p-4">
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
+                                    <strong class="testimonial-text">“Smooth, Simple, and Profitable”</strong>
+                                    <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and
+                                        within the first week, I had bookings lined up. The platform is user-friendly, and
+                                        the team helped me set everything up. I now earn passive income without worrying
+                                        about management.”</p>
+                                    <h class="testimonial-text">– Sarah M., Small Business Owner</h>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative text-center">
+                            <div class="testimonial-bg"></div>
+                            <img src="{{ asset('/') }}frontend-assets/icons/customer1.png"
+                                class="testimonial-img img-fluid" alt="Customer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="p-4">
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
+                                    <strong class="testimonial-text">“Great Support, Every Step of the Way”</strong>
+                                    <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team
+                                        walked me through the process. They handled the insurance and gave me full control
+                                        over my rental schedule. It’s a win-win!”</p>
+                                    <h6 class="testimonial-text">– Jason T., Independent Car Owner</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative text-center">
+                            <div class="testimonial-bg"></div>
+                            <img src="{{ asset('/') }}frontend-assets/icons/customer2.png"
+                                class="testimonial-img img-fluid" alt="Customer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="p-4">
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
+                                    <strong class="testimonial-text">“Reliable Income Stream”</strong>
+                                    <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most
+                                        of my car when I wasn’t using it. Select and Rent helped me earn extra income during
+                                        my off-hours. It's flexible, safe, and efficient.”</p>
+                                    <h6 class="testimonial-text">– Ayesha R., Ride-Share Driver</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative mt-3 text-center">
+                            <div class="testimonial-bg"></div>
+                            <img src="{{ asset('/') }}frontend-assets/icons/customer4.png"
+                                class="testimonial-img img-fluid" alt="Customer">
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="carousel-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="p-4">
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
+                                    <strong class="testimonial-text">“Fleet Management Made Easy”</strong>
+                                    <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with
+                                        Select and Rent, I can monitor everything from a single dashboard. Their pricing
+                                        tools and calendar features are especially helpful.”</p>
+                                    <h6 class="testimonial-text">– Luis D., Rental Fleet Manager</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative text-center">
+                            <div class="testimonial-bg"></div>
+                            <img src="{{ asset('/') }}frontend-assets/icons/customer3.png"
+                                class="testimonial-img img-fluid" alt="Customer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="carousel-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="p-4">
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
+                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
+                                    <strong class="testimonial-text">“Hassle-Free Experience”</strong>
+                                    <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment,
+                                        the process was seamless. The renters were verified, the car was returned in perfect
+                                        condition, and the payout was on time.”</p>
+                                    <h6 class="testimonial-text">– Michelle K., First-Time Host</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative text-center">
+                            <div class="testimonial-bg"></div>
+                            <img src="{{ asset('/') }}frontend-assets/icons/customer5.png"
+                                class="testimonial-img img-fluid" alt="Customer">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Carousel Controls -->
+        <div class="d-flex justify-content-center mt-3">
+            <a class="carousel-control-prev-custom me-3" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <a class="carousel-control-next-custom" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- end testimonials -->
 
     <!-- Accordion Section -->
     <section class="container-fluid py-5">
