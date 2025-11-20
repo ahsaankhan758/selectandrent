@@ -7,6 +7,8 @@
     --scroll-back:#A1A9AD;
     --text-grey:#000000;
     --text-orange:#f06115;
+    --text-hover-orange:#d6520f;
+    /* --text-hover-orange:#ff732c; */
     --text-blue:#07407B;
     
 }
@@ -14,7 +16,7 @@
 
 .btn-orange-clr{
     background-color: var(--text-orange);
-    --bs-btn-hover-bg: var(--text-orange);
+    --bs-btn-hover-bg: var(--text-hover-orange);
   }
 
   .btn-dark-blue-clr{
