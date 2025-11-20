@@ -56,29 +56,6 @@
 
 <!-- Include Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var swiper = new Swiper(".mySwiper", {
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: ".carousel-control-next-custom",
-      prevEl: ".carousel-control-prev-custom",
-    },
-    slidesPerView: 3,       // fixed slides per view
-    spaceBetween: 15,       // kam space
-    centeredSlides: false,  // ensure not centered
-
-    breakpoints: {
-      320: { slidesPerView: 1, spaceBetween: 5 },
-      768: { slidesPerView: 2, spaceBetween: 10 },
-      1024: { slidesPerView: 3, spaceBetween: 15 },
-    },
-  });
-});
-</script>
+<!-- Swiper initialization is now handled individually in each page that uses it -->
 </body>
 </html>
