@@ -273,15 +273,118 @@ color: var(--black-color);
     padding: 10px;
 }
 
-/* Desktop Card Size*/
+/* Swiper container fixes to hide partial slides */
+.swiper {
+    overflow: hidden !important;
+    padding: 0;
+    width: 100%;
+    position: relative;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+    transition-property: transform;
+}
+
+.swiper-slide {
+    display: flex;
+    height: auto;
+    box-sizing: border-box;
+    width: auto;
+}
+
+/* Swiper container wrapper to hide partial slides */
+.swiper-container-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container padding to hide partial slides - ensure no overflow visible */
+.container .swiper {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden !important;
+    position: relative;
+    width: 100%;
+}
+
+.container.py-5 {
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.container.py-5 .swiper-container-wrapper {
+    overflow: hidden !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container.py-5 .swiper {
+    overflow: hidden !important;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container.py-5 .swiper-wrapper {
+    overflow: visible;
+}
+
+/* Ensure swiper slides don't show partial cards */
+.swiper-slide {
+    flex-shrink: 0;
+    width: auto;
+}
+
+/* Desktop Card Size - Fixed width to prevent partial slides */
 @media (min-width: 1024px) {
   .swiper-slide {
-    width: 100% !important;
-    max-width: 350px; 
+    width: calc((100% - 30px) / 3) !important;
+    max-width: none;
+    flex-shrink: 0;
+  }
+  
+  .swiper {
+    width: 100%;
+    overflow: hidden !important;
+  }
+  
+  .container.py-5 {
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .swiper-slide {
+    width: calc((100% - 20px) / 3) !important;
+    flex-shrink: 0;
+  }
+  
+  .swiper {
+    width: 100%;
+    overflow: hidden !important;
+  }
+  
+  .container.py-5 {
+    overflow: hidden;
   }
 }
 .carousel-control-prev-custom,
-.carousel-control-next-custom {
+.carousel-control-next-custom,
+.carousel-control-prev-featured,
+.carousel-control-next-featured,
+.carousel-control-prev-newarrival,
+.carousel-control-next-newarrival,
+.carousel-control-prev-choosevehicle,
+.carousel-control-next-choosevehicle {
     cursor: pointer;
 }
 
@@ -301,6 +404,58 @@ color: var(--black-color);
 
 .card-content {
 padding: 1rem;
+}
+
+/* Fix for deposit section to prevent text wrapping and maintain consistent card heights */
+.card-content .flex-fill {
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0 4px;
+  overflow: visible;
+}
+
+.card-content .flex-fill p {
+  white-space: nowrap;
+  overflow: visible;
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  word-break: keep-all;
+  display: block;
+  width: auto;
+  min-width: fit-content;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.card-content .flex-fill h6 {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Ensure the three-column layout maintains equal heights */
+.card-content .d-flex.justify-content-between.w-100 {
+  align-items: flex-start;
+  min-height: 60px;
+  overflow: visible;
+}
+
+/* Specific fix for deposit amount - ensure currency symbol and price stay together and fully visible */
+.card-content .flex-fill p {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  max-width: 100%;
 }
 
 .card-title {

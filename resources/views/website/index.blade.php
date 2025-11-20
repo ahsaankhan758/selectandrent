@@ -147,8 +147,9 @@
         </section>
         <!--featured cars view -->
         <div class="container py-5">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
+            <div class="swiper-container-wrapper">
+                <div class="swiper featuredSwiper">
+                    <div class="swiper-wrapper">
                     @forelse($featuredVehicle as $car)
                         <div class="swiper-slide mb-2">
                             <div class="custom-card2">
@@ -245,17 +246,18 @@
                             <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
                         </tr>
                     @endforelse
+                    </div>
                 </div>
-            </div>
 
-            <!-- Swiper Navigation -->
-            <div class="d-flex justify-content-center mt-3">
-                <a class="carousel-control-prev-custom me-3">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </a>
-                <a class="carousel-control-next-custom">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <!-- Swiper Navigation -->
+                <div class="d-flex justify-content-center mt-3">
+                    <a class="carousel-control-prev-featured me-3">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                    <a class="carousel-control-next-featured">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
     @endif
@@ -278,8 +280,9 @@
     </section>
     <!-- cars view -->
     <div class="container py-5">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
+        <div class="swiper-container-wrapper">
+            <div class="swiper newArrivalSwiper">
+                <div class="swiper-wrapper">
                 @forelse ($newArrival as $car)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
@@ -379,17 +382,18 @@
                         <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
                     </tr>
                 @endforelse
+                </div>
             </div>
-        </div>
 
-        <!-- Swiper Navigation -->
-        <div class="d-flex justify-content-center mt-5">
-            <a class="carousel-control-prev-custom me-3">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
-            <a class="carousel-control-next-custom">
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <!-- Swiper Navigation -->
+            <div class="d-flex justify-content-center mt-5">
+                <a class="carousel-control-prev-newarrival me-3">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control-next-newarrival">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -604,8 +608,9 @@
 
     <!-- cars view -->
     <div class="container py-5">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
+        <div class="swiper-container-wrapper">
+            <div class="swiper chooseVehicleSwiper">
+                <div class="swiper-wrapper">
                 @forelse ($cars as $car)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
@@ -702,17 +707,18 @@
                         <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
                     </tr>
                 @endforelse
+                </div>
             </div>
-        </div>
 
-        <!-- Swiper Navigation -->
-        <div class="d-flex justify-content-center mt-5">
-            <a class="carousel-control-prev-custom me-3">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
-            <a class="carousel-control-next-custom">
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <!-- Swiper Navigation -->
+            <div class="d-flex justify-content-center mt-5">
+                <a class="carousel-control-prev-choosevehicle me-3">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control-next-choosevehicle">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -965,35 +971,98 @@
         </div>
     </section>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Swiper JS - Individual Initialization for Each Swiper -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var swiper = new Swiper(".mySwiper", {
+            // Featured Vehicles Swiper
+            var featuredSwiper = new Swiper(".featuredSwiper", {
                 loop: true,
                 slidesPerView: 3,
                 spaceBetween: 10,
+                centeredSlides: false,
+                watchOverflow: true,
                 autoplay: {
                     delay: 3000,
                     disableOnInteraction: false
                 },
                 navigation: {
-                    nextEl: ".carousel-control-next-custom",
-                    prevEl: ".carousel-control-prev-custom",
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
+                    nextEl: ".carousel-control-next-featured",
+                    prevEl: ".carousel-control-prev-featured",
                 },
                 breakpoints: {
                     320: {
-                        slidesPerView: 1
+                        slidesPerView: 1,
+                        spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3
+                        slidesPerView: 3,
+                        spaceBetween: 10
                     },
                     1024: {
-                        slidesPerView: 4
+                        slidesPerView: 3,
+                        spaceBetween: 15
+                    }
+                }
+            });
+
+            // New Arrival Swiper
+            var newArrivalSwiper = new Swiper(".newArrivalSwiper", {
+                loop: true,
+                slidesPerView: 3,
+                spaceBetween: 10,
+                centeredSlides: false,
+                watchOverflow: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                },
+                navigation: {
+                    nextEl: ".carousel-control-next-newarrival",
+                    prevEl: ".carousel-control-prev-newarrival",
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 5
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 10
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 15
+                    }
+                }
+            });
+
+            // Choose Vehicle Swiper
+            var chooseVehicleSwiper = new Swiper(".chooseVehicleSwiper", {
+                loop: true,
+                slidesPerView: 3,
+                spaceBetween: 10,
+                centeredSlides: false,
+                watchOverflow: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                },
+                navigation: {
+                    nextEl: ".carousel-control-next-choosevehicle",
+                    prevEl: ".carousel-control-prev-choosevehicle",
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 5
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 10
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 15
                     }
                 }
             });
