@@ -4323,3 +4323,31 @@ margin: 5px 0;
 .display-6 {
         font-size: 2rem !important;
     }
+
+/* Added by AJ 20/11/25 */
+.footer-vehicle-type{
+  margin-left: 90px;
+}
+
+.footer-quick-links{
+  margin-left: 120px;
+}
+
+@media (max-width: 425px) {
+    .footer-vehicle-type{
+      margin-left: 0px;
+    }
+
+    .footer-quick-links{
+      margin-left: 0px;
+    }
+}
+@media (max-width: 768px) {
+    .footer-vehicle-type{
+      margin-left: 10px;
+    }
+
+    .footer-quick-links{
+      margin-left: 20px;
+    }
+}

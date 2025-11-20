@@ -1,6 +1,8 @@
 <?php
 
     return [
+        'customer_reviews' => 'Commentaires des clients',
+        'select_a_category' => 'Sélectionnez une catégorie',
         'become_partner' => 'Partenaire',
         'rent_search' => 'Louer',
         'vehicle_anytime_anywhere'=>"véhicule à tout moment, n'importe où",
@@ -349,7 +351,7 @@
         'leverage_innovation' => 'Exploitez l’innovation pour simplifier les locations avec des contrats numériques, la disponibilité en temps réel et des paiements sécurisés',
         'get_started' => 'Commencer',
         'our_commitment' => 'Notre engagement',
-        'our_promise' => 'Notre promesse : excellence et confiance à chaque voyage',
+        'our_promise' => 'Excellence et confiance à chaque voyage',
         'at_selectandrent' => 'Chez SelectandRent, nous nous engageons à créer une expérience de location aussi fluide, fiable et transparente que possible',
         "whether_you're_renting" => "Que vous louiez pour affaires, loisirs ou des moments spéciaux, nous sommes là pour rendre chaque étape simple et agréable",
         'dedicated_to_excellence' => 'Dédié à l’excellence, guidé par la confiance',
