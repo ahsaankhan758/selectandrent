@@ -250,14 +250,22 @@
                 </div>
 
                 <!-- Swiper Navigation -->
-                <div class="d-flex justify-content-center mt-3">
+                {{-- <div class="d-flex justify-content-center mt-3">
                     <a class="carousel-control-prev-featured me-3">
                         <i class="fa-solid fa-arrow-left"></i>
                     </a>
                     <a class="carousel-control-next-featured">
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                </div>
+                </div> --}}
+                <div class="d-flex justify-content-center mt-3">
+                <a class="carousel-control-prev-custom me-3">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control-next-custom">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
             </div>
         </div>
     @endif

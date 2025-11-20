@@ -1187,7 +1187,13 @@ margin: 5px 0;
 }
 
 .carousel-control-prev-custom,
-.carousel-control-next-custom {
+.carousel-control-next-custom,
+.carousel-control-prev-featured,
+.carousel-control-next-featured,
+.carousel-control-prev-newarrival,
+.carousel-control-next-newarrival,
+.carousel-control-prev-choosevehicle,
+.carousel-control-next-choosevehicle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1201,17 +1207,36 @@ margin: 5px 0;
     transition: all 0.3s ease-in-out;
 }
 
+.carousel-control-prev-featured i,
+.carousel-control-next-featured i,
+.carousel-control-prev-newarrival i,
+.carousel-control-next-newarrival i,
+.carousel-control-prev-choosevehicle i,
+.carousel-control-next-choosevehicle i,
 .carousel-control-prev-custom i,
 .carousel-control-next-custom i {
     color: #333; 
     transition: all 0.3s ease-in-out;
 }
 
+.carousel-control-prev-featured:hover,
+.carousel-control-next-featured:hover,
+.carousel-control-prev-newarrival:hover,
+.carousel-control-next-newarrival:hover,
+.carousel-control-prev-choosevehicle:hover,
+.carousel-control-next-choosevehicle:hover,
 .carousel-control-prev-custom:hover,
 .carousel-control-next-custom:hover {
     background-color: #333;
 }
 
+
+.carousel-control-prev-featured:hover i,
+.carousel-control-next-featured:hover i,
+.carousel-control-prev-newarrival:hover i,
+.carousel-control-next-newarrival:hover i,
+.carousel-control-prev-choosevehicle:hover i,
+.carousel-control-next-choosevehicle:hover i,
 .carousel-control-prev-custom:hover i,
 .carousel-control-next-custom:hover i {
     color: #fff; 
