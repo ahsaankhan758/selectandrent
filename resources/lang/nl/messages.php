@@ -746,7 +746,7 @@
         'commissiondashboard' => 'Commissie',
         'total_booking' => 'Totaal aantal boekingen',
         'currently_booked' => 'Momenteel Geboekt',
-        'our_cutting-edge' => 'Met onze Selecteer en Huur-service kunt u eenvoudig auto’s bekijken, vergelijken en huren die zijn afgestemd op uw reis- of zakelijke behoeften — allemaal met slechts een paar klikken.',
+        'our_cutting-edge' => 'Met onze Selecteer en Huur-service kunt je eenvoudig auto’s bekijken, vergelijken en huren die zijn afgestemd op uw reis- of zakelijke behoeften — allemaal met slechts een paar klikken.',
         'Faq1' => 'Wat heb ik nodig om een auto te huren?',
         'Faq1_answer' => 'Om een auto te huren, heeft u een geldig rijbewijs, een creditcard of betaalpas, en een identiteitsbewijs nodig. Internationale huurders hebben mogelijk ook een paspoort en een internationaal rijbewijs nodig.',
         'Faq2' => 'Welke betaalmethoden accepteren jullie?',
