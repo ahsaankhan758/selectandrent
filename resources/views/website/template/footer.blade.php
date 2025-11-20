@@ -60,7 +60,7 @@
       <div class="container">
           <div class="contact-section">
               <h2 class="ready-start">{{ __('messages.ready_to_start_this') }}?</h2>
-              <p>{{ __("messages.it's_easy") }}!</p>
+              <p>{{ __("messages.it's_easy") }}</p>
 
               <div class="d-flex justify-content-center text-white flex-wrap">
                   <div class="text-center">
@@ -77,26 +77,27 @@
           </div>
       </div>
       <div class="footer-container text-white">
-          <div class="container">
-              <div class="row">
+          <div class="container mt-3">
+              <div class="row align-items-stretch">
                   <div class="col-md-6 col-12 text-start">
                       <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
-                          width="120px" height="120px">
-                      <p>{{ __('messages.whether_you_need') }}.
+                          width="120px" height="120px" class="ms-5">
+                      <p class="ms-5">{{ __('messages.whether_you_need') }}.
                       </p>
-                      <div class="social-icons-footer mt-2 mb-5">
+                      <div class="social-icons-footer mt-5 mb-5 ms-5">
                           <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
                           <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
                           <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
                       </div>
                   </div>
+                  
                   <div class="col-md-3 col-6">
-                      <h5>{{ __('messages.quick_links') }}</h5>
-                      <div class="d-flex gap-2">
+                      <h5 class="footer-quick-links">{{ __('messages.quick_links') }}</h5>
+                      <div class="d-flex gap-2 footer-quick-links">
                           <hr class="hr-yellow">
                           <hr class="hr-white">
                       </div>
-                      <ul class="list-unstyled footer-links">
+                      <ul class="list-unstyled footer-links footer-quick-links">
                           {{-- <li><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li> --}}
                           <li><a href="{{ url('/about-us') }}">{{ __('messages.about') }}</a></li>
                           <li><a href="{{ url('/carlisting') }}">{{ __('messages.vehicles') }}</a></li>
@@ -107,13 +108,14 @@
                           <li><a href="{{ url('/privacy-policy') }}">{{ __('messages.privacy') }}</a></li>
                       </ul>
                   </div>
+                  
                   <div class="col-md-3 col-6">
-                      <h5>{{ __('messages.vehicle') }} {{ __('messages.type') }} </h5>
-                      <div class="d-flex gap-2">
+                      <h5 class="footer-vehicle-type">{{ __('messages.vehicle_type') }}</h5>
+                      <div class="d-flex gap-2 footer-vehicle-type">
                           <hr class="hr-yellow">
                           <hr class="hr-white">
                       </div>
-                      <ul class="list-unstyled footer-links">
+                      <ul class="list-unstyled footer-links footer-vehicle-type">
                           <li><a href="#">{{ __('messages.sedan') }}</a></li>
                           <li><a href="#">{{ __('messages.hatchback') }}</a></li>
                           <li><a href="#">{{ __('messages.suv') }}</a></li>
@@ -124,7 +126,6 @@
                           <li><a href="#">{{ __('messages.station_wagon') }}</a></li>
                       </ul>
                   </div>
-                  
               </div>
               <div class="footer-bottom py-3">
                 ©<?= date('Y') ?> Select And Rent. {{ __('messages.all_right_reserved') }}

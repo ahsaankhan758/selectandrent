@@ -1,5 +1,6 @@
 <?php
     return [
+      'customer_reviews' => 'Customer Reviews',
       'become_partner' => 'Partner',
       'rent_search' => 'Rent',
       'select_location' => 'Select Location',
@@ -324,7 +325,7 @@
       'subscribe' => 'Subscribe',
       'ready_to_start_this' => 'Ready to Start This',
       "it's_easy" => "It's easy to get in contact with us. Either call or write",
-      '24/7_service' => '24/7 service',
+      '24/7_service' => '24/7 Service',
       'monday_saturday' => 'Monday-Saturday: 10am-6pm',
       'sunday' => 'Closed Sunday',
       'quick_links' => 'Quick Links',
@@ -347,7 +348,7 @@
       'leverage_innovation' => 'Leverage innovation to simplify rentals with digital contracts, real-time availability, and secure payments',
       'get_started' => 'Get Started',
       'our_commitment' => 'Our Commitment',
-      'our_promise' => 'Our Promise to You: Excellence and Trust in Every Journey',
+      'our_promise' => 'Excellence and Trust in Every Journey',
 
       'at_selectandrent' => 'From the moment you land on our platform to the moment you return your rental, our team is committed to transparency, reliability, and top-notch service.',
 
