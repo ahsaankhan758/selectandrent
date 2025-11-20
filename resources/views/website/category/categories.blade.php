@@ -55,8 +55,8 @@
         <p class="text-center work-subtitle">{{ __('messages.booking_an_economical') }}</p>
         <div class="steps">
             <div class="step-item reverse">
-                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
-                        alt="Step Icon"></div>
+                {{-- <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
+                        alt="Step Icon"></div> --}}
                 <div class="step-content">
                     <h4>{{ __('messages.browse') }}</h4>
                     <p>{{ __('messages.explore_our_selection') }}</p>
@@ -64,16 +64,16 @@
             </div>
 
             <div class="step-item ">
-                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
-                        alt="Step Icon"></div>
+                {{-- <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
+                        alt="Step Icon"></div> --}}
                 <div class="step-content">
                     <h4>{{ __('messages.filter_&_select') }}</h4>
                     <p>{{ __('messages.use_our_filters') }}</p>
                 </div>
             </div>
             <div class="step-item reverse">
-                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
-                        alt="Step Icon"></div>
+                {{-- <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
+                        alt="Step Icon"></div> --}}
                 <div class="step-content">
                     <h4>{{ __('messages.Book') }}</h4>
                     <p>{{ __('messages.use_our_intuitive') }}.</p>
@@ -81,8 +81,8 @@
             </div>
 
             <div class="step-item">
-                <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
-                        alt="Step Icon"></div>
+                {{-- <div class="icon-wrap"><img src="{{ asset('/') }}frontend-assets/icons/work-handshake.png"
+                        alt="Step Icon"></div> --}}
                 <div class="step-content">
                     <h4>{{ __('messages.pick_up_drive') }}</h4>
                     <p>{{ __('messages.collect_your_vehicle') }}.</p>
@@ -142,7 +142,125 @@
     </div>
     <!-- end tip section -->
 
-    <!-- chose section -->
+        <!-- chose section -->
+    <div class="container chose-bg-img py-5">
+
+        <!-- Mobile Section -->
+        <div class="container mobile text-center py-2 d-block d-md-none">
+            <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+                {{ __('messages.the_best_experience') }}</h3>
+
+            <div class="mt-4">
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
+                    <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
+                    <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.valuable_insights') }}</h5>
+                    <p class="text-muted">{{ __('messages.access_personalized') }}</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.continuous_innovation') }}</h5>
+                    <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.instant_online') }}</h5>
+                    <p class="text-muted">{{ __('messages.quickly_assess') }}</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.tailored_search') }}</h5>
+                    <p class="text-muted">{{ __('messages.effortlessly_find') }}</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.customer_first_approach') }}</h5>
+                    <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop Section -->
+        <div class="container Desktop  text-center py-3 d-none d-md-block">
+            <h4 class="text-chose fw-bold mb-4">{{ __('messages.why_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+                {{ __('messages.the_best_experience') }}</h3>
+
+            <div class="row align-items-center mt-4">
+                <!-- Left Side (Icons Last) -->
+                <div class="col-lg-4 text-end mt-3">
+                    <div class="mb-4 d-flex align-items-center justify-content-end">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.flexible_payment_options') }}</h5>
+                            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
+                        </div>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
+                            alt="">
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-end">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.valuable_insights') }}</h5>
+                            <p class="text-muted">{{ __('messages.access_personalized') }}</p>
+                        </div>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
+                            alt="">
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-end">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.continuous_innovation') }}</h5>
+                            <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
+                        </div>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
+                            alt="">
+                    </div>
+                </div>
+
+                <!-- Center Image -->
+                <div class="col-lg-4 text-center">
+                    <img src="{{ asset('/') }}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
+                </div>
+
+                <!-- Right Side (Icons First) -->
+                <div class="col-lg-4 text-start">
+                    <div class="mb-4 d-flex align-items-center justify-content-start">
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed"
+                            alt="">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.instant_online') }}</h5>
+                            <p class="text-muted">{{ __('messages.quickly_assess') }}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-start">
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed"
+                            alt="">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.tailored_search') }}</h5>
+                            <p class="text-muted">{{ __('messages.effortlessly_find') }}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-start">
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed"
+                            alt="">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.customer_first_approach') }}</h5>
+                            <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <!-- chose section -->
     <div class="container-fluid chose-bg-img py-5">
 
         <!-- Mobile Section -->
@@ -257,8 +375,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- tab -->
+          <!-- tab -->
     <div class="container tab text-center py-5 d-none d-sm-block d-md-none">
         <h4 class="text-warning fw-bold">{{ __('messages.why_choose_us') }}</h4>
         <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br> {{ __('messages.the_best_experience') }}</h3>
@@ -325,9 +442,140 @@
             </div>
         </div>
     </div>
+    </div> --}}
+  
     <!--Choose Section End-->
+
+     <!-- Accordion Section -->
+    <section class="container-fluid py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Left Side Text (4 columns) -->
+                <div class="col-md-4 accordion-text">
+                    <h4 class="fw-bold new-design">{{ __('messages.any_questions') }}?</h4>
+                    <h4 class="fw-bold new-design">{{ __('messages.we_got_you') }}</h4>
+                    <p class="text-muted questions">
+                        {{ __('messages.our_cutting-edge') }}
+                    </p>
+                </div>
+
+                <!-- Middle Accordion (3 items) -->
+                <div class="col-md-4">
+                    <div class="accordion" id="faqAccordion1">
+                        <!-- First Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h4 class="accordion-header" id="headingOne1">
+                                <button class="accordion-button fw-bold shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false"
+                                    aria-controls="collapseOne1">
+                                    {{ __('messages.Faq1') }}
+                                </button>
+                            </h4>
+                            <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1"
+                                data-bs-parent="#faqAccordion1">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq1_answer') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h4 class="accordion-header" id="headingTwo1">
+                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="false"
+                                    aria-controls="collapseTwo1">
+                                    {{ __('messages.Faq2') }}
+                                </button>
+                            </h4>
+                            <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
+                                data-bs-parent="#faqAccordion1">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq2_answer') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Third Item -->
+                        <div class="accordion-item border-0 border-bottom">
+                            <h4 class="accordion-header" id="headingThree1">
+                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false"
+                                    aria-controls="collapseThree1">
+                                    {{ __('messages.Faq3') }}
+                                </button>
+                            </h4>
+                            <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1"
+                                data-bs-parent="#faqAccordion1">
+                                <div class="accordion-body text-muted">
+                                    {{ __('messages.Faq3_answer') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                <div class="accordion" id="faqAccordion2">
+
+                    <!-- Fourth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingFour">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                                aria-controls="collapseFour">
+                                {{ __('messages.Faq4') }}
+                            </button>
+                        </h4>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq4_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fifth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingFive">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                                aria-controls="collapseFive">
+                                {{ __('messages.Faq5') }}
+                            </button>
+                        </h4>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq5_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sixth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingSix">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
+                                aria-controls="collapseSix">
+                                {{ __('messages.Faq6') }}
+                            </button>
+                        </h4>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq6_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
     <!-- Accordion Section -->
-<section class="container-fluid py-5">
+{{-- <section class="container-fluid py-5">
     <div class="container">
         <div class="row">
             <!-- Left Side Text (4 columns) -->
@@ -452,7 +700,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
     <!-- end accordian -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

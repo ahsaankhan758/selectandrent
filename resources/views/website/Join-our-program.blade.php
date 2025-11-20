@@ -283,7 +283,7 @@
                 </div>
             </div>
         </div>
-        <div class=" text-center">
+        <div class=" text-center mt-5">
             <button class="btn btn-orange-clr rounded-pill text-white" data-bs-toggle="modal"
                 data-bs-target="#carRentalModal">
                 {{ __('messages.fill_the_registration') }}
@@ -367,162 +367,135 @@
     </div>
 </div> --}}
     <!-- end price -->
-    <!-- testimonals -->
-    <div class="container py-5">
-        {{-- <h2 class="text-center fw-bold">{{ __('messages.testimonials') }}</h2> --}}
-        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+      <!-- chose section -->
+    <div class="container chose-bg-img py-5">
 
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★1</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Smooth, Simple, and Profitable”</h4>
-                                    <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and
-                                        within the first week, I had bookings lined up. The platform is user-friendly, and
-                                        the team helped me set everything up. I now earn passive income without worrying
-                                        about management.”</p>
-                                    <strong class="testimonial-text">– Sarah M., Small Business Owner</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative text-center">
-                            <div class="testimonial-bg"></div>
-                            <img src="{{ asset('/') }}frontend-assets/icons/customer1.png"
-                                class="testimonial-img img-fluid" alt="Customer">
-                        </div>
-                    </div>
-                </div>
+        <!-- Mobile Section -->
+        <div class="container mobile text-center py-2 d-block d-md-none">
+            <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+                {{ __('messages.the_best_experience') }}</h3>
 
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★2</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Great Support, Every Step of the Way”</h4>
-                                    <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team
-                                        walked me through the process. They handled the insurance and gave me full control
-                                        over my rental schedule. It’s a win-win!”</p>
-                                    <strong class="testimonial-text">– Jason T., Independent Car Owner</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative text-center">
-                            <div class="testimonial-bg"></div>
-                            <img src="{{ asset('/') }}frontend-assets/icons/customer2.png"
-                                class="testimonial-img img-fluid" alt="Customer">
-                        </div>
-                    </div>
+            <div class="mt-4">
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
+                    <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
+                    <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
                 </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★3</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Reliable Income Stream”</h4>
-                                    <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most
-                                        of my car when I wasn’t using it. Select and Rent helped me earn extra income during
-                                        my off-hours. It's flexible, safe, and efficient.”</p>
-                                    <strong class="testimonial-text">– Ayesha R., Ride-Share Driver</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative mt-3 text-center">
-                            <div class="testimonial-bg"></div>
-                            <img src="{{ asset('/') }}frontend-assets/icons/customer4.png"
-                                class="testimonial-img img-fluid" alt="Customer">
-                        </div>
-                    </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.valuable_insights') }}</h5>
+                    <p class="text-muted">{{ __('messages.access_personalized') }}</p>
                 </div>
-                <!-- Slide 4 -->
-                <div class="carousel-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★4</span> <span class="text-primary">4.9</span> --}}
-                                    <h4 class="testimonial-text">“Fleet Management Made Easy”</h4>
-                                    <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with
-                                        Select and Rent, I can monitor everything from a single dashboard. Their pricing
-                                        tools and calendar features are especially helpful.”</p>
-                                    <strong class="testimonial-text">– Luis D., Rental Fleet Manager</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative text-center">
-                            <div class="testimonial-bg"></div>
-                            <img src="{{ asset('/') }}frontend-assets/icons/customer3.png"
-                                class="testimonial-img img-fluid" alt="Customer">
-                        </div>
-                    </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.continuous_innovation') }}</h5>
+                    <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
                 </div>
-
-                <!-- Slide 5 -->
-                <div class="carousel-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
-                                <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★5</span> <span class="text-primary">5.0</span> --}}
-                                    <h4 class="testimonial-text">“Hassle-Free Experience”</h4>
-                                    <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment,
-                                        the process was seamless. The renters were verified, the car was returned in perfect
-                                        condition, and the payout was on time.”</p>
-                                    <strong class="testimonial-text">– Michelle K., First-Time Host</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 position-relative text-center">
-                            <div class="testimonial-bg"></div>
-                            <img src="{{ asset('/') }}frontend-assets/icons/customer5.png"
-                                class="testimonial-img img-fluid" alt="Customer">
-                        </div>
-                    </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.instant_online') }}</h5>
+                    <p class="text-muted">{{ __('messages.quickly_assess') }}</p>
                 </div>
-
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.tailored_search') }}</h5>
+                    <p class="text-muted">{{ __('messages.effortlessly_find') }}</p>
+                </div>
+                <div class="mb-4">
+                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="img-fluid mb-2"
+                        alt="">
+                    <h5 class="fw-bold">{{ __('messages.customer_first_approach') }}</h5>
+                    <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
+                </div>
             </div>
         </div>
-        <!-- Carousel Controls -->
-        <div class="d-flex justify-content-center mt-5">
-            <a class="carousel-control-prev-custom me-3" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
-            <a class="carousel-control-next-custom" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
+
+        <!-- Desktop Section -->
+        <div class="container Desktop  text-center py-3 d-none d-md-block">
+            <h4 class="text-chose fw-bold mb-4">{{ __('messages.why_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+                {{ __('messages.the_best_experience') }}</h3>
+
+            <div class="row align-items-center mt-4">
+                <!-- Left Side (Icons Last) -->
+                <div class="col-lg-4 text-end mt-3">
+                    <div class="mb-4 d-flex align-items-center justify-content-end">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.flexible_payment_options') }}</h5>
+                            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
+                        </div>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
+                            alt="">
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-end">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.valuable_insights') }}</h5>
+                            <p class="text-muted">{{ __('messages.access_personalized') }}</p>
+                        </div>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="ms-3 img-fixed"
+                            alt="">
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-end">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.continuous_innovation') }}</h5>
+                            <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
+                        </div>
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
+                            alt="">
+                    </div>
+                </div>
+
+                <!-- Center Image -->
+                <div class="col-lg-4 text-center">
+                    <img src="{{ asset('/') }}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
+                </div>
+
+                <!-- Right Side (Icons First) -->
+                <div class="col-lg-4 text-start">
+                    <div class="mb-4 d-flex align-items-center justify-content-start">
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="me-3 img-fixed"
+                            alt="">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.instant_online') }}</h5>
+                            <p class="text-muted">{{ __('messages.quickly_assess') }}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-start">
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="me-3 img-fixed"
+                            alt="">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.tailored_search') }}</h5>
+                            <p class="text-muted">{{ __('messages.effortlessly_find') }}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex align-items-center justify-content-start">
+                        <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="me-3 img-fixed"
+                            alt="">
+                        <div>
+                            <h5 class="fw-bold mb-1">{{ __('messages.customer_first_approach') }}</h5>
+                            <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- end testimonials -->
-
     <!-- Accordion Section -->
-    <section class="container-fluid py-5 mb-5">
+    <section class="container-fluid py-5">
         <div class="container">
             <div class="row">
                 <!-- Left Side Text (4 columns) -->
                 <div class="col-md-4 accordion-text">
-                    <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
-                    <h2 class="fw-bold">{{ __('messages.we_got_you') }}.</h2>
+                    <h4 class="fw-bold new-design">{{ __('messages.any_questions') }}?</h4>
+                    <h4 class="fw-bold new-design">{{ __('messages.we_got_you') }}</h4>
                     <p class="text-muted questions">
-                        {{ __('messages.our_cutting-edge') }}.
+                        {{ __('messages.our_cutting-edge') }}
                     </p>
                 </div>
 
@@ -531,14 +504,14 @@
                     <div class="accordion" id="faqAccordion1">
                         <!-- First Item -->
                         <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingOne1">
+                            <h4 class="accordion-header" id="headingOne1">
                                 <button class="accordion-button fw-bold shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false"
                                     aria-controls="collapseOne1">
                                     {{ __('messages.Faq1') }}
                                 </button>
-                            </h2>
-                            <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1"
+                            </h4>
+                            <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1"
                                 data-bs-parent="#faqAccordion1">
                                 <div class="accordion-body text-muted">
                                     {{ __('messages.Faq1_answer') }}
@@ -548,13 +521,13 @@
 
                         <!-- Second Item -->
                         <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingTwo1">
+                            <h4 class="accordion-header" id="headingTwo1">
                                 <button class="accordion-button fw-bold collapsed shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="false"
                                     aria-controls="collapseTwo1">
                                     {{ __('messages.Faq2') }}
                                 </button>
-                            </h2>
+                            </h4>
                             <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
                                 data-bs-parent="#faqAccordion1">
                                 <div class="accordion-body text-muted">
@@ -565,13 +538,13 @@
 
                         <!-- Third Item -->
                         <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingThree1">
+                            <h4 class="accordion-header" id="headingThree1">
                                 <button class="accordion-button fw-bold collapsed shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false"
                                     aria-controls="collapseThree1">
                                     {{ __('messages.Faq3') }}
                                 </button>
-                            </h2>
+                            </h4>
                             <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1"
                                 data-bs-parent="#faqAccordion1">
                                 <div class="accordion-body text-muted">
@@ -582,63 +555,63 @@
                     </div>
                 </div>
 
-                <!-- Right Accordion (3 more items) -->
                 <div class="col-md-4">
-                    <div class="accordion" id="faqAccordion2">
-                        <!-- Fourth Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingFour">
-                                <button class="accordion-button fw-bold shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true"
-                                    aria-controls="collapseFour">
-                                    {{ __('messages.Faq4') }}
-                                </button>
-                            </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
-                                data-bs-parent="#faqAccordion2">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.Faq4_answer') }}
-                                </div>
-                            </div>
-                        </div>
+                <div class="accordion" id="faqAccordion2">
 
-                        <!-- Fifth Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
-                                    aria-controls="collapseFive">
-                                    {{ __('messages.Faq5') }}
-                                </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                data-bs-parent="#faqAccordion2">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.Faq5_answer') }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sixth Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingSix">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
-                                    aria-controls="collapseSix">
-                                    {{ __('messages.Faq6') }}
-                                </button>
-                            </h2>
-                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                                data-bs-parent="#faqAccordion2">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.Faq6_answer') }}
-                                </div>
+                    <!-- Fourth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingFour">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                                aria-controls="collapseFour">
+                                {{ __('messages.Faq4') }}
+                            </button>
+                        </h4>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq4_answer') }}
                             </div>
                         </div>
                     </div>
+
+                    <!-- Fifth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingFive">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                                aria-controls="collapseFive">
+                                {{ __('messages.Faq5') }}
+                            </button>
+                        </h4>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq5_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sixth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingSix">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
+                                aria-controls="collapseSix">
+                                {{ __('messages.Faq6') }}
+                            </button>
+                        </h4>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq6_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
             </div>
         </div>
     </section>
-    <!-- end accordian -->
 @endsection

@@ -134,7 +134,7 @@
                         <!-- Query Type -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.query_type') }}</label>
-                            <select class="form-select" name="subject">
+                            <select class="form-control form-control-border" name="subject">
                                 <option selected>{{ __('messages.vehicle_rental') }}</option>
                                     <option value="General">{{ __('messages.general') }}</option>
                                     <option value="Refund">{{ __('messages.refund') }}</option>
@@ -148,7 +148,7 @@
                         <!-- Existing Customer -->
                         <div class="col-md-6">
                             <label class="form-label">{{ __('messages.are_you_an_existing') }}?</label>
-                            <select class="form-select" name="existing_customer">
+                            <select class="form-control form-control-border" name="existing_customer">
                                 <option selected>{{ __('messages.yes') }}</option>
                                 <option>{{ __('messages.no') }}</option>
                             </select>
