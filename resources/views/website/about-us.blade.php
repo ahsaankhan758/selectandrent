@@ -190,7 +190,7 @@
 
             <div class="row align-items-center mt-4">
                 <!-- Left Side (Icons Last) -->
-                <div class="col-lg-4 text-end">
+                <div class="col-lg-4 text-end mt-3">
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.flexible_payment_options') }}</h5>
@@ -252,7 +252,7 @@
             </div>
         </div>
     </div>
-
+{{-- old icons --}}
     {{-- <div class="team-section">
         <h3 class="text-primary">{{ __('messages.meet_with_our') }}</h3>
         <h2 class="mb-5 fw-bold">{{ __('messages.our_amazing_team') }}</h2>
@@ -329,8 +329,7 @@
 
     <!-- testimonals -->
     <div class="container py-5">
-        {{-- <h2 class="text-center fw-bold">{{ __('messages.testimonials') }}</h2> --}}
-
+        <h3 class="fw-bold text-center">{{ __('messages.customer_reviews') }}</h3>
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <!-- Slide 1 -->
@@ -338,16 +337,14 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★1</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Smooth, Simple, and Profitable”</h4>
+                                    <strong class="testimonial-text">“Smooth, Simple, and Profitable”</strong>
                                     <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and
                                         within the first week, I had bookings lined up. The platform is user-friendly, and
                                         the team helped me set everything up. I now earn passive income without worrying
                                         about management.”</p>
-                                    <strong class="testimonial-text">– Sarah M., Small Business Owner</strong>
+                                    <h class="testimonial-text">– Sarah M., Small Business Owner</h>
                                 </div>
                             </div>
                         </div>
@@ -364,15 +361,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★2</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Great Support, Every Step of the Way”</h4>
+                                    <strong class="testimonial-text">“Great Support, Every Step of the Way”</strong>
                                     <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team
                                         walked me through the process. They handled the insurance and gave me full control
                                         over my rental schedule. It’s a win-win!”</p>
-                                    <strong class="testimonial-text">– Jason T., Independent Car Owner</strong>
+                                    <h6 class="testimonial-text">– Jason T., Independent Car Owner</h6>
                                 </div>
                             </div>
                         </div>
@@ -389,15 +384,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★3</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Reliable Income Stream”</h4>
+                                    <strong class="testimonial-text">“Reliable Income Stream”</strong>
                                     <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most
                                         of my car when I wasn’t using it. Select and Rent helped me earn extra income during
                                         my off-hours. It's flexible, safe, and efficient.”</p>
-                                    <strong class="testimonial-text">– Ayesha R., Ride-Share Driver</strong>
+                                    <h6 class="testimonial-text">– Ayesha R., Ride-Share Driver</h6>
                                 </div>
                             </div>
                         </div>
@@ -413,15 +406,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★4</span> <span class="text-primary">4.9</span> --}}
-                                    <h4 class="testimonial-text">“Fleet Management Made Easy”</h4>
+                                    <strong class="testimonial-text">“Fleet Management Made Easy”</strong>
                                     <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with
                                         Select and Rent, I can monitor everything from a single dashboard. Their pricing
                                         tools and calendar features are especially helpful.”</p>
-                                    <strong class="testimonial-text">– Luis D., Rental Fleet Manager</strong>
+                                    <h6 class="testimonial-text">– Luis D., Rental Fleet Manager</h6>
                                 </div>
                             </div>
                         </div>
@@ -438,15 +429,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★5</span> <span class="text-primary">5.0</span> --}}
-                                    <h4 class="testimonial-text">“Hassle-Free Experience”</h4>
+                                    <strong class="testimonial-text">“Hassle-Free Experience”</strong>
                                     <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment,
                                         the process was seamless. The renters were verified, the car was returned in perfect
                                         condition, and the payout was on time.”</p>
-                                    <strong class="testimonial-text">– Michelle K., First-Time Host</strong>
+                                    <h6 class="testimonial-text">– Michelle K., First-Time Host</h6>
                                 </div>
                             </div>
                         </div>
@@ -461,7 +450,7 @@
             </div>
         </div>
         <!-- Carousel Controls -->
-        <div class="d-flex justify-content-center mt-5">
+        <div class="d-flex justify-content-center mt-3">
             <a class="carousel-control-prev-custom me-3" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
@@ -479,8 +468,8 @@
             <div class="row">
                 <!-- Left Side Text (4 columns) -->
                 <div class="col-md-4 accordion-text">
-                    <h2 class="fw-bold">{{ __('messages.any_questions') }}?</h2>
-                    <h2 class="fw-bold">{{ __('messages.we_got_you') }}</h2>
+                    <h4 class="fw-bold new-design">{{ __('messages.any_questions') }}?</h4>
+                    <h4 class="fw-bold new-design">{{ __('messages.we_got_you') }}</h4>
                     <p class="text-muted questions">
                         {{ __('messages.our_cutting-edge') }}
                     </p>
@@ -491,14 +480,14 @@
                     <div class="accordion" id="faqAccordion1">
                         <!-- First Item -->
                         <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingOne1">
+                            <h4 class="accordion-header" id="headingOne1">
                                 <button class="accordion-button fw-bold shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false"
                                     aria-controls="collapseOne1">
                                     {{ __('messages.Faq1') }}
                                 </button>
-                            </h2>
-                            <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1"
+                            </h4>
+                            <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1"
                                 data-bs-parent="#faqAccordion1">
                                 <div class="accordion-body text-muted">
                                     {{ __('messages.Faq1_answer') }}
@@ -508,13 +497,13 @@
 
                         <!-- Second Item -->
                         <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingTwo1">
+                            <h4 class="accordion-header" id="headingTwo1">
                                 <button class="accordion-button fw-bold collapsed shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="false"
                                     aria-controls="collapseTwo1">
                                     {{ __('messages.Faq2') }}
                                 </button>
-                            </h2>
+                            </h4>
                             <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1"
                                 data-bs-parent="#faqAccordion1">
                                 <div class="accordion-body text-muted">
@@ -525,13 +514,13 @@
 
                         <!-- Third Item -->
                         <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingThree1">
+                            <h4 class="accordion-header" id="headingThree1">
                                 <button class="accordion-button fw-bold collapsed shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false"
                                     aria-controls="collapseThree1">
                                     {{ __('messages.Faq3') }}
                                 </button>
-                            </h2>
+                            </h4>
                             <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1"
                                 data-bs-parent="#faqAccordion1">
                                 <div class="accordion-body text-muted">
@@ -542,75 +531,76 @@
                     </div>
                 </div>
 
-                <!-- Right Accordion (3 more items) -->
                 <div class="col-md-4">
-                    <div class="accordion" id="faqAccordion2">
-                        <!-- Fourth Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingFour">
-                                <button class="accordion-button fw-bold shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true"
-                                    aria-controls="collapseFour">
-                                    {{ __('messages.Faq4') }}
-                                </button>
-                            </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
-                                data-bs-parent="#faqAccordion2">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.Faq4_answer') }}
-                                </div>
-                            </div>
-                        </div>
+                <div class="accordion" id="faqAccordion2">
 
-                        <!-- Fifth Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
-                                    aria-controls="collapseFive">
-                                    {{ __('messages.Faq5') }}
-                                </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                data-bs-parent="#faqAccordion2">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.Faq5_answer') }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sixth Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h2 class="accordion-header" id="headingSix">
-                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
-                                    aria-controls="collapseSix">
-                                    {{ __('messages.Faq6') }}
-                                </button>
-                            </h2>
-                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                                data-bs-parent="#faqAccordion2">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.Faq6_answer') }}
-                                </div>
+                    <!-- Fourth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingFour">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                                aria-controls="collapseFour">
+                                {{ __('messages.Faq4') }}
+                            </button>
+                        </h4>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq4_answer') }}
                             </div>
                         </div>
                     </div>
-                </div> <!-- End of Right Accordion -->
+
+                    <!-- Fifth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingFive">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                                aria-controls="collapseFive">
+                                {{ __('messages.Faq5') }}
+                            </button>
+                        </h4>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq5_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sixth Item -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingSix">
+                            <button class="accordion-button fw-bold collapsed shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
+                                aria-controls="collapseSix">
+                                {{ __('messages.Faq6') }}
+                            </button>
+                        </h4>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            data-bs-parent="#faqAccordion2">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq6_answer') }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             </div>
         </div>
     </section>
 
     <!-- contact sections -->
-    <div class="container contact-container py-5">
+    <div class="container contact-container py-3">
         <div class="row g-4">
             <!-- Left Side -->
             <div class="col-md-4">
-                <h3 class="faq">{{ __('messages.can’t_find_answer') }}?</h3>
-                <h1 class="fw-bold"><span>{{ __('messages.submit') }}</span> {{ __('messages.your_queries') }} </h1>
+                <h4 class="faq">{{ __('messages.can’t_find_answer') }}?</h4>
+                <h3 class="fw-bold"><span>{{ __('messages.submit') }}</span> {{ __('messages.your_queries') }} </h3>
                 <p>{{ __('messages.contect_text') }}</p>
                 <button class="btn btn-orange-clr rounded-pill text-white">
-                    <i class="fa-solid fa-phone"></i> 0300-XXXXX90
+                    <i class="fa-solid fa-phone"></i> +44 xxxx xxxxxx
                 </button>
             </div>
 
@@ -623,13 +613,12 @@
                             <!-- Query Type -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.query_type') }}</label>
-                                <select class="form-select" name="subject">
+                                <select class="form-control form-control-border" name="subject">
                                     <option selected>{{ __('messages.vehicle_rental') }}</option>
                                     <option value="General">{{ __('messages.general') }}</option>
                                     <option value="Refund">{{ __('messages.refund') }}</option>
                                     <option value="Complaint">{{ __('messages.complaint') }}</option>
-                                    <option value="Issues about company">{{ __('messages.issues_about_company') }}
-                                    </option>
+                                    <option value="Issues about company">{{ __('messages.issues_about_company') }}</option>
                                     <option value="Hire me">{{ __('messages.hire_me') }}</option>
                                 </select>
                             </div>
@@ -637,7 +626,7 @@
                             <!-- Existing Customer -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.are_you_an_existing') }}?</label>
-                                <select class="form-select" name="existing_customer">
+                                <select class="form-control form-control-border" name="existing_customer">
                                     <option selected>{{ __('messages.yes') }}</option>
                                     <option>{{ __('messages.no') }}</option>
                                 </select>
@@ -646,31 +635,31 @@
                             <!-- Name -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.first_name') }}</label>
-                                <input type="text" name="first_name" class="form-control form-control-border">
+                                <input type="text" name="first_name" class="form-control form-control-border" placeholder="{{ __('messages.first_name') }}">
                             </div>
 
                             <!-- Name -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.last_name') }}</label>
-                                <input type="text" name="last_name" class="form-control form-control-border">
+                                <input type="text" name="last_name" class="form-control form-control-border" placeholder="{{ __('messages.last_name') }}">
                             </div>
 
                             <!-- Email -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.email_address') }}</label>
-                                <input type="email" name="email" class="form-control form-control-border">
+                                <input type="email" name="email" class="form-control form-control-border" placeholder="{{ __('messages.email') }}">
                             </div>
 
                             <!-- Phone Number -->
                             <div class="col-md-6">
                                 <label class="form-label">{{ __('messages.phone_number') }}</label>
-                                <input type="tel" name="phone" class="form-control form-control-border">
+                                <input type="tel" name="phone" class="form-control form-control-border" placeholder="{{ __('messages.phone') }}">
                             </div>
 
                             <!-- Message -->
                             <div class="col-12">
                                 <label class="form-label">{{ __('messages.message') }}</label>
-                                <textarea class="form-control form-control-border" name="message" rows="2"></textarea>
+                                <textarea class="form-control form-control-border" name="message" placeholder="{{ __('messages.messages') }}" rows="3"></textarea>
                             </div>
 
                             <!-- Submit Button -->
