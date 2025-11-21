@@ -57,7 +57,7 @@
                             <img src="{{ asset('/') }}frontend-assets/icons/home.png" alt="Home Icon">
                             <div>
                                 <h6>{{ __('messages.address') }}</h6>
-                                <div class="fw-bold">United Kingdom</div>
+                                <div class="fw-bold">London United Kingdom</div>
                             </div>
                         </li>
                     </ul>
@@ -193,6 +193,10 @@
                     </div>
                 </form>
             </div>
+            <p class="text-end text-muted mt-3 small">
+                <i class="bi bi-info-circle"></i>
+                {{ __('messages.we_respond') }}
+            </p>
                 </div>
             </div>
         </div>
