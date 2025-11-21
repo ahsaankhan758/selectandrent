@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\CarBrand;
 use App\Models\CarModel;
 use App\Models\CarLocation;
+use App\Models\CarCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -131,6 +132,32 @@ public function getLocations()
         'locations' => $locations
     ]);
 }
+
+public function filterCarsHome(Request $request)
+{
+    $categoryId = $request->car_category_id;
+
+    if (!$categoryId) {
+        return response()->json([
+            'cars' => '',
+            'hasMore' => false
+        ]);
+    }
+
+    $query = Car::latest()->where('car_category_id', $categoryId);
+
+    $offset = intval($request->offset ?? 0);
+    $totalCars = $query->count();
+    $cars = $query->skip($offset)->take(8)->get();
+
+    $hasMore = ($offset + count($cars)) < $totalCars;
+
+    return response()->json([
+        'cars' => view("website.category.include.car-item", compact('cars'))->render(),
+        'hasMore' => $hasMore
+    ]);
+}
+
 
 
 }
