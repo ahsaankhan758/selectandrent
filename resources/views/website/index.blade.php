@@ -551,15 +551,63 @@
         <div class="swiper-container-wrapper">
             <div class="swiper chooseVehicleSwiper">
                 <div class="swiper-wrapper">
-                    @forelse ($cars as $car)
-                        <div class="swiper-slide mb-2">
-                            <div class="custom-card2">
-                                <a href="{{ route('car.detail', $car->id) }}" class="link position-relative"
-                                    style="display: inline-block;">
-                                    @php
-                                        $path = public_path('storage/' . $car->thumbnail);
-                                        $imageExists = $car->thumbnail && file_exists($path);
-                                    @endphp
+
+                @forelse ($cars as $car)
+                    <div class="swiper-slide mb-2">
+                        <div class="custom-card2">
+                            <a href="{{ route('car.detail', $car->id) }}" class="link position-relative"
+                                style="display: inline-block;">
+                                @php
+                                    $path = public_path('storage/' . $car->thumbnail);
+                                    $imageExists = $car->thumbnail && file_exists($path);
+                                @endphp
+
+                                @if ($imageExists)
+                                    <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
+                                        alt="Car Image">
+                                @else
+                                    <img src="{{ asset('images/no-image.png') }}" class="custom-card-img"
+                                        alt="No Image Available">
+                                @endif
+
+                                @if ($car->is_booked == '1')
+                                    <div
+                                        style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">
+                                        {{ __('messages.currently_booked') }}</div>
+                                @endif
+                            </a>
+                            <div class="card-content">
+                                <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h5 class="text-muted card_orange_clr">
+                                                {{ $car->car_models->car_brands->name ?? ' ' }}
+                                                {{ $car->car_models->name ?? ' ' }}
+                                                {{ $car->year ?? ' ' }}
+                                            </h5>
+                                            <h6 class="text-muted" style="font-size: 12px;">
+                                                {{ ucfirst($car->transmission) }}
+                                                | {{ ucfirst($car->fuel_type) }}
+                                                | {{ __('messages.engine') }} {{ $car->engine_size }}{{ __('messages.cc') }}
+                                            </h6>
+                                        </div>
+                                        <div>
+                                            @php
+                                                $companyProfile = $car->users->companies->company_profile ?? null;
+                                            @endphp
+
+                                            @if ($companyProfile)
+                                                <img src="{{ asset($companyProfile) }}" alt="Company Logo"
+                                                    width="40" height="40"
+                                                    style="object-fit: cover; border-radius: 50%;">
+                                            @else
+                                                <img src="{{ asset('frontend-assets/assets/customeruser.png') }}"
+                                                    alt="Default Logo" width="40" height="40"
+                                                    style="object-fit: cover; border-radius: 50%;">
+                                            @endif
+                                        </div>
+                                    </div>
+
 
                                     @if ($imageExists)
                                         <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
@@ -937,7 +985,7 @@
                         spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 10
                     },
                     1024: {
@@ -968,7 +1016,7 @@
                         spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 10
                     },
                     1024: {
@@ -999,7 +1047,7 @@
                         spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 10
                     },
                     1024: {
