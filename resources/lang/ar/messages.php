@@ -1,6 +1,7 @@
 <?php 
 
     return [
+        'we_respond' => 'نحن عادة نرد خلال 24 ساعة',
         'customer_reviews' => 'مراجعات العملاء',
         'select_a_category' => 'اختر فئة',
         'become_partner' => 'شريك',

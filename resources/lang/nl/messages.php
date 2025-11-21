@@ -1,6 +1,7 @@
 <?php
 
     return [
+        'we_respond' => 'We reageren meestal binnen 24 uur.',
         'customer_reviews' => 'Review van een host',
         'select_a_category' => 'Selecteer een categorie',
         'become_partner' => 'Word partner',
@@ -40,7 +41,7 @@
         'choose_from_a_variety' => 'Kies uit verschillende veilige en handige betaalmethoden voor een stressvrije huurervaring',
         'valuable_insights' => 'Waardevolle inzichten',
         'access_personalized' => 'Ontvang persoonlijke aanbevelingen en datagestuurde inzichten om de beste auto te kiezen.',
-        'continuous_innovation' => 'Continue innovatie',
+        'continuous_innovation' => 'Voortdurende innovatie',
         'we’re_always_evolving' => 'We blijven ontwikkelen met betere technologie voor snellere boekingen, soepele ervaringen en slimme oplossingen.',
         'instant_online' => 'Directe online voertuigwaardering',
         'quickly_assess' => 'Bekijk en vergelijk voertuigen eenvoudig met duidelijke prijzen en volledige specificaties.',
@@ -436,9 +437,9 @@
         'thank_you' => 'Dank je',
         'your_order_received' => 'Je bestelling is ontvangen',
         'order_number' => 'Bestelnummer',
-        'get_in' => 'instappen',
-        'touch' => 'aanraken',
-        'get_in_touch' => 'instappen aanraken',
+        'get_in' => 'Support',
+        'touch' => 'team',
+        'get_in_touch' => 'Supportteam',
         'follow_us' => 'Volg ons',
         'contact_form' => 'Contactformulier',
         'enter_your_detail' => 'Voer je gegevens in. Voel je vrij om contact met ons op te nemen voor welke informatie dan ook',

@@ -652,7 +652,7 @@
                                                 {{ $car->car_models->name ?? ' ' }}
                                                 {{ $car->year ?? ' ' }}
                                             </h5>
-                                            <h6 class="text-muted" style="font-size: 12px;">{{ __('messages.engine') }}
+                                            <h6 class="text-muted" style="font-size: 12px;">
                                                 {{ ucfirst($car->transmission) }}
                                                 | {{ ucfirst($car->fuel_type) }}
                                                 | {{ __('messages.engine') }} {{ $car->engine_size }}{{ __('messages.cc') }}
