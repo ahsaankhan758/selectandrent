@@ -1003,7 +1003,7 @@
                         spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 10
                     },
                     1024: {
@@ -1034,7 +1034,7 @@
                         spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 10
                     },
                     1024: {
@@ -1065,7 +1065,7 @@
                         spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 10
                     },
                     1024: {
