@@ -364,7 +364,7 @@ color: var(--black-color);
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .swiper-slide {
-    width: calc((100% - 20px) / 3) !important;
+    width: auto;  
     flex-shrink: 0;
   }
   
