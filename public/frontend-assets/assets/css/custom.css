@@ -242,6 +242,11 @@ color: var(--black-color);
           width: 100%;
       }
   }
+ @media (max-width: 480px) {
+ .chose-mobile {
+   margin-top: 200px !important;       
+}
+ }
   /* card css */
   .card {
       height: 120px; 
@@ -1555,7 +1560,7 @@ margin: 5px 0;
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 550px;
     background: white;
     border-radius: 12px;
     padding: 20px;
@@ -1566,6 +1571,9 @@ margin: 5px 0;
   .reverse {
     flex-direction: row-reverse;
     margin-left: 0%;
+  }
+   .reverse-button {
+    margin-top: 100px !important; 
   }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -1590,6 +1598,9 @@ margin: 5px 0;
   .reverse {
     flex-direction: row-reverse;
     margin-left: 20%;
+  }
+  .reverse-button {
+    margin-top: 80px !important; 
   }
 }
 @media (min-width: 1025px) and (max-width: 1440px) {
@@ -1617,6 +1628,38 @@ margin: 5px 0;
     margin-left: 14%;
   }
 } 
+/* Ultra-wide screens: 1441px and above */
+@media (min-width: 1441px) {
+  .steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 16px; 
+  }
+
+  .step-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px; 
+    background: white;
+    border-radius: 12px;
+    margin-right: 120px; 
+    padding: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .reverse {
+    flex-direction: row-reverse;
+    margin-left: 20%; 
+  }
+   .reverse-button {
+    margin-top: 115px !important; 
+  }
+}
+
 /* end work */
 /* benefits */
 .custom-benefit-step {
@@ -1718,7 +1761,7 @@ margin: 5px 0;
   .testimonial-bg {
     background: url('../../icons/test.png') no-repeat center / cover;
       height: 230px;
-      margin-top: 72px;
+      margin-top: 44px;
       width: 280px;
       position: absolute;
       top: 50%;

@@ -283,7 +283,7 @@
                 </div>
             </div>
         </div>
-        <div class=" text-center mt-5">
+        <div class="reverse-button text-center mt-5">
             <button class="btn btn-orange-clr rounded-pill text-white" data-bs-toggle="modal"
                 data-bs-target="#carRentalModal">
                 {{ __('messages.fill_the_registration') }}
@@ -294,126 +294,54 @@
         </div>
     </div>
     <!-- work end -->
-    <!-- price -->
-    {{-- <div class="container py-5">
-    <h2 class="text-center mb-4">{{ __('messages.pricing_plans') }}</h2>
-    <div class="row g-4">
-        <div class="col-lg-4 col-md-6">
-            <div class="pricing-card p-4">
-                <div class="container-fluid slanted-box">
-                    <h5>{{ __('messages.studnet_packages') }}</h5>
-                    <p class="price">$250 <span class="price">/{{ __('messages.month') }}</span></p>
-                </div>
-                <img src="{{asset('/')}}frontend-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
-                <ul class="feature-list">
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 02 {{ __('messages.passengers') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 5 km {{ __('messages.km_distance_only') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> {{ __('messages.no_extra_charges') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> {{ __('messages.free_book_no') }}</li>
-                </ul>
-                <button class="btn rounded-pill text-white d-flex align-items-center px-3 py-2 custom-btn">
-                    {{ __('messages.purchase_now') }}
-                <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
-                </button> 
-            </div>
-        </div>        
-        <div class="col-lg-4 col-md-6">
-            <div class="pricing-card p-4">
-                <div class="container-fluid slanted-box">
-                <h5>{{ __('messages.medical_package') }}</h5>
-                <p class="price">$250 <span class="price">/{{ __('messages.month') }}</span></p>
-                </div>
-                <img src="{{asset('/')}}frontend-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
-                <ul class="feature-list">
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 02 {{ __('messages.passengers') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 5 km {{ __('messages.km_distance_only') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> {{ __('messages.no_extra_charges') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> {{ __('messages.free_book_no') }}</li>
-                </ul>
-                <button class="btn rounded-pill text-white d-flex align-items-center px-3 py-2 custom-btn">
-                    {{ __('messages.purchase_now') }}
-                    <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
-                </button> 
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="pricing-card p-4">
-                <div class="container-fluid slanted-box">
-                    <h5>{{ __('messages.business_package') }}</h5>
-                    <p class="price">$250 <span class="price">/{{ __('messages.month') }}</span></p>
-                </div>
-                <img src="{{asset('/')}}frontend-assets/icons/price-tag.png" class="price-icon" alt="Price Tag"> 
-                <ul class="feature-list">
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 02 {{ __('messages.passengers') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> 5 {{ __('messages.km_distance_only') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> {{ __('messages.no_extra_charges') }}</li>
-                    <hr>
-                    <li><img src="{{asset('/')}}frontend-assets/icons/security.png" alt="security"> {{ __('messages.free_book_no') }}</li>
-                </ul>
-                <button class="btn rounded-pill text-white d-flex align-items-center px-3 py-2 custom-btn">
-                    {{ __('messages.purchase_now') }}
-                    <img src="{{asset('/')}}frontend-assets/icons/Frame-1707482121.png" class="ms-2" width="20" height="20" alt="">
-                </button> 
-            </div>
-        </div>
-    </div>
-</div> --}}
-    <!-- end price -->
+  
       <!-- chose section -->
     <div class="container chose-bg-img py-5">
+       <!-- Tablet & Mobile Section -->
+<div class="container mobile text-center chose-mobile py-2 d-block d-lg-none">
+    <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
+    <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+        {{ __('messages.the_best_experience') }}</h3>
 
-        <!-- Mobile Section -->
-        <div class="container mobile text-center py-2 d-block d-md-none">
-            <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
-                {{ __('messages.the_best_experience') }}</h3>
-
-            <div class="mt-4">
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
-                    <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
-                    <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.valuable_insights') }}</h5>
-                    <p class="text-muted">{{ __('messages.access_personalized') }}</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.continuous_innovation') }}</h5>
-                    <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.instant_online') }}</h5>
-                    <p class="text-muted">{{ __('messages.quickly_assess') }}</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.tailored_search') }}</h5>
-                    <p class="text-muted">{{ __('messages.effortlessly_find') }}</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.customer_first_approach') }}</h5>
-                    <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
-                </div>
-            </div>
+    <div class="mt-4">
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
+            <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
+            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
         </div>
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
+                alt="">
+            <h5 class="fw-bold">{{ __('messages.valuable_insights') }}</h5>
+            <p class="text-muted">{{ __('messages.access_personalized') }}</p>
+        </div>
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
+                alt="">
+            <h5 class="fw-bold">{{ __('messages.continuous_innovation') }}</h5>
+            <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
+        </div>
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
+                alt="">
+            <h5 class="fw-bold">{{ __('messages.instant_online') }}</h5>
+            <p class="text-muted">{{ __('messages.quickly_assess') }}</p>
+        </div>
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="img-fluid mb-2"
+                alt="">
+            <h5 class="fw-bold">{{ __('messages.tailored_search') }}</h5>
+            <p class="text-muted">{{ __('messages.effortlessly_find') }}</p>
+        </div>
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="img-fluid mb-2"
+                alt="">
+            <h5 class="fw-bold">{{ __('messages.customer_first_approach') }}</h5>
+            <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
+        </div>
+    </div>
+</div>
+
 
         <!-- Desktop Section -->
         <div class="container Desktop  text-center py-3 d-none d-md-block">
