@@ -488,6 +488,7 @@ Route::middleware('LanguageMiddleware')->group(function(){
     Route::post('/edit-profile/{id}', [EditProfileController::class, 'updateProfile'])->name('website.update_profile');
 
     Route::get('/', [WebsiteHomeController::class, 'showView']);
+    Route::get('/load-more-home-cars', [WebsiteHomeController::class, 'filterCarsHome'])->name('home.cars.load');
     Route::post('/car-search', [WebsiteHomeController::class, 'search'])->name('car.search');
     Route::get('/car-brands', [WebsiteHomeController::class, 'getCarBrands'])->name('car.brands');
     Route::get('/car/locations', [WebsiteHomeController::class, 'getLocations'])->name('car.locations');
