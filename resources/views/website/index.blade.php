@@ -7,7 +7,7 @@
     <!-- add to cart js -->
     <script src="{{ asset('/frontend-assets/assets/Js/addtocart.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
-    <div class="container text-center" style="margin-top: 7rem !important;">
+    <div class="container text-center mobile-home-heading desktop-home-heading">
         <!-- Centered Heading -->
         <h5 class="display-6 fw-bold mb-3">{{ __('messages.browse_by_categories') }}</h5>
         <!-- Bottom Paragraph -->
@@ -17,7 +17,7 @@
                 </p> -->
     </div>
 
-    <div class="container py-5">
+    <div class="container py-5 mobile-category-home-cards">
         <div class="row g-3 justify-content-center">
 
             <!-- Sedan -->
@@ -94,7 +94,7 @@
 
         </div>
     </div>
-    <div class="container py-5" id="car-container">
+    <div class="container py-5 mobile-append-custom" id="car-container">
         <div class="row g-3 justify-content-center">
             <div id="car-category-list"></div>
 
@@ -153,7 +153,7 @@
             </div>
         </section>
         <!--featured cars view -->
-        <div class="container py-5">
+        <div class="container py-5 card-logo-mobile">
             <div class="swiper-container-wrapper">
                 <div class="swiper featuredSwiper">
                     <div class="swiper-wrapper">
@@ -407,9 +407,7 @@
         </div>
     </div>
 
-       <!-- chose section -->
-    <div class="container chose-bg-img py-5">
-       <!-- Tablet & Mobile Section -->
+           <!-- Tablet & Mobile Section -->
 <div class="container mobile text-center chose-mobile py-2 d-block d-lg-none">
     <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
     <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
@@ -453,7 +451,8 @@
         </div>
     </div>
 </div>
-
+       <!-- chose section -->
+    <div class="container chose-bg-img py-5">
 
         <!-- Desktop Section -->
         <div class="container Desktop  text-center py-3 d-none d-md-block">
@@ -527,7 +526,7 @@
     </div>
     {{-- end chose section --}}
     
-    <section class="container py-4 mt-5 card-logo-mobile">
+    <section class="container py-4 mt-5 chose-mobile-car-heading">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -547,163 +546,6 @@
     </section>
 
     <!-- cars view -->
-    {{-- <div class="container py-5">
-        <div class="swiper-container-wrapper">
-            <div class="swiper chooseVehicleSwiper">
-                <div class="swiper-wrapper">
-                @forelse ($cars as $car)
-                    <div class="swiper-slide mb-2">
-                        <div class="custom-card2">
-                            <a href="{{ route('car.detail', $car->id) }}" class="link position-relative"
-                                style="display: inline-block;">
-                                @php
-                                    $path = public_path('storage/' . $car->thumbnail);
-                                    $imageExists = $car->thumbnail && file_exists($path);
-                                @endphp
-
-                                @if ($imageExists)
-                                    <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
-                                        alt="Car Image">
-                                @else
-                                    <img src="{{ asset('images/no-image.png') }}" class="custom-card-img"
-                                        alt="No Image Available">
-                                @endif
-
-                                @if ($car->is_booked == '1')
-                                    <div
-                                        style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">
-                                        {{ __('messages.currently_booked') }}</div>
-                                @endif
-                            </a>
-                            <div class="card-content">
-                                <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <h5 class="text-muted card_orange_clr">
-                                                {{ $car->car_models->car_brands->name ?? ' ' }}
-                                                {{ $car->car_models->name ?? ' ' }}
-                                                {{ $car->year ?? ' ' }}
-                                            </h5>
-                                            <h6 class="text-muted" style="font-size: 12px;">
-                                                {{ ucfirst($car->transmission) }}
-                                                | {{ ucfirst($car->fuel_type) }}
-                                                | {{ __('messages.engine') }} {{ $car->engine_size }}{{ __('messages.cc') }}
-                                            </h6>
-                                        </div>
-                                        <div>
-                                            @php
-                                                $companyProfile = $car->users->companies->company_profile ?? null;
-                                            @endphp
-
-                                            @if ($companyProfile)
-                                                <img src="{{ asset($companyProfile) }}" alt="Company Logo"
-                                                    width="40" height="40"
-                                                    style="object-fit: cover; border-radius: 50%;">
-                                            @else
-                                                <img src="{{ asset('frontend-assets/assets/customeruser.png') }}"
-                                                    alt="Default Logo" width="40" height="40"
-                                                    style="object-fit: cover; border-radius: 50%;">
-                                            @endif
-                                        </div>
-                                    </div>
-
-
-                                    @if ($imageExists)
-                                        <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
-                                            alt="Car Image">
-                                    @else
-                                        <img src="{{ asset('images/no-image.png') }}" class="custom-card-img"
-                                            alt="No Image Available">
-                                    @endif
-
-                                    @if ($car->is_booked == '1')
-                                        <div
-                                            style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">
-                                            {{ __('messages.currently_booked') }}</div>
-                                    @endif
-                                </a>
-                                <div class="card-content">
-                                    <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <h5 class="text-muted card_orange_clr">
-                                                    {{ $car->car_models->car_brands->name ?? ' ' }}
-                                                    {{ $car->car_models->name ?? ' ' }}
-                                                    {{ $car->year ?? ' ' }}
-                                                </h5>
-                                                <h6 class="text-muted" style="font-size: 12px;">
-                                                    {{ __('messages.engine') }}
-                                                    {{ ucfirst($car->transmission) }}
-                                                    | {{ ucfirst($car->fuel_type) }}
-                                                    | {{ __('messages.engine') }}
-                                                    {{ $car->engine_size }}{{ __('messages.cc') }}
-                                                </h6>
-                                            </div>
-                                            <div>
-                                                @php
-                                                    $companyProfile = $car->users->companies->company_profile ?? null;
-                                                @endphp
-
-                                                @if ($companyProfile)
-                                                    <img src="{{ asset($companyProfile) }}" alt="Company Logo"
-                                                        width="40" height="40"
-                                                        style="object-fit: cover; border-radius: 50%;">
-                                                @else
-                                                    <img src="{{ asset('frontend-assets/assets/customeruser.png') }}"
-                                                        alt="Default Logo" width="40" height="40"
-                                                        style="object-fit: cover; border-radius: 50%;">
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <hr>
-                                        <div class="d-flex justify-content-between w-100">
-                                            <div class="flex-fill text-center mx-2">
-                                                <h6>{{ __('messages.mileage') }}</h6>
-                                                <p><i class="fas fa-tachometer-alt"></i> {{ $car->mileage }}</p>
-                                            </div>
-                                            <div class="flex-fill text-center mx-2">
-                                                <h6>{{ __('messages.deposit') }}</h6>
-                                                <p>{{ convertPrice($car->advance_deposit, 0) }}</p>
-                                            </div>
-                                            <div class="flex-fill text-center mx-2">
-                                                <h6>{{ __('messages.min') }}</h6>
-                                                <p><i class="fa-solid fa-user"></i> {{ $car->min_age }}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    </a>
-                                    <div class="d-flex justify-content-between bg-light align-items-center rounded">
-                                        <h6 class="card_orange_clr ms-2">
-                                            {{ convertPrice($car->rent, 0) }}/{{ ucfirst($car->rent_type) }}</h6>
-                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative"
-                                            style="display: inline-block;">
-                                            <button class="book-btn">{{ __('messages.Book') }}</button>
-                                        </a>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <tr>
-                            <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
-                        </tr>
-                    @endforelse
-                </div>
-            </div>
-            <!-- Swiper Navigation -->
-            <div class="d-flex justify-content-center mt-5">
-                <a class="carousel-control-prev-choosevehicle me-3">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </a>
-                <a class="carousel-control-next-choosevehicle">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    </div> --}}
   <div class="container py-5 card-text-mobile">
         <div class="swiper-container-wrapper">
             <div class="swiper chooseVehicleSwiper">
@@ -911,13 +753,13 @@
                     </div>
                     <h2 class="program">{{ __('messages.list_cars') }}</h2>
                     <p class="join-text">
-                        {{ __('messages.join_our_growing') }}.
+                        {{ __('messages.join_our_growing') }}
                     </p>
                 </div>
             </div>
-            <div class="text-end">
+            <div class="text-center">
                 <button onclick="window.location.href='{{ url('/join-our-program') }}'"
-                    class="btn btn-orange-clr rounded-pill text-white px-2 py-2">
+                    class="btn btn-orange-clr rounded-pill text-white">
                     {{ __('messages.become_partner') }}
                     <img src="{{ asset('/') }}frontend-assets/icons/Frame-1707482121.png" class="ms-2"
                         width="25" height="25" alt="">
@@ -1238,67 +1080,5 @@
             });
         });
 
-        //         $(document).ready(function() {
-        //     let isLoading = false;
-        //     let categoryLastCarId = {};
-        //     let currentCategory = null;
-
-        //     function loadCars(categoryId, append = false) {
-        //         if (isLoading) return;
-        //         isLoading = true;
-
-        //         let offset = categoryLastCarId[categoryId] || 0;
-
-        //         $.ajax({
-        //             url: "{{ route('home.cars.load') }}",
-        //             method: "GET",
-        //             data: {
-        //                 car_category_id: categoryId,
-        //                 offset: offset
-        //             },
-        //             success: function(response) {
-        //                 if (!append) {
-        //                     $("#car-category-list").html(response.cars);
-        //                 } else {
-        //                     $("#car-category-list").append(response.cars);
-        //                 }
-
-        //                 categoryLastCarId[categoryId] = offset + 8;
-
-        //                 if (response.hasMore) {
-        //                     $("#load-more-btn").show();
-        //                 } else {
-        //                     $("#load-more-btn").hide();
-        //                 }
-
-        //                 isLoading = false;
-        //             },
-        //             error: function(err) {
-        //                 console.error(err);
-        //                 isLoading = false;
-        //             }
-        //         });
-        //     }
-
-        //     $(document).on("click", ".filter-btn", function() {
-        //         let selectedCategoryId = $(this).data("category");
-        //         if (!selectedCategoryId) return;
-
-        //         currentCategory = selectedCategoryId;
-        //         categoryLastCarId[currentCategory] = 0;
-
-        //         // $(".filter-btn").removeClass("btn-primary").addClass("btn-dark");
-        //         // $(this).removeClass("btn-dark").addClass("btn-primary");
-
-        //         $("#load-more-btn").hide();
-        //         loadCars(currentCategory, false);
-        //     });
-
-        //     $(document).on("click", "#load-more-btn", function() {
-        //         if (currentCategory) {
-        //             loadCars(currentCategory, true);
-        //         }
-        //     });
-        // });
     </script>
 @endsection

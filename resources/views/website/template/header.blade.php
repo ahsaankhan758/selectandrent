@@ -762,6 +762,8 @@
         font-family: inherit !important;
     }
 
+@media (max-width: 480px) {
+
     .datetime-wrapper {
         position: relative;
     }
@@ -793,5 +795,8 @@
     .datetime-wrapper.has-value .real-datetime {
         color: #000 !important;
     }
+
+}
+
 </style>
 <!-- end -->
