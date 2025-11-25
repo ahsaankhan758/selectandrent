@@ -1,5 +1,11 @@
 <?php
     return [
+      'program_heading' => 'Programs',
+      'our_cutting-edge_home'=>'Our Select and Rent service makes it easy to browse, compare, and rent cars tailored to your travel or business needs — all in just a few clicks.',
+      'continuous_innovation_home' => 'Continuous Innovation',
+      'choose_from_a_variety_home' => 'Choose from a variety of secure and convenient payment methods designed to fit your lifestyle and make your rental experience stress-free.',
+      'we’re_committed_to_delivering_home' => 'We’re Committed to Delivering',
+      'why_choose_us_home' => 'Why Choose Us',
       'we_respond' => 'We usually respond within 24 hours.',
       'customer_reviews' => 'Customer Reviews',
       'become_partner' => 'Partner',
@@ -237,7 +243,7 @@
       'general' => 'General',
       'join' => 'Join',
       'our' => 'Our',
-      'program' => 'Programs',
+      'program' => 'Program',
       'about' => 'About',
       'about_us' => 'About Us',
       'blogs' => 'Blogs',

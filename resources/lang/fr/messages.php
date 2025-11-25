@@ -1,6 +1,12 @@
 <?php
 
     return [
+        'program_heading' => 'Programme',
+        'our_cutting-edge_home' => 'Notre service Sélectionner et Louer vous permet de parcourir, comparer et louer des voitures adaptées à vos besoins de voyage ou professionnels — en seulement quelques clics.',
+        'continuous_innovation_home' => 'Innovation continue',
+        'choose_from_a_variety_home' => 'Choisissez parmi une variété de méthodes de paiement sécurisées et pratiques, conçues pour s’adapter à votre style de vie et rendre votre expérience de location sans stress.',
+        'we’re_committed_to_delivering_home' => 'Nous nous engageons à offrir',
+        'why_choose_us_home' => 'Pourquoi nous choisir',
         'we_respond' => 'Nous répondons généralement dans les 24 heures.',
         'customer_reviews' => 'Commentaires des clients',
         'select_a_category' => 'Sélectionnez une catégorie',

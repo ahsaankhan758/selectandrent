@@ -553,7 +553,7 @@
                 <h2 class="fw-bold">{{ __('messages.categories') }}</h2>
                 <p>{{ __('messages.find_the_perfect_ride:') }}</p>
             @elseif(request()->is('join-our-program'))
-                <h2 class="fw-bold">{{ __('messages.join') }} {{ __('messages.our') }} {{ __('messages.program') }}
+                <h2 class="fw-bold">{{ __('messages.join') }} {{ __('messages.our') }} {{ __('messages.program_heading') }}
                 </h2>
                 <p>{{ __('messages.an_easy_way') }}</p>
             @elseif(request()->is('about-us'))
