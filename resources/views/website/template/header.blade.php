@@ -478,7 +478,7 @@
                 <div class="col-md-12">
                     <div class="row g-2">
                         <div class="col-md-6 col-12 position-relative">
-                            <input type="text" id="area_name" name="area_name" class="form-control time-input pickup-time"
+                            <input type="text" id="area_name" name="area_name" class="form-control custom-input-header time-input"
 
                                 placeholder="{{ __('messages.select_location') }}" autocomplete="off">
 
@@ -487,8 +487,9 @@
                         </div>
 
                         <div class="col-md-6 col-12">
-                            <input type="datetime-local" name="date" class="form-control time-input pickup-time"
-                                placeholder="Select Date & Time">
+                            <div class="datetime-wrapper" data-placeholder="Select Date & Time">
+                                <input type="datetime-local" name="date" class="form-control real-datetime">
+                            </div>
                         </div>
                     </div>
                     <div class="row g-2 mt-1">
@@ -740,4 +741,57 @@
     </div>
 </div>
 
+<script>
+    document.querySelectorAll('.datetime-wrapper input').forEach(function(el) {
+        function checkValue() {
+            if (el.value) {
+                el.parentNode.classList.add('has-value');
+            } else {
+                el.parentNode.classList.remove('has-value');
+            }
+        }
+        el.addEventListener('change', checkValue);
+        checkValue();
+    });
+</script>
+<style>
+    .custom-input-header::placeholder,
+    .datetime-wrapper::before {
+        color: #000 !important;
+        font-size: 13px !important;
+        font-family: inherit !important;
+    }
+
+    .datetime-wrapper {
+        position: relative;
+    }
+
+    .datetime-wrapper::before {
+        content: attr(data-placeholder);
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #000;
+        font-size: 13px;
+        font-family: inherit;
+    }
+
+    .datetime-wrapper.has-value::before {
+        content: "";
+    }
+
+    .real-datetime {
+        color: transparent;
+    }
+
+    .real-datetime:focus {
+        color: #000;
+    }
+
+    .datetime-wrapper.has-value .real-datetime {
+        color: #000 !important;
+    }
+</style>
 <!-- end -->

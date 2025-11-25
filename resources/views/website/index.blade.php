@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="container py-4">
+    <div class="container py-4 car-logo-mobile">
         <div class="container bg-white p-4 mt-3 border border-1 mb-3 rounded-3">
             <div class="row g-2 justify-content-center hyundai">
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
@@ -135,7 +135,7 @@
         </div>
     </div>
     @if (count($featuredVehicle) > 0)
-        <section class="container py-4">
+        <section class="container py-4 card-logo-mobile">
             <div class="row align-items-center">
                 <!-- Heading (Always on Left) -->
                 <div class="col-12 col-md-6 text-center text-md-start">
@@ -270,7 +270,7 @@
             </div>
         </div>
     @endif
-    <section class="container py-5">
+    <section class="container py-5 card-logo-mobile">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -288,7 +288,7 @@
         </div>
     </section>
     <!-- cars view -->
-    <div class="container py-5">
+    <div class="container py-5 card-logo-mobile">
         <div class="swiper-container-wrapper">
             <div class="swiper newArrivalSwiper">
                 <div class="swiper-wrapper">
@@ -396,7 +396,7 @@
             </div>
 
             <!-- Swiper Navigation -->
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center mt-5 card-button-mobile">
                 <a class="carousel-control-prev-newarrival me-3">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
@@ -527,7 +527,7 @@
     </div>
     {{-- end chose section --}}
     
-    <section class="container py-4 mt-5">
+    <section class="container py-4 mt-5 card-logo-mobile">
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
             <div class="col-12 col-md-6 text-center text-md-start">
@@ -547,11 +547,10 @@
     </section>
 
     <!-- cars view -->
-    <div class="container py-5">
+    {{-- <div class="container py-5">
         <div class="swiper-container-wrapper">
             <div class="swiper chooseVehicleSwiper">
                 <div class="swiper-wrapper">
-
                 @forelse ($cars as $car)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
@@ -681,6 +680,116 @@
                                             style="display: inline-block;">
                                             <button class="book-btn">{{ __('messages.Book') }}</button>
                                         </a>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <tr>
+                            <td colspan="16" class="text-center">{{ __('messages.no_vehicles') }}</td>
+                        </tr>
+                    @endforelse
+                </div>
+            </div>
+            <!-- Swiper Navigation -->
+            <div class="d-flex justify-content-center mt-5">
+                <a class="carousel-control-prev-choosevehicle me-3">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control-next-choosevehicle">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div> --}}
+  <div class="container py-5 card-text-mobile">
+        <div class="swiper-container-wrapper">
+            <div class="swiper chooseVehicleSwiper">
+                <div class="swiper-wrapper">
+                    @forelse ($cars as $car)
+                        <div class="swiper-slide mb-2">
+                            <div class="custom-card2">
+                                <a href="{{ route('car.detail', $car->id) }}" class="link position-relative"
+                                    style="display: inline-block;">
+                                    @php
+                                        $path = public_path('storage/' . $car->thumbnail);
+                                        $imageExists = $car->thumbnail && file_exists($path);
+                                    @endphp
+
+                                    @if ($imageExists)
+                                        <img src="{{ asset('storage/' . $car->thumbnail) }}" class="custom-card-img"
+                                            alt="Car Image">
+                                    @else
+                                        <img src="{{ asset('images/no-image.png') }}" class="custom-card-img"
+                                            alt="No Image Available">
+                                    @endif
+
+                                    @if ($car->is_booked == '1')
+                                        <div
+                                            style="position: absolute;top: 0; left: 0;background: var(--text-orange);color: white;padding: 5px 10px;font-weight: bold;font-size: 14px;z-index: 10;">
+                                            {{ __('messages.currently_booked') }}</div>
+                                    @endif
+                                </a>
+                                <div class="card-content">
+                                    <a href="{{ url('/cardetail/' . $car->id) }}" class="link">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <h5 class="text-muted card_orange_clr">
+                                                    {{ $car->car_models->car_brands->name ?? ' ' }}
+                                                    {{ $car->car_models->name ?? ' ' }}
+                                                    {{ $car->year ?? ' ' }}
+                                                </h5>
+                                                <h6 class="text-muted" style="font-size: 12px;">
+                                                    {{ __('messages.engine') }}
+                                                    {{ ucfirst($car->transmission) }}
+                                                    | {{ ucfirst($car->fuel_type) }}
+                                                    | {{ __('messages.engine') }}
+                                                    {{ $car->engine_size }}{{ __('messages.cc') }}
+                                                </h6>
+                                            </div>
+                                            <div>
+                                                @php
+                                                    $companyProfile = $car->users->companies->company_profile ?? null;
+                                                @endphp
+
+                                                @if ($companyProfile)
+                                                    <img src="{{ asset($companyProfile) }}" alt="Company Logo"
+                                                        width="40" height="40"
+                                                        style="object-fit: cover; border-radius: 50%;">
+                                                @else
+                                                    <img src="{{ asset('frontend-assets/assets/customeruser.png') }}"
+                                                        alt="Default Logo" width="40" height="40"
+                                                        style="object-fit: cover; border-radius: 50%;">
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <div class="d-flex justify-content-between w-100">
+                                            <div class="flex-fill text-center mx-2">
+                                                <h6>{{ __('messages.mileage') }}</h6>
+                                                <p><i class="fas fa-tachometer-alt"></i> {{ $car->mileage }}</p>
+                                            </div>
+                                            <div class="flex-fill text-center mx-2">
+                                                <h6>{{ __('messages.deposit') }}</h6>
+                                                <p>{{ convertPrice($car->advance_deposit, 0) }}</p>
+                                            </div>
+                                            <div class="flex-fill text-center mx-2">
+                                                <h6>{{ __('messages.min') }}</h6>
+                                                <p><i class="fa-solid fa-user"></i> {{ $car->min_age }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </a>
+                                    <div class="d-flex justify-content-between bg-light align-items-center rounded">
+                                        <h6 class="card_orange_clr ms-2">
+                                            {{ convertPrice($car->rent, 0) }}/{{ ucfirst($car->rent_type) }}</h6>
+                                        <a href="{{ route('car.detail', $car->id) }}" class="link position-relative"
+                                            style="display: inline-block;">
+                                            <button class="book-btn">{{ __('messages.Book') }}</button>
+                                        </a>
                                         {{-- @if (auth()->check())
                                         <button class="book-btn" data-carid="{{ $car->id }}"
                                             id="car-booking-btn">{{ __('messages.Book') }}</button>
@@ -701,7 +810,7 @@
             </div>
 
             <!-- Swiper Navigation -->
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center mt-5 card-button-mobile">
                 <a class="carousel-control-prev-choosevehicle me-3">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
@@ -711,7 +820,6 @@
             </div>
         </div>
     </div>
-
     <!-- book now -->
     <section class="container-fluid join py-5">
         <div class="container d-flex align-items-center justify-content-between">
@@ -779,7 +887,7 @@
         </div>
     </section>
     <!-- MOBILE VIEW (Hidden on larger screens) -->
-    <section class="mobile-view d-block d-md-none text-white">
+    <section class="mobile-view d-block d-md-none text-white partner-mobile">
         <div class="container py-4">
 
             <!-- Row: 98% Satisfaction + Join Us -->
@@ -834,7 +942,7 @@
     </section>
 
     <!-- Accordion Section -->
-    <section class="container-fluid py-5 mt-5">
+    <section class="container-fluid py-5 mt-5 questions-mobile">
         <div class="container">
             <div class="row">
                 <!-- Left Side Text (4 columns) -->
