@@ -382,6 +382,22 @@ color: var(--black-color);
     overflow: hidden;
   }
 }
+
+@media (max-width: 480px) {
+  .swiper-slide {
+    width: auto;  
+    flex-shrink: 0;
+  }
+  
+  .swiper {
+    width: 100%;
+    overflow: hidden !important;
+  }
+  
+  .container.py-5 {
+    overflow: hidden;
+  }
+}
 .carousel-control-prev-custom,
 .carousel-control-next-custom,
 .carousel-control-prev-featured,
@@ -393,22 +409,10 @@ color: var(--black-color);
     cursor: pointer;
 }
 
-.custom-card-img {
-  width: 330px;
-  height: 200px; 
-  object-fit: cover;
-  border-radius: 8px;
-}
 
-.custom-card-img-2 {
-  width: 440px;
-  height: 230px; 
-  object-fit: cover;
-  border-radius: 8px;
-}
 
 .card-content {
-padding: 1rem;
+padding-top: 15px;
 }
 
 /* Fix for deposit section to prevent text wrapping and maintain consistent card heights */
@@ -489,23 +493,186 @@ justify-content: center;
 .icon-text img {
 margin-right: 8px;
 }
+
+.custom-card-img {
+  width: 340px;
+  height: 200px; 
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.custom-card-img-2 {
+  width: 322px;
+  height: 230px; 
+  object-fit: cover;
+  border-radius: 8px;
+}
 /* for mobile screen */
-@media (max-width: 576px) { 
+/* @media (max-width: 480px) { 
 .custom-card2 {
   max-width: 100%; 
 }
 .custom-card-img {
-  width: 275px;
-  height: 180px;
+  width: 100%;   
+  height: auto;   
+  display: block;  
+  object-fit: cover; 
 }
+
 .custom-card-img-2 {
   width: 345px;
   height: 180px;
+  width: 100%;   
+  height: auto;   
+  display: block;  
+  object-fit: cover;
 }
 .card-content {
   padding: 1.2rem;
 }
+} */
+@media (max-width: 480px) {
+  /* cover space for mobile */
+.car-logo-mobile{
+  margin-top: -60px !important;
 }
+.card-logo-mobile{
+  margin-top: -60px !important;
+}
+.card-text-mobile{
+  margin-top: -45px !important;
+}
+.card-button-mobile{
+  margin-top: 15px !important;
+}
+.chose-bg-img {
+    margin-top: -260px !important;
+    background-position: left calc(100% - 58px) !important;
+}
+.partner-mobile{
+  margin-top: -28px !important;
+}
+.questions-mobile{
+  margin-top: -28px !important;
+}
+.contact-section{
+  margin-top: -28px !important;
+}
+.footer-container{
+  margin-top: 10px !important;
+}
+/* cover space for mobile */
+    .row {
+        justify-content: center !important;
+        /* margin-left: 0 !important;
+        margin-right: 0 !important; */
+    }
+
+    .custom-card2 {
+        width: 100%;
+        max-width: 420px;   
+        margin-left: auto;  
+        margin-right: auto;
+    }
+
+    .custom-card-img {
+  width: 100%;   
+  height: auto;   
+  display: block;  
+  object-fit: cover; 
+}
+
+.custom-card-img-2 {
+  /* width: 345px;
+  height: 180px; */
+  width: 100%;   
+  height: auto;   
+  display: block;  
+  object-fit: cover;
+}
+.card-content {
+  padding-top: 12px !important;
+}
+.position-relative .card-content{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+     .custom-card2 h5 {
+        font-size: 14px !important;
+    }
+
+    .custom-card2 h6 {
+        font-size: 11px !important;
+    }
+}
+
+
+/* ======== SMALL TABLET 481px – 768px ======== */
+@media (min-width: 481px) and (max-width: 768px) {
+
+  .custom-card-img,
+  .custom-card-img-2 {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card-content {
+    padding-top: 15px !important;
+  }
+}
+
+
+
+/* ======== TABLET 769px – 1024px ======== */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .custom-card-img,
+  .custom-card-img-2 {
+    height: 180px;
+    object-fit: inherit;
+    max-width: 100%;
+  }
+
+  .card-content {
+    padding-top: 15px !important;
+  }
+}
+
+
+
+/* ======== LAPTOP 1025px – 1440px ======== */
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+  .custom-card-img,
+  .custom-card-img-2 {
+   height: 200px !important;
+   object-fit: inherit !important;
+   max-width: 100% !important;
+  }
+
+  .card-content {
+    padding-top: 15px !important;
+  }
+}
+
+
+
+/* ======== LARGE DESKTOP 1441px+ ======== */
+@media (min-width: 1441px) {
+
+  .custom-card-img,
+  .custom-card-img-2 {
+     height: 280px !important;
+   object-fit: inherit !important;
+   max-width: 100% !important;
+  }
+
+  .card-content {
+    padding-top: 15px !important;
+  }
+}
+
+
 @media (max-width: 768px) and (min-width: 481px) {  
   .icon-text {
     display: flex;
@@ -686,7 +853,7 @@ background-size: cover;
 }
 
 .join-us {
-  margin-left: 12px;
+  /* margin-left: 12px; */
   font-size: 14px;
 }
 
@@ -1485,6 +1652,7 @@ margin: 5px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 450px;
   }
 
   .step-item {
@@ -1936,10 +2104,10 @@ margin: 5px 0;
 
 /* Boxes */
 .mobile-box {
-  background: #f9f9f9;
-  padding: 10px;
-  border-radius: 8px;
-  margin: 10px 0;
+  /* background: #f9f9f9; */
+  padding: 0px;
+  /* border-radius: 8px;
+  margin: 10px 0; */
 }
 
 .mobile-check {
@@ -3656,7 +3824,7 @@ margin: 5px 0;
   background-image: url(../../icons/Cone2.png);
   background-repeat: no-repeat;
   background-size: auto; /* Keeps the image at its original size */
-  background-position: left bottom; /* Positions image at the bottom left */
+  background-position: left calc(100% - 58px);
 }
 
 /* / Car Details / */
