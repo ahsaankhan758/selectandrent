@@ -30,8 +30,10 @@
                                     {{ $car->year ?? '' }}
                                 </h5>
                                 <h6 class="text-muted mb-0" style="font-size: 12px;">
-                                    {{ __('messages.engine') }} {{ $car->engine_size }}
-                                    {{ __('messages.cc') }} | {{ ucfirst($car->transmission) }} | {{ $car->fuel_type }}
+                                    {{ ucfirst($car->transmission) }}
+                                    | {{ $car->fuel_type }}
+                                    | {{ __('messages.engine') }} {{ $car->engine_size }}
+                                    {{ __('messages.cc') }}  
                                 </h6>
                             </div>
 

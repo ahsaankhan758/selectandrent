@@ -1,6 +1,16 @@
 <?php
 
     return [
+        'program_heading' => 'programma',
+        'our_cutting-edge_home' => "Met onze Selecteer en Huur-service kunt u eenvoudig auto's bekijken,
+                                    vergelijken en huren die zijn afgestemd op uw reis- of zakelijke
+                                    behoeften, allemaal met slechts een paar klikken.",
+        'continuous_innovation_home' => 'Voortdurende innovatie',
+        'choose_from_a_variety_home' => 'Kies uit diverse veilige en handige betaalmethoden
+                                        die aansluiten bij jouw levensstijl en zorgen voor
+                                        een zorgeloze huurervaring.',
+        'we’re_committed_to_delivering_home' => 'Wij zetten ons in voor de beste ervaring',
+        'why_choose_us_home' => 'Waarom voor ons kiezen',
         'we_respond' => 'We reageren meestal binnen 24 uur.',
         'customer_reviews' => 'Review van een host',
         'select_a_category' => 'Selecteer een categorie',
@@ -19,9 +29,9 @@
         'join_the_circle' => 'Word lid van onze community',
         'connect_with' => 'Verbind je met een bruisende, gelijkgestemde community.',
         'flexible_scheduling' => 'Flexibele planning',
-        'customize_your' => 'Pas je verhuurschema aan op je levensstijl',
+        'customize_your' => 'Pas je verhuurschema aan op je levensstijl.',
         'effortless_income' => 'Zorgeloos inkomen',
-        'enjoy_reliable' => 'Geniet van betrouwbaar inkomen en zorgeloos beheer',
+        'enjoy_reliable' => 'Geniet van betrouwbaar inkomen en zorgeloos beheer.',
         'your_personal' => 'Jouw persoonlijke coach',
         'hatchback' => 'Hatchback',
         'suv' => 'SUV',
@@ -38,7 +48,7 @@
                                 aanbod te tonen en je boekingen te verhogen',
         'uniquely_revolutionize' => 'Uniek revolutioneren',
         'flexible_payment_options' => 'Flexibele betaalopties',
-        'choose_from_a_variety' => 'Kies uit verschillende veilige en handige betaalmethoden voor een stressvrije huurervaring',
+        'choose_from_a_variety' => 'Kies uit verschillende veilige en handige betaalmethoden voor een stressvrije huurervaring.',
         'valuable_insights' => 'Waardevolle inzichten',
         'access_personalized' => 'Ontvang persoonlijke aanbevelingen en datagestuurde inzichten om de beste auto te kiezen.',
         'continuous_innovation' => 'Voortdurende innovatie',
@@ -50,7 +60,7 @@
         'customer_first_approach' => 'Klantgerichte aanpak',
         'your_satisfaction' => 'Jouw tevredenheid staat centraal in alles wat we doen — van reservering tot inlevering, wij zorgen voor een uitstekende service en totale gemoedsrust.',
         'we’re_committed_to_delivering' => 'Wij zetten ons in om te leveren',
-        'the_best_experience' => 'de beste ervaring',
+        'the_best_experience' => '',
         'why_choose_us' => 'Waarom voor ons kiezen',
         'login_email' => 'Inlog e-mailadres',  
         'is_booked' => 'Geboekt',
@@ -310,7 +320,7 @@
         'use_our_intuitive' => 'Gebruik onze intuïtieve kalender om beschikbaarheid en prijzen bij te werken',
         'pick_up_drive' => 'Ophalen en rijden',
         'tips_for_renting' => 'Tips voor huren',
-        'plan_ahead' => 'Plan vooruit voor betere prijzen.',
+        'plan_ahead' => 'Plan vooruit voor betere prijzen',
         'economical_vehicles' => 'Voordelige auto’s zijn erg gewild; boek vroeg voor betere beschikbaarheid',
         'verify_features' => 'Controleer functies',
         'double_check_fuel' => 'Controleer de functies en het brandstofverbruik voordat je boekt',
