@@ -148,7 +148,7 @@
         <!-- Mobile Section -->
         <div class="container mobile text-center py-2 d-block d-md-none">
             <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering_home') }} <br>
                 {{ __('messages.the_best_experience') }}</h3>
 
             <div class="mt-4">
@@ -193,7 +193,7 @@
         <!-- Desktop Section -->
         <div class="container Desktop  text-center py-3 d-none d-md-block">
             <h4 class="text-chose fw-bold mb-4">{{ __('messages.why_choose_us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering_home') }} <br>
                 {{ __('messages.the_best_experience') }}</h3>
 
             <div class="row align-items-center mt-4">
