@@ -120,6 +120,7 @@ public function getLocations($city_id)
         'model'=> 'required',
         'category' => 'required',
         'year' => 'required',
+        'city' => 'required',
         'location' => 'required',
         'transmission' => 'required',
         'seats' => 'required',

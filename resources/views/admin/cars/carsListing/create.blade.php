@@ -3,6 +3,10 @@
 @section('title') {{ __('messages.add') }} {{ __('messages.vehicle') }} @endsection
 @section('content')
     @if (can('vehicles', 'edit'))
+        <script>
+            window.oldCity = "{{ old('city') }}";
+            window.oldLocation = "{{ old('location') }}";
+        </script>
         <script src="{{ asset('assets/js/admin/locationArea.js') }}"></script>
         <style>
             .tooltip-icon {
@@ -47,8 +51,9 @@
             }
         </style>
         <script>
-        window.getLocationsUrl = "{{ url('/get-locations') }}";
+            window.getLocationsUrl = "{{ url('/get-locations') }}";
         </script>
+        
         <div class="col-12">
             <div class="card mt-4">
                 <div class="card-header">
@@ -60,33 +65,33 @@
                         <div class="row">
                             <div class="col-4 form-group mb-3">
                                 <label for="model">{{ __('messages.model') }}</label>
-                                <select name="model" id="model" class="form-control " data-live-search = "true">
+                                <select name="model" id="model" class="form-control @error('model') is-invalid @enderror" data-live-search = "true">
                                     <option disabled selected>{{ __('messages.select_a_model') }}</option>
                                     @if(isset($models))
                                         @foreach ( $models as $modelData)
-                                            <option value="{{ $modelData->id }}">{{ ucfirst(strtolower($modelData->name)) }}</option>
+                                            <option value="{{ $modelData->id }}" {{ old('model') == $modelData->id ? 'selected' : '' }}>{{ ucfirst(strtolower($modelData->name)) }}</option>
                                         @endforeach
                                     @endif
                                 </select>
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <lable for="category">{{ __('messages.category') }}</lable>
-                                <select name="category" class="form-control" data-live-search = "true">
+                                <select name="category" class="form-control @error('category') is-invalid @enderror" data-live-search = "true">
                                     <option disabled selected>{{ __('messages.select') }} </option>
                                     @if(isset($categories))
                                         @foreach ( $categories as $categoryData)
-                                            <option value="{{ $categoryData->id }}">{{ ucfirst(strtolower($categoryData->name)) }}</option>
+                                            <option value="{{ $categoryData->id }}" {{ old('category') == $categoryData->id ? 'selected' : '' }}>{{ ucfirst(strtolower($categoryData->name)) }}</option>
                                         @endforeach
                                     @endif
                                 </select>
                             </div>
                         <div class="col-4 form-group mb-3">
                                 <label for="location">{{ __('messages.city') }}</label>
-                                <select name="city" class="form-control" id="city">
+                                <select name="city" class="form-control @error('city') is-invalid @enderror" id="city">
                                     <option disabled selected>{{ __('messages.select') }}</option>
                                     @if(isset($cities))
                                         @foreach ($cities as $city)
-                                            <option value="{{ $city->id }}">{{ ucfirst(strtolower($city->name)) }}</option>
+                                            <option value="{{ $city->id }}" {{ old('city') == $city->id ? 'selected' : '' }}>{{ ucfirst(strtolower($city->name)) }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -95,36 +100,36 @@
                         <div class="row">
                             <div class="col-3 form-group mb-3">
                                 <label for="location">{{ __('messages.area_name') }}</label>
-                                <select name="location" class="form-control" id="location" disabled>
+                                <select name="location" class="form-control @error('location') is-invalid @enderror" id="location">
                                     <option disabled selected>{{ __('messages.select') }}</option>
                                 </select>
                             </div>
                             <div class="col-3 form-group mb-3">
-                                <lable for="fuel_type">{{ __('messages.fuel_type') }}</lable>
-                                <select name="fuel_type" class="form-control">
+                                <label for="fuel_type">{{ __('messages.fuel_type') }}</label>
+                                <select name="fuel_type" class="form-control @error('fuel_type') is-invalid @enderror">
                                     <option disabled selected>{{ __('messages.select') }}</option>
-                                    <option value="electric">{{ __('messages.electric') }}</option>
-                                    <option value="hybrid">{{ __('messages.hybrid') }}</option>
-                                    <option value="petrol">{{ __('messages.petrol') }}</option>
-                                    <option value="diesel">{{ __('messages.diesel') }}</option>
-                                    <option value="gasoline">{{ __('messages.gasoline') }}</option>
-                                    <option value="LPG">{{ __('messages.lpg') }}</option>
+                                    <option value="electric" {{ old('fuel_type') == 'electric' ? 'selected' : '' }}>{{ __('messages.electric') }}</option>
+                                    <option value="hybrid" {{ old('fuel_type') == 'hybrid' ? 'selected' : '' }}>{{ __('messages.hybrid') }}</option>
+                                    <option value="petrol" {{ old('fuel_type') == 'petrol' ? 'selected' : '' }}>{{ __('messages.petrol') }}</option>
+                                    <option value="diesel" {{ old('fuel_type') == 'diesel' ? 'selected' : '' }}>{{ __('messages.diesel') }}</option>
+                                    <option value="gasoline" {{ old('fuel_type') == 'gasoline' ? 'selected' : '' }}>{{ __('messages.gasoline') }}</option>
+                                    <option value="LPG" {{ old('fuel_type') == 'LPG' ? 'selected' : '' }}>{{ __('messages.lpg') }}</option>
                                 </select>
                             </div>
                             <div class="col-3 form-group mb-3">
                                 <lable for="transmission">{{ __('messages.transmission') }}</lable>
-                                <select name="transmission" class="form-control">
+                                <select name="transmission" class="form-control @error('transmission') is-invalid @enderror">
                                     <option disabled selected>{{ __('messages.select') }}</option>
-                                    <option value="auto">{{ __('messages.auto') }}</option>
-                                    <option value="manual">{{ __('messages.manual') }}</option>
+                                    <option value="auto"{{ old('transmission') == 'auto' ? 'selected' : '' }}>{{ __('messages.auto') }}</option>
+                                    <option value="manual"{{ old('transmission') == 'manual' ? 'selected' : '' }}>{{ __('messages.manual') }}</option>
                                 </select>
                             </div>
                             <div class="col-3 form-group mb-3">
                                 <label for="drive">{{ __('messages.drive') }}</label>
-                                <select type="text" name="drive" class="form-control" >
+                                <select type="text" name="drive" class="form-control @error('drive') is-invalid @enderror" >
                                     <option disabled selected>{{ __('messages.select') }}</option>
-                                    <option value="2 Wheel">{{ __('messages.2_wheel') }}</option>
-                                    <option value="4 Wheel">{{ __('messages.4_wheel') }}</option>
+                                    <option value="2 Wheel"{{ old('drive') == '2 Wheel' ? 'selected' : '' }}>{{ __('messages.2_wheel') }}</option>
+                                    <option value="4 Wheel"{{ old('drive') == '4 Wheel' ? 'selected' : '' }}>{{ __('messages.4_wheel') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -137,87 +142,93 @@
                                 </span>
                                 </lable>
 
-                                <input type="text" name="weight" class="form-control">
+                                <input type="text" name="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <lable for="doors">{{ __('messages.doors') }}</lable>
-                                <input type="text" name="doors" class="form-control">
+                                <input type="text" name="doors" class="form-control @error('doors') is-invalid @enderror" value="{{ old('doors') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="year">{{ __('messages.year') }}</label>
-                                <select name="year" class="form-control" >
-                                    <option selected>{{ __('messages.select') }}</option> 
+                                <select name="year" class="form-control @error('year') is-invalid @enderror">
+                                    <option disabled selected>{{ __('messages.select') }}</option>
                                     @for($year = 1980; $year <= date('Y'); $year++)
-                                        <option value="{{ $year }}">{{ $year }}</option> 
+                                        <option value="{{ $year }}" {{ old('year') == $year ? 'selected' : '' }}>
+                                            {{ $year }}
+                                        </option>
                                     @endfor
                                 </select>
+
                             </div>
                         </div> 
                         <div class="row">
                             <div class="col-4 form-group mb-3">
                                 <lable for="engine_size">{{ __('messages.engine_size') }}</lable>
-                                <input type="text" name="engine_size" class="form-control">
+                                <input type="text" name="engine_size" class="form-control @error('engine_size') is-invalid @enderror" value="{{ old('engine_size') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <lable for="luggage">{{ __('messages.luggage') }}</lable>
-                                <input type="text" name="luggage" class="form-control">
+                                <input type="text" name="luggage" class="form-control @error('luggage') is-invalid @enderror" value="{{ old('luggage') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="seats">{{ __('messages.seats') }}</label>
-                                <input type="text" name="seats" class="form-control">
+                                <input type="text" name="seats" class="form-control @error('seats') is-invalid @enderror" value="{{ old('seats') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-4 form-group mb-3">
                                 <lable for="fuel_economy">{{ __('messages.fuel_economy') }}</lable>
-                                <input type="text" name="fuel_economy" class="form-control">
+                                <input type="text" name="fuel_economy" class="form-control @error('fuel_economy') is-invalid @enderror" value="{{ old('fuel_economy') }}">
                             </div>
                             
                             <div class="col-4 form-group mb-3">
                                 <label for="exterior_color">{{ __('messages.exterior_color') }}</label>
-                                <input type="text" name="exterior_color" class="form-control" >
+                                <input type="text" name="exterior_color" class="form-control @error('exterior_color') is-invalid @enderror" value="{{ old('exterior_color') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <lable for="interior_color">{{ __('messages.interior_color') }}</lable>
-                                <input type="text" name="interior_color" class="form-control">
+                                <input type="text" name="interior_color" class="form-control @error('interior_color') is-invalid @enderror" value="{{ old('interior_color') }}">
                             </div>
                         </div>
                         <div class="row">
                         
                             <div class="col-4 form-group mb-3">
-                                <lable for="lisence_plate">{{ __('messages.license_plate') }}</lable>
-                                <input type="text" name="lisence_plate" class="form-control">
+                                <lable for="lisence">{{ __('messages.license_plate') }}</lable>
+                                <input type="text" name="lisence_plate" class="form-control @error('lisence_plate') is-invalid @enderror" value="{{ old('lisence_plate') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="rent">{{ __('messages.rent') }}</label>
-                                <input type="text" name="rent" class="form-control" >
+                                <input type="text" name="rent" class="form-control @error('rent') is-invalid @enderror" value="{{ old('rent') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="currency">{{ __('messages.currency') }}</label>
-                                <select name="currency" class="form-control" >
-                                    <option selected disabled>{{ __('messages.select') }}</option> 
+                                <select name="currency" class="form-control @error('currency') is-invalid @enderror">
+                                    <option selected disabled>{{ __('messages.select') }}</option>
                                     @foreach($currencies as $currency)
-                                        <option value="{{ $currency->code }}">{{ $currency->name }}</option> 
+                                        <option value="{{ $currency->code }}" 
+                                            {{ old('currency') == $currency->code ? 'selected' : '' }}>
+                                            {{ $currency->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="mileage">{{ __('messages.mileage') }}</label>
-                                <input type="text" name="mileage" class="form-control" oninput="formatMileage(this)">
+                                <input type="text" name="mileage" class="form-control @error('mileage') is-invalid @enderror" oninput="formatMileage(this)" value="{{ old('mileage') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-4 form-group mb-3">
                                 <label for="advance_deposit">{{ __('messages.deposit') }}</label>
-                                <input type="number" name="advance_deposit" id="advance_deposit" class="form-control" placeholder="Enter deposit amount">
+                                <input type="number" name="advance_deposit" id="advance_deposit" class="form-control @error('advance_deposit') is-invalid @enderror" placeholder="Enter deposit amount" value="{{ old('advance_deposit') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="min_age">{{ __('messages.min') }}</label>
-                                <input type="number" name="min_age" id="min_age" class="form-control" min="18" placeholder="Enter minimum age">
+                                <input type="number" name="min_age" id="min_age" class="form-control @error('min_age') is-invalid @enderror" min="18" placeholder="Enter minimum age" value="{{ old('min_age') }}">
                             </div>
                             <div class="col-4 form-group mb-3">
                                 <label for="rent_type">{{ __('messages.rent_type') }}</label>
-                                <select name="rent_type" id="rent_type" class="form-control">
+                                <select name="rent_type" id="rent_type" class="form-control @error('rent_type') is-invalid @enderror">
                                     <option disabled>{{ __('messages.select') }}</option>
                                     <option value="day" selected>{{ __('messages.per_day') }}</option>
                                     <option value="hour">{{ __('messages.per_hour') }}</option>  
@@ -227,7 +238,7 @@
                         <div class="row">
                             <div class="col-12 form-group mb-3">
                                 <lable for="detail">{{ __('messages.detail') }}</lable>
-                                <textarea name="detail" class="form-control"></textarea>
+                                <textarea name="detail" class="form-control @error('detail') is-invalid @enderror">{{ old('detail') }}</textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -239,7 +250,7 @@
                                 <label for="images">
                                     {{ __('messages.images') }} 
                                     <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#uploadTemplate" class="ms-2">
-                                        <i class="bi bi-info-circle"></i> How to Upload Pictures
+                                        <i class="bi bi-info-circle"></i> 
                                     </a>
                                 </label>
 
@@ -263,15 +274,19 @@
                                 <input type="file" name="images[]" class="form-control" id="images" onchange="PreviewImages()" multiple>
                             </div>
                             <div class="col-3 form-group mb-3">
-                                <label for="drive">{{ __('messages.status') }}</label>
+                                <label for="status">{{ __('messages.status') }}</label>
                                 <select name="status" class="form-control">
-                                    <option value="1">{{ __('messages.active') }}</option>
-                                    <option value="0">{{ __('messages.inactive') }}</option>
+                                    <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>
+                                        {{ __('messages.active') }}
+                                    </option>
+                                    <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>
+                                        {{ __('messages.inactive') }}
+                                    </option>
                                 </select>
                             </div>
                             <div class="col-3 form-group mb-3">
                                 <label for="drive">{{ __('messages.date') }} {{ __('messages.added') }}</label>
-                                <input type="date" name="date_added" class="form-control" id="date_added">
+                                <input type="date" name="date_added" class="form-control" id="date_added" value="{{ old('date_added') }}">
                             </div>
                         </div>
                         <div class="row">
@@ -286,8 +301,12 @@
                             @if(isset($features))
                                 @foreach ($features as $feature)
                                     <div class="col-2">
-                                        <input type="checkbox" name="features[]" value="{{ $feature->name }}" id="{{ $feature->id }}">  
-                                        <label for="{{ $feature->id }}" >{{ $feature->name }}</label>
+                                        <input type="checkbox"
+                                            name="features[]"
+                                            value="{{ $feature->name }}"
+                                            id="{{ $feature->id }}"
+                                            {{ in_array($feature->name, old('features', [])) ? 'checked' : '' }}>
+                                        <label for="{{ $feature->id }}">{{ $feature->name }}</label>
                                     </div>
                                 @endforeach
                             @endif
@@ -301,6 +320,7 @@
                 </div>
             </div> 
         </div>
+        
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <!-- Select2 CSS & JS -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
@@ -367,44 +387,25 @@
         </script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                let today = new Date().toISOString().split('T')[0]; 
-                document.getElementById("date_added").value = today;
+
+                let dateInput = document.getElementById("date_added");
+                if (!dateInput.value) {
+                    let today = new Date().toISOString().split('T')[0];
+                    dateInput.value = today;
+                }
             });
         </script>
         <script>
-    function formatMileage(input) {
-        // Remove all non-digit characters
-        let value = input.value.replace(/,/g, '').replace(/\D/g, '');
-        
-        // Format with commas
-        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-</script>
-
-        <!-- <script>
-            document.addEventListener('DOMContentLoaded', function () {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        });
-        </script> -->
-        <!-- <script>
-        function toggleImageTooltip() {
-            const tooltip = document.getElementById('imageTooltip');
-            tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
-        }
-
-        // Optional: close tooltip if clicked outside
-        document.addEventListener('click', function(event) {
-            const tooltip = document.getElementById('imageTooltip');
-            const icon = document.querySelector('.tooltip-icon');
-
-            if (!tooltip.contains(event.target) && !icon.contains(event.target)) {
-                tooltip.style.display = 'none';
+            function formatMileage(input) {
+                // Remove all non-digit characters
+                let value = input.value.replace(/,/g, '').replace(/\D/g, '');
+                
+                // Format with commas
+                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
-        });
-    </script> -->
+        </script>
+
+       
     @else
         <div class="alert alert-danger" role="alert">
             Access Denied
