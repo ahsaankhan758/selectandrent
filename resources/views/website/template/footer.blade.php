@@ -60,17 +60,17 @@
       <div class="container">
           <div class="contact-section">
               <h2 class="ready-start">{{ __('messages.ready_to_start_this') }}?</h2>
-              <p>{{ __("messages.it's_easy") }}</p>
+              <p class="no-bottom-margin">{{ __("messages.it's_easy") }}</p>
 
               <div class="d-flex justify-content-center text-white flex-wrap">
                   <div class="text-center">
                       <a href="tel:0123456789" class="contact-btn"><i class="fas fa-phone"></i> +44 xxxx xxxxxx</a>
-                      <p><i class="fas fa-phone"></i> {{ __('messages.24/7_service') }}</p>
+                      <p class="no-bottom-margin"><i class="fas fa-phone"></i> {{ __('messages.24/7_service') }}</p>
                   </div>
                   <div class="text-center">
                       <a href="mailto:hello@sparkodic.com" class="contact-btn"><i class="fas fa-envelope"></i>
                           hello@sparkodic.com</a>
-                      <p><i class="fas fa-clock"></i> {{ __('messages.monday_saturday') }}
+                      <p class="no-bottom-margin"><i class="fas fa-clock"></i> {{ __('messages.monday_saturday') }}
                           <br>{{ __('messages.sunday') }}</p>
                   </div>
               </div>
