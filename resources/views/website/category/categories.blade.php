@@ -153,6 +153,7 @@
                     <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
                     <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
                     <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
+
                 </div>
                 <div class="mb-4">
                     <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
@@ -181,6 +182,7 @@
                 <div class="mb-4">
                     <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="img-fluid mb-2"
                         alt="">
+
                     <h5 class="fw-bold">{{ __('messages.customer_first_approach') }}</h5>
                     <p class="text-muted">{{ __('messages.your_satisfaction') }}</p>
                 </div>
@@ -275,6 +277,7 @@
                 <div class="col-md-4">
                     <div class="accordion" id="faqAccordion1">
                         <!-- First Item -->
+
                        <div class="accordion-item border-0 border-bottom">
                         <h4 class="accordion-header" id="headingOne1">
                             <button class="accordion-button collapsed fw-bold shadow-none" type="button"
@@ -287,6 +290,7 @@
                             data-bs-parent="#faqAccordion1">
                             <div class="accordion-body text-muted">
                                 {{ __('messages.Faq1_answer') }}
+
                             </div>
                         </div>
                     </div>

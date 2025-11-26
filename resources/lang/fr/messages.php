@@ -514,6 +514,9 @@
         'messages' => 'Messages',
         'loripsome_is' => 'Loripsome est une suite financière qui vous offre une expérience personnalisée pour obtenir un crédit et un financement pour votre entreprise. Vous recevrez également des conseils de notre équipe d\'experts',
         'no_blogs_available' => 'Aucun blog disponible',
+
+        'continue_with_google' => 'Continuer avec Google',
+
         'company_register' => 'Enregistrement de l\'entreprise',
         'select_a_vehicle_model' => 'Sélectionner un modèle de voiture',
         'loading' => 'Chargement',

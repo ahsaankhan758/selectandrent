@@ -795,5 +795,8 @@
       'rate_per_hour' => 'Rate Per Hour',
       'cron_job' => 'Cronjob',
       'no_blogs_available' => 'No Blogs Available.',
+
+      'continue_with_google' => 'Continue with Google',
+
       ];
 

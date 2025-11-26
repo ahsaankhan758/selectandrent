@@ -518,6 +518,9 @@
         'satisfaction' => 'Tevredenheid',
         'simplifying_rentals' => 'Verhuur vereenvoudigen met digitale contracten, realtime beschikbaarheid en veilige betalingen',
         'collect_your_vehicle' => 'Haal je auto op en begin je reis',
+
+        'continue_with_google' => 'Doorgaan met Google',
+
         'round_the_clock' => 'Rond de klok',
         'messages' => 'Berichten',
         'loripsome_is' => 'Loripsome is een financiële suite die u een gepersonaliseerde ervaring biedt om krediet en financiering voor uw bedrijf te verkrijgen. U krijgt ook begeleiding van ons zakelijke adviesteam',

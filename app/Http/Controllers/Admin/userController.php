@@ -135,27 +135,32 @@ class userController extends Controller
         return redirect()->route('users')-> with('status','Company Data Deleted Successfully.');
     }
     public function logout(Request $request)
+
         {
-            $role = Auth::user()->role;
+            $user = Auth::user();
+            $role = $user?->role;
+            $name = $user?->name;
+            $userId = $user?->id;
 
-            $name = Auth::user()->name;
-            $userId = Auth::id();
+            // Preserve currency and language from session
+        $currencyData = [
+            'defaultCurrencyCode' => session('defaultCurrencyCode'),
+            'defaultCurrencyName' => ('defaultCurrencyName'),
+            'defaultCurrencySymbol' => session('defaultCurrencySymbol'),
+            'defaultCurrencyRate' => ('defaultCurrencyRate'),
+        ];
 
-            $currencyData = [
-                'defaultCurrencyCode' => session('defaultCurrencyCode'),
-                'defaultCurrencyName' => ('defaultCurrencyName'),
-                'defaultCurrencySymbol' => session('defaultCurrencySymbol'),
-                'defaultCurrencyRate' => ('defaultCurrencyRate'),
-            ];
+        $languageData = [
+            'lang' => session('lang'),
+            'langName' => session('langName'),
+            'langFlagCode' => session('langFlagCode'),
+        ];
 
-            $languageData = [
-                'lang' => session('lang'),
-                'langName' => session('langName'),
-                'langFlagCode' => session('langFlagCode'),
-            ];
+        // Properly log the user out (clears remember_token cookie too)
+        Auth::logout();
 
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
             session($currencyData);
             session($languageData);
@@ -210,6 +215,48 @@ class userController extends Controller
                     : redirect('/employee/login');
             }
 
-            return redirect('/login');
+
+        session($currencyData);
+        session($languageData);
+
+        if (isset($role) && $role == 'admin') {
+            $desciption = $name.' LoggedOut. User Role was '. ucfirst($role);
+            $action = 'LoggedOut';
+            $module = 'Admin';
+            activityLog($userId, $desciption, $action, $module);
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/admin/login');
+        } elseif (isset($role) && $role == 'company') {
+            $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
+            $action = 'LoggedOut';
+            $module = 'Company';
+            activityLog($userId, $desciption, $action, $module);
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/company/login');
+        } elseif (isset($role) && $role == 'user') {
+            $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
+            $action = 'LoggedOut';
+            $module = 'Website';
+            activityLog($userId, $desciption, $action, $module);
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/');
+        } elseif (isset($role) && $role == 'employee') {
+            $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
+            $action = 'LoggedOut';
+            $module = 'Employee';
+            activityLog($userId, $desciption, $action, $module);
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/employee/login');
         }
+
+        return redirect('/login');
+    }
 }
