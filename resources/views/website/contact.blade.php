@@ -32,13 +32,13 @@
     </style>
     <section class="custom-contact-section py-5">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row">
                 <!-- Left Side: Contact Info -->
                 <div class="col-lg-5 col-md-5 custom-contact-info">
-                    <h3 class="get-desktop masked-text">{{ __('messages.get_in') }} <br> {{ __('messages.touch') }}</h3>
-                    <h2 class="get-mobile  text-center masked-text ">{{ __('messages.get_in_touch') }}</h2>
+                    <h2 class="get-desktop fw-bold">{{ __('messages.get_in_touch') }}</h2>
+                    <h2 class="get-mobile  text-center fw-bold">{{ __('messages.get_in_touch') }}</h2>
 
-                    <ul class="list-unstyled custom-contact-list">
+                    <ul class="list-unstyled custom-contact-list mt-5">
                         <li>
                             <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="Phone Icon">
                             <div>
