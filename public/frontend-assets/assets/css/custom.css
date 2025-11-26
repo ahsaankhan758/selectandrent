@@ -531,6 +531,10 @@ margin-right: 8px;
   margin-top: 5rem !important;
 }
 @media (max-width: 480px) {
+  .text-load-more {
+    padding: 20px 0 !important;
+    margin-top: -22px !important;
+  }
   /* cover space for mobile */
   .chose-mobile-car-heading{
     margin-top: -79px !important;
@@ -611,7 +615,7 @@ margin-right: 8px;
 
     .custom-card2 {
         width: 100%;
-        max-width: 420px;   
+        max-width: 375px;   
         margin-left: auto;  
         margin-right: auto;
     }
@@ -656,7 +660,12 @@ margin-right: 8px;
     max-width: 100%;
     height: auto;
   }
-
+.text-load-more.py-5 {
+    padding: 20px 0 !important;
+    margin-top: -22px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
   .card-content {
     padding-top: 15px !important;
   }
