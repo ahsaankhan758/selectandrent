@@ -242,11 +242,7 @@ color: var(--black-color);
           width: 100%;
       }
   }
- @media (max-width: 480px) {
- .chose-mobile {
-   margin-top: -36px !important;       
-}
- }
+ 
   /* card css */
   .card {
       height: 120px; 
@@ -532,15 +528,12 @@ margin-right: 8px;
 }
 } */
 .desktop-home-heading{
-  margin-top: 7rem !important;
+  margin-top: 5rem !important;
 }
 @media (max-width: 480px) {
   /* cover space for mobile */
-  .category-work-mobile{
-    margin-top: -120px !important;
-  }
   .chose-mobile-car-heading{
-    margin-top: 125px !important;
+    margin-top: -79px !important;
   }
   .mobile-category-home-cards{
     margin-top: -50px !important;
@@ -554,37 +547,22 @@ margin-right: 8px;
   .mobile-custom-join{
     margin-top: 173px !important;
   }
-   .mobile-custom-work{
-    margin-top: -50px !important;
-  }
-  .mobile-testimonial{
-    margin-top: -100px !important;
-  }
-  .mobile-tip-category{
-    margin-top: -6px !important;
-  }
+ 
   .mobile-home-heading{
     margin-top: 3rem !important;
   }
-  .mobile-tip-category-card{
-    margin-top: -45px !important;
-  }
+  
   .mobile-tip-category-text{
     margin-top: -10px !important;
   }
-  .chose-bg-img.category-mobile-chose{
-    margin-top: -100px !important;
-  }
+  
   .mobile-testimonial-img{
     margin-top: -45px !important;
   }
-  .mobile-join-accordion-category{
-    margin-top: -110px !important; 
+  .testimonial-box.mt-5{
+    margin-top: 0 !important;
   }
-  .mobile-join-accordion
-  {
-    margin-top: -80px !important;
-  }
+  
   .testimonial-bg {
     height: 230px !important;
     margin-top: 48px !important;
@@ -998,7 +976,7 @@ background-size: cover;
 .book{
   width: 396px;
   margin-left: 17px;
-  height: 419px;
+  height: 460px;
 }
 .tab-book-button{
   margin-left: 243px;
@@ -1036,7 +1014,7 @@ background-size: cover;
 }
 .tab-book-button{
   margin-left: 190px;
-  margin-top: -44px;
+  margin-top: -46px;
   font-size: 14px;
   width: 128px;
   height: 46px;
@@ -1044,7 +1022,7 @@ background-size: cover;
 .book{
 width: 307px;
 margin-left: 13px;
-height: 358px;
+height: 450px;
 }
 .progress-text {
   text-align: center;
@@ -4827,4 +4805,109 @@ margin: 5px 0;
     .footer-quick-links{
       margin-left: 20px;
     }
+}
+/* category page media for mobile*/
+@media (max-width: 480px) {
+  .category-heading-main{
+    margin-top: -1px !important;
+  }
+  .category-car-main{
+    margin-top: -40px !important;
+  }
+  .category-work-mobile{
+    margin-top: -115px !important;
+  }
+  .mobile-tip-category-card{
+    margin-top: -45px !important;
+  }
+   .mobile-tip-category{
+    margin-top: -59px !important;
+  }
+  .chose-bg-img.category-mobile-chose{
+    margin-top: -92px !important;
+  }
+  .chose-bg-img.home-mobile-chose{
+    margin-top: -77px !important;
+  }
+  .mobile-join-accordion-category{
+    margin-top: -105px !important; 
+  }
+  .space-benefit-mobile{
+    margin-top: -4px !important;
+  }
+  .mobile-custom-work{
+    margin-top: -41px !important;
+  }
+  .mobile-testimonial{
+    margin-top: -67px !important;
+  }
+  .mobile-join-accordion{
+    margin-top: -67px !important;
+  }
+  .mobile-join-register-btn{
+    margin-top: 60px !important;
+  }
+}
+@media (max-width: 380px){
+  .mobile-join-register-btn{
+    margin-top: 100px !important;
+  }
+}
+@media (max-width: 320px){
+  .mobile-join-register-btn{
+    margin-top: 110px !important;
+  }
+}
+/* about page for mobile */
+@media (max-width: 480px) {
+.mobile-mission-rent{
+  margin-top: 28px !important;
+}
+.mobile-mission-rent.py-5{
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+.new-design.py-3{
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+.about_image-wrapper{
+  margin-top: 33px !important;
+}
+.about_image-wrapper.py-5{
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+.custom_commitment-text{
+  margin-top: 22px !important;
+}
+.about-button{
+  text-align: center;
+}
+.chose-mobile {
+  margin-top: 218px !important;       
+}
+.mobile-testimonial-about{
+  margin-top: -105px !important;
+}
+.about-contact-center{
+  text-align: center !important;
+}
+.mobile-contact-space{
+  margin-top: -47px !important;
+}
+.mobile-button-contact{
+  text-align: center !important;
+}
+}
+
+/* contact mobile */
+ @media (max-width: 480px) {
+ .custom-contact-info {
+  margin-top: -19px !important;
+} 
+.mobile-contact-form{
+  margin-top: 15px !important;
+}
+ 
 }
