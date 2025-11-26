@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
     <div class="container text-center mobile-home-heading desktop-home-heading">
         <!-- Centered Heading -->
-        <h5 class="display-6 fw-bold mb-3">{{ __('messages.browse_by_categories') }}</h5>
+        <h5 class="display-6 fw-bold">{{ __('messages.browse_by_categories') }}</h5>
         <!-- Bottom Paragraph -->
         <!-- <p class="lead text-muted">
                     {{ __('messages.rapidiously_enable') }}
@@ -407,58 +407,33 @@
         </div>
     </div>
 
-           <!-- Tablet & Mobile Section -->
-<div class="container mobile text-center chose-mobile py-2 d-block d-lg-none">
+          <!-- chose section -->
+          
+       
+    <div class="container chose-bg-img py-5 home-mobile-chose">
+ <!-- Tablet & Mobile Section -->
+<div class="container mobile text-center py-2 d-block d-lg-none">
     <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
     <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
         {{ __('messages.the_best_experience') }}</h3>
 
-
-        <!-- Mobile Section -->
-        <div class="container mobile text-center py-5 d-block d-md-none">
-            <h4 class="text-warning fw-bold">{{ __('messages.why_choose_us_home') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering_home') }} <br>
-                {{ __('messages.the_best_experience') }} </h3>
-
-            <div class="mt-4">
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
-                    <p class="text-muted">{{ __('messages.choose_from_a_variety_home') }}</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.valuable_insights') }}</h5>
-                    <p class="text-muted">{{ __('messages.access_personalized') }}.</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.continuous_innovation_home') }}</h5>
-                    <p class="text-muted">{{ __('messages.we’re_always_evolving') }}.</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.instant_online') }}</h5>
-                    <p class="text-muted">{{ __('messages.quickly_assess') }}.</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.tailored_search') }}</h5>
-                    <p class="text-muted">{{ __('messages.effortlessly_find') }}.</p>
-                </div>
-                <div class="mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="img-fluid mb-2"
-                        alt="">
-                    <h5 class="fw-bold">{{ __('messages.customer_first_approach') }}</h5>
-                    <p class="text-muted">{{ __('messages.your_satisfaction') }}.</p>
-                </div>
-            </div>
-
+    <div class="mt-4">
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="img-fluid mb-2" alt="">
+            <h5 class="fw-bold">{{ __('messages.flexible_payment_options') }}</h5>
+            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
+        </div>
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="img-fluid mb-2"
+                alt="">
+            <h5 class="fw-bold">{{ __('messages.valuable_insights') }}</h5>
+            <p class="text-muted">{{ __('messages.access_personalized') }}</p>
+        </div>
+        <div class="mb-4">
+            <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="img-fluid mb-2"
+                alt="">
+            <h5 class="fw-bold">{{ __('messages.continuous_innovation') }}</h5>
+            <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
         </div>
         <div class="mb-4">
             <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="img-fluid mb-2"
@@ -480,16 +455,11 @@
         </div>
     </div>
 </div>
-       <!-- chose section -->
-    <div class="container chose-bg-img py-5">
-
         <!-- Desktop Section -->
-
-        <div class="container Desktop  text-center py-5 d-none d-md-block">
-            <h4 class="text-warning fw-bold">{{ __('messages.why_choose_us_home') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering_home') }} <br>
-                {{ __('messages.the_best_experience') }} </h3>
-
+        <div class="container Desktop  text-center py-3 d-none d-md-block">
+            <h4 class="text-chose fw-bold mb-4">{{ __('messages.why_choose_us') }}</h4>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+                {{ __('messages.the_best_experience') }}</h3>
 
             <div class="row align-items-center mt-4">
                 <!-- Left Side (Icons Last) -->
@@ -497,7 +467,7 @@
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
                             <h5 class="fw-bold mb-1">{{ __('messages.flexible_payment_options') }}</h5>
-                            <p class="text-muted">{{ __('messages.choose_from_a_variety_home') }}</p>
+                            <p class="text-muted">{{ __('messages.choose_from_a_variety') }}</p>
                         </div>
                         <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="ms-3 img-fixed"
                             alt="">
@@ -512,7 +482,7 @@
                     </div>
                     <div class="mb-4 d-flex align-items-center justify-content-end">
                         <div>
-                            <h5 class="fw-bold mb-1">{{ __('messages.continuous_innovation_home') }}</h5>
+                            <h5 class="fw-bold mb-1">{{ __('messages.continuous_innovation') }}</h5>
                             <p class="text-muted">{{ __('messages.we’re_always_evolving') }}</p>
                         </div>
                         <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="ms-3 img-fixed"
@@ -555,77 +525,7 @@
             </div>
         </div>
     </div>
-
-    <!-- tab -->
-    <div class="container tab text-center py-5 d-none d-sm-block d-md-none">
-        <h4 class="text-warning fw-bold">{{ __('messages.why_choose_us_home') }}</h4>
-        <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering_home') }} <br>
-            {{ __('messages.the_best_experience') }}</h3>
-
-        <div class="row align-items-center mt-4">
-            <!-- Left Side (First Three Icons) -->
-            <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-                <div class="d-flex align-items-center justify-content-center mb-4">
-                    <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.instant_online') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.quickly_assess') }}</p>
-                    </div>
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (3).png" class="ml-3 img-fixed"
-                        alt="">
-                </div>
-                <div class="d-flex align-items-center justify-content-center mb-4">
-                    <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.tailored_search') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.effortlessly_find') }}</p>
-                    </div>
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (4).png" class="ml-3 img-fixed"
-                        alt="">
-                </div>
-                <div class="d-flex align-items-center justify-content-center mb-4">
-                    <div>
-                        <h5 class="fw-bold mb-1 custom-tab text-start">{{ __('messages.customer_first_approach') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.your_satisfaction') }}</p>
-                    </div>
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (5).png" class="ml-3 img-fixed"
-                        alt="">
-                </div>
-            </div>
-
-            <!-- Center Image -->
-            <div class="col-md-4 text-center mb-4">
-                <img src="{{ asset('/') }}frontend-assets/assets/car-1.png" class="img-fluid" alt="Center Image">
-            </div>
-
-            <!-- Right Side (Last Three Icons) -->
-            <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-                <div class="d-flex align-items-center justify-content-center mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector.png" class="me-3 img-fixed"
-                        alt="">
-                    <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.flexible_payment_options') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.choose_from_a_variety_home') }}</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-center mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (1).png" class="me-3 img-fixed"
-                        alt="">
-                    <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.valuable_insights') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.access_personalized') }}</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-center mb-4">
-                    <img src="{{ asset('/') }}frontend-assets/icons/Vector (2).png" class="me-3 img-fixed"
-                        alt="">
-                    <div>
-                        <h5 class="fw-bold custom-tab text-start mb-1">{{ __('messages.continuous_innovation_home') }}</h5>
-                        <p class="text-muted text-start">{{ __('messages.we’re_always_evolving') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Choose Section End-->
+    {{-- end chose section --}}
     <section class="container py-4 mt-5 chose-mobile-car-heading">
 
         <div class="row align-items-center">

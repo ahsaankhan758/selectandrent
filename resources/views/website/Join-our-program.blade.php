@@ -6,7 +6,7 @@
 @section('content')
     <!-- parther -->
     <div class="container desktop-view py-5">
-        <h2 class="text-center mb-5 mt-3">{{ __('messages.why_partner') }}</h2>
+        <h2 class="text-center fw-bold mb-5 mt-3">{{ __('messages.why_partner') }}</h2>
         <p class="text-center mb-5 text-justify custom-width">{{ __('messages.maximize_your_vehicle') }}</p>
         <!-- Part 1 -->
         <div class="row align-items-center">
@@ -112,7 +112,7 @@
     </div>
     <!-- mobile view -->
     <div class="mobile-container">
-        <h2 class="mobile-heading">{{ __('messages.why_partner') }} </h2>
+        <h2 class="mobile-heading fw-bold">{{ __('messages.why_partner') }} </h2>
         <p class="mobile-text">
             {{ __('messages.maximize_your_vehicle') }}
         </p>
@@ -199,7 +199,7 @@
     <!-- parther -->
     <!-- benefits -->
     <div class="container desktop-benefits py-5">
-        <h2 class="text-center mb-5">{{ __('messages.key_benefits') }}</h2>
+        <h2 class="text-center fw-bold mb-5">{{ __('messages.key_benefits') }}</h2>
         <div class="row custom-benefit-container">
             <div class="col-md-3 text-center custom-benefit-step">
                 <div>
@@ -235,8 +235,8 @@
         </div>
     </div>
     <!-- mobile view -->
-    <div class="benefits-container mobile-benefits">
-        <h2 class="benefits-heading">{{ __('messages.key_benefits') }}</h2>
+    <div class="benefits-container mobile-benefits space-benefit-mobile">
+        <h2 class="benefits-heading fw-bold">{{ __('messages.key_benefits') }}</h2>
 
         <div class="benefit-item">
             <div class="icon"><img src="{{ asset('/') }}frontend-assets/icons/1.png" alt="Icon"></div>
@@ -276,7 +276,7 @@
     <!-- end benefits -->
     <!-- Work -->
     <div class="container py-5 mobile-custom-work">
-        <h2 class="text-center text-warning mb-4">
+        <h2 class="text-center fw-bold text-warning mb-4">
             {{ __('messages.how_it_works') }}
         </h2>
         <p class="text-center">{{ __('messages.how_work_text') }}</p>
@@ -316,7 +316,7 @@
                 </div>
             </div>
         </div>
-        <div class="reverse-button text-center mt-5">
+        <div class="reverse-button text-center mt-5 mobile-join-register-btn">
             <button class="btn btn-orange-clr rounded-pill text-white" data-bs-toggle="modal"
                 data-bs-target="#carRentalModal">
                 {{ __('messages.fill_the_registration') }}

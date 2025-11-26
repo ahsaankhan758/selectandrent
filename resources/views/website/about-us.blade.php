@@ -26,7 +26,7 @@
             </div>
         </div> --}}
     <!-- mission section -->
-    <section class="container py-5 mt-5">
+    <section class="container py-5 mobile-mission-rent">
         <div class="row">
             <div class="col-lg-6">
                 <h4 class="fw-bold new-design">{{ __('messages.rent_a_vehicle') }}</h4>
@@ -75,19 +75,19 @@
             <div class="col-lg-6 col-md-12 text-center custom_image-wrapper position-relative">
                 <img src="{{ asset('/') }}frontend-assets/icons/big.webp"
                     class="img-fluid rounded custom_about_main-image" alt="Businessman near car">
-                <img src="{{ asset('/') }}frontend-assets/icons/car-commitment.png"
-                    class="img-fluid rounded custom_about_overlay-image position-absolute" alt="Happy customer in car">
+                {{-- <img src="{{ asset('/') }}frontend-assets/icons/car-commitment.png"
+                    class="img-fluid rounded custom_about_overlay-image position-absolute" alt="Happy customer in car"> --}}
             </div>
         </div>
     </section>
 
-    <div class="container custom_commitment-section py-5">
+    <div class="container custom_commitment-section py-5 about_image-wrapper">
         <div class="row">
-            <div class="col-lg-6 col-md-12 custom_image-wrapper position-relative">
+            <div class="col-lg-6 col-md-12 custom_image-wrapper  position-relative">
                 <img src="{{ asset('/') }}frontend-assets/icons/big-2.webp" class="img-fluid rounded custom_main-image"
                     alt="Businessman near car">
-                <img src="{{ asset('/') }}frontend-assets/icons/car-commitment.png"
-                    class="img-fluid rounded custom_overlay-image position-absolute" alt="Happy customer in car">
+                {{-- <img src="{{ asset('/') }}frontend-assets/icons/car-commitment.png"
+                    class="img-fluid rounded custom_overlay-image position-absolute" alt="Happy customer in car"> --}}
             </div>
             <div class="col-lg-6 col-md-12 custom_commitment-text">
                 {{-- <span class="badge custom_badge">
@@ -123,7 +123,7 @@
                         <span class="ms-2">{{ __('messages.empowering_freedom') }}</span>
                     </li>
                 </ul>
-                <div class="py-3">
+                <div class="py-3 about-button">
                     <a href="#" class="btn btn-orange-clr rounded-pill px-3 text-white" data-bs-toggle="modal"
                         data-bs-target="#registerModal">
                         {{ __('messages.get_started') }} <i class="fa-solid fa-arrow-right"></i>
@@ -253,83 +253,9 @@
         </div>
     </div>
     {{-- end chose section --}}
-{{-- old icons --}}
-    {{-- <div class="team-section">
-        <h3 class="text-primary">{{ __('messages.meet_with_our') }}</h3>
-        <h2 class="mb-5 fw-bold">{{ __('messages.our_amazing_team') }}</h2>
-
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-3 d-flex justify-content-center">
-                    <div class="team-card">
-                        <img src="{{ asset('/') }}frontend-assets/icons/ameazing.png" alt="Wade Warren">
-                        <div class="social-icons">
-                            <a href="#" class="fab fa-facebook-f"></a>
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-linkedin-in"></a>
-                        </div>
-                        <div class="team-info">
-                            <span class="badge bg-dark">{{ __('messages.in') }}</span>
-                            <h6 class="m-0">Wade Warren</h6>
-                            <p class="m-0">{{ __('messages.marketing') }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex justify-content-center">
-                    <div class="team-card">
-                        <img src="{{ asset('/') }}frontend-assets/icons/ameazing.png" alt="Wade Warren">
-                        <div class="social-icons">
-                            <a href="#" class="fab fa-facebook-f"></a>
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-linkedin-in"></a>
-                        </div>
-                        <div class="team-info">
-                            <span class="badge bg-dark">{{ __('messages.in') }}</span>
-                            <h6 class="m-0">Wade Warren</h6>
-                            <p class="m-0">{{ __('messages.marketing') }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex justify-content-center">
-                    <div class="team-card">
-                        <img src="{{ asset('/') }}frontend-assets/icons/ameazing.png" alt="Wade Warren">
-                        <div class="social-icons">
-                            <a href="#" class="fab fa-facebook-f"></a>
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-linkedin-in"></a>
-                        </div>
-                        <div class="team-info">
-                            <span class="badge bg-dark">{{ __('messages.in') }}</span>
-                            <h6 class="m-0">Wade Warren</h6>
-                            <p class="m-0">{{ __('messages.marketing') }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex justify-content-center">
-                    <div class="team-card">
-                        <img src="{{ asset('/') }}frontend-assets/icons/ameazing.png" alt="Wade Warren">
-                        <div class="social-icons">
-                            <a href="#" class="fab fa-facebook-f"></a>
-                            <a href="#" class="fab fa-twitter"></a>
-                            <a href="#" class="fab fa-linkedin-in"></a>
-                        </div>
-                        <div class="team-info">
-                            <span class="badge bg-dark">{{ __('messages.in') }}</span>
-                            <h6 class="m-0">Wade Warren</h6>
-                            <p class="m-0">{{ __('messages.marketing') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div> --}}
-
-
-    <!-- end team -->
 
     <!-- testimonals -->
-    <div class="container py-5">
+    <div class="container py-5 mobile-testimonial-about">
         <h3 class="fw-bold text-center">{{ __('messages.customer_reviews') }}</h3>
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -349,7 +275,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer1.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -372,7 +298,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer2.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -395,7 +321,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative mt-3 text-center">
+                        <div class="col-md-6 position-relative mt-3 text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer4.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -417,7 +343,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer3.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -440,7 +366,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer5.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -464,7 +390,7 @@
     <!-- end testimonials -->
 
     <!-- Accordion Section -->
-    <section class="container-fluid py-5">
+    <section class="container-fluid py-5 mobile-join-accordion">
         <div class="container">
             <div class="row">
                 <!-- Left Side Text (4 columns) -->
@@ -593,15 +519,15 @@
     </section>
 
     <!-- contact sections -->
-    <div class="container contact-container py-3">
+    <div class="container contact-container mobile-contact-space py-3">
         <div class="row g-4">
             <!-- Left Side -->
-            <div class="col-md-4">
+            <div class="col-md-4 about-contact-center">
                 <h4 class="faq">{{ __('messages.can’t_find_answer') }}?</h4>
                 <h3 class="fw-bold"><span>{{ __('messages.submit') }}</span> {{ __('messages.your_queries') }} </h3>
                 <p>{{ __('messages.contect_text') }}</p>
                 <button class="btn btn-orange-clr rounded-pill text-white">
-                    <i class="fa-solid fa-phone"></i> +44 xxxx xxxxxx
+                    <i class="fa-solid fa-phone"></i> +44xxxxxxxxxx
                 </button>
             </div>
 
@@ -664,7 +590,7 @@
                             </div>
 
                             <!-- Submit Button -->
-                            <div class="col-12 text-end">
+                            <div class="col-12 text-end mobile-button-contact">
                                 <button id="submitBtn" class="btn btn-orange-clr rounded-pill text-white px-4">
                                     {{ __('messages.submit') }}
                                 </button>
