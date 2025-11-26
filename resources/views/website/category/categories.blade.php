@@ -97,7 +97,7 @@
             <!-- Plan Ahead -->
             <div class="col-md-4 mobile-tip-category-card">
                 <div class="tip-card text-center p-3">
-                    <div class="icon-container mb-2">
+                    <div class="mb-2">
                         <img src="{{ asset('/') }}frontend-assets/icons/tip-img-1.png" alt="Plan Ahead"
                             class="img-fluid">
                     </div>
@@ -111,7 +111,7 @@
             <!-- Verify Features -->
             <div class="col-md-4 mobile-tip-category-card">
                 <div class="tip-card active text-center p-3">
-                    <div class="icon-container mb-2">
+                    <div class="mb-2">
                         <img src="{{ asset('/') }}frontend-assets/icons/tip-img-2.png" alt="Verify Features"
                             class="img-fluid">
                     </div>
@@ -125,7 +125,7 @@
             <!-- Longer Rentals -->
             <div class="col-md-4 mobile-tip-category-card">
                 <div class="tip-card text-center p-3">
-                    <div class="icon-container mb-2">
+                    <div class="mb-2">
                         <img src="{{ asset('/') }}frontend-assets/icons/tip-img-3.png" alt="Longer Rentals"
                             class="img-fluid">
                     </div>
