@@ -4,6 +4,7 @@ $.ajaxSetup({
     }
 });
 
+
 // Clear field error state when user starts typing
 $(document).on('input', '#usersignup input', function () {
     $(this).closest('.input-group').removeClass('input-error');
@@ -15,6 +16,7 @@ $(document).on('submit', '#usersignup', function(e) {
     // Reset previous error highlights
     $('#usersignup .input-group').removeClass('input-error');
 
+
     var name = $('#name').val();
     var email = $('#email').val();
     var phone = $('#phone').val();
@@ -23,33 +25,41 @@ $(document).on('submit', '#usersignup', function(e) {
     var form = $(this); // reference to the form
     var url = form.attr('action'); // get the action attribute
     
+
     // Client-side validation with visual feedback
     if(!name){
         $('#name').closest('.input-group').addClass('input-error');
+
         var message = 'Name Required.';
         showToast(message, "error");
         return;
     }
     if (!email || !password) {
+
         if (!email) {
             $('#email').closest('.input-group').addClass('input-error');
         }
         if (!password) {
             $('#password').closest('.input-group').addClass('input-error');
         }
+
         var message = 'Both email and password are required.';
         showToast(message, "error");
         return;
     }
     if (!phone) {
+
         $('#phone').closest('.input-group').addClass('input-error');
+
         var message = 'Phone Number is required.';
         showToast(message, "error");
         return;
     }
     if(password !== confirmPassword){
+
         $('#password').closest('.input-group').addClass('input-error');
         $('#password_confirmation').closest('.input-group').addClass('input-error');
+
         var message = 'Password and Confirm Password are not Same.';
         showToast(message, "error");
         return;
@@ -74,11 +84,14 @@ $(document).on('submit', '#usersignup', function(e) {
                 let modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
                 if (modal) modal.hide();
                 document.getElementById('usersignup').reset();
+
                 $('#usersignup .input-group').removeClass('input-error');
+
             }
         },
         error: function(xhr, status, error) {
             console.error('Error:', xhr.responseText);
+
 
             $('#usersignup .input-group').removeClass('input-error');
 
@@ -97,6 +110,7 @@ $(document).on('submit', '#usersignup', function(e) {
                         if (fieldMap[field]) {
                             $(fieldMap[field]).closest('.input-group').addClass('input-error');
                         }
+
                         errors[field].forEach(function(message) {
                             showToast(message, "error");
                         });
@@ -109,3 +123,4 @@ $(document).on('submit', '#usersignup', function(e) {
         }
     });
 });
+

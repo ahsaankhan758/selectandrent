@@ -14,8 +14,10 @@ $(document).on('submit', '#usersignin', function(e) {
 
     console.log('heresignin');
 
+
     // Reset previous error highlights
     $('#usersignin .input-group').removeClass('input-error');
+
 
     var email = $('#get-email').val();
     var password = $('#get-password').val();
@@ -24,12 +26,14 @@ $(document).on('submit', '#usersignin', function(e) {
     
     // Client-side validation with visual feedback
     if (!email || !password) {
+
         if (!email) {
             $('#get-email').closest('.input-group').addClass('input-error');
         }
         if (!password) {
             $('#get-password').closest('.input-group').addClass('input-error');
         }
+
 
         var message = 'Both email and password are required.';
         showToast(message, "error");

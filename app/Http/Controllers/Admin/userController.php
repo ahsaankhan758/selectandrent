@@ -135,13 +135,14 @@ class userController extends Controller
         return redirect()->route('users')-> with('status','Company Data Deleted Successfully.');
     }
     public function logout(Request $request)
-    {
-        $user = Auth::user();
-        $role = $user?->role;
-        $name = $user?->name;
-        $userId = $user?->id;
 
-        // Preserve currency and language from session
+        {
+            $user = Auth::user();
+            $role = $user?->role;
+            $name = $user?->name;
+            $userId = $user?->id;
+
+            // Preserve currency and language from session
         $currencyData = [
             'defaultCurrencyCode' => session('defaultCurrencyCode'),
             'defaultCurrencyName' => ('defaultCurrencyName'),
@@ -160,6 +161,60 @@ class userController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+            session($currencyData);
+            session($languageData);
+
+            if(isset($role) && $role == 'admin')
+            {
+
+                
+                $desciption = $name.' LoggedOut. User Role was '. ucfirst($role);
+                $action = 'LoggedOut';
+                $module = 'Admin';
+                activityLog($userId, $desciption,$action,$module);
+
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/admin/login');
+            }
+
+            elseif(isset($role) && $role == 'company')
+            {
+                $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
+                $action = 'LoggedOut';
+                $module = 'Company';
+                activityLog($userId, $desciption,$action,$module);
+
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/company/login');
+            }
+            elseif(isset($role) && $role == 'user')
+            {
+
+                $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
+                $action = 'LoggedOut';
+                $module = 'Website';
+                activityLog($userId, $desciption,$action,$module);
+
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/');
+            }
+            elseif(isset($role) && $role == 'employee')
+            {
+
+                $desciption = $name.' LoggedOut. User Role was '.ucfirst($role);
+                $action = 'LoggedOut';
+                $module = 'Employee';
+                activityLog($userId, $desciption,$action,$module);
+
+                return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect('/employee/login');
+            }
+
 
         session($currencyData);
         session($languageData);

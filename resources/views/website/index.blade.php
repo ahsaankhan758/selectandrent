@@ -138,7 +138,9 @@
         </div>
     </div>
     @if (count($featuredVehicle) > 0)
-        <section class="container py-4 card-logo-mobile">
+
+        <section class="container py-5 card-logo-mobile">
+
             <div class="row align-items-center">
                 <!-- Heading (Always on Left) -->
                 <div class="col-12 col-md-6 text-center text-md-start">
@@ -262,7 +264,9 @@
                 </div>
 
                 <!-- Swiper Navigation -->
-                <div class="d-flex justify-content-center mt-3">
+
+                <div class="d-flex justify-content-center mt-3 card-button-mobile">
+
                     <a class="carousel-control-prev-featured me-3">
                         <i class="fa-solid fa-arrow-left"></i>
                     </a>
@@ -529,7 +533,9 @@
         </div>
     </div>
     {{-- end chose section --}}
-    <section class="container py-4 mt-5 chose-mobile-car-heading">
+
+    <section class="container py-4 chose-mobile-car-heading">
+
 
         <div class="row align-items-center">
             <!-- Heading (Always on Left) -->
