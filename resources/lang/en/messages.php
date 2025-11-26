@@ -1,5 +1,7 @@
 <?php
     return [
+      'streamlines_about' => 'Select and Rent streamlines the car rental experience, allowing you to browse, compare, and book vehicles tailored to your needs with ease.',
+      'we’re_committed_to_delivering_about' => 'We’re Committed to Delivering',
       'program_heading' => 'Programs',
       'our_cutting-edge_home'=>'Our Select and Rent service makes it easy to browse, compare, and rent cars tailored to your travel or business needs — all in just a few clicks.',
       'continuous_innovation_home' => 'Continuous Innovation',
