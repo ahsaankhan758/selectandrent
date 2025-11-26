@@ -94,15 +94,18 @@
 
         </div>
     </div>
-    <div class="container py-5 mobile-append-custom" id="car-container">
-        <div class="row g-3 justify-content-center">
-            <div id="car-category-list"></div>
+   <div class="container py-5 mobile-append-custom" id="car-container">
+    <div class="row g-3 justify-content-center">
+        <div id="car-category-list"></div>
 
-            <button id="load-more-btn" class="btn btn-primary w-100 mt-3" style="display:none;">
+        <div class="col-lg-4 text-center text-load-more">
+            <button id="load-more-btn" class="btn btn-primary" style="display:none;">
                 Load More
             </button>
         </div>
+
     </div>
+</div>
 
     <div class="container py-4 car-logo-mobile">
         <div class="container bg-white p-4 mt-3 border border-1 mb-3 rounded-3">
