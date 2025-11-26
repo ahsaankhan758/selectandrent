@@ -692,7 +692,10 @@ margin-right: 8px;
 
 /* ======== LAPTOP 1025px – 1440px ======== */
 @media (min-width: 1025px) and (max-width: 1440px) {
-
+.card-logo-mobile.py-5{
+  padding-top: 3rem !important;
+  padding-bottom: 1rem !important;
+}
   .custom-card-img,
   .custom-card-img-2 {
    height: 200px !important;
@@ -4918,5 +4921,7 @@ padding-bottom: 0 !important;
 .mobile-contact-form{
   margin-top: 15px !important;
 }
- 
+.custom-contact-list.mt-5{
+  margin-top: 0 !important;
+}
 }
