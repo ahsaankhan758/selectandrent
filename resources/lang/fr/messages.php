@@ -1,6 +1,8 @@
 <?php
 
     return [
+        'streamlines_about' => 'Select and Rent simplifie l’expérience de location de voitures, vous permettant de parcourir, comparer et réserver des véhicules adaptés à vos besoins en toute simplicité.',
+        'we’re_committed_to_delivering_about' => 'Nous nous engageons à offrir',
         'program_heading' => 'Programme',
         'our_cutting-edge_home' => 'Notre service Sélectionner et Louer vous permet de parcourir, comparer et louer des voitures adaptées à vos besoins de voyage ou professionnels — en seulement quelques clics.',
         'continuous_innovation_home' => 'Innovation continue',

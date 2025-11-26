@@ -1,6 +1,8 @@
 <?php
 
     return [
+        'streamlines_about' => 'Select and Rent stroomlijnt de autoverhuurervaring, zodat je eenvoudig voertuigen kunt bekijken, vergelijken en boeken die aansluiten bij jouw behoeften.',
+        'we’re_committed_to_delivering_about' => 'Wij zetten ons in om te leveren de beste ervaring',
         'program_heading' => 'programma',
         'our_cutting-edge_home' => "Met onze Selecteer en Huur-service kunt u eenvoudig auto's bekijken,
                                     vergelijken en huren die zijn afgestemd op uw reis- of zakelijke
