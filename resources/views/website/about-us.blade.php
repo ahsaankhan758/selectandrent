@@ -45,12 +45,12 @@
                         </div>
                         <span class="ms-2">{{ __('messages.leverage_innovation') }}.</span>
                     </li>
-                    <li class="d-flex align-items-start custom-check-item">
+                    {{-- <li class="d-flex align-items-start custom-check-item">
                         <div class="custom-check-icon">
                             <i class="fa-solid fa-check"></i>
                         </div>
                         <span class="ms-2">{{ __('messages.simplifying_rentals') }}.</span>
-                    </li>
+                    </li> --}}
                     <li class="d-flex align-items-start custom-check-item">
                         <div class="custom-check-icon">
                             <i class="fa-solid fa-check"></i>
@@ -139,7 +139,7 @@
        <!-- Tablet & Mobile Section -->
 <div class="container mobile text-center chose-mobile py-2 d-block d-lg-none">
     <h4 class="text-chose fw-bold">{{ __('messages.why_choose_us') }}</h4>
-    <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+    <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering_about') }} <br>
         {{ __('messages.the_best_experience') }}</h3>
 
     <div class="mt-4">
@@ -185,7 +185,7 @@
         <!-- Desktop Section -->
         <div class="container Desktop  text-center py-3 d-none d-md-block">
             <h4 class="text-chose fw-bold mb-4">{{ __('messages.why_choose_us') }}</h4>
-            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering') }} <br>
+            <h3 class="fw-bold">{{ __('messages.we’re_committed_to_delivering_about') }} <br>
                 {{ __('messages.the_best_experience') }}</h3>
 
             <div class="row align-items-center mt-4">
@@ -472,7 +472,7 @@
                     <h4 class="fw-bold new-design">{{ __('messages.any_questions') }}?</h4>
                     <h4 class="fw-bold new-design">{{ __('messages.we_got_you') }}</h4>
                     <p class="text-muted questions">
-                        {{ __('messages.our_cutting-edge') }}
+                        {{ __('messages.streamlines_about') }}
                     </p>
                 </div>
 
