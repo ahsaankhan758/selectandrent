@@ -482,7 +482,7 @@
                         <!-- First Item -->
                         <div class="accordion-item border-0 border-bottom">
                             <h4 class="accordion-header" id="headingOne1">
-                                <button class="accordion-button fw-bold shadow-none" type="button"
+                                <button class="accordion-button fw-bold collapsed shadow-none" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false"
                                     aria-controls="collapseOne1">
                                     {{ __('messages.Faq1') }}

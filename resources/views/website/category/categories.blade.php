@@ -275,22 +275,22 @@
                 <div class="col-md-4">
                     <div class="accordion" id="faqAccordion1">
                         <!-- First Item -->
-                        <div class="accordion-item border-0 border-bottom">
-                            <h4 class="accordion-header" id="headingOne1">
-                                <button class="accordion-button fw-bold shadow-none" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false"
-                                    aria-controls="collapseOne1">
-                                    {{ __('messages.Faq1') }}
-                                </button>
-                            </h4>
-                            <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1"
-                                data-bs-parent="#faqAccordion1">
-                                <div class="accordion-body text-muted">
-                                    {{ __('messages.Faq1_answer') }}
-                                </div>
+                       <div class="accordion-item border-0 border-bottom">
+                        <h4 class="accordion-header" id="headingOne1">
+                            <button class="accordion-button collapsed fw-bold shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false"
+                                aria-controls="collapseOne1">
+                                {{ __('messages.Faq1') }}
+                            </button>
+                        </h4>
+                        <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1"
+                            data-bs-parent="#faqAccordion1">
+                            <div class="accordion-body text-muted">
+                                {{ __('messages.Faq1_answer') }}
                             </div>
                         </div>
-
+                    </div>
+                    
                         <!-- Second Item -->
                         <div class="accordion-item border-0 border-bottom">
                             <h4 class="accordion-header" id="headingTwo1">
