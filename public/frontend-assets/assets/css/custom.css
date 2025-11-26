@@ -3257,6 +3257,14 @@ margin: 5px 0;
   /* padding: 10px; */
   /* / background: #f9f9f9; / */
 }
+.input-group.input-error {
+  border-color: var(--text-danger) !important;
+  box-shadow: 0 0 0 1px var(--text-danger);
+}
+.input-group.input-error .input-group-text,
+.input-group.input-error .form-control {
+  border-color: var(--text-danger) !important;
+}
 .input-group-text {
   background: transparent;
   border: none;
@@ -3281,7 +3289,7 @@ margin: 5px 0;
 .btn-color{
   background-color: var(--text-blue);
   color: #fff;
-  height: 66px;
+  height: 40px;
 }
 .login-link-text{
   text-decoration: none;

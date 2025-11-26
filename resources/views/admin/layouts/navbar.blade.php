@@ -148,11 +148,11 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-admin-navbar').submit();">
                         <span class="mdi mdi-logout theme-color"></span>
                         {{ __('messages.logout') }}
                     </a>
-                    <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form-admin-navbar" action="{{ url('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
 

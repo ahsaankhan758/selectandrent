@@ -70,6 +70,7 @@ use App\Http\Controllers\website\WebsiteBookingController;
 use App\Http\Controllers\website\PaymentGatewaysController;
 use App\Http\Controllers\website\WebsiteCurrencyController;
 use App\Http\Controllers\website\WebsiteDashboardController;
+use App\Http\Controllers\website\GoogleAuthController;
 
 use Illuminate\Support\Facades\Artisan;
 // for currency update
@@ -124,6 +125,10 @@ Route::middleware('LanguageMiddleware')->group(function(){
     // User Register
     Route::post('user/signup', [SignupController::class, 'signup'])->name('user.signup');
     Route::get('/confirm-email/{token}', [SignupController::class, 'confirm'])->name('confirm.email');
+
+    // Google Social Login (Website users only)
+    Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.redirect');
+    Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('google.callback');
    
     if($currentPrefix == 'company'){
         Route::prefix('company')->middleware(['auth','IsAdmin:company'])->group(function(){

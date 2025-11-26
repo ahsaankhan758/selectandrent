@@ -239,11 +239,11 @@
 
                             <!-- item-->
                             <a class="dropdown-item" href="{{ url('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                onclick="event.preventDefault(); document.getElementById('logout-form-web-desktop').submit();">
                                 <span class="mdi mdi-logout theme-color"></span>
                                 {{ __('messages.logout') }}
                             </a>
-                            <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
+                            <form id="logout-form-web-desktop" action="{{ url('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
 
@@ -316,11 +316,11 @@
 
                                 <!-- item-->
                                 <a class="dropdown-item" href="{{ url('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault(); document.getElementById('logout-form-web-mobile').submit();">
                                     <span class="mdi mdi-logout theme-color"></span>
                                     {{ __('messages.logout') }}
                                 </a>
-                                <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form-web-mobile" action="{{ url('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
 
@@ -666,7 +666,10 @@
 
                         </div>
                     </div>
-                    <button type="submit" class="btn w-100 btn-color">{{ __('messages.sign_up_now') }}</button>
+                    <button type="submit" class="btn w-100 btn-color mb-2">{{ __('messages.sign_up_now') }}</button>
+                    <a href="{{ route('google.redirect') }}" class="btn w-100 btn-outline-danger">
+                        <i class="fa-brands fa-google me-2"></i> {{ __('messages.continue_with_google') }}
+                    </a>
                 </form>
             </div>
         </div>
@@ -701,7 +704,10 @@
                                 placeholder="{{ __('messages.enter_password') }}">
                         </div>
                     </div>
-                    <button type="submit" class="btn w-100 btn-color">{{ __('messages.login') }}</button>
+                    <button type="submit" class="btn w-100 btn-color mb-2">{{ __('messages.login') }}</button>
+                    <a href="{{ route('google.redirect') }}" class="btn w-100 btn-outline-danger">
+                        <i class="fa-brands fa-google me-2"></i> {{ __('messages.continue_with_google') }}
+                    </a>
                 </form>
             </div>
         </div>
