@@ -43,7 +43,7 @@
                             <img src="{{ asset('/') }}frontend-assets/icons/phone.png" alt="Phone Icon">
                             <div>
                                 <h6>{{ __('messages.phone') }}</h6>
-                                <div class="fw-bold">+44 xxxx xxxxxx</div>
+                                <div class="fw-bold">+44xxxxxxxxxx</div>
                             </div>
                         </li>
                         <li>
@@ -81,7 +81,7 @@
                       </div>
                 </div>
                 <!-- Right Side: Contact Form -->
-                <div class="col-lg-7 col-md-7">
+                <div class="col-lg-7 col-md-7 mobile-contact-form">
                     {{-- <div class="custom-contact-form mt-2">
                         <h3>{{ __('messages.contact_form') }}</h3>
                         <p>{{ __('messages.enter_your_detail') }}.
@@ -185,7 +185,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="col-12 text-end">
+                        <div class="col-12 text-end mobile-button-contact">
                             <button id="submitBtn" class="btn btn-orange-clr rounded-pill text-white px-4">
                                 {{ __('messages.submit') }}
                             </button>
@@ -193,7 +193,7 @@
                     </div>
                 </form>
             </div>
-            <p class="text-end text-muted mt-3 small">
+            <p class="text-end text-muted mt-3 small mobile-button-contact">
                 <i class="bi bi-info-circle"></i>
                 {{ __('messages.we_respond') }}
             </p>
