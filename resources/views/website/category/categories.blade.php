@@ -6,10 +6,10 @@
     <!-- add to cart js -->
     <script src="{{ asset('/frontend-assets/assets/Js/addtocart.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-toaster@5.2.0-beta1.1/dist/umd/bootstrap-toaster.min.js"></script>
-    <div class="container py-4 mt-5">
-        <h2 class="text-center mb-3">{{ __('messages.select_a_category') }}</h2>
+    <div class="container py-4 mt-5 category-heading-main">
+        <h2 class="text-center fw-bold mb-3">{{ __('messages.select_a_category') }}</h2>
 
-        <div class="container text-center my-5">
+        <div class="container text-center my-5 category-heading-main">
             <div class="d-flex flex-wrap justify-content-center gap-2">
                 <button class="btn btn-primary filter-btn" data-category="All">{{ __('messages.all') }}</button>
                 @foreach ($categories as $category)
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="container py-5">
+        <div class="container py-5 category-car-main">
             <div class="row g-4" id="car-category-list">
                 @include('website.category.include.car-item', ['cars' => $cars])
             </div>
@@ -32,9 +32,6 @@
                 </div>
             @endif
         </div>
-
-
-
         <!-- View All Button -->
         {{-- <div class="d-flex justify-content-center mt-4">
 
@@ -51,7 +48,7 @@
 
     <!-- Work -->
     <div class="container py-5 category-work-mobile">
-        <h2 class="text-center work-text-clr mb-4">{{ __('messages.how_it_works') }}</h2>
+        <h2 class="text-center fw-bold work-text-clr mb-4">{{ __('messages.how_it_works') }}</h2>
         <p class="text-center work-subtitle">{{ __('messages.booking_an_economical') }}</p>
         <div class="steps mobile-steps">
             <div class="step-item reverse">
@@ -94,7 +91,7 @@
 
     <!-- tip section -->
     <div class="container text-center py-5 mobile-tip-category">
-        <h2 class="mb-4">{{ __('messages.tips_for_renting') }}</h2>
+        <h2 class="mb-4 fw-bold">{{ __('messages.tips_for_renting') }}</h2>
 
         <div class="row justify-content-center">
             <!-- Plan Ahead -->
