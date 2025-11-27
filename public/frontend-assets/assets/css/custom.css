@@ -3917,12 +3917,7 @@ color: #fff;
   margin-top: 10px;
   text-align: start;
 }
-.chose-bg-img {
-  /* background-image: url(../../icons/Cone2.png); */
-  background-repeat: no-repeat;
-  background-size: auto; /* Keeps the image at its original size */
-  background-position: left calc(100% - 58px);
-}
+
 
 /* / Car Details / */
 .car-details {
@@ -4991,3 +4986,11 @@ padding-bottom: 0 !important;
   margin-left: 38px !important;
 }
 
+@media (min-width: 768px) {
+  .chose-bg-img {
+    background-image: url(../../icons/Cone2.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: left calc(100% - 58px);
+  }
+}
