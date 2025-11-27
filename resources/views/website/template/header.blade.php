@@ -29,12 +29,11 @@
 <!-- Desktop Header (Visible on Large Screens) -->
 <header class="header-container d-none d-md-block">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="d-flex align-items-center">
             <!-- Logo -->
             <div class="col-6 col-md-2">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
-                        width="150">
+                    <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo" class="header-img">
                 </a>
             </div>
             <!-- Navbar -->
@@ -76,7 +75,7 @@
         <div class="col-md-1 text-end">
             <ul class="list-unstyled topnav-menu float-end mb-0 lang-tab">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button">
+                    <a class="nav-link dropdown-toggle text-white lang-tab-font" href="#" id="navbarDropdown" role="button">
                         @php
                             $isLoggedIn = auth()->check();
                             $sessionLangName = session('langName');
@@ -131,11 +130,11 @@
         $defaultCurrency = $data['defaultCurrency'];
         $activeCurrencies = $data['activeCurrencies'];
         ?>
-        <div class="col-md-1">
+        <div class="col-md-1 text-end">
             <ul class="list-unstyled topnav-menu float-end mb-0 lang-tab">
                 <li class="nav-item dropdown">
                     @if (session('defaultCurrencyCode'))
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="currencyDropdown"
+                        <a class="nav-link dropdown-toggle text-white lang-tab-font" href="#" id="currencyDropdown"
                             role="button" data-bs-toggle="dropdown">
                             {{ session('defaultCurrencyCode') }}
                         </a>
@@ -256,8 +255,8 @@
         @else
             <div class="col-md-2 text-end" id="getStartedButton">
                 <a href="#" class="btn ms-3 rounded-pill px-3 text-white btn-orange-clr button-font-tab" data-bs-toggle="modal"
-                    data-bs-target="#registerModal">
-                    {{ __('messages.get_started') }} <i class="fa-solid fa-arrow-right"></i>
+                    data-bs-target="#loginModal">
+                    {{ __('messages.rent_sign_in') }} <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
         @endif
@@ -278,7 +277,7 @@
 
             <!-- Logo (Center) -->
             <div class="flex-grow-1 text-center">
-                <a href="home.html">
+                <a href="{{ url('/') }}">
                     <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
                         width="100">
                 </a>
@@ -336,8 +335,8 @@
                 <!-- Get Started Button (Smaller) -->
                 <div class="col-md-2 text-end" id="getStartedButtonMobile">
                     <a href="#" class="btn rounded-pill px-2 py-1 text-white btn-orange-clr"
-                        data-bs-toggle="modal" data-bs-target="#registerModal"
-                        style="font-size: 10px;">{{ __('messages.get_started') }} </a>
+                        data-bs-toggle="modal" data-bs-target="#loginModal"
+                        style="font-size: 10px;">{{ __('messages.rent_sign_in') }} </a>
                 </div>
             @endif
 
