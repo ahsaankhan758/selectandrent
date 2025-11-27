@@ -12,6 +12,7 @@
       'customer_reviews' => 'Customer Reviews',
       'become_partner' => 'Partner',
       'rent_search' => 'Rent',
+      'rent_sign_in' => 'Sign In',
       'select_location' => 'Select Location',
       'vehicle_anytime_anywhere' => 'a Vehicle, Anytime Anywhere',
       'maximize_your_vehicle' => "Maximize your vehicle's potential and start earning passive income with minimal effort. Whether you're a single-car owner or managing a fleet, our program gives you the tools, flexibility, and support to grow your rental business.",

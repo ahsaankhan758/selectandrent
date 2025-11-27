@@ -14,15 +14,26 @@
 }
 
 
-.btn-orange-clr{
+.btn-orange-clr {
     background-color: var(--text-orange);
-    --bs-btn-hover-bg: var(--text-hover-orange);
-  }
+    color: #fff;
+}
 
-  .btn-dark-blue-clr{
+.btn-orange-clr:hover {
+    background-color: var(--text-hover-orange);
+    color: #fff;
+}
+
+  .btn-dark-blue-clr {
     background-color: var(--text-blue);
-    --bs-btn-hover-bg: var(--text-blue);
-  }
+    color: #fff;
+}
+
+.btn-dark-blue-clr:hover {
+    background-color: var(--text-hover-blue);
+    color: #fff;
+}
+
   
   .text-orange{
     color: var(--text-orange);

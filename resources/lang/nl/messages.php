@@ -19,6 +19,7 @@
         'become_partner' => 'Word partner',
         'about' => 'Over ons',
         'rent_search' => 'Huuroptie',
+        'rent_sign_in' => 'Inloggen',
         'vehicle_anytime_anywhere'=>'een auto, altijd en overal',
         'maximize_your_vehicle' => "Maximaliseer het potentieel van je voertuig en begin met het verdienen van passief inkomen zonder gedoe. Of je nu een enkele auto bezit of een wagenpark beheert, ons programma biedt je de tools, flexibiliteit en ondersteuning om je verhuurbedrijf te laten groeien.",
         'get_expert_guidance' => 'Krijg deskundige begeleiding bij elke stap. Ons toegewijde supportteam helpt je bij het optimaliseren van je aanbiedingen, prijzen en communicatie voor succes.',

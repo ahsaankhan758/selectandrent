@@ -8,6 +8,7 @@
   --text-grey:#5f5e5e;
   --text-orange:#f06115;
   --text-blue:#07407B;
+  --text-hover-blue:#084c94;
   --text-danger:#e74c3c;
   --hover-clr:#F4F4F5;
 }
@@ -2275,7 +2276,7 @@ margin: 5px 0;
         display: none;
     }
     .lang-tab{
-      font-size: 10px;
+      font-size: 8px;
     }
 
 }
@@ -2309,7 +2310,7 @@ margin: 5px 0;
         display: none;
     }
     .lang-tab{
-      font-size: 10px;
+      font-size: 13px;
     }
 }
 @media (min-width: 1025px) and (max-width: 1440px) {
@@ -3308,6 +3309,10 @@ margin: 5px 0;
   background-color: var(--text-blue);
   color: #fff;
   height: 40px;
+}
+.btn-color:hover {
+background-color: var(--text-hover-blue);
+color: #fff;
 }
 .login-link-text{
   text-decoration: none;
@@ -4951,4 +4956,29 @@ padding-bottom: 0 !important;
   margin-top: 0 !important;
 }
 
+}
+
+.header-img{
+  width: 150px;
+}
+
+@media (max-width: 1024px) {
+    .header-img {
+        width: 120px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-img {
+        width: 100px !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .navbar-nav .nav-link {
+        color: var(--text-white);
+        font-size: 13px;
+        padding: 10px 15px;
+        transition: color 0.3s ease-in-out;
+    }
 }
