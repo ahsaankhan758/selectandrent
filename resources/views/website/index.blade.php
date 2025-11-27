@@ -776,7 +776,7 @@
                 </button>
             </div>
             <div class="mt-3">
-                <img src="{{ asset('/') }}frontend-assets/assets/mobile.png" class="img-fluid rounded"
+                <img width="100%" src="{{ asset('/') }}frontend-assets/assets/mobile.png"  class="img-fluid rounded"
                     alt="People with Car">
             </div>
             <!-- Images -->

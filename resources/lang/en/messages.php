@@ -282,7 +282,7 @@
       'enter_name' => 'Enter name',
       'enter_email' => 'Enter email',
       'enter_password' => 'Enter password',
-      'sign_up_now' => 'SIGN UP NOW',
+      'sign_up_now' => 'Sign Up Now',
       'log_in' => 'Log In',
       "don't_have_account" => "Don't have an account?",
       'register_with_select_and_rental' => 'Register with Select & Rent',
