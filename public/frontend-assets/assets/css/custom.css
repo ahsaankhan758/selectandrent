@@ -4958,6 +4958,7 @@ padding-bottom: 0 !important;
 
 }
 
+
 .header-img{
   width: 150px;
 }
@@ -4982,3 +4983,11 @@ padding-bottom: 0 !important;
         transition: color 0.3s ease-in-out;
     }
 }
+
+/* Added by AJ 27/11/25 */
+
+.footer-icon{
+  margin-top: -15px !important;
+  margin-left: 38px !important;
+}
+
