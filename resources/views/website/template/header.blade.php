@@ -277,7 +277,7 @@
 
             <!-- Logo (Center) -->
             <div class="flex-grow-1 text-center">
-                <a href="home.html">
+                <a href="{{ url('/') }}">
                     <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
                         width="100">
                 </a>
