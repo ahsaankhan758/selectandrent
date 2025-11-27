@@ -671,7 +671,7 @@
                     </div>
 
                     <button type="submit" class="btn w-100 btn-color mb-2">{{ __('messages.sign_up_now') }}</button>
-                    <a href="{{ route('google.redirect') }}" class="btn w-100 btn-outline-danger">
+                    <a href="{{ route('google.redirect') }}" class="btn w-100 btn-outline-danger mt-2">
                         <i class="fa-brands fa-google me-2"></i> {{ __('messages.continue_with_google') }}
                     </a>
 
@@ -711,7 +711,7 @@
                     </div>
 
                     <button type="submit" class="btn w-100 btn-color mb-2">{{ __('messages.login') }}</button>
-                    <a href="{{ route('google.redirect') }}" class="btn w-100 btn-outline-danger">
+                    <a href="{{ route('google.redirect') }}" class="btn w-100 btn-outline-danger mt-2">
                         <i class="fa-brands fa-google me-2"></i> {{ __('messages.continue_with_google') }}
                     </a>
 
