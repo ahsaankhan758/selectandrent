@@ -78,10 +78,10 @@
       </div>
       <div class="footer-container text-white">
           <div class="container mt-3">
-              <div class="row align-items-stretch">
+              <div class="row">
                   <div class="col-md-6 col-12 text-start">
                       <img src="{{ asset('/') }}frontend-assets/logo/select-and-rent--jpg 2.png" alt="Logo"
-                          width="120px" height="120px" class="ms-5">
+                          width="120px" height="120px" class="footer-icon">
                       <p class="ms-5">{{ __('messages.whether_you_need') }}.
                       </p>
                       <div class="social-icons-footer mt-5 mb-5 ms-5">
@@ -91,7 +91,7 @@
                       </div>
                   </div>
                   
-                  <div class="col-md-3 col-6">
+                  <div class="col-md-3 col-6 mt-4">
                       <h5 class="footer-quick-links">{{ __('messages.quick_links') }}</h5>
                       <div class="d-flex gap-2 footer-quick-links">
                           <hr class="hr-yellow">
@@ -109,7 +109,7 @@
                       </ul>
                   </div>
                   
-                  <div class="col-md-3 col-6">
+                  <div class="col-md-3 col-6 mt-4">
                       <h5 class="footer-vehicle-type">{{ __('messages.vehicle_type') }}</h5>
                       <div class="d-flex gap-2 footer-vehicle-type">
                           <hr class="hr-yellow">

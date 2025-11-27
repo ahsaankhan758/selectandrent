@@ -4952,3 +4952,10 @@ padding-bottom: 0 !important;
 }
 
 }
+
+/* Added by AJ 27/11/25 */
+
+.footer-icon{
+  margin-top: -15px !important;
+  margin-left: 38px !important;
+}
