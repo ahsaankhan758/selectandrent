@@ -68,7 +68,7 @@ class CarSearchController extends Controller
     // Get total cars
     $totalCars = Car::count();
 
-    $allCarsCount = Car::count();
+    $allCarsCount = Car::where('status', 1)->count();
 
     // Get all categories with car count
     $categories = CarCategory::withCount(['cars' => function ($query) {
