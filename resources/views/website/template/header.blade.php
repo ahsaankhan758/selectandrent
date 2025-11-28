@@ -296,19 +296,19 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{ route('website.dashboard') }}" class="dropdown-item notify-item">
                                     <i class="mdi mdi-view-dashboard-outline theme-color"></i>
                                     <span> {{ __('messages.dashboard') }} </span>
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{ route('website.edit_profile', Auth::id()) }}" class="dropdown-item notify-item">
                                     <span class="mdi mdi-account theme-color"></span>
                                     <span> {{ __('messages.edit') }} {{ __('messages.profile') }}</span>
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{ route('website.booking') }}" class="dropdown-item notify-item">
                                     <span class="mdi mdi-book-multiple theme-color"></span>
                                     <span>{{ __('messages.bookings') }} </span>
                                 </a>

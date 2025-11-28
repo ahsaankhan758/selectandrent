@@ -1053,7 +1053,7 @@
                             $("#car-container").hide();
                         }
 
-                        categoryLastCarId[categoryId] = offset + 8;
+                        categoryLastCarId[categoryId] = offset + 6;
 
                         if (response.hasMore) {
                             $("#load-more-btn").show();

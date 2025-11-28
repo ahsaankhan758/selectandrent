@@ -88,7 +88,7 @@ class CarListingController extends Controller
     $carModel = CarModel::all();
 
     // Get the first 8 cars for initial load
-    $cars = $query->take(8)->get();
+    $cars = $query->take(6)->get();
 
     if ($request->ajax()) {
         return response()->json([
@@ -156,8 +156,8 @@ public function loadMoreCars(Request $request)
 
     // **Ensure Load More Uses the Filtered Data**
     $filteredCount = $query->count();
-    $cars = $query->skip($offset)->take(8)->get();
-    $hasMore = $filteredCount > ($offset + 8);
+    $cars = $query->skip($offset)->take(6)->get();
+    $hasMore = $filteredCount > ($offset + 6);
 
     return response()->json([
         'data' => view("website.car-listing.include.car-listing-load-more-cards", compact('cars'))->render(),
