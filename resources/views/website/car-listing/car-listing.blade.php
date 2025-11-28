@@ -20,7 +20,7 @@
                     <div class="static-display-flex align-items-center">
                         <span class="menu-icon">☰</span>
                         <span class="results">
-                            8 {{ __('messages.of') }} <span id="current-count">{{ $totalCars }}</span>
+                            6 {{ __('messages.of') }} <span id="current-count">{{ $totalCars }}</span>
                             {{ __('messages.results') }}
                         </span>
                     </div>
@@ -49,9 +49,9 @@
                     @include('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])
                 </div>
                 <div class="text-center mb-5">
-                    @if ($totalCars > 8)
+                    @if ($totalCars > 6)
                         <button class="load-more-btn btn btn-orange-clr text-white" data-target="car-list"
-                            data-url="{{ route('load.more.cars') }}" data-offset="8" data-total="{{ $totalCars }}" 
+                            data-url="{{ route('load.more.cars') }}" data-offset="6" data-total="{{ $totalCars }}" 
                             data-model="Car">
                             {{ __('messages.load_more') }}
                         </button>

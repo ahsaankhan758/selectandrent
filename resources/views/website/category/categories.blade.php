@@ -22,7 +22,7 @@
             <div class="row g-4" id="car-category-list">
                 @include('website.category.include.car-item', ['cars' => $cars])
             </div>
-            @if ($totalCars > 8)
+            @if ($totalCars > 6)
                 <div class="text-center text-load-more">
                     <button id="load-more-btn" class="btn btn-orange-clr text-white"
                         data-url="{{ route('load.more.category.cars') }}" data-target="car-category-list" data-offset="8"
@@ -396,7 +396,7 @@
 <script>
    $(document).ready(function() {
     let categoryLastCarId = {};
-    let currentCategory = "All"; // this will be ID
+    let currentCategory = "All"; 
     let isLoading = false;
 
     function loadCars(categoryId, append = false) {
@@ -423,7 +423,7 @@
                     $("#car-category-list").html('<div class="text-center text-orange fw-bold mt-4">{{ __("messages.This category has no records") }}</div>');
                     $("#load-more-btn").hide();
                 } else {
-                    categoryLastCarId[categoryId] = offset + 8;
+                    categoryLastCarId[categoryId] = offset + 6;
                     $("#load-more-btn").toggle(response.hasMore);
                 }
 

@@ -148,7 +148,7 @@ public function filterCarsHome(Request $request)
 
     $offset = intval($request->offset ?? 0);
     $totalCars = $query->count();
-    $cars = $query->skip($offset)->take(8)->get();
+    $cars = $query->skip($offset)->take(6)->get();
 
     $hasMore = ($offset + count($cars)) < $totalCars;
 

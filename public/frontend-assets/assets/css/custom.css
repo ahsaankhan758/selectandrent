@@ -3242,9 +3242,9 @@ margin: 5px 0;
 }
 @media (max-width: 480px) {
 .inner-footer {
-  background: url('/Select-and-rent/icons/inner-footer.png') no-repeat bottom;
-  height: 648px;
-  width: 320px;
+  background: url('../../icons/inner-footer.png') no-repeat bottom;
+  height: 648px !important;
+  /* width: 320px; */
 }
 .border-custom {
   border-right: none; 
@@ -3259,7 +3259,7 @@ margin: 5px 0;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .inner-footer {
-    background: url('/Select-and-rent/icons/inner-footer.png') no-repeat center;
+    background: url('../../icons/inner-footer.png') no-repeat center;
     background-size: 100% auto;
   }
   .logo-inner-footer{
