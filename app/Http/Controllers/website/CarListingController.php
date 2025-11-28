@@ -83,7 +83,7 @@ class CarListingController extends Controller
         $query->where('status', 1);
     }])->get();
 
-    $allCarsCount = Car::count();
+    $allCarsCount = Car::where('status', 1)->count();
     // Get all car models
     $carModel = CarModel::all();
 
