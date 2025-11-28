@@ -347,7 +347,7 @@
       'sedan' => 'Sedan',
       'sport_coupe' => 'Sport Coupe',
       'whether_you_need' => 'Whether you need a compact vehicle for city drives, a luxury vehicle for a special event, or a spacious SUV for a family trip, our rental service offers a wide range of options tailored to your needs',
-      'contact_us' => 'CONTACT US',
+      'contact_us' => 'Contact Us',
       'all_right_reserved' => 'All Right Reserved',
       '86_industry_experts' => '86 Industry Experts',
       'years_in_business' => 'Years in Business',

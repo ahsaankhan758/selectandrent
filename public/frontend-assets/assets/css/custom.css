@@ -19,6 +19,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
 }
+.filter-btn {
+    cursor: pointer;
+}
 .card_orange_clr{
   color: var(--text-orange) !important;
 }
