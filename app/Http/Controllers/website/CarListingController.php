@@ -83,7 +83,7 @@ class CarListingController extends Controller
         $query->where('status', 1);
     }])->get();
 
-
+    $allCarsCount = Car::count();
     // Get all car models
     $carModel = CarModel::all();
 
@@ -94,11 +94,12 @@ class CarListingController extends Controller
         return response()->json([
             'data' => view('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])->render(),
             'filteredCount' => $filteredCarsCount,
+            'allCarsCount' => $allCarsCount,
             'totalCars' => $totalCars
         ]);
     }
 
-    return view('website.car-listing.car-listing', compact('cars', 'totalCars', 'categories', 'carModel'));
+    return view('website.car-listing.car-listing', compact('cars', 'allCarsCount', 'totalCars', 'categories', 'carModel'));
 }
 
 
