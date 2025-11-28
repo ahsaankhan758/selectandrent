@@ -316,8 +316,9 @@
     </section>
     <!-- cars view -->
     <div class="container py-4 mb-2">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
+        <div class="swiper-container-wrapper">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
                 @foreach ($vehicles as $vehicle)
                     <div class="swiper-slide mb-2">
                         <div class="custom-card2">
@@ -426,47 +427,45 @@
                         </div>
                     </div>
                 @endforeach
+                </div>
             </div>
-        </div>
 
-        <!-- Swiper Navigation -->
-        <div class="d-flex justify-content-center py-4">
-            <a class="carousel-control-prev-custom me-3">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
-            <a class="carousel-control-next-custom">
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <!-- Swiper Navigation -->
+            <div class="d-flex justify-content-center py-4">
+                <a class="carousel-control-prev-custom me-3">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control-next-custom">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 
 
     <!-- end -->
-        <!-- testimonals -->
-    <div class="container py-5">
-        {{-- <h2 class="text-center fw-bold">{{ __('messages.testimonials') }}</h2> --}}
+ <!-- testimonals -->
+ <div class="container py-5 mobile-testimonial-about">
+        <h3 class="fw-bold text-center">{{ __('messages.customer_reviews') }}</h3>
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★1</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Smooth, Simple, and Profitable”</h4>
+                                    <strong class="testimonial-text">“Smooth, Simple, and Profitable”</strong>
                                     <p class="mt-2 testimonial-text">“I listed two of my cars on Select and Rent, and
                                         within the first week, I had bookings lined up. The platform is user-friendly, and
                                         the team helped me set everything up. I now earn passive income without worrying
                                         about management.”</p>
-                                    <strong class="testimonial-text">– Sarah M., Small Business Owner</strong>
+                                    <h class="testimonial-text">– Sarah M., Small Business Owner</h>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer1.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -479,19 +478,17 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★2</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Great Support, Every Step of the Way”</h4>
+                                    <strong class="testimonial-text">“Great Support, Every Step of the Way”</strong>
                                     <p class="mt-2 testimonial-text">“I was hesitant at first, but the Select and Rent team
                                         walked me through the process. They handled the insurance and gave me full control
                                         over my rental schedule. It’s a win-win!”</p>
-                                    <strong class="testimonial-text">– Jason T., Independent Car Owner</strong>
+                                    <h6 class="testimonial-text">– Jason T., Independent Car Owner</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer2.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -504,19 +501,17 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★3</span> <span class="text-primary">4.8</span> --}}
-                                    <h4 class="testimonial-text">“Reliable Income Stream”</h4>
+                                    <strong class="testimonial-text">“Reliable Income Stream”</strong>
                                     <p class="mt-2 testimonial-text">“As a part-time Uber driver, I wanted to make the most
                                         of my car when I wasn’t using it. Select and Rent helped me earn extra income during
                                         my off-hours. It's flexible, safe, and efficient.”</p>
-                                    <strong class="testimonial-text">– Ayesha R., Ride-Share Driver</strong>
+                                    <h6 class="testimonial-text">– Ayesha R., Ride-Share Driver</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative mt-3 text-center">
+                        <div class="col-md-6 position-relative mt-3 text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer4.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -528,19 +523,17 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★4</span> <span class="text-primary">4.9</span> --}}
-                                    <h4 class="testimonial-text">“Fleet Management Made Easy”</h4>
+                                    <strong class="testimonial-text">“Fleet Management Made Easy”</strong>
                                     <p class="mt-2 testimonial-text">“Managing a fleet used to be time-consuming. Now, with
                                         Select and Rent, I can monitor everything from a single dashboard. Their pricing
                                         tools and calendar features are especially helpful.”</p>
-                                    <strong class="testimonial-text">– Luis D., Rental Fleet Manager</strong>
+                                    <h6 class="testimonial-text">– Luis D., Rental Fleet Manager</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer3.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -553,19 +546,17 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h2>
-                                {{-- <p class="text-primary secondary-text-size">{{ __('messages.most_of_our_user') }}.</p> --}}
+                                <h4 class="fw-bold testimonial-text">{{ __('messages.our_most_satisfied') }}!</h4>
                                 <div class="bg-light p-4 testimonial-box rounded shadow mt-5">
-                                    {{-- <span class="text-warning">★★★★★5</span> <span class="text-primary">5.0</span> --}}
-                                    <h4 class="testimonial-text">“Hassle-Free Experience”</h4>
+                                    <strong class="testimonial-text">“Hassle-Free Experience”</strong>
                                     <p class="mt-2 testimonial-text">“From listing my car to receiving my first payment,
                                         the process was seamless. The renters were verified, the car was returned in perfect
                                         condition, and the payout was on time.”</p>
-                                    <strong class="testimonial-text">– Michelle K., First-Time Host</strong>
+                                    <h6 class="testimonial-text">– Michelle K., First-Time Host</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 position-relative text-center">
+                        <div class="col-md-6 position-relative text-center mobile-testimonial-img">
                             <div class="testimonial-bg"></div>
                             <img src="{{ asset('/') }}frontend-assets/icons/customer5.png"
                                 class="testimonial-img img-fluid" alt="Customer">
@@ -576,7 +567,7 @@
             </div>
         </div>
         <!-- Carousel Controls -->
-        <div class="d-flex justify-content-center mt-5">
+        <div class="d-flex justify-content-center mt-3">
             <a class="carousel-control-prev-custom me-3" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
@@ -811,30 +802,36 @@
     <!-- Include Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            loop: true,
-            autoplay: {
-                delay: 3000, // 3 sec
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: ".carousel-control-prev-custom",
-                prevEl: ".carousel-control-next-custom",
-            },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                    spaceBetween: 10
-                }, // Mobile
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 15
-                }, // Tablet
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 20
-                }, // Desktop
-            },
+        document.addEventListener("DOMContentLoaded", function() {
+            var swiper = new Swiper(".mySwiper", {
+                loop: true,
+                slidesPerView: 3,
+                spaceBetween: 10,
+                centeredSlides: false,
+                watchOverflow: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: ".carousel-control-next-custom",
+                    prevEl: ".carousel-control-prev-custom",
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 5
+                    }, // Mobile
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 10
+                    }, // Tablet
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 15
+                    }, // Desktop
+                },
+            });
         });
     </script>
 @endsection
