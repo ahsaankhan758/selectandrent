@@ -505,7 +505,9 @@ justify-content: center;
 .icon-text img {
 margin-right: 8px;
 }
-
+.lang-tab-font{
+  margin-right: -25px;
+}
 .custom-card-img {
   width: 340px;
   height: 200px; 
@@ -516,6 +518,12 @@ margin-right: 8px;
 .custom-card-img-2 {
   width: 322px;
   height: 230px; 
+  object-fit: cover;
+  border-radius: 8px;
+}
+.custom-card-img-3 {
+  width: 372px;
+  height: 270px; 
   object-fit: cover;
   border-radius: 8px;
 }
@@ -672,7 +680,8 @@ margin-right: 8px;
 @media (min-width: 481px) and (max-width: 768px) {
 
   .custom-card-img,
-  .custom-card-img-2 {
+  .custom-card-img-2,
+  .custom-card-img-3 {
     max-width: 100%;
     height: auto;
   }
@@ -699,6 +708,12 @@ margin-right: 8px;
     object-fit: inherit;
     max-width: 100%;
   }
+  .custom-card-img-3 {
+    width: 318px;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
   .card-content {
     padding-top: 15px !important;
@@ -714,7 +729,8 @@ margin-right: 8px;
   padding-bottom: 1rem !important;
 }
   .custom-card-img,
-  .custom-card-img-2 {
+  .custom-card-img-2,
+  .custom-card-img-3 {
    height: 200px !important;
    object-fit: inherit !important;
    max-width: 100% !important;

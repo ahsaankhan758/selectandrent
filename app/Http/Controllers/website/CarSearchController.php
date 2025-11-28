@@ -68,6 +68,8 @@ class CarSearchController extends Controller
     // Get total cars
     $totalCars = Car::count();
 
+    $allCarsCount = Car::count();
+
     // Get all categories with car count
     $categories = CarCategory::withCount(['cars' => function ($query) {
         $query->where('status', 1);
@@ -76,18 +78,19 @@ class CarSearchController extends Controller
     // Get all car models
     $carModel = CarModel::all();
 
-    // Get the first 8 cars for initial load
-    $cars = $query->take(8)->get();
+    // Get the first 6 cars for initial load
+    $cars = $query->take(6)->get();
 
     if ($request->ajax()) {
         return response()->json([
             'data' => view('website.car-listing.car-listing-filters.car-list', ['cars' => $cars])->render(),
             'filteredCount' => $filteredCarsCount,
+            'allCarsCount' => $allCarsCount,
             'totalCars' => $totalCars
         ]);
     }
     $cars = session('searchedCars', []);
-    return view('website.carsearch', compact('cars', 'totalCars', 'categories', 'carModel'));
+    return view('website.carsearch', compact('cars', 'allCarsCount', 'totalCars', 'categories', 'carModel'));
 }
 
 }

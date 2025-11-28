@@ -20,7 +20,7 @@
                     <div class="static-display-flex align-items-center">
                         <span class="menu-icon">☰</span>
                         <span class="results">
-                            6 {{ __('messages.of') }} <span id="current-count">{{ $totalCars }}</span>
+                            {{ $allCarsCount }} {{ __('messages.of') }} <span id="current-count">{{ $totalCars }}</span>
                             {{ __('messages.results') }}
                         </span>
                     </div>
