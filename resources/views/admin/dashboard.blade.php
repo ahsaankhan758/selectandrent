@@ -22,7 +22,7 @@
                                 <li class="breadcrumb-item active">{{ __('messages.dashboard') }}</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">{{ __('messages.dashboard') }}</h4>
+                        <h4 class="page-title">{{ __('messages.dashboard') }} - {{ ucfirst(auth()->user()->role) }}</h4>
                     </div>
                 </div>
             </div>
